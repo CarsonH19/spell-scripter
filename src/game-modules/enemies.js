@@ -33,7 +33,14 @@ const behaviors = {
   EVASIVE: "EVASIVE", // Doesn't attack only dodges attacks
 };
 
-const ENEMIES = {
+// exported to heroes.js
+export const stats = {
+  ranks,
+  types,
+  behaviors
+};
+
+export const ENEMIES = {
   // =====================================================================
   // IronJour Timberland Enemies
   // =====================================================================
@@ -125,9 +132,3 @@ const ENEMIES = {
   },
 };
 
-// exported to heroes.js
-export const stats = {
-  ranks,
-  types,
-  behaviors
-};
