@@ -17,7 +17,7 @@ const uiSlice = createSlice({
   },
 
   // toggle dispatch example:
-  // dispatch(uiSlice.actions.toggle({ element: 'inventoryIsVisible' }));
+  // dispatch(uiSlice.actions.toggle({ modal: 'inventoryIsVisible' }));
 
 });
 
