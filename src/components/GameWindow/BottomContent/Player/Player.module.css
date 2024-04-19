@@ -1,0 +1,13 @@
+.player {
+  width: 33%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image {
+ height: 100%;
+ width: 12rem;
+ border: 1px solid gray;
+}

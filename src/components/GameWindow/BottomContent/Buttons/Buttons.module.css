@@ -1,0 +1,13 @@
+.buttons {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.buttons button {
+  height: 20%;
+  width: 20%;
+  border-radius: 10px;
+}

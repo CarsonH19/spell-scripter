@@ -1,0 +1,11 @@
+.actions {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  height: 40%;
+  width: 40%;
+}
