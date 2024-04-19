@@ -4,8 +4,11 @@ import { uiActions } from "../../store/ui-slice";
 import { useDispatch } from "react-redux";
 
 // following imports are only used for testing
-import { dungeonActions } from "../../store/dungeon.slice";
+import { dungeonActions } from "../../store/dungeon-slice";
 import { currentRoom } from "../../data/dungeon";
+
+import { heroActions } from "../../store/hero-slice";
+import { currentParty } from "../../data/heroes";
 
 export default function StartGame() {
   const dispatch = useDispatch();
@@ -13,8 +16,9 @@ export default function StartGame() {
   const handleStart = () => {
     dispatch(uiActions.toggle({ modal: "startIsVisible" }));
 
-    // dungeonActions are only used for testing
+    // the following are only used for testing
     dispatch(dungeonActions.updateRoom(currentRoom));
+    dispatch(heroActions.updateParty(currentParty));
   };
 
   return (

@@ -1,24 +1,51 @@
-let player = {
-  hero: "",
-};
-
 const PALADIN = {
-  name: "",
+  name: "Siggurd",
   image: "",
-  audio: {},
+  // audio: {},
   stats: {
     strength: 0,
     dexterity: 0,
     faith: 0,
     arcana: 0,
   },
-  passive: () => {},
-  abilityOne: () => {},
-  abilityTwo: () => {},
+  // passive: () => {},
+  // abilityOne: () => {},
+  // abilityTwo: () => {},
 };
 
 // ROGUE
+const ROGUE = {
+  name: "Riven",
+  image: "",
+  // audio: {},
+  stats: {
+    strength: 0,
+    dexterity: 0,
+    faith: 0,
+    arcana: 0,
+  },
+  // passive: () => {},
+  // abilityOne: () => {},
+  // abilityTwo: () => {},
+};
+
 // PRIESTESS
+const PRIESTESS = {
+  name: "Liheth",
+  image: "",
+  // audio: {},
+  stats: {
+    strength: 0,
+    dexterity: 0,
+    faith: 0,
+    arcana: 0,
+  },
+  // passive: () => {},
+  // abilityOne: () => {},
+  // abilityTwo: () => {},
+};
 // WARLOCK
 // EVOKER
 // RISEN
+
+export let currentParty = [PALADIN, ROGUE, PRIESTESS];
