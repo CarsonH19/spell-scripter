@@ -14,10 +14,17 @@ const dungeonSlice = createSlice({
   },
   reducers: {
     updateRoom(state, action) {
-      state = action.payload;
+      return {
+        ...state,
+        ...action.payload,
+      };
     },
     addMonster(state, action) {},
     removeMonster(state, action) {},
-
   },
 });
+
+
+export const dungeonActions = dungeonSlice.actions;
+
+export default dungeonSlice;

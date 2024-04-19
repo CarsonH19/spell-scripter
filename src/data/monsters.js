@@ -47,9 +47,9 @@ const GNAWERS = {
       resistances: [DAMAGE_TYPES.POISON],
       immunities: [CONDITIONS.POISONED],
     },
-    soundEffects: {},
-    passive: () => {}, // active on each turn
-    ability: () => {}, // active under certain conditions
+    // soundEffects: {},
+    // passive: () => {}, // active on each turn
+    // ability: () => {}, // active under certain conditions
   },
 };
 
