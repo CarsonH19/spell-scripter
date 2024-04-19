@@ -1,3 +1,7 @@
+.top {
+  height: 20vh;
+}
+
 .topContent {
   display: flex;
   justify-content: space-between;

@@ -7,10 +7,7 @@ export default function GameWindow() {
     <div>
       <TopContent />
       {/* TOP 20% Height */}
-      {/* TOP-LEFT CONTENT - Room Name & Counter */}
-      {/*  TOP-CENTER CONTENT - Initiative Tracker */}
-      {/*  TOP-RIGHT CONTENT - Boss Name */}
-      {/*  TOP-FULL-BOTTOM CONTENT - Boss HP Bar  */}
+      
 
       <MiddleContent />
       {/* MIDDLE 55% Height */}

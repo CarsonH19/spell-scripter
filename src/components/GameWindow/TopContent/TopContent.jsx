@@ -6,7 +6,7 @@ import Boss from "./Boss/Boss";
 
 export default function TopContent() {
   return (
-    <div>
+    <div className={classes.top}>
       <div className={classes.topContent}>
         <DungeonInfo />
         <InitiativeTracker />

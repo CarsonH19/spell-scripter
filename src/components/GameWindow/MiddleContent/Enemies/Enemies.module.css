@@ -1,12 +1,12 @@
-.party {
+.enemies {
   width: 35%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 1rem;
 }
 
-.party div {
+.enemies div {
   height: 2rem;
   width: 2rem;
   border: 1px solid red;
