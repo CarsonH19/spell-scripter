@@ -1,13 +1,16 @@
-import GameWindow from "./components/GameWindow/GameWindow"
+import GameWindow from "./components/GameWindow/GameWindow";
 
+import { useSelector } from "react-redux";
 
 function App() {
+  const start = useSelector((state) => state.ui.start);
 
   return (
     <>
-      <GameWindow />
+      {start && <StartGame />}
+      {!start && <GameWindow />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

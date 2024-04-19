@@ -1,16 +1,16 @@
-// const dungeonRoomSample = {
-//   roomName: "Catacomb Entrance",
-//   backgroundImage: "",
-//   music: droneDarkHor1,
-//   contents: {
-//     monsters: [],
-//     items: [],
-//     events: null,
-//   },
-// };
+const dungeonRoomSample = {
+  roomName: "Catacomb Entrance",
+  backgroundImage: "",
+  contents: {
+    monsters: [],
+    items: [],
+    events: null,
+  },
+};
 
 
-let currentRoom;
+let currentRoom = dungeonRoomSample;
+
 
 let dungeon = [];
 
