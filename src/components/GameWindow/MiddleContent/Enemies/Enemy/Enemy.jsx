@@ -1,23 +1,23 @@
-import classes from "./Hero.module.css";
+import classes from "./Enemy.module.css";
 
-export default function Hero({ name }) {
+export default function Enemy({ name }) {
   return (
-    <div className={classes.hero}>
-      <div className={classes.image}></div>
+    <div className={classes.enemy}>
       <div className={classes.container}>
         <p className={classes.name}>{name}</p>
         <div className={classes.info}>
           <p>
-            HP: <span>0</span> / <span>0</span>
+            Lvl: <span>0</span>
           </p>
           <p>
-            Lvl: <span>0</span>
+            HP: <span>0</span> / <span>0</span>
           </p>
         </div>
         <progress max="100" value="50">
           Health Bar
         </progress>
       </div>
+      <div className={classes.image}></div>
     </div>
   );
 }

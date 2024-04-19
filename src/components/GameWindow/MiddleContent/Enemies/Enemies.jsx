@@ -1,5 +1,7 @@
 import classes from "./Enemies.module.css";
 
+import Enemy from "./Enemy/Enemy";
+
 import { useSelector } from "react-redux";
 
 export default function Enemies() {
@@ -9,7 +11,7 @@ export default function Enemies() {
   return (
     <div className={classes.enemies}>
       {enemies.map((enemy, index) => (
-        <div key={index}>{enemy.name}</div>
+        <Enemy key={index} name={enemy.name}/>
       ))}
     </div>
   );

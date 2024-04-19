@@ -1,21 +1,22 @@
 
-.hero {
+.enemy {
   position: relative;
   width: 100%;
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
   gap: 1rem;
 }
 
-.hero .image {
+.enemy .image {
   height: 4rem;
   width: 4rem;
   border: 1px solid red;
 }
 
-.hero .container {
+.enemy .container {
   position: absolute; 
-  left: 5rem; 
+  right: 5rem; 
   top: 0rem;
   width: 0%; 
   height: 100%; 
@@ -23,17 +24,18 @@
   transition: width 0.3s ease;
 }
 
-.hero:hover .container {
+.enemy:hover .container {
   width: 50%; 
 }
 
-.hero .container .name {
+.enemy .container .name {
   font-size: 0.8rem;
   font-weight: 600;
   margin: 0;
+  text-align: right;
 }
 
-.hero .container .info {
+.enemy .container .info {
   overflow: hidden;
   display: flex;
   justify-content: space-between;
@@ -41,13 +43,13 @@
   margin-bottom: -0.8rem;
 }
 
-.hero .container .info p {
+.enemy .container .info p {
   margin: 0;
   font-size: 0.8rem;
   margin-top: 0.4rem;
 }
 
-.hero .container progress {
+.enemy .container progress {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -57,19 +59,19 @@
   border: 1px solid #ad0505;
 }
 
-.hero progress[value]::-webkit-progress-bar,
-.hero progress[value] {
+.enemy progress[value]::-webkit-progress-bar,
+.enemy progress[value] {
   background-color: #b0aaaa;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
   border-radius: 2px;
 }
 
-.hero progress[value]::-webkit-progress-value {
+.enemy progress[value]::-webkit-progress-value {
   background-color: #ad0505;
   transition: all 0.1s ease-out;
 }
 
-.hero progress[value]::-moz-progress-bar {
+.enemy progress[value]::-moz-progress-bar {
   background-color: #ad0505;
   transition: all 0.1s ease-out;
 }
