@@ -1,11 +1,11 @@
-import { GNAWERS } from "./monsters";
+import { GNAWERS } from "./enemies";
 
 export let  currentRoom = {
   roomName: "Dungeon Entrance",
   image: null,
   music: null,
   contents: {
-    monsters: [GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER],
+    enemies: [GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER],
     items: [],
     events: null,
   },

@@ -5,7 +5,8 @@ import Enemy from "./Enemy/Enemy";
 import { useSelector } from "react-redux";
 
 export default function Enemies() {
-  const enemies = useSelector((state) => state.dungeon.contents.monsters);
+
+  const enemies = useSelector((state) => state.dungeon.contents.enemies);
   console.log(enemies);
 
   return (

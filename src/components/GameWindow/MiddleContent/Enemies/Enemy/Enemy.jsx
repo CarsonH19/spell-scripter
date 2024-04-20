@@ -1,6 +1,8 @@
 import classes from "./Enemy.module.css";
 
 export default function Enemy({ name }) {
+  // Instead of using a slice maybe I can add useState here so that its easier to create a state object for each enemy
+
   return (
     <div className={classes.enemy}>
       <div className={classes.container}>

@@ -7,7 +7,7 @@ const dungeonSlice = createSlice({
     image: null,
     music: null,
     contents: {
-      monsters: [],
+      enemies: [],
       items: [],
       events: null,
     },
@@ -19,8 +19,8 @@ const dungeonSlice = createSlice({
         ...action.payload,
       };
     },
-    addMonster(state, action) {},
-    removeMonster(state, action) {},
+    // addMonster(state, action) {},
+    // removeMonster(state, action) {},
   },
 });
 
