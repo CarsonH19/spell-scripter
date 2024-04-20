@@ -5,7 +5,7 @@ export let  currentRoom = {
   image: null,
   music: null,
   contents: {
-    enemies: [GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER],
+    enemies: [GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER],
     items: [],
     events: null,
   },

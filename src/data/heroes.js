@@ -48,4 +48,4 @@ const PRIESTESS = {
 // EVOKER
 // RISEN
 
-export let currentParty = [PALADIN, ROGUE, PRIESTESS];
+export let currentParty = [PALADIN, ROGUE, ROGUE, ROGUE, PRIESTESS];

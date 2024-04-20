@@ -7,6 +7,7 @@ export default function Player() {
       <div className={classes.player}>
         <div className={classes.health}>
           <p className={classes.name}>Player Name</p>
+          <hr />
           <div className={classes.info}>
             <p>
               HP: <span>0</span> / <span>0</span>
