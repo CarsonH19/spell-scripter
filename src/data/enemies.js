@@ -38,6 +38,7 @@ const GNAWERS = {
     level: 1,
     currentHealth: 45,
     maxHealth: 50,
+    attack: 5,
     defense: 0,
     currentMana: 0,
     maxMana: 0,

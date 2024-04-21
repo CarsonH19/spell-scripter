@@ -3,12 +3,17 @@ import classes from "./Enemy.module.css";
 import { dungeonActions } from "../../../../../store/dungeon-slice";
 import { useDispatch } from "react-redux";
 
+import { castSpell } from "../../../../../data/player";
+
 export default function Enemy({ enemy }) {
   // Instead of using a slice maybe I can add useState here so that its easier to create a state object for each enemy
   const dispatch = useDispatch();
 
   const handleAttack = () => {
-    dispatch(dungeonActions.damageEnemy(enemy.id))
+    const id = enemy.id;
+    const spell = castSpell("FIREBOLT")
+
+    dispatch(dungeonActions.damageEnemy({ id, spell}));
   }
 
   return (
