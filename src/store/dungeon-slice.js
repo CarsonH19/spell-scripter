@@ -19,6 +19,9 @@ const dungeonSlice = createSlice({
         ...action.payload,
       };
     },
+    damageMonster(state, action) {
+      
+    }
     // addMonster(state, action) {},
     // removeMonster(state, action) {},
   },

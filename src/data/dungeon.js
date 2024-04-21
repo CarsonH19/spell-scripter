@@ -1,11 +1,20 @@
 import { GNAWERS } from "./enemies";
 
-export let  currentRoom = {
+// Temporary Import!!!
+import { v4 as uuidv4 } from "uuid";
+
+export let currentRoom = {
   roomName: "Dungeon Entrance",
   image: null,
   music: null,
   contents: {
-    enemies: [GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER, GNAWERS.GNAWER],
+    enemies: [
+      { ...GNAWERS.GNAWER, id: uuidv4() },
+      { ...GNAWERS.GNAWER, id: uuidv4() },
+      { ...GNAWERS.GNAWER, id: uuidv4() },
+      { ...GNAWERS.GNAWER, id: uuidv4() },
+      { ...GNAWERS.GNAWER, id: uuidv4() },
+    ],
     items: [],
     events: null,
   },
