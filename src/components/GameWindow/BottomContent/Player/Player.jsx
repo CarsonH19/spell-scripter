@@ -28,7 +28,7 @@ export default function Player() {
       <div className={classes.image}></div>
       <div>
         <p>Strength: {player.stats.strength}</p>
-        <p>Agility: {player.stats.Agility}</p>
+        <p>Agility: {player.stats.agility}</p>
         <p>Faith: {player.stats.faith}</p>
         <p>Arcana: {player.stats.arcana}</p>
       </div>

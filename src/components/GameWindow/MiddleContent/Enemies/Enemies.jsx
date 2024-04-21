@@ -12,7 +12,7 @@ export default function Enemies() {
   return (
     <div className={classes.enemies}>
       {enemies.map((enemy, index) => (
-        <Enemy key={index} name={enemy.name}/>
+        <Enemy key={index} enemy={enemy}/>
       ))}
     </div>
   );
