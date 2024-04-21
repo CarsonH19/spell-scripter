@@ -1,20 +1,20 @@
 import classes from "./Hero.module.css";
 
-export default function Hero({ name }) {
+export default function Hero({ hero }) {
   return (
     <div className={classes.hero}>
       <div className={classes.image}></div>
       <div className={classes.container}>
-        <p className={classes.name}>{name}</p>
+        <p className={classes.name}>{hero.name}</p>
         <div className={classes.info}>
           <p>
-            HP: <span>0</span> / <span>0</span>
+            HP: <span>{hero.currentHealth}</span> / <span>{hero.maxHealth}</span>
           </p>
           <p>
-            Lvl: <span>0</span>
+            Lvl: <span>{hero.level}</span>
           </p>
         </div>
-        <progress max="100" value="50">
+        <progress max={hero.maxHealth} value={hero.currentHealth}>
           Health Bar
         </progress>
       </div>
