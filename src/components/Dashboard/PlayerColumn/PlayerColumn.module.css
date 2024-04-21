@@ -1,0 +1,47 @@
+.column {
+  width: 33%;
+  height: 100%;
+  padding: 1rem;
+  border: 1px solid red;
+  min-width: 310px
+}
+
+.player {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.player div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.player .image {
+ height: 12rem;
+ width: 12rem;
+ border: 1px solid gray;
+}
+
+.column hr {
+  width: 100%;
+}
+
+.column .menu {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.column .menu button {
+  width: 10rem;
+  height: 3rem;
+}

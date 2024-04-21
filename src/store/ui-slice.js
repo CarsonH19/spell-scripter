@@ -4,6 +4,8 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: { 
     startIsVisible: true,
+    dashboardIsVisible: false,
+    gameWindowIsVisible: false,
     inventoryIsVisible: false,
     tomeIsVisible: false,
     heroIsVisible: false,

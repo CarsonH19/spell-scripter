@@ -1,0 +1,52 @@
+.column {
+  width: 33%;
+  height: 100%;
+  border: 1px solid red;
+  min-width: 310px;
+  padding: 1rem;
+}
+
+.column hr {
+  width: 100%;
+}
+
+.column h1 {
+  text-align: center;
+}
+
+.column .dungeons {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90%;
+  border: 1px solid red;
+}
+
+.column .dungeons p {
+  margin: 1rem;
+}
+
+.column .dungeons .selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 40%;
+  width: 100%;
+  border: 1px solid red;
+}
+
+.column .dungeons .description {
+  text-align: center;
+  width: 100%;
+  border: 1px solid red;
+  margin: 0;
+}
+
+.column .dungeons button {
+  position: absolute;
+  width: 16rem;
+  height: 4rem;
+  bottom: 2rem;
+}

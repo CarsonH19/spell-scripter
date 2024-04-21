@@ -1,0 +1,28 @@
+.column {
+  width: 33%;
+  height: 100%;
+  border: 1px solid red;
+  min-width: 310px;
+  padding: 1rem;
+}
+
+.column p {
+  text-align: center;
+}
+
+.column h1 {
+  text-align: center;
+}
+
+.column .filter {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem;
+}
+
+.column .tomes {
+  height: 80%;
+  width: 100%;
+  border: 1px solid red;
+}
