@@ -19,8 +19,16 @@ const dungeonSlice = createSlice({
         ...action.payload,
       };
     },
-    damageMonster(state, action) {
+    damageEnemy(state, action) {
+      const id = action.payload
+      const findEnemyById = (id) => {
+        const enemies = state.contents.enemies;
+        return enemies.find(enemy => enemy.id === id);
+      };
       
+      const enemyToDamage = findEnemyById(id);
+
+      enemyToDamage.currentHealth -= 10;
     }
     // addMonster(state, action) {},
     // removeMonster(state, action) {},

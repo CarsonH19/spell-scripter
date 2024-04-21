@@ -1,10 +1,18 @@
 import classes from "./Enemy.module.css";
 
+import { dungeonActions } from "../../../../../store/dungeon-slice";
+import { useDispatch } from "react-redux";
+
 export default function Enemy({ enemy }) {
   // Instead of using a slice maybe I can add useState here so that its easier to create a state object for each enemy
+  const dispatch = useDispatch();
+
+  const handleAttack = () => {
+    dispatch(dungeonActions.damageEnemy(enemy.id))
+  }
 
   return (
-    <div className={classes.enemy}>
+    <div className={classes.enemy} onClick={handleAttack}>
       <div className={classes.container}>
         <p className={classes.name}>{enemy.name}</p>
         <div className={classes.info}>
