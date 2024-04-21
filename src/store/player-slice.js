@@ -3,15 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const playerSlice = createSlice({
   name: "player",
   initialState: {
-    name: "",
+    name: "Carson",
     image: "",
     level: 1,
-    health: 100,
-    mana: 60,
-    experience: 0,
+    currentHealth: 75,
+    maxHealth: 100,
+    currentMana: 50,
+    maxMana: 60,
+    currentExp: 0,
+    expToNextLevel: 100,
     stats: {
       strength: 1,
-      dexterity: 2,
+      agility: 2,
       faith: 3,
       arcana: 4,
     },
