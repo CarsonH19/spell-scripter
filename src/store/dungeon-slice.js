@@ -13,30 +13,49 @@ const dungeonSlice = createSlice({
     },
   },
   reducers: {
-    updateRoom(state, action) {
+    newRoom(state, action) {
       return {
         ...state,
         ...action.payload,
       };
     },
-    damageEnemy(state, action) {
+    addEnemy(state, action) {
+      // action: enemy object w/ unique id
+      state.contents.enemies.push(action.payload);
+    },
+    removeEnemy(state, action) {
       const id = action.payload.id;
-      const spell = action.payload.spell;
+      state.contents.enemies = state.contents.enemies.filter(
+        (enemy) => enemy.id !== id
+      );
+    },
+    addItem(state, action) {
+      // action: item object
+      state.contents.items.push(action.payload);
+    },
+    removeItem(state, action) {
+      const itemName = action.payload;
+      state.contents.items = state.contents.items.filter(
+        (item) => item.name !== itemName
+      );
+    },
+    // damageEnemy(state, action) {
+    //   const id = action.payload.id;
+    //   const spell = action.payload.spell;
 
-      const findEnemyById = (id) => {
-        const enemies = state.contents.enemies;
-        return enemies.find(enemy => enemy.id === id);
-      };
-      
-      const enemyToDamage = findEnemyById(id);
+    //   const findEnemyById = (id) => {
+    //     const enemies = state.contents.enemies;
+    //     return enemies.find(enemy => enemy.id === id);
+    //   };
 
-      enemyToDamage.currentHealth -= spell.damage;
-    }
+    //   const enemyToDamage = findEnemyById(id);
+
+    //   enemyToDamage.currentHealth -= spell.damage;
+    // }
     // addMonster(state, action) {},
     // removeMonster(state, action) {},
   },
 });
-
 
 export const dungeonActions = dungeonSlice.actions;
 
