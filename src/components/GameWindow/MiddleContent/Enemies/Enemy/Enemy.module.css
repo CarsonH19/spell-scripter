@@ -18,6 +18,14 @@
   border: 2px solid white;
 }
 
+:root {
+  --is-highlighted: 0; /* Default value */
+}
+
+.enemy:has(.highlighted) .container {
+  width: 50%;
+}
+
 .enemy .container {
   position: absolute; 
   right: 5rem; 

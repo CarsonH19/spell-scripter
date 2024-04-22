@@ -17,6 +17,10 @@
   border: 2px solid white;
 }
 
+.hero .highlighted + .container {
+  width: 50%; 
+}
+
 
 .hero .container {
   position: absolute; 
