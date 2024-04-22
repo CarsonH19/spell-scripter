@@ -23,6 +23,10 @@
 }
 
 
+.player .highlighted {
+  border: 2px solid white;
+}
+
 .health {
   position: absolute; 
   left: 0rem; 

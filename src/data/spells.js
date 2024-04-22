@@ -12,7 +12,3 @@ export const SPELLS = {
 
   }
 }
-
-export function castSpell(spell) {
-  
-}

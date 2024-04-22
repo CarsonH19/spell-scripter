@@ -13,6 +13,11 @@
   border: 1px solid red;
 }
 
+.hero .highlighted {
+  border: 2px solid white;
+}
+
+
 .hero .container {
   position: absolute; 
   left: 5rem; 

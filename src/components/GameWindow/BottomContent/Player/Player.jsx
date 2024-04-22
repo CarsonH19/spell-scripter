@@ -4,6 +4,9 @@ import { useSelector } from "react-redux";
 
 export default function Player() {
   const player = useSelector((state) => state.player);
+  const isHighlighted = useSelector(
+    (state) => state.initiative.highlightedCharacter
+  );
 
   return (
     <div className={classes.player}>
@@ -12,10 +15,12 @@ export default function Player() {
         <hr />
         <div className={classes.info}>
           <p>
-            HP: <span>{player.currentHealth}</span> / <span>{player.maxHealth}</span>
+            HP: <span>{player.currentHealth}</span> /{" "}
+            <span>{player.maxHealth}</span>
           </p>
           <p>
-            Exp: <span>{player.currentExp}</span> /<span>{player.expToNextLevel}</span>
+            Exp: <span>{player.currentExp}</span> /
+            <span>{player.expToNextLevel}</span>
           </p>
           <p>
             Lvl: <span>{player.level}</span>
@@ -25,7 +30,11 @@ export default function Player() {
           100%
         </progress>
       </div>
-      <div className={classes.image}></div>
+      <div
+        className={`${classes.image} ${
+          isHighlighted === player ? classes.highlighted : ""
+        }`}
+      ></div>
       <div>
         <p>Strength: {player.stats.strength}</p>
         <p>Agility: {player.stats.agility}</p>

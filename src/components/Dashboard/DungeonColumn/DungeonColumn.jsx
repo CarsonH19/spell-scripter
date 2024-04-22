@@ -2,7 +2,7 @@ import classes from "./DungeonColumn.module.css";
 
 // following imports are only used for testing
 import { uiActions } from "../../../store/ui-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { dungeonActions } from "../../../store/dungeon-slice";
 import { currentRoom } from "../../../data/dungeon";
@@ -10,8 +10,14 @@ import { currentRoom } from "../../../data/dungeon";
 import { heroActions } from "../../../store/hero-slice";
 import { currentParty } from "../../../data/heroes";
 
+import { initiativeActions } from "../../../store/initiative-slice";
+
 export default function DungeonColumn() {
   const dispatch = useDispatch();
+
+  const heroes = currentParty;
+  const enemies = currentRoom.contents.enemies;
+  const player = useSelector((state) => state.player);
 
   const handleEnter = () => {
     dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // false
@@ -19,7 +25,8 @@ export default function DungeonColumn() {
 
     // the following are only used for testing
     dispatch(dungeonActions.updateRoom(currentRoom));
-    dispatch(heroActions.updateParty(currentParty));
+    dispatch(heroActions.updateParty(heroes));
+    dispatch(initiativeActions.setInitiative({ heroes, enemies, player }));
   };
 
   return (

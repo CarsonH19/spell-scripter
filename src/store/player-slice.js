@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const playerSlice = createSlice({
   name: "player",
- initialState: {
+  initialState: {
     name: "Carson",
     image: "",
     level: 1,
@@ -23,7 +23,7 @@ const playerSlice = createSlice({
     weaknesses: [],
     resistances: [],
     immunities: [],
-  }, 
+  },
   reducers: {
     updateStats(state, action) {},
   },

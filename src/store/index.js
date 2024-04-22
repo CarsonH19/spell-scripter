@@ -4,6 +4,7 @@ import uiSlice from "./ui-slice";
 import dungeonSlice from "./dungeon-slice";
 import heroSlice from "./hero-slice";
 import playerSlice from "./player-slice";
+import initiativeSlice from "./initiative-slice";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     dungeon: dungeonSlice.reducer,
     hero: heroSlice.reducer,
     player: playerSlice.reducer,
+    initiative: initiativeSlice.reducer,
   },
 });
 
