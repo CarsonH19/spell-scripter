@@ -44,7 +44,7 @@ const Enemy = ({ enemy }) => {
   );
 };
 
-// Memoize the Enemy component to prevent unnecessary rerenders
+// Memoize the Enemy component to prevent unnecessary rerender
 const MemoizedEnemy = memo(Enemy);
 
 export default MemoizedEnemy;
