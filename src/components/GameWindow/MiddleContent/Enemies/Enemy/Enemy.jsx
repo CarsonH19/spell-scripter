@@ -1,22 +1,23 @@
+import { memo } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setTarget } from "../../../../../store/combat-actions";
 import classes from "./Enemy.module.css";
 
-import { useSelector } from "react-redux";
-
-import { setTarget } from "../../../../../store/combat-actions";
-
-export default function Enemy({ enemy }) {
+const Enemy = ({ enemy }) => {
   const isHighlighted = useSelector(
-    (state) => state.initiative.highlightedCharacter
+    (state) => state.initiative.highlightedCharacter === enemy.id
   );
 
-    console.log(enemy);
+  const dispatch = useDispatch();
 
-  const handleSetTarget = (enemy) => {
-    setTarget(enemy);
-  } 
+  const handleSetTarget = () => {
+    dispatch(setTarget(enemy));
+  };
+
+  console.log("Rendered!");
 
   return (
-    <div className={classes.enemy} onClick={() => handleSetTarget(enemy)}>
+    <div className={classes.enemy} onClick={handleSetTarget}>
       <div className={classes.container}>
         <p className={classes.name}>{enemy.name}</p>
         <div className={classes.info}>
@@ -34,11 +35,16 @@ export default function Enemy({ enemy }) {
       </div>
       <div
         className={`${classes.image} ${
-          isHighlighted === enemy.id ? classes.highlighted : ""
+          isHighlighted ? classes.highlighted : ""
         }`}
       >
         {enemy.name}
-      </div>{" "}
+      </div>
     </div>
   );
-}
+};
+
+// Memoize the Enemy component to prevent unnecessary rerenders
+const MemoizedEnemy = memo(Enemy);
+
+export default MemoizedEnemy;

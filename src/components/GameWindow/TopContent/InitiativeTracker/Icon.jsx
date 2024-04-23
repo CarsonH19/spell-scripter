@@ -1,17 +1,15 @@
+import { memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { initiativeActions } from "../../../../store/initiative-slice";
 import classes from "./Icon.module.css";
 
-import { useDispatch, useSelector } from "react-redux";
-
-import { initiativeActions } from "../../../../store/initiative-slice";
-
-export default function Icon({ character }) {
+const Icon = ({ character }) => {
   const dispatch = useDispatch();
 
-  const isHighlighted = useSelector(
-    (state) => state.initiative.highlightedCharacter
-  );
+  // Use direct equality check instead of useSelector to avoid unnecessary rerenders
+  const isHighlighted = useSelector((state) => state.initiative.highlightedCharacter === character.id);
 
-  const handleMouseEnter = (character) => {
+  const handleMouseEnter = () => {
     dispatch(initiativeActions.highlightCharacter(character.id));
   };
 
@@ -21,11 +19,16 @@ export default function Icon({ character }) {
 
   return (
     <div
-      className={
-        isHighlighted === character.id ? classes.highlighted : classes.icon
-      }
-      onMouseEnter={() => handleMouseEnter(character)}
+      className={isHighlighted ? classes.highlighted : classes.icon}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-    ></div>
+    >
+      {/* Render your icon content here */}
+    </div>
   );
-}
+};
+
+// Memoize the Icon component to prevent unnecessary rerenders
+const MemoizedIcon = memo(Icon);
+
+export default MemoizedIcon;
