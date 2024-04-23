@@ -2,13 +2,19 @@ import classes from "./Enemy.module.css";
 
 import { useSelector } from "react-redux";
 
+import { setTarget } from "../../../../../store/combat-actions";
+
 export default function Enemy({ enemy }) {
   const isHighlighted = useSelector(
     (state) => state.initiative.highlightedCharacter
   );
 
+  const handleSetTarget = (enemy) => {
+    setTarget(enemy);
+  } 
+
   return (
-    <div className={classes.enemy}>
+    <div className={classes.enemy} onClick={() => handleSetTarget(enemy)}>
       <div className={classes.container}>
         <p className={classes.name}>{enemy.name}</p>
         <div className={classes.info}>

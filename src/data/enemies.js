@@ -32,6 +32,7 @@ const CONDITIONS = {
 const GNAWERS = {
   GNAWER: {
     name: "Gnawer",
+    identifier: 'ENEMY',
     image: "",
     type: ENEMY_TYPES.BEAST,
     // audio: {},

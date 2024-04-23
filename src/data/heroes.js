@@ -1,5 +1,6 @@
 const PALADIN = {
   name: "Siggurd",
+  identifier: 'HERO',
   image: "",
   // audio: {},
   level: 1,
@@ -25,6 +26,7 @@ const PALADIN = {
 // ROGUE
 const ROGUE = {
   name: "Riven",
+  identifier: 'HERO',
   image: "",
   // audio: {},
   level: 1,
@@ -50,6 +52,7 @@ const ROGUE = {
 // PRIESTESS
 const PRIESTESS = {
   name: "Liheth",
+  identifier: 'HERO',
   image: "",
   // audio: {},
   level: 1,

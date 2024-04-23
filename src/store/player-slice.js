@@ -4,6 +4,7 @@ const playerSlice = createSlice({
   name: "player",
   initialState: {
     name: "Carson",
+    identifier: 'PLAYER',
     image: "",
     level: 1,
     currentHealth: 75,
@@ -25,7 +26,8 @@ const playerSlice = createSlice({
     immunities: [],
   },
   reducers: {
-    updateStats(state, action) {},
+    // updateStats(state, action) {},
+  
   },
 });
 
