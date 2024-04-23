@@ -23,18 +23,25 @@ const dungeonSlice = createSlice({
       // action: enemy.id
       state.contents.enemies.push(action.payload);
     },
-    damageEnemy(state, action) {
-      const id = action.payload.id;
-      const damage = action.payload.damage;
+    updateHealth(state, action) {
+      const id = action.payload.target.id;
+      const change = action.payload.change;
+      const value = action.payload.value;
 
       const findEnemyById = (id) => {
         const enemies = state.contents.enemies;
         return enemies.find((enemy) => enemy.id === id);
       };
 
-      const enemyToDamage = findEnemyById(id);
+      const enemy = findEnemyById(id);
 
-      enemyToDamage.currentHealth -= damage;
+      if (change === "DAMAGE") {
+        enemy.currentHealth -= value;
+      }
+
+      if (change === "HEAL") {
+        enemy.currentHealth += value;
+      }
     },
     addItem(state, action) {
       // action: item object

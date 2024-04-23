@@ -1,8 +1,10 @@
 import store from "./index";
 
+import changeHealth from "./health-actions";
+
 // import { playerActions } from "../../store/player-slice";
 // import { heroActions } from "../../store/hero-slice";
-import { dungeonActions } from "./dungeon-slice";
+// import { dungeonActions } from "./dungeon-slice";
 
 let playerActionResolver;
 let targetResolver;
@@ -12,7 +14,6 @@ export default async function combatLoop(dispatch) {
 
   // NOTE as battle progresses I may need to get the objects directly from the respected states so that all the data on the objects are up to date. If not, then stat updates may not be maintained throughout combat !!!!
   const order = store.getState().initiative.order;
-  const initiative = store.getState().initiative;
 
   // start combat and iterate through each character in the initiative
   for (let i = 0; i < order.length; i++) {
@@ -35,11 +36,7 @@ export default async function combatLoop(dispatch) {
             const hit = rollToHit(order[i], target);
             if (hit) {
               const damage = calcDamage(order[i]); // use state player obj?!?
-              const id = target.id;
-              console.log(initiative)
-              dispatch(dungeonActions.damageEnemy({ id, damage }));
-              console.log(order);
-              console.log(`${damage} damage dealt ${id}`);
+              changeHealth(dispatch, target, "DAMAGE", damage, null);
             } else {
               console.log("Attack missed");
             }
@@ -121,3 +118,6 @@ function rollToHit(attacker, target) {
 function roll20(bonus = 0) {
   return Math.floor(Math.random() * 21) + bonus;
 }
+
+
+

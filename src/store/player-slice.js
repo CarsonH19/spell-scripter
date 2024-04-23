@@ -27,7 +27,18 @@ const playerSlice = createSlice({
     immunities: [],
   },
   reducers: {
-    // updateStats(state, action) {},
+    updateHealth(state, action) {
+      const change = action.payload.change;
+      const value = action.payload.value;
+
+      if (change === "DAMAGE") {
+        state.currentHealth -= value;
+      }
+
+      if (change === "HEAL") {
+        state.currentHealth += value;
+      }
+    }
   
   },
 });

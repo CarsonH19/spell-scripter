@@ -6,6 +6,7 @@ import heroSlice from "./hero-slice";
 import playerSlice from "./player-slice";
 import initiativeSlice from "./initiative-slice";
 
+
 const store = configureStore({
   reducer: {
     ui: uiSlice.reducer,
@@ -14,6 +15,6 @@ const store = configureStore({
     player: playerSlice.reducer,
     initiative: initiativeSlice.reducer,
   },
-});
+},);
 
 export default store;
