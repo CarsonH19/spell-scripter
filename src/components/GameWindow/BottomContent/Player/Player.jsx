@@ -32,7 +32,7 @@ export default function Player() {
       </div>
       <div
         className={`${classes.image} ${
-          isHighlighted === player ? classes.highlighted : ""
+          isHighlighted === player.id ? classes.highlighted : ""
         }`}
       ></div>
       <div>

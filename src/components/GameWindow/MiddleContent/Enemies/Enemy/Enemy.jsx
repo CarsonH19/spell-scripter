@@ -9,6 +9,8 @@ export default function Enemy({ enemy }) {
     (state) => state.initiative.highlightedCharacter
   );
 
+    console.log(enemy);
+
   const handleSetTarget = (enemy) => {
     setTarget(enemy);
   } 
@@ -32,7 +34,7 @@ export default function Enemy({ enemy }) {
       </div>
       <div
         className={`${classes.image} ${
-          isHighlighted === enemy ? classes.highlighted : ""
+          isHighlighted === enemy.id ? classes.highlighted : ""
         }`}
       >
         {enemy.name}

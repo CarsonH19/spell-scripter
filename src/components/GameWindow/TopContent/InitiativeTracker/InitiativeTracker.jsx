@@ -1,21 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
-import { initiativeActions } from "../../../../store/initiative-slice";
+import { useSelector } from "react-redux";
 
 import classes from "./InitiativeTracker.module.css";
 import Icon from "./Icon";
 
 export default function InitiativeTracker() {
   const order = useSelector((state) => state.initiative.order);
-  const highlightedCharacter = useSelector((state) => state.initiative.highlightedCharacter);
-  const dispatch = useDispatch();
-
-  const handleMouseEnter = (character) => {
-    dispatch(initiativeActions.highlightCharacter(character));
-  };
-
-  const handleMouseLeave = () => {
-    dispatch(initiativeActions.clearHighlight());
-  };
+  console.log(order);
 
   return (
     <div className={classes.tracker}>
@@ -23,9 +13,6 @@ export default function InitiativeTracker() {
         <Icon
           key={index}
           character={character}
-          onMouseEnter={() => handleMouseEnter(character)}
-          onMouseLeave={handleMouseLeave}
-          isHighlighted={highlightedCharacter === character}
         />
       ))}
     </div>

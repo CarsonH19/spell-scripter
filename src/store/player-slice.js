@@ -4,6 +4,7 @@ const playerSlice = createSlice({
   name: "player",
   initialState: {
     name: "Carson",
+    id: "Player",
     identifier: 'PLAYER',
     image: "",
     level: 1,

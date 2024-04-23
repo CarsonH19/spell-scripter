@@ -11,7 +11,7 @@ export default function Hero({ hero }) {
     <div className={classes.hero}>
       <div
         className={`${classes.image} ${
-          isHighlighted === hero ? classes.highlighted : ""
+          isHighlighted === hero.id ? classes.highlighted : ""
         }`}
       >
         {hero.name}

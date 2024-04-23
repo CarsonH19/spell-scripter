@@ -1,5 +1,6 @@
 const PALADIN = {
   name: "Siggurd",
+  id: "Siggurd",
   identifier: 'HERO',
   image: "",
   // audio: {},
@@ -26,6 +27,7 @@ const PALADIN = {
 // ROGUE
 const ROGUE = {
   name: "Riven",
+  id: "Riven",
   identifier: 'HERO',
   image: "",
   // audio: {},
@@ -52,6 +54,7 @@ const ROGUE = {
 // PRIESTESS
 const PRIESTESS = {
   name: "Liheth",
+  id: "Liheth",
   identifier: 'HERO',
   image: "",
   // audio: {},

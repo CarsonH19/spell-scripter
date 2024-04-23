@@ -6,21 +6,14 @@ import TopContent from "./TopContent/TopContent";
 import { useEffect } from "react";
 import combatLoop from "../../store/combat-actions";
 
-// Imports to pass dispatches to combatLoop
-import { playerActions } from "../../store/player-slice";
-import { heroActions } from "../../store/hero-slice";
-import { dungeonActions } from "../../store/dungeon-slice";
+import { useDispatch } from "react-redux";
 
 export default function GameWindow() {
-  useEffect(() => {
-    const dispatches = {
-      playerActions,
-      heroActions,
-      dungeonActions,
-    };
+  const dispatch = useDispatch();
 
-    combatLoop(dispatches);
-  }, []);
+  useEffect(() => {
+    combatLoop(dispatch);
+  }, [dispatch]);
 
   return (
     <div className={classes.window}>

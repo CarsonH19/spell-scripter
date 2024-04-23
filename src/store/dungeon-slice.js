@@ -29,7 +29,6 @@ const dungeonSlice = createSlice({
 
       const findEnemyById = (id) => {
         const enemies = state.contents.enemies;
-        console.log(enemies.find((enemy) => enemy.id === id));
         return enemies.find((enemy) => enemy.id === id);
       };
 
