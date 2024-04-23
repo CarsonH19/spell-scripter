@@ -2,7 +2,15 @@ import { heroActions } from "./hero-slice";
 import { dungeonActions } from "./dungeon-slice";
 import { playerActions } from "./player-slice";
 
-export default function changeHealth(dispatch, target, change = "DAMAGE", value = 0, damageType = null) {
+export default function changeHealth(
+  dispatch,
+  target,
+  change = "DAMAGE",
+  value = 0,
+  damageType = null
+) {
+  const id = target.id;
+
   if (change === "DAMAGE") {
     for (let i = 0; i < target.weaknesses.length; i++) {
       if (target.weaknesses[i] === damageType) {
@@ -29,11 +37,11 @@ export default function changeHealth(dispatch, target, change = "DAMAGE", value 
       break;
 
     case "HERO":
-      dispatch(heroActions.updateHealth({ target, change, value }));
+      dispatch(heroActions.updateHealth({ id, change, value }));
       break;
 
     case "ENEMY":
-      dispatch(dungeonActions.updateHealth({ target, change, value }));
+      dispatch(dungeonActions.updateHealth({ id, change, value }));
       break;
   }
 }

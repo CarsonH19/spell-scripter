@@ -37,6 +37,7 @@ export default async function combatLoop(dispatch) {
             if (hit) {
               const damage = calcDamage(order[i]); // use state player obj?!?
               changeHealth(dispatch, target, "DAMAGE", damage, null);
+              console.log(`Damage: ${damage}`)
             } else {
               console.log("Attack missed");
             }

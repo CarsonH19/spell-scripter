@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { setTarget } from "../../../../../store/combat-actions";
 import classes from "./Enemy.module.css";
 
@@ -8,10 +8,8 @@ const Enemy = ({ enemy }) => {
     (state) => state.initiative.highlightedCharacter === enemy.id
   );
 
-  const dispatch = useDispatch();
-
   const handleSetTarget = () => {
-    dispatch(setTarget(enemy));
+    setTarget(enemy);
   };
 
   console.log("Rendered!");
