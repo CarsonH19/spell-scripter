@@ -30,7 +30,17 @@ const initiativeSlice = createSlice({
     },
     clearHighlight(state) {
       state.highlightedCharacter = null;
-    }
+    },
+    removeCharacter(state, action) {
+      const enemy = action.payload.enemy;
+
+      const enemyIndex = state.order.findIndex((char) => char.id === enemy.id);
+
+      if (enemyIndex !== -1) {
+        // Remove the enemy if it exists
+        state.order.splice(enemyIndex, 1);
+      }
+    },
   },
 });
 

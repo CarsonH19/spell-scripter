@@ -10,7 +10,7 @@ const playerSlice = createSlice({
     level: 1,
     currentHealth: 75,
     maxHealth: 100,
-    attack: 10,
+    attack: 99,
     defense: 0,
     currentMana: 50,
     maxMana: 60,

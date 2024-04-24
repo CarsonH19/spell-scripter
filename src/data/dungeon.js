@@ -10,10 +10,6 @@ export let currentRoom = {
   contents: {
     enemies: [
       { ...GNAWERS.GNAWER, id: uuidv4() },
-      { ...GNAWERS.GNAWER, id: uuidv4() },
-      { ...GNAWERS.GNAWER, id: uuidv4() },
-      { ...GNAWERS.GNAWER, id: uuidv4() },
-      { ...GNAWERS.GNAWER, id: uuidv4() },
     ],
     items: [],
     events: null,

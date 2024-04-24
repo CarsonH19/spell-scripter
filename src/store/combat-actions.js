@@ -1,10 +1,6 @@
 import store from "./index";
 
-import changeHealth from "./health-actions";
-
-// import { playerActions } from "../../store/player-slice";
-// import { heroActions } from "../../store/hero-slice";
-// import { dungeonActions } from "./dungeon-slice";
+import { changeHealth, checkForEnemyDeath } from "./health-actions";
 
 let playerActionResolver;
 let targetResolver;
@@ -16,20 +12,18 @@ export default async function combatLoop(dispatch) {
     if (order[i].identifier === "PLAYER") {
       console.log(`${order[i].name}'s turn!`);
 
-      console.log("Choose an action!");
       const playerAction = await getPlayerAction();
 
       switch (playerAction) {
         case "ATTACK":
           {
-            // choose target
             const target = await getTarget(); // TEMPORARY: returns enemy object
-            // roll to hit
             const hit = rollToHit(order[i], target);
+
             if (hit) {
               const damage = calcDamage(order[i]); // use state player obj?!?
               changeHealth(dispatch, target, "DAMAGE", damage, null);
-              console.log(`${order[i].name} Dealt: ${damage} Damage`);
+              console.log(`${order[i].name} attacked ${target.name}`);
             }
           }
           break;
@@ -45,6 +39,7 @@ export default async function combatLoop(dispatch) {
     if (order[i].identifier === "HERO" || order[i].identifier === "ENEMY") {
       console.log(`${order[i].name}'s turn!`);
 
+      // check behavior to determine action
       const action = checkBehavior(order[i]);
 
       switch (action) {
@@ -52,12 +47,12 @@ export default async function combatLoop(dispatch) {
           {
             // check behavior to choose a target
             const target = randomTarget(order[i]); // returns enemy object
-            // roll to hit
+
             const hit = rollToHit(order[i], target);
             if (hit) {
               const damage = calcDamage(order[i]); // use state player obj?!?
               changeHealth(dispatch, target, "DAMAGE", damage, null);
-              console.log(`${order[i].name} Dealt: ${damage} Damage`);
+              console.log(`${order[i].name} attacked ${target.name}`);
             }
           }
           break;
@@ -69,14 +64,16 @@ export default async function combatLoop(dispatch) {
     }
 
     await delay(2000);
+
+    // Check if combat is over
+    if (endCombat()) {
+      return; // exit the loop
+    } else {
+      await delay(2000);
+      console.log("Next round started!");
+      combatLoop(dispatch); // continue the loop
+    }
   }
-
-  console.log(order);
-  await delay(2000);
-  console.log("Next round started!");
-  combatLoop(dispatch);
-
-  // check for endCombat()
 }
 
 // Used to await which action the player wants to make on their turn
@@ -174,4 +171,24 @@ function randomTarget(attacker) {
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
   }
+}
+
+function endCombat() {
+  const player = store.getState().player;
+  const enemies = store.getState().dungeon.contents.enemies;
+
+  console.log(enemies.length);
+
+  if (player.currentHealth <= 0) {
+    alert("You've died!");
+    return true;
+  }
+
+  if (enemies.length === 0) {
+    console.log("cleared");
+    alert("Room Cleared!");
+    return true;
+  }
+
+  return false;
 }
