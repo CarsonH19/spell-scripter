@@ -22,6 +22,7 @@ const PALADIN = {
   weaknesses: [],
   resistances: [],
   immunities: [],
+  behavior: "RANDOM",
 };
 
 // ROGUE
@@ -49,6 +50,7 @@ const ROGUE = {
   weaknesses: [],
   resistances: [],
   immunities: [],
+  behavior: "RANDOM",
 };
 
 // PRIESTESS
@@ -76,10 +78,11 @@ const PRIESTESS = {
   weaknesses: [],
   resistances: [],
   immunities: [],
+  behavior: "RANDOM",
 };
 
 // WARLOCK
 // EVOKER
 // RISEN
 
-export let currentParty = [PALADIN, ROGUE, ROGUE, ROGUE, PRIESTESS];
+export let currentParty = [PALADIN, ROGUE, PRIESTESS];

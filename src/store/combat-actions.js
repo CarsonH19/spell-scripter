@@ -10,36 +10,26 @@ let playerActionResolver;
 let targetResolver;
 
 export default async function combatLoop(dispatch) {
-  // get the initiative order
-
-  // NOTE as battle progresses I may need to get the objects directly from the respected states so that all the data on the objects are up to date. If not, then stat updates may not be maintained throughout combat !!!!
   const order = store.getState().initiative.order;
 
-  // start combat and iterate through each character in the initiative
   for (let i = 0; i < order.length; i++) {
-    //  Check if Character health is above 1, else skip it
-    // call the respected function to make an attack for the respected turn
     if (order[i].identifier === "PLAYER") {
-      // Await player response
+      console.log(`${order[i].name}'s turn!`);
+
       console.log("Choose an action!");
       const playerAction = await getPlayerAction();
-      console.log(`Player Chose: ${playerAction}`);
 
       switch (playerAction) {
         case "ATTACK":
           {
             // choose target
-            console.log("Choose a target!");
-            const target = await getTarget(); // returns enemy object
-            console.log("Target: " + target);
+            const target = await getTarget(); // TEMPORARY: returns enemy object
             // roll to hit
             const hit = rollToHit(order[i], target);
             if (hit) {
               const damage = calcDamage(order[i]); // use state player obj?!?
               changeHealth(dispatch, target, "DAMAGE", damage, null);
-              console.log(`Damage: ${damage}`)
-            } else {
-              console.log("Attack missed");
+              console.log(`${order[i].name} Dealt: ${damage} Damage`);
             }
           }
           break;
@@ -50,24 +40,43 @@ export default async function combatLoop(dispatch) {
         case "FLEE":
           break;
       }
-      // Handle response
-      // dispatch to correct slice
     }
 
-    if (order[i].identifier === "HERO") {
-      // Await hero response
-      // Handle response
-      // dispatch to correct slice
+    if (order[i].identifier === "HERO" || order[i].identifier === "ENEMY") {
+      console.log(`${order[i].name}'s turn!`);
+
+      const action = checkBehavior(order[i]);
+
+      switch (action) {
+        case "ATTACK":
+          {
+            // check behavior to choose a target
+            const target = randomTarget(order[i]); // returns enemy object
+            // roll to hit
+            const hit = rollToHit(order[i], target);
+            if (hit) {
+              const damage = calcDamage(order[i]); // use state player obj?!?
+              changeHealth(dispatch, target, "DAMAGE", damage, null);
+              console.log(`${order[i].name} Dealt: ${damage} Damage`);
+            }
+          }
+          break;
+        case "GUARD":
+          break;
+        case "ABILITY":
+          break;
+      }
     }
 
-    if (order[i].identifier === "ENEMY") {
-      // Await enemy response
-      // Handle response
-      // dispatch to correct slice
-    }
+    await delay(2000);
   }
 
-  // check for endCombat() continue until player dies, flees, or all enemies are defeated
+  console.log(order);
+  await delay(2000);
+  console.log("Next round started!");
+  combatLoop(dispatch);
+
+  // check for endCombat()
 }
 
 // Used to await which action the player wants to make on their turn
@@ -98,10 +107,6 @@ export function setTarget(id) {
   }
 }
 
-// // function makeAttack() {
-
-// // }
-
 function calcDamage(character) {
   const damage = Math.floor(Math.random() * character.attack) + 1;
   return damage;
@@ -120,5 +125,53 @@ function roll20(bonus = 0) {
   return Math.floor(Math.random() * 21) + bonus;
 }
 
+function checkBehavior(character) {
+  // character is the initiative obj which need to be switched to the objects within the heroes/enemies state arrays to check stats
+  let characters;
 
+  if (character.identifier === "HERO") {
+    characters = store.getState().hero.party;
+  } else {
+    characters = store.getState().dungeon.contents.enemies;
+  }
 
+  const findCharacterById = (array, id) => {
+    return array.find((char) => char.id === id);
+  };
+
+  const updatedCharacter = findCharacterById(characters, character.id);
+  switch (updatedCharacter.behavior) {
+    case "RANDOM":
+      if (updatedCharacter.currentHealth > 30) {
+        return "ATTACK";
+      } else {
+        return "ATTACK"; // later switch to guard
+      }
+  }
+}
+
+async function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// TEMP
+function randomTarget(attacker) {
+  let array;
+  if (attacker.identifier === "HERO") {
+    array = store.getState().dungeon.contents.enemies;
+    const randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+  }
+
+  if (attacker.identifier === "ENEMY") {
+    array = store.getState().hero.party;
+    let player = Math.floor(Math.random() * array.length + 1);
+
+    if (player === array.length) {
+      return store.getState().player;
+    }
+
+    const randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+  }
+}

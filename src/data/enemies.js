@@ -51,6 +51,7 @@ const GNAWERS = {
     weaknesses: [],
     resistances: [],
     immunities: [],
+    behavior: "RANDOM",
   },
 };
 

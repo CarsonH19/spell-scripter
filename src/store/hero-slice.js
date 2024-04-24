@@ -8,12 +8,12 @@ const heroSlice = createSlice({
       state.party = action.payload;
     },
     updateHealth(state, action) {
-      const id = action.payload.target.id;
+      const id = action.payload.id;
       const change = action.payload.change;
       const value = action.payload.value;
 
       const findHeroById = (id) => {
-        const heroes = state.contents.party;
+        const heroes = state.party;
         return heroes.find((hero) => hero.id === id);
       };
 
@@ -27,8 +27,6 @@ const heroSlice = createSlice({
         hero.currentHealth += value;
       }
     },
-    // addHero(state, action) {},
-    // removeHero(state, action) {},
   },
 });
 
