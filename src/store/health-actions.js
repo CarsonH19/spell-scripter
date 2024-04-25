@@ -53,7 +53,6 @@ export function changeHealth(
 export function checkForEnemyDeath(dispatch, id) {
   const enemies = store.getState().dungeon.contents.enemies;
   let enemy = enemies.find((enemy) => enemy.id === id);
-  console.log(enemy);
 
   if (enemy.currentHealth <= 0) {
     const order = store.getState().initiative.order;

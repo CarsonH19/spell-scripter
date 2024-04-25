@@ -10,7 +10,7 @@ const playerSlice = createSlice({
     level: 1,
     currentHealth: 75,
     maxHealth: 100,
-    attack: 99,
+    attack: 10,
     defense: 0,
     currentMana: 50,
     maxMana: 60,
@@ -18,7 +18,7 @@ const playerSlice = createSlice({
     expToNextLevel: 100,
     stats: {
       strength: 1,
-      agility: 2,
+      agility: 99,
       faith: 3,
       arcana: 4,
     },
