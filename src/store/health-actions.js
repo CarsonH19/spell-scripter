@@ -37,28 +37,55 @@ export function changeHealth(
   switch (target.identifier) {
     case "PLAYER":
       dispatch(playerActions.updateHealth({ change, value }));
+      // checkForDeath(dispatch, "PLAYER", id); NOT NEEDED!?
       break;
 
     case "HERO":
       dispatch(heroActions.updateHealth({ id, change, value }));
+      checkForDeath(dispatch, "HERO", id);
       break;
 
     case "ENEMY":
       dispatch(dungeonActions.updateHealth({ id, change, value }));
-      checkForEnemyDeath(dispatch, id);
+      checkForDeath(dispatch, "ENEMY", id);
       break;
   }
 }
 
-export function checkForEnemyDeath(dispatch, id) {
-  const enemies = store.getState().dungeon.contents.enemies;
-  let enemy = enemies.find((enemy) => enemy.id === id);
+function checkForDeath(dispatch, identifier, id) {
+  switch (identifier) {
+    case "PLAYER":
 
-  if (enemy.currentHealth <= 0) {
-    const order = store.getState().initiative.order;
-    enemy = order.find((character) => character.id === enemy.id);
-    dispatch(initiativeActions.removeCharacter({ enemy }));
-    dispatch(dungeonActions.changeEnemies({ enemy, change: "REMOVE" }));
-    console.log(`${enemy.name} has died!`);
+      break;
+
+    case "HERO":
+      {
+        const heroes = store.getState().hero.party;
+        let hero = heroes.find((hero) => hero.id === id);
+
+        if (hero.currentHealth <= 0) {
+          const order = store.getState().initiative.order;
+          hero = order.find((character) => character.id === hero.id);
+          dispatch(initiativeActions.removeCharacter({ hero }));
+          dispatch(dungeonActions.changeEnemies({ hero, change: "REMOVE" }));
+          console.log(`${hero.name} has died!`);
+        }
+      }
+      break;
+
+    case "ENEMY":
+      {
+        const enemies = store.getState().dungeon.contents.enemies;
+        let enemy = enemies.find((enemy) => enemy.id === id);
+
+        if (enemy.currentHealth <= 0) {
+          const order = store.getState().initiative.order;
+          enemy = order.find((character) => character.id === enemy.id);
+          dispatch(initiativeActions.removeCharacter({ enemy }));
+          dispatch(dungeonActions.changeEnemies({ enemy, change: "REMOVE" }));
+          console.log(`${enemy.name} has died!`);
+        }
+      }
+      break;
   }
 }
