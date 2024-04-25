@@ -54,10 +54,6 @@ export function changeHealth(
 
 function checkForDeath(dispatch, identifier, id) {
   switch (identifier) {
-    case "PLAYER":
-
-      break;
-
     case "HERO":
       {
         const heroes = store.getState().hero.party;
@@ -66,8 +62,9 @@ function checkForDeath(dispatch, identifier, id) {
         if (hero.currentHealth <= 0) {
           const order = store.getState().initiative.order;
           hero = order.find((character) => character.id === hero.id);
-          dispatch(initiativeActions.removeCharacter({ hero }));
-          dispatch(dungeonActions.changeEnemies({ hero, change: "REMOVE" }));
+          dispatch(initiativeActions.removeCharacter({ character: hero }));
+          dispatch(heroActions.changeParty({ hero, change: "REMOVE" })
+          );
           console.log(`${hero.name} has died!`);
         }
       }
@@ -81,8 +78,10 @@ function checkForDeath(dispatch, identifier, id) {
         if (enemy.currentHealth <= 0) {
           const order = store.getState().initiative.order;
           enemy = order.find((character) => character.id === enemy.id);
-          dispatch(initiativeActions.removeCharacter({ enemy }));
-          dispatch(dungeonActions.changeEnemies({ enemy, change: "REMOVE" }));
+          dispatch(initiativeActions.removeCharacter({ character: enemy }));
+          dispatch(
+            dungeonActions.changeEnemies({ enemy, change: "REMOVE" })
+          );
           console.log(`${enemy.name} has died!`);
         }
       }

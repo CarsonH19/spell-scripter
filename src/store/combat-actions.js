@@ -13,9 +13,19 @@ export default async function combatLoop(dispatch) {
     // get the updated values for player and enemies on each iteration
     const player = store.getState().player;
     const enemies = store.getState().dungeon.contents.enemies;
+    console.log(order);
+    console.log(order[i]);
+    const character = findCharacterObject(order[i]);
+  
+    console.log(character);
 
-    // If all enemies or the player is dead it will skip the combat logic
-    if (enemies.length > 0 && player.currentHealth >= 0) {
+    // If all enemies, player, or current character is dead the loop will skip the combat logic
+    // need to check if the character is alive
+    if (
+      enemies.length > 0 &&
+      player.currentHealth >= 0 &&
+      character.currentHealth >= 0
+    ) {
       if (order[i].identifier === "PLAYER") {
         console.log(`${order[i].name}'s turn!`);
 
@@ -25,12 +35,11 @@ export default async function combatLoop(dispatch) {
           case "ATTACK":
             {
               const target = await getTarget(); // TEMPORARY: returns enemy object
-              const hit = rollToHit(order[i], target);
+              const hit = rollToHit(character, target);
 
               if (hit) {
                 const damage = calcDamage(order[i]); // use state player obj?!?
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
-                console.log({ target, damage });
               }
             }
             break;
@@ -47,19 +56,18 @@ export default async function combatLoop(dispatch) {
         console.log(`${order[i].name}'s turn!`);
 
         // check behavior to determine action
-        const action = checkBehavior(order[i]);
+        const action = checkBehavior(character);
 
         switch (action) {
           case "ATTACK":
             {
               // check behavior to choose a target
-              const target = randomTarget(order[i]); // returns enemy object
+              const target = randomTarget(character); // returns enemy object
 
-              const hit = rollToHit(order[i], target);
+              const hit = rollToHit(character, target);
               if (hit) {
-                const damage = calcDamage(order[i]); // use state player obj?!?
+                const damage = calcDamage(character); // use state player obj?!?
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
-                console.log({ target, damage });
               }
             }
             break;
@@ -130,24 +138,38 @@ function roll20(bonus = 0) {
   return Math.floor(Math.random() * 21) + bonus;
 }
 
-function checkBehavior(character) {
+function findCharacterObject(character) {
   // character is the initiative obj which need to be switched to the objects within the heroes/enemies state arrays to check stats
-  let characters;
+  console.log("findCharacterObject:", character);
 
-  if (character.identifier === "HERO") {
-    characters = store.getState().hero.party;
+  if (character.identifier !== "PLAYER") {
+    let characters;
+
+    if (character.identifier === "HERO") {
+      characters = store.getState().hero.party;
+    } else if (character.identifier === "ENEMY") {
+      characters = store.getState().dungeon.contents.enemies;
+    }
+
+    const findCharacterById = (array, character) => {
+      const foundCharacter = array.find((char) => char.id === character.id);
+      // If the character is dead it won't appear in the initiative-slice array. So a new object is returned with zero health signaling the character died and skipping its turn.
+      return foundCharacter !== undefined
+        ? foundCharacter
+        : { name: character.name, currentHealth: 0 };
+    };
+
+    const updatedCharacter = findCharacterById(characters, character);
+    return updatedCharacter;
   } else {
-    characters = store.getState().dungeon.contents.enemies;
+    return character;
   }
+}
 
-  const findCharacterById = (array, id) => {
-    return array.find((char) => char.id === id);
-  };
-
-  const updatedCharacter = findCharacterById(characters, character.id);
-  switch (updatedCharacter.behavior) {
+function checkBehavior(character) {
+  switch (character.behavior) {
     case "RANDOM":
-      if (updatedCharacter.currentHealth > 30) {
+      if (character.currentHealth > 30) {
         return "ATTACK";
       } else {
         return "ATTACK"; // later switch to guard

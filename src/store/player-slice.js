@@ -18,7 +18,7 @@ const playerSlice = createSlice({
     expToNextLevel: 100,
     stats: {
       strength: 1,
-      agility: 99,
+      agility: 2,
       faith: 3,
       arcana: 4,
     },

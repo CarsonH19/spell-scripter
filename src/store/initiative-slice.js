@@ -32,13 +32,15 @@ const initiativeSlice = createSlice({
       state.highlightedCharacter = null;
     },
     removeCharacter(state, action) {
-      const enemy = action.payload.enemy;
+      const character = action.payload.character;
 
-      const enemyIndex = state.order.findIndex((char) => char.id === enemy.id);
+      const characterIndex = state.order.findIndex(
+        (char) => char.id === character.id
+      );
 
-      if (enemyIndex !== -1) {
+      if (characterIndex !== -1) {
         // Remove the enemy if it exists
-        state.order.splice(enemyIndex, 1);
+        state.order.splice(characterIndex, 1);
       }
     },
   },
