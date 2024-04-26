@@ -2,16 +2,25 @@ import classes from "./Hero.module.css";
 
 import { useSelector } from "react-redux";
 
+import { targetType } from "../../../../../util/targeting";
+import { setTarget } from "../../../../../store/combat-actions";
+
 export default function Hero({ hero }) {
   const isHighlighted = useSelector(
-    (state) => state.initiative.highlightedCharacter
+    (state) => state.initiative.highlightedCharacter === hero.id
   );
+  
+  const handleSetTarget = () => {
+    if (targetType === "ALLIES") {
+      setTarget(hero);
+    }
+  };
 
   return (
-    <div className={classes.hero}>
+    <div className={classes.hero} onClick={handleSetTarget}>
       <div
         className={`${classes.image} ${
-          isHighlighted === hero.id ? classes.highlighted : ""
+          isHighlighted ? classes.highlighted : ""
         }`}
       >
         {hero.name}

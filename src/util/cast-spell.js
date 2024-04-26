@@ -8,27 +8,39 @@ export default async function castSpell(dispatch, spell) {
 
   // check for spell target type & select a target if applicable
   switch (spell.spellTarget) {
-    case "ENEMY":
+    case "ENEMY": // single enemy targeted
       {
-        target = await getTarget(); // MAKE DYNAMIC (can choose different target types ex. getTarget("ENEMY") getTarget("ALLY"))
-        const hit = rollToHit(player, target);
+        if (spell.spellType === "HIT") {
+          target = await getTarget("ENEMIES");
+          console.log(target);
+          const hit = rollToHit(player, target);
 
-        if (hit) {
-          const damage = calcDamage(spell, "SPELL"); // use state player obj?!?
-          console.log(damage)
-          changeHealth(dispatch, target, "DAMAGE", damage, null);
+          if (hit) {
+            const damage = calcDamage(spell, "SPELL"); // use state player obj?!?
+            console.log(damage);
+            changeHealth(dispatch, target, "DAMAGE", damage, null);
+          }
+        }
+        // spell.spellType === "SAVE"
+      }
+      break;
+    case "ALLY": // single ally targeted
+      {
+        if (spell.spellType === "HEAL") {
+          target = await getTarget("ALLIES");
+          console.log(target);
+          const healValue = spell.healValue;
+          changeHealth(dispatch, target, "HEAL", healValue, null);
         }
       }
       break;
-    case "ALLY":
+    case "ENEMIES": // all enemies targeted
       break;
-    case "ENEMIES":
+    case "ALLIES": // all allies including the player targeted
       break;
-    case "ALLIES":
+    case "SELF": // only the player is targeted
       break;
-    case "SELF":
-      break;
-    case "ALL":
+    case "ALL": // all characters in initiative are targeted
       break;
   }
 }

@@ -2,6 +2,7 @@ import { memo } from "react";
 import { useSelector } from "react-redux";
 import { setTarget } from "../../../../../store/combat-actions";
 import classes from "./Enemy.module.css";
+import { targetType } from "../../../../../util/targeting";
 
 const Enemy = ({ enemy }) => {
   const isHighlighted = useSelector(
@@ -9,10 +10,10 @@ const Enemy = ({ enemy }) => {
   );
 
   const handleSetTarget = () => {
-    setTarget(enemy);
+    if (targetType === "ENEMIES") {
+      setTarget(enemy);
+    }
   };
-
-  console.log("Rendered!");
 
   return (
     <div className={classes.enemy} onClick={handleSetTarget}>

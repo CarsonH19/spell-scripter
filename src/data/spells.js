@@ -22,7 +22,21 @@ export const SPELLS = {
       // },
     },
   },
+  RESORATION: {
+    LESSER_HEAL: {
+      name: "Lesser Heal",
+      image: "",
+      spellTarget: "ALLY",
+      spellType: "HEAL",
+      healValue: 10,
+      manaCost: 10,
+    },
+  },
+
   ABJURATION: {},
 };
 
-export let spellList = [SPELLS.EVOCATION.FIREBOLT];
+export let spellList = [
+  SPELLS.EVOCATION.FIREBOLT,
+  SPELLS.RESORATION.LESSER_HEAL,
+];

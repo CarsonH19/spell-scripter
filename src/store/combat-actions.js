@@ -3,6 +3,8 @@ import store from "./index";
 import { changeHealth } from "./health-actions";
 import castSpell from "../util/cast-spell";
 
+import setTargetType from "../util/targeting";
+
 let playerActionResolver;
 let targetResolver;
 let spellResolver;
@@ -41,11 +43,11 @@ export default async function combatLoop(dispatch) {
             break;
           case "ATTACK":
             {
-              const target = await getTarget(); // TEMPORARY: returns enemy object
+              const target = await getTarget("ENEMIES");
               const hit = rollToHit(character, target);
 
               if (hit) {
-                const damage = calcDamage(player); // use state player obj?!?
+                const damage = calcDamage(player); 
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
               }
             }
@@ -60,7 +62,7 @@ export default async function combatLoop(dispatch) {
       }
 
       if (order[i].identifier === "HERO" || order[i].identifier === "ENEMY") {
-        console.log(`${order[i].name}'s turn!`);
+        character.currentHealth > 0 && console.log(`${order[i].name}'s turn!`);
 
         // check behavior to determine action
         const action = checkBehavior(character);
@@ -137,18 +139,22 @@ export function setSpell(spell) {
 }
 
 // =============================================================
-//                  PLAYER => ENEMY TARGETING
+//                    TARGETING
 // =============================================================
 
-export async function getTarget() {
+export async function getTarget(targets) {
+  setTargetType(targets);
+
   return new Promise((resolve) => {
     targetResolver = resolve;
   });
 }
 
-export function setTarget(id) {
+export function setTarget(object) {
+  console.log("Hero", object);
+
   if (targetResolver) {
-    targetResolver(id);
+    targetResolver(object);
     targetResolver = null;
   }
 }

@@ -9,8 +9,8 @@ export default function Party() {
 
   return (
     <div className={classes.party}>
-      {heroes.map((hero, index) => (
-        <Hero key={index} hero={hero}/>
+      {heroes.map((hero) => (
+        <Hero key={hero.id} hero={hero}/>
       ))}
     </div>
   );

@@ -31,7 +31,8 @@ export function changeHealth(
   }
 
   if (change === "HEAL") {
-    //
+    console.log(`healValue = ${value}`);
+    console.log(target)
   }
 
   switch (target.identifier) {
