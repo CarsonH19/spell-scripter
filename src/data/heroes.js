@@ -16,7 +16,6 @@ const PALADIN = {
   stats: {
     strength: 4,
     agility: 1,
-    faith: 2,
     arcana: 1,
   },
   weaknesses: [],
@@ -44,7 +43,6 @@ const ROGUE = {
   stats: {
     strength: 2,
     agility: 99,
-    faith: 0,
     arcana: 2,
   },
   weaknesses: [],
@@ -72,7 +70,6 @@ const PRIESTESS = {
   stats: {
     strength: 0,
     agility: 1,
-    faith: 4,
     arcana: 3,
   },
   weaknesses: [],

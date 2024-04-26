@@ -23,8 +23,18 @@ const heroSlice = createSlice({
         hero.currentHealth -= value;
       }
 
+      // Prevents Falling Below 0
+      if (hero.currentHealth < 0) {
+        hero.currentHealth = 0;
+      }
+
       if (change === "HEAL") {
         hero.currentHealth += value;
+      }
+
+      // Prevents Healing Above Max
+      if (hero.currentHealth > hero.maxHealth) {
+        hero.currentHealth = hero.maxHealth;
       }
     },
     changeParty(state, action) {
@@ -38,9 +48,7 @@ const heroSlice = createSlice({
       }
 
       if (change === "REMOVE") {
-        const heroIndex = state.party.findIndex(
-          (char) => char.id === hero.id
-        );
+        const heroIndex = state.party.findIndex((char) => char.id === hero.id);
 
         if (heroIndex !== -1) {
           // Remove the enemy if it exists

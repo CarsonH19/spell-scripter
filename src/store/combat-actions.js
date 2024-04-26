@@ -47,7 +47,7 @@ export default async function combatLoop(dispatch) {
               const hit = rollToHit(character, target);
 
               if (hit) {
-                const damage = calcDamage(player); 
+                const damage = calcDamage(player);
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
               }
             }
@@ -164,8 +164,23 @@ export function setTarget(object) {
 // =============================================================
 
 export function rollToHit(attacker, target) {
-  const chanceToHit = roll20(attacker.agility); // NOTE: may need to update agility with chanceToHit in the future.
-  if (chanceToHit > target.defense) {
+  let bonus;
+  if (attacker.identifier === "PLAYER") {
+    bonus = attacker.stats.agility.hitChance;
+  } else {
+    bonus = attacker.agility;
+  }
+
+  const chanceToHit = roll20(bonus);
+
+  let defense;
+  if (target.identifier === "PLAYER") {
+    defense = attacker.stats.agility.defense;
+  } else {
+    defense = target.defense;
+  }
+
+  if (chanceToHit > defense) {
     return true;
   } else {
     return false;
@@ -179,7 +194,13 @@ export function calcDamage(source, spell) {
     console.log(`Spell Damage: ${damage}`);
     return damage;
   } else {
-    const damage = Math.floor(Math.random() * source.attack) + 1;
+    let damage;
+    if (source.identifier === "PLAYER") {
+      damage = Math.floor(Math.random() * source.stats.strength.attack) + 1;
+    } else {
+      damage = Math.floor(Math.random() * source.attack) + 1;
+    }
+
     return damage;
   }
 }

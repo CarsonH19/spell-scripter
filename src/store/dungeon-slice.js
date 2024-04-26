@@ -39,14 +39,24 @@ const dungeonSlice = createSlice({
         enemy.currentHealth = enemy.currentHealth - value;
       }
 
+      // Prevents Falling Below 0
+      if (enemy.currentHealth < 0) {
+        enemy.currentHealth = 0;
+      }
+
       if (change === "HEAL") {
         enemy.currentHealth = enemy.currentHealth + value;
+      }
+
+      // Prevents Healing Above Max
+      if (enemy.currentHealth > enemy.maxHealth) {
+        enemy.currentHealth = enemy.maxHealth;
       }
     },
     changeEnemies(state, action) {
       const enemy = action.payload.enemy;
       const change = action.payload.change;
-      
+
       const enemies = state.contents.enemies;
 
       if (change === "ADD") {

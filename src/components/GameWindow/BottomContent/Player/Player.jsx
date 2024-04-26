@@ -2,21 +2,30 @@ import classes from "./Player.module.css";
 
 import { useSelector } from "react-redux";
 
+import { setTarget } from "../../../../store/combat-actions";
+import { targetType } from "../../../../util/targeting";
+
 export default function Player() {
   const player = useSelector((state) => state.player);
   const isHighlighted = useSelector(
     (state) => state.initiative.highlightedCharacter
   );
 
+  const handleSetTarget = () => {
+    if (targetType === "ALLIES") {
+      setTarget(player);
+    }
+  };
+
   return (
-    <div className={classes.player}>
+    <div className={classes.player} onClick={handleSetTarget}>
       <div className={classes.health}>
         <p className={classes.name}>{player.name}</p>
         <hr />
         <div className={classes.info}>
           <p>
             HP: <span>{player.currentHealth}</span> /{" "}
-            <span>{player.maxHealth}</span>
+            <span>{player.strength.maxHealth}</span>
           </p>
           <p>
             Exp: <span>{player.currentExp}</span> /
@@ -26,7 +35,7 @@ export default function Player() {
             Lvl: <span>{player.level}</span>
           </p>
         </div>
-        <progress max={player.maxHealth} value={player.currentHealth}>
+        <progress max={player.strength.maxHealth} value={player.currentHealth}>
           100%
         </progress>
       </div>
@@ -38,7 +47,6 @@ export default function Player() {
       <div>
         <p>Strength: {player.stats.strength}</p>
         <p>Agility: {player.stats.agility}</p>
-        <p>Faith: {player.stats.faith}</p>
         <p>Arcana: {player.stats.arcana}</p>
       </div>
     </div>
