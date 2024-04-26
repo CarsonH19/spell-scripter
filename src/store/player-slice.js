@@ -25,6 +25,7 @@ const playerSlice = createSlice({
     weaknesses: [],
     resistances: [],
     immunities: [],
+    spellList: [],
   },
   reducers: {
     updateHealth(state, action) {
@@ -38,8 +39,10 @@ const playerSlice = createSlice({
       if (change === "HEAL") {
         state.currentHealth += value;
       }
+    },
+    updateSpellList(state, action) {
+      state.spellList = action.payload;
     }
-  
   },
 });
 

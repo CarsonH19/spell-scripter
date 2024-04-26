@@ -10,6 +10,7 @@ const uiSlice = createSlice({
     tomeIsVisible: false,
     heroIsVisible: false,
     settingIsVisible: false,
+    spellListIsVisible: false,
    },
   reducers: {
     toggle(state, action) {

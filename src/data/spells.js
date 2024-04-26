@@ -1,14 +1,28 @@
-import { DAMAGE_TYPES } from "./enemies";
+const DAMAGE_TYPES = {
+  PHYSICAL: "PHYSICAL",
+  FIRE: "FIRE",
+  POISON: "POISON",
+};
 
 export const SPELLS = {
   EVOCATION: {
     FIREBOLT: {
-      type: DAMAGE_TYPES.FIRE,
-      baseDamage: 8,
-      manaCost: 10, 
-    }
+      name: "Firebolt",
+      image: "",
+      spellTarget: "ENEMY",
+      spellType: "HIT",
+      damageType: DAMAGE_TYPES.FIRE,
+      baseDamage: 16,
+      manaCost: 10,
+      // function: () => {
+      //   // spell logic
+      //   // roll for damage & add spell power
+      //   // dispatch changeMana
+      //   // return response object { value, change };
+      // },
+    },
   },
-  ABJURATION: {
+  ABJURATION: {},
+};
 
-  }
-}
+export let spellList = [SPELLS.EVOCATION.FIREBOLT];

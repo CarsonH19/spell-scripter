@@ -1,23 +1,22 @@
 import store from "./index";
 
 import { changeHealth } from "./health-actions";
+import castSpell from "../util/cast-spell";
 
 let playerActionResolver;
 let targetResolver;
+let spellResolver;
 
 export default async function combatLoop(dispatch) {
   const order = store.getState().initiative.order;
+  console.log(order);
 
   // Iterate through the initiative order
   for (let i = 0; i < order.length; i++) {
     // get the updated values for player and enemies on each iteration
     const player = store.getState().player;
     const enemies = store.getState().dungeon.contents.enemies;
-    console.log(order);
-    console.log(order[i]);
     const character = findCharacterObject(order[i]);
-  
-    console.log(character);
 
     // If all enemies, player, or current character is dead the loop will skip the combat logic
     // need to check if the character is alive
@@ -32,13 +31,21 @@ export default async function combatLoop(dispatch) {
         const playerAction = await getPlayerAction();
 
         switch (playerAction) {
+          case "CAST SPELL":
+            {
+              // choose a spell from spell list
+              const selectedSpell = await selectSpell();
+              console.log(selectedSpell);
+              await castSpell(dispatch, selectedSpell);
+            }
+            break;
           case "ATTACK":
             {
               const target = await getTarget(); // TEMPORARY: returns enemy object
               const hit = rollToHit(character, target);
 
               if (hit) {
-                const damage = calcDamage(order[i]); // use state player obj?!?
+                const damage = calcDamage(player); // use state player obj?!?
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
               }
             }
@@ -92,6 +99,10 @@ export default async function combatLoop(dispatch) {
   }
 }
 
+// =============================================================
+//                     PLAYER ACTION SELECTION
+// =============================================================
+
 // Used to await which action the player wants to make on their turn
 export async function getPlayerAction() {
   return new Promise((resolve) => {
@@ -106,6 +117,28 @@ export function setPlayerAction(action) {
     playerActionResolver = null;
   }
 }
+// =============================================================
+//                     SELECT SPELL
+// =============================================================
+
+// Used to await which spell the player wants to cast
+export async function selectSpell() {
+  return new Promise((resolve) => {
+    spellResolver = resolve;
+  });
+}
+
+// Function to set the selected spell in the Spell component
+export function setSpell(spell) {
+  if (spellResolver) {
+    spellResolver(spell);
+    spellResolver = null;
+  }
+}
+
+// =============================================================
+//                  PLAYER => ENEMY TARGETING
+// =============================================================
 
 export async function getTarget() {
   return new Promise((resolve) => {
@@ -120,7 +153,11 @@ export function setTarget(id) {
   }
 }
 
-function rollToHit(attacker, target) {
+// =============================================================
+//                      ATTACK HANDLING
+// =============================================================
+
+export function rollToHit(attacker, target) {
   const chanceToHit = roll20(attacker.agility); // NOTE: may need to update agility with chanceToHit in the future.
   if (chanceToHit > target.defense) {
     return true;
@@ -129,18 +166,50 @@ function rollToHit(attacker, target) {
   }
 }
 
-function calcDamage(character) {
-  const damage = Math.floor(Math.random() * character.attack) + 1;
-  return damage;
+// NEED TO INCORPORATE STRENGTH BONUS & SPELL POWER
+export function calcDamage(source, spell) {
+  if (spell) {
+    const damage = Math.floor(Math.random() * source.baseDamage) + 1;
+    console.log(`Spell Damage: ${damage}`);
+    return damage;
+  } else {
+    const damage = Math.floor(Math.random() * source.attack) + 1;
+    return damage;
+  }
 }
 
 function roll20(bonus = 0) {
   return Math.floor(Math.random() * 21) + bonus;
 }
 
+// TEMPORARY FOR HEROES & ENEMIES
+function randomTarget(attacker) {
+  let array;
+  if (attacker.identifier === "HERO") {
+    array = store.getState().dungeon.contents.enemies;
+    const randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+  }
+
+  if (attacker.identifier === "ENEMY") {
+    array = store.getState().hero.party;
+    let player = Math.floor(Math.random() * array.length + 1);
+
+    if (player === array.length) {
+      return store.getState().player;
+    }
+
+    const randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+  }
+}
+
+// =============================================================
+//                INITIATIVE OBJECT => SLICE OBJECT
+// =============================================================
+
 function findCharacterObject(character) {
   // character is the initiative obj which need to be switched to the objects within the heroes/enemies state arrays to check stats
-  console.log("findCharacterObject:", character);
 
   if (character.identifier !== "PLAYER") {
     let characters;
@@ -166,6 +235,10 @@ function findCharacterObject(character) {
   }
 }
 
+// =============================================================
+//                           BEHAVIOR
+// =============================================================
+
 function checkBehavior(character) {
   switch (character.behavior) {
     case "RANDOM":
@@ -174,28 +247,6 @@ function checkBehavior(character) {
       } else {
         return "ATTACK"; // later switch to guard
       }
-  }
-}
-
-// TEMPORARY
-function randomTarget(attacker) {
-  let array;
-  if (attacker.identifier === "HERO") {
-    array = store.getState().dungeon.contents.enemies;
-    const randomIndex = Math.floor(Math.random() * array.length);
-    return array[randomIndex];
-  }
-
-  if (attacker.identifier === "ENEMY") {
-    array = store.getState().hero.party;
-    let player = Math.floor(Math.random() * array.length + 1);
-
-    if (player === array.length) {
-      return store.getState().player;
-    }
-
-    const randomIndex = Math.floor(Math.random() * array.length);
-    return array[randomIndex];
   }
 }
 
