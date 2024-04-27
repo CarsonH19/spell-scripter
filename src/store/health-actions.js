@@ -8,7 +8,7 @@ import { initiativeActions } from "./initiative-slice";
 export function changeHealth(
   dispatch,
   target,
-  change = "DAMAGE",
+  change,
   value = 0,
   damageType = null
 ) {

@@ -45,7 +45,7 @@ const GNAWERS = {
     maxMana: 0,
     stats: {
       strength: 1,
-      agility: 1,
+      agility: 99,
       arcana: 0,
     },
     weaknesses: [],

@@ -7,14 +7,15 @@ import { playerActions } from "./player-slice";
 
 // let attunedItems = [];
 
-// let statChanges = [];
+// These are now handled in state
+// export let statChanges = [];
 
-// function addStatChange(object) {
+// export function addStatChange(object) {
 //   statChanges.push(object);
 //   updateStatTotals();
 // }
 
-// function removeStatChange(object) {
+// export function removeStatChange(object) {
 //   const index = statChanges.indexOf(object);
 //   statChanges.splice(index, 1);
 //   updateStatTotals();
@@ -26,14 +27,6 @@ export default function updateStatTotals(dispatch) {
   let totalStrength = player.stats.baseStrength;
   let totalAgility = player.stats.baseAgility;
   let totalArcana = player.stats.baseArcana;
-
-  // for (const item of statChanges) {
-  //   if (item.stats) {
-  //     totalStrength += item.stats.strength || 0;
-  //     totalAgility += item.stats.agility || 0;
-  //     totalAttack += item.stats.attack || 0;
-  //   }
-  // }
 
   // Strength
   if (totalStrength < 0) totalStrength = 0;
@@ -52,6 +45,33 @@ export default function updateStatTotals(dispatch) {
   if (totalArcana < 0) totalArcana = 0;
   let maxMana = calculateMaxMana();
   let spellPower = calculateSpellPower();
+
+
+  // Adding stat changes from Items & Status Effects
+  for (const item of player.statusEffects) {
+    // Strength
+    if (item.stats.strength) {
+      totalStrength += item.stats.strength.strengthChange || 0;
+      maxHealth += item.stats.strength.maxHealth || 0;
+      attack += item.stats.strength.attack || 0;
+    }
+
+    // Agility
+    if (item.stats.agility) {
+      totalAgility += item.stats.agility.agilityChange || 0;
+      totalAgility += item.stats.agility.defense || 0;
+      totalAgility += item.stats.agility.speed || 0;
+      totalAgility += item.stats.agility.hitChance || 0;
+
+    }
+
+    // Arcana
+    if (item.stats.arcana) {
+      totalArcana += item.stats.arcana.arcanaChange || 0;
+      totalArcana += item.stats.arcana.maxMana || 0;
+      totalArcana += item.stats.arcana.spellPower || 0;
+    }
+  }
 
   dispatch(
     playerActions.updateStats({

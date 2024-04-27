@@ -37,6 +37,7 @@ const playerSlice = createSlice({
     resistances: [],
     immunities: [],
     spellList: [],
+    statusEffects: [],
   },
   reducers: {
     updateStats(state, action) {
@@ -82,6 +83,27 @@ const playerSlice = createSlice({
       // Prevents Healing Above Max
       if (state.currentHealth > state.maxHealth) {
         state.currentHealth = state.maxHealth;
+      }
+    },
+    updateStatusEffects(state, action) {
+      const change = action.payload.change;
+      const statusEffect = action.payload.statusEffect;
+
+      switch (change) {
+        case "ADD":
+          state.statusEffects.push(statusEffect);
+          break;
+        case "REMOVE":
+          {
+            const statusIndex = state.statusEffects.findIndex(
+              (effect) => effect.name === statusEffect.name
+            );
+
+            if (statusIndex !== -1) {
+              state.statusEffects.splice(statusIndex, 1);
+            }
+          }
+          break;
       }
     },
     updateSpellList(state, action) {

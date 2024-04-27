@@ -4,6 +4,7 @@ import { changeHealth } from "./health-actions";
 import castSpell from "../util/cast-spell";
 
 import setTargetType from "../util/targeting";
+import STATUS_EFFECTS, { changeStatusEffect } from "../data/status-effects";
 
 let playerActionResolver;
 let targetResolver;
@@ -71,12 +72,25 @@ export default async function combatLoop(dispatch) {
           case "ATTACK":
             {
               // check behavior to choose a target
-              const target = randomTarget(character); // returns enemy object
+              const target = randomTarget(character);
 
               const hit = rollToHit(character, target);
               if (hit) {
+                console.log("Target Hit:", target);
                 const damage = calcDamage(character); // use state player obj?!?
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
+
+                if (
+                  target.identifier === "PLAYER" &&
+                  character.identifier === "ENEMY"
+                ) {
+                  changeStatusEffect(
+                    dispatch,
+                    target,
+                    "ADD",
+                    STATUS_EFFECTS.POISONED
+                  );
+                }
               }
             }
             break;
@@ -166,19 +180,25 @@ export function setTarget(object) {
 
 export function rollToHit(attacker, target) {
   let bonus;
+  let defense;
+
   if (attacker.identifier === "PLAYER") {
     bonus = attacker.stats.agility.hitChance;
   } else {
     bonus = attacker.agility;
   }
 
-  const chanceToHit = roll20(bonus);
-
-  let defense;
   if (target.identifier === "PLAYER") {
-    defense = attacker.stats.agility.defense;
+    defense = target.stats.agility.defense;
+    console.log("Player Defense", defense);
   } else {
     defense = target.defense;
+  }
+
+  const chanceToHit = roll20(bonus);
+
+  if (attacker.identifier === "ENEMY") {
+    console.log(chanceToHit, target.defense);
   }
 
   if (chanceToHit > defense) {
