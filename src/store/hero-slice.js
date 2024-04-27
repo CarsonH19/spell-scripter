@@ -37,6 +37,37 @@ const heroSlice = createSlice({
         hero.currentHealth = hero.maxHealth;
       }
     },
+    updateStatusEffects(state, action) {
+      const id = action.payload.id;
+      const change = action.payload.change;
+      const statusEffect = action.payload.statusEffect;
+
+      const findHeroById = (id) => {
+        const heroes = state.party;
+        return heroes.find((hero) => hero.id === id);
+      };
+
+      const hero = findHeroById(id);
+
+      if (hero) {
+        switch (change) {
+          case "ADD":
+            hero.statusEffects.push(statusEffect);
+            break;
+          case "REMOVE":
+            {
+              const statusIndex = hero.statusEffects.findIndex(
+                (effect) => effect.name === statusEffect.name
+              );
+
+              if (statusIndex !== -1) {
+                hero.statusEffects.splice(statusIndex, 1);
+              }
+            }
+            break;
+        }
+      }
+    },
     changeParty(state, action) {
       const hero = action.payload.hero;
       const change = action.payload.change;

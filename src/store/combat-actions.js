@@ -79,8 +79,8 @@ export default async function combatLoop(dispatch) {
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
 
                 if (
-                  target.identifier === "PLAYER" &&
-                  character.identifier === "ENEMY"
+                  target.identifier === "PLAYER" ||
+                  target.identifier === "HERO"
                 ) {
                   changeStatusEffect(
                     dispatch,
@@ -298,7 +298,6 @@ function endCombat() {
   }
 
   if (enemies.length <= 0) {
-    console.log("NO MORE ENEMIES");
     alert("Room Cleared!");
     return true;
   }

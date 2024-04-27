@@ -41,7 +41,6 @@ export default function updateStatTotals(dispatch) {
    if (player.statusEffects.length > 0) {
     for (let i = 0; i < player.statusEffects.length; i++) {
       const item = player.statusEffects[i];
-      console.log(item);
       // Strength
       if (item.stats.strength) {
         totalStrength += item.stats.strength.strengthChange || 0;

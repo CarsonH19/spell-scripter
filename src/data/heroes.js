@@ -1,11 +1,11 @@
 const PALADIN = {
   name: "Siggurd",
   id: "Siggurd",
-  identifier: 'HERO',
+  identifier: "HERO",
   image: "",
   // audio: {},
   level: 1,
-  currentHealth: 1,
+  currentHealth: 50,
   maxHealth: 100,
   attack: 10,
   defense: 0,
@@ -22,13 +22,14 @@ const PALADIN = {
   resistances: [],
   immunities: [],
   behavior: "RANDOM",
+  statusEffects: [],
 };
 
 // ROGUE
 const ROGUE = {
   name: "Riven",
   id: "Riven",
-  identifier: 'HERO',
+  identifier: "HERO",
   image: "",
   // audio: {},
   level: 1,
@@ -49,13 +50,14 @@ const ROGUE = {
   resistances: [],
   immunities: [],
   behavior: "RANDOM",
+  statusEffects: [],
 };
 
 // PRIESTESS
 const PRIESTESS = {
   name: "Liheth",
   id: "Liheth",
-  identifier: 'HERO',
+  identifier: "HERO",
   image: "",
   // audio: {},
   level: 1,
@@ -76,6 +78,7 @@ const PRIESTESS = {
   resistances: [],
   immunities: [],
   behavior: "RANDOM",
+  statusEffects: [],
 };
 
 // WARLOCK

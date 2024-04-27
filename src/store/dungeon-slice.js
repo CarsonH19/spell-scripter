@@ -53,6 +53,37 @@ const dungeonSlice = createSlice({
         enemy.currentHealth = enemy.maxHealth;
       }
     },
+    updateStatusEffects(state, action) {
+      const id = action.payload.id;
+      const change = action.payload.change;
+      const statusEffect = action.payload.statusEffect;
+
+      const findEnemyById = (id) => {
+        const enemies = state.contents.enemies;
+        return enemies.find((enemy) => enemy.id === id);
+      };
+
+      const enemy = findEnemyById(id);
+
+      if (enemy) {
+        switch (change) {
+          case "ADD":
+            enemy.statusEffects.push(statusEffect);
+            break;
+          case "REMOVE":
+            {
+              const statusIndex = enemy.statusEffects.findIndex(
+                (effect) => effect.name === statusEffect.name
+              );
+
+              if (statusIndex !== -1) {
+                enemy.statusEffects.splice(statusIndex, 1);
+              }
+            }
+            break;
+        }
+      }
+    },
     changeEnemies(state, action) {
       const enemy = action.payload.enemy;
       const change = action.payload.change;
