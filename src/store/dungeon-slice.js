@@ -9,7 +9,7 @@ const dungeonSlice = createSlice({
     contents: {
       enemies: [],
       items: [],
-      events: null,
+      event: null,
     },
   },
   reducers: {
