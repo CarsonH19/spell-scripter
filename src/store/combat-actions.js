@@ -119,6 +119,7 @@ export function setPlayerAction(action) {
     playerActionResolver = null;
   }
 }
+
 // =============================================================
 //                     SELECT SPELL
 // =============================================================

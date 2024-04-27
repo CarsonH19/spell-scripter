@@ -40,8 +40,9 @@ const playerSlice = createSlice({
   },
   reducers: {
     updateStats(state, action) {
-      // Updates Base Stats (HP/Mana/Attack/Defense/Strength/Agility/Arcana)
-      state.stats.strength.score = action.payload.totalStrength;
+      // Strength
+      console.log(action.payload.totalStrength);
+      state.stats.strength.totalStrength = action.payload.totalStrength;
       state.stats.strength.maxHealth = action.payload.maxHealth;
       state.stats.strength.attack = action.payload.attack;
 
@@ -50,13 +51,15 @@ const playerSlice = createSlice({
         state.currentHealth = state.stats.strength.maxHealth;
       }
 
-      state.stats.agility.score = action.payload.totalAgility;
+      // Agility
+      state.stats.agility.totalAgility = action.payload.totalAgility;
       state.stats.agility.defense = action.payload.defense;
       state.stats.agility.speed = action.payload.speed;
       state.stats.agility.hitChance = action.payload.hitChance;
 
-      state.stats.arcana.score = action.payload.totalArcana;
-      state.stats.arcana.spellPower = action.payload.payload.spellPower;
+      // Arcana
+      state.stats.arcana.totalArcana = action.payload.totalArcana;
+      state.stats.arcana.spellPower = action.payload.spellPower;
       state.stats.arcana.maxMana = action.payload.maxMana;
     },
     updateHealth(state, action) {

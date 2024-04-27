@@ -25,7 +25,7 @@ export default function Player() {
         <div className={classes.info}>
           <p>
             HP: <span>{player.currentHealth}</span> /{" "}
-            <span>{player.strength.maxHealth}</span>
+            <span>{player.stats.strength.maxHealth}</span>
           </p>
           <p>
             Exp: <span>{player.currentExp}</span> /
@@ -35,7 +35,7 @@ export default function Player() {
             Lvl: <span>{player.level}</span>
           </p>
         </div>
-        <progress max={player.strength.maxHealth} value={player.currentHealth}>
+        <progress max={player.stats.strength.maxHealth} value={player.currentHealth}>
           100%
         </progress>
       </div>
@@ -45,9 +45,9 @@ export default function Player() {
         }`}
       ></div>
       <div>
-        <p>Strength: {player.stats.strength}</p>
-        <p>Agility: {player.stats.agility}</p>
-        <p>Arcana: {player.stats.arcana}</p>
+        <p>Strength: {player.stats.strength.totalStrength}</p>
+        <p>Agility: {player.stats.agility.totalAgility}</p>
+        <p>Arcana: {player.stats.arcana.totalArcana}</p>
       </div>
     </div>
   );

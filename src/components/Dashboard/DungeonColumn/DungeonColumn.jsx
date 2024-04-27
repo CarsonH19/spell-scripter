@@ -14,6 +14,7 @@ import { initiativeActions } from "../../../store/initiative-slice";
 
 import { playerActions } from "../../../store/player-slice";
 import { spellList } from "../../../data/spells";
+import updateStatTotals from "../../../store/stats-actions";
 
 export default function DungeonColumn() {
   const dispatch = useDispatch();
@@ -27,7 +28,8 @@ export default function DungeonColumn() {
     dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // true
 
     // the following are only used for testing
-    dispatch(playerActions.updateSpellList(spellList))
+    dispatch(playerActions.updateSpellList(spellList));
+    updateStatTotals(dispatch);
     dispatch(dungeonActions.updateRoom(currentRoom));
     dispatch(heroActions.updateParty(heroes));
     dispatch(initiativeActions.setInitiative({ heroes, enemies, player }));
