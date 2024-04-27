@@ -20,7 +20,13 @@ export default function Player() {
   return (
     <div className={classes.player} onClick={handleSetTarget}>
       <div className={classes.health}>
-        <p className={classes.name}>{player.name}</p>
+        <p className={classes.name}>
+          {player.name} | <span className={classes.statusEffects}>{
+            player.statusEffects.map((effect) => (
+              <img src="" key={effect.name} className={classes.effect}/> // change to custom component
+            ))
+            }</span>
+        </p>
         <hr />
         <div className={classes.info}>
           <p>
@@ -35,7 +41,10 @@ export default function Player() {
             Lvl: <span>{player.level}</span>
           </p>
         </div>
-        <progress max={player.stats.strength.maxHealth} value={player.currentHealth}>
+        <progress
+          max={player.stats.strength.maxHealth}
+          value={player.currentHealth}
+        >
           100%
         </progress>
       </div>
