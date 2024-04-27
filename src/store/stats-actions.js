@@ -25,53 +25,64 @@ export default function updateStatTotals(dispatch) {
   const player = store.getState().player;
 
   let totalStrength = player.stats.baseStrength;
+  let maxHealth = 0
+  let attack = 0
+
   let totalAgility = player.stats.baseAgility;
+  let defense = 0
+  let speed = 0
+  let hitChance = 0 
+
   let totalArcana = player.stats.baseArcana;
+  let maxMana = 0
+  let spellPower = 0
+
+   // Adding stat changes from Items & Status Effects
+   if (player.statusEffects.length > 0) {
+    for (let i = 0; i < player.statusEffects.length; i++) {
+      const item = player.statusEffects[i];
+      console.log(item);
+      // Strength
+      if (item.stats.strength) {
+        totalStrength += item.stats.strength.strengthChange || 0;
+        maxHealth += item.stats.strength.maxHealth || 0;
+        attack += item.stats.strength.attack || 0;
+      }
+
+      // Agility
+      if (item.stats.agility) {
+        totalAgility += item.stats.agility.agilityChange || 0;
+        defense += item.stats.agility.defense || 0;
+        speed += item.stats.agility.speed || 0;
+        hitChance += item.stats.agility.hitChance || 0;
+      }
+
+      // Arcana
+      if (item.stats.arcana) {
+        totalArcana += item.stats.arcana.arcanaChange || 0;
+        maxMana += item.stats.arcana.maxMana || 0;
+        spellPower += item.stats.arcana.spellPower || 0;
+      }
+    }
+  }
 
   // Strength
   if (totalStrength < 0) totalStrength = 0;
 
-  let maxHealth = calculateMaxHealth();
-  let attack = calculateAttackBonus();
+  maxHealth += calculateMaxHealth();
+  attack += calculateAttackBonus();
 
   // Agility
   if (totalAgility < 0) totalAgility = 0;
 
-  let defense = calculateDefense();
-  let speed = calculateSpeed();
-  let hitChance = calculateHitChance();
+  defense += calculateDefense();
+  speed += calculateSpeed();
+  hitChance += calculateHitChance();
 
   // Arcana
   if (totalArcana < 0) totalArcana = 0;
-  let maxMana = calculateMaxMana();
-  let spellPower = calculateSpellPower();
-
-
-  // Adding stat changes from Items & Status Effects
-  for (const item of player.statusEffects) {
-    // Strength
-    if (item.stats.strength) {
-      totalStrength += item.stats.strength.strengthChange || 0;
-      maxHealth += item.stats.strength.maxHealth || 0;
-      attack += item.stats.strength.attack || 0;
-    }
-
-    // Agility
-    if (item.stats.agility) {
-      totalAgility += item.stats.agility.agilityChange || 0;
-      totalAgility += item.stats.agility.defense || 0;
-      totalAgility += item.stats.agility.speed || 0;
-      totalAgility += item.stats.agility.hitChance || 0;
-
-    }
-
-    // Arcana
-    if (item.stats.arcana) {
-      totalArcana += item.stats.arcana.arcanaChange || 0;
-      totalArcana += item.stats.arcana.maxMana || 0;
-      totalArcana += item.stats.arcana.spellPower || 0;
-    }
-  }
+  maxMana += calculateMaxMana();
+  spellPower += calculateSpellPower();
 
   dispatch(
     playerActions.updateStats({
@@ -113,7 +124,6 @@ export default function updateStatTotals(dispatch) {
 
     // Determines health bar length based off max HP
     // playerDisplay.style.width = `${Math.round(playerMaxHealth / 10) + 20}vw`;
-    console.log(`maxHealth: ${maxHealth}`);
     return maxHealth;
   }
 
@@ -122,7 +132,6 @@ export default function updateStatTotals(dispatch) {
     let strengthBonusAttack = totalStrength * 2;
     let totalAttack = baseAttack + strengthBonusAttack;
 
-    console.log(`totalAttack: ${totalAttack}`);
     return totalAttack;
   }
 
@@ -134,21 +143,18 @@ export default function updateStatTotals(dispatch) {
     // +1 per agility
     const hitChance = totalAgility;
 
-    console.log(`hitChance: ${hitChance}`);
     return hitChance;
   }
 
   function calculateDefense() {
     const defense = 10 + totalAgility;
 
-    console.log(`defense: ${defense}`);
     return defense;
   }
 
   function calculateSpeed() {
     const speed = 10 + totalAgility;
 
-    console.log(`speed: ${speed}`);
     return speed;
   }
 
@@ -161,7 +167,6 @@ export default function updateStatTotals(dispatch) {
     let arcanaBonusMana = totalArcana * 10;
     let maxMana = baseMana + arcanaBonusMana;
 
-    console.log(`maxMana: ${maxMana}`);
     return maxMana;
   }
 
@@ -170,12 +175,6 @@ export default function updateStatTotals(dispatch) {
     let arcanaBonusPower = totalArcana * 2;
     let totalSpellPower = basePower + arcanaBonusPower;
 
-    console.log(`spellPower: ${totalSpellPower}`);
     return totalSpellPower;
   }
-
-  console.log(totalStrength);
-  console.log(totalAgility);
-  console.log(totalArcana);
-
 }

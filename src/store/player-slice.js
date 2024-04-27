@@ -42,7 +42,6 @@ const playerSlice = createSlice({
   reducers: {
     updateStats(state, action) {
       // Strength
-      console.log(action.payload.totalStrength);
       state.stats.strength.totalStrength = action.payload.totalStrength;
       state.stats.strength.maxHealth = action.payload.maxHealth;
       state.stats.strength.attack = action.payload.attack;

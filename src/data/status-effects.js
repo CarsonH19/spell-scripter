@@ -15,8 +15,8 @@ const STATUS_EFFECTS = {
       },
       agility: {
         agilityChange: -2,
-      }
-    }
+      },
+    },
     // function: () => {
     //   // // ITEM: Toxinweave Mask - Poison Immunity
     //   // const immune = isItemAttuned(TOXINWEAVE_MASK, null);
@@ -30,80 +30,40 @@ const STATUS_EFFECTS = {
 export default STATUS_EFFECTS;
 
 export function changeStatusEffect(dispatch, target, change, statusEffect) {
-  // const id = target.id;
+  // Check if status effect already exists
+  if (!checkCurrentStatusEffects(target, statusEffect) && change === "ADD") {
+    console.log("CALLED!");
 
-  switch (target.identifier) {
-    case "PLAYER":
-      console.log(`You've been ${statusEffect.name}!`);
-      dispatch(playerActions.updateStatusEffects({ change, statusEffect }));
-      break;
+    switch (target.identifier) {
+      case "PLAYER":
+        console.log(`You've been ${statusEffect.name}!`);
+        dispatch(playerActions.updateStatusEffects({ change, statusEffect }));
+        break;
 
-    case "HERO":
-      break;
+      case "HERO":
+        break;
 
-    case "ENEMY":
-      
-      break;
+      case "ENEMY":
+        break;
+    }
+  } else {
+    // reset status effect
+    console.log("STATUS RESET!");
   }
 
   updateStatTotals(dispatch);
+
+  function checkCurrentStatusEffects(target, statusEffect) {
+    console.log(target);
+    if (target.statusEffects.length > 0) {
+      const statusIndex = target.statusEffects.findIndex(
+        (effect) => effect.name === statusEffect.name
+      );
+      if (statusIndex !== -1) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
-
-// import updateStatTotals, { addStatChange, removeStatChange } from "../store/stats-actions";
-
-// export const startStatusEffect = (statusEffect, length) => {
-//   if (statusEffect.duration === null && statusEffect.statusDuration === null) {
-//     startNewStatusEffect(statusEffect, length);
-//   } else if (isDurationExtended(statusEffect, length)) {
-//     extendStatusEffectDuration(statusEffect, length);
-//   }
-// };
-
-// const startNewStatusEffect = (statusEffect, length) => {
-//   statusEffect.statusDuration = roomCounter + length;
-//   const duration = statusEffect.statusDuration - roomCounter;
-//   const roomText = duration > 1 ? "Rooms" : "Room";
-//   statusEffect.duration = `Duration: ${duration} ${roomText}`;
-
-//   if (statusEffect.stats) {
-//     addStatChange(statusEffect);
-//   } else {
-//     updateStatTotals();
-//   }
-
-//   // if (statusEffect.detail === "CONDITION") {
-//   //   writeToLogStatusEffect(LOG_GAINED_CONDITION, "YES", statusEffect);
-//   // }
-
-//   setupStatusEffectInterval(statusEffect);
-// };
-
-// const isDurationExtended = (statusEffect, length) =>
-//   length > statusEffect.statusDuration - roomCounter;
-
-// const extendStatusEffectDuration = (statusEffect, length) => {
-//   statusEffect.statusDuration = roomCounter + length;
-//   statusEffect.duration = `Duration: ${
-//     statusEffect.statusDuration - roomCounter
-//   } Rooms`;
-// };
-
-// const setupStatusEffectInterval = (statusEffect) => {
-//   const intervalId = setInterval(() => {
-//     const duration = statusEffect.statusDuration - roomCounter;
-//     const roomText = duration > 1 ? "Rooms" : "Room";
-//     statusEffect.duration = `Duration: ${duration} ${roomText}`;
-//   }, 2000);
-// };
-
-// const endStatusEffectInterval = (statusEffect, intervalId) => {
-//   statusEffect.duration = null;
-//   statusEffect.statusDuration = null;
-
-//   // Checks for different Status Effects
-//   if (statusEffect.stats) {
-//     removeStatChange(statusEffect);
-//   } else {
-//     updateStatTotals();
-//   }
-// };

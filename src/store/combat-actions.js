@@ -38,14 +38,13 @@ export default async function combatLoop(dispatch) {
             {
               // choose a spell from spell list
               const selectedSpell = await selectSpell();
-              console.log(selectedSpell);
               await castSpell(dispatch, selectedSpell);
             }
             break;
           case "ATTACK":
             {
               const target = await getTarget("ENEMIES");
-              const hit = rollToHit(character, target);
+              const hit = rollToHit(player, target);
 
               if (hit) {
                 const damage = calcDamage(player);
@@ -76,7 +75,6 @@ export default async function combatLoop(dispatch) {
 
               const hit = rollToHit(character, target);
               if (hit) {
-                console.log("Target Hit:", target);
                 const damage = calcDamage(character); // use state player obj?!?
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
 
@@ -166,8 +164,6 @@ export async function getTarget(targets) {
 }
 
 export function setTarget(object) {
-  console.log("Hero", object);
-
   if (targetResolver) {
     targetResolver(object);
     targetResolver = null;
@@ -190,16 +186,11 @@ export function rollToHit(attacker, target) {
 
   if (target.identifier === "PLAYER") {
     defense = target.stats.agility.defense;
-    console.log("Player Defense", defense);
   } else {
     defense = target.defense;
   }
 
   const chanceToHit = roll20(bonus);
-
-  if (attacker.identifier === "ENEMY") {
-    console.log(chanceToHit, target.defense);
-  }
 
   if (chanceToHit > defense) {
     return true;
@@ -212,7 +203,6 @@ export function rollToHit(attacker, target) {
 export function calcDamage(source, spell) {
   if (spell) {
     const damage = Math.floor(Math.random() * source.baseDamage) + 1;
-    console.log(`Spell Damage: ${damage}`);
     return damage;
   } else {
     let damage;
@@ -279,7 +269,7 @@ function findCharacterObject(character) {
     const updatedCharacter = findCharacterById(characters, character);
     return updatedCharacter;
   } else {
-    return character;
+    return store.getState().player;
   }
 }
 
