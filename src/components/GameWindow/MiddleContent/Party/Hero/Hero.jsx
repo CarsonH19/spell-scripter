@@ -1,5 +1,7 @@
 import classes from "./Hero.module.css";
 
+import Tooltip from "../../../../UI/Tooltip";
+
 import { useSelector } from "react-redux";
 
 import { targetType } from "../../../../../util/targeting";
@@ -9,7 +11,7 @@ export default function Hero({ hero }) {
   const isHighlighted = useSelector(
     (state) => state.initiative.highlightedCharacter === hero.id
   );
-  
+
   const handleSetTarget = () => {
     if (targetType === "ALLIES") {
       setTarget(hero);
@@ -27,18 +29,24 @@ export default function Hero({ hero }) {
       </div>
       <div className={classes.container}>
         <p className={classes.name}>{hero.name}</p>
-        <div className={classes.info}>
-          <p>
-            HP: <span>{hero.currentHealth}</span> /{" "}
-            <span>{hero.maxHealth}</span>
-          </p>
-          <p>
-            Lvl: <span>{hero.level}</span>
-          </p>
+        <div className={classes.health}>
+          <div className={classes.info}>
+            <p>
+              HP: <span>{hero.currentHealth}</span> /{" "}
+              <span>{hero.maxHealth}</span>
+            </p>
+          </div>
+          <progress max={hero.maxHealth} value={hero.currentHealth}>
+            Health Bar
+          </progress>
         </div>
-        <progress max={hero.maxHealth} value={hero.currentHealth}>
-          Health Bar
-        </progress>
+        <div className={classes.statusEffects}>
+        {hero.statusEffects.map((effect) => (
+            <Tooltip key={effect.name} text={effect.name}>
+              <img src="" className={classes.effect} />
+            </Tooltip>
+          ))}
+        </div>
       </div>
     </div>
   );

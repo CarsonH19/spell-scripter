@@ -1,7 +1,10 @@
+import classes from "./Enemy.module.css";
+
+import Tooltip from "../../../../UI/Tooltip";
+
 import { memo } from "react";
 import { useSelector } from "react-redux";
 import { setTarget } from "../../../../../store/combat-actions";
-import classes from "./Enemy.module.css";
 import { targetType } from "../../../../../util/targeting";
 
 const Enemy = ({ enemy }) => {
@@ -19,18 +22,25 @@ const Enemy = ({ enemy }) => {
     <div className={classes.enemy} onClick={handleSetTarget}>
       <div className={classes.container}>
         <p className={classes.name}>{enemy.name}</p>
-        <div className={classes.info}>
-          <p>
-            Lvl: <span>{enemy.level}</span>
-          </p>
-          <p>
-            HP: <span>{enemy.currentHealth}</span> /{" "}
-            <span>{enemy.maxHealth}</span>
-          </p>
+
+        <div className={classes.health}>
+          <div className={classes.info}>
+            <p>
+              HP: <span>{enemy.currentHealth}</span> /{" "}
+              <span>{enemy.maxHealth}</span>
+            </p>
+          </div>
+          <progress max={enemy.maxHealth} value={enemy.currentHealth}>
+            Health Bar
+          </progress>
         </div>
-        <progress max={enemy.maxHealth} value={enemy.currentHealth}>
-          Health Bar
-        </progress>
+        <div className={classes.statusEffects}>
+          {enemy.statusEffects.map((effect) => (
+            <Tooltip key={effect.name} text={effect.name}>
+              <img src="" className={classes.effect} />
+            </Tooltip>
+          ))}
+        </div>
       </div>
       <div
         className={`${classes.image} ${

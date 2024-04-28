@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 import { setTarget } from "../../../../store/combat-actions";
 import { targetType } from "../../../../util/targeting";
+import Tooltip from "../../../UI/Tooltip";
 
 export default function Player() {
   const player = useSelector((state) => state.player);
@@ -20,13 +21,7 @@ export default function Player() {
   return (
     <div className={classes.player} onClick={handleSetTarget}>
       <div className={classes.health}>
-        <p className={classes.name}>
-          {player.name} | <span className={classes.statusEffects}>{
-            player.statusEffects.map((effect) => (
-              <img src="" key={effect.name} className={classes.effect}/> // change to custom component
-            ))
-            }</span>
-        </p>
+        <p className={classes.name}>{player.name}</p>
         <hr />
         <div className={classes.info}>
           <p>
@@ -47,7 +42,15 @@ export default function Player() {
         >
           100%
         </progress>
+        <div className={classes.statusEffects}>
+          {player.statusEffects.map((effect) => (
+            <Tooltip key={effect.name} text={effect.name}>
+              <img src="" className={classes.effect} />
+            </Tooltip>
+          ))}
+        </div>
       </div>
+
       <div
         className={`${classes.image} ${
           isHighlighted === player.id ? classes.highlighted : ""

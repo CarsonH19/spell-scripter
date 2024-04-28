@@ -21,7 +21,7 @@
 .health {
   position: absolute; 
   left: 0rem; 
-  top: -7rem;
+  top: -9rem;
   width: 30rem; 
   /* height: rem;  */
 }
@@ -80,15 +80,14 @@
   transition: all 0.1s ease-out;
 }
 
- .statusEffects {
-  position: absolute;
-  left: auto;
-  top: 0.8rem;
-  margin-left:0.5rem;
+.statusEffects {
+  margin: 0;
+  margin-top: -0.3rem;
 } 
 
 .effect {
   height: 1.5rem;
   width: 1.5rem;
-  background-color: #ad0505;  
+  background-color: #ad0505; 
+  cursor: pointer; 
 }

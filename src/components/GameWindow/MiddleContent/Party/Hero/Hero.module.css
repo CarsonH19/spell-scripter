@@ -34,6 +34,7 @@
 
 .hero:hover .container {
   width: 50%; 
+  overflow: visible;
 }
 
 .hero .container .name {
@@ -43,9 +44,8 @@
 }
 
 .hero .container .info {
-  overflow: hidden;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 1rem;
   margin-bottom: -0.8rem;
 }
@@ -53,7 +53,6 @@
 .hero .container .info p {
   margin: 0;
   font-size: 0.8rem;
-  margin-top: 0.4rem;
 }
 
 .hero .container progress {
@@ -81,4 +80,26 @@
 .hero progress[value]::-moz-progress-bar {
   background-color: #ad0505;
   transition: all 0.1s ease-out;
+}
+
+
+.statusEffects {
+  margin: 0;
+  margin-top: 0.2rem;
+} 
+
+.effect {
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: #ad0505; 
+  cursor: pointer; 
+}
+
+.health {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 50%;
+  gap: 1rem;
+  margin-top: -1.2rem;
 }

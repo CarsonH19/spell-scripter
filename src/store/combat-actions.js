@@ -78,17 +78,13 @@ export default async function combatLoop(dispatch) {
                 const damage = calcDamage(character); // use state player obj?!?
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
 
-                if (
-                  target.identifier === "PLAYER" ||
-                  target.identifier === "HERO"
-                ) {
-                  changeStatusEffect(
-                    dispatch,
-                    target,
-                    "ADD",
-                    STATUS_EFFECTS.POISONED
-                  );
-                }
+                // Testing Status Effects
+                changeStatusEffect(
+                  dispatch,
+                  target,
+                  "ADD",
+                  STATUS_EFFECTS.POISONED
+                );
               }
             }
             break;

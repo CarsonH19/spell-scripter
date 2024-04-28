@@ -37,7 +37,7 @@ const GNAWERS = {
     type: ENEMY_TYPES.BEAST,
     // audio: {},
     level: 1,
-    currentHealth: 5,
+    currentHealth: 50,
     maxHealth: 50,
     attack: 5,
     defense: 0,
@@ -52,6 +52,7 @@ const GNAWERS = {
     resistances: [],
     immunities: [],
     behavior: "RANDOM",
+    statusEffects: [],
   },
 };
 
