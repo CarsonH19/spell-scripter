@@ -72,8 +72,8 @@ export default async function combatLoop(dispatch) {
             {
               // check behavior to choose a target
               const target = randomTarget(character);
-
               const hit = rollToHit(character, target);
+              console.log("ATTACK", target, hit);
               if (hit) {
                 const damage = calcDamage(character); // use state player obj?!?
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
@@ -171,20 +171,10 @@ export function setTarget(object) {
 // =============================================================
 
 export function rollToHit(attacker, target) {
-  let bonus;
-  let defense;
+  let bonus = attacker.stats.agility.hitChance;
+  let defense = target.stats.agility.defense;
 
-  if (attacker.identifier === "PLAYER") {
-    bonus = attacker.stats.agility.hitChance;
-  } else {
-    bonus = attacker.agility;
-  }
-
-  if (target.identifier === "PLAYER") {
-    defense = target.stats.agility.defense;
-  } else {
-    defense = target.defense;
-  }
+  console.log("ATTACK", attacker);
 
   const chanceToHit = roll20(bonus);
 
@@ -201,13 +191,7 @@ export function calcDamage(source, spell) {
     const damage = Math.floor(Math.random() * source.baseDamage) + 1;
     return damage;
   } else {
-    let damage;
-    if (source.identifier === "PLAYER") {
-      damage = Math.floor(Math.random() * source.stats.strength.attack) + 1;
-    } else {
-      damage = Math.floor(Math.random() * source.attack) + 1;
-    }
-
+    const damage = Math.floor(Math.random() * source.stats.strength.attack) + 1;
     return damage;
   }
 }

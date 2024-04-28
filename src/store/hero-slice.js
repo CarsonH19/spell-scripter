@@ -33,9 +33,40 @@ const heroSlice = createSlice({
       }
 
       // Prevents Healing Above Max
-      if (hero.currentHealth > hero.maxHealth) {
-        hero.currentHealth = hero.maxHealth;
+      if (hero.currentHealth > hero.stats.strength.maxHealth) {
+        hero.currentHealth = hero.stats.strength.maxHealth;
       }
+    },
+    updateStats(state, action) {
+      // Strength
+      const id = action.payload.id;
+
+      const findHeroById = (id) => {
+        const heroes = state.party;
+        return heroes.find((hero) => hero.id === id);
+      };
+
+      const hero = findHeroById(id);
+
+      hero.stats.strength.totalStrength = action.payload.totalStrength;
+      hero.stats.strength.maxHealth = action.payload.maxHealth;
+      hero.stats.strength.attack = action.payload.attack;
+
+      // Check if current HP is greater than max HP
+      if (state.currentHealth > hero.stats.strength.maxHealth) {
+        state.currentHealth = hero.stats.strength.maxHealth;
+      }
+
+      // Agility
+      hero.stats.agility.totalAgility = action.payload.totalAgility;
+      hero.stats.agility.defense = action.payload.defense;
+      hero.stats.agility.speed = action.payload.speed;
+      hero.stats.agility.hitChance = action.payload.hitChance;
+
+      // Arcana
+      hero.stats.arcana.totalArcana = action.payload.totalArcana;
+      hero.stats.arcana.spellPower = action.payload.spellPower;
+      hero.stats.arcana.maxMana = action.payload.maxMana;
     },
     updateStatusEffects(state, action) {
       const id = action.payload.id;

@@ -27,10 +27,10 @@ const Enemy = ({ enemy }) => {
           <div className={classes.info}>
             <p>
               HP: <span>{enemy.currentHealth}</span> /{" "}
-              <span>{enemy.maxHealth}</span>
+              <span>{enemy.stats.strength.maxHealth}</span>
             </p>
           </div>
-          <progress max={enemy.maxHealth} value={enemy.currentHealth}>
+          <progress max={enemy.stats.strength.maxHealth} value={enemy.currentHealth}>
             Health Bar
           </progress>
         </div>

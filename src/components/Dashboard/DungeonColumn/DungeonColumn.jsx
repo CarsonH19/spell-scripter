@@ -29,10 +29,20 @@ export default function DungeonColumn() {
 
     // the following are only used for testing
     dispatch(playerActions.updateSpellList(spellList));
-    updateStatTotals(dispatch);
     dispatch(dungeonActions.updateRoom(currentRoom));
     dispatch(heroActions.updateParty(heroes));
     dispatch(initiativeActions.setInitiative({ heroes, enemies, player }));
+
+    // TESTING CODE update all stats
+    for (let i = 0; i < heroes.length; i++) {
+      updateStatTotals(dispatch, heroes[i]);
+    }
+
+    for (let i = 0; i < enemies.length; i++) {
+      updateStatTotals(dispatch, enemies[i]);
+    }
+
+    updateStatTotals(dispatch, player);
   };
 
   return (

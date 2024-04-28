@@ -35,12 +35,11 @@ export function changeStatusEffect(dispatch, target, change, statusEffect) {
   if (!checkCurrentStatusEffects(target, statusEffect) && change === "ADD") {
     switch (target.identifier) {
       case "PLAYER":
-        console.log(`You've been ${statusEffect.name}!`);
         dispatch(playerActions.updateStatusEffects({ change, statusEffect }));
+        console.log(`You've been ${statusEffect.name}!`);
         break;
 
       case "HERO":
-        console.log(`${target.name} has been ${statusEffect.name}!`);
         dispatch(
           heroActions.updateStatusEffects({
             id: target.id,
@@ -48,10 +47,10 @@ export function changeStatusEffect(dispatch, target, change, statusEffect) {
             statusEffect,
           })
         );
+        console.log(`${target.name} has been ${statusEffect.name}!`);
         break;
 
       case "ENEMY":
-        console.log(`${target.name} has been ${statusEffect.name}!`);
         dispatch(
           dungeonActions.updateStatusEffects({
             id: target.id,
@@ -59,14 +58,21 @@ export function changeStatusEffect(dispatch, target, change, statusEffect) {
             statusEffect,
           })
         );
+        console.log(`${target.name} has been ${statusEffect.name}!`);
         break;
     }
   } else {
     // reset status effect
   }
 
-  updateStatTotals(dispatch);
+  // TEMP TEST CODE
+  // console.log("Stats Updated", target);
+  // Objects passed through are not state updated objects!
+  // If state is updated the objects passed as arguments are not updated!
+  // To get the updated object you must pull from state again!
+  updateStatTotals(dispatch, target);
 
+  // Checks to see if the target already has the status effect
   function checkCurrentStatusEffects(target, statusEffect) {
     if (target.statusEffects.length > 0) {
       const statusIndex = target.statusEffects.findIndex(

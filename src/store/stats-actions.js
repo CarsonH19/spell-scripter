@@ -1,4 +1,4 @@
-import store from ".";
+import { heroActions } from "./hero-slice";
 import { playerActions } from "./player-slice";
 
 // ===============================
@@ -21,26 +21,51 @@ import { playerActions } from "./player-slice";
 //   updateStatTotals();
 // }
 
-export default function updateStatTotals(dispatch) {
-  const player = store.getState().player;
+import store from "./index";
+import { dungeonActions } from "./dungeon-slice";
 
-  let totalStrength = player.stats.baseStrength;
-  let maxHealth = 0
-  let attack = 0
+export default function updateStatTotals(dispatch, character) {
+  if (character.identifier === "HERO") {
+    const findHeroById = (id) => {
+      const heroes = store.getState().hero.party;
+      return heroes.find((hero) => hero.id === id);
+    };
 
-  let totalAgility = player.stats.baseAgility;
-  let defense = 0
-  let speed = 0
-  let hitChance = 0 
+    const hero = findHeroById(character.id);
+    character = hero;
+  }
 
-  let totalArcana = player.stats.baseArcana;
-  let maxMana = 0
-  let spellPower = 0
+  if (character.identifier === "ENEMY") {
+    const findEnemyById = (id) => {
+      const enemies = store.getState().dungeon.contents.enemies;
+      return enemies.find((enemy) => enemy.id === id);
+    };
 
-   // Adding stat changes from Items & Status Effects
-   if (player.statusEffects.length > 0) {
-    for (let i = 0; i < player.statusEffects.length; i++) {
-      const item = player.statusEffects[i];
+    const enemy = findEnemyById(character.id);
+    character = enemy;
+  }
+
+  if (character.identifier === "PLAYER") {
+    character = store.getState().player;
+  }
+
+  let totalStrength = character.stats.baseStrength;
+  let maxHealth = 0;
+  let attack = 0;
+
+  let totalAgility = character.stats.baseAgility;
+  let defense = 0;
+  let speed = 0;
+  let hitChance = 0;
+
+  let totalArcana = character.stats.baseArcana;
+  let maxMana = 0;
+  let spellPower = 0;
+
+  // Adding stat changes from Items & Status Effects
+  if (character.statusEffects.length > 0) {
+    for (let i = 0; i < character.statusEffects.length; i++) {
+      const item = character.statusEffects[i];
       // Strength
       if (item.stats.strength) {
         totalStrength += item.stats.strength.strengthChange || 0;
@@ -68,35 +93,75 @@ export default function updateStatTotals(dispatch) {
   // Strength
   if (totalStrength < 0) totalStrength = 0;
 
-  maxHealth += calculateMaxHealth();
-  attack += calculateAttackBonus();
+  maxHealth += calculateMaxHealth(character, totalStrength);
+  attack += calculateAttackBonus(character, totalStrength);
 
   // Agility
   if (totalAgility < 0) totalAgility = 0;
 
-  defense += calculateDefense();
-  speed += calculateSpeed();
-  hitChance += calculateHitChance();
+  defense += calculateDefense(totalAgility);
+  speed += calculateSpeed(totalAgility);
+  hitChance += calculateHitChance(totalAgility);
 
   // Arcana
   if (totalArcana < 0) totalArcana = 0;
-  maxMana += calculateMaxMana();
-  spellPower += calculateSpellPower();
+  maxMana += calculateMaxMana(character, totalArcana);
+  spellPower += calculateSpellPower(character, totalArcana);
 
-  dispatch(
-    playerActions.updateStats({
-      totalStrength,
-      maxHealth,
-      attack,
-      totalAgility,
-      defense,
-      speed,
-      hitChance,
-      totalArcana,
-      maxMana,
-      spellPower,
-    })
-  );
+  switch (character.identifier) {
+    case "PLAYER":
+      dispatch(
+        playerActions.updateStats({
+          totalStrength,
+          maxHealth,
+          attack,
+          totalAgility,
+          defense,
+          speed,
+          hitChance,
+          totalArcana,
+          maxMana,
+          spellPower,
+        })
+      );
+      console.log("Player Stats Updated", character);
+      break;
+    case "HERO":
+      dispatch(
+        heroActions.updateStats({
+          id: character.id,
+          totalStrength,
+          maxHealth,
+          attack,
+          totalAgility,
+          defense,
+          speed,
+          hitChance,
+          totalArcana,
+          maxMana,
+          spellPower,
+        })
+      );
+      console.log("Hero Stats Updated", character);
+      break;
+    case "ENEMY":
+      dispatch(
+        dungeonActions.updateStats({
+          id: character.id,
+          totalStrength,
+          maxHealth,
+          attack,
+          totalAgility,
+          defense,
+          speed,
+          hitChance,
+          totalArcana,
+          maxMana,
+          spellPower,
+        })
+      );
+      break;
+  }
 
   // =============================================================
   //                     HELPER FUNCTIONS
@@ -106,8 +171,8 @@ export default function updateStatTotals(dispatch) {
   //           STRENGTH => HP Bonus + 10 / Melee Attack +2
   // ===============================
 
-  function calculateMaxHealth() {
-    let baseHealth = 10 * player.level + 100;
+  function calculateMaxHealth(character, totalStrength) {
+    let baseHealth = 10 * character.level + 100;
     let strengthBonusHealth = totalStrength * 10;
     let maxHealth = baseHealth + strengthBonusHealth;
 
@@ -126,8 +191,8 @@ export default function updateStatTotals(dispatch) {
     return maxHealth;
   }
 
-  function calculateAttackBonus() {
-    let baseAttack = player.level * 2 + 8;
+  function calculateAttackBonus(character, totalStrength) {
+    let baseAttack = character.level * 2 + 8;
     let strengthBonusAttack = totalStrength * 2;
     let totalAttack = baseAttack + strengthBonusAttack;
 
@@ -138,20 +203,20 @@ export default function updateStatTotals(dispatch) {
   //           Agility => Hit Chance / Speed (Initiative/Flee Chance) / Defense
   // ===============================
 
-  function calculateHitChance() {
+  function calculateHitChance(totalAgility) {
     // +1 per agility
     const hitChance = totalAgility;
 
     return hitChance;
   }
 
-  function calculateDefense() {
+  function calculateDefense(totalAgility) {
     const defense = 10 + totalAgility;
 
     return defense;
   }
 
-  function calculateSpeed() {
+  function calculateSpeed(totalAgility) {
     const speed = 10 + totalAgility;
 
     return speed;
@@ -161,16 +226,16 @@ export default function updateStatTotals(dispatch) {
   //            ARCANA => Spell Power +2 / Max Mana
   // ===============================
 
-  function calculateMaxMana() {
-    let baseMana = 5 * player.level + 50;
+  function calculateMaxMana(character, totalArcana) {
+    let baseMana = 5 * character.level + 50;
     let arcanaBonusMana = totalArcana * 10;
     let maxMana = baseMana + arcanaBonusMana;
 
     return maxMana;
   }
 
-  function calculateSpellPower() {
-    let basePower = player.level * 2 + 6;
+  function calculateSpellPower(character, totalArcana) {
+    let basePower = character.level * 2 + 6;
     let arcanaBonusPower = totalArcana * 2;
     let totalSpellPower = basePower + arcanaBonusPower;
 

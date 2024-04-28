@@ -33,10 +33,10 @@ export default function Hero({ hero }) {
           <div className={classes.info}>
             <p>
               HP: <span>{hero.currentHealth}</span> /{" "}
-              <span>{hero.maxHealth}</span>
+              <span>{hero.stats.strength.maxHealth}</span>
             </p>
           </div>
-          <progress max={hero.maxHealth} value={hero.currentHealth}>
+          <progress max={hero.stats.strength.maxHealth} value={hero.currentHealth}>
             Health Bar
           </progress>
         </div>

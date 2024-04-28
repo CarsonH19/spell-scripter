@@ -49,9 +49,40 @@ const dungeonSlice = createSlice({
       }
 
       // Prevents Healing Above Max
-      if (enemy.currentHealth > enemy.maxHealth) {
-        enemy.currentHealth = enemy.maxHealth;
+      if (enemy.currentHealth > enemy.stats.strength.maxHealth) {
+        enemy.currentHealth = enemy.stats.strength.maxHealth;
       }
+    },
+    updateStats(state, action) {
+      // Strength
+      const id = action.payload.id;
+
+      const findEnemyById = (id) => {
+        const enemies = state.contents.enemies;
+        return enemies.find((enemy) => enemy.id === id);
+      };
+
+      const enemy = findEnemyById(id);
+
+      enemy.stats.strength.totalStrength = action.payload.totalStrength;
+      enemy.stats.strength.maxHealth = action.payload.maxHealth;
+      enemy.stats.strength.attack = action.payload.attack;
+
+      // Check if current HP is greater than max HP
+      if (state.currentHealth > enemy.stats.strength.maxHealth) {
+        state.currentHealth = enemy.stats.strength.maxHealth;
+      }
+
+      // Agility
+      enemy.stats.agility.totalAgility = action.payload.totalAgility;
+      enemy.stats.agility.defense = action.payload.defense;
+      enemy.stats.agility.speed = action.payload.speed;
+      enemy.stats.agility.hitChance = action.payload.hitChance;
+
+      // Arcana
+      enemy.stats.arcana.totalArcana = action.payload.totalArcana;
+      enemy.stats.arcana.spellPower = action.payload.spellPower;
+      enemy.stats.arcana.maxMana = action.payload.maxMana;
     },
     updateStatusEffects(state, action) {
       const id = action.payload.id;

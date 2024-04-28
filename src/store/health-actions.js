@@ -30,10 +30,9 @@ export function changeHealth(
     }
   }
 
-  if (change === "HEAL") {
-    console.log(`healValue = ${value}`);
-    console.log(target)
-  }
+  // if (change === "HEAL") {
+    // currently not needed
+  // }
 
   switch (target.identifier) {
     case "PLAYER":
