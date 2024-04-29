@@ -7,7 +7,10 @@ import { targetType } from "../../../../util/targeting";
 import Tooltip from "../../../UI/Tooltip";
 
 export default function Player() {
-  const player = useSelector((state) => state.player);
+  const order = useSelector((state) => state.combat.order);
+  const playerIndex = order.findIndex((char) => char.id === "Player");
+  const player = order[playerIndex];
+
   const isHighlighted = useSelector(
     (state) => state.combat.highlightedCharacter
   );

@@ -5,13 +5,15 @@ import Hero from "./Hero/Hero";
 import { useSelector } from "react-redux";
 
 export default function Party() {
-  const heroes = useSelector((state) => state.hero.party);
+  const order = useSelector((state) => state.combat.order);
 
   return (
     <div className={classes.party}>
-      {heroes.map((hero) => (
-        <Hero key={hero.id} hero={hero}/>
-      ))}
+      {order.map((hero) => {
+        if (hero.identifier === "HERO") {
+          return <Hero key={hero.id} hero={hero} />;
+        }
+      })}
     </div>
   );
 }

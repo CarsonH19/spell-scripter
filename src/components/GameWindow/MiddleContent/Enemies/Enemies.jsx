@@ -5,13 +5,15 @@ import Enemy from "./Enemy/Enemy";
 import { useSelector } from "react-redux";
 
 export default function Enemies() {
-  const enemies = useSelector((state) => state.dungeon.contents.enemies);
+  const order = useSelector((state) => state.combat.order);
 
   return (
     <div className={classes.enemies}>
-      {enemies.map((enemy) => (
-        <Enemy key={enemy.id} enemy={enemy} />
-      ))}
+      {order.map((enemy) => {
+        if (enemy.identifier === "ENEMY") {
+          return <Enemy key={enemy.id} enemy={enemy} />;
+        }
+      })}
     </div>
   );
 }
