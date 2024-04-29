@@ -25,8 +25,8 @@ const STATUS_EFFECTS = {
     detail: "",
     image: "",
     description: "Defense +50%",
-    duration: 1,
-    stats: null,
+    duration: 2, // Is immediately decremented so it must be set to 2
+    stats: {},
   },
 };
 
@@ -76,14 +76,8 @@ export function changeStatusEffect(dispatch, target, change, statusEffect) {
     console.log("Status Effect Target", target);
   }
 
-  // Create "REMOVE" logic
-
-  // TEMP TEST CODE
-  // console.log("Stats Updated", target);
-  // Objects passed through are not state updated objects!
-  // If state is updated the objects passed as arguments are not updated!
-  // To get the updated object you must pull from state again!
   updateStatTotals(dispatch, target.id);
+  return false;
 
   // Checks to see if the target already has the status effect
   function checkCurrentStatusEffects(target, statusEffect) {
@@ -96,6 +90,4 @@ export function changeStatusEffect(dispatch, target, change, statusEffect) {
       }
     }
   }
-
-  return false;
 }

@@ -264,7 +264,7 @@ function checkForStatusEffectRemoval(dispatch, id) {
   const statusEffects = order[index].statusEffects;
 
   for (let i = 0; i < statusEffects.length; i++) {
-    if (statusEffects[i].duration <= 0) {
+    if (statusEffects[i].duration <= 1) {
       console.log("Status Effect Duration is 0", statusEffects[i]);
       dispatch(
         combatActions.updateStatusEffects({

@@ -50,14 +50,14 @@ export default function updateStatTotals(dispatch, id) {
     for (let i = 0; i < character.statusEffects.length; i++) {
       const item = character.statusEffects[i];
       // Strength
-      if (item.stats.strength) {
+      if (item.stats && item.stats.strength) {
         totalStrength += item.stats.strength.strengthChange || 0;
         maxHealth += item.stats.strength.maxHealth || 0;
         attack += item.stats.strength.attack || 0;
       }
 
       // Agility
-      if (item.stats.agility) {
+      if (item.stats && item.stats.agility) {
         totalAgility += item.stats.agility.agilityChange || 0;
         defense += item.stats.agility.defense || 0;
         speed += item.stats.agility.speed || 0;
@@ -65,7 +65,7 @@ export default function updateStatTotals(dispatch, id) {
       }
 
       // Arcana
-      if (item.stats.arcana) {
+      if (item.stats && item.stats.arcana) {
         totalArcana += item.stats.arcana.arcanaChange || 0;
         maxMana += item.stats.arcana.maxMana || 0;
         spellPower += item.stats.arcana.spellPower || 0;
