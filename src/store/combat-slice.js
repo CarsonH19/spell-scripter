@@ -43,6 +43,109 @@ const combatSlice = createSlice({
         state.order.splice(characterIndex, 1);
       }
     },
+    addCharacter(state, action) {
+      const character = action.payload.character;
+
+      // NOTE: add logic to check if character already exists
+      state.order.push(character);
+    },
+    updateStats(state, action) {
+      // Locate character
+      const id = action.payload.id;
+      
+      const findCharacterById = (id) => {
+        const characters = state.order;
+        return characters.find((char) => char.id === id);
+      };
+      
+      const character = findCharacterById(id);
+
+      // Strength
+      character.stats.strength.totalStrength = action.payload.totalStrength;
+      character.stats.strength.maxHealth = action.payload.maxHealth;
+      character.stats.strength.attack = action.payload.attack;
+
+      // Check if current HP is greater than max HP
+      if (character.currentHealth > character.stats.strength.maxHealth) {
+        character.currentHealth = character.stats.strength.maxHealth;
+      }
+
+      // Agility
+      character.stats.agility.totalAgility = action.payload.totalAgility;
+      character.stats.agility.defense = action.payload.defense;
+      character.stats.agility.speed = action.payload.speed;
+      character.stats.agility.hitChance = action.payload.hitChance;
+
+      // Arcana
+      character.stats.arcana.totalArcana = action.payload.totalArcana;
+      character.stats.arcana.spellPower = action.payload.spellPower;
+      character.stats.arcana.maxMana = action.payload.maxMana;
+    },
+    updateHealth(state, action) {
+      const change = action.payload.change;
+      const value = action.payload.value;
+
+      // Locate character
+      const id = action.payload.id;
+
+      const findCharacterById = (id) => {
+        const characters = state.order;
+        return characters.find((char) => char.id === id);
+      };
+      
+      const character = findCharacterById(id);
+
+      if (change === "DAMAGE") {
+        character.currentHealth -= value;
+      }
+
+      // Prevents Falling Below 0
+      if (character.currentHealth < 0) {
+        character.currentHealth = 0;
+      }
+
+      if (change === "HEAL") {
+        character.currentHealth += value;
+      }
+
+      // Prevents Healing Above Max
+      if (character.currentHealth > character.maxHealth) {
+        character.currentHealth = character.maxHealth;
+      }
+    },
+    updateStatusEffects(state, action) {
+      const change = action.payload.change;
+      const statusEffect = action.payload.statusEffect;
+
+      // Locate character
+      const id = action.payload.id;
+
+      const findCharacterById = (id) => {
+        const characters = state.order;
+        return characters.find((char) => char.id === id);
+      };      
+
+      const character = findCharacterById(id);
+      console.log(character);
+
+      switch (change) {
+        case "ADD":
+          character.statusEffects.push(statusEffect);
+          console.log("STATUS ADDED!");
+          break;
+        case "REMOVE":
+          {
+            const statusIndex = character.statusEffects.findIndex(
+              (effect) => effect.name === statusEffect.name
+            );
+
+            if (statusIndex !== -1) {
+              character.statusEffects.splice(statusIndex, 1);
+            }
+          }
+          break;
+      }
+    },
   },
 });
 

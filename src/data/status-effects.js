@@ -1,6 +1,5 @@
-import { dungeonActions } from "../store/dungeon-slice";
-import { heroActions } from "../store/hero-slice";
-import { playerActions } from "../store/player-slice";
+import { combatActions } from "../store/combat-slice";
+
 import updateStatTotals from "../store/stats-actions";
 
 const STATUS_EFFECTS = {
@@ -33,44 +32,27 @@ export default STATUS_EFFECTS;
 export function changeStatusEffect(dispatch, target, change, statusEffect) {
   // Check if status effect already exists
   if (!checkCurrentStatusEffects(target, statusEffect) && change === "ADD") {
-    switch (target.identifier) {
-      case "PLAYER":
-        dispatch(playerActions.updateStatusEffects({ change, statusEffect }));
-        console.log(`You've been ${statusEffect.name}!`);
-        break;
+    dispatch(
+      combatActions.updateStatusEffects({
+        id: target.id,
+        change,
+        statusEffect,
+      })
+    );
 
-      case "HERO":
-        dispatch(
-          heroActions.updateStatusEffects({
-            id: target.id,
-            change,
-            statusEffect,
-          })
-        );
-        console.log(`${target.name} has been ${statusEffect.name}!`);
-        break;
-
-      case "ENEMY":
-        dispatch(
-          dungeonActions.updateStatusEffects({
-            id: target.id,
-            change,
-            statusEffect,
-          })
-        );
-        console.log(`${target.name} has been ${statusEffect.name}!`);
-        break;
-    }
+    console.log(`${target.name} has been ${statusEffect.name}!`);
   } else {
-    // reset status effect
+    // Reset duration / intensity of status effect
   }
+
+  // Create "REMOVE" logic
 
   // TEMP TEST CODE
   // console.log("Stats Updated", target);
   // Objects passed through are not state updated objects!
   // If state is updated the objects passed as arguments are not updated!
   // To get the updated object you must pull from state again!
-  updateStatTotals(dispatch, target);
+  updateStatTotals(dispatch, target.id);
 
   // Checks to see if the target already has the status effect
   function checkCurrentStatusEffects(target, statusEffect) {

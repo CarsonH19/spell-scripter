@@ -1,6 +1,3 @@
-import { heroActions } from "./hero-slice";
-import { playerActions } from "./player-slice";
-
 // ===============================
 //            STATS
 // ===============================
@@ -22,32 +19,15 @@ import { playerActions } from "./player-slice";
 // }
 
 import store from "./index";
-import { dungeonActions } from "./dungeon-slice";
+import { combatActions } from "./combat-slice";
 
-export default function updateStatTotals(dispatch, character) {
-  if (character.identifier === "HERO") {
-    const findHeroById = (id) => {
-      const heroes = store.getState().hero.party;
-      return heroes.find((hero) => hero.id === id);
-    };
+export default function updateStatTotals(dispatch, id) {
+  const findCharacterById = (id) => {
+    const characters = store.getState().combat.order;
+    return characters.find((char) => char.id === id);
+  };
 
-    const hero = findHeroById(character.id);
-    character = hero;
-  }
-
-  if (character.identifier === "ENEMY") {
-    const findEnemyById = (id) => {
-      const enemies = store.getState().dungeon.contents.enemies;
-      return enemies.find((enemy) => enemy.id === id);
-    };
-
-    const enemy = findEnemyById(character.id);
-    character = enemy;
-  }
-
-  if (character.identifier === "PLAYER") {
-    character = store.getState().player;
-  }
+  const character = findCharacterById(id);
 
   let totalStrength = character.stats.baseStrength;
   let maxHealth = 0;
@@ -108,60 +88,21 @@ export default function updateStatTotals(dispatch, character) {
   maxMana += calculateMaxMana(character, totalArcana);
   spellPower += calculateSpellPower(character, totalArcana);
 
-  switch (character.identifier) {
-    case "PLAYER":
-      dispatch(
-        playerActions.updateStats({
-          totalStrength,
-          maxHealth,
-          attack,
-          totalAgility,
-          defense,
-          speed,
-          hitChance,
-          totalArcana,
-          maxMana,
-          spellPower,
-        })
-      );
-      console.log("Player Stats Updated", character);
-      break;
-    case "HERO":
-      dispatch(
-        heroActions.updateStats({
-          id: character.id,
-          totalStrength,
-          maxHealth,
-          attack,
-          totalAgility,
-          defense,
-          speed,
-          hitChance,
-          totalArcana,
-          maxMana,
-          spellPower,
-        })
-      );
-      console.log("Hero Stats Updated", character);
-      break;
-    case "ENEMY":
-      dispatch(
-        dungeonActions.updateStats({
-          id: character.id,
-          totalStrength,
-          maxHealth,
-          attack,
-          totalAgility,
-          defense,
-          speed,
-          hitChance,
-          totalArcana,
-          maxMana,
-          spellPower,
-        })
-      );
-      break;
-  }
+  dispatch(
+    combatActions.updateStats({
+      id: character.id,
+      totalStrength,
+      maxHealth,
+      attack,
+      totalAgility,
+      defense,
+      speed,
+      hitChance,
+      totalArcana,
+      maxMana,
+      spellPower,
+    })
+  );
 
   // =============================================================
   //                     HELPER FUNCTIONS

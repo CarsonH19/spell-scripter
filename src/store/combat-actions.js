@@ -17,9 +17,19 @@ export default async function combatLoop(dispatch) {
   // Iterate through the initiative order
   for (let i = 0; i < order.length; i++) {
     // get the updated values for player and enemies on each iteration
-    const player = store.getState().player;
-    const enemies = store.getState().dungeon.contents.enemies;
-    const character = findCharacterObject(order[i]);
+    const order = store.getState().combat.order;
+
+    const playerIndex = order.findIndex((char) => char.id === "Player");
+    const player = order[playerIndex];
+
+    const enemies = [];
+    for (let i = 0; i < order.length; i++) {
+      if (order[i].identifier === "ENEMY") {
+        enemies.push(order[i]);
+      }
+    }
+
+    const character = order[i];
 
     // If all enemies, player, or current character is dead the loop will skip the combat logic
     // need to check if the character is alive
@@ -174,8 +184,6 @@ export function rollToHit(attacker, target) {
   let bonus = attacker.stats.agility.hitChance;
   let defense = target.stats.agility.defense;
 
-  console.log("ATTACK", attacker);
-
   const chanceToHit = roll20(bonus);
 
   if (chanceToHit > defense) {
@@ -200,25 +208,32 @@ function roll20(bonus = 0) {
   return Math.floor(Math.random() * 21) + bonus;
 }
 
-// TEMPORARY FOR HEROES & ENEMIES
+// TEMPORARY TARGETING FOR HEROES & ENEMIES
 function randomTarget(attacker) {
-  let array;
-  if (attacker.identifier === "HERO") {
-    array = store.getState().dungeon.contents.enemies;
-    const randomIndex = Math.floor(Math.random() * array.length);
-    return array[randomIndex];
+  const order = store.getState().combat.order;
+  // const playerIndex = order.findIndex((char) => char.id === "Player");
+  // const player = order[playerIndex];
+
+  let targetGroup = [];
+  if (attacker.identifier === "HERO" || attacker.identifier === "PLAYER") {
+    for (let i = 0; i < order.length; i++) {
+      if (order[i].identifier === "ENEMY") {
+        targetGroup.push(order[i]);
+      }
+    }
+    const randomIndex = Math.floor(Math.random() * targetGroup.length);
+    return targetGroup[randomIndex];
   }
 
   if (attacker.identifier === "ENEMY") {
-    array = store.getState().hero.party;
-    let player = Math.floor(Math.random() * array.length + 1);
-
-    if (player === array.length) {
-      return store.getState().player;
+    for (let i = 0; i < order.length; i++) {
+      if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER") {
+        targetGroup.push(order[i]);
+      }
     }
 
-    const randomIndex = Math.floor(Math.random() * array.length);
-    return array[randomIndex];
+    const randomIndex = Math.floor(Math.random() * targetGroup.length);
+    return targetGroup[randomIndex];
   }
 }
 
@@ -226,32 +241,32 @@ function randomTarget(attacker) {
 //                INITIATIVE OBJECT => SLICE OBJECT
 // =============================================================
 
-function findCharacterObject(character) {
-  // character is the initiative obj which need to be switched to the objects within the heroes/enemies state arrays to check stats
+// function findCharacterObject(character) {
+//   // character is the initiative obj which need to be switched to the objects within the heroes/enemies state arrays to check stats
 
-  if (character.identifier !== "PLAYER") {
-    let characters;
+//   if (character.identifier !== "PLAYER") {
+//     let characters;
 
-    if (character.identifier === "HERO") {
-      characters = store.getState().hero.party;
-    } else if (character.identifier === "ENEMY") {
-      characters = store.getState().dungeon.contents.enemies;
-    }
+//     if (character.identifier === "HERO") {
+//       characters = store.getState().hero.party;
+//     } else if (character.identifier === "ENEMY") {
+//       characters = store.getState().dungeon.contents.enemies;
+//     }
 
-    const findCharacterById = (array, character) => {
-      const foundCharacter = array.find((char) => char.id === character.id);
-      // If the character is dead it won't appear in the initiative-slice array. So a new object is returned with zero health signaling the character died and skipping its turn.
-      return foundCharacter !== undefined
-        ? foundCharacter
-        : { name: character.name, currentHealth: 0 };
-    };
+//     const findCharacterById = (array, character) => {
+//       const foundCharacter = array.find((char) => char.id === character.id);
+//       // If the character is dead it won't appear in the initiative-slice array. So a new object is returned with zero health signaling the character died and skipping its turn.
+//       return foundCharacter !== undefined
+//         ? foundCharacter
+//         : { name: character.name, currentHealth: 0 };
+//     };
 
-    const updatedCharacter = findCharacterById(characters, character);
-    return updatedCharacter;
-  } else {
-    return store.getState().player;
-  }
-}
+//     const updatedCharacter = findCharacterById(characters, character);
+//     return updatedCharacter;
+//   } else {
+//     return store.getState().player;
+//   }
+// }
 
 // =============================================================
 //                           BEHAVIOR
@@ -269,8 +284,17 @@ function checkBehavior(character) {
 }
 
 function endCombat() {
-  const player = store.getState().player;
-  const enemies = store.getState().dungeon.contents.enemies;
+  const order = store.getState().combat.order;
+
+  const playerIndex = order.findIndex((char) => char.id === "Player");
+  const player = order[playerIndex];
+
+  const enemies = [];
+  for (let i = 0; i < order.length; i++) {
+    if (order[i].identifier === "ENEMY") {
+      enemies.push(order[i]);
+    }
+  }
 
   if (player.currentHealth <= 0) {
     alert("You've died!");

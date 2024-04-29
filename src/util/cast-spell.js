@@ -3,7 +3,11 @@ import { getTarget, rollToHit, calcDamage } from "../store/combat-actions";
 import { changeHealth } from "../store/health-actions";
 
 export default async function castSpell(dispatch, spell) {
-  const player = store.getState().player;
+  const order = store.getState().combat.order;
+
+  const playerIndex = order.findIndex((char) => char.id === "Player");
+  const player = order[playerIndex];
+
   let target;
 
   // check for spell target type & select a target if applicable

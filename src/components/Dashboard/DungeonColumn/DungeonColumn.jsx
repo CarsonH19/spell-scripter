@@ -35,14 +35,14 @@ export default function DungeonColumn() {
 
     // TESTING CODE update all stats
     for (let i = 0; i < heroes.length; i++) {
-      updateStatTotals(dispatch, heroes[i]);
+      updateStatTotals(dispatch, heroes[i].id);
     }
 
     for (let i = 0; i < enemies.length; i++) {
-      updateStatTotals(dispatch, enemies[i]);
+      updateStatTotals(dispatch, enemies[i].id);
     }
 
-    updateStatTotals(dispatch, player);
+    updateStatTotals(dispatch, player.id);
   };
 
   return (
