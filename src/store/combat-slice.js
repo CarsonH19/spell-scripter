@@ -13,7 +13,8 @@ const combatSlice = createSlice({
 
       const charactersWithInitiative = all.map((character) => ({
         character,
-        initiative: Math.floor(Math.random() * 11) + character.stats.speed,
+        initiative:
+          Math.floor(Math.random() * 11) + character.stats.agility.speed,
       })); // NOTE: May want to change agility for a specific speed stat
 
       charactersWithInitiative.sort((a, b) => b.initiative - a.initiative);
