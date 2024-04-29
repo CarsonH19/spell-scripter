@@ -3,7 +3,7 @@ import { dungeonActions } from "./dungeon-slice";
 import { playerActions } from "./player-slice";
 
 import store from "./index";
-import { initiativeActions } from "./initiative-slice";
+import { combatActions } from "./combat-slice";
 
 export function changeHealth(
   dispatch,
@@ -60,9 +60,9 @@ function checkForDeath(dispatch, identifier, id) {
         let hero = heroes.find((hero) => hero.id === id);
 
         if (hero.currentHealth <= 0) {
-          const order = store.getState().initiative.order;
+          const order = store.getState().combat.order;
           hero = order.find((character) => character.id === hero.id);
-          dispatch(initiativeActions.removeCharacter({ character: hero }));
+          dispatch(combatActions.removeCharacter({ character: hero }));
           dispatch(heroActions.changeParty({ hero, change: "REMOVE" })
           );
           console.log(`${hero.name} has died!`);
@@ -76,9 +76,9 @@ function checkForDeath(dispatch, identifier, id) {
         let enemy = enemies.find((enemy) => enemy.id === id);
 
         if (enemy.currentHealth <= 0) {
-          const order = store.getState().initiative.order;
+          const order = store.getState().combat.order;
           enemy = order.find((character) => character.id === enemy.id);
-          dispatch(initiativeActions.removeCharacter({ character: enemy }));
+          dispatch(combatActions.removeCharacter({ character: enemy }));
           dispatch(
             dungeonActions.changeEnemies({ enemy, change: "REMOVE" })
           );

@@ -11,7 +11,7 @@ let targetResolver;
 let spellResolver;
 
 export default async function combatLoop(dispatch) {
-  const order = store.getState().initiative.order;
+  const order = store.getState().combat.order;
   console.log(order);
 
   // Iterate through the initiative order

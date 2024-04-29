@@ -10,7 +10,7 @@ import { currentRoom } from "../../../data/dungeon";
 import { heroActions } from "../../../store/hero-slice";
 import { currentParty } from "../../../data/heroes";
 
-import { initiativeActions } from "../../../store/initiative-slice";
+import { combatActions } from "../../../store/combat-slice";
 
 import { playerActions } from "../../../store/player-slice";
 import { spellList } from "../../../data/spells";
@@ -31,7 +31,7 @@ export default function DungeonColumn() {
     dispatch(playerActions.updateSpellList(spellList));
     dispatch(dungeonActions.updateRoom(currentRoom));
     dispatch(heroActions.updateParty(heroes));
-    dispatch(initiativeActions.setInitiative({ heroes, enemies, player }));
+    dispatch(combatActions.setInitiative({ heroes, enemies, player }));
 
     // TESTING CODE update all stats
     for (let i = 0; i < heroes.length; i++) {

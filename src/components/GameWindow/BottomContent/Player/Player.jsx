@@ -9,7 +9,7 @@ import Tooltip from "../../../UI/Tooltip";
 export default function Player() {
   const player = useSelector((state) => state.player);
   const isHighlighted = useSelector(
-    (state) => state.initiative.highlightedCharacter
+    (state) => state.combat.highlightedCharacter
   );
 
   const handleSetTarget = () => {

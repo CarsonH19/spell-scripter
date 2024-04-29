@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initiativeSlice = createSlice({
-  name: "initiative",
+const combatSlice = createSlice({
+  name: "combat",
   initialState: { order: [], highlightedCharacter: null },
   reducers: {
     setInitiative(state, action) {
@@ -46,6 +46,6 @@ const initiativeSlice = createSlice({
   },
 });
 
-export const initiativeActions = initiativeSlice.actions;
+export const combatActions = combatSlice.actions;
 
-export default initiativeSlice;
+export default combatSlice;

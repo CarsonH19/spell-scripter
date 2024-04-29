@@ -1,20 +1,20 @@
 import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { initiativeActions } from "../../../../store/initiative-slice";
+import { combatActions } from "../../../../store/combat-slice";
 import classes from "./Icon.module.css";
 
 const Icon = ({ character }) => {
   const dispatch = useDispatch();
 
   // Use direct equality check instead of useSelector to avoid unnecessary rerenders
-  const isHighlighted = useSelector((state) => state.initiative.highlightedCharacter === character.id);
+  const isHighlighted = useSelector((state) => state.combat.highlightedCharacter === character.id);
 
   const handleMouseEnter = () => {
-    dispatch(initiativeActions.highlightCharacter(character.id));
+    dispatch(combatActions.highlightCharacter(character.id));
   };
 
   const handleMouseLeave = () => {
-    dispatch(initiativeActions.clearHighlight());
+    dispatch(combatActions.clearHighlight());
   };
 
   return (

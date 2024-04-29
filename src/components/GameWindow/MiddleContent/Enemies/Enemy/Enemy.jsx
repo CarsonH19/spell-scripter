@@ -9,7 +9,7 @@ import { targetType } from "../../../../../util/targeting";
 
 const Enemy = ({ enemy }) => {
   const isHighlighted = useSelector(
-    (state) => state.initiative.highlightedCharacter === enemy.id
+    (state) => state.combat.highlightedCharacter === enemy.id
   );
 
   const handleSetTarget = () => {

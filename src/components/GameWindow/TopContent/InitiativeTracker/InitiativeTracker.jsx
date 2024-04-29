@@ -4,7 +4,7 @@ import classes from "./InitiativeTracker.module.css";
 import MemoizedIcon from "./Icon";
 
 export default function InitiativeTracker() {
-  const order = useSelector((state) => state.initiative.order);
+  const order = useSelector((state) => state.combat.order);
 
   return (
     <div className={classes.tracker}>

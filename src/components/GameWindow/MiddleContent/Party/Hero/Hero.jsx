@@ -9,7 +9,7 @@ import { setTarget } from "../../../../../store/combat-actions";
 
 export default function Hero({ hero }) {
   const isHighlighted = useSelector(
-    (state) => state.initiative.highlightedCharacter === hero.id
+    (state) => state.combat.highlightedCharacter === hero.id
   );
 
   const handleSetTarget = () => {
