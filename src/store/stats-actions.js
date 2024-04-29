@@ -42,6 +42,9 @@ export default function updateStatTotals(dispatch, id) {
   let maxMana = 0;
   let spellPower = 0;
 
+  // Misc. Variables
+  let guard = null;
+
   // Adding stat changes from Items & Status Effects
   if (character.statusEffects.length > 0) {
     for (let i = 0; i < character.statusEffects.length; i++) {
@@ -67,6 +70,10 @@ export default function updateStatTotals(dispatch, id) {
         maxMana += item.stats.arcana.maxMana || 0;
         spellPower += item.stats.arcana.spellPower || 0;
       }
+
+      if (character.statusEffects[i].name === "Guarding") {
+        guard = "GUARDING";
+      }
     }
   }
 
@@ -79,7 +86,7 @@ export default function updateStatTotals(dispatch, id) {
   // Agility
   if (totalAgility < 0) totalAgility = 0;
 
-  defense += calculateDefense(totalAgility);
+  defense += calculateDefense(guard, totalAgility);
   speed += calculateSpeed(totalAgility);
   hitChance += calculateHitChance(totalAgility);
 
@@ -151,9 +158,14 @@ export default function updateStatTotals(dispatch, id) {
     return hitChance;
   }
 
-  function calculateDefense(totalAgility) {
-    const defense = 10 + totalAgility;
+  function calculateDefense(guard, totalAgility) {
+    let defense = 10 + totalAgility;
 
+    // Guarding (+50% defense)
+    if (guard) {
+      defense = Math.round(defense * 1.5);
+      console.log(defense);
+    }
     return defense;
   }
 

@@ -25,6 +25,25 @@ const STATUS_EFFECTS = {
     //   // }
     // },
   },
+  GUARD: {
+    name: "Guarding",
+    detail: "",
+    image: "",
+    status: "Defense +50%",
+    duration: null,
+    stats: {
+      agility: {
+
+      }
+    },
+    // function: () => {
+    //   // // ITEM: Toxinweave Mask - Poison Immunity
+    //   // const immune = isItemAttuned(TOXINWEAVE_MASK, null);
+    //   // if (!immune && HEXBANE_BREW.statusDuration <= 0) {
+    //   //   startStatusEffect(POISONED, length);
+    //   // }
+    // },
+  },
 };
 
 export default STATUS_EFFECTS;

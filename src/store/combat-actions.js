@@ -63,6 +63,12 @@ export default async function combatLoop(dispatch) {
             }
             break;
           case "GUARD":
+            changeStatusEffect(
+              dispatch,
+              player,
+              "ADD",
+              STATUS_EFFECTS.GUARD
+            );
             break;
           case "ITEM":
             break;
