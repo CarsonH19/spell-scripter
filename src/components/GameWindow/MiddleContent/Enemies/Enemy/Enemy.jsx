@@ -36,8 +36,8 @@ const Enemy = ({ enemy }) => {
         </div>
         <div className={classes.statusEffects}>
           {enemy.statusEffects.map((effect) => (
-            <Tooltip key={effect.name} text={effect.name}>
-              <img src="" className={classes.effect} />
+            <Tooltip key={effect.name} title={effect.name} text={effect.description} detail={`Duration: ${effect.duration} rounds`}>
+            <img src="" className={classes.effect} />
             </Tooltip>
           ))}
         </div>

@@ -42,8 +42,8 @@ export default function Hero({ hero }) {
         </div>
         <div className={classes.statusEffects}>
         {hero.statusEffects.map((effect) => (
-            <Tooltip key={effect.name} text={effect.name}>
-              <img src="" className={classes.effect} />
+            <Tooltip key={effect.name} title={effect.name} text={effect.description} detail={`Duration: ${effect.duration} rounds`}>
+            <img src="" className={classes.effect} />
             </Tooltip>
           ))}
         </div>

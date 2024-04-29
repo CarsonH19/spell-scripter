@@ -2,7 +2,7 @@ import classes from "./Tooltip.module.css";
 
 import { useState } from "react";
 
-export default function Tooltip({ text, children }) {
+export default function Tooltip({ title, text, detail, children }) {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const handleMouseEnter = () => {
@@ -16,7 +16,11 @@ export default function Tooltip({ text, children }) {
   return (
     <div className={classes.container} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {children}
-      {showTooltip && <div className={classes.tooltip}>{text}</div>}
+      {showTooltip && <div className={classes.tooltip}>
+        <p className={classes.title}>{title}</p>
+        <p className={classes.description}>{text}</p>
+        <p className={classes.detail}>{detail}</p>
+      </div>}
     </div>
   );
 };

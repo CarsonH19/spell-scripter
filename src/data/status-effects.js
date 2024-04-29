@@ -1,5 +1,7 @@
 import { combatActions } from "../store/combat-slice";
 
+import store from "../store";
+
 import updateStatTotals from "../store/stats-actions";
 
 const STATUS_EFFECTS = {
@@ -7,8 +9,8 @@ const STATUS_EFFECTS = {
     name: "Poisoned",
     detail: "CONDITION",
     image: "",
-    status: "You take damage on the start of each of your turns",
-    duration: null,
+    description: "You take damage on the start of each of your turns",
+    duration: 3,
     stats: {
       strength: {
         strengthChange: -1,
@@ -17,38 +19,25 @@ const STATUS_EFFECTS = {
         agilityChange: -2,
       },
     },
-    // function: () => {
-    //   // // ITEM: Toxinweave Mask - Poison Immunity
-    //   // const immune = isItemAttuned(TOXINWEAVE_MASK, null);
-    //   // if (!immune && HEXBANE_BREW.statusDuration <= 0) {
-    //   //   startStatusEffect(POISONED, length);
-    //   // }
-    // },
   },
   GUARD: {
     name: "Guarding",
     detail: "",
     image: "",
-    status: "Defense +50%",
-    duration: null,
-    stats: {
-      agility: {
-
-      }
-    },
-    // function: () => {
-    //   // // ITEM: Toxinweave Mask - Poison Immunity
-    //   // const immune = isItemAttuned(TOXINWEAVE_MASK, null);
-    //   // if (!immune && HEXBANE_BREW.statusDuration <= 0) {
-    //   //   startStatusEffect(POISONED, length);
-    //   // }
-    // },
+    description: "Defense +50%",
+    duration: 1,
+    stats: null,
   },
 };
 
 export default STATUS_EFFECTS;
 
 export function changeStatusEffect(dispatch, target, change, statusEffect) {
+  // update target slice
+  const order = store.getState().combat.order;
+  const index = order.findIndex((char) => char.id === target.id);
+  target = order[index];
+
   // Check if status effect already exists
   if (!checkCurrentStatusEffects(target, statusEffect) && change === "ADD") {
     dispatch(
@@ -59,9 +48,32 @@ export function changeStatusEffect(dispatch, target, change, statusEffect) {
       })
     );
 
-    console.log(`${target.name} has been ${statusEffect.name}!`);
-  } else {
-    // Reset duration / intensity of status effect
+    console.log(`${target.name} is ${statusEffect.name}!`);
+  } else if (
+    checkCurrentStatusEffects(target, statusEffect) &&
+    change === "ADD"
+  ) {
+    // If status effect already exists reset the duration
+    let reset;
+    Object.keys(STATUS_EFFECTS).forEach((effectKey) => {
+      const effect = STATUS_EFFECTS[effectKey];
+      if (effect.name === statusEffect.name) {
+        reset = effect.duration;
+      }
+    });
+
+    console.log("RESET", reset);
+
+    dispatch(
+      combatActions.updateStatusEffectDuration({
+        id: target.id,
+        name: statusEffect.name,
+        change: "RESET",
+        reset,
+      })
+    );
+
+    console.log("Status Effect Target", target);
   }
 
   // Create "REMOVE" logic

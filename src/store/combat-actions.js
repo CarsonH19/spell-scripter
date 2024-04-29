@@ -5,6 +5,8 @@ import castSpell from "../util/cast-spell";
 
 import setTargetType from "../util/targeting";
 import STATUS_EFFECTS, { changeStatusEffect } from "../data/status-effects";
+import { combatActions } from "./combat-slice";
+import updateStatTotals from "./stats-actions";
 
 let playerActionResolver;
 let targetResolver;
@@ -38,6 +40,16 @@ export default async function combatLoop(dispatch) {
       player.currentHealth >= 0 &&
       character.currentHealth >= 0
     ) {
+      // COMPLETE TASKS AT BEGINNING OF ROUND
+      // end status effects
+      checkForStatusEffectRemoval(dispatch, character.id);
+
+      // call status effects
+      // checkForCallStatusEffect(character);
+
+      // call passive ability if available.
+      // checkForPassiveAbility(character);
+
       if (order[i].identifier === "PLAYER") {
         console.log(`${order[i].name}'s turn!`);
 
@@ -63,12 +75,7 @@ export default async function combatLoop(dispatch) {
             }
             break;
           case "GUARD":
-            changeStatusEffect(
-              dispatch,
-              player,
-              "ADD",
-              STATUS_EFFECTS.GUARD
-            );
+            changeStatusEffect(dispatch, player, "ADD", STATUS_EFFECTS.GUARD);
             break;
           case "ITEM":
             break;
@@ -110,6 +117,9 @@ export default async function combatLoop(dispatch) {
             break;
         }
       }
+
+      // COMPLETE TASKS AT END OF ROUND
+      changeStatusEffectDuration(dispatch, character.id);
 
       await delay(2000);
     }
@@ -244,35 +254,61 @@ function randomTarget(attacker) {
 }
 
 // =============================================================
-//                INITIATIVE OBJECT => SLICE OBJECT
+//                      STATUS EFFECTS
 // =============================================================
 
-// function findCharacterObject(character) {
-//   // character is the initiative obj which need to be switched to the objects within the heroes/enemies state arrays to check stats
+// End status effects at the start of a character's turn
+function checkForStatusEffectRemoval(dispatch, id) {
+  const order = store.getState().combat.order;
+  const index = order.findIndex((char) => char.id === id);
+  const statusEffects = order[index].statusEffects;
 
-//   if (character.identifier !== "PLAYER") {
-//     let characters;
+  for (let i = 0; i < statusEffects.length; i++) {
+    if (statusEffects[i].duration <= 0) {
+      console.log("Status Effect Duration is 0", statusEffects[i]);
+      dispatch(
+        combatActions.updateStatusEffects({
+          id,
+          statusEffect: statusEffects[i],
+          change: "REMOVE",
+        })
+      );
+    }
+  }
+  
+  updateStatTotals(dispatch, id);
+}
 
-//     if (character.identifier === "HERO") {
-//       characters = store.getState().hero.party;
-//     } else if (character.identifier === "ENEMY") {
-//       characters = store.getState().dungeon.contents.enemies;
-//     }
+// Call existing status effects at the start of a character's turn
+// function checkForCallStatusEffect(dispatch, character) {
 
-//     const findCharacterById = (array, character) => {
-//       const foundCharacter = array.find((char) => char.id === character.id);
-//       // If the character is dead it won't appear in the initiative-slice array. So a new object is returned with zero health signaling the character died and skipping its turn.
-//       return foundCharacter !== undefined
-//         ? foundCharacter
-//         : { name: character.name, currentHealth: 0 };
-//     };
-
-//     const updatedCharacter = findCharacterById(characters, character);
-//     return updatedCharacter;
-//   } else {
-//     return store.getState().player;
-//   }
 // }
+
+// Decrement a character's status effects duration at the end of the characters turn
+function changeStatusEffectDuration(dispatch, id) {
+  const order = store.getState().combat.order;
+  const index = order.findIndex((char) => char.id === id);
+  const statusEffects = order[index].statusEffects;
+
+  for (let i = 0; i < statusEffects.length; i++) {
+    console.log("Decrementing", statusEffects[i].name);
+    dispatch(
+      combatActions.updateStatusEffectDuration({
+        id,
+        name: statusEffects[i].name,
+        change: "DECREMENT",
+      })
+    );
+
+  }
+}
+
+// =============================================================
+//                          ABILITIES
+// =============================================================
+
+// call passive ability if available.
+// checkForPassiveAbility(character);
 
 // =============================================================
 //                           BEHAVIOR

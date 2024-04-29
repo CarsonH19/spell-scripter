@@ -52,12 +52,12 @@ const combatSlice = createSlice({
     updateStats(state, action) {
       // Locate character
       const id = action.payload.id;
-      
+
       const findCharacterById = (id) => {
         const characters = state.order;
         return characters.find((char) => char.id === id);
       };
-      
+
       const character = findCharacterById(id);
 
       // Strength
@@ -92,7 +92,7 @@ const combatSlice = createSlice({
         const characters = state.order;
         return characters.find((char) => char.id === id);
       };
-      
+
       const character = findCharacterById(id);
 
       if (change === "DAMAGE") {
@@ -123,7 +123,7 @@ const combatSlice = createSlice({
       const findCharacterById = (id) => {
         const characters = state.order;
         return characters.find((char) => char.id === id);
-      };      
+      };
 
       const character = findCharacterById(id);
       console.log(character);
@@ -144,6 +144,34 @@ const combatSlice = createSlice({
             }
           }
           break;
+      }
+    },
+    updateStatusEffectDuration(state, action) {
+      // Locate character
+      const id = action.payload.id;
+      const findCharacterById = (id) => {
+        const characters = state.order;
+        return characters.find((char) => char.id === id);
+      };
+      const character = findCharacterById(id);
+
+      // Locate Status Effect
+      const name = action.payload.name;
+      const findStatusEffectById = (name) => {
+        return character.statusEffects.find((effect) => effect.name === name);
+      };
+      const statusEffect = findStatusEffectById(name);
+
+      const change = action.payload.change;
+      switch (change) {
+        case "DECREMENT":
+          statusEffect.duration--;
+          break;
+
+        case "RESET": {
+          const reset = action.payload.reset;
+          statusEffect.duration = reset;
+        }
       }
     },
   },
