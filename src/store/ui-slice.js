@@ -2,26 +2,40 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const uiSlice = createSlice({
   name: "ui",
-  initialState: { 
+  initialState: {
     startIsVisible: true,
     dashboardIsVisible: false,
     gameWindowIsVisible: false,
-    inventoryIsVisible: false,
-    tomeIsVisible: false,
-    heroIsVisible: false,
-    settingIsVisible: false,
     spellListIsVisible: false,
-   },
+    modalIsVisible: false,
+    modal: {
+      heroesModal: false,
+      inventoryModal: false,
+      settingsModal: false,
+      questsModal: false,
+      spellbookModal: false,
+      tomesModal: false,
+    },
+  },
   reducers: {
     toggle(state, action) {
       const { modal } = action.payload;
       state[modal] = !state[modal];
     },
+    toggleModal(state, action) {
+      const modal = action.payload.modal;
+
+      // Set all modals to false
+      Object.keys(state.modal).forEach((key) => {
+        state.modal[key] = false;
+      });
+
+      if (action.payload.open) {
+        // Set the target modal to true
+        state.modal[modal] = true;
+      }
+    },
   },
-
-  // toggle dispatch example:
-  // dispatch(uiSlice.actions.toggle({ modal: 'inventoryIsVisible' }));
-
 });
 
 export const uiActions = uiSlice.actions;
