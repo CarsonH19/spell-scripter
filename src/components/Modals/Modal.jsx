@@ -27,8 +27,10 @@ export default function Modal() {
 
   return createPortal(
     <div className={classes.modal}>
-      <div>{activeModal}</div>
-      <button onClick={handleClose}>CLOSE</button>
+      {activeModal}
+      <button onClick={handleClose} className={classes.close}>
+        x
+      </button>
     </div>,
     document.getElementById("modal")
   );
@@ -43,9 +45,12 @@ function selectModal() {
     case "heroesModal":
       return <HeroesModal />;
 
-    case "inventoryModal":
-      return <InventoryModal />;
+    case "inventoryModal": {
+      const order = store.getState().combat.order;
+      const player = order.find((char) => char.id === "Player");
 
+      return <InventoryModal player={player} />;
+    }
     case "questsModal":
       return <QuestsModal />;
 
