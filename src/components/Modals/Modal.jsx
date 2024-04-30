@@ -11,6 +11,9 @@ import SettingsModal from "./Settings/SettingsModal";
 import QuestsModal from "./Quests/QuestsModal";
 import SpellbookModal from "./Spellbook/SpellbookModal";
 import TomesModal from "./Tomes/TomesModal";
+import RoomSummaryModal from "./RoomSummary/RoomSummaryModal";
+import TradeModal from "./Trade/TradeModal";
+import HelpModal from "./Help/HelpModal";
 
 import store from "../../store";
 
@@ -43,9 +46,6 @@ function selectModal() {
     case "inventoryModal":
       return <InventoryModal />;
 
-    case "settingsModal":
-      return <SettingsModal />;
-
     case "questsModal":
       return <QuestsModal />;
 
@@ -54,6 +54,18 @@ function selectModal() {
 
     case "tomesModal":
       return <TomesModal />;
+
+    case "roomSummaryModal":
+      return <RoomSummaryModal />;
+
+    case "tradeModal":
+      return <TradeModal />;
+
+    case "settingsModal":
+      return <SettingsModal />;
+
+    case "helpModal":
+      return <HelpModal />;
   }
 }
 
@@ -64,5 +76,5 @@ function findActiveModal(state) {
       return modalKey;
     }
   }
-  return null; // If no modal is active
+  return null;
 }

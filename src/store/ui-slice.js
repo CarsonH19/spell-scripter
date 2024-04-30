@@ -11,10 +11,14 @@ const uiSlice = createSlice({
     modal: {
       heroesModal: false,
       inventoryModal: false,
-      settingsModal: false,
       questsModal: false,
       spellbookModal: false,
       tomesModal: false,
+      roomSummaryModal: false,
+      tradeModal: false,
+      settingsModal: false,
+      helpModal: false,
+
     },
   },
   reducers: {
