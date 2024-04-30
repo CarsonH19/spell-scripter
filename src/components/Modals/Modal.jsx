@@ -29,7 +29,7 @@ export default function Modal() {
     <div className={classes.modal}>
       {activeModal}
       <button onClick={handleClose} className={classes.close}>
-        x
+        X
       </button>
     </div>,
     document.getElementById("modal")

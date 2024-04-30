@@ -14,12 +14,12 @@
 
 .close {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 6%;
+  right: 5.5%;
   background: transparent;
   border: none;
   color: red;
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 1rem;
+  /* font-weight: 600; */
   cursor: pointer;
 }
