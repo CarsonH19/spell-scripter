@@ -47,8 +47,6 @@ export function changeStatusEffect(dispatch, target, change, statusEffect) {
         statusEffect,
       })
     );
-
-    console.log(`${target.name} is ${statusEffect.name}!`);
   } else if (
     checkCurrentStatusEffects(target, statusEffect) &&
     change === "ADD"
@@ -62,8 +60,6 @@ export function changeStatusEffect(dispatch, target, change, statusEffect) {
       }
     });
 
-    console.log("RESET", reset);
-
     dispatch(
       combatActions.updateStatusEffectDuration({
         id: target.id,
@@ -72,8 +68,14 @@ export function changeStatusEffect(dispatch, target, change, statusEffect) {
         reset,
       })
     );
-
-    console.log("Status Effect Target", target);
+  } else if (change === "REMOVE") {
+    dispatch(
+      combatActions.updateStatusEffects({
+        id: target.id,
+        change,
+        statusEffect,
+      })
+    );
   }
 
   updateStatTotals(dispatch, target.id);

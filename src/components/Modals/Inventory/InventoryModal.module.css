@@ -45,7 +45,7 @@
 .inventory .container .left {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 40%;
   margin-top: 2.5rem;
 }
 
@@ -55,13 +55,8 @@
 
 }
 
-.inventory .container .left .party {
-  flex: 1;
-  text-align: center;
-}
-
 .inventory .container .right {
-  width: 70%;
+  width: 60%;
   display: flex;
   flex-direction: column;
 }
@@ -100,9 +95,31 @@ button.active {
   width: 90%;
   background-color: white;
   flex: 3;
+  padding: 1rem;
+  margin: 0;
   margin-bottom: 2rem;
-
+  display: grid;
+  align-content: flex-start;
+  grid-template-columns: repeat(auto-fill, minmax(8%, 1fr)); /* Adjust based on the number of items you want to display */
+  gap: 1.5rem;
+  overflow: auto;
 }
+
+.items li {
+  list-style: none;
+  aspect-ratio: 1;
+  width: 100%;
+  height: auto;
+  border: 2px solid red;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.items li:hover {
+  transition: 0.3s;
+  scale: 1.1;
+}
+
 
 .inventory .container .right .attuned {
   width: 90%;
@@ -113,6 +130,16 @@ button.active {
   flex-direction: column;
   margin-bottom: 2rem;
 }
+
+.attuned ul li {
+  list-style: none;
+  aspect-ratio: 1;
+  width: 100%;
+  height: auto;
+  border: 2px solid red;
+  cursor: pointer;
+}
+
 
 .attuned h1 {
   flex: 1;

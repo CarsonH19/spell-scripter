@@ -71,6 +71,7 @@ export default async function combatLoop(dispatch) {
               if (hit) {
                 const damage = calcDamage(player);
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
+                
               }
             }
             break;

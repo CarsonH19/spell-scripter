@@ -24,7 +24,6 @@ const combatSlice = createSlice({
       );
 
       state.order = initiativeOrder;
-      // console.log(state);
     },
     highlightCharacter(state, action) {
       state.highlightedCharacter = action.payload;
@@ -98,20 +97,20 @@ const combatSlice = createSlice({
 
       if (change === "DAMAGE") {
         character.currentHealth -= value;
-      }
 
-      // Prevents Falling Below 0
-      if (character.currentHealth < 0) {
-        character.currentHealth = 0;
+        // Prevents Falling Below 0
+        if (character.currentHealth < 0) {
+          character.currentHealth = 0;
+        }
       }
 
       if (change === "HEAL") {
         character.currentHealth += value;
-      }
 
-      // Prevents Healing Above Max
-      if (character.currentHealth > character.maxHealth) {
-        character.currentHealth = character.maxHealth;
+        // Prevents Healing Above Max
+        if (character.currentHealth > character.stats.strength.maxHealth) {
+          character.currentHealth = character.stats.strength.maxHealth;
+        }
       }
     },
     updateStatusEffects(state, action) {
@@ -127,12 +126,10 @@ const combatSlice = createSlice({
       };
 
       const character = findCharacterById(id);
-      console.log(character);
 
       switch (change) {
         case "ADD":
           character.statusEffects.push(statusEffect);
-          console.log("STATUS ADDED!");
           break;
         case "REMOVE":
           {

@@ -2,56 +2,44 @@ import classes from "./InventoryModal.module.css";
 
 import { useState } from "react";
 
+import { useSelector } from "react-redux";
+
+import Item from "./Item";
+import Stats from "./Stats";
+
 // import Tooltip from "../../UI/Tooltip";
 
-export default function InventoryModal({ player }) {
+export default function InventoryModal() {
   const [active, setActive] = useState(1);
+  const player = useSelector((state) => state.player);
 
   const handleButtonClick = (index) => {
     setActive(index);
-    console.log(index);
   };
 
-  console.log(active);
+  let itemGroup;
+  let attunedItems = player.inventory.attunedItems;
+
+  switch (active) {
+    case 1:
+      itemGroup = player.inventory.equipment;
+      break;
+    case 2:
+      itemGroup = player.inventory.consumables;
+      break;
+    case 3:
+      itemGroup = player.inventory.questItems;
+      break;
+  }
+
+  console.log("INVENTORY");
 
   return (
     <div className={classes.inventory}>
       <h1>Inventory</h1>
       <div className={classes.container}>
         <div className={classes.left}>
-          <div className={classes.stats}>
-            <h3>Stats</h3>
-            <hr />
-            <div>
-              <h4>{player.name}</h4>
-              <p>Level: {player.level}</p>
-            </div>
-
-            <div>
-              <h4>Strength: {player.stats.strength.totalStrength}</h4>
-              <p>
-                {" "}
-                Health: {player.currentHealth} /{" "}
-                {player.stats.strength.maxHealth}
-              </p>
-              <p> Attack: {player.stats.strength.attack}</p>
-            </div>
-
-            <div>
-              <h4>Agility: {player.stats.agility.totalAgility}</h4>
-              <p>Defense: {player.stats.agility.defense}</p>
-              <p>Hit Chance: +{player.stats.agility.hitChance}</p>
-              <p>Speed: {player.stats.agility.speed}</p>
-            </div>
-
-            <div>
-              <h4>Arcana: {player.stats.arcana.totalArcana}</h4>
-              <p>
-                Mana: {player.currentMana} / {player.stats.arcana.maxMana}
-              </p>
-              <p>Spell Power: {player.stats.arcana.spellPower}</p>
-            </div>
-          </div>
+          <Stats />
           {/* <div className={classes.party}>
             <h3>Party</h3>
             <hr />
@@ -80,10 +68,18 @@ export default function InventoryModal({ player }) {
               Quest Items
             </button>
           </div>
-          <div className={classes.items}>Items (map items)</div>
+          <ul className={classes.items}>
+            {itemGroup.map((item) => (
+              <Item key={item.id} item={item} />
+            ))}
+          </ul>
           <div className={classes.attuned}>
             <h3>Attuned</h3>
-            <ul>{/* Map array of attuned items (5 max) */}</ul>
+            <ul>
+              {attunedItems.map((item) => (
+                <Item key={item.id} item={item} />
+              ))}
+            </ul>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { GNAWERS } from "./enemies";
 
-// Temporary Import!!!
 import { v4 as uuidv4 } from "uuid";
 
 export let currentRoom = {

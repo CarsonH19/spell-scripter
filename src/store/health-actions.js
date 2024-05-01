@@ -1,5 +1,6 @@
 import store from "./index";
 import { combatActions } from "./combat-slice";
+import updateStatTotals from "./stats-actions";
 
 export function changeHealth(
   dispatch,
@@ -31,6 +32,7 @@ export function changeHealth(
   // }
 
   dispatch(combatActions.updateHealth({ id, change, value }));
+  // updateStatTotals(dispatch, id);
   checkForDeath(dispatch, id);
 }
 

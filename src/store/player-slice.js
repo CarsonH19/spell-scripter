@@ -38,10 +38,97 @@ const playerSlice = createSlice({
     immunities: [],
     spellList: [],
     statusEffects: [],
+    inventory: {
+      attunedItems: [],
+      equipment: [],
+      consumables: [],
+      questItems: [],
+    },
   },
   reducers: {
     updateSpellList(state, action) {
       state.spellList = action.payload;
+    },
+    changeInventory(state, action) {
+      const item = action.payload.item;
+      const change = action.payload.change;
+      const id = item.id;
+
+      switch (change) {
+        case "ADD":
+          {
+            if (item.type === "EQUIPMENT") {
+              state.inventory.equipment.push(item);
+            } else if (item.type === "CONSUMABLE") {
+              state.inventory.consumables.push(item);
+            } else if (item.type === "QUEST ITEM") {
+              state.inventory.questItems.push(item);
+            }
+          }
+          break;
+
+        case "REMOVE":
+          {
+            let itemGroup;
+            if (item.type === "EQUIPMENT") {
+              itemGroup = state.inventory.equipment;
+            } else if (item.type === "CONSUMABLE") {
+              itemGroup = state.inventory.consumables;
+            } else if (item.type === "QUEST ITEM") {
+              itemGroup = state.inventory.questItems;
+            }
+
+            const itemIndex = itemGroup.findIndex((i) => i.id === id);
+            if (itemIndex !== -1) {
+              itemGroup.splice(itemIndex, 1);
+            }
+          }
+          break;
+      }
+    },
+    changeAttunement(state, action) {
+      const item = action.payload.item;
+      const change = action.payload.change;
+      const id = item.id;
+
+      switch (change) {
+        case "ADD": // Attune
+          {
+            if (
+              item.type === "EQUIPMENT" &&
+              state.inventory.attunedItems.length < 5
+            ) {
+              // Add to attunedItems
+              state.inventory.attunedItems.push(item);
+
+              // Remove from attuned items
+              const itemIndex = state.inventory.equipment.findIndex(
+                (i) => i.id === id
+              );
+
+              if (itemIndex !== -1) {
+                state.inventory.equipment.splice(itemIndex, 1);
+              }
+            }
+          }
+          break;
+
+        case "REMOVE": // Remove Attunement
+          {
+            // Remove from attuned items
+            const itemIndex = state.inventory.attunedItems.findIndex(
+              (i) => i.id === id
+            );
+
+            if (itemIndex !== -1) {
+              state.inventory.attunedItems.splice(itemIndex, 1);
+            }
+
+            // Add to equipment
+            state.inventory.equipment.push(item);
+          }
+          break;
+      }
     },
   },
 });
