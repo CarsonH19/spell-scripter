@@ -5,7 +5,7 @@ import castSpell from "../util/cast-spell";
 
 import setTargetType from "../util/targeting";
 import CONDITIONS from "../data/conditions";
-import changeStatusEffect from "./status-effect-actions.js"
+import changeStatusEffect from "./status-effect-actions.js";
 import { combatActions } from "./combat-slice";
 import updateStatTotals from "./stats-actions";
 
@@ -14,14 +14,15 @@ let targetResolver;
 let spellResolver;
 
 export default async function combatLoop(dispatch) {
-  const order = store.getState().combat.order;
+  let order = store.getState().combat.order;
   console.log(order);
 
   // Iterate through the initiative order
   for (let i = 0; i < order.length; i++) {
     // get the updated values for player and enemies on each iteration
-    const order = store.getState().combat.order;
+    let order = store.getState().combat.order;
 
+    // If player dies the game is over
     const playerIndex = order.findIndex((char) => char.id === "Player");
     const player = order[playerIndex];
 
@@ -32,7 +33,7 @@ export default async function combatLoop(dispatch) {
       }
     }
 
-    const character = order[i];
+    let character = order[i];
 
     // If all enemies, player, or current character is dead the loop will skip the combat logic
     // need to check if the character is alive
@@ -43,6 +44,7 @@ export default async function combatLoop(dispatch) {
     ) {
       // COMPLETE TASKS AT BEGINNING OF ROUND
       // end status effects
+
       checkForStatusEffectRemoval(dispatch, character.id);
 
       // call status effects
@@ -77,6 +79,7 @@ export default async function combatLoop(dispatch) {
             break;
           case "GUARD":
             changeStatusEffect(dispatch, player, "ADD", CONDITIONS.GUARD);
+            console.log("CALLED 2");
             break;
           case "ITEM":
             break;
@@ -265,8 +268,8 @@ function checkForStatusEffectRemoval(dispatch, id) {
   const statusEffects = order[index].statusEffects;
 
   for (let i = 0; i < statusEffects.length; i++) {
-    if (statusEffects[i].duration <= 1) {
-      console.log("Status Effect Duration is 0", statusEffects[i]);
+    if (statusEffects[i].duration <= 0) {
+      console.log("Status Effect Duration is 1", statusEffects[i]);
       dispatch(
         combatActions.updateStatusEffects({
           id,

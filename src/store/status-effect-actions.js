@@ -6,7 +6,12 @@ import CONDITIONS from "../data/conditions";
 import updateStatTotals from "../store/stats-actions";
 import { playerActions } from "../store/player-slice";
 
-export default function changeStatusEffect(dispatch, target, change, statusEffect) {
+export default function changeStatusEffect(
+  dispatch,
+  target,
+  change,
+  statusEffect
+) {
   const dashboard = store.getState().ui.dashboardIsVisible;
 
   // Check if status effect already exists
@@ -54,6 +59,9 @@ export default function changeStatusEffect(dispatch, target, change, statusEffec
         reset = effect.duration;
       }
     });
+
+    console.log("PLAYER", target);
+    console.log(statusEffect, reset);
 
     dispatch(
       combatActions.updateStatusEffectDuration({
