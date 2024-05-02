@@ -4,7 +4,7 @@ import { playerActions } from "../../../store/player-slice";
 import store from "../../../store/index";
 
 import { itemFunctions } from "../../../util/item-functions";
-import { changeStatusEffect } from "../../../data/status-effects";
+import changeStatusEffect from "../../../store/status-effect-actions";
 
 export default function Item({ item }) {
   const dispatch = useDispatch();

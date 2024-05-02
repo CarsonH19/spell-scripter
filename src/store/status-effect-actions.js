@@ -2,53 +2,11 @@ import { combatActions } from "../store/combat-slice";
 
 import store from "../store";
 
+import CONDITIONS from "../data/conditions";
 import updateStatTotals from "../store/stats-actions";
 import { playerActions } from "../store/player-slice";
 
-const STATUS_EFFECTS = {
-  BURNED: {
-    name: "Burned",
-    display: true,
-    image: "",
-    description: "You take damage on the start of each of your turns",
-    duration: 3,
-    stats: {
-      strength: {
-        strengthChange: -1,
-      },
-      agility: {
-        agilityChange: -2,
-      },
-    },
-  },
-  POISONED: {
-    name: "Poisoned",
-    display: true,
-    image: "",
-    description: "You take damage on the start of each of your turns",
-    duration: 3,
-    stats: {
-      strength: {
-        strengthChange: -1,
-      },
-      agility: {
-        agilityChange: -2,
-      },
-    },
-  },
-  GUARD: {
-    name: "Guarding",
-    display: true,
-    image: "",
-    description: "Defense +50%",
-    duration: 2, // Is immediately decremented so it must be set to 2
-    stats: {},
-  },
-};
-
-export default STATUS_EFFECTS;
-
-export function changeStatusEffect(dispatch, target, change, statusEffect) {
+export default function changeStatusEffect(dispatch, target, change, statusEffect) {
   const dashboard = store.getState().ui.dashboardIsVisible;
 
   // Check if status effect already exists
@@ -88,10 +46,10 @@ export function changeStatusEffect(dispatch, target, change, statusEffect) {
     checkCurrentStatusEffects(target, statusEffect) &&
     change === "ADD"
   ) {
-    // If status effect already exists reset the duration
+    // If condition already exists reset its duration
     let reset;
-    Object.keys(STATUS_EFFECTS).forEach((effectKey) => {
-      const effect = STATUS_EFFECTS[effectKey];
+    Object.keys(CONDITIONS).forEach((effectKey) => {
+      const effect = CONDITIONS[effectKey];
       if (effect.name === statusEffect.name) {
         reset = effect.duration;
       }

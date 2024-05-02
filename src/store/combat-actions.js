@@ -4,7 +4,8 @@ import { changeHealth } from "./health-actions";
 import castSpell from "../util/cast-spell";
 
 import setTargetType from "../util/targeting";
-import STATUS_EFFECTS, { changeStatusEffect } from "../data/status-effects";
+import CONDITIONS from "../data/conditions";
+import changeStatusEffect from "./status-effect-actions.js"
 import { combatActions } from "./combat-slice";
 import updateStatTotals from "./stats-actions";
 
@@ -75,7 +76,7 @@ export default async function combatLoop(dispatch) {
             }
             break;
           case "GUARD":
-            changeStatusEffect(dispatch, player, "ADD", STATUS_EFFECTS.GUARD);
+            changeStatusEffect(dispatch, player, "ADD", CONDITIONS.GUARD);
             break;
           case "ITEM":
             break;
@@ -106,7 +107,7 @@ export default async function combatLoop(dispatch) {
                   dispatch,
                   target,
                   "ADD",
-                  STATUS_EFFECTS.POISONED
+                  CONDITIONS.POISONED
                 );
               }
             }
