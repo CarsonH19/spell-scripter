@@ -8,6 +8,10 @@ import { setTarget } from "../../../../../store/combat-actions";
 import { targetType } from "../../../../../util/targeting";
 
 const Enemy = ({ enemy }) => {
+  const order = useSelector((state) => state.combat.order);
+  const enemyIndex = order.findIndex((char) => char.id === enemy.id);
+  enemy = order[enemyIndex];
+
   const isHighlighted = useSelector(
     (state) => state.combat.highlightedCharacter === enemy.id
   );

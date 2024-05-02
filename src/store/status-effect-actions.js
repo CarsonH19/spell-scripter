@@ -13,22 +13,36 @@ export default function changeStatusEffect(
   change,
   statusEffect
 ) {
+  // CHECK IF target is valid
+  if (!target) {
+    console.log("changeStatusEffect", target, change, statusEffect);
+    return;
+  }
+
   const dashboard = store.getState().ui.dashboardIsVisible;
+
+  if (target.identifier === "PLAYER") {
+    let player;
+    if (!dashboard) {
+      const order = store.getState().combat.order;
+      player = order.find((char) => char.id === "Player");
+    } else if (dashboard) {
+      player = store.getState().player;
+    }
+
+    target = player;
+  } else {
+    const order = store.getState().combat.order;
+    const index = order.findIndex((char) => char.id === target.id);
+    target = order[index];
+  }
+
+  console.log("STATUS", target);
 
   // Check if status effect already exists
   if (!checkCurrentStatusEffects(target, statusEffect) && change === "ADD") {
     if (dashboard && target.identifier === "PLAYER") {
       // If the player is on the dashboard the player-slice object is updated
-      let player;
-      if (!dashboard) {
-        const order = store.getState().combat.order;
-        player = order.find((char) => char.id === "Player");
-      } else if (dashboard) {
-        player = store.getState().player;
-      }
-
-      target = player;
-
       dispatch(
         playerActions.updateStatusEffects({
           change,
@@ -37,9 +51,6 @@ export default function changeStatusEffect(
       );
     } else {
       // If the player is in a dungeon the combat-slice object is updated
-      const order = store.getState().combat.order;
-      const index = order.findIndex((char) => char.id === target.id);
-      target = order[index];
       dispatch(
         combatActions.updateStatusEffects({
           id: target.id,
@@ -60,6 +71,8 @@ export default function changeStatusEffect(
         reset = effect.duration;
       }
     });
+
+    console.log("STATUS", checkCurrentStatusEffects(target, statusEffect));
 
     dispatch(
       combatActions.updateStatusEffectDuration({
@@ -97,30 +110,12 @@ export default function changeStatusEffect(
         return true;
       }
     }
+
+    return false;
   }
 }
 
-// End status effects at the start of a character's turn
-export function checkForStatusEffectRemoval(dispatch, id) {
-  const order = store.getState().combat.order;
-  const index = order.findIndex((char) => char.id === id);
-  const statusEffects = order[index].statusEffects;
-
-  for (let i = 0; i < statusEffects.length; i++) {
-    if (statusEffects[i].duration <= 0) {
-      dispatch(
-        combatActions.updateStatusEffects({
-          id,
-          statusEffect: statusEffects[i],
-          change: "REMOVE",
-        })
-      );
-    }
-  }
-
-  updateStatTotals(dispatch, id);
-}
-
+// Called within combatLoop
 export function checkStatusEffect(dispatch, id, check) {
   const order = store.getState().combat.order;
   const index = order.findIndex((char) => char.id === id);

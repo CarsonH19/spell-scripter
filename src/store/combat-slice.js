@@ -160,6 +160,8 @@ const combatSlice = createSlice({
       };
       const statusEffect = findStatusEffectById(name);
 
+      if (!statusEffect) console.log("MISSING EFFECT!");
+
       const change = action.payload.change;
       switch (change) {
         case "DECREMENT":

@@ -33,6 +33,10 @@ export default async function combatLoop(dispatch) {
     }
 
     let character = order[i];
+    if (!character) {
+      console.log("NO CHARACTER");
+      continue;
+    }
 
     // If all enemies, player, or current character is dead the loop will skip the combat logic
     // need to check if the character is alive
@@ -42,6 +46,9 @@ export default async function combatLoop(dispatch) {
       character.currentHealth >= 0
     ) {
       // COMPLETE TASKS AT BEGINNING OF ROUND
+      // Decrement existing status effect durations
+      checkStatusEffect(dispatch, character.id, "DECREMENT");
+
       // Check for status effects with duration 0 and remove
       checkStatusEffect(dispatch, character.id, "REMOVE");
 
@@ -99,11 +106,11 @@ export default async function combatLoop(dispatch) {
               const hit = rollToHit(character, target);
               // console.log("ATTACK", target, hit);
               if (hit) {
+                // Add ability logic here
+                changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
+
                 const damage = calcDamage(character); // use state player obj?!?
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
-
-                // Testing Status Effects
-                changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
               }
             }
             break;
@@ -115,9 +122,6 @@ export default async function combatLoop(dispatch) {
       }
 
       // COMPLETE TASKS AT END OF ROUND
-      // Decrement existing status effect durations
-      checkStatusEffect(dispatch, character.id, "DECREMENT");
-
       await delay(2000);
     }
   }

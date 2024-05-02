@@ -8,6 +8,10 @@ import { targetType } from "../../../../../util/targeting";
 import { setTarget } from "../../../../../store/combat-actions";
 
 export default function Hero({ hero }) {
+  const order = useSelector((state) => state.combat.order);
+  const heroIndex = order.findIndex((char) => char.id === hero.id);
+  hero = order[heroIndex];
+
   const isHighlighted = useSelector(
     (state) => state.combat.highlightedCharacter === hero.id
   );
@@ -36,14 +40,22 @@ export default function Hero({ hero }) {
               <span>{hero.stats.strength.maxHealth}</span>
             </p>
           </div>
-          <progress max={hero.stats.strength.maxHealth} value={hero.currentHealth}>
+          <progress
+            max={hero.stats.strength.maxHealth}
+            value={hero.currentHealth}
+          >
             Health Bar
           </progress>
         </div>
         <div className={classes.statusEffects}>
-        {hero.statusEffects.map((effect) => (
-            <Tooltip key={effect.name} title={effect.name} text={effect.description} detail={`Duration: ${effect.duration} rounds`}>
-            <img src="" className={classes.effect} />
+          {hero.statusEffects.map((effect) => (
+            <Tooltip
+              key={effect.name}
+              title={effect.name}
+              text={effect.description}
+              detail={`Duration: ${effect.duration} rounds`}
+            >
+              <img src="" className={classes.effect} />
             </Tooltip>
           ))}
         </div>
