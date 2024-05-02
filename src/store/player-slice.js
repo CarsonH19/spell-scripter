@@ -46,8 +46,25 @@ const playerSlice = createSlice({
     },
   },
   reducers: {
-    updateSpellList(state, action) {
-      state.spellList = action.payload;
+    changeSpellList(state, action) {
+      const change = action.payload.change;
+      const spell = action.payload.spell;
+
+      switch (change) {
+        case "ADD":
+          state.spellList.push(spell);
+          break;
+        case "REMOVE":
+          {
+            const spellIndex = state.spellList.findIndex(
+              (index) => index.name === spell.name
+            );
+            if (spellIndex !== -1) {
+              state.spellList.splice(spellIndex, 1);
+            }
+          }
+          break;
+      }
     },
     changeInventory(state, action) {
       const item = action.payload.item;
@@ -151,7 +168,7 @@ const playerSlice = createSlice({
           break;
       }
     },
-    updateStats(state, action) {    
+    updateStats(state, action) {
       // Strength
       state.stats.strength.totalStrength = action.payload.totalStrength;
       state.stats.strength.maxHealth = action.payload.maxHealth;

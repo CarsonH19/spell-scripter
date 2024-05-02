@@ -4,39 +4,69 @@ const DAMAGE_TYPES = {
   POISON: "POISON",
 };
 
-export const SPELLS = {
-  EVOCATION: {
-    FIREBOLT: {
+const SPELLS = {
+  evocation: [
+    {
       name: "Firebolt",
+      unlocked: true,
       image: "",
       spellTarget: "ENEMY",
       spellType: "HIT",
       damageType: DAMAGE_TYPES.FIRE,
       baseDamage: 16,
       manaCost: 10,
-      // function: () => {
-      //   // spell logic
-      //   // roll for damage & add spell power
-      //   // dispatch changeMana
-      //   // return response object { value, change };
-      // },
     },
-  },
-  RESORATION: {
-    LESSER_HEAL: {
+    {
+      name: "Fireball",
+      unlocked: false,
+      image: "",
+      spellTarget: "ENEMY",
+      spellType: "HIT",
+      damageType: DAMAGE_TYPES.FIRE,
+      baseDamage: 16,
+      manaCost: 10,
+    },
+  ],
+  restoration: [
+    {
       name: "Lesser Heal",
+      unlocked: true,
       image: "",
       spellTarget: "ALLY",
       spellType: "HEAL",
       healValue: 10,
       manaCost: 10,
     },
-  },
-
-  ABJURATION: {},
+  ],
+  abjuration: [
+    {
+      name: "Bark Skin",
+      unlocked: true,
+      image: "",
+      spellTarget: "ALLY",
+      spellType: "BUFF",
+      value: 1,
+      manaCost: 10,
+    },
+  ],
 };
 
-export let spellList = [
-  SPELLS.EVOCATION.FIREBOLT,
-  SPELLS.RESORATION.LESSER_HEAL,
-];
+
+// export let spellList = [
+//   SPELLS.EVOCATION.FIREBOLT,
+//   SPELLS.RESORATION.LESSER_HEAL,
+// ];
+
+export function changeSpellAccess(school, spell, change) {
+  for (let i = 0; i < school.length; i++) {
+    if (school[i].name === spell.name) {
+      if (change === "UNLOCK") {
+        school[i].unlock = true;
+      } else if (change === "LOCK") {
+        school[i].unlock = false;
+      }
+    }
+  }
+}
+
+export default SPELLS;

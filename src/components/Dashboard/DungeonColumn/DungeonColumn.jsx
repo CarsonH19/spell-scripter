@@ -12,8 +12,8 @@ import { currentParty } from "../../../data/heroes";
 
 import { combatActions } from "../../../store/combat-slice";
 
-import { playerActions } from "../../../store/player-slice";
-import { spellList } from "../../../data/spells";
+// import { playerActions } from "../../../store/player-slice";
+
 import updateStatTotals from "../../../store/stats-actions";
 
 export default function DungeonColumn() {
@@ -28,7 +28,6 @@ export default function DungeonColumn() {
     dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // true
 
     // the following are only used for testing
-    dispatch(playerActions.updateSpellList(spellList));
     dispatch(dungeonActions.updateRoom(currentRoom));
     dispatch(heroActions.updateParty(heroes));
     dispatch(combatActions.setInitiative({ heroes, enemies, player }));
