@@ -10,10 +10,10 @@ export default function Item({ item }) {
   const dispatch = useDispatch();
   let inventory = useSelector((state) => state.player.inventory);
 
-  const handleItemClick = (type) => {
+  const handleItemClick = (item) => {
     const dashboard = store.getState().ui.dashboardIsVisible;
 
-    switch (type) {
+    switch (item.type) {
       case "EQUIPMENT":
         {
           // Select combat-slice or player-slice player object
@@ -52,8 +52,11 @@ export default function Item({ item }) {
 
           const player = store.getState().player;
 
-          const itemID = "CRYPTBREAD"; // TEMPORARY
-          const itemFunction = itemFunctions[itemID];
+          const snakeCaseItem = toSnakeCase(item.name);
+          console.log(snakeCaseItem);
+
+          const itemFunction = itemFunctions[snakeCaseItem];
+          console.log(itemFunction);
           if (itemFunction) {
             itemFunction(dispatch, player);
           }
@@ -64,5 +67,9 @@ export default function Item({ item }) {
     }
   };
 
-  return <li onClick={() => handleItemClick(item.type)}></li>;
+  return <li onClick={() => handleItemClick(item)}></li>;
+}
+
+function toSnakeCase(str) {
+  return str.toUpperCase().replace(/\s+/g, "_");
 }
