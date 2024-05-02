@@ -40,11 +40,6 @@ export default function InventoryModal() {
       <div className={classes.container}>
         <div className={classes.left}>
           <Stats />
-          {/* <div className={classes.party}>
-            <h3>Party</h3>
-            <hr />
-
-          </div> */}
         </div>
         {/* <div className={classes.vertical}></div> */}
         <div className={classes.right}>

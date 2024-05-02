@@ -1,4 +1,4 @@
-.inventory p {
+.text {
   margin: 0;
   font-size: 1.2rem;
 }
@@ -52,8 +52,26 @@
 .inventory .container .left .stats {
   flex: 1;
   text-align: center;
-
 }
+
+.inventory .container .left .stats ul {
+  margin-top: 1rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.inventory .container .left .stats ul li {
+  height: 2rem;
+  width: 2rem;
+  background-color: #ad0505; 
+  list-style: none;
+  cursor: pointer; 
+}
+
 
 .inventory .container .right {
   width: 60%;
