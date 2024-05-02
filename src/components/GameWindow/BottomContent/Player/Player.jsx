@@ -46,11 +46,21 @@ export default function Player() {
           100%
         </progress>
         <div className={classes.statusEffects}>
-          {player.statusEffects.map((effect) => (
-            <Tooltip key={effect.name} title={effect.name} text={effect.description} detail={`Duration: ${effect.duration} rounds`}>
-            <img src="" className={classes.effect} />
-            </Tooltip>
-          ))}
+          {player.statusEffects.map((effect) => {
+            if (effect.display) {
+              const content = (
+                <Tooltip
+                  key={effect.name}
+                  title={effect.name}
+                  text={effect.description}
+                  detail={`Duration: ${effect.duration} rounds`}
+                >
+                  <img src="" className={classes.effect} />
+                </Tooltip>
+              );
+              return content;
+            }
+          })}
         </div>
       </div>
 

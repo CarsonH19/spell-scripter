@@ -157,7 +157,6 @@ export default function updateStatTotals(dispatch, id) {
     // Guarding (+50% defense)
     if (guard) {
       defense = Math.round(defense * 1.5);
-      console.log(defense);
     }
     return defense;
   }

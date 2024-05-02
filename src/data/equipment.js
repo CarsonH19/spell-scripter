@@ -2,6 +2,7 @@ const EQUIPMENT = {
   BERSERKER_PAULDRON: {
     name: "Berserker Pauldron",
     description: "",
+    display: false,
     image: "",
     type: "EQUIPMENT",
     rarity: "RARE",
@@ -15,10 +16,10 @@ const EQUIPMENT = {
       },
     },
   },
-
   BRACELET_OF_THE_SERPENT: {
     name: "Bracelet of the Serpent",
     description: "",
+    display: false,
     image: "",
     type: "EQUIPMENT",
     rarity: "RARE",

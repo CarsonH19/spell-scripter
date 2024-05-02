@@ -1,6 +1,5 @@
 import store from "./index";
 import { combatActions } from "./combat-slice";
-import updateStatTotals from "./stats-actions";
 
 export function changeHealth(
   dispatch,
@@ -15,14 +14,12 @@ export function changeHealth(
     for (let i = 0; i < target.weaknesses.length; i++) {
       if (target.weaknesses[i] === damageType) {
         value = value * 1.5;
-        console.log(`Weakness Found!`);
       }
     }
 
     for (let i = 0; i < target.resistances.length; i++) {
       if (target.resistances[i] === damageType) {
         value = value * 0.5;
-        console.log(`Resistance Found!`);
       }
     }
   }
@@ -42,6 +39,5 @@ function checkForDeath(dispatch, id) {
 
   if (character.currentHealth <= 0) {
     dispatch(combatActions.removeCharacter({ character }));
-    console.log(`${character.name} has died!`);
   }
 }

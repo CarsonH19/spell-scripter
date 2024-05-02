@@ -71,7 +71,6 @@ export default async function combatLoop(dispatch) {
               if (hit) {
                 const damage = calcDamage(player);
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
-                
               }
             }
             break;
@@ -97,7 +96,7 @@ export default async function combatLoop(dispatch) {
               // check behavior to choose a target
               const target = randomTarget(character);
               const hit = rollToHit(character, target);
-              console.log("ATTACK", target, hit);
+              // console.log("ATTACK", target, hit);
               if (hit) {
                 const damage = calcDamage(character); // use state player obj?!?
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
@@ -276,7 +275,7 @@ function checkForStatusEffectRemoval(dispatch, id) {
       );
     }
   }
-  
+
   updateStatTotals(dispatch, id);
 }
 
@@ -292,15 +291,15 @@ function changeStatusEffectDuration(dispatch, id) {
   const statusEffects = order[index].statusEffects;
 
   for (let i = 0; i < statusEffects.length; i++) {
-    console.log("Decrementing", statusEffects[i].name);
-    dispatch(
-      combatActions.updateStatusEffectDuration({
-        id,
-        name: statusEffects[i].name,
-        change: "DECREMENT",
-      })
-    );
-
+    if (statusEffects[i].duration) {
+      dispatch(
+        combatActions.updateStatusEffectDuration({
+          id,
+          name: statusEffects[i].name,
+          change: "DECREMENT",
+        })
+      );
+    }
   }
 }
 

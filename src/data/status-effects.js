@@ -6,9 +6,24 @@ import updateStatTotals from "../store/stats-actions";
 import { playerActions } from "../store/player-slice";
 
 const STATUS_EFFECTS = {
+  BURNED: {
+    name: "Burned",
+    display: true,
+    image: "",
+    description: "You take damage on the start of each of your turns",
+    duration: 3,
+    stats: {
+      strength: {
+        strengthChange: -1,
+      },
+      agility: {
+        agilityChange: -2,
+      },
+    },
+  },
   POISONED: {
     name: "Poisoned",
-    detail: "CONDITION",
+    display: true,
     image: "",
     description: "You take damage on the start of each of your turns",
     duration: 3,
@@ -23,7 +38,7 @@ const STATUS_EFFECTS = {
   },
   GUARD: {
     name: "Guarding",
-    detail: "",
+    display: true,
     image: "",
     description: "Defense +50%",
     duration: 2, // Is immediately decremented so it must be set to 2
