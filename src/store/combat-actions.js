@@ -2,12 +2,11 @@ import store from "./index";
 
 import { changeHealth } from "./health-actions";
 import castSpell from "../util/cast-spell";
-
 import setTargetType from "../util/targeting";
 import CONDITIONS from "../data/conditions";
-import changeStatusEffect from "./status-effect-actions.js";
-import { combatActions } from "./combat-slice";
-import updateStatTotals from "./stats-actions";
+import changeStatusEffect, {
+  checkStatusEffect,
+} from "./status-effect-actions.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -43,12 +42,11 @@ export default async function combatLoop(dispatch) {
       character.currentHealth >= 0
     ) {
       // COMPLETE TASKS AT BEGINNING OF ROUND
-      // end status effects
+      // Check for status effects with duration 0 and remove
+      checkStatusEffect(dispatch, character.id, "REMOVE");
 
-      checkForStatusEffectRemoval(dispatch, character.id);
-
-      // call status effects
-      // checkForCallStatusEffect(character);
+      // Check for status effects with functions and call
+      checkStatusEffect(dispatch, character.id, "CALL");
 
       // call passive ability if available.
       // checkForPassiveAbility(character);
@@ -79,7 +77,6 @@ export default async function combatLoop(dispatch) {
             break;
           case "GUARD":
             changeStatusEffect(dispatch, player, "ADD", CONDITIONS.GUARD);
-            console.log("CALLED 2");
             break;
           case "ITEM":
             break;
@@ -106,12 +103,7 @@ export default async function combatLoop(dispatch) {
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
 
                 // Testing Status Effects
-                changeStatusEffect(
-                  dispatch,
-                  target,
-                  "ADD",
-                  CONDITIONS.POISONED
-                );
+                changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
               }
             }
             break;
@@ -123,7 +115,8 @@ export default async function combatLoop(dispatch) {
       }
 
       // COMPLETE TASKS AT END OF ROUND
-      changeStatusEffectDuration(dispatch, character.id);
+      // Decrement existing status effect durations
+      checkStatusEffect(dispatch, character.id, "DECREMENT");
 
       await delay(2000);
     }
@@ -254,56 +247,6 @@ function randomTarget(attacker) {
 
     const randomIndex = Math.floor(Math.random() * targetGroup.length);
     return targetGroup[randomIndex];
-  }
-}
-
-// =============================================================
-//                      STATUS EFFECTS
-// =============================================================
-
-// End status effects at the start of a character's turn
-function checkForStatusEffectRemoval(dispatch, id) {
-  const order = store.getState().combat.order;
-  const index = order.findIndex((char) => char.id === id);
-  const statusEffects = order[index].statusEffects;
-
-  for (let i = 0; i < statusEffects.length; i++) {
-    if (statusEffects[i].duration <= 0) {
-      console.log("Status Effect Duration is 1", statusEffects[i]);
-      dispatch(
-        combatActions.updateStatusEffects({
-          id,
-          statusEffect: statusEffects[i],
-          change: "REMOVE",
-        })
-      );
-    }
-  }
-
-  updateStatTotals(dispatch, id);
-}
-
-// Call existing status effects at the start of a character's turn
-// function checkForCallStatusEffect(dispatch, character) {
-
-// }
-
-// Decrement a character's status effects duration at the end of the characters turn
-function changeStatusEffectDuration(dispatch, id) {
-  const order = store.getState().combat.order;
-  const index = order.findIndex((char) => char.id === id);
-  const statusEffects = order[index].statusEffects;
-
-  for (let i = 0; i < statusEffects.length; i++) {
-    if (statusEffects[i].duration) {
-      dispatch(
-        combatActions.updateStatusEffectDuration({
-          id,
-          name: statusEffects[i].name,
-          change: "DECREMENT",
-        })
-      );
-    }
   }
 }
 

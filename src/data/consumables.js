@@ -12,7 +12,7 @@ const CONSUMABLES = {
     //   dispatch(changeHealthThunk({ target, change: "HEAL", value: 30 }));
     // },
   },
-  CRYPTBREAD: {
+  "CRYPTBREAD": {
     name: "Cryptbread",
     description: "",
     image: "",

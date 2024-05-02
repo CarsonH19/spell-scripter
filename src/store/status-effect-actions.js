@@ -5,6 +5,7 @@ import store from "../store";
 import CONDITIONS from "../data/conditions";
 import updateStatTotals from "../store/stats-actions";
 import { playerActions } from "../store/player-slice";
+import conditionFunctions from "../util/condition-functions";
 
 export default function changeStatusEffect(
   dispatch,
@@ -60,9 +61,6 @@ export default function changeStatusEffect(
       }
     });
 
-    console.log("PLAYER", target);
-    console.log(statusEffect, reset);
-
     dispatch(
       combatActions.updateStatusEffectDuration({
         id: target.id,
@@ -100,4 +98,79 @@ export default function changeStatusEffect(
       }
     }
   }
+}
+
+// End status effects at the start of a character's turn
+export function checkForStatusEffectRemoval(dispatch, id) {
+  const order = store.getState().combat.order;
+  const index = order.findIndex((char) => char.id === id);
+  const statusEffects = order[index].statusEffects;
+
+  for (let i = 0; i < statusEffects.length; i++) {
+    if (statusEffects[i].duration <= 0) {
+      dispatch(
+        combatActions.updateStatusEffects({
+          id,
+          statusEffect: statusEffects[i],
+          change: "REMOVE",
+        })
+      );
+    }
+  }
+
+  updateStatTotals(dispatch, id);
+}
+
+export function checkStatusEffect(dispatch, id, check) {
+  const order = store.getState().combat.order;
+  const index = order.findIndex((char) => char.id === id);
+  const statusEffects = order[index].statusEffects;
+
+  switch (check) {
+    case "REMOVE": // Check for removal
+      for (let i = 0; i < statusEffects.length; i++) {
+        if (statusEffects[i].duration <= 0) {
+          dispatch(
+            combatActions.updateStatusEffects({
+              id,
+              statusEffect: statusEffects[i],
+              change: "REMOVE",
+            })
+          );
+        }
+      }
+
+      updateStatTotals(dispatch, id);
+      break;
+
+    case "DECREMENT": // Check for duration decrement
+      for (let i = 0; i < statusEffects.length; i++) {
+        if (statusEffects[i].duration) {
+          dispatch(
+            combatActions.updateStatusEffectDuration({
+              id,
+              name: statusEffects[i].name,
+              change: "DECREMENT",
+            })
+          );
+        }
+      }
+      break;
+
+    case "CALL": // Check for status effect function call
+      for (let i = 0; i < statusEffects.length; i++) {
+        if (statusEffects[i].function) {
+          const snakeCaseItem = toSnakeCase(statusEffects[i].name);
+          const conditionFunction = conditionFunctions[snakeCaseItem];
+          if (conditionFunction) {
+            conditionFunction(dispatch, order[index]);
+          }
+        }
+      }
+      break;
+  }
+}
+
+function toSnakeCase(str) {
+  return str.toUpperCase().replace(/\s+/g, "_");
 }

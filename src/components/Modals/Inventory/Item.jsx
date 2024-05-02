@@ -24,7 +24,6 @@ export default function Item({ item }) {
             player = order.find((char) => char.id === "Player");
           } else if (dashboard) {
             player = store.getState().player;
-            console.log("PLAYER", player);
           }
 
           if (inventory.attunedItems.includes(item)) {
@@ -53,15 +52,12 @@ export default function Item({ item }) {
           const player = store.getState().player;
 
           const snakeCaseItem = toSnakeCase(item.name);
-          console.log(snakeCaseItem);
 
           const itemFunction = itemFunctions[snakeCaseItem];
-          console.log(itemFunction);
           if (itemFunction) {
             itemFunction(dispatch, player);
           }
           dispatch(playerActions.changeInventory({ item, change: "REMOVE" }));
-          console.log(player.inventory.consumables);
         }
         break;
     }
