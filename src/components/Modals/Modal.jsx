@@ -46,10 +46,7 @@ function selectModal() {
       return <HeroesModal />;
 
     case "inventoryModal": {
-      const order = store.getState().combat.order;
-      const player = order.find((char) => char.id === "Player");
-
-      return <InventoryModal player={player} />;
+      return <InventoryModal />;
     }
     case "questsModal":
       return <QuestsModal />;

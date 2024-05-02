@@ -130,6 +130,49 @@ const playerSlice = createSlice({
           break;
       }
     },
+    updateStatusEffects(state, action) {
+      const change = action.payload.change;
+      const statusEffect = action.payload.statusEffect;
+
+      switch (change) {
+        case "ADD":
+          state.statusEffects.push(statusEffect);
+          break;
+        case "REMOVE":
+          {
+            const statusIndex = state.statusEffects.findIndex(
+              (effect) => effect.name === statusEffect.name
+            );
+
+            if (statusIndex !== -1) {
+              state.statusEffects.splice(statusIndex, 1);
+            }
+          }
+          break;
+      }
+    },
+    updateStats(state, action) {    
+      // Strength
+      state.stats.strength.totalStrength = action.payload.totalStrength;
+      state.stats.strength.maxHealth = action.payload.maxHealth;
+      state.stats.strength.attack = action.payload.attack;
+
+      // Check if current HP is greater than max HP
+      if (state.currentHealth > state.stats.strength.maxHealth) {
+        state.currentHealth = state.stats.strength.maxHealth;
+      }
+
+      // Agility
+      state.stats.agility.totalAgility = action.payload.totalAgility;
+      state.stats.agility.defense = action.payload.defense;
+      state.stats.agility.speed = action.payload.speed;
+      state.stats.agility.hitChance = action.payload.hitChance;
+
+      // Arcana
+      state.stats.arcana.totalArcana = action.payload.totalArcana;
+      state.stats.arcana.spellPower = action.payload.spellPower;
+      state.stats.arcana.maxMana = action.payload.maxMana;
+    },
   },
 });
 

@@ -3,6 +3,7 @@ import { combatActions } from "../store/combat-slice";
 import store from "../store";
 
 import updateStatTotals from "../store/stats-actions";
+import { playerActions } from "../store/player-slice";
 
 const STATUS_EFFECTS = {
   POISONED: {
@@ -33,20 +34,41 @@ const STATUS_EFFECTS = {
 export default STATUS_EFFECTS;
 
 export function changeStatusEffect(dispatch, target, change, statusEffect) {
-  // update target slice
-  const order = store.getState().combat.order;
-  const index = order.findIndex((char) => char.id === target.id);
-  target = order[index];
+  const dashboard = store.getState().ui.dashboardIsVisible;
 
   // Check if status effect already exists
   if (!checkCurrentStatusEffects(target, statusEffect) && change === "ADD") {
-    dispatch(
-      combatActions.updateStatusEffects({
-        id: target.id,
-        change,
-        statusEffect,
-      })
-    );
+    if (dashboard && target.identifier === "PLAYER") {
+      // If the player is on the dashboard the player-slice object is updated
+      let player;
+      if (!dashboard) {
+        const order = store.getState().combat.order;
+        player = order.find((char) => char.id === "Player");
+      } else if (dashboard) {
+        player = store.getState().player;
+      }
+
+      target = player;
+
+      dispatch(
+        playerActions.updateStatusEffects({
+          change,
+          statusEffect,
+        })
+      );
+    } else {
+      // If the player is in a dungeon the combat-slice object is updated
+      const order = store.getState().combat.order;
+      const index = order.findIndex((char) => char.id === target.id);
+      target = order[index];
+      dispatch(
+        combatActions.updateStatusEffects({
+          id: target.id,
+          change,
+          statusEffect,
+        })
+      );
+    }
   } else if (
     checkCurrentStatusEffects(target, statusEffect) &&
     change === "ADD"
@@ -69,13 +91,18 @@ export function changeStatusEffect(dispatch, target, change, statusEffect) {
       })
     );
   } else if (change === "REMOVE") {
-    dispatch(
-      combatActions.updateStatusEffects({
-        id: target.id,
-        change,
-        statusEffect,
-      })
-    );
+    // ADD player-slice reducer here
+    if (dashboard) {
+      dispatch(playerActions.updateStatusEffects({ change, statusEffect }));
+    } else {
+      dispatch(
+        combatActions.updateStatusEffects({
+          id: target.id,
+          change,
+          statusEffect,
+        })
+      );
+    }
   }
 
   updateStatTotals(dispatch, target.id);

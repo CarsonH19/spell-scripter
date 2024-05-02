@@ -9,15 +9,13 @@ function App() {
   const dashboard = useSelector((state) => state.ui.dashboardIsVisible);
   const game = useSelector((state) => state.ui.gameWindowIsVisible);
   const modal = useSelector((state) => state.ui.modalIsVisible);
-  console.log("modal", modal);
+
   return (
     <>
       {modal && <Modal />}
       {start && <StartGame />}
       {!start && !game && dashboard && <Dashboard />}
       {!start && game && !dashboard && <GameWindow />}
-
-      {/* {!start && <GameWindow />} */}
     </>
   );
 }

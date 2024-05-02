@@ -11,12 +11,21 @@ export default function Item({ item }) {
   let inventory = useSelector((state) => state.player.inventory);
 
   const handleItemClick = (type) => {
+    const dashboard = store.getState().ui.dashboardIsVisible;
+
     switch (type) {
       case "EQUIPMENT":
         {
-          const order = store.getState().combat.order;
-          const index = order.findIndex((char) => char.id === "Player");
-          const player = order[index];
+          // Select combat-slice or player-slice player object
+          let player;
+          const dashboard = store.getState().ui.dashboardIsVisible;
+          if (!dashboard) {
+            const order = store.getState().combat.order;
+            player = order.find((char) => char.id === "Player");
+          } else if (dashboard) {
+            player = store.getState().player;
+            console.log("PLAYER", player);
+          }
 
           if (inventory.attunedItems.includes(item)) {
             // remove item from attunedItems
@@ -38,9 +47,9 @@ export default function Item({ item }) {
 
       case "CONSUMABLE":
         {
-          // item.function(dispatch, player);
-          // const order = store.getState().combat.order;
-          // const player = order.find((char) => char.id === "Player");
+          // Can't use consumables on the dashboard
+          if (dashboard) return;
+
           const player = store.getState().player;
 
           const itemID = "CRYPTBREAD"; // TEMPORARY

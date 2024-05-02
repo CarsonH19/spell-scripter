@@ -131,16 +131,6 @@ button.active {
   margin-bottom: 2rem;
 }
 
-.attuned ul li {
-  list-style: none;
-  aspect-ratio: 1;
-  width: 100%;
-  height: auto;
-  border: 2px solid red;
-  cursor: pointer;
-}
-
-
 .attuned h1 {
   flex: 1;
 }
@@ -151,7 +141,23 @@ button.active {
   padding: 0;
   flex: 3;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
 }
+
+.attuned ul li {
+  list-style: none;
+  aspect-ratio: 1;
+  width: 10%;
+  height: auto;
+  border: 2px solid red;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.attuned ul li:hover {
+  transition: 0.3s;
+  scale: 1.1;
+}
+

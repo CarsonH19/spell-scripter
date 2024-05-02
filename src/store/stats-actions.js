@@ -1,33 +1,25 @@
-// ===============================
-//            STATS
-// ===============================
-
-// let attunedItems = [];
-
-// These are now handled in state
-// export let statChanges = [];
-
-// export function addStatChange(object) {
-//   statChanges.push(object);
-//   updateStatTotals();
-// }
-
-// export function removeStatChange(object) {
-//   const index = statChanges.indexOf(object);
-//   statChanges.splice(index, 1);
-//   updateStatTotals();
-// }
-
 import store from "./index";
+
 import { combatActions } from "./combat-slice";
+import { playerActions } from "./player-slice";
 
 export default function updateStatTotals(dispatch, id) {
-  const findCharacterById = (id) => {
-    const characters = store.getState().combat.order;
-    return characters.find((char) => char.id === id);
-  };
+  let character;
+  let sliceActions;
+  const dashboard = store.getState().ui.dashboardIsVisible;
 
-  const character = findCharacterById(id);
+  if (dashboard) {
+    character = store.getState().player;
+    sliceActions = playerActions;
+  } else {
+    const findCharacterById = (id) => {
+      const characters = store.getState().combat.order;
+      return characters.find((char) => char.id === id);
+    };
+
+    character = findCharacterById(id);
+    sliceActions = combatActions;
+  }
 
   let totalStrength = character.stats.baseStrength;
   let maxHealth = 0;
@@ -95,8 +87,9 @@ export default function updateStatTotals(dispatch, id) {
   maxMana += calculateMaxMana(character, totalArcana);
   spellPower += calculateSpellPower(character, totalArcana);
 
+  // Check if player is on dashboard or in dungeon
   dispatch(
-    combatActions.updateStats({
+    sliceActions.updateStats({
       id: character.id,
       totalStrength,
       maxHealth,

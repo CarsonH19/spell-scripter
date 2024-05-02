@@ -2,10 +2,18 @@ import classes from "./InventoryModal.module.css";
 
 import { useSelector } from "react-redux";
 
+import store from "../../../store/index";
+
 export default function Stats() {
-  const order = useSelector((state) => state.combat.order);
-  const index = order.findIndex((char) => char.id === "Player");
-  const player = order[index];
+  let player;
+  const dashboard = useSelector((state) => state.ui.dashboardIsVisible);
+  if (!dashboard) {
+    const order = store.getState().combat.order;
+    player = order.find((char) => char.id === "Player");
+  } else if (dashboard) {
+    player = store.getState().player;
+    console.log("PLAYER", player);
+  }
 
   return (
     <div className={classes.stats}>

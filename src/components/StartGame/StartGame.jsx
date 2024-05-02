@@ -15,6 +15,7 @@ export default function StartGame() {
     dispatch(uiActions.toggle({ modal: "startIsVisible" })); // false
     dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true
 
+    // TEST CODE FOR INVENTORY
     let test = 30;
     for (let i = 0; i < test; i++) {
       dispatch(
