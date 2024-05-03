@@ -84,7 +84,6 @@
 .spellbook .content .prepare .schools ol li {
   cursor: pointer;
   margin-bottom: 1rem;
-  width: auto;
   border: 1px solid red;
   font-size: 1rem;
   text-align: center;
@@ -101,6 +100,7 @@
 .spellbook .content .prepare .spells h3 {
   color: white;
   text-align: center;
+  margin-top: 1rem;
 }
 
 
@@ -108,7 +108,6 @@
   width: 100%;
   padding: 1rem;
   margin: 0;
-  margin-bottom: 2rem;
   display: grid;
   align-content: flex-start;
   grid-template-columns: repeat(auto-fill, minmax(5%, 1fr)); 
@@ -120,8 +119,8 @@
 .spellbook .content .prepare .spells ul li {
   list-style: none;
   aspect-ratio: 1;
-  width: 100%;
-  height: auto;
+  width: 4rem;
+  height: 4rem;
   border: 2px solid red;
   cursor: pointer;
   border-radius: 10%;
@@ -144,17 +143,18 @@
   background-color: rgb(29, 26, 38);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(5%, 1fr)); 
-  gap: 2rem;
-  /* overflow: visible; */
+  height: 6rem;
 }
 
 .spellbook .content .prepare .prepared .counter {
   position: absolute;
   color: white;
   right: 5%;
-  top: -20%;
+  top: 0%;
 }
 
 .spellbook .content .prepare .prepared ul li {
   color: white;
+  width: 4rem;
+  height: 4rem
 }
