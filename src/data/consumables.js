@@ -5,8 +5,8 @@ const CONSUMABLES = {
     description: "A small vial of glowing red liquid.",
     image: "",
     type: "CONSUMABLE",
-    rarity: "RARE",
-    effect: "Restores 30HP. Can be used during combat.",
+    rarity: "Rare",
+    effect: ["Restores 30HP. Can be used during combat."],
     // soundEffect: gulpingWater24,
     // function: (dispatch, target) => {
     //   dispatch(changeHealthThunk({ target, change: "HEAL", value: 30 }));
@@ -14,11 +14,11 @@ const CONSUMABLES = {
   },
   "CRYPTBREAD": {
     name: "Cryptbread",
-    description: "",
+    description: "A chunk of stale bread as hard as stone.",
     image: "",
     type: "CONSUMABLE",
-    rarity: "COMMON",
-    effect: "Restores 15HP.",
+    rarity: "Common",
+    effect: ["Restores 15HP."],
     // soundEffect: chewCrackersMouth,
     // function: (dispatch, target) => {
     //   dispatch(changeHealthThunk({ target, change: "HEAL", value: 30 }));
@@ -30,7 +30,7 @@ const CONSUMABLES = {
     description: "",
     image: "",
     type: "CONSUMABLE",
-    rarity: "COMMON",
+    rarity: "Common",
     effect: "Restores 15HP.",
     // soundEffect: gulpingWater24,
     // function: () => {
@@ -43,7 +43,7 @@ const CONSUMABLES = {
     description: "",
     image: "",
     type: "CONSUMABLE",
-    rarity: "RARE",
+    rarity: "Rare",
     effect: "Restores 25HP when eaten.",
     // soundEffect: chewCrackersMouth,
     // function: () => {
@@ -56,7 +56,7 @@ const CONSUMABLES = {
     description: "",
     image: "",
     type: "CONSUMABLE",
-    rarity: "RARE",
+    rarity: "Rare",
     effect: "Restores 25HP when eaten.",
     // soundEffect: chewCrackersMouth,
     // function: () => {

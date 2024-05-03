@@ -119,19 +119,21 @@ button.active {
   display: grid;
   align-content: flex-start;
   grid-template-columns: repeat(auto-fill, minmax(8%, 1fr)); /* Adjust based on the number of items you want to display */
-  gap: 1.5rem;
-  overflow: auto;
+  gap: 2rem;
+  overflow: visible;
 }
 
 .items li {
   list-style: none;
   aspect-ratio: 1;
-  width: 100%;
-  height: auto;
+  width: 4rem;
+  height: 4rem;
   border: 2px solid red;
   cursor: pointer;
   border-radius: 100%;
+  color: black;
 }
+
 
 .items li:hover {
   transition: 0.3s;
@@ -156,25 +158,25 @@ button.active {
 .attuned ul {
   border: 1px solid white;
   margin: 0;
-  padding: 0;
+  padding: 1rem;
   flex: 3;
   display: flex;
-  gap: 1rem;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
-.attuned ul li {
+.attuned ul div li {
   list-style: none;
   aspect-ratio: 1;
-  width: 10%;
-  height: auto;
+  width: 4rem;
+  height: 4rem;
   border: 2px solid red;
   cursor: pointer;
   border-radius: 100%;
 }
 
-.attuned ul li:hover {
+.attuned ul div li:hover {
   transition: 0.3s;
   scale: 1.1;
 }

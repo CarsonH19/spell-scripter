@@ -1,7 +1,7 @@
 import { uiActions } from "../../../store/ui-slice";
 import classes from "./PlayerColumn.module.css";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function PlayerColumn() {
   const dispatch = useDispatch();
@@ -10,9 +10,6 @@ export default function PlayerColumn() {
     dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
     dispatch(uiActions.toggleModal({ modal, open: "OPEN" }));
   };
-
-  const test = useSelector((state) => state.ui);
-  console.log(test);
 
   return (
     <div className={classes.column}>

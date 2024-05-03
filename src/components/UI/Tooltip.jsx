@@ -2,7 +2,13 @@ import classes from "./Tooltip.module.css";
 
 import { useState } from "react";
 
-export default function Tooltip({ title, text, detail, children }) {
+export default function Tooltip({
+  title,
+  text,
+  detailOne,
+  detailTwo,
+  children,
+}) {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const handleMouseEnter = () => {
@@ -14,13 +20,20 @@ export default function Tooltip({ title, text, detail, children }) {
   };
 
   return (
-    <div className={classes.container} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div
+      className={classes.container}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {children}
-      {showTooltip && <div className={classes.tooltip}>
-        <p className={classes.title}>{title}</p>
-        <p className={classes.description}>{text}</p>
-        <p className={classes.detail}>{detail}</p>
-      </div>}
+      {showTooltip && (
+        <div className={classes.tooltip}>
+          {title && <p className={classes.title}>{title}</p>}
+          {text && <p className={classes.description}>{text}</p>}
+          {detailOne && <p className={classes.detail}>{detailOne}</p>}
+          {detailTwo && <p>{detailTwo}</p>}
+        </div>
+      )}
     </div>
   );
-};
+}

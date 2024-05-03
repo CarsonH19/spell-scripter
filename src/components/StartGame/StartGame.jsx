@@ -32,6 +32,13 @@ export default function StartGame() {
         change: "ADD",
       })
     );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...EQUIPMENT.BRACELET_OF_THE_SERPENT, id: uuidv4() },
+        change: "ADD",
+      })
+    );
   };
 
   return (

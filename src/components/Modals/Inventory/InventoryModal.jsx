@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import Item from "./Item";
 import Stats from "./Stats";
 
-// import Tooltip from "../../UI/Tooltip";
+import Tooltip from "../../UI/Tooltip";
 
 export default function InventoryModal() {
   const [active, setActive] = useState(1);
@@ -32,7 +32,16 @@ export default function InventoryModal() {
       break;
   }
 
-  console.log("INVENTORY");
+  // Counter logic
+  let counters = [];
+  itemGroup.map((item) => {
+    let existingItem = counters.find((obj) => obj.name === item.name);
+    if (existingItem) {
+      existingItem.counter++;
+    } else {
+      counters.push({ ...item, counter: 1 });
+    }
+  });
 
   return (
     <div className={classes.inventory}>
@@ -64,15 +73,31 @@ export default function InventoryModal() {
             </button>
           </div>
           <ul className={classes.items}>
-            {itemGroup.map((item) => (
-              <Item key={item.id} item={item} />
+            {counters.map((item) => (
+              <Tooltip
+                key={item.id}
+                title={item.name}
+                text={item.rarity}
+                detailOne={item.description}
+                detailTwo={item.effect.map((line, index) => <div key={index}>{line}</div>)}
+              >
+                <Item key={item.id} item={item} count={item.counter} />
+              </Tooltip>
             ))}
           </ul>
+
           <div className={classes.attuned}>
             <h3>Attuned</h3>
             <ul>
               {attunedItems.map((item) => (
-                <Item key={item.id} item={item} />
+                <Tooltip
+                  key={item.id}
+                  title={item.name}
+                  text={"Test"}
+                  detail={`Test`}
+                >
+                  <Item key={item.id} item={item} />
+                </Tooltip>
               ))}
             </ul>
           </div>

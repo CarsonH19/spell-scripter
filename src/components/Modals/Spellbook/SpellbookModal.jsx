@@ -55,14 +55,16 @@ export default function SpellbookModal() {
             </ol>
           </div>
           <div className={classes.spells}>
-            <h3>Spells</h3>
             <ul>
-              {school.map((spell) => (
-                <Spell key={spell.name} spell={spell} />
-              ))}
+              {school.map((spell) => {
+                if (spell.unlocked) {
+                  return <Spell key={spell.name} spell={spell} />;
+                }
+              })}
             </ul>
+            <h3>Prepared Spells</h3>
+
             <div className={classes.prepared}>
-              <h3>Prepared</h3>
               <p>
                 {preparedSpells} / {totalSpells}
               </p>
@@ -86,13 +88,13 @@ export default function SpellbookModal() {
           onClick={() => handleChange(1)}
           className={active === 1 ? classes.active : ""}
         >
-          Spell Mastery
+          Mastery
         </button>
         <button
           onClick={() => handleChange(2)}
           className={active === 2 ? classes.active : ""}
         >
-          Prepared Spells
+          Spells
         </button>
       </div>
       <div className={classes.content}>{content}</div>

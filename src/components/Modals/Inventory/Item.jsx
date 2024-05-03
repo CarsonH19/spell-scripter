@@ -6,7 +6,7 @@ import store from "../../../store/index";
 import { itemFunctions } from "../../../util/item-functions";
 import changeStatusEffect from "../../../store/status-effect-actions";
 
-export default function Item({ item }) {
+export default function Item({ item, count }) {
   const dispatch = useDispatch();
   let inventory = useSelector((state) => state.player.inventory);
 
@@ -63,7 +63,13 @@ export default function Item({ item }) {
     }
   };
 
-  return <li onClick={() => handleItemClick(item)}></li>;
+  console.log(count)
+
+  return (
+    <li onClick={() => handleItemClick(item)}>
+      {item.name} {count > 1 ? `x${count}` : ""}
+    </li>
+  );
 }
 
 function toSnakeCase(str) {

@@ -6,7 +6,7 @@
 .tooltip {
   visibility: visible;
   position: absolute;
-  z-index: 3;
+  z-index: 99;
   bottom: 125%;
   left: 0%;
   background-color: black;
