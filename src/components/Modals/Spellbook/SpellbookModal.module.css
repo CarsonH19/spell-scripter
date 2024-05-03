@@ -8,7 +8,6 @@
   border: 2px solid white;
   padding: 1rem;
   overflow: visible;
-
 }
 
 .spellbook h1 {
@@ -48,8 +47,6 @@
 .spellbook .content {
   width: 100%;
   flex: 1;
-  /* background-color: white; */
-  /* color: rgb(29, 26, 38); */
   display: flex;
 }
 

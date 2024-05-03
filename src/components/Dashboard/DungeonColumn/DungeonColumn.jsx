@@ -7,20 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { dungeonActions } from "../../../store/dungeon-slice";
 import { currentRoom } from "../../../data/dungeon";
 
-import { heroActions } from "../../../store/hero-slice";
-import { currentParty } from "../../../data/heroes";
-
 import { combatActions } from "../../../store/combat-slice";
-
-// import { playerActions } from "../../../store/player-slice";
 
 import updateStatTotals from "../../../store/stats-actions";
 
 export default function DungeonColumn() {
   const dispatch = useDispatch();
 
-  const heroes = currentParty;
   const enemies = currentRoom.contents.enemies;
+  const heroes = useSelector((state) => state.hero.party);
   const player = useSelector((state) => state.player);
 
   const handleEnter = () => {
@@ -29,7 +24,6 @@ export default function DungeonColumn() {
 
     // the following are only used for testing
     dispatch(dungeonActions.updateRoom(currentRoom));
-    dispatch(heroActions.updateParty(heroes));
     dispatch(combatActions.setInitiative({ heroes, enemies, player }));
 
     // TESTING CODE update all stats

@@ -4,9 +4,6 @@ const heroSlice = createSlice({
   name: "hero",
   initialState: { party: [] },
   reducers: {
-    updateParty(state, action) {
-      state.party = action.payload;
-    },
     changeParty(state, action) {
       const hero = action.payload.hero;
       const change = action.payload.change;

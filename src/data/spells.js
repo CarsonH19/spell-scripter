@@ -63,9 +63,9 @@ export function changeSpellAccess(school, spell, change) {
   for (let i = 0; i < school.length; i++) {
     if (school[i].name === spell.name) {
       if (change === "UNLOCK") {
-        school[i].unlock = true;
+        school[i].unlocked = true;
       } else if (change === "LOCK") {
-        school[i].unlock = false;
+        school[i].unlocked = false;
       }
     }
   }
