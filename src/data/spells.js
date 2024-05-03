@@ -8,6 +8,8 @@ const SPELLS = {
   evocation: [
     {
       name: "Firebolt",
+      school: "Evocation",
+      description: 'Fire ow ow burn',
       unlocked: true,
       image: "",
       spellTarget: "ENEMY",

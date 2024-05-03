@@ -6,6 +6,8 @@ import Spell from "./Spell";
 import SPELLS from "../../../data/spells";
 import { useSelector } from "react-redux";
 
+import Tooltip from "../../UI/Tooltip";
+
 export default function SpellbookModal() {
   const [active, setActive] = useState(1);
   const [school, setSchool] = useState(SPELLS["evocation"]);
@@ -58,19 +60,34 @@ export default function SpellbookModal() {
             <ul>
               {school.map((spell) => {
                 if (spell.unlocked) {
-                  return <Spell key={spell.name} spell={spell} />;
+                  return (
+                    <Tooltip
+                      key={spell.name}
+                      title={spell.name}
+                      text={spell.school}
+                      detailOne={spell.description}
+                    >
+                      <Spell key={spell.name} spell={spell} />
+                    </Tooltip>
+                  );
                 }
               })}
             </ul>
             <h3>Prepared Spells</h3>
-
             <div className={classes.prepared}>
-              <p>
+              <p className={classes.counter}>
                 {preparedSpells} / {totalSpells}
               </p>
               <ul>
                 {player.spellList.map((spell) => (
-                  <Spell key={spell.name} spell={spell} />
+                  <Tooltip
+                    key={spell.name}
+                    title={spell.name}
+                    text={spell.school}
+                    detailOne={spell.description}
+                  >
+                    <Spell key={spell.name} spell={spell} />
+                  </Tooltip>
                 ))}
               </ul>
             </div>

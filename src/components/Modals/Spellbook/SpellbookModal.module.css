@@ -7,6 +7,8 @@
   align-items: center;
   border: 2px solid white;
   padding: 1rem;
+  overflow: visible;
+
 }
 
 .spellbook h1 {
@@ -135,7 +137,7 @@
   position: relative;
   border: 1px solid white;
   margin: 1rem;
-  flex: 1;
+  /* overflow: visible; */
 }
 
 .spellbook .content .prepare .prepared ul {
@@ -143,9 +145,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(5%, 1fr)); 
   gap: 2rem;
+  /* overflow: visible; */
 }
 
-.spellbook .content .prepare .prepared p {
+.spellbook .content .prepare .prepared .counter {
   position: absolute;
   color: white;
   right: 5%;
