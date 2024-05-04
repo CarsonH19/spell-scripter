@@ -1,10 +1,14 @@
+import { useSelector } from "react-redux";
 import classes from "./DungeonInfo.module.css";
 
 export default function DungeonInfo() {
+  const dungeon = useSelector((state) => state.dungeon);
+
   return (
     <div className={classes.info}>
-      <h2>Dungeon Name</h2>
-      <h3>Room Counter</h3>
+      <h2>{dungeon.name}</h2>
+      <h4>Rooms Cleared: {dungeon.roomCounter}</h4>
+      <h4>Threat: {dungeon.threat}</h4>
     </div>
   );
 }

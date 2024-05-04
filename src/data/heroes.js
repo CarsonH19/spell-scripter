@@ -136,4 +136,6 @@ export function changeHeroAccess(name, change) {
   }
 }
 
+// Create a function update hero information (level, exp, stats, etc...)
+
 export default heroes;

@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const dungeonSlice = createSlice({
   name: "dungeon",
   initialState: {
-    roomName: "",
+    name: "",
+    roomCounter: 0,
+    threat: 0,
     image: null,
     music: null,
     contents: {
@@ -41,14 +43,15 @@ const dungeonSlice = createSlice({
       }
     },
     addItem(state, action) {
-      // action: item object
+      // action payload = item object
       state.contents.items.push(action.payload);
     },
-    removeItem(state, action) {
-      const itemName = action.payload;
-      state.contents.items = state.contents.items.filter(
-        (item) => item.name !== itemName
-      );
+    addThreat(state, action) {
+      // action payload = value to increase
+      state.threat += action.payload;
+    },
+    incrementRoomCounter(state) {
+      state.roomCounter++;
     },
   },
 });

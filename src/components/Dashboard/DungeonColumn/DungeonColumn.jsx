@@ -4,12 +4,12 @@ import classes from "./DungeonColumn.module.css";
 import { uiActions } from "../../../store/ui-slice";
 import { useDispatch, useSelector } from "react-redux";
 
-import { dungeonActions } from "../../../store/dungeon-slice";
 import { currentRoom } from "../../../data/dungeon";
 
 import { combatActions } from "../../../store/combat-slice";
 
 import updateStatTotals from "../../../store/stats-actions";
+import { setDungeon } from "../../../util/dungeon-util";
 
 export default function DungeonColumn() {
   const dispatch = useDispatch();
@@ -19,11 +19,13 @@ export default function DungeonColumn() {
   const player = useSelector((state) => state.player);
 
   const handleEnter = () => {
+    setDungeon(dispatch, "The Great Catacomb");
+
+    console.log(1);
     dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // false
     dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // true
 
     // the following are only used for testing
-    dispatch(dungeonActions.updateRoom(currentRoom));
     dispatch(combatActions.setInitiative({ heroes, enemies, player }));
 
     // TESTING CODE update all stats
@@ -46,11 +48,7 @@ export default function DungeonColumn() {
         <div className={classes.selection}>
           <h2> The Great Catacombs</h2>
           <p> Mastery Points Required: 0</p>
-
-          {/* Set Background Dungeon Image */}
         </div>
-        <p>CHECKPOINT SELECTION</p>
-        <hr />
         <p>Description</p>
         <p className={classes.description}>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque nulla
