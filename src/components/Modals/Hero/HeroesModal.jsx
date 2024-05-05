@@ -8,6 +8,7 @@ import { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { heroActions } from "../../../store/hero-slice";
+import Icon from "../../UI/Icon";
 
 export default function HeroesModal() {
   const dispatch = useDispatch();
@@ -26,13 +27,13 @@ export default function HeroesModal() {
     <div className={classes.hero}>
       <h1>Heroes</h1>
       <div className={classes.container}>
-        <div className={classes.left}>
+        <ul className={classes.left}>
           {heroes.map((hero) => {
             if (hero.unlocked) {
               return (
-                <img
+                <Icon
                   key={hero.name}
-                  src=""
+                  style={{ backgroundImage: `url(${hero.image})` }}
                   alt={hero.name}
                   onMouseEnter={() => setHoveredElement(hero)}
                   onClick={() => handleChangeParty(hero)}
@@ -40,7 +41,7 @@ export default function HeroesModal() {
               );
             }
           })}
-        </div>
+        </ul>
         <div className={classes.right}>
           <div className={classes.selected}>
             {hoveredElement ? (
@@ -51,9 +52,9 @@ export default function HeroesModal() {
           </div>
           <div className={classes.party}>
             <h3>Selected Party Members</h3>
-            <div>
+            <ul>
               {party.map((hero) => (
-                <img
+                <Icon
                   key={hero.name}
                   src=""
                   alt={hero.name}
@@ -61,7 +62,7 @@ export default function HeroesModal() {
                   onClick={() => handleChangeParty(hero)}
                 />
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </div>

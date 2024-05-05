@@ -1,6 +1,8 @@
 .container {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
+  width: 4rem;
+  height: 4rem;
 }
 
 .tooltip {
@@ -8,7 +10,7 @@
   position: absolute;
   z-index: 99;
   bottom: 125%;
-  left: 0%;
+  left: 100%;
   background-color: black;
   color: white;
   padding: 5px;

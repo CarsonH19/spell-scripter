@@ -116,22 +116,25 @@ button.active {
   padding: 1rem;
   margin: 0;
   margin-bottom: 2rem;
+  overflow: visible;
+  padding: 1rem;
+  margin: 0;
   display: grid;
   align-content: flex-start;
-  grid-template-columns: repeat(auto-fill, minmax(8%, 1fr)); /* Adjust based on the number of items you want to display */
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); 
   gap: 2rem;
-  overflow: visible;
 }
 
 .items li {
-  list-style: none;
-  aspect-ratio: 1;
-  width: 4rem;
-  height: 4rem;
-  border: 2px solid red;
-  cursor: pointer;
-  border-radius: 100%;
   color: black;
+  aspect-ratio: 1;
+  height: 4rem;
+  width: 4rem;
+  list-style: none;
+  border: 1px solid red;
+  cursor: pointer;
+  border-radius: 10%;
 }
 
 
@@ -159,11 +162,12 @@ button.active {
   border: 1px solid white;
   margin: 0;
   padding: 1rem;
-  flex: 3;
+  /* flex: 1; */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  height: 8rem;
 }
 
 .attuned ul div li {
@@ -173,7 +177,7 @@ button.active {
   height: 4rem;
   border: 2px solid red;
   cursor: pointer;
-  border-radius: 100%;
+  border-radius: 10%;
 }
 
 .attuned ul div li:hover {

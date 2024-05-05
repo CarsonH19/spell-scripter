@@ -2,42 +2,24 @@ import classes from "./DungeonColumn.module.css";
 
 // following imports are only used for testing
 import { uiActions } from "../../../store/ui-slice";
-import { useDispatch, useSelector } from "react-redux";
 
-import { currentRoom } from "../../../data/dungeon";
+import { useDispatch } from "react-redux";
 
-import { combatActions } from "../../../store/combat-slice";
-
-import updateStatTotals from "../../../store/stats-actions";
 import { setDungeon } from "../../../util/dungeon-util";
+
 
 export default function DungeonColumn() {
   const dispatch = useDispatch();
 
-  const enemies = currentRoom.contents.enemies;
-  const heroes = useSelector((state) => state.hero.party);
-  const player = useSelector((state) => state.player);
-
   const handleEnter = () => {
+    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
+
     setDungeon(dispatch, "The Great Catacomb");
 
-    console.log(1);
-    dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // false
-    dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // true
 
-    // the following are only used for testing
-    dispatch(combatActions.setInitiative({ heroes, enemies, player }));
-
-    // TESTING CODE update all stats
-    for (let i = 0; i < heroes.length; i++) {
-      updateStatTotals(dispatch, heroes[i].id);
-    }
-
-    for (let i = 0; i < enemies.length; i++) {
-      updateStatTotals(dispatch, enemies[i].id);
-    }
-
-    updateStatTotals(dispatch, player.id);
+    dispatch(
+      uiActions.toggleModal({ modal: "confirmationModal", open: "OPEN" })
+    ); // set to true
   };
 
   return (

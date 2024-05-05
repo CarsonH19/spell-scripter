@@ -119,6 +119,8 @@ let heroes = [
     behavior: "RANDOM",
     statusEffects: [],
   },
+
+  
 ];
 // WARLOCK
 // EVOKER

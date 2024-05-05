@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { playerActions } from "../../../store/player-slice";
 
+import Icon from "../../UI/Icon";
+
 export default function Spell({ spell }) {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
@@ -13,5 +15,5 @@ export default function Spell({ spell }) {
     }
   };
 
-  return <li onClick={() => handleSpellClick(spell)}>{spell.name}</li>;
+  return <Icon onClick={() => handleSpellClick(spell)} />;
 }

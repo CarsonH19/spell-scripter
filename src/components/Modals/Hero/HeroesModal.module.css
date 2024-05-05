@@ -33,21 +33,22 @@
   margin: 0;
   display: grid;
   align-content: flex-start;
-  grid-template-columns: repeat(auto-fill, minmax(10%, 1fr)); 
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); 
   gap: 2rem;
-
 }
 
-.hero .container .left img {
+.hero .container .left li {
   aspect-ratio: 1;
-  height: 100%;
-  width: auto;
+  list-style: none;
+  height: 4rem;
+  width: 4rem;
   border: 1px solid red;
   cursor: pointer;
   border-radius: 10%;
 }
 
-.hero .container .left img:hover {
+.hero .container .left li:hover {
   transition: 0.3s;
   scale: 1.1;
   border: 1px solid white;
@@ -67,9 +68,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
+.selected img {
+  width: 50%;
+  height: 100%;
+  border: 1px solid red;
+}
 .stats {
   flex: 1;
   /* margin: 1rem; */
@@ -91,21 +96,13 @@
   margin: 0;
 }
 
-
-.selected img {
-  flex: 1;
-  text-align: center;
-  border: 1px solid red;
-  height: 100%;
-}
-
 .text {
   margin: 0;
   font-size: 1rem;
 }
 
 .hero .container .right .party {
-  height: 10rem;
+  height: 8rem;
   border: 1px solid red;
   padding: 0.5rem;
   display: flex;
@@ -116,16 +113,20 @@
   text-align: center;
 }
 
-.party div {
+.party ul {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  margin: 0;
+  padding: 0;
   flex: 1;
+  gap: 2rem;
 }
 
-.party div img {
-  height: 5rem;
-  width: 5rem;
+.party ul li {
+  height: 4rem;
+  width: 4rem;
   border: 1px solid red;
   border-radius: 10%;
+  list-style: none;
 } 

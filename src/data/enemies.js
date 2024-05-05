@@ -245,53 +245,117 @@ const CULTISTS = {
 //           Skeletons
 // ===============================
 
-// const DECREPIT_SKELETON = {
-//   name: "Decrepit Skeleton",
-//   image: "styles/images/monsters/decrepit-skeleton-one.jpg",
-//   type: "UNDEAD",
-//   skulls: 1,
-//   soundEffects: {
-//     spawn: boneCrunchCrack1,
-//     attack: punchSounds,
-//     death: boneBreakSounds,
-//   },
-// };
+const UNDEAD = {
+  DECREPIT_SKELETON: {
+    name: "Decrepit Skeleton",
+    identifier: "ENEMY",
+    image: "",
+    type: ENEMY_TYPES.UNDEAD,
+    // audio: {},
+    level: 1,
+    currentHealth: 10,
+    currentMana: 0,
+    stats: {
+      baseStrength: 0,
+      strength: {
+        totalStrength: 0,
+        attack: 0,
+        maxHealth: 0,
+      },
+      baseAgility: 0,
+      agility: {
+        totalAgility: 0,
+        defense: 0,
+        speed: 0,
+        hitChance: 0,
+      },
+      baseArcana: 0,
+      arcana: {
+        totalArcana: 0,
+        spellPower: 0,
+        maxMana: 0,
+      },
+    },
+    weaknesses: [],
+    resistances: [],
+    immunities: [],
+    behavior: "RANDOM",
+    statusEffects: [],
+  },
+  SKELETAL_SOLDIER: {
+    name: "Skeletal Soldier",
+    identifier: "ENEMY",
+    image: "",
+    type: ENEMY_TYPES.UNDEAD,
+    // audio: {},
+    level: 2,
+    currentHealth: 10,
+    currentMana: 0,
+    stats: {
+      baseStrength: 0,
+      strength: {
+        totalStrength: 0,
+        attack: 0,
+        maxHealth: 0,
+      },
+      baseAgility: 1,
+      agility: {
+        totalAgility: 0,
+        defense: 0,
+        speed: 0,
+        hitChance: 0,
+      },
+      baseArcana: 0,
+      arcana: {
+        totalArcana: 0,
+        spellPower: 0,
+        maxMana: 0,
+      },
+    },
+    weaknesses: [],
+    resistances: [],
+    immunities: [],
+    behavior: "RANDOM",
+    statusEffects: [],
+  },
+  ARMORED_SKELETON: {
+    name: "Armored Skeleton",
+    identifier: "ENEMY",
+    image: "",
+    type: ENEMY_TYPES.UNDEAD,
+    // audio: {},
+    level: 3,
+    currentHealth: 10,
+    currentMana: 0,
+    stats: {
+      baseStrength: 1,
+      strength: {
+        totalStrength: 0,
+        attack: 0,
+        maxHealth: 0,
+      },
+      baseAgility: 1,
+      agility: {
+        totalAgility: 0,
+        defense: 0,
+        speed: 0,
+        hitChance: 0,
+      },
+      baseArcana: 0,
+      arcana: {
+        totalArcana: 0,
+        spellPower: 0,
+        maxMana: 0,
+      },
+    },
+    weaknesses: [],
+    resistances: [],
+    immunities: [],
+    behavior: "RANDOM",
+    statusEffects: [],
+  },
+}
 
-// const SKELETAL_SOLDIER = {
-//   name: "Skeletal Soldier",
-//   image: "styles/images/monsters/skeletal-soldier.jpg",
-//   type: "UNDEAD",
-//   skulls: 2,
-//   soundEffects: {
-//     spawn: boneCrunchCrack1,
-//     attack: heavyAttackSounds,
-//     death: boneBreakSounds,
-//   },
-// };
-
-// const ARMORED_SKELETON = {
-//   name: "Armored Skeleton",
-//   image: "styles/images/monsters/armored-skeleton.jpg",
-//   type: "UNDEAD",
-//   skulls: 3,
-//   soundEffects: {
-//     spawn: boneCrunchCrack1,
-//     attack: heavyAttackSounds,
-//     death: armorSounds,
-//   },
-// };
-
-// const LEGIONNAIRE = {
-//   name: "Undead Legionnaire",
-//   image: "styles/images/monsters/legionnaire.jpg",
-//   type: "UNDEAD",
-//   skulls: 4,
-//   soundEffects: {
-//     spawn: boneCrunchCrack1,
-//     attack: heavyAttackSounds,
-//     death: armorSounds,
-//   },
-// };
 
 // const UNDYING_WARBAND = {
 //   name: "Undying Warband",
@@ -1097,4 +1161,4 @@ const CULTISTS = {
 //   }
 // }
 
-export { GNAWERS, SPIDERS, THIEVES, CULTISTS };
+export { GNAWERS, SPIDERS, THIEVES, UNDEAD, CULTISTS };

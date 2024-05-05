@@ -3,6 +3,8 @@ import { playerActions } from "../../../store/player-slice";
 
 import store from "../../../store/index";
 
+import Icon from "../../UI/Icon";
+
 import { itemFunctions } from "../../../util/item-functions";
 import changeStatusEffect from "../../../store/status-effect-actions";
 
@@ -66,9 +68,9 @@ export default function Item({ item, count }) {
   console.log(count)
 
   return (
-    <li onClick={() => handleItemClick(item)}>
+    <Icon onClick={() => handleItemClick(item)}>
       {item.name} {count > 1 ? `x${count}` : ""}
-    </li>
+    </Icon>
   );
 }
 

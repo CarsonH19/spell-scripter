@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 
 import classes from "./Modal.module.css";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
 
 import HeroesModal from "./Hero/HeroesModal";
@@ -14,6 +14,7 @@ import TomesModal from "./Tomes/TomesModal";
 import RoomSummaryModal from "./RoomSummary/RoomSummaryModal";
 import TradeModal from "./Trade/TradeModal";
 import HelpModal from "./Help/HelpModal";
+import ConfirmationModal from "./Confirmation/ConfirmationModal";
 
 import store from "../../store";
 
@@ -24,6 +25,10 @@ export default function Modal() {
   };
 
   const activeModal = selectModal();
+
+  // This forces a rerender when the buttons on confirmationModal change the state to display a different modal 
+  const ui = useSelector((state) => state.ui);
+  console.log(ui);
 
   return createPortal(
     <div className={classes.modal}>
@@ -68,6 +73,10 @@ function selectModal() {
 
     case "helpModal":
       return <HelpModal />;
+
+    case "confirmationModal": {
+      return <ConfirmationModal />;
+    }
   }
 }
 

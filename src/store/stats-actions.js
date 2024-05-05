@@ -113,10 +113,18 @@ export default function updateStatTotals(dispatch, id) {
   // ===============================
 
   function calculateMaxHealth(character, totalStrength) {
-    let baseHealth = 10 * character.level + 100;
-    let strengthBonusHealth = totalStrength * 10;
-    let maxHealth = baseHealth + strengthBonusHealth;
+    let baseHealth;
+    let strengthBonusHealth;
+    let maxHealth;
 
+    if (character.identifier === "PLAYER") {
+      baseHealth = 10 * character.level + 30;
+    } else {
+      baseHealth = 10 * character.level;
+    }
+
+    strengthBonusHealth = totalStrength * 10;
+    maxHealth = baseHealth + strengthBonusHealth;
     // Checks for Diseased Condition
     // if (DISEASED.duration !== null) {
     //   playerMaxHealth = Math.round(playerMaxHealth * 0.8);
@@ -133,9 +141,18 @@ export default function updateStatTotals(dispatch, id) {
   }
 
   function calculateAttackBonus(character, totalStrength) {
-    let baseAttack = character.level * 2 + 8;
-    let strengthBonusAttack = totalStrength * 2;
-    let totalAttack = baseAttack + strengthBonusAttack;
+    let baseAttack;
+    let strengthBonusAttack;
+    let totalAttack;
+
+    if (character.identifier === "PLAYER") {
+      baseAttack = character.level * 2 + 5;
+    } else {
+      baseAttack = character.level * 2 + 1;
+    }
+
+    strengthBonusAttack = totalStrength * 2;
+    totalAttack = baseAttack + strengthBonusAttack;
 
     return totalAttack;
   }
@@ -145,7 +162,7 @@ export default function updateStatTotals(dispatch, id) {
   // ===============================
 
   function calculateHitChance(totalAgility) {
-    // +1 per agility
+    // +1 per agility / d20 roll + hitChance
     const hitChance = totalAgility;
 
     return hitChance;
@@ -158,6 +175,7 @@ export default function updateStatTotals(dispatch, id) {
     if (guard) {
       defense = Math.round(defense * 1.5);
     }
+
     return defense;
   }
 
@@ -172,17 +190,39 @@ export default function updateStatTotals(dispatch, id) {
   // ===============================
 
   function calculateMaxMana(character, totalArcana) {
-    let baseMana = 5 * character.level + 50;
-    let arcanaBonusMana = totalArcana * 10;
-    let maxMana = baseMana + arcanaBonusMana;
+    let baseMana;
+    let arcanaBonusMana;
+    let maxMana;
+
+    if (character.identifier === "PLAYER") {
+      baseMana = 5 * character.level + 20;
+    } else if (totalArcana > 0) {
+      baseMana = 5 * character.level;
+    } else {
+      baseMana = 0;
+    }
+
+    arcanaBonusMana = totalArcana * 10;
+    maxMana = baseMana + arcanaBonusMana;
 
     return maxMana;
   }
 
   function calculateSpellPower(character, totalArcana) {
-    let basePower = character.level * 2 + 6;
-    let arcanaBonusPower = totalArcana * 2;
-    let totalSpellPower = basePower + arcanaBonusPower;
+    let basePower;
+    let arcanaBonusPower;
+    let totalSpellPower;
+
+    if (character.identifier === "PLAYER") {
+      basePower = character.level * 2 + 3;
+    } else if (totalArcana > 0) {
+      basePower = character.level * 2
+    } else {
+      basePower = 0;
+    }
+
+    arcanaBonusPower = totalArcana * 2;
+    totalSpellPower = basePower + arcanaBonusPower;
 
     return totalSpellPower;
   }

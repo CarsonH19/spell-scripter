@@ -2,11 +2,11 @@
 
 import { dungeonActions } from "../store/dungeon-slice";
 
+import { UNDEAD } from "../data/enemies";
+
 import store from "../store/index";
 
-// Create a room given the "dungeon" and "roomCounter"
-// dungeonName - will determine the monster and loot type
-// roomCounter - the higher the room counter the more difficult enemies will be
+import { v4 as uuidv4 } from "uuid";
 
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
@@ -54,19 +54,21 @@ export function createNewRoom(dispatch) {
 
   // getRoomImage(); // NOTE: Do I need to get this after the contents?
 
-  const roomContent = getRoomContent();
+  // const roomContent = getRoomContent();
 
-  switch (roomContent) {
-    case "MONSTERS":
-      // get monsters
-      newRoom.contents.enemies = getRoomEnemies();
-      break;
+  // switch (roomContent) {
+  //   case "MONSTERS":
+  //     // get monsters
+  //     newRoom.contents.enemies = getRoomEnemies();
+  //     break;
 
-    case "EVENT":
-      // get Event
-      newRoom.contents.event = getRoomEvent();
-      break;
-  }
+  //   case "EVENT":
+  //     // get Event
+  //     newRoom.contents.event = getRoomEvent();
+  //     break;
+  // }
+
+  newRoom.contents.enemies = getRoomEnemies();
 
   dispatch(dungeonActions.updateRoom(newRoom));
   console.log(`New Room Added: ${newRoom}`);
@@ -92,12 +94,15 @@ function getRoomContent() {
   }
 }
 
-function getRoomEnemies() {
+export function getRoomEnemies() {
   let enemiesArray = [];
   const threat = store.getState().dungeon.threat;
 
-
-  let enemyTypes;
+  let enemyTypes = {
+    DECREPIT_SKELETON: 0.6,
+    SKELETAL_SOLDIER: 0.3,
+    ARMORED_SKELETON: 0.1,
+  };
 
   // Adjust enemy types based on threat level
   if (threat > 60) {
@@ -106,14 +111,12 @@ function getRoomEnemies() {
     // high tier enemies
   } else if (threat > 20) {
     // mid tier enemies
-  } else {
-    // low tier enemies
   }
 
   // Calculate the number of enemies based on the threat level
   let numberOfEnemies;
   if (threat > 50) {
-    numberOfEnemies = 5; // 5 enemies
+    numberOfEnemies = 5;
   } else if (threat > 40) {
     numberOfEnemies = Math.floor(Math.random() * 2) + 4; // Between 4 to 5 enemies
   } else if (threat > 30) {
@@ -123,7 +126,7 @@ function getRoomEnemies() {
   } else if (threat > 10) {
     numberOfEnemies = Math.floor(Math.random() * 2) + 1; // Between 1 to 2 enemies
   } else {
-    numberOfEnemies = 1; // 1 enemy
+    numberOfEnemies = 1;
   }
 
   // Generate random enemies based on their probabilities
@@ -134,10 +137,7 @@ function getRoomEnemies() {
     for (let enemyType in enemyTypes) {
       cumulativeProbability += enemyTypes[enemyType];
       if (rand <= cumulativeProbability) {
-        enemiesArray.push({
-          type: enemyType,
-          // Add other properties as needed
-        });
+        enemiesArray.push({ ...UNDEAD[enemyType], id: uuidv4() });
         break;
       }
     }

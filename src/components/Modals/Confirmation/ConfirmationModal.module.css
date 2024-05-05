@@ -1,0 +1,109 @@
+.confirmation {
+  height: 90%;
+  width: 90%;
+  background-color: rgb(29, 26, 38);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  padding: 1rem;
+  overflow: visible;
+}
+
+.confirmation h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 0rem;
+  margin: 0;
+  border-bottom: 1px solid white;
+  width: 40%;
+}
+
+.confirmation .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  height: 100%;
+}
+
+.confirmation .container .section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmation .container .section .block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: row;
+  margin-right: -7rem;
+  width: 100%;
+}
+
+.confirmation .container h3 {
+  padding: 0rem;
+  margin: 0;
+  /* border-bottom: 1px solid white;
+  width: 50%; */
+  text-align: center;
+}
+
+
+.confirmation .container .section .block ul {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+  border: 1px solid red;
+  min-width: 30%;
+  width: auto;
+  height: 7rem;
+  margin: 0;
+  padding: 1rem;
+}
+
+.confirmation .container .tracker {
+  position: absolute;
+  right: 0.5rem;
+  top: -1rem;
+}
+
+
+.confirmation .container .section .block ul div li {
+  aspect-ratio: 1;
+  list-style: none;
+  height: 4rem;
+  width: 4rem;
+  border: 1px solid red;
+  cursor: pointer;
+  border-radius: 10%;
+}
+
+.confirmation .container .section .block ul div li:hover {
+  transition: 0.3s;
+  transform: scale(1.1); 
+  border: 1px solid white;
+}
+
+.confirmation .container .section button {
+  width: 5rem;
+  height: 1.5rem;
+}
+
+
+
+.confirmation .container button {
+  width: 8rem;
+  height: 3rem;
+}
+

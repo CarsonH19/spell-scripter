@@ -18,7 +18,7 @@ const uiSlice = createSlice({
       tradeModal: false,
       settingsModal: false,
       helpModal: false,
-
+      confirmationModal: false,
     },
   },
   reducers: {
@@ -28,7 +28,6 @@ const uiSlice = createSlice({
     },
     toggleModal(state, action) {
       const modal = action.payload.modal;
-
       // Set all modals to false
       Object.keys(state.modal).forEach((key) => {
         state.modal[key] = false;
