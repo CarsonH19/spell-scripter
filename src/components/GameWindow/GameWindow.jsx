@@ -3,12 +3,13 @@ import classes from "./GameWindow.module.css";
 import BottomContent from "./BottomContent/BottomContent";
 import MiddleContent from "./MiddleContent/MiddleContent";
 import TopContent from "./TopContent/TopContent";
-import { useEffect } from "react";
-import combatLoop from "../../store/combat-actions";
 
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { combatActions } from "../../store/combat-slice";
+import combatLoop from "../../store/combat-actions";
+
 
 export default function GameWindow() {
   const dispatch = useDispatch();
@@ -17,25 +18,20 @@ export default function GameWindow() {
   const characters = [...room.contents.enemies, ...currentOrder];
   
   useEffect(() => {
+    // If there is no event in the dungeon-slice combat will begin
     if (!room.contents.event) {
-      console.log("characters", characters);
       dispatch(combatActions.setInitiative({ characters }));
       combatLoop(dispatch);
-    } else {
-      console.log("EVENT");
     }
+
+    // Dependency: Update when room counter increments
   }, [dispatch, room.roomCounter]);
 
   return (
     <div className={classes.window}>
       <TopContent />
-      {/* TOP 20% Height */}
-
       <MiddleContent />
-      {/* MIDDLE 55% Height */}
-
       <BottomContent />
-      {/* BOTTOM 25% Height */}
     </div>
   );
 }

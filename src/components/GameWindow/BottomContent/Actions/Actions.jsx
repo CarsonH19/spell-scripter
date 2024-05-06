@@ -39,10 +39,11 @@ export default function Actions() {
   } else {
     content = (
       <div className={classes.spells}>
-        <h3>Spell List:</h3>
+        <h3>Spell List</h3>
         {spellList.map((spell) => (
           <Spell key={spell.name} spell={spell}/>
         ))}
+
       </div>
     );
   }
