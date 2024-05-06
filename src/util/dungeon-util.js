@@ -4,6 +4,8 @@ import { dungeonActions } from "../store/dungeon-slice";
 
 import { UNDEAD } from "../data/enemies";
 
+import DUNGEON_ENTRANCE from "../data/events"; // TEST
+
 import store from "../store/index";
 
 import { v4 as uuidv4 } from "uuid";
@@ -18,7 +20,7 @@ export function setDungeon(dispatch, dungeonName) {
     contents: {
       enemies: [],
       items: [],
-      event: null, // NOTE: Create & add ENTRANCE event object (Are you ready?)
+      event: DUNGEON_ENTRANCE,
     },
   };
 
@@ -38,10 +40,13 @@ export function setDungeon(dispatch, dungeonName) {
 export function createNewRoom(dispatch) {
   const dungeon = store.getState().dungeon;
 
+  console.log(dungeon);
+
+
   let newRoom = {
-    name: dungeon.name,
-    roomCounter: 0,
-    threat: 0,
+    ...dungeon,
+    roomCounter: dungeon.roomCounter + 1,
+    threat: dungeon.threat + 1,
     image: null,
     music: null,
     contents: {
@@ -71,28 +76,27 @@ export function createNewRoom(dispatch) {
   newRoom.contents.enemies = getRoomEnemies();
 
   dispatch(dungeonActions.updateRoom(newRoom));
-  console.log(`New Room Added: ${newRoom}`);
 }
 
-function getRoomEvent() {
-  // import the events array
-  // Iterate through the array and create a new array with incomplete events.
-  // // Special events will only be completed once and therefore may not be added
-  // Randomly choose an event from the new array
-  // return event
-}
+// function getRoomEvent() {
+//   // import the events array
+//   // Iterate through the array and create a new array with incomplete events.
+//   // // Special events will only be completed once and therefore may not be added
+//   // Randomly choose an event from the new array
+//   // return event
+// }
 
-// Determine if room will contain an event or monsters.
-function getRoomContent() {
-  const eventChance = Math.floor(Math.random() * 100);
+// // Determine if room will contain an event or monsters.
+// function getRoomContent() {
+//   const eventChance = Math.floor(Math.random() * 100);
 
-  if (eventChance > 79) {
-    // ~20% Chance for an event
-    return "EVENT";
-  } else {
-    return "MONSTERS";
-  }
-}
+//   if (eventChance > 79) {
+//     // ~20% Chance for an event
+//     return "EVENT";
+//   } else {
+//     return "MONSTERS";
+//   }
+// }
 
 export function getRoomEnemies() {
   let enemiesArray = [];

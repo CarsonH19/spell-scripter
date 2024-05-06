@@ -16,7 +16,6 @@ export default function DungeonColumn() {
 
     setDungeon(dispatch, "The Great Catacomb");
 
-
     dispatch(
       uiActions.toggleModal({ modal: "confirmationModal", open: "OPEN" })
     ); // set to true

@@ -28,7 +28,6 @@ export default function Modal() {
 
   // This forces a rerender when the buttons on confirmationModal change the state to display a different modal 
   const ui = useSelector((state) => state.ui);
-  console.log(ui);
 
   return createPortal(
     <div className={classes.modal}>

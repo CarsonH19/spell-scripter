@@ -6,14 +6,25 @@ import TopContent from "./TopContent/TopContent";
 import { useEffect } from "react";
 import combatLoop from "../../store/combat-actions";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { combatActions } from "../../store/combat-slice";
 
 export default function GameWindow() {
   const dispatch = useDispatch();
-
+  const room = useSelector((state) => state.dungeon);
+  const currentOrder = useSelector((state) => state.combat.order);
+  const characters = [...room.contents.enemies, ...currentOrder];
+  
   useEffect(() => {
-    combatLoop(dispatch);
-  }, [dispatch]);
+    if (!room.contents.event) {
+      console.log("characters", characters);
+      dispatch(combatActions.setInitiative({ characters }));
+      combatLoop(dispatch);
+    } else {
+      console.log("EVENT");
+    }
+  }, [dispatch, room.roomCounter]);
 
   return (
     <div className={classes.window}>

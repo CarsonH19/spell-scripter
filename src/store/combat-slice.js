@@ -5,13 +5,9 @@ const combatSlice = createSlice({
   initialState: { order: [], highlightedCharacter: null },
   reducers: {
     setInitiative(state, action) {
-      const heroes = action.payload.heroes;
-      const enemies = action.payload.enemies;
-      const player = action.payload.player;
-
-      const all = [...heroes, ...enemies, player];
-
-      const charactersWithInitiative = all.map((character) => ({
+      const characters = action.payload.characters;
+    
+      const charactersWithInitiative = characters.map((character) => ({
         character,
         initiative:
           Math.floor(Math.random() * 11) + character.stats.agility.speed,

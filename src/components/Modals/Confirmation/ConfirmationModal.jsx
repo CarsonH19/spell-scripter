@@ -23,25 +23,28 @@ export default function ConfirmationModal() {
   // Test
   const ui = useSelector((state) => state.ui);
 
-  const enemies = getRoomEnemies();
+  // const enemies = getRoomEnemies();
   const heroes = useSelector((state) => state.hero.party);
   const player = useSelector((state) => state.player);
+
+  const characters = [...heroes, player];
+  console.log(characters);
 
   const handleConfirmation = () => {
     dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // false
     dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // true
 
     // the following are only used for testing
-    dispatch(combatActions.setInitiative({ heroes, enemies, player }));
+    dispatch(combatActions.setInitiative({ characters }));
 
     // TESTING CODE update all stats
     for (let i = 0; i < heroes.length; i++) {
       updateStatTotals(dispatch, heroes[i].id);
     }
 
-    for (let i = 0; i < enemies.length; i++) {
-      updateStatTotals(dispatch, enemies[i].id);
-    }
+    // for (let i = 0; i < enemies.length; i++) {
+    //   updateStatTotals(dispatch, enemies[i].id);
+    // }
 
     updateStatTotals(dispatch, player.id);
 
@@ -99,7 +102,11 @@ export default function ConfirmationModal() {
           <div className={classes.block}>
             <ul>
               {attunedItems.map((item) => (
-                <Tooltip key={item.name} title={item.name} text={item.description}>
+                <Tooltip
+                  key={item.name}
+                  title={item.name}
+                  text={item.description}
+                >
                   <Icon key={item.name}>{item.name}</Icon>
                 </Tooltip>
               ))}

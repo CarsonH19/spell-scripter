@@ -4,7 +4,6 @@ import { playerActions } from "../../../store/player-slice";
 import store from "../../../store/index";
 
 import Icon from "../../UI/Icon";
-
 import { itemFunctions } from "../../../util/item-functions";
 import changeStatusEffect from "../../../store/status-effect-actions";
 
@@ -64,8 +63,6 @@ export default function Item({ item, count }) {
         break;
     }
   };
-
-  console.log(count)
 
   return (
     <Icon onClick={() => handleItemClick(item)}>

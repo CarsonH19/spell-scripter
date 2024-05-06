@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 
 import { setTarget } from "../../../../store/combat-actions";
 import { targetType } from "../../../../util/targeting";
-import Tooltip from "../../../UI/Tooltip";
 
+import Tooltip from "../../../UI/Tooltip";
 export default function Player() {
   const order = useSelector((state) => state.combat.order);
   const playerIndex = order.findIndex((char) => char.id === "Player");
