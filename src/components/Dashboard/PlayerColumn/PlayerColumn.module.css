@@ -3,7 +3,10 @@
   height: 100%;
   padding: 1rem;
   border: 1px solid red;
-  min-width: 310px
+  min-width: 310px;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .player {
@@ -15,30 +18,32 @@
   gap: 3rem;
   padding-left: 3rem;
   padding-right: 3rem;
+  flex: 1;
 }
 
 .player div {
   display: flex;
   flex-direction: column;
   text-align: center;
+  flex: 1;
 }
 
-.player .image {
+/* .player .image {
  height: 12rem;
  width: 12rem;
  border: 1px solid gray;
-}
+} */
 
 .column hr {
   width: 100%;
 }
 
 .column .menu {
-  height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  flex: 1;
 }
 
 .column .menu button {
