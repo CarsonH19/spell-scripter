@@ -20,15 +20,21 @@ import store from "../../store";
 
 export default function Modal() {
   const dispatch = useDispatch();
+  const activeModal = selectModal();
+  const ui = useSelector((state) => state.ui);
+  const continueCheck = findActiveModal(ui);
+
   const handleClose = () => {
+    // Render continue button when RoomSummaryModal is closed
+    if (continueCheck === "roomSummaryModal") {
+      dispatch(uiActions.toggle({ modal: "continueIsVisible" })); // set to true
+    }
+
     dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
   };
 
-  const activeModal = selectModal();
-
-  // This forces a rerender when the buttons on confirmationModal change the state to display a different modal 
-  const ui = useSelector((state) => state.ui);
-
+  // This forces a rerender when the buttons on confirmationModal change the state to display a different modal
+  console.log(ui);
   return createPortal(
     <div className={classes.modal}>
       {activeModal}

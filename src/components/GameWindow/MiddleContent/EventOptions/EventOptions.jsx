@@ -6,7 +6,7 @@ import eventFunctions from "../../../../util/event-functions";
 export default function EventOptions() {
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon);
-
+  // Render Event Options
   let eventOptions;
   if (dungeon.contents.event) {
     eventOptions = dungeon.contents.event.options;

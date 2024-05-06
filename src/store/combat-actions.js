@@ -8,6 +8,8 @@ import changeStatusEffect, {
   checkStatusEffect,
 } from "./status-effect-actions.js";
 
+import { uiActions } from "./ui-slice.js";
+
 let playerActionResolver;
 let targetResolver;
 let spellResolver;
@@ -127,7 +129,7 @@ export default async function combatLoop(dispatch) {
   }
 
   // Check if combat is over
-  if (endCombat()) {
+  if (endCombat(dispatch)) {
     return; // exit the loop
   } else {
     await delay(2000);
@@ -276,7 +278,7 @@ function checkBehavior(character) {
   }
 }
 
-function endCombat() {
+function endCombat(dispatch) {
   const order = store.getState().combat.order;
 
   const playerIndex = order.findIndex((char) => char.id === "Player");
@@ -295,7 +297,10 @@ function endCombat() {
   }
 
   if (enemies.length <= 0) {
-    alert("Room Cleared!");
+    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
+    dispatch(
+      uiActions.toggleModal({ modal: "roomSummaryModal", open: "OPEN" })
+    ); // set to true
     return true;
   }
 
