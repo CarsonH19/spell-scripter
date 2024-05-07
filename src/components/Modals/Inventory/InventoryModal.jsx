@@ -79,7 +79,7 @@ export default function InventoryModal() {
                 title={item.name}
                 text={item.rarity}
                 detailOne={item.description}
-                detailTwo={item.effect.map((line, index) => <div key={index}>{line}</div>)}
+                // detailTwo={item.effect.map((line, index) => <div key={index}>{line}</div>)}
               >
                 <Item key={item.id} item={item} count={item.counter} />
               </Tooltip>

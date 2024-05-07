@@ -7,6 +7,7 @@ const uiSlice = createSlice({
     dashboardIsVisible: false,
     gameWindowIsVisible: false,
     spellListIsVisible: false,
+    itemListIsVisible: false,
     continueIsVisible: false,
     modalIsVisible: false,
     modal: {

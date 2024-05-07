@@ -3,13 +3,17 @@ import { setPlayerAction } from "../../../../store/combat-actions";
 import { useSelector, useDispatch } from "react-redux";
 import { uiActions } from "../../../../store/ui-slice";
 
-import { setSpell } from "../../../../store/combat-actions";
+import { setSelect } from "../../../../store/combat-actions";
+
+import Item from "../../../Modals/Inventory/Item";
 
 export default function Actions() {
-  const spellList = useSelector((state) => state.player.spellList);
-  const spellUI = useSelector((state) => state.ui.spellListIsVisible);
-
   const dispatch = useDispatch();
+
+  const spellUI = useSelector((state) => state.ui.spellListIsVisible);
+  const spellList = useSelector((state) => state.player.spellList);
+  const itemUI = useSelector((state) => state.ui.itemListIsVisible);
+  const itemList = useSelector((state) => state.player.inventory.consumables);
 
   const handlePlayerChoice = (action) => {
     setPlayerAction(action);
@@ -17,21 +21,77 @@ export default function Actions() {
     if (action === "CAST SPELL") {
       dispatch(uiActions.toggle({ modal: "spellListIsVisible" })); // set to true
     }
+
+    if (action === "USE ITEM") {
+      dispatch(uiActions.toggle({ modal: "itemListIsVisible" })); // set to true
+    }
   };
 
-  const handleSpellChoice = (spell) => {
-    setSpell(spell);
-    dispatch(uiActions.toggle({ modal: "spellListIsVisible" })); // set to false
+  const handleSelectChoice = (choice, modal) => {
+    console.log("handleSelectChoice", choice);
+    setSelect(choice);
+    dispatch(uiActions.toggle({ modal })); // set to false
   };
 
-  const handleCloseSpellList = () => {
-    setSpell(null);
-    dispatch(uiActions.toggle({ modal: "spellListIsVisible" })); // set to false
+  const handleCloseList = (modal) => {
+    setSelect(null);
+    dispatch(uiActions.toggle({ modal })); // set to false
   };
 
   let content;
 
-  if (!spellUI) {
+  if (spellUI) {
+    content = (
+      <div className={classes.spells}>
+        <h3>Spell List</h3>
+        {spellList.map((spell) => (
+          <li
+            key={spell.name}
+            onClick={() => handleSelectChoice(spell, "spellListIsVisible")}
+          >
+            {spell.name}
+          </li>
+        ))}
+        <p
+          onClick={() => handleCloseList("spellListIsVisible")}
+          className={classes.close}
+        >
+          x
+        </p>
+      </div>
+    );
+  } else if (itemUI) {
+    // Counter logic
+    let counters = [];
+    itemList.map((item) => {
+      let existingItem = counters.find((obj) => obj.name === item.name);
+      if (existingItem) {
+        existingItem.counter++;
+      } else {
+        counters.push({ ...item, counter: 1 });
+      }
+    });
+
+    content = (
+      <div className={classes.spells}>
+        <h3>Item List</h3>
+        {counters.map((item) => (
+          <Item
+            key={item.id}
+            item={item}
+            count={item.counter}
+            // onClick={() => handleSelectChoice(item, "itemListIsVisible")}
+          />
+        ))}
+        <p
+          onClick={() => handleCloseList("itemListIsVisible")}
+          className={classes.close}
+        >
+          x
+        </p>
+      </div>
+    );
+  } else {
     content = (
       <div className={classes.actions}>
         <button onClick={() => handlePlayerChoice("CAST SPELL")}>
@@ -40,23 +100,11 @@ export default function Actions() {
         <div>
           <button onClick={() => handlePlayerChoice("ATTACK")}>Attack</button>
           <button onClick={() => handlePlayerChoice("GUARD")}>Guard</button>
-          <button onClick={() => handlePlayerChoice("ITEM")}>Use Item</button>
+          <button onClick={() => handlePlayerChoice("USE ITEM")}>
+            Use Item
+          </button>
           <button onClick={() => handlePlayerChoice("FLEE")}>Flee</button>
         </div>
-      </div>
-    );
-  } else {
-    content = (
-      <div className={classes.spells}>
-        <h3>Spell List</h3>
-        {spellList.map((spell) => (
-          <li key={spell.name} onClick={() => handleSpellChoice(spell)}>
-            {spell.name}
-          </li>
-        ))}
-        <p onClick={handleCloseSpellList} className={classes.close}>
-          x
-        </p>
       </div>
     );
   }

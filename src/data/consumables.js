@@ -1,4 +1,3 @@
-
 const CONSUMABLES = {
   LESSER_HEALTH_POTION: {
     name: "Lesser Health Potion",
@@ -6,19 +5,21 @@ const CONSUMABLES = {
     image: "",
     type: "CONSUMABLE",
     rarity: "Rare",
-    effect: ["Restores 30HP. Can be used during combat."],
+    useInCombat: true,
+    effect: "Restores 30HP. Can be used during combat.",
     // soundEffect: gulpingWater24,
     // function: (dispatch, target) => {
     //   dispatch(changeHealthThunk({ target, change: "HEAL", value: 30 }));
     // },
   },
-  "CRYPTBREAD": {
+  CRYPTBREAD: {
     name: "Cryptbread",
     description: "A chunk of stale bread as hard as stone.",
     image: "",
     type: "CONSUMABLE",
     rarity: "Common",
-    effect: ["Restores 15HP."],
+    useInCombat: false,
+    effect: "Restores 15HP.",
     // soundEffect: chewCrackersMouth,
     // function: (dispatch, target) => {
     //   dispatch(changeHealthThunk({ target, change: "HEAL", value: 30 }));
@@ -31,6 +32,7 @@ const CONSUMABLES = {
     image: "",
     type: "CONSUMABLE",
     rarity: "Common",
+    useInCombat: false,
     effect: "Restores 15HP.",
     // soundEffect: gulpingWater24,
     // function: () => {

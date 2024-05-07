@@ -10,9 +10,11 @@ import changeStatusEffect, {
 
 import { uiActions } from "./ui-slice.js";
 
+import activateItem from "./item-actions.js";
+
 let playerActionResolver;
 let targetResolver;
-let spellResolver;
+let selectResolver;
 
 export default async function combatLoop(dispatch) {
   let order = store.getState().combat.order;
@@ -71,7 +73,7 @@ export default async function combatLoop(dispatch) {
             case "CAST SPELL":
               {
                 // choose a spell from spell list
-                const selectedSpell = await selectSpell();
+                const selectedSpell = await select();
 
                 // Restart the while loop allowing players to change actions
                 if (selectedSpell === null) continue;
@@ -92,7 +94,16 @@ export default async function combatLoop(dispatch) {
             case "GUARD":
               changeStatusEffect(dispatch, player, "ADD", CONDITIONS.GUARD);
               break;
-            case "ITEM":
+            case "USE ITEM":
+              {
+                console.log("USE ITEM");
+                // choose a spell from spell list
+                const selectedItem = await select();
+                console.log(selectedItem);
+                // Restart the while loop allowing players to change actions
+                if (selectedItem === null) continue;
+                await activateItem(dispatch, selectedItem);
+              }
               break;
             case "FLEE":
               break;
@@ -171,17 +182,19 @@ export function setPlayerAction(action) {
 // =============================================================
 
 // Used to await which spell the player wants to cast
-export async function selectSpell() {
+export async function select() {
+  console.log("CALLED SELECT");
   return new Promise((resolve) => {
-    spellResolver = resolve;
+    selectResolver = resolve;
   });
 }
 
 // Function to set the selected spell in the Spell component
-export function setSpell(spell) {
-  if (spellResolver) {
-    spellResolver(spell);
-    spellResolver = null;
+export function setSelect(choice) {
+  console.log("setSelect", choice);
+  if (selectResolver) {
+    selectResolver(choice);
+    selectResolver = null;
   }
 }
 
