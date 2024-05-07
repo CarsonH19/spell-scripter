@@ -128,15 +128,14 @@ export default async function combatLoop(dispatch) {
               const hit = rollToHit(character, target);
               // console.log("ATTACK", target, hit);
               if (hit) {
-                // Add ability logic here
                 changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
-
-                const damage = calcDamage(character); // use state player obj?!?
+                const damage = calcDamage(character); 
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
               }
             }
             break;
           case "GUARD":
+            changeStatusEffect(dispatch, character, "ADD", CONDITIONS.GUARD);
             break;
           case "ABILITY":
             break;
@@ -183,7 +182,6 @@ export function setPlayerAction(action) {
 
 // Used to await which spell the player wants to cast
 export async function select() {
-  console.log("CALLED SELECT");
   return new Promise((resolve) => {
     selectResolver = resolve;
   });
@@ -191,7 +189,6 @@ export async function select() {
 
 // Function to set the selected spell in the Spell component
 export function setSelect(choice) {
-  console.log("setSelect", choice);
   if (selectResolver) {
     selectResolver(choice);
     selectResolver = null;
@@ -204,7 +201,6 @@ export function setSelect(choice) {
 
 export async function getTarget(targets) {
   setTargetType(targets);
-
   return new Promise((resolve) => {
     targetResolver = resolve;
   });
@@ -235,9 +231,9 @@ export function rollToHit(attacker, target) {
 }
 
 // NEED TO INCORPORATE STRENGTH BONUS & SPELL POWER
-export function calcDamage(source, spell) {
+export function calcDamage(source, spell, spellPower) {
   if (spell) {
-    const damage = Math.floor(Math.random() * source.baseDamage) + 1;
+    const damage = Math.floor(Math.random() * source.baseDamage) + 1 + spellPower;
     return damage;
   } else {
     const damage = Math.floor(Math.random() * source.stats.strength.attack) + 1;

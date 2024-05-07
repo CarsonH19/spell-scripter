@@ -21,7 +21,11 @@ export default async function castSpell(dispatch, spell) {
           const hit = rollToHit(player, target);
 
           if (hit) {
-            let damage = calcDamage(spell, "SPELL");
+            let damage = calcDamage(
+              spell,
+              "SPELL",
+              player.stats.arcana.spellPower
+            );
             damage += player.stats.arcana.spellPower;
             changeHealth(dispatch, target, "DAMAGE", damage, null);
           }
