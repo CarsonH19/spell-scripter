@@ -16,7 +16,16 @@ export default function StartGame() {
     dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true
 
     // TEST CODE FOR INVENTORY
-    let test = 30;
+    let test = 10;
+    for (let i = 0; i < test; i++) {
+      dispatch(
+        playerActions.changeInventory({
+          item: { ...CONSUMABLES.LESSER_HEALTH_POTION, id: uuidv4() },
+          change: "ADD",
+        })
+      );
+    }
+
     for (let i = 0; i < test; i++) {
       dispatch(
         playerActions.changeInventory({

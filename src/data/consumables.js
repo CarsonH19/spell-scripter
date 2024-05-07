@@ -4,7 +4,7 @@ const CONSUMABLES = {
     description: "A small vial of glowing red liquid.",
     image: "",
     type: "CONSUMABLE",
-    rarity: "Rare",
+    rarity: "Common",
     useInCombat: true,
     effect: "Restores 30HP. Can be used during combat.",
     // soundEffect: gulpingWater24,

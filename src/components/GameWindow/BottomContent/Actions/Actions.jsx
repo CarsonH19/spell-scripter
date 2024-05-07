@@ -75,14 +75,18 @@ export default function Actions() {
     content = (
       <div className={classes.spells}>
         <h3>Item List</h3>
-        {counters.map((item) => (
-          <Item
-            key={item.id}
-            item={item}
-            count={item.counter}
-            // onClick={() => handleSelectChoice(item, "itemListIsVisible")}
-          />
-        ))}
+        {counters.map((item) => {
+          if (item.useInCombat) {
+            return (
+              <Item
+                key={item.id}
+                item={item}
+                count={item.counter}
+                // onClick={() => handleSelectChoice(item, "itemListIsVisible")}
+              />
+            );
+          }
+        })}
         <p
           onClick={() => handleCloseList("itemListIsVisible")}
           className={classes.close}
