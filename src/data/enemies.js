@@ -306,6 +306,26 @@ const UNDEAD = {
     behavior: "RANDOM",
     statusEffects: [],
   },
+  DRAUGR: {
+    name: "Draugr",
+    identifier: "ENEMY",
+    image: "",
+    type: ENEMY_TYPES.UNDEAD,
+    // audio: {},
+    level: 3,
+    currentHealth: 40,
+    currentMana: 0,
+    stats: {
+      baseStrength: 1,
+      baseAgility: 1,
+      baseArcana: 1,
+    },
+    weaknesses: ["FIRE"],
+    resistances: ["ICE"],
+    immunities: ["CHILLED"],
+    behavior: "RANDOM",
+    statusEffects: [],
+  },
 };
 
 // const UNDYING_WARBAND = {
@@ -365,23 +385,6 @@ const UNDEAD = {
 //     BURNED.function(3);
 //     soundEffectHandler(BLAZING_SKELETON, "MONSTER ABILITY");
 //     writeToLogMonster(LOG_MONSTER_ABILITY, "YES");
-//   },
-// };
-
-// const DRAUGR = {
-//   name: "Draugr",
-//   image: "styles/images/monsters/draugr.jpg",
-//   type: "UNDEAD",
-//   skulls: 5,
-//   soundEffects: {
-//     spawn: iceCrackFreeze,
-//     attack: heavyAttackSounds,
-//     death: armorSounds,
-//     ability: iceCrackFreeze,
-//   },
-//   function: () => {
-//     CHILLED.function(5);
-//     soundEffectHandler(DRAUGR, "MONSTER ABILITY");
 //   },
 // };
 

@@ -4,7 +4,7 @@ import { dungeonActions } from "../store/dungeon-slice";
 
 import { UNDEAD } from "../data/enemies";
 
-import DUNGEON_ENTRANCE from "../data/events"; // TEST
+import EVENTS from "../data/events";
 
 import store from "../store/index";
 
@@ -20,7 +20,7 @@ export function setDungeon(dispatch, dungeonName) {
     contents: {
       enemies: [],
       items: [],
-      event: DUNGEON_ENTRANCE,
+      event: EVENTS.SPIKE_WALLS,
     },
   };
 

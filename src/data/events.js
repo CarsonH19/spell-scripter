@@ -1,17 +1,34 @@
-const DUNGEON_ENTRANCE = {
-  name: "Dungeon Entrance",
-  eventType: "ENTRANCE",
-  description: "",
-  options: [
-    {
-      text: "Enter",
-      function: "DUNGEON_ENTRANCE_ENTER",
-      narration: '',
-    },
-  ],
-  // passValue: 7,
-  // failDamage: 30,
-  // penalty: () => {},
+const EVENTS = {
+  DUNGEON_ENTRANCE: {
+    name: "Dungeon Entrance",
+    eventType: "ENTRANCE",
+    description: "",
+    options: [
+      {
+        text: "Enter",
+        function: "DUNGEON_ENTRANCE_ENTER",
+        narration: "",
+      },
+    ],
+  },
+  SPIKE_WALLS: {
+    name: "Spike Walls",
+    eventType: "TRAP",
+    complete: false,
+    description: "",
+    options: [
+      {
+        text: "Strength",
+        function: "SPIKE_WALLS",
+        narration: "",
+      },
+      {
+        text: "Agility",
+        function: "SPIKE_WALLS",
+        narration: "",
+      },
+    ],
+  },
 };
 
-export default DUNGEON_ENTRANCE;
+export default EVENTS;

@@ -42,6 +42,11 @@ const dungeonSlice = createSlice({
         }
       }
     },
+    completeEvent(state) {
+      if (state.contents.event) {
+        state.contents.event.complete = true;
+      }
+    },
     addItem(state, action) {
       // action payload = item object
       state.contents.items.push(action.payload);
