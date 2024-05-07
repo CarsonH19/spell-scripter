@@ -257,24 +257,8 @@ const UNDEAD = {
     currentMana: 0,
     stats: {
       baseStrength: 0,
-      strength: {
-        totalStrength: 0,
-        attack: 0,
-        maxHealth: 0,
-      },
-      baseAgility: 0,
-      agility: {
-        totalAgility: 0,
-        defense: 0,
-        speed: 0,
-        hitChance: 0,
-      },
+      baseAgility: 1,
       baseArcana: 0,
-      arcana: {
-        totalArcana: 0,
-        spellPower: 0,
-        maxMana: 0,
-      },
     },
     weaknesses: [],
     resistances: [],
@@ -289,28 +273,12 @@ const UNDEAD = {
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 2,
-    currentHealth: 10,
+    currentHealth: 30,
     currentMana: 0,
     stats: {
-      baseStrength: 0,
-      strength: {
-        totalStrength: 0,
-        attack: 0,
-        maxHealth: 0,
-      },
+      baseStrength: 1,
       baseAgility: 1,
-      agility: {
-        totalAgility: 0,
-        defense: 0,
-        speed: 0,
-        hitChance: 0,
-      },
       baseArcana: 0,
-      arcana: {
-        totalArcana: 0,
-        spellPower: 0,
-        maxMana: 0,
-      },
     },
     weaknesses: [],
     resistances: [],
@@ -325,28 +293,12 @@ const UNDEAD = {
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 3,
-    currentHealth: 10,
+    currentHealth: 50,
     currentMana: 0,
     stats: {
-      baseStrength: 1,
-      strength: {
-        totalStrength: 0,
-        attack: 0,
-        maxHealth: 0,
-      },
+      baseStrength: 2,
       baseAgility: 1,
-      agility: {
-        totalAgility: 0,
-        defense: 0,
-        speed: 0,
-        hitChance: 0,
-      },
       baseArcana: 0,
-      arcana: {
-        totalArcana: 0,
-        spellPower: 0,
-        maxMana: 0,
-      },
     },
     weaknesses: [],
     resistances: [],
@@ -354,8 +306,7 @@ const UNDEAD = {
     behavior: "RANDOM",
     statusEffects: [],
   },
-}
-
+};
 
 // const UNDYING_WARBAND = {
 //   name: "Undying Warband",

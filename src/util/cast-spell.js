@@ -1,6 +1,7 @@
 import store from "../store";
 import { getTarget, rollToHit, calcDamage } from "../store/combat-actions";
 import { changeHealth } from "../store/health-actions";
+import changeStatusEffect from "../store/status-effect-actions";
 
 export default async function castSpell(dispatch, spell) {
   const order = store.getState().combat.order;
@@ -16,12 +17,12 @@ export default async function castSpell(dispatch, spell) {
       {
         if (spell.spellType === "HIT") {
           target = await getTarget("ENEMIES");
-          console.log(target);
+          console.log("Target: ", target);
           const hit = rollToHit(player, target);
 
           if (hit) {
-            const damage = calcDamage(spell, "SPELL"); // use state player obj?!?
-            console.log(damage);
+            let damage = calcDamage(spell, "SPELL");
+            damage += player.stats.arcana.spellPower;
             changeHealth(dispatch, target, "DAMAGE", damage, null);
           }
         }
@@ -32,17 +33,23 @@ export default async function castSpell(dispatch, spell) {
       {
         if (spell.spellType === "HEAL") {
           target = await getTarget("ALLIES");
-          console.log(target);
-          const healValue = spell.healValue;
+          console.log("Target: ", target);
+          let healValue = spell.healValue;
+          healValue += player.stats.arcana.spellPower;
           changeHealth(dispatch, target, "HEAL", healValue, null);
+        }
+
+        if (spell.spellType === "BUFF") {
+          target = await getTarget("ALLIES");
+          console.log("Target: ", target);
+          const statusEffect = spell.statusEffect;
+          changeStatusEffect(dispatch, target, "ADD", statusEffect);
         }
       }
       break;
     case "ENEMIES": // all enemies targeted
       break;
     case "ALLIES": // all allies including the player targeted
-      break;
-    case "SELF": // only the player is targeted
       break;
     case "ALL": // all characters in initiative are targeted
       break;

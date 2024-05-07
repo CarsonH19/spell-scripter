@@ -6,8 +6,9 @@ import { playerActions } from "./player-slice";
 export default function updateStatTotals(dispatch, id) {
   let character;
   let sliceActions;
-  const dashboard = store.getState().ui.dashboardIsVisible;
 
+  // Check if player is on dashboard or in dungeon
+  const dashboard = store.getState().ui.dashboardIsVisible;
   if (dashboard) {
     character = store.getState().player;
     sliceActions = playerActions;
@@ -20,6 +21,8 @@ export default function updateStatTotals(dispatch, id) {
     character = findCharacterById(id);
     sliceActions = combatActions;
   }
+
+  // console.log("STAT ACTIONS", character)
 
   let totalStrength = character.stats.baseStrength;
   let maxHealth = 0;
@@ -87,7 +90,6 @@ export default function updateStatTotals(dispatch, id) {
   maxMana += calculateMaxMana(character, totalArcana);
   spellPower += calculateSpellPower(character, totalArcana);
 
-  // Check if player is on dashboard or in dungeon
   dispatch(
     sliceActions.updateStats({
       id: character.id,
@@ -216,7 +218,7 @@ export default function updateStatTotals(dispatch, id) {
     if (character.identifier === "PLAYER") {
       basePower = character.level * 2 + 3;
     } else if (totalArcana > 0) {
-      basePower = character.level * 2
+      basePower = character.level * 2;
     } else {
       basePower = 0;
     }

@@ -2,7 +2,7 @@ import classes from "./Enemy.module.css";
 
 import Tooltip from "../../../../UI/Tooltip";
 
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTarget } from "../../../../../store/combat-actions";
 import { targetType } from "../../../../../util/targeting";
@@ -19,13 +19,15 @@ const Enemy = ({ enemy }) => {
     (state) => state.combat.highlightedCharacter === enemy.id
   );
 
+  useEffect(() => {
+    updateStatTotals(dispatch, enemy.id);
+  }, []);
+
   const handleSetTarget = () => {
     if (targetType === "ENEMIES") {
       setTarget(enemy);
     }
   };
-
-  updateStatTotals(dispatch, enemy.id);
 
   return (
     <div className={classes.enemy} onClick={handleSetTarget}>

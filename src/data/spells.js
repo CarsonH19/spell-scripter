@@ -9,13 +9,13 @@ const SPELLS = {
     {
       name: "Firebolt",
       school: "Evocation",
-      description: 'Fire ow ow burn',
+      description: "Fire ow ow burn",
       unlocked: true,
       image: "",
       spellTarget: "ENEMY",
       spellType: "HIT",
       damageType: DAMAGE_TYPES.FIRE,
-      baseDamage: 16,
+      baseDamage: 10,
       manaCost: 10,
     },
     {
@@ -47,12 +47,22 @@ const SPELLS = {
       image: "",
       spellTarget: "ALLY",
       spellType: "BUFF",
-      value: 1,
+      statusEffect: {
+        name: "Bark Skin",
+        display: true,
+        image: "",
+        description: "+1 Defense",
+        duration: 3,
+        stats: {
+          agility: {
+            defense: +1,
+          },
+        },
+      },
       manaCost: 10,
     },
   ],
 };
-
 
 // export let spellList = [
 //   SPELLS.EVOCATION.FIREBOLT,

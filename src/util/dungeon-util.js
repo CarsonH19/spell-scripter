@@ -42,7 +42,6 @@ export function createNewRoom(dispatch) {
 
   console.log(dungeon);
 
-
   let newRoom = {
     ...dungeon,
     roomCounter: dungeon.roomCounter + 1,
@@ -141,13 +140,44 @@ export function getRoomEnemies() {
     for (let enemyType in enemyTypes) {
       cumulativeProbability += enemyTypes[enemyType];
       if (rand <= cumulativeProbability) {
-        enemiesArray.push({ ...UNDEAD[enemyType], id: uuidv4() });
+        // Add the strength, agility, and arcana keys to the enemies stats object
+        const baseStats = constructStats(UNDEAD[enemyType].stats);
+        enemiesArray.push({
+          ...UNDEAD[enemyType],
+          stats: constructStats(baseStats),
+          id: uuidv4(),
+        });
+        console.log(enemiesArray);
         break;
       }
     }
   }
 
   return enemiesArray;
+}
+
+function constructStats(stats) {
+  return {
+    baseStrength: stats.baseStrength,
+    strength: {
+      totalStrength: 0,
+      attack: 0,
+      maxHealth: 0,
+    },
+    baseAgility: stats.baseAgility,
+    agility: {
+      totalAgility: 0,
+      defense: 0,
+      speed: 0,
+      hitChance: 0,
+    },
+    baseArcana: stats.baseArcana,
+    arcana: {
+      totalArcana: 0,
+      spellPower: 0,
+      maxMana: 0,
+    },
+  };
 }
 
 // function getRoomImage(dungeon) {
