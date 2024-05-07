@@ -28,6 +28,7 @@
 }
 
 .spells {
+  position: relative;
   width: 33%;
   padding: 0.5rem;
   overflow: auto;
@@ -42,7 +43,14 @@
   text-align: center;
   width: 50%;
   margin-bottom: 0.5rem;
+}
 
+.spells .close {
+position: absolute;
+right: 2%;
+top: -8%;
+cursor: pointer;
+color: red;
 }
 
 .spells li {

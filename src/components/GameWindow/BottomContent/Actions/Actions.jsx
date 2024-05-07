@@ -15,10 +15,13 @@ export default function Actions() {
     setPlayerAction(action);
 
     if (action === "CAST SPELL") {
-      console.log("CAST SPELL");
       dispatch(uiActions.toggle({ modal: "spellListIsVisible" })); // set to true
     }
   };
+
+  const handleCloseSpellList = () => {
+    dispatch(uiActions.toggle({ modal: "spellListIsVisible" })); // set to false
+  }
 
   let content;
 
@@ -41,9 +44,9 @@ export default function Actions() {
       <div className={classes.spells}>
         <h3>Spell List</h3>
         {spellList.map((spell) => (
-          <Spell key={spell.name} spell={spell}/>
+          <Spell key={spell.name} spell={spell} />
         ))}
-
+        <p onClick={handleCloseSpellList} className={classes.close}>x</p>
       </div>
     );
   }
