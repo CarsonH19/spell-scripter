@@ -62,35 +62,44 @@ export default async function combatLoop(dispatch) {
 
       if (order[i].identifier === "PLAYER") {
         console.log(`${order[i].name}'s turn!`);
+        let action = false;
 
-        const playerAction = await getPlayerAction();
+        while (!action) {
+          const playerAction = await getPlayerAction();
 
-        switch (playerAction) {
-          case "CAST SPELL":
-            {
-              // choose a spell from spell list
-              const selectedSpell = await selectSpell();
-              await castSpell(dispatch, selectedSpell);
-            }
-            break;
-          case "ATTACK":
-            {
-              const target = await getTarget("ENEMIES");
-              const hit = rollToHit(player, target);
+          switch (playerAction) {
+            case "CAST SPELL":
+              {
+                // choose a spell from spell list
+                const selectedSpell = await selectSpell();
 
-              if (hit) {
-                const damage = calcDamage(player);
-                changeHealth(dispatch, target, "DAMAGE", damage, null);
+                // Restart the while loop allowing players to change actions
+                if (selectedSpell === null) continue;
+                await castSpell(dispatch, selectedSpell);
               }
-            }
-            break;
-          case "GUARD":
-            changeStatusEffect(dispatch, player, "ADD", CONDITIONS.GUARD);
-            break;
-          case "ITEM":
-            break;
-          case "FLEE":
-            break;
+              break;
+            case "ATTACK":
+              {
+                const target = await getTarget("ENEMIES");
+                const hit = rollToHit(player, target);
+
+                if (hit) {
+                  const damage = calcDamage(player);
+                  changeHealth(dispatch, target, "DAMAGE", damage, null);
+                }
+              }
+              break;
+            case "GUARD":
+              changeStatusEffect(dispatch, player, "ADD", CONDITIONS.GUARD);
+              break;
+            case "ITEM":
+              break;
+            case "FLEE":
+              break;
+          }
+
+          // Exit the while loop
+          action = true;
         }
       }
 

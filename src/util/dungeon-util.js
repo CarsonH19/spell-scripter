@@ -20,7 +20,7 @@ export function setDungeon(dispatch, dungeonName) {
     contents: {
       enemies: [],
       items: [],
-      event: EVENTS.SPIKE_WALLS,
+      event: EVENTS.DUNGEON_ENTRANCE,
     },
   };
 

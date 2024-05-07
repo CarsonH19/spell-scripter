@@ -3,7 +3,7 @@ import { setPlayerAction } from "../../../../store/combat-actions";
 import { useSelector, useDispatch } from "react-redux";
 import { uiActions } from "../../../../store/ui-slice";
 
-import Spell from "./Spell";
+import { setSpell } from "../../../../store/combat-actions";
 
 export default function Actions() {
   const spellList = useSelector((state) => state.player.spellList);
@@ -19,9 +19,15 @@ export default function Actions() {
     }
   };
 
-  const handleCloseSpellList = () => {
+  const handleSpellChoice = (spell) => {
+    setSpell(spell);
     dispatch(uiActions.toggle({ modal: "spellListIsVisible" })); // set to false
-  }
+  };
+
+  const handleCloseSpellList = () => {
+    setSpell(null);
+    dispatch(uiActions.toggle({ modal: "spellListIsVisible" })); // set to false
+  };
 
   let content;
 
@@ -44,9 +50,13 @@ export default function Actions() {
       <div className={classes.spells}>
         <h3>Spell List</h3>
         {spellList.map((spell) => (
-          <Spell key={spell.name} spell={spell} />
+          <li key={spell.name} onClick={() => handleSpellChoice(spell)}>
+            {spell.name}
+          </li>
         ))}
-        <p onClick={handleCloseSpellList} className={classes.close}>x</p>
+        <p onClick={handleCloseSpellList} className={classes.close}>
+          x
+        </p>
       </div>
     );
   }
