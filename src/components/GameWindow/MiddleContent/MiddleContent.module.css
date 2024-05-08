@@ -1,7 +1,20 @@
 .middle {
+  position: relative;
   height: 55%;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   padding-bottom: 8rem;
+}
+
+.middle .continue {
+  position: absolute;
+
+  width: 6rem;
+  height: 2rem;;
+
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }

@@ -5,9 +5,7 @@ import { uiActions } from "../store/ui-slice";
 
 import store from "../store/index";
 
-function roll20(bonus = 0) {
-  return Math.floor(Math.random() * 21) + bonus;
-}
+// Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 
 const eventFunctions = {
   DUNGEON_ENTRANCE_ENTER: (dispatch) => {
@@ -36,10 +34,7 @@ const eventFunctions = {
       console.log("SUCCESS", success);
     }
 
-    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
-    dispatch(
-      uiActions.toggleModal({ modal: "roomSummaryModal", open: "OPEN" })
-    ); // set to true
+    callRoomSummaryModal(dispatch);
   },
 };
 
@@ -64,31 +59,13 @@ function trapSuccessChance(character, difficulty, stat) {
   }
 }
 
-// SPIKE_WALLS_STRENGTH: (dispatch, text) => {
-//   const order = store.getState().combat.order;
-
-//   for (let i = 0; i < order.length; i++) {
-//     const stats = order[i].stats;
-
-//     let highestStat = Math.max(stats.strength.totalStrength, stats.agility.totalAgility);
-//     console.log(highestStat);
-//     if (order[i].identifier === "PLAYER") {
-//       if (text === "Strength") {
-//         highestStat = stats.totalStrength;
-//       } else if (text === "Agility") {
-//         highestStat = stats.totalAgility;
-//       }
-//     }
-
-//     const successChance = roll20(highestStat);
-
-//     if (successChance > 10) {
-//       console.log("SUCCESS", order[i]);
-//     } else {
-//       console.log("FAILURE", order[i]);
-//       changeHealth(dispatch, order[i], "DAMAGE", 15);
-//     }
-//   }
-// },
-
 export default eventFunctions;
+
+function roll20(bonus = 0) {
+  return Math.floor(Math.random() * 21) + bonus;
+}
+
+function callRoomSummaryModal(dispatch) {
+  dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
+  dispatch(uiActions.toggleModal({ modal: "roomSummaryModal", open: "OPEN" }));
+}

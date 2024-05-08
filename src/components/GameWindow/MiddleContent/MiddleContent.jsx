@@ -23,7 +23,7 @@ export default function MiddleContent() {
   return (
     <div className={classes.middle}>
       <Party />
-      {continueVisible && <button onClick={handleContinue}>Continue</button>}
+      {continueVisible && <button className={classes.continue} onClick={handleContinue}>Continue</button>}
       {event && <EventOptions />}
       <Enemies />
     </div>
