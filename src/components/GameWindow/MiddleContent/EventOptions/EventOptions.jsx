@@ -2,31 +2,42 @@ import { useDispatch, useSelector } from "react-redux";
 import classes from "./EventOptions.module.css";
 
 import eventFunctions from "../../../../util/event-functions";
-import { dungeonActions } from "../../../../store/dungeon-slice";
+// import { dungeonActions } from "../../../../store/dungeon-slice";
+
+import { useEffect, useState } from "react";
 
 export default function EventOptions() {
+  const [open, setOpen] = useState(true);
+
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon);
 
-  // Render Event Options
-  let eventOptions;
-  let complete;
+  useEffect(() => {
+    setOpen(true);
+    console.log("counter", dungeon.roomCounter);
+  }, [dungeon.roomCounter]);
 
-  if (dungeon.contents.event) {
+  let eventOptions;
+  // let complete;
+
+  if (dungeon) {
     eventOptions = dungeon.contents.event.options;
-    complete = dungeon.contents.event.complete;
+    // complete = dungeon.contents.event.complete;
   }
 
   const handleClickEventOption = (dispatch, eventFunction, detail) => {
+    setOpen(false);
     eventFunction(dispatch, detail);
-    dispatch(dungeonActions.completeEvent()); // sets complete to true (event options won't render)
+
+    // sets complete to true (event options won't render)
+    // dispatch(dungeonActions.completeEvent());
   };
 
-  console.log("OPTIONS", eventOptions);
+  console.log("open", open);
 
   return (
     <div className={classes.events}>
-      {!complete &&
+      {open &&
         eventOptions.map((option) => {
           const eventFunction = eventFunctions[option.function];
 

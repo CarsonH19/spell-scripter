@@ -1,6 +1,8 @@
 import { createNewRoom } from "./dungeon-util";
 import { changeHealth } from "../store/health-actions";
 
+import { uiActions } from "../store/ui-slice";
+
 import store from "../store/index";
 
 function roll20(bonus = 0) {
@@ -33,6 +35,11 @@ const eventFunctions = {
 
       console.log("SUCCESS", success);
     }
+
+    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
+    dispatch(
+      uiActions.toggleModal({ modal: "roomSummaryModal", open: "OPEN" })
+    ); // set to true
   },
 };
 
