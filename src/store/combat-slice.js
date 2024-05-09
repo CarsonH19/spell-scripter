@@ -109,6 +109,21 @@ const combatSlice = createSlice({
         }
       }
     },
+    updateDamageDisplay(state, action) {
+      const value = action.payload.value;
+      
+      // Locate character
+      const id = action.payload.id;
+
+      const findCharacterById = (id) => {
+        const characters = state.order;
+        return characters.find((char) => char.id === id);
+      };
+
+      const character = findCharacterById(id);
+
+      character.damageDisplay = value;
+    },
     updateStatusEffects(state, action) {
       const change = action.payload.change;
       const statusEffect = action.payload.statusEffect;

@@ -9,6 +9,7 @@ import changeStatusEffect, {
 } from "./status-effect-actions.js";
 
 import { uiActions } from "./ui-slice.js";
+import { combatActions } from "./combat-slice.js";
 
 import activateItem from "./item-actions.js";
 
@@ -88,6 +89,14 @@ export default async function combatLoop(dispatch) {
                 if (hit) {
                   const damage = calcDamage(player);
                   changeHealth(dispatch, target, "DAMAGE", damage, null);
+                } else {
+                  // Attack Missed!
+                  dispatch(
+                    combatActions.updateDamageDisplay({
+                      id: target.id,
+                      value: "Miss!",
+                    })
+                  );
                 }
               }
               break;
@@ -118,19 +127,29 @@ export default async function combatLoop(dispatch) {
         character.currentHealth > 0 && console.log(`${order[i].name}'s turn!`);
 
         // check behavior to determine action
-        const action = checkBehavior(character);
+        const action = checkBehavior(character); // return a destructured object checking the action and target
 
         switch (action) {
           case "ATTACK":
             {
-              // check behavior to choose a target
+              // check behavior object to and call the correct target
+              // create a singular targeting function with helper functions for each targeting behavior
               const target = randomTarget(character);
               const hit = rollToHit(character, target);
               // console.log("ATTACK", target, hit);
               if (hit) {
                 changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
-                const damage = calcDamage(character); 
+                const damage = calcDamage(character);
+                // Create a new slice property to show the attack outcome
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
+              } else {
+                // Attack Missed!
+                dispatch(
+                  combatActions.updateDamageDisplay({
+                    id: target.id,
+                    value: "Miss!",
+                  })
+                );
               }
             }
             break;
@@ -233,7 +252,8 @@ export function rollToHit(attacker, target) {
 // NEED TO INCORPORATE STRENGTH BONUS & SPELL POWER
 export function calcDamage(source, spell, spellPower) {
   if (spell) {
-    const damage = Math.floor(Math.random() * source.baseDamage) + 1 + spellPower;
+    const damage =
+      Math.floor(Math.random() * source.baseDamage) + 1 + spellPower;
     return damage;
   } else {
     const damage = Math.floor(Math.random() * source.stats.strength.attack) + 1;

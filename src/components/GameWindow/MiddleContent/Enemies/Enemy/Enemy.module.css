@@ -12,6 +12,14 @@
   height: 4rem;
   width: 4rem;
   border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.enemy .image p {
+  margin: 0;
+  font-size: 2rem;
 }
 
 .enemy .highlighted {

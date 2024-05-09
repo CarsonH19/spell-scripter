@@ -2,7 +2,7 @@ import classes from "./Enemy.module.css";
 
 import Tooltip from "../../../../UI/Tooltip";
 
-import { memo, useEffect } from "react";
+import { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTarget } from "../../../../../store/combat-actions";
 import { targetType } from "../../../../../util/targeting";
@@ -19,9 +19,21 @@ const Enemy = ({ enemy }) => {
     (state) => state.combat.highlightedCharacter === enemy.id
   );
 
+  const [showDamage, setShowDamage] = useState(false);
+
   useEffect(() => {
+    // Show the damage number
+    setShowDamage(true);
+    // Set timeout to hide the damage number after 2 seconds
+    const timeoutId = setTimeout(() => {
+      setShowDamage(false);
+    }, 2000);
+
     updateStatTotals(dispatch, enemy.id);
-  }, []);
+
+    // Clear timeout to prevent memory leaks
+    return () => clearTimeout(timeoutId);
+  }, [enemy.damageDisplay]);
 
   const handleSetTarget = () => {
     if (targetType === "ENEMIES") {
@@ -66,7 +78,7 @@ const Enemy = ({ enemy }) => {
           isHighlighted ? classes.highlighted : ""
         }`}
       >
-        {enemy.name}
+        {showDamage && <p>{enemy.damageDisplay}</p>}{" "}
       </div>
     </div>
   );

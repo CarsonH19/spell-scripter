@@ -28,6 +28,7 @@ export function changeHealth(
   // currently not needed
   // }
 
+  dispatch(combatActions.updateDamageDisplay({ id, value }));
   dispatch(combatActions.updateHealth({ id, change, value }));
   // updateStatTotals(dispatch, id);
   checkForDeath(dispatch, id);
@@ -38,6 +39,8 @@ function checkForDeath(dispatch, id) {
   let character = order.find((char) => char.id === id);
 
   if (character.currentHealth <= 0) {
-    dispatch(combatActions.removeCharacter({ character }));
+    setTimeout(() => {
+      dispatch(combatActions.removeCharacter({ character }));
+    }, 2000);
   }
 }

@@ -7,14 +7,29 @@ import { useSelector } from "react-redux";
 import { targetType } from "../../../../../util/targeting";
 import { setTarget } from "../../../../../store/combat-actions";
 
+import { useEffect, useState } from "react";
+
 export default function Hero({ hero }) {
   const order = useSelector((state) => state.combat.order);
   const heroIndex = order.findIndex((char) => char.id === hero.id);
   hero = order[heroIndex];
-
   const isHighlighted = useSelector(
     (state) => state.combat.highlightedCharacter === hero.id
   );
+
+  const [showDamage, setShowDamage] = useState(false);
+
+  useEffect(() => {
+    // Show the damage number
+    setShowDamage(true);
+    // Set timeout to hide the damage number after 2 seconds
+    const timeoutId = setTimeout(() => {
+      setShowDamage(false);
+    }, 2000);
+
+    // Clear timeout to prevent memory leaks
+    return () => clearTimeout(timeoutId);
+  }, [hero.damageDisplay]);
 
   const handleSetTarget = () => {
     if (targetType === "ALLIES") {
@@ -29,7 +44,7 @@ export default function Hero({ hero }) {
           isHighlighted ? classes.highlighted : ""
         }`}
       >
-        {hero.name}
+        {showDamage && <p>{hero.damageDisplay}</p>}{" "}
       </div>
       <div className={classes.container}>
         <p className={classes.name}>{hero.name}</p>

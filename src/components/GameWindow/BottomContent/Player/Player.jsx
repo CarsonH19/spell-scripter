@@ -6,14 +6,29 @@ import { setTarget } from "../../../../store/combat-actions";
 import { targetType } from "../../../../util/targeting";
 
 import Tooltip from "../../../UI/Tooltip";
+import { useEffect, useState } from "react";
+
 export default function Player() {
   const order = useSelector((state) => state.combat.order);
   const playerIndex = order.findIndex((char) => char.id === "Player");
   const player = order[playerIndex];
-
   const isHighlighted = useSelector(
     (state) => state.combat.highlightedCharacter
   );
+
+  const [showDamage, setShowDamage] = useState(false);
+
+  useEffect(() => {
+    // Show the damage number
+    setShowDamage(true);
+    // Set timeout to hide the damage number after 2 seconds
+    const timeoutId = setTimeout(() => {
+      setShowDamage(false);
+    }, 2000);
+
+    // Clear timeout to prevent memory leaks
+    return () => clearTimeout(timeoutId);
+  }, [player.damageDisplay]);
 
   const handleSetTarget = () => {
     if (targetType === "ALLIES") {
@@ -68,7 +83,9 @@ export default function Player() {
         className={`${classes.image} ${
           isHighlighted === player.id ? classes.highlighted : ""
         }`}
-      ></div>
+      >
+        {showDamage && <p>{player.damageDisplay}</p>}{" "}
+      </div>
       <div>
         <p>Strength: {player.stats.strength.totalStrength}</p>
         <p>Agility: {player.stats.agility.totalAgility}</p>

@@ -76,8 +76,7 @@ export function createNewRoom(dispatch) {
 function getRoomContent() {
   const eventChance = Math.floor(Math.random() * 100);
   console.log("eventChance", eventChance);
-  if (eventChance > 1) {
-    // RETURN TO 79
+  if (eventChance > 79) {
     // ~20% Chance for an event
     return "EVENT";
   } else {
@@ -143,6 +142,7 @@ export function getRoomEnemies() {
           ...UNDEAD[enemyType],
           stats: constructStats(baseStats),
           id: uuidv4(),
+          damageDisplay: "",
         });
         console.log(enemiesArray);
         break;

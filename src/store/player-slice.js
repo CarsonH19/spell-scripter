@@ -9,6 +9,7 @@ const playerSlice = createSlice({
     image: "",
     level: 1,
     currentHealth: 75,
+    damageDisplay: '',
     currentMana: 50,
     currentExp: 0,
     expToNextLevel: 100,
