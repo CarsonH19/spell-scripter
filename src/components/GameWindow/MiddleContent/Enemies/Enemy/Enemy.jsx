@@ -19,6 +19,8 @@ const Enemy = ({ enemy }) => {
     (state) => state.combat.highlightedCharacter === enemy.id
   );
 
+  const isCharacterTurn = useSelector((state) => state.combat.isCharacterTurn);
+
   const [showDamage, setShowDamage] = useState(false);
 
   useEffect(() => {
@@ -76,7 +78,7 @@ const Enemy = ({ enemy }) => {
       <div
         className={`${classes.image} ${
           isHighlighted ? classes.highlighted : ""
-        }`}
+        } ${isCharacterTurn === enemy.id ? classes.turn : ""}`}
       >
         {showDamage && <p>{enemy.damageDisplay}</p>}{" "}
       </div>

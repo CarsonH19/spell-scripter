@@ -26,6 +26,10 @@
   border: 2px solid white;
 }
 
+.player .turn {
+  border: 2px solid rgb(255, 247, 0);
+}
+
 .health {
   position: absolute; 
   left: 0rem; 

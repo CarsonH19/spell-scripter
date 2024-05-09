@@ -2,11 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const combatSlice = createSlice({
   name: "combat",
-  initialState: { order: [], highlightedCharacter: null },
+  initialState: {
+    order: [],
+    highlightedCharacter: null,
+    isCharacterTurn: null,
+  },
   reducers: {
     setInitiative(state, action) {
       const characters = action.payload.characters;
-    
+
       const charactersWithInitiative = characters.map((character) => ({
         character,
         initiative:
@@ -20,6 +24,20 @@ const combatSlice = createSlice({
       );
 
       state.order = initiativeOrder;
+    },
+    initiativeTracker(state, action) {
+      const change = action.payload.change;
+
+      switch (change) {
+        case "ADD":
+          console.log("CALLED");
+          state.isCharacterTurn = action.payload.id;
+          break;
+
+        case "REMOVE":
+          state.isCharacterTurn = null;
+          break;
+      }
     },
     highlightCharacter(state, action) {
       state.highlightedCharacter = action.payload;
@@ -111,7 +129,7 @@ const combatSlice = createSlice({
     },
     updateDamageDisplay(state, action) {
       const value = action.payload.value;
-      
+
       // Locate character
       const id = action.payload.id;
 
@@ -170,8 +188,6 @@ const combatSlice = createSlice({
         return character.statusEffects.find((effect) => effect.name === name);
       };
       const statusEffect = findStatusEffectById(name);
-
-      if (!statusEffect) console.log("MISSING EFFECT!");
 
       const change = action.payload.change;
       switch (change) {

@@ -37,7 +37,8 @@ export default async function combatLoop(dispatch) {
       }
     }
 
-    let character = order[i];
+    let character = order[i];    
+
     if (!character) {
       console.log("NO CHARACTER");
       continue;
@@ -50,6 +51,9 @@ export default async function combatLoop(dispatch) {
       player.currentHealth >= 0 &&
       character.currentHealth >= 0
     ) {
+      dispatch(
+        combatActions.initiativeTracker({ id: character.id, change: "ADD" })
+      );
       // COMPLETE TASKS AT BEGINNING OF ROUND
       // Decrement existing status effect durations
       checkStatusEffect(dispatch, character.id, "DECREMENT");
@@ -163,6 +167,7 @@ export default async function combatLoop(dispatch) {
 
       // COMPLETE TASKS AT END OF ROUND
       await delay(2000);
+      dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
     }
   }
 

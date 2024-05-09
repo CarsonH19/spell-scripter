@@ -15,6 +15,7 @@ export default function Player() {
   const isHighlighted = useSelector(
     (state) => state.combat.highlightedCharacter
   );
+  const isCharacterTurn = useSelector((state) => state.combat.isCharacterTurn);
 
   const [showDamage, setShowDamage] = useState(false);
 
@@ -82,7 +83,7 @@ export default function Player() {
       <div
         className={`${classes.image} ${
           isHighlighted === player.id ? classes.highlighted : ""
-        }`}
+        } ${isCharacterTurn === player.id ? classes.turn : ""}`}
       >
         {showDamage && <p>{player.damageDisplay}</p>}{" "}
       </div>

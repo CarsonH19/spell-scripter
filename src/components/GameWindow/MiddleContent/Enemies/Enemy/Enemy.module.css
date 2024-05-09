@@ -26,11 +26,19 @@
   border: 2px solid white;
 }
 
+.enemy .turn {
+  border: 2px solid rgb(255, 247, 0);
+}
+
 :root {
   --is-highlighted: 0; /* Default value */
 }
 
 .enemy:has(.highlighted) .container {
+  width: 50%;
+}
+
+.enemy:has(.turn) .container {
   width: 50%;
 }
 

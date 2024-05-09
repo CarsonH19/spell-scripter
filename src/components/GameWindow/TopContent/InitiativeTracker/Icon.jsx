@@ -7,7 +7,13 @@ const Icon = ({ character }) => {
   const dispatch = useDispatch();
 
   // Use direct equality check instead of useSelector to avoid unnecessary rerenders
-  const isHighlighted = useSelector((state) => state.combat.highlightedCharacter === character.id);
+  const isHighlighted = useSelector(
+    (state) => state.combat.highlightedCharacter === character.id
+  );
+
+  const isCharacterTurn = useSelector(
+    (state) => state.combat.isCharacterTurn === character.id
+  );
 
   const handleMouseEnter = () => {
     dispatch(combatActions.highlightCharacter(character.id));
@@ -19,7 +25,9 @@ const Icon = ({ character }) => {
 
   return (
     <div
-      className={isHighlighted ? classes.highlighted : classes.icon}
+      className={`${isHighlighted ? classes.highlighted : classes.icon} ${
+        isCharacterTurn ? classes.turn : classes.icon
+      }`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

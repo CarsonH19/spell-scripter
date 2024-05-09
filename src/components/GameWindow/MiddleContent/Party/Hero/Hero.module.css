@@ -24,8 +24,16 @@
   border: 2px solid white;
 }
 
+.hero .turn {
+  border: 2px solid rgb(255, 247, 0);
+}
+
 .hero .highlighted + .container {
   width: 50%; 
+}
+
+.hero:has(.turn) .container {
+  width: 50%;
 }
 
 
