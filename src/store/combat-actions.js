@@ -120,6 +120,14 @@ export default async function combatLoop(dispatch) {
               }
               break;
             case "FLEE":
+              {
+                // calculate average speed of enemies + modifier for each enemy
+                // roll20 against the enemies
+                // on success flee
+                // endCombat
+                // createNewRoom
+
+              }
               break;
           }
 

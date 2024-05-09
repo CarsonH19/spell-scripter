@@ -16,13 +16,12 @@ export default function Actions() {
   const itemUI = useSelector((state) => state.ui.itemListIsVisible);
   const itemList = useSelector((state) => state.player.inventory.consumables);
 
+  // Used to determine if buttons should be disabled or not
   const playerID = useSelector((state) => state.player.id);
   const isCharacterTurn = useSelector(
     (state) => state.combat.isCharacterTurn === playerID
   );
-
   const danger = useSelector((state) => state.dungeon.danger);
-
   const isDisabled = !isCharacterTurn && !danger;
 
   const handlePlayerChoice = (action) => {
@@ -41,7 +40,7 @@ export default function Actions() {
     setSelect(choice);
     if (danger) {
       castSpell(dispatch, choice);
-      console.log("HELLO")
+      console.log("HELLO");
     }
 
     dispatch(uiActions.toggle({ modal })); // set to false
