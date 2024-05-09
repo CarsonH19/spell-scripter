@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./RoomSummaryModal.module.css";
 import { dungeonActions } from "../../../store/dungeon-slice";
+import { useEffect } from "react";
 
 export default function RoomSummaryModal() {
   const dispatch = useDispatch();
   const enemies = useSelector((state) => state.dungeon.contents.enemies);
 
-  dispatch(dungeonActions.dangerToggle()); // toggle off
+  useEffect(() => {
+    dispatch(dungeonActions.dangerToggle()); // toggle off
+  }, [dispatch]);
 
   return (
     <div className={classes.summary}>

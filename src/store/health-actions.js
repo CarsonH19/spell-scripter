@@ -22,13 +22,15 @@ export function changeHealth(
         value = value * 0.5;
       }
     }
+
+    // Only display damage 
+    dispatch(combatActions.updateDamageDisplay({ id, value }));
   }
 
   // if (change === "HEAL") {
   // currently not needed
   // }
 
-  dispatch(combatActions.updateDamageDisplay({ id, value }));
   dispatch(combatActions.updateHealth({ id, change, value }));
   // updateStatTotals(dispatch, id);
   checkForDeath(dispatch, id);

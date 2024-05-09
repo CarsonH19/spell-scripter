@@ -6,6 +6,7 @@ import { uiActions } from "../../../../store/ui-slice";
 import { setSelect } from "../../../../store/combat-actions";
 
 import Item from "../../../Modals/Inventory/Item";
+import castSpell from "../../../../util/cast-spell";
 
 export default function Actions() {
   const dispatch = useDispatch();
@@ -37,8 +38,12 @@ export default function Actions() {
   };
 
   const handleSelectChoice = (choice, modal) => {
-    console.log("handleSelectChoice", choice);
     setSelect(choice);
+    if (danger) {
+      castSpell(dispatch, choice);
+      console.log("HELLO")
+    }
+
     dispatch(uiActions.toggle({ modal })); // set to false
   };
 
