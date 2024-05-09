@@ -6,6 +6,7 @@ const dungeonSlice = createSlice({
     name: "",
     roomCounter: 0,
     threat: 0,
+    danger: false,
     image: null,
     music: null,
     contents: {
@@ -20,6 +21,9 @@ const dungeonSlice = createSlice({
         ...state,
         ...action.payload,
       };
+    },
+    dangerToggle(state){
+      state.danger = !state.danger
     },
     changeEnemies(state, action) {
       const enemy = action.payload.enemy;

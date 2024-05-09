@@ -26,7 +26,7 @@ const Icon = ({ character }) => {
   return (
     <div
       className={`${isHighlighted ? classes.highlighted : classes.icon} ${
-        isCharacterTurn ? classes.turn : classes.icon
+        isCharacterTurn ? classes.turn : ""
       }`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

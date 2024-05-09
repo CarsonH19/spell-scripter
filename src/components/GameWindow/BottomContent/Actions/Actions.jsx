@@ -15,6 +15,15 @@ export default function Actions() {
   const itemUI = useSelector((state) => state.ui.itemListIsVisible);
   const itemList = useSelector((state) => state.player.inventory.consumables);
 
+  const playerID = useSelector((state) => state.player.id);
+  const isCharacterTurn = useSelector(
+    (state) => state.combat.isCharacterTurn === playerID
+  );
+
+  const danger = useSelector((state) => state.dungeon.danger);
+
+  const isDisabled = !isCharacterTurn && !danger;
+
   const handlePlayerChoice = (action) => {
     setPlayerAction(action);
 
@@ -98,16 +107,37 @@ export default function Actions() {
   } else {
     content = (
       <div className={classes.actions}>
-        <button onClick={() => handlePlayerChoice("CAST SPELL")}>
+        <button
+          disabled={isDisabled}
+          onClick={() => handlePlayerChoice("CAST SPELL")}
+        >
           Cast Spell
         </button>
         <div>
-          <button onClick={() => handlePlayerChoice("ATTACK")}>Attack</button>
-          <button onClick={() => handlePlayerChoice("GUARD")}>Guard</button>
-          <button onClick={() => handlePlayerChoice("USE ITEM")}>
+          <button
+            disabled={isDisabled || !isCharacterTurn}
+            onClick={() => handlePlayerChoice("ATTACK")}
+          >
+            Attack
+          </button>
+          <button
+            disabled={isDisabled || !isCharacterTurn}
+            onClick={() => handlePlayerChoice("GUARD")}
+          >
+            Guard
+          </button>
+          <button
+            disabled={isDisabled || !isCharacterTurn}
+            onClick={() => handlePlayerChoice("USE ITEM")}
+          >
             Use Item
           </button>
-          <button onClick={() => handlePlayerChoice("FLEE")}>Flee</button>
+          <button
+            disabled={isDisabled || !isCharacterTurn}
+            onClick={() => handlePlayerChoice("FLEE")}
+          >
+            Flee
+          </button>
         </div>
       </div>
     );

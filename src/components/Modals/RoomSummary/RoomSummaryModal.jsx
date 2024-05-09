@@ -1,8 +1,12 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./RoomSummaryModal.module.css";
+import { dungeonActions } from "../../../store/dungeon-slice";
 
 export default function RoomSummaryModal() {
+  const dispatch = useDispatch();
   const enemies = useSelector((state) => state.dungeon.contents.enemies);
+
+  dispatch(dungeonActions.dangerToggle()); // toggle off
 
   return (
     <div className={classes.summary}>
@@ -15,12 +19,11 @@ export default function RoomSummaryModal() {
           <div>
             <h4>Enemies Defeated</h4>
             <ul>
-            {enemies.map((enemy) => {
-              return <li key={enemy.id}>{enemy.name}</li>;
-            })}
-          </ul>
+              {enemies.map((enemy) => {
+                return <li key={enemy.id}>{enemy.name}</li>;
+              })}
+            </ul>
           </div>
-          
         )}
         <div>ITEMS FOUND</div>
       </div>

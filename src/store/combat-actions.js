@@ -12,6 +12,7 @@ import { uiActions } from "./ui-slice.js";
 import { combatActions } from "./combat-slice.js";
 
 import activateItem from "./item-actions.js";
+import { dungeonActions } from "./dungeon-slice.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -37,7 +38,7 @@ export default async function combatLoop(dispatch) {
       }
     }
 
-    let character = order[i];    
+    let character = order[i];
 
     if (!character) {
       console.log("NO CHARACTER");
@@ -163,10 +164,11 @@ export default async function combatLoop(dispatch) {
           case "ABILITY":
             break;
         }
+
+        await delay(2000);
       }
 
       // COMPLETE TASKS AT END OF ROUND
-      await delay(2000);
       dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
     }
   }
@@ -176,7 +178,6 @@ export default async function combatLoop(dispatch) {
     return; // exit the loop
   } else {
     await delay(2000);
-    console.log("Next round started!");
     combatLoop(dispatch); // continue the loop
   }
 }
