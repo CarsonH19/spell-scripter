@@ -1,6 +1,6 @@
 import classes from "./Enemies.module.css";
 
-import Enemy from "./Enemy/Enemy";
+import Character from "../Character";
 
 import { useSelector } from "react-redux";
 
@@ -11,7 +11,7 @@ export default function Enemies() {
     <div className={classes.enemies}>
       {order.map((enemy) => {
         if (enemy.identifier === "ENEMY") {
-          return <Enemy key={enemy.id} enemy={enemy} />;
+          return <Character key={enemy.id} character={enemy} />;
         }
       })}
     </div>

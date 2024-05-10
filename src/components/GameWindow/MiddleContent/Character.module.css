@@ -1,5 +1,5 @@
 
-.hero {
+.character {
   position: relative;
   width: 100%;
   display: flex;
@@ -7,7 +7,11 @@
   gap: 1rem;
 }
 
-.hero .image {
+.enemy {
+  flex-direction: row-reverse;
+}
+
+.character .image {
   height: 4rem;
   width: 4rem;
   border: 1px solid red;
@@ -16,30 +20,28 @@
   align-items: center;
 }
 
-.hero .image p {
+.character .image p {
   margin: 0;
   font-size: 2rem;
 }
-.hero .highlighted {
+.character .highlighted {
   border: 2px solid white;
 }
 
-.hero .turn {
+.character .turn {
   border: 2px solid rgb(255, 247, 0);
 }
 
-.hero .highlighted + .container {
+.character .highlighted + .container {
   width: 50%; 
 }
 
-.hero:has(.turn) .container {
+.character:has(.turn) .container {
   width: 50%;
 }
 
-
-.hero .container {
+.character .container {
   position: absolute; 
-  left: 5rem; 
   top: 0rem;
   width: 0%; 
   height: 100%; 
@@ -47,30 +49,49 @@
   transition: width 0.3s ease;
 }
 
-.hero:hover .container {
+.heroContainer {
+  left: 5rem; 
+}
+
+.enemyContainer {
+  right: 5rem; 
+}
+
+.character:hover .container {
   width: 50%; 
   overflow: visible;
 }
 
-.hero .container .name {
+.character .container .name {
   font-size: 0.8rem;
   font-weight: 600;
   margin: 0;
 }
 
-.hero .container .info {
+.enemyName {
+  text-align: right;
+}
+
+.character .container .info {
   display: flex;
-  justify-content: flex-end;
   gap: 1rem;
   margin-bottom: -0.8rem;
 }
 
-.hero .container .info p {
+.heroInfo {
+  justify-content: flex-end;
+}
+
+.enemyInfo {
+  justify-content: flex-start;
+}
+
+.character .container .info p {
   margin: 0;
   font-size: 0.8rem;
 }
 
-.hero .container progress {
+.character .container progress {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -80,19 +101,19 @@
   border: 1px solid #ad0505;
 }
 
-.hero progress[value]::-webkit-progress-bar,
-.hero progress[value] {
+.character progress[value]::-webkit-progress-bar,
+.character progress[value] {
   background-color: #b0aaaa;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
   border-radius: 2px;
 }
 
-.hero progress[value]::-webkit-progress-value {
+.character progress[value]::-webkit-progress-value {
   background-color: #ad0505;
   transition: all 0.1s ease-out;
 }
 
-.hero progress[value]::-moz-progress-bar {
+.character progress[value]::-moz-progress-bar {
   background-color: #ad0505;
   transition: all 0.1s ease-out;
 }

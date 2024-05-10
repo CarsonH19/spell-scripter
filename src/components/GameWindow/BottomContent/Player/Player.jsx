@@ -1,6 +1,8 @@
 import classes from "./Player.module.css";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { combatActions } from "../../../../store/combat-slice";
 
 import { setTarget } from "../../../../store/combat-actions";
 import { targetType } from "../../../../util/targeting";
@@ -9,6 +11,8 @@ import Tooltip from "../../../UI/Tooltip";
 import { useEffect, useState } from "react";
 
 export default function Player() {
+  const dispatch = useDispatch();
+
   const order = useSelector((state) => state.combat.order);
   const playerIndex = order.findIndex((char) => char.id === "Player");
   const player = order[playerIndex];
@@ -25,6 +29,14 @@ export default function Player() {
     // Set timeout to hide the damage number after 2 seconds
     const timeoutId = setTimeout(() => {
       setShowDamage(false);
+
+      // Clear the damage display
+      dispatch(
+        combatActions.updateDamageDisplay({
+          id: player.id,
+          value: null,
+        })
+      );
     }, 2000);
 
     // Clear timeout to prevent memory leaks

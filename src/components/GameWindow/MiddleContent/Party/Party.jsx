@@ -1,6 +1,7 @@
 import classes from "./Party.module.css";
 
-import Hero from "./Hero/Hero";
+// import Hero from "./Hero/Hero";
+import Character from "../Character";
 
 import { useSelector } from "react-redux";
 
@@ -11,7 +12,7 @@ export default function Party() {
     <div className={classes.party}>
       {order.map((hero) => {
         if (hero.identifier === "HERO") {
-          return <Hero key={hero.id} hero={hero} />;
+          return <Character key={hero.id} character={hero} />;
         }
       })}
     </div>
