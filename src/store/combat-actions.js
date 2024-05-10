@@ -55,6 +55,9 @@ export default async function combatLoop(dispatch) {
       dispatch(
         combatActions.initiativeTracker({ id: character.id, change: "ADD" })
       );
+
+      await delay(1000);
+      
       // COMPLETE TASKS AT BEGINNING OF ROUND
       // Decrement existing status effect durations
       checkStatusEffect(dispatch, character.id, "DECREMENT");
@@ -139,6 +142,8 @@ export default async function combatLoop(dispatch) {
       if (order[i].identifier === "HERO" || order[i].identifier === "ENEMY") {
         character.currentHealth > 0 && console.log(`${order[i].name}'s turn!`);
 
+        await delay(2000);
+
         // check behavior to determine action
         const action = checkBehavior(character); // return a destructured object checking the action and target
 
@@ -173,8 +178,8 @@ export default async function combatLoop(dispatch) {
             break;
         }
 
-        await delay(2000);
       }
+      await delay(2000);
 
       // COMPLETE TASKS AT END OF ROUND
       dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));

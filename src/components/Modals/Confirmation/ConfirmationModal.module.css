@@ -8,7 +8,7 @@
   align-items: center;
   border: 2px solid white;
   padding: 1rem;
-  overflow: visible;
+  /* overflow: visible; */
 }
 
 .confirmation h1 {
@@ -70,6 +70,7 @@
   height: 7rem;
   margin: 0;
   padding: 1rem;
+  /* overflow-y: scroll; */
 }
 
 .confirmation .container .tracker {

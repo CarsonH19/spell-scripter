@@ -12,6 +12,7 @@ import { combatActions } from "../../store/combat-slice";
 import { dungeonActions } from "../../store/dungeon-slice";
 
 import combatLoop from "../../store/combat-actions";
+import { logActions } from "../../store/log-slice";
 
 export default function GameWindow() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ export default function GameWindow() {
       combatLoop(dispatch);
     }
 
+    dispatch(logActions.updateLogs({ text: "TESTING", logArray: "NARRATION" }));
     // Dependency: Update when room counter increments
   }, [dispatch, room.roomCounter]);
 

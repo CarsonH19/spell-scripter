@@ -2,6 +2,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import StartGame from "./components/StartGame/StartGame";
 import GameWindow from "./components/GameWindow/GameWindow";
 import Modal from "./components/Modals/Modal";
+import Narration from "./components/Narration/Narration";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <>
+      <Narration />
       {modal && <Modal />}
       {start && <StartGame />}
       {!start && !game && dashboard && <Dashboard />}

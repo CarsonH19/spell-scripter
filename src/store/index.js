@@ -5,6 +5,7 @@ import dungeonSlice from "./dungeon-slice";
 import heroSlice from "./hero-slice";
 import playerSlice from "./player-slice";
 import combatSlice from "./combat-slice";
+import logSlice from "./log-slice";
 // import spellbookSlice from "./spellbook-slice";
 
 const store = configureStore({
@@ -14,6 +15,7 @@ const store = configureStore({
     hero: heroSlice.reducer,
     player: playerSlice.reducer,
     combat: combatSlice.reducer,
+    log: logSlice.reducer,
     // spellbook: spellbookSlice.reducer,
   },
 });

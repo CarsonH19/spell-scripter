@@ -17,12 +17,17 @@ import HelpModal from "./Help/HelpModal";
 import ConfirmationModal from "./Confirmation/ConfirmationModal";
 
 import store from "../../store";
+// import { useEffect } from "react";
 
 export default function Modal() {
   const dispatch = useDispatch();
   const activeModal = selectModal();
   const ui = useSelector((state) => state.ui);
   const continueCheck = findActiveModal(ui);
+
+  // useEffect(() => {
+  //   //
+  // }, [ui]);
 
   const handleClose = () => {
     // Render continue button when RoomSummaryModal is closed
@@ -34,7 +39,8 @@ export default function Modal() {
   };
 
   // This forces a rerender when the buttons on confirmationModal change the state to display a different modal
-  console.log(ui);
+  // console.log(ui);
+
   return createPortal(
     <div className={classes.modal}>
       {activeModal}
