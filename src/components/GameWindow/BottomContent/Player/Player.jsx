@@ -1,4 +1,14 @@
 import classes from "./Player.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHeart,
+  faShieldHalved,
+  faFireFlameCurved,
+  faHandFist,
+  faPersonRunning,
+  faHatWizard,
+  faHandSparkles,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -49,30 +59,53 @@ export default function Player() {
     }
   };
 
+  // const healthBarLength = player.stats.strength.maxHealth;
+  // const manaBarLength =
+
   return (
     <div className={classes.player} onClick={handleSetTarget}>
       <div className={classes.health}>
         <p className={classes.name}>{player.name}</p>
         <hr />
-        <div className={classes.info}>
+        <div className={classes.healthInfo}>
           <p>
-            HP: <span>{player.currentHealth}</span> /{" "}
-            <span>{player.stats.strength.maxHealth}</span>
+            <FontAwesomeIcon icon={faHeart} /> {player.currentHealth}/
+            {player.stats.strength.maxHealth}
           </p>
           <p>
-            Exp: <span>{player.currentExp}</span> /
-            <span>{player.expToNextLevel}</span>
-          </p>
-          <p>
-            Lvl: <span>{player.level}</span>
+            <FontAwesomeIcon icon={faShieldHalved} />{" "}
+            {player.stats.agility.defense}
           </p>
         </div>
-        <progress
-          max={player.stats.strength.maxHealth}
-          value={player.currentHealth}
-        >
-          100%
-        </progress>
+        <div className={classes.bars}>
+          <progress
+            max={player.stats.strength.maxHealth}
+            value={player.currentHealth}
+            className={classes.healthBar}
+            style={{ width: `${player.stats.strength.maxHealth / 5 + 10}rem` }}
+          ></progress>
+          <progress
+            max={player.stats.arcana.maxMana}
+            value={player.currentMana}
+            className={classes.mana}
+            style={{ width: `${player.stats.arcana.maxMana / 5 + 10}rem` }}
+          ></progress>
+        </div>
+        <div className={classes.manaInfo}>
+          <p>
+            <FontAwesomeIcon icon={faHandSparkles} /> {player.currentMana}/
+            {player.stats.arcana.maxMana}
+          </p>
+          <div>
+            <Tooltip
+              title={"Spell Power"}
+              // style={{ whiteSpace: "nowrap", width: "auto" }}
+              >
+              <FontAwesomeIcon icon={faFireFlameCurved} />
+              {player.stats.arcana.spellPower}
+            </Tooltip>
+          </div>
+        </div>
         <div className={classes.statusEffects}>
           {player.statusEffects.map((effect) => {
             if (effect.display) {
@@ -100,9 +133,18 @@ export default function Player() {
         {showDamage && <p>{player.damageDisplay}</p>}{" "}
       </div>
       <div>
-        <p>Strength: {player.stats.strength.totalStrength}</p>
-        <p>Agility: {player.stats.agility.totalAgility}</p>
-        <p>Arcana: {player.stats.arcana.totalArcana}</p>
+        <p>
+          <FontAwesomeIcon icon={faHandFist} />{" "}
+          {player.stats.strength.totalStrength}
+        </p>
+        <p>
+          <FontAwesomeIcon icon={faPersonRunning} />{" "}
+          {player.stats.agility.totalAgility}
+        </p>
+        <p>
+          <FontAwesomeIcon icon={faHatWizard} />{" "}
+          {player.stats.arcana.totalArcana}
+        </p>
       </div>
     </div>
   );

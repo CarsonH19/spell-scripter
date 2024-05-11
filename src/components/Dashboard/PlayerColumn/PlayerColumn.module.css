@@ -46,7 +46,13 @@
   flex: 1;
 }
 
-.column .menu button {
-  width: 10rem;
-  height: 3rem;
+.column .menu .icon {
+  width: 2rem;
+  cursor: pointer;
+  height: auto;
+}
+
+.column .menu .icon:hover {
+  transition: 0.3s;
+  scale: 1.1;
 }

@@ -1,4 +1,12 @@
 import classes from "./Character.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHeart,
+  faShieldHalved,
+  faHandFist,
+  faHatWizard,
+  faPersonRunning,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Tooltip from "../../UI/Tooltip";
 
@@ -82,9 +90,25 @@ export default function Character({ character }) {
               : classes.heroInfo
           }`}
         >
+          {/* <p>
+            <FontAwesomeIcon icon={faHatWizard} />{" "}
+            {character.stats.arcana.totalArcana}
+          </p>
           <p>
-            HP: <span>{character.currentHealth}</span> /{" "}
-            <span>{character.stats.strength.maxHealth}</span>
+            <FontAwesomeIcon icon={faPersonRunning} />{" "}
+            {character.stats.agility.totalAgility}
+          </p>
+          <p>
+            <FontAwesomeIcon icon={faHandFist} />{" "}
+            {character.stats.strength.totalStrength}
+          </p> */}
+          {/* <p>
+            <FontAwesomeIcon icon={faShieldHalved} />{" "}
+            {character.stats.agility.defense}
+          </p> */}
+          <p>
+            <FontAwesomeIcon icon={faHeart} /> {character.currentHealth}/
+            {character.stats.strength.maxHealth}
           </p>
         </div>
         <progress

@@ -51,46 +51,76 @@
   margin-bottom: -0.9rem;
 }
 
- .health .info {
-  overflow: hidden;
+ .health .healthInfo, 
+ .health .manaInfo {
+  /* overflow: hidden; */
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: flex-start;
+  gap: 3rem;
 }
 
- .health .info p {
+.manaInfo {
+  font-size: 0.8rem;
+  margin-top: -0.9rem;
+}
+
+ .health .healthInfo p {
   margin: 0;
   font-size: 0.8rem;
   margin-bottom: -0.2rem;
 }
 
- .health progress {
+ progress {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 100%;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.2rem;
   height: 0.5rem; 
-  color: #ff0062;
-  border: 1px solid #ad0505;
+  /* color: white;
+  font-size: 1rem; */
+}
+ 
+.bars {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.2rem;
+  width: 100%;
 }
 
- progress[value]::-webkit-progress-bar,
- progress[value] {
+ .healthBar::-webkit-progress-bar {
+  background-color: #b0aaaa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  border: 1px solid #ad0505;
+  border-radius: 2px;
+}
+
+.healthBar::-webkit-progress-value {
+  background-color: #ad0505;
+  transition: all 0.1s ease-out;
+}
+
+.healthBar::-moz-progress-bar {
+  background-color: #ad0505;
+  transition: all 0.1s ease-out;
+}
+
+
+.mana::-webkit-progress-bar {
   background-color: #b0aaaa;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
   border-radius: 2px;
 }
 
- progress[value]::-webkit-progress-value {
-  background-color: #ad0505;
+.mana::-webkit-progress-value {
+  background-color: rgb(0, 153, 255); 
   transition: all 0.1s ease-out;
 }
 
- progress[value]::-moz-progress-bar {
-  background-color: #ad0505;
+.mana::-moz-progress-bar {
+  background-color: rgb(0, 153, 255); 
   transition: all 0.1s ease-out;
 }
+
 
 .statusEffects {
   margin: 0;

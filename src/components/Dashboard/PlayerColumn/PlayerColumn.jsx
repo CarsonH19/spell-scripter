@@ -1,5 +1,13 @@
 import { uiActions } from "../../../store/ui-slice";
 import classes from "./PlayerColumn.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBookOpen,
+  faToolbox,
+  faUsersLine,
+  faPersonCircleExclamation,
+  faGear,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -28,17 +36,31 @@ export default function PlayerColumn() {
       </div>
       <hr />
       <div className={classes.menu}>
-        <button onClick={() => handleOpenModal("spellbookModal")}>
-          Spellbook
-        </button>
-        <button onClick={() => handleOpenModal("inventoryModal")}>
-          Inventory
-        </button>
-        <button onClick={() => handleOpenModal("heroesModal")}>Heroes</button>
-        <button onClick={() => handleOpenModal("questsModal")}>Quests</button>
-        <button onClick={() => handleOpenModal("settingsModal")}>
-          Settings
-        </button>
+        <FontAwesomeIcon
+          className={classes.icon}
+          icon={faBookOpen}
+          onClick={() => handleOpenModal("spellbookModal")}
+        />
+        <FontAwesomeIcon
+          className={classes.icon}
+          icon={faToolbox}
+          onClick={() => handleOpenModal("inventoryModal")}
+        />
+        <FontAwesomeIcon
+          className={classes.icon}
+          icon={faUsersLine}
+          onClick={() => handleOpenModal("heroesModal")}
+        />
+        <FontAwesomeIcon
+          className={classes.icon}
+          icon={faPersonCircleExclamation}
+          onClick={() => handleOpenModal("questsModal")}
+        />
+        <FontAwesomeIcon
+          className={classes.icon}
+          icon={faGear}
+          onClick={() => handleOpenModal("settingsModal")}
+        />
       </div>
     </div>
   );
