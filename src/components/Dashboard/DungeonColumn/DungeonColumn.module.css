@@ -1,26 +1,23 @@
 .column {
   width: 33%;
   height: 100%;
-  border: 1px solid red;
+  border: 3px solid var(--secondary);
   min-width: 310px;
   padding: 1rem;
 }
 
-.column hr {
-  width: 100%;
-}
-
 .column h1 {
   text-align: center;
+  margin: 1rem;
+  border-bottom: 2px solid var(--primary);
 }
-
 .column .dungeons {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 90%;
-  border: 1px solid red;
+  /* border: 5px solid var(--accent); */
 }
 
 .column .dungeons p {
@@ -34,13 +31,13 @@
   justify-content: space-between;
   height: 40%;
   width: 100%;
-  border: 1px solid red;
+  border: 3px solid var(--accent);
 }
 
 .column .dungeons .description {
   text-align: center;
   width: 100%;
-  border: 1px solid red;
+  border: 3px solid var(--accent);
   margin: 0;
 }
 

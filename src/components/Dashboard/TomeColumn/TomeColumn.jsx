@@ -4,7 +4,6 @@ export default function TomeColumn() {
   return (
     <div className={classes.column}>
       <h1>Tomes</h1>
-      <hr />
       <p>Mastery Points: 0</p>
       <div className={classes.filter}>
         <button>All</button>

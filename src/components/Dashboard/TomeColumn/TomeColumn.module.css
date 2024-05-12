@@ -1,7 +1,7 @@
 .column {
   width: 33%;
   height: 100%;
-  border: 1px solid red;
+  border: 3px solid var(--secondary);
   min-width: 310px;
   padding: 1rem;
 }
@@ -12,6 +12,9 @@
 
 .column h1 {
   text-align: center;
+  border-bottom: 2px solid var(--primary);
+  margin: 1rem;
+
 }
 
 .column .filter {
@@ -24,5 +27,9 @@
 .column .tomes {
   height: 80%;
   width: 100%;
-  border: 1px solid red;
+  border: 3px solid var(--accent);
+}
+
+.column hr {
+  background-color: var(--accent);
 }

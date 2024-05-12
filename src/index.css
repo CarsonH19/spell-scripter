@@ -1,17 +1,15 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+--text: lightgray;
+--background: #252b3b;
+--primary: #e3d6be;
+--secondary: #fff3b4;
+--accent: #212121;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+background-color: var(--background);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
+
+
 
 #root {
   height: 100vh;
@@ -22,13 +20,35 @@
   box-sizing: border-box;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5 {
   margin: 0;
   padding: 0;
+  color: var(--primary);
 }
 
-html, body {
+p {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+}
+
+button {
+  /* background-color: var(--primary); */
+  border: 1px solid var(--accent);
+}
+
+div {
+  border-color: var(--accent);
+}
+
+body {
   margin: 0;
   height: 100vh;
   width: 100vw;
+  background-color: var(--background);
+  background-image: url(assets/skull-texture.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: overlay;
 }
+

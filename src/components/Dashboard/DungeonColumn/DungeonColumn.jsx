@@ -24,7 +24,6 @@ export default function DungeonColumn() {
   return (
     <div className={classes.column}>
       <h1>Dungeons</h1>
-      <hr />
       <div className={classes.dungeons}>
         <div className={classes.selection}>
           <h2> The Great Catacombs</h2>

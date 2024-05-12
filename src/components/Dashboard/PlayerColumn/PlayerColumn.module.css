@@ -2,7 +2,7 @@
   width: 33%;
   height: 100%;
   padding: 1rem;
-  border: 1px solid red;
+  border: 3px solid var(--secondary);
   min-width: 310px;
   display: flex;
   flex-direction: column;
@@ -28,14 +28,9 @@
   flex: 1;
 }
 
-/* .player .image {
- height: 12rem;
- width: 12rem;
- border: 1px solid gray;
-} */
-
 .column hr {
   width: 100%;
+  color: var(--secondary);
 }
 
 .column .menu {
@@ -50,6 +45,7 @@
   width: 2rem;
   cursor: pointer;
   height: auto;
+  color: var(--secondary);
 }
 
 .column .menu .icon:hover {
