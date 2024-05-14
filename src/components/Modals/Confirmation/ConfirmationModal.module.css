@@ -1,6 +1,6 @@
 .confirmation {
   background-color: var(--background);
-  background-image: url(src/assets/skull-texture.jpg);
+  /* background-image: url(src/assets/skull-texture.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: overlay;
