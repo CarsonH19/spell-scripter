@@ -127,6 +127,36 @@ const combatSlice = createSlice({
         }
       }
     },
+    updateMana(state, action) {
+      const change = action.payload.change;
+      const value = action.payload.value;
+
+      const findCharacterById = (id) => {
+        const characters = state.order;
+        return characters.find((char) => char.id === id);
+      };
+
+      // Find Player in combat order
+      const character = findCharacterById("Player");
+
+      if (change === "REMOVE") {
+        character.currentMana -= value;
+
+        // Prevents Falling Below 0
+        if (character.currentMana < 0) {
+          character.currentMana = 0;
+        }
+      }
+
+      if (change === "ADD") {
+        character.currentMana += value;
+
+        // Prevents Healing Above Max
+        if (character.currentMana > character.stats.strength.currentMana) {
+          character.currentMana = character.stats.strength.currentMana;
+        }
+      }
+    },
     updateDamageDisplay(state, action) {
       const value = action.payload.value;
 

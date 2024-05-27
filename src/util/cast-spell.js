@@ -1,5 +1,6 @@
 import store from "../store";
 import { getTarget, rollToHit, calcDamage } from "../store/combat-actions";
+import { combatActions } from "../store/combat-slice";
 import { changeHealth } from "../store/health-actions";
 import changeStatusEffect from "../store/status-effect-actions";
 
@@ -58,6 +59,10 @@ export default async function castSpell(dispatch, spell) {
     case "ALL": // all characters in initiative are targeted
       break;
   }
+
+  dispatch(
+    combatActions.updateMana({ change: "REMOVE", value: spell.manaCost })
+  );
 }
 
 // choose a target
