@@ -1,8 +1,6 @@
 .container {
   position: relative;
-  /* display: inline-block; */
-  /* width: 4rem;
-  height: 4rem; */
+  display: inline-block; 
 }
 
 .tooltip {
@@ -10,13 +8,14 @@
   position: absolute;
   z-index: 99;
   bottom: 125%;
-  left: 100%;
+  left: 75%;
   background-color: black;
   color: white;
   padding: 5px;
   border-radius: 5px;
   opacity: 0.8;
   height: auto;
+  min-width: 8rem;
   max-width: 20rem; 
   font-size:  0.8rem;
   pointer-events: none;
@@ -24,6 +23,7 @@
 
 .tooltip p {
   margin: 0;
+  text-align: left;
 }
 
 .tooltip .title {

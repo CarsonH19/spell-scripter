@@ -33,7 +33,7 @@
 .health {
   position: absolute; 
   left: 0rem; 
-  top: -9rem;
+  top: -7rem;
   width: 30rem; 
   /* height: rem;  */
 }
@@ -64,10 +64,11 @@
   margin-top: -0.9rem;
 }
 
- .health .healthInfo p {
+ .health .healthInfo div {
   margin: 0;
   font-size: 0.8rem;
-  margin-bottom: -0.2rem;
+  margin-bottom: 0rem;
+  color: lightgray;
 }
 
  progress {
@@ -124,7 +125,7 @@
 
 .statusEffects {
   margin: 0;
-  margin-top: -0.3rem;
+  margin-top: 0.4rem;
 } 
 
 .effect {

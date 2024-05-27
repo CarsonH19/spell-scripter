@@ -68,14 +68,18 @@ export default function Player() {
         <p className={classes.name}>{player.name}</p>
         <hr />
         <div className={classes.healthInfo}>
-          <p>
-            <FontAwesomeIcon icon={faHeart} /> {player.currentHealth}/
-            {player.stats.strength.maxHealth}
-          </p>
-          <p>
-            <FontAwesomeIcon icon={faShieldHalved} />{" "}
-            {player.stats.agility.defense}
-          </p>
+          <div>
+            <Tooltip title={"Health Points"}>
+              <FontAwesomeIcon icon={faHeart} /> {player.currentHealth}/
+              {player.stats.strength.maxHealth}
+            </Tooltip>
+          </div>
+          <div>
+            <Tooltip title={"Magic Points"}>
+              <FontAwesomeIcon icon={faHandSparkles} /> {player.currentMana}/
+              {player.stats.arcana.maxMana}
+            </Tooltip>
+          </div>
         </div>
         <div className={classes.bars}>
           <progress
@@ -90,21 +94,6 @@ export default function Player() {
             className={classes.mana}
             style={{ width: `${player.stats.arcana.maxMana / 5 + 10}rem` }}
           ></progress>
-        </div>
-        <div className={classes.manaInfo}>
-          <p>
-            <FontAwesomeIcon icon={faHandSparkles} /> {player.currentMana}/
-            {player.stats.arcana.maxMana}
-          </p>
-          <div>
-            <Tooltip
-              title={"Spell Power"}
-              // style={{ whiteSpace: "nowrap", width: "auto" }}
-              >
-              <FontAwesomeIcon icon={faFireFlameCurved} />
-              {player.stats.arcana.spellPower}
-            </Tooltip>
-          </div>
         </div>
         <div className={classes.statusEffects}>
           {player.statusEffects.map((effect) => {
