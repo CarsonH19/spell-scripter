@@ -24,6 +24,15 @@ export default function Actions() {
   const danger = useSelector((state) => state.dungeon.danger);
   const isDisabled = !isCharacterTurn && !danger;
 
+  // mana tracking for spell button disabled
+  const order = useSelector((state) => state.combat.order);
+
+  const findCharacterById = () => {
+    return order.find((char) => char.id === "Player");
+  };
+
+  const player = findCharacterById();
+  
   const handlePlayerChoice = (action) => {
     setPlayerAction(action);
 
@@ -40,7 +49,6 @@ export default function Actions() {
     setSelect(choice);
     if (danger) {
       castSpell(dispatch, choice);
-      console.log("HELLO");
     }
 
     dispatch(uiActions.toggle({ modal })); // set to false
@@ -54,12 +62,14 @@ export default function Actions() {
   let content;
 
   if (spellUI) {
+    const playerMana = player.currentMana;
+
     content = (
       <div className={classes.spells}>
         <h3>Spell List</h3>
         {spellList.map((spell) => (
           <li
-            key={spell.name}
+          className={playerMana < spell.manaCost ? classes.disabled : ''}            key={spell.name}
             onClick={() => handleSelectChoice(spell, "spellListIsVisible")}
           >
             {spell.name}
