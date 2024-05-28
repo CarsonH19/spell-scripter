@@ -1,21 +1,27 @@
 import { createPortal } from "react-dom";
 
 import classes from "./Narration.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { logActions } from "../../store/log-slice";
 
 export default function Narration() {
   const narration = useSelector((state) => state.log.narration);
-
   const [showText, setShowText] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setShowText(true);
     const timeoutId = setTimeout(() => {
       setShowText(false);
+      dispatch(logActions.updateLogs({ change: "REMOVE" }));
+      console.log(narration);
     }, 3000);
 
-    return () => clearTimeout(timeoutId);
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [narration]);
 
   let text;

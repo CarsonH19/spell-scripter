@@ -14,7 +14,7 @@ export default function InitiativeTracker() {
   let character = findCharacterById(id);
 
   if (!character) {
-    character = ''; 
+    character = "";
   }
 
   return (
@@ -22,7 +22,7 @@ export default function InitiativeTracker() {
       {order.map((character, index) => (
         <MemoizedIcon key={index} character={character} />
       ))}
-      <p>{character.name}</p>
+      {id && <p>{`${character.name}'s Turn!`}</p>}
     </div>
   );
 }

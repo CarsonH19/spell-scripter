@@ -1,6 +1,9 @@
 import store from "../store";
 import { getTarget, rollToHit, calcDamage } from "../store/combat-actions";
+
 import { combatActions } from "../store/combat-slice";
+import { logActions } from "../store/log-slice";
+
 import { changeHealth } from "../store/health-actions";
 import changeStatusEffect from "../store/status-effect-actions";
 
@@ -17,6 +20,13 @@ export default async function castSpell(dispatch, spell) {
     case "ENEMY": // single enemy targeted
       {
         if (spell.spellType === "HIT") {
+          dispatch(
+            logActions.updateLogs({
+              change: "ADD",
+              text: `Choose an enemy!`,
+            })
+          );
+
           target = await getTarget("ENEMIES");
           console.log("Target: ", target);
           const hit = rollToHit(player, target);
@@ -36,9 +46,16 @@ export default async function castSpell(dispatch, spell) {
       break;
     case "ALLY": // single ally targeted
       {
+        dispatch(
+          logActions.updateLogs({
+            change: "ADD",
+            text: `Choose a hero!`,
+          })
+        );
+
         if (spell.spellType === "HEAL") {
           target = await getTarget("ALLIES");
-          console.log("Target: ", target);
+          // console.log("Target: ", target);
           let healValue = spell.healValue;
           healValue += player.stats.arcana.spellPower;
           changeHealth(dispatch, target, "HEAL", healValue, null);
@@ -46,7 +63,7 @@ export default async function castSpell(dispatch, spell) {
 
         if (spell.spellType === "BUFF") {
           target = await getTarget("ALLIES");
-          console.log("Target: ", target);
+          // console.log("Target: ", target);
           const statusEffect = spell.statusEffect;
           changeStatusEffect(dispatch, target, "ADD", statusEffect);
         }

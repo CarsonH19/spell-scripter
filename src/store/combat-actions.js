@@ -10,9 +10,9 @@ import changeStatusEffect, {
 
 import { uiActions } from "./ui-slice.js";
 import { combatActions } from "./combat-slice.js";
+import { logActions } from "./log-slice.js";
 
 import activateItem from "./item-actions.js";
-import { dungeonActions } from "./dungeon-slice.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -57,7 +57,7 @@ export default async function combatLoop(dispatch) {
       );
 
       await delay(1000);
-      
+
       // COMPLETE TASKS AT BEGINNING OF ROUND
       // Decrement existing status effect durations
       checkStatusEffect(dispatch, character.id, "DECREMENT");
@@ -84,6 +84,13 @@ export default async function combatLoop(dispatch) {
                 // choose a spell from spell list
                 const selectedSpell = await select();
 
+                dispatch(
+                  logActions.updateLogs({
+                    change: "ADD",
+                    text: `Casting ${selectedSpell.name}`,
+                  })
+                );
+
                 // Restart the while loop allowing players to change actions
                 if (selectedSpell === null) continue;
                 await castSpell(dispatch, selectedSpell);
@@ -91,8 +98,16 @@ export default async function combatLoop(dispatch) {
               break;
             case "ATTACK":
               {
+                dispatch(
+                  logActions.updateLogs({
+                    change: "ADD",
+                    text: `Choose a target!`,
+                  })
+                );
+
                 const target = await getTarget("ENEMIES");
                 const hit = rollToHit(player, target);
+
 
                 if (hit) {
                   const damage = calcDamage(player);
@@ -110,6 +125,13 @@ export default async function combatLoop(dispatch) {
               break;
             case "GUARD":
               changeStatusEffect(dispatch, player, "ADD", CONDITIONS.GUARD);
+
+              dispatch(
+                logActions.updateLogs({
+                  change: "ADD",
+                  text: `Guarding!`,
+                })
+              );
               break;
             case "USE ITEM":
               {
@@ -129,7 +151,6 @@ export default async function combatLoop(dispatch) {
                 // on success flee
                 // endCombat
                 // createNewRoom
-
               }
               break;
           }
@@ -152,7 +173,16 @@ export default async function combatLoop(dispatch) {
             {
               // check behavior object to and call the correct target
               // create a singular targeting function with helper functions for each targeting behavior
+
               const target = randomTarget(character);
+
+              dispatch(
+                logActions.updateLogs({
+                  change: "ADD",
+                  text: `${character.name} attacks ${target.name}!`,
+                })
+              );
+
               const hit = rollToHit(character, target);
               // console.log("ATTACK", target, hit);
               if (hit) {
@@ -177,7 +207,6 @@ export default async function combatLoop(dispatch) {
           case "ABILITY":
             break;
         }
-
       }
       await delay(2000);
 

@@ -29,9 +29,9 @@ export default function GameWindow() {
       combatLoop(dispatch);
     }
 
-    dispatch(logActions.updateLogs({ text: "TESTING", logArray: "NARRATION" }));
+    // dispatch(logActions.updateLogs({ text: "TESTING", logArray: "NARRATION" }));
     // Dependency: Update when room counter increments
-  }, [dispatch, room.roomCounter]);
+  }, [room.roomCounter]);
 
   return (
     <div className={classes.window}>
