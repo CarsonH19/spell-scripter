@@ -1,6 +1,6 @@
 const CONDITIONS = {
   BURNING: {
-    name: "Burning",
+    name: "Condition: Burning",
     display: true,
     image: "",
     description: "You take damage on the start of each of your turns",
@@ -24,7 +24,7 @@ const CONDITIONS = {
     },
   },
   GUARD: {
-    name: "Guarding",
+    name: "Action: Guarding",
     display: true,
     image: "",
     description: "Defense +50%",

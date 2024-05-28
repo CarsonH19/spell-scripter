@@ -29,7 +29,7 @@ export default function Tooltip({
       {showTooltip && (
         <div className={classes.tooltip}>
           {title && <p className={classes.title}>{title}</p>}
-          {text && <p className={classes.description}>{text}</p>}
+          {text && <p className={classes.text}>{text}</p>}
           {detailOne && <p className={classes.detail}>{detailOne}</p>}
           {detailTwo && <p>{detailTwo}</p>}
         </div>
