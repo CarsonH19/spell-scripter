@@ -5,6 +5,9 @@ import classes from "./Modal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+
 import HeroesModal from "./Hero/HeroesModal";
 import InventoryModal from "./Inventory/InventoryModal";
 import SettingsModal from "./Settings/SettingsModal";
@@ -38,19 +41,14 @@ export default function Modal() {
     dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
   };
 
-  // These variables are used to create custom modal close button css for different modal sizes
-  const state = store.getState().ui;
-  let modalCloseClass = findActiveModal(state);
-
   return createPortal(
     <div className={classes.modal}>
       {activeModal}
-      <button
+      <FontAwesomeIcon
+        icon={faCircleXmark}
         onClick={handleClose}
-        className={`${classes.close} ${classes[modalCloseClass]}`}
-      >
-        x
-      </button>
+        className={classes.close}
+      />
     </div>,
     document.getElementById("modal")
   );

@@ -5,7 +5,8 @@
   background-size: cover;
   background-blend-mode: overlay;
   height: 90%;
-  width: 90%;
+  width: 80%;
+  min-width: 50rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
