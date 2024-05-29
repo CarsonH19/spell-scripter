@@ -12,7 +12,7 @@
   align-items: center;
 }
 
-.close {
+.modal .close {
   position: absolute;
   top: 6%;
   right: 5.5%;
@@ -22,4 +22,9 @@
   font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
+}
+
+/* Use for custom modal close button css */
+.modal .inventoryModal {
+  color: blue;
 }

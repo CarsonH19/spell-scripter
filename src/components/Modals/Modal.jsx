@@ -38,13 +38,17 @@ export default function Modal() {
     dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
   };
 
-  // This forces a rerender when the buttons on confirmationModal change the state to display a different modal
-  // console.log(ui);
+  // These variables are used to create custom modal close button css for different modal sizes
+  const state = store.getState().ui;
+  let modalCloseClass = findActiveModal(state);
 
   return createPortal(
     <div className={classes.modal}>
       {activeModal}
-      <button onClick={handleClose} className={classes.close}>
+      <button
+        onClick={handleClose}
+        className={`${classes.close} ${classes[modalCloseClass]}`}
+      >
         x
       </button>
     </div>,
