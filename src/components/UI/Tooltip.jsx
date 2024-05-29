@@ -8,6 +8,7 @@ export default function Tooltip({
   detailOne,
   detailTwo,
   children,
+  position = "tooltip",
 }) {
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -27,7 +28,7 @@ export default function Tooltip({
     >
       {children}
       {showTooltip && (
-        <div className={classes.tooltip}>
+        <div className={`${classes[position]}`}>
           {title && <p className={classes.title}>{title}</p>}
           {text && <p className={classes.text}>{text}</p>}
           {detailOne && <p className={classes.detail}>{detailOne}</p>}

@@ -1,0 +1,20 @@
+.container {
+  width: 33%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* border: 1px solid red; */
+  color: var(--text);
+  gap: 1rem;
+}
+
+.skull {
+  height: 2rem;
+  width: 2rem;
+  margin-left: 0rem;
+}
+
+.container .number {
+  font-size: 2rem;
+  margin-left: -0.7rem;
+}

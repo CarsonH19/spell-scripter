@@ -2,7 +2,7 @@ import classes from "./TopContent.module.css";
 
 import DungeonInfo from "./DungeonInfo/DungeonInfo";
 import InitiativeTracker from "./InitiativeTracker/InitiativeTracker";
-import Boss from "./Boss/Boss";
+import Threat from "./Threat/Threat";
 
 export default function TopContent() {
   return (
@@ -10,7 +10,7 @@ export default function TopContent() {
       <div className={classes.topContent}>
         <DungeonInfo />
         <InitiativeTracker />
-        <Boss />
+        <Threat />
       </div>
       {/*  TOP-FULL-BOTTOM CONTENT - Boss HP Bar  */}
     </div>

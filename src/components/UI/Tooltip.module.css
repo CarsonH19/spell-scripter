@@ -43,3 +43,27 @@
 .tooltip .detail {
   margin: 0;
 }
+
+/* POSITIONS */
+
+.threat {
+  visibility: visible;
+  position: absolute;
+  z-index: 99;
+  bottom: -355%;
+  left: -320%;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  opacity: 0.8;
+  height: auto;
+  min-width: 10rem;
+  max-width: 10rem; 
+  font-size:  0.8rem;
+  pointer-events: none;
+}
+
+.threat .title {
+  font-weight: 600;
+}

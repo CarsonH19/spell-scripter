@@ -8,7 +8,6 @@ export default function DungeonInfo() {
     <div className={classes.info}>
       <h2>{dungeon.name}</h2>
       <h4>Rooms Cleared: {dungeon.roomCounter}</h4>
-      <h4>Threat: {dungeon.threat}</h4>
     </div>
   );
 }
