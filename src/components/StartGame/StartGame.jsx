@@ -37,8 +37,20 @@ export default function StartGame() {
 
     dispatch(
       playerActions.changeInventory({
-        item: { ...EQUIPMENT.PLAGUEBORN_SHAWL, id: uuidv4() },
-        change: "ADD",
+        item: { ...EQUIPMENT.BLACKHEART_CROWN, id: uuidv4() },
+          change: "ADD",
+      })
+    );
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...EQUIPMENT.BLACKHEART_REGALIA, id: uuidv4() },
+          change: "ADD",
+      })
+    );
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...EQUIPMENT.BLACKHEART_SCEPTER, id: uuidv4() },
+          change: "ADD",
       })
     );
   };
