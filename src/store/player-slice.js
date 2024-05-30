@@ -19,6 +19,7 @@ const playerSlice = createSlice({
         totalStrength: 1,
         attack: 10,
         maxHealth: 100,
+        healthRegen: 2,
       },
       baseAgility: 2,
       agility: {
@@ -32,6 +33,7 @@ const playerSlice = createSlice({
         totalArcana: 3,
         spellPower: 0,
         maxMana: 50,
+        manaRegen: 2,
       },
     },
     weaknesses: [],

@@ -16,6 +16,8 @@ export default function Stats() {
     player = store.getState().player;
   }
 
+  console.log(player)
+
   return (
     <div className={classes.stats}>
       <h3>Stats</h3>
@@ -41,27 +43,29 @@ export default function Stats() {
             }
           })}
       </ul>
-      <div>
+      <div className={classes.block}>
         <h4>Strength: {player.stats.strength.totalStrength}</h4>
         <p className={classes.text}>
-          Health: {player.currentHealth} / {player.stats.strength.maxHealth}
+          HP: {player.currentHealth} / {player.stats.strength.maxHealth}
         </p>
+        <p>HP Regeneration: +{player.stats.strength.healthRegen}</p>
         <p className={classes.text}> Attack: {player.stats.strength.attack}</p>
       </div>
 
-      <div>
+      <div className={classes.block}>
         <h4>Agility: {player.stats.agility.totalAgility}</h4>
         <p className={classes.text}>Defense: {player.stats.agility.defense}</p>
         <p className={classes.text}>Hit Chance: +{player.stats.agility.hitChance}</p>
         <p className={classes.text}>Speed: {player.stats.agility.speed}</p>
       </div>
 
-      <div>
+      <div className={classes.block}>
         <h4>Arcana: {player.stats.arcana.totalArcana}</h4>
         <p className={classes.text}>
-          Mana: {player.currentMana} / {player.stats.arcana.maxMana}
+          MP: {player.currentMana} / {player.stats.arcana.maxMana}
         </p>
-        <p className={classes.text}>Spell Power: {player.stats.arcana.spellPower}</p>
+        <p>MP Regeneration: +{player.stats.arcana.manaRegen}</p>
+        <p className={classes.text}>Spell Power: +{player.stats.arcana.spellPower}</p>
       </div>
     </div>
   );
