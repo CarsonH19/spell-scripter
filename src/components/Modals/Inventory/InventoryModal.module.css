@@ -55,6 +55,19 @@
   text-align: center;
 }
 
+.stats .block {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stats .block p {
+  font-size: 1rem;
+}
+
+
+
 .inventory .container .left .stats ul {
   margin-top: 1rem;
   padding: 0;

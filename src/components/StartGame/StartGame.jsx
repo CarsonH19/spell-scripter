@@ -37,14 +37,7 @@ export default function StartGame() {
 
     dispatch(
       playerActions.changeInventory({
-        item: { ...EQUIPMENT.BERSERKER_PAULDRON, id: uuidv4() },
-        change: "ADD",
-      })
-    );
-
-    dispatch(
-      playerActions.changeInventory({
-        item: { ...EQUIPMENT.BRACELET_OF_THE_SERPENT, id: uuidv4() },
+        item: { ...EQUIPMENT.PLAGUEBORN_SHAWL, id: uuidv4() },
         change: "ADD",
       })
     );

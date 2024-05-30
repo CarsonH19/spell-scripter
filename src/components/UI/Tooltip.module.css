@@ -3,6 +3,8 @@
   display: inline-block; 
 }
 
+
+
 .tooltip {
   visibility: visible;
   position: absolute;
@@ -24,6 +26,10 @@
 .tooltip p {
   margin: 0;
   text-align: left;
+}
+
+.tooltip span {
+  display: block;
 }
 
 .tooltip .title {
@@ -69,3 +75,4 @@
 .threat .title {
   font-weight: 600;
 }
+

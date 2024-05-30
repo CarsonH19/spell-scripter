@@ -9,7 +9,7 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Common",
     useInCombat: false,
-    effect: "Restores 15HP.",
+    effect: ["Restores 15HP."],
     // soundEffect: chewCrackersMouth,
   },
   MARROWSTONE_CHEESE: {
@@ -19,7 +19,7 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Common",
     useInCombat: false,
-    effect: "Restores 15HP.",
+    effect: ["Restores 15HP."],
     // soundEffect: chewCrackersMouth,
   },
   ROTBANE_FERN: {
@@ -29,7 +29,7 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Common",
     useInCombat: false,
-    effect: "",
+    effect: [""],
     // soundEffect: chewCrackersMouth,
   },
   GRAVEBLOOM: {
@@ -39,7 +39,7 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Common",
     useInCombat: false,
-    effect: "",
+    effect: [""],
     // soundEffect: chewCrackersMouth,
   },
   // ====================================================================
@@ -52,7 +52,7 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Rare",
     useInCombat: true,
-    effect: "Restores 25HP.",
+    effect: ["Restores 25HP.", "Can be used in combat."],
     // soundEffect: gulpingWater24,
   },
   LESSER_MANA_POTION: {
