@@ -1,17 +1,7 @@
 const CONSUMABLES = {
-  LESSER_HEALTH_POTION: {
-    name: "Lesser Health Potion",
-    description: "A small vial of glowing red liquid.",
-    image: "",
-    type: "CONSUMABLE",
-    rarity: "Common",
-    useInCombat: true,
-    effect: "Restores 30HP. Can be used during combat.",
-    // soundEffect: gulpingWater24,
-    // function: (dispatch, target) => {
-    //   dispatch(changeHealthThunk({ target, change: "HEAL", value: 30 }));
-    // },
-  },
+  // ====================================================================
+  //                          COMMON CONSUMABLES
+  // ====================================================================
   CRYPTBREAD: {
     name: "Cryptbread",
     description: "A chunk of stale bread as hard as stone.",
@@ -21,50 +11,277 @@ const CONSUMABLES = {
     useInCombat: false,
     effect: "Restores 15HP.",
     // soundEffect: chewCrackersMouth,
-    // function: (dispatch, target) => {
-    //   dispatch(changeHealthThunk({ target, change: "HEAL", value: 30 }));
-    // },
   },
-
-  BONE_MARROW_SOUP: {
-    name: "Bone Marrow Soup",
+  MARROWSTONE_CHEESE: {
+    name: "Marrowstone Cheese",
     description: "",
     image: "",
     type: "CONSUMABLE",
     rarity: "Common",
     useInCombat: false,
     effect: "Restores 15HP.",
-    // soundEffect: gulpingWater24,
-    // function: () => {
-    //   healPlayer(15);
-    // },
+    // soundEffect: chewCrackersMouth,
   },
-
-  MARROWSTONE_CHEESE: {
-    name: "Marrowstone Cheese",
+  ROTBANE_FERN: {
+    name: "Rotbane Fern",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Common",
+    useInCombat: false,
+    effect: "",
+    // soundEffect: chewCrackersMouth,
+  },
+  GRAVEBLOOM: {
+    name: "Gravebloom",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Common",
+    useInCombat: false,
+    effect: "",
+    // soundEffect: chewCrackersMouth,
+  },
+  // ====================================================================
+  //                           RARE CONSUMABLES
+  // ====================================================================
+  LESSER_HEALTH_POTION: {
+    name: "Lesser Health Potion",
+    description: "A small vial of glowing red liquid.",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: true,
+    effect: "Restores 25HP.",
+    // soundEffect: gulpingWater24,
+  },
+  LESSER_MANA_POTION: {
+    name: "Lesser Mana Potion",
     description: "",
     image: "",
     type: "CONSUMABLE",
     rarity: "Rare",
-    effect: "Restores 25HP when eaten.",
-    // soundEffect: chewCrackersMouth,
-    // function: () => {
-    //   healPlayer(25);
-    // },
+    useInCombat: true,
+    effect: "Restores 25MP.",
+    // soundEffect: gulpingWater24,
   },
-
+  LICHROOT: {
+    name: "Lichroot",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: "",
+    // soundEffect: chewCrackersMouth,
+  },
+  BONE_MARROW_SOUP: {
+    name: "Bone Marrow Soup",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: "Restores 25HP.",
+    // soundEffect: gulpingWater24,
+  },
   TOMBSTONE_TRUFFLE: {
     name: "Tombstone Truffle",
     description: "",
     image: "",
     type: "CONSUMABLE",
     rarity: "Rare",
-    effect: "Restores 25HP when eaten.",
+    useInCombat: false,
+    effect: "Restores 25HP.",
     // soundEffect: chewCrackersMouth,
-    // function: () => {
-    //   healPlayer(25);
-    // },
   },
+  SPIDER_EGG_YOLK: {
+    name: "Spider Egg Yolk",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: "Restores 25HP.",
+    //   soundEffect: gulpingWater24,
+  },
+  BLACKHEART_BREW: {
+    name: "Blackheart Brew",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: true,
+    effect:
+      "Increases Strength and Dexterity by 1, but decreases Arcana by 1. Effects persist for 5 rooms.",
+    // soundEffect: gulpingWater24,
+  },
+  TROLLBLOOD_TONIC: {
+    name: "Trollblood Tonic",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: true,
+    effect:
+      "Increases Strength and Dexterity by 1. Additionally, you recover 20HP after each room cleared. Effects persist for 10 rooms.",
+    // soundEffect: gulpingWater24,
+  },
+  NECROTIC_NECTAR: {
+    name: "Necrotic Nectar",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: true,
+    effect:
+      "Restore all missing HP. However, your Strength and Dexterity are reduced to 0. Effects persist for 5 rooms.",
+    // soundEffect: gulpingWater24,
+  },
+  // ====================================================================
+  //                           EPIC CONSUMABLES
+  // ====================================================================
+  GREATER_HEALTH_POTION: {
+    name: "Greater Health Potion",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Epic",
+    useInCombat: true,
+    effect: "Restores 50HP.",
+    // soundEffect: gulpingWater24,
+  },
+  GREATER_MANA_POTION: {
+    name: "Greater Mana Potion",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Epic",
+    useInCombat: true,
+    effect: "Restores 50MP.",
+    // soundEffect: gulpingWater24,
+  },
+  HEXBANE_BREW: {
+    name: "Hexbane Brew",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Epic",
+    useInCombat: true,
+    effect:
+      "Cures and grants immunity to the Poisoned, Diseased, Chilled, and Cursed conditions. Effects persist for 10 rooms.",
+    // soundEffect: gulpingWater24,
+  },
+  // ====================================================================
+  //                             CANDLES
+  // ====================================================================
+  WARDING_CANDLE: {
+    name: "Warding Candle",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: true,
+    effect:
+      "While lit undead enemies may flee from you. Effects persist for 10 rooms.",
+    // soundEffect: flameLicks2,
+  },
+  SOOTHING_CANDLE: {
+    name: "Soothing Candle",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: true,
+    effect:
+      "While lit you restore 10HP after clearing a room. Effects persist for 10 rooms.",
+    // soundEffect: flameLicks2,
+  },
+  FLICKERING_CANDLE: {
+    name: "Flickering Candle",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: true,
+    effect:
+      "While lit you always successfully flee. Effects persist for 10 rooms.",
+    // soundEffect: flameLicks2,
+  },
+  BLAZING_CANDLE: {
+    name: "Blazing Candle",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: true,
+    effect:
+      "While lit you have a much greater chance to critically hit enemies. Effects persist for 10 rooms.",
+    // soundEffect: flameLicks2,
+  },
+  // ====================================================================
+  //                             WISPS
+  // ====================================================================
+  GUIDING_LIGHT: {
+    name: "Guiding Light",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: "This wisp guides you to the nearest Candlelight Shrine.",
+    // soundEffect: ghostBreathWithReverb,
+  },
+  ROWDY_WISP: {
+    name: "Rowdy Wisp",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: "This wisp guides you to the Laughing Coffin Tavern.",
+    // soundEffect: ghostBreathWithReverb,
+  },
+  BLEEDING_WISP: {
+    name: "Bleeding Wisp",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: "This wisp guides you to the Crimson Covenant.",
+    // soundEffect: ghostBreathWithReverb,
+  },
+  WICKED_WISP: {
+    name: "Wicked Wisp",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: "This wisp guides you to Hag's Hollow.",
+    // soundEffect: ghostBreathWithReverb,
+  },
+  CURIOUS_WISP: {
+    name: "Curious Wisp",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: "This wisp guides you to Curator's Curio.",
+    // soundEffect: ghostBreathWithReverb,
+  },
+  RESTLESS_WISP: {
+    name: "Restless Wisp",
+    description: "",
+    image: "",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: "This wisp guides you to a random destination.",
+    // soundEffect: ghostBreathWithReverb,
+  }
 };
 
 export default CONSUMABLES;
