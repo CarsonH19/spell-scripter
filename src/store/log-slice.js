@@ -18,14 +18,14 @@ const logSlice = createSlice({
       switch (change) {
         case "ADD":
           {
-            console.log("ADDED");
+            // console.log("ADDED");
             let text = action.payload.text;
             state.narration.push(text);
           }
           break;
 
         case "REMOVE":
-          console.log("REMOVED");
+          // console.log("REMOVED");
           state.narration.shift();
           break;
       }

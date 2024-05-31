@@ -46,7 +46,7 @@ function checkForDeath(dispatch, id) {
     // Check defeated enemy for loot & add them to dungeon-slice
     loot(dispatch, character);
 
-
+    // Removes defeated character 
     setTimeout(() => {
       dispatch(combatActions.removeCharacter({ character }));
     }, 2000);

@@ -8,16 +8,14 @@ export default function RoomSummaryModal() {
   const dispatch = useDispatch();
   const enemies = useSelector((state) => state.dungeon.contents.enemies);
   const itemsLooted = useSelector((state) => state.dungeon.contents.items);
-  const playerInventory = useSelector((state) => state.player.inventory);
 
-  console.log("itemsLooted", itemsLooted);
   useEffect(() => {
     // Toggle off danger
     dispatch(dungeonActions.dangerToggle());
 
     // Add items looted from room/enemies to player's inventory
     for (let i = 0; i < itemsLooted.length; i++) {
-      console.log(itemsLooted[i]);
+      console.log("ITEM", itemsLooted[i]);
       dispatch(
         playerActions.changeInventory({ item: itemsLooted[i], change: "ADD" })
       );
