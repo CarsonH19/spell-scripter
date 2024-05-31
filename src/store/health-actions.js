@@ -1,6 +1,8 @@
 import store from "./index";
 import { combatActions } from "./combat-slice";
 
+import loot from "../util/loot";
+
 export function changeHealth(
   dispatch,
   target,
@@ -23,7 +25,7 @@ export function changeHealth(
       }
     }
 
-    // Only display damage 
+    // Only display damage
     dispatch(combatActions.updateDamageDisplay({ id, value }));
   }
 
@@ -41,6 +43,10 @@ function checkForDeath(dispatch, id) {
   let character = order.find((char) => char.id === id);
 
   if (character.currentHealth <= 0) {
+    // Check defeated enemy for loot & add them to dungeon-slice
+    loot(dispatch, character);
+
+
     setTimeout(() => {
       dispatch(combatActions.removeCharacter({ character }));
     }, 2000);

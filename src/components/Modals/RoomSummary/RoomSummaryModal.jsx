@@ -2,13 +2,26 @@ import { useDispatch, useSelector } from "react-redux";
 import classes from "./RoomSummaryModal.module.css";
 import { dungeonActions } from "../../../store/dungeon-slice";
 import { useEffect } from "react";
+import { playerActions } from "../../../store/player-slice";
 
 export default function RoomSummaryModal() {
   const dispatch = useDispatch();
   const enemies = useSelector((state) => state.dungeon.contents.enemies);
+  const itemsLooted = useSelector((state) => state.dungeon.contents.items);
+  const playerInventory = useSelector((state) => state.player.inventory);
 
+  console.log("itemsLooted", itemsLooted);
   useEffect(() => {
-    dispatch(dungeonActions.dangerToggle()); // toggle off
+    // Toggle off danger
+    dispatch(dungeonActions.dangerToggle());
+
+    // Add items looted from room/enemies to player's inventory
+    for (let i = 0; i < itemsLooted.length; i++) {
+      console.log(itemsLooted[i]);
+      dispatch(
+        playerActions.changeInventory({ item: itemsLooted[i], change: "ADD" })
+      );
+    }
   }, [dispatch]);
 
   return (
@@ -28,7 +41,16 @@ export default function RoomSummaryModal() {
             </ul>
           </div>
         )}
-        <div>ITEMS FOUND</div>
+        {itemsLooted.length > 0 && (
+          <div>
+            <h4>Items Looted</h4>
+            <ul>
+              {itemsLooted.map((item) => {
+                return <li key={item.id}>{item.name}</li>;
+              })}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );

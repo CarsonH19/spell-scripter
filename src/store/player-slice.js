@@ -84,6 +84,8 @@ const playerSlice = createSlice({
             } else if (item.type === "QUEST ITEM") {
               state.inventory.questItems.push(item);
             }
+
+            console.log("ITEM ADDED")
           }
           break;
 
