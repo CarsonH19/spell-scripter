@@ -21,6 +21,7 @@ const uiSlice = createSlice({
       settingsModal: false,
       helpModal: false,
       confirmationModal: false,
+      quickTimeEventModal: false,
     },
   },
   reducers: {

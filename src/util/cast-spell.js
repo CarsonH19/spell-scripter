@@ -7,7 +7,12 @@ import { logActions } from "../store/log-slice";
 import { changeHealth } from "../store/health-actions";
 import changeStatusEffect from "../store/status-effect-actions";
 
+import { openQuickTimeEvent } from "../store/ui-actions";
+
 export default async function castSpell(dispatch, spell) {
+  // TESTING QTE
+  openQuickTimeEvent(dispatch);
+
   const order = store.getState().combat.order;
 
   const playerIndex = order.findIndex((char) => char.id === "Player");

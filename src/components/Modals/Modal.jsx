@@ -18,6 +18,7 @@ import RoomSummaryModal from "./RoomSummary/RoomSummaryModal";
 import TradeModal from "./Trade/TradeModal";
 import HelpModal from "./Help/HelpModal";
 import ConfirmationModal from "./Confirmation/ConfirmationModal";
+import QuickTimeEventModal from "./QTE/QuickTimeEventModal";
 
 import store from "../../store";
 // import { useEffect } from "react";
@@ -87,9 +88,11 @@ function selectModal() {
     case "helpModal":
       return <HelpModal />;
 
-    case "confirmationModal": {
+    case "confirmationModal":
       return <ConfirmationModal />;
-    }
+
+    case "quickTimeEventModal":
+      return <QuickTimeEventModal />;
   }
 }
 
