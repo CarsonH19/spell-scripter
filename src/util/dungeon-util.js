@@ -94,38 +94,58 @@ function getRoomEvent() {
 }
 
 export function getRoomEnemies() {
-  let enemiesArray = [];
   const threat = store.getState().dungeon.threat;
+  let enemiesArray = [];
 
-  let enemyTypes = {
-    DECREPIT_SKELETON: 0.6,
-    SKELETAL_SOLDIER: 0.3,
-    ARMORED_SKELETON: 0.1,
-  };
+  let enemyTypes = [
+    { enemy: UNDEAD.DECREPIT_SKELETON, probability: 0.4 },
+    { enemy: UNDEAD.SKELETAL_WARRIOR, probability: 0.2 },
+    { enemy: UNDEAD.SKELETAL_ARCHER, probability: 0.2 },
+    { enemy: UNDEAD.SKELETAL_MAGE, probability: 0.2 },
+  ];
 
   // Adjust enemy types based on threat level
   if (threat > 60) {
     // extremely high tier enemies
+    enemyTypes = [
+      { enemy: UNDEAD.GRAVE_WITCH, probability: 0.2 },
+      { enemy: UNDEAD.BONE_TITAN, probability: 0.3 },
+      { enemy: UNDEAD.REAPER, probability: 0.3 },
+      { enemy: UNDEAD.DEATH_KNIGHT, probability: 0.1 },
+      { enemy: UNDEAD.FLOOD_OF_BONES, probability: 0.1 },
+    ];
   } else if (threat > 40) {
     // high tier enemies
+    enemyTypes = [
+      { enemy: UNDEAD.GRAVE_WITCH, probability: 0.1 },
+      { enemy: UNDEAD.BONE_TITAN, probability: 0.3 },
+      { enemy: UNDEAD.REAPER, probability: 0.3 },
+      { enemy: UNDEAD.CORPSE_ORACLE, probability: 0.2 },
+    ];
   } else if (threat > 20) {
     // mid tier enemies
+    enemyTypes = [
+      { enemy: UNDEAD.BONE_TITAN, probability: 0.1 },
+      { enemy: UNDEAD.REAPER, probability: 0.1 },
+      { enemy: UNDEAD.CORPSE_ORACLE, probability: 0.2 },
+      { enemy: UNDEAD.SKELETAL_WARRIOR, probability: 0.2 },
+      { enemy: UNDEAD.SKELETAL_ARCHER, probability: 0.2 },
+      { enemy: UNDEAD.SKELETAL_MAGE, probability: 0.2 },
+    ];
   }
 
   // Calculate the number of enemies based on the threat level
   let numberOfEnemies;
-  if (threat > 50) {
+  if (threat >= 80) {
     numberOfEnemies = 5;
-  } else if (threat > 40) {
+  } else if (threat >= 60) {
     numberOfEnemies = Math.floor(Math.random() * 2) + 4; // Between 4 to 5 enemies
-  } else if (threat > 30) {
+  } else if (threat >= 40) {
     numberOfEnemies = Math.floor(Math.random() * 2) + 3; // Between 3 to 4 enemies
-  } else if (threat > 20) {
+  } else if (threat >= 20) {
     numberOfEnemies = Math.floor(Math.random() * 2) + 2; // Between 2 to 3 enemies
-  } else if (threat > 10) {
-    numberOfEnemies = Math.floor(Math.random() * 2) + 1; // Between 1 to 2 enemies
   } else {
-    numberOfEnemies = 1;
+    numberOfEnemies = Math.floor(Math.random() * 2) + 1; // Between 1 to 2 enemies
   }
 
   // Generate random enemies based on their probabilities
@@ -133,14 +153,17 @@ export function getRoomEnemies() {
     let rand = Math.random();
     let cumulativeProbability = 0;
 
-    for (let enemyType in enemyTypes) {
-      cumulativeProbability += enemyTypes[enemyType];
+    // Shuffle the enemy types before each selection
+    const shuffledEnemyTypes = shuffle([...enemyTypes]);
+
+    for (const { enemy, probability } of shuffledEnemyTypes) {
+      cumulativeProbability += probability;
       if (rand <= cumulativeProbability) {
         // Add the strength, agility, and arcana keys to the enemies stats object
-        const baseStats = constructStats(UNDEAD[enemyType].stats);
+        const baseStats = constructStats(enemy.stats);
         enemiesArray.push({
-          ...UNDEAD[enemyType],
-          stats: constructStats(baseStats),
+          ...enemy,
+          stats: baseStats,
           id: uuidv4(),
           damageDisplay: "",
         });
@@ -151,6 +174,14 @@ export function getRoomEnemies() {
   }
 
   return enemiesArray;
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 function constructStats(stats) {

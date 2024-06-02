@@ -7,7 +7,7 @@ const playerSlice = createSlice({
     id: "Player",
     identifier: "PLAYER",
     image: "",
-    level: 1,
+    level: 9,
     currentHealth: 75,
     damageDisplay: '',
     currentMana: 50,
