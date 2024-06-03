@@ -6,10 +6,7 @@
 --accent: #212121;
 
 background-color: var(--background);
-
 }
-
-
 
 #root {
   height: 100vh;

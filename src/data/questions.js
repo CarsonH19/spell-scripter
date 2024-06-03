@@ -1,32 +1,35 @@
-export const QUESTIONS = [
+export const tomeOfTesting = [
   {
     id: "q1",
-    text: "Which of the following definitions best describes React.js?",
+    complete: false,
+    text: "Test Question #1",
     answers: [
-      "A library to build user interfaces with help of declarative code.",
-      "A library for managing state in web applications.",
-      "A framework to build user interfaces with help of imperative code.",
-      "A library used for building mobile applications only.",
+      "A",
+      "B",
+      "C",
+      "D"
     ],
   },
   {
     id: "q2",
-    text: "Which of the following definitions best describes React.js?",
+    complete: false,
+    text: "Test Question #2",
     answers: [
-      "A library to build user interfaces with help of declarative code.",
-      "A library for managing state in web applications.",
-      "A framework to build user interfaces with help of imperative code.",
-      "A library used for building mobile applications only.",
+      "A",
+      "B",
+      "C",
+      "D"
     ],
   },
   {
     id: "q3",
-    text: "Which of the following definitions best describes React.js?",
+    complete: false,
+    text: "Test Question #3",
     answers: [
-      "A library to build user interfaces with help of declarative code.",
-      "A library for managing state in web applications.",
-      "A framework to build user interfaces with help of imperative code.",
-      "A library used for building mobile applications only.",
+      "A",
+      "B",
+      "C",
+      "D"
     ],
   },
 ];

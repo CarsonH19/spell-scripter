@@ -84,16 +84,16 @@ export default async function combatLoop(dispatch) {
                 // choose a spell from spell list
                 const selectedSpell = await select();
 
-                // Restart the while loop allowing players to change actions
-                if (selectedSpell === null) continue;
-                await castSpell(dispatch, selectedSpell);
-
                 dispatch(
                   logActions.updateLogs({
                     change: "ADD",
                     text: `Casting ${selectedSpell.name}`,
                   })
                 );
+                
+                // Restart the while loop allowing players to change actions
+                if (selectedSpell === null) continue;
+                await castSpell(dispatch, selectedSpell);
               }
               break;
             case "ATTACK":
