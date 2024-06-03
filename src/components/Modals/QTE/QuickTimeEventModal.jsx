@@ -8,7 +8,6 @@ export default function QuickTimeEventModal() {
   const [userAnswers, setUserAnswers] = useState([]);
 
   const activeQuestionIndex = userAnswers.length;
-  // const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
 
   const handleSelectAnswer = useCallback(function handleSelectAnswer(
     selectedAnswer
@@ -23,10 +22,6 @@ export default function QuickTimeEventModal() {
     () => handleSelectAnswer(null),
     [handleSelectAnswer]
   );
-
-  // if (quizIsComplete) {
-  //   return <Summary userAnswers={userAnswers} />;
-  // }
 
   return (
     <div className={classes.quiz}>

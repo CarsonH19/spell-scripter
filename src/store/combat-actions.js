@@ -20,7 +20,7 @@ let selectResolver;
 
 export default async function combatLoop(dispatch) {
   let order = store.getState().combat.order;
-  console.log(order);
+  // console.log(order);
 
   // Iterate through the initiative order
   for (let i = 0; i < order.length; i++) {

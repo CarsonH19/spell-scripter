@@ -6,3 +6,4 @@ export function openQuickTimeEvent(dispatch) {
     uiActions.toggleModal({ modal: "quickTimeEventModal", open: "OPEN" })
   );
 }
+

@@ -3,15 +3,31 @@ import { getTarget, rollToHit, calcDamage } from "../store/combat-actions";
 
 import { combatActions } from "../store/combat-slice";
 import { logActions } from "../store/log-slice";
+import { uiActions } from "../store/ui-slice";
 
 import { changeHealth } from "../store/health-actions";
 import changeStatusEffect from "../store/status-effect-actions";
 
 import { openQuickTimeEvent } from "../store/ui-actions";
 
+let quickTimeEventResolver;
+
 export default async function castSpell(dispatch, spell) {
+  // Subtract spell's mana cost from player's current mana
+  dispatch(
+    combatActions.updateMana({ value: spell.manaCost, change: "REMOVE" })
+  );
+
   // TESTING QTE
   openQuickTimeEvent(dispatch);
+  const getQuickTimeEventResult = await getResult(); // true = success / false = failed
+
+  dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
+
+  if (!getQuickTimeEventResult) {
+    console.log("QTE FAILED");
+    return;
+  }
 
   const order = store.getState().combat.order;
 
@@ -81,10 +97,6 @@ export default async function castSpell(dispatch, spell) {
     case "ALL": // all characters in initiative are targeted
       break;
   }
-
-  dispatch(
-    combatActions.updateMana({ change: "REMOVE", value: spell.manaCost })
-  );
 }
 
 // choose a target
@@ -92,3 +104,22 @@ export default async function castSpell(dispatch, spell) {
 // // roll20
 // if spell hits call spell function / pass target as an argument
 // dispatch changeHealth/changeStatus
+
+// =============================================================
+//                     QTE SUCCESS / FAILED
+// =============================================================
+
+// Used to await the result of the QTE
+export async function getResult() {
+  return new Promise((resolve) => {
+    quickTimeEventResolver = resolve;
+  });
+}
+
+// Function to set the QTE result in the QTE component
+export function setResult(result) {
+  if (quickTimeEventResolver) {
+    quickTimeEventResolver(result);
+    quickTimeEventResolver = null;
+  }
+}
