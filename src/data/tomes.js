@@ -3,7 +3,7 @@ export const tomes = [
   {
     name: "Introduction",
     unlocked: true,
-    complete: false,
+    complete: true,
     lesson: [
       {
         page: 1,
@@ -101,6 +101,67 @@ export const tomes = [
         ],
       },
     ],
+  },
+  // NEW TOME
+  {
+    name: "JavaScript in HTML",
+    unlocked: true,
+    complete: true,
+    lesson: []
+  },
+  {
+    name: "Simple Operations",
+    unlocked: true,
+    complete: false,
+    lesson: []
+  },
+  {
+    name: "Variables",
+    unlocked: true,
+    complete: false,
+    lesson: []
+  },
+  {
+    name: "Data Types",
+    unlocked: true,
+    complete: false,
+    lesson: []
+  },
+  {
+    name: "Operators",
+    unlocked: true,
+    complete: false,
+    lesson: []
+  },
+  {
+    name: "Assignment Operators",
+    unlocked: true,
+    complete: false,
+    lesson: []
+  },
+  {
+    name: "Strings",
+    unlocked: true,
+    complete: false,
+    lesson: []
+  },
+  {
+    name: "Template Literals",
+    unlocked: true,
+    complete: false,
+    lesson: []
+  },
+  {
+    name: "String Concatenation",
+    unlocked: true,
+    complete: false,
+    lesson: []
+  },
+  {
+    name: "Data Types",
+    unlocked: true,
+    complete: false,
+    lesson: []
   },
 ];
 

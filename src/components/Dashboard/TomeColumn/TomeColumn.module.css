@@ -28,8 +28,47 @@
   height: 80%;
   width: 100%;
   border: 3px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  overflow: auto;
 }
 
 .column hr {
   background-color: var(--accent);
+}
+
+.tome {
+  position: relative;
+  padding: 1rem;
+  width: 100%;
+  height: 6rem;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.tome:hover {
+  border: 1px solid white;
+  transition: 0.3s ease;
+}
+
+.complete {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  color: lightgreen;
+}
+
+.incomplete {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  color: lightcoral;
 }

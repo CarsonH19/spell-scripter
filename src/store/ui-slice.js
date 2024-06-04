@@ -23,8 +23,12 @@ const uiSlice = createSlice({
       confirmationModal: false,
       quickTimeEventModal: false,
     },
+    tome: null,
   },
   reducers: {
+    updateTome(state, action) {
+      state.tome = action.payload;
+    },
     toggle(state, action) {
       const { modal } = action.payload;
       state[modal] = !state[modal];
