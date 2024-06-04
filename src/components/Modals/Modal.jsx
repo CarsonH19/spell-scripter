@@ -57,8 +57,6 @@ export default function Modal() {
 
 function selectModal() {
   const state = store.getState().ui;
-  const activeLesson = store.getState().ui.lesson
-
   let activeModal = findActiveModal(state);
 
   switch (activeModal) {
@@ -74,8 +72,10 @@ function selectModal() {
     case "spellbookModal":
       return <SpellbookModal />;
 
-    case "tomesModal":
-      return <TomesModal lesson={activeLesson} />;
+    case "tomesModal": {
+      const tome = store.getState().ui.tome;
+      return <TomesModal tome={tome} />;
+    }
 
     case "roomSummaryModal":
       return <RoomSummaryModal />;

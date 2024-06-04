@@ -157,12 +157,6 @@ export const tomes = [
     complete: false,
     lesson: []
   },
-  {
-    name: "Data Types",
-    unlocked: true,
-    complete: false,
-    lesson: []
-  },
 ];
 
 // Add a preview page to show mastery progress

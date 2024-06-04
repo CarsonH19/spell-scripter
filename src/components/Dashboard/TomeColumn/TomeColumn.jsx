@@ -6,15 +6,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
-import { useDispatch } from "react";
-// import uiActions from ''
+import { useDispatch } from "react-redux";
+
+import { uiActions } from "../../../store/ui-slice";
 
 export default function TomeColumn() {
   const dispatch = useDispatch();
 
   const handleOpenTome = (tome) => {
-    // updateTome 
-    dispatch()
+    // updateTome
+    dispatch(uiActions.updateTome(tome));
+    // Open tome modal
+    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
+    dispatch(uiActions.toggleModal({ modal: "tomesModal", open: "OPEN" }));
   };
 
   return (
@@ -51,7 +55,7 @@ export default function TomeColumn() {
               <div
                 key={tome.name}
                 className={classes.tome}
-                onClick={() => handleOpenTome(tome.name)}
+                onClick={() => handleOpenTome(tome)}
               >
                 <h3>{tome.name}</h3>
                 <progress></progress>

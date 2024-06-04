@@ -50,8 +50,16 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: 0.3s ease;
+}
+
+.tome:has(.complete) {
+  cursor: pointer;
+}
+
+.tome:has(.incomplete) {
+  pointer-events: none;
 }
 
 .tome:hover {
