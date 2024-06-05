@@ -6,12 +6,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { uiActions } from "../../../store/ui-slice";
 
 export default function TomeColumn() {
   const dispatch = useDispatch();
+  const tomeSlice = useSelector((state) => state.tome);
+  // console.log(tomeSlice[0]);
+
 
   const handleOpenTome = (tome) => {
     // updateTome
@@ -33,10 +36,10 @@ export default function TomeColumn() {
       </div>
       <div className={classes.tomes}>
         {/* Map each tome into a div element  */}
-        {tomes.map((tome) => {
+        {tomes.map((tome, index) => {
           if (tome.unlocked) {
             let status;
-            if (tome.complete) {
+            if (tomeSlice[index].complete) {
               status = (
                 <FontAwesomeIcon
                   icon={faCircleCheck}

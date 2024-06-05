@@ -54,17 +54,18 @@
   transition: 0.3s ease;
 }
 
-.tome:has(.complete) {
+/* .tome:has(.complete) {
   cursor: pointer;
 }
 
 .tome:has(.incomplete) {
   pointer-events: none;
-}
+} */
 
 .tome:hover {
   border: 1px solid white;
   transition: 0.3s ease;
+  cursor: pointer;
 }
 
 .complete {

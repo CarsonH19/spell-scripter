@@ -1,9 +1,9 @@
-export const tomes = [
+export let tomes = [
   // INTRODUCTION
   {
     name: "Introduction",
     unlocked: true,
-    complete: true,
+    complete: false,
     lesson: [
       {
         page: 1,
@@ -91,11 +91,12 @@ export const tomes = [
       },
       {
         page: 10,
-        type: "INFO",
-        title: "",
-        question: `How do you output the number 19 to the console?`,
-        answers: [
+        type: "SUMMARY",
+        title: "Summary",
+        text: [
           `Amazing, you have taken the first step! Let's summarize what you've just learned:`,
+        ],
+        listItems: [
           `The console is part of the web browser and allows you to log messages, run JavaScript code, and see errors and warnings.`,
           `console.log() is used to display a text to the console`,
         ],
@@ -106,57 +107,57 @@ export const tomes = [
   {
     name: "JavaScript in HTML",
     unlocked: true,
-    complete: true,
-    lesson: []
+    complete: false,
+    lesson: [],
   },
   {
     name: "Simple Operations",
     unlocked: true,
     complete: false,
-    lesson: []
+    lesson: [],
   },
-  {
-    name: "Variables",
-    unlocked: true,
-    complete: false,
-    lesson: []
-  },
-  {
-    name: "Data Types",
-    unlocked: true,
-    complete: false,
-    lesson: []
-  },
-  {
-    name: "Operators",
-    unlocked: true,
-    complete: false,
-    lesson: []
-  },
-  {
-    name: "Assignment Operators",
-    unlocked: true,
-    complete: false,
-    lesson: []
-  },
-  {
-    name: "Strings",
-    unlocked: true,
-    complete: false,
-    lesson: []
-  },
-  {
-    name: "Template Literals",
-    unlocked: true,
-    complete: false,
-    lesson: []
-  },
-  {
-    name: "String Concatenation",
-    unlocked: true,
-    complete: false,
-    lesson: []
-  },
+  // {
+  //   name: "Variables",
+  //   unlocked: true,
+  //   complete: false,
+  //   lesson: [],
+  // },
+  // {
+  //   name: "Data Types",
+  //   unlocked: true,
+  //   complete: false,
+  //   lesson: [],
+  // },
+  // {
+  //   name: "Operators",
+  //   unlocked: true,
+  //   complete: false,
+  //   lesson: [],
+  // },
+  // {
+  //   name: "Assignment Operators",
+  //   unlocked: true,
+  //   complete: false,
+  //   lesson: [],
+  // },
+  // {
+  //   name: "Strings",
+  //   unlocked: true,
+  //   complete: false,
+  //   lesson: [],
+  // },
+  // {
+  //   name: "Template Literals",
+  //   unlocked: true,
+  //   complete: false,
+  //   lesson: [],
+  // },
+  // {
+  //   name: "String Concatenation",
+  //   unlocked: true,
+  //   complete: false,
+  //   lesson: [],
+  // },
 ];
 
 // Add a preview page to show mastery progress
@@ -165,4 +166,4 @@ export const tomes = [
 // // add a study button to the preview page
 
 // Add a complete button on the last page.
-// add a page counter 
+// add a page counter

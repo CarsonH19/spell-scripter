@@ -1,0 +1,76 @@
+.tomesModal {
+  height: 90%;
+  width: 70%;
+  background-color: rgb(29, 26, 38);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid white;
+  padding: 1rem;
+  overflow: visible;
+}
+
+.tomesModal h1 {
+  margin-bottom: 2rem;
+}
+
+.content  {
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.content h2 {
+  font-size: 2rem;
+}
+
+.content p {
+  font-size: 1.5rem;
+}
+
+.content ul {
+  font-size: 1.2rem;
+}
+
+.content ul li {
+  margin-bottom: 1rem;
+}
+ 
+.tomesModal button {
+  height: 5rem;
+  width: 10rem;
+  font-size: 1.5rem;
+  margin: 2rem;
+  cursor: pointer;
+}
+
+.tomesModal button:hover {
+  scale: 1.1;
+  transition: 0.3s;
+}
+
+.tomesModal .page-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 2rem;
+}
+
+.page-counter {
+  display: flex;
+}
+
+.arrow {
+  color: lightgray;
+}
+
+.arrow:hover {
+  color: var(--text);
+  scale: 1.2;
+  transition: 0.3s
+}

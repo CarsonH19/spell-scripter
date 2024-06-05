@@ -6,7 +6,7 @@ import heroSlice from "./hero-slice";
 import playerSlice from "./player-slice";
 import combatSlice from "./combat-slice";
 import logSlice from "./log-slice";
-// import spellbookSlice from "./spellbook-slice";
+import tomeSlice from "./tome-slice";
 
 const store = configureStore({
   reducer: {
@@ -16,7 +16,7 @@ const store = configureStore({
     player: playerSlice.reducer,
     combat: combatSlice.reducer,
     log: logSlice.reducer,
-    // spellbook: spellbookSlice.reducer,
+    tome: tomeSlice.reducer,
   },
 });
 
