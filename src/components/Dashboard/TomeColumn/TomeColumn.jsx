@@ -8,13 +8,22 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { uiActions } from "../../../store/ui-slice";
 
+import { TOMES } from "../../../data/tomes";
+
 export default function TomeColumn() {
   const dispatch = useDispatch();
   const tomeSlice = useSelector((state) => state.tome);
-  // console.log(tomeSlice[0]);
+
+  let masteryPoints = 0;
+  for (let i = 0; i < tomeSlice.length; i++) {
+    if (tomeSlice[i].mastered) {
+      masteryPoints++;
+    }
+  }
+  // const masteryPoints = useSelector((state) => state.player.masteryPoints);
 
   const handleOpenTome = (tome) => {
-    // updateTome
+    // update the current open tome
     dispatch(uiActions.updateTome(tome));
     // Open tome modal
     dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
@@ -24,7 +33,7 @@ export default function TomeColumn() {
   return (
     <div className={classes.column}>
       <h1>Tomes</h1>
-      <p>Mastery Points: 0</p>
+      <p>Mastery Points: {masteryPoints}</p>
       <div className={classes.filter}>
         {/* Add a filter button logic */}
         <button>All</button>
@@ -33,7 +42,9 @@ export default function TomeColumn() {
       </div>
       <div className={classes.tomes}>
         {/* Map each tome into a div element  */}
-        {tomeSlice.map((tome) => {
+        {tomeSlice.map((tome, index) => {
+          const tomeInfo = TOMES[index];
+
           if (tome.unlocked) {
             const percentage = calculatePercentage(tome.questions);
             let status;
@@ -53,17 +64,17 @@ export default function TomeColumn() {
                 />
               );
             }
+
             return (
               <div
                 key={tome.name}
                 className={classes.tome}
-                onClick={() => handleOpenTome(tome)}
+                onClick={() => handleOpenTome(tomeInfo)}
               >
                 <h3>{tome.name}</h3>
-                {percentage === 100 && <p>Mastered</p>}
                 <div>
                   <progress value={percentage} max="100"></progress>
-                  <p>{percentage}%</p>
+                  {percentage === 100 ? <p>Mastered</p> : <p>{percentage}%</p>}
                 </div>
                 {status}
               </div>

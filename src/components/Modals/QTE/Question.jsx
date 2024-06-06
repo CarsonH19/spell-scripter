@@ -37,6 +37,8 @@ export default function Question({ questionIndex, tomeIndex }) {
       const isCorrect = question.answers[0] === selectedAnswer;
 
       dispatch(tomeActions.answerQuestion({ tomeIndex, questionIndex }));
+      dispatch(tomeActions.master({ tomeIndex }));
+      // dispatch(tomeActions.unlock({ tomeIndex }));
 
       setAnswer({
         selectedAnswer,

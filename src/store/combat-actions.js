@@ -217,6 +217,8 @@ export default async function combatLoop(dispatch) {
 
   // Check if combat is over
   if (endCombat(dispatch)) {
+    dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true
+    dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // false
     return; // exit the loop
   } else {
     await delay(2000);

@@ -12,14 +12,14 @@ const tomeSlice = createSlice({
       complete: false,
       mastered: false,
       questions: [
-        { id: "q1", answered: true },
-        { id: "q2", answered: true },
-        { id: "q3", answered: true },
+        { id: "q1", answered: false },
+        { id: "q2", answered: false },
+        { id: "q3", answered: false },
       ],
     },
     {
       name: "JavaScript in HTML",
-      unlocked: true,
+      unlocked: false,
       complete: false,
       mastered: false,
       questions: [
@@ -30,7 +30,7 @@ const tomeSlice = createSlice({
     },
     {
       name: "Simple Operations",
-      unlocked: true,
+      unlocked: false,
       complete: false,
       mastered: false,
       questions: [
@@ -53,6 +53,9 @@ const tomeSlice = createSlice({
       // action.payload is an object containing tomeIndex and questionIndex
       const { tomeIndex, questionIndex } = action.payload;
       state[tomeIndex].questions[questionIndex].answered = true;
+    },
+    master(state, action) {
+      const { tomeIndex } = action.payload;
 
       // Check if all questions are answered
       const allAnswered = state[tomeIndex].questions.every((q) => q.answered);
@@ -61,9 +64,10 @@ const tomeSlice = createSlice({
         state[tomeIndex].mastered = true;
         console.log("Tome Mastered");
       }
-
-      // Check if Tome is mastered unlock next tomes
     },
+    // unlock(state, action) {
+    //   Check if Tome is mastered unlock next tomes
+    // },
   },
 });
 

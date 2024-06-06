@@ -21,6 +21,9 @@ import ConfirmationModal from "./Confirmation/ConfirmationModal";
 import QuickTimeEventModal from "./QTE/QuickTimeEventModal";
 
 import store from "../../store";
+
+import { TOMES } from "../../data/tomes";
+
 // import { useEffect } from "react";
 
 export default function Modal() {
@@ -59,7 +62,7 @@ function selectModal() {
   const state = store.getState().ui;
   let activeModal = findActiveModal(state);
 
-  // Passed as a prop to the Tome & QTE modals
+  // Passed as a prop to the tomeModal
   const tome = store.getState().ui.tome;
 
   switch (activeModal) {
@@ -76,7 +79,7 @@ function selectModal() {
       return <SpellbookModal />;
 
     case "tomesModal": {
-      return <TomesModal tome={tome} />;
+      return <TomesModal tome={tome}/>;
     }
 
     case "roomSummaryModal":

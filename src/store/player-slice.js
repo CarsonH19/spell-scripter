@@ -7,12 +7,11 @@ const playerSlice = createSlice({
     id: "Player",
     identifier: "PLAYER",
     image: "",
-    level: 9,
-    currentHealth: 75,
     damageDisplay: '',
+    level: 1,
+    masteryPoints: 0,
+    currentHealth: 75,
     currentMana: 50,
-    currentExp: 0,
-    expToNextLevel: 100,
     stats: {
       baseStrength: 1,
       strength: {
