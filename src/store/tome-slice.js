@@ -12,33 +12,33 @@ const tomeSlice = createSlice({
       complete: false,
       mastered: false,
       questions: [
+        { id: "q1", answered: true },
+        { id: "q2", answered: true },
+        { id: "q3", answered: true },
+      ],
+    },
+    {
+      name: "JavaScript in HTML",
+      unlocked: true,
+      complete: false,
+      mastered: false,
+      questions: [
         { id: "q1", answered: false },
         { id: "q2", answered: false },
         { id: "q3", answered: false },
       ],
     },
-    // {
-    //   name: "JavaScript in HTML",
-    //   unlocked: false,
-    //   complete: false,
-    //   mastered: false,
-    //   questions: [
-    //     { id: "q1", answered: false },
-    //     { id: "q2", answered: false },
-    //     { id: "q3", answered: false },
-    //   ],
-    // },
-    // {
-    //   name: "Simple Operations",
-    //   unlocked: false,
-    //   complete: false,
-    //   mastered: false,
-    //   questions: [
-    //     { id: "q1", answered: false },
-    //     { id: "q2", answered: false },
-    //     { id: "q3", answered: false },
-    //   ],
-    // },
+    {
+      name: "Simple Operations",
+      unlocked: true,
+      complete: false,
+      mastered: false,
+      questions: [
+        { id: "q1", answered: false },
+        { id: "q2", answered: false },
+        { id: "q3", answered: false },
+      ],
+    },
   ],
   reducers: {
     complete(state, action) {

@@ -1,7 +1,5 @@
 import classes from "./TomeColumn.module.css";
 
-import { TOMES } from "../../../data/tomes";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
@@ -35,11 +33,12 @@ export default function TomeColumn() {
       </div>
       <div className={classes.tomes}>
         {/* Map each tome into a div element  */}
-        {TOMES.map((tome, index) => {
-          console.log(index);
-          if (tomeSlice[index].unlocked) {
+        {tomeSlice.map((tome) => {
+          if (tome.unlocked) {
+            const percentage = calculatePercentage(tome.questions);
             let status;
-            if (tomeSlice[index].complete) {
+
+            if (tome.complete) {
               status = (
                 <FontAwesomeIcon
                   icon={faCircleCheck}
@@ -61,15 +60,33 @@ export default function TomeColumn() {
                 onClick={() => handleOpenTome(tome)}
               >
                 <h3>{tome.name}</h3>
-                <progress></progress>
+                {percentage === 100 && <p>Mastered</p>}
+                <div>
+                  <progress value={percentage} max="100"></progress>
+                  <p>{percentage}%</p>
+                </div>
                 {status}
               </div>
             );
           }
         })}
-        {/* Add text into each div (Name) (Mastery %) */}
-        {/* Allow overflow scrollbar */}
       </div>
     </div>
   );
+}
+
+function calculatePercentage(questionsArray) {
+  let totalQuestions = 0;
+  let answeredQuestions = 0;
+
+  questionsArray.forEach((question) => {
+    totalQuestions++;
+    if (question.answered) {
+      answeredQuestions++;
+    }
+  });
+
+  return totalQuestions > 0
+    ? Math.round((answeredQuestions / totalQuestions) * 100)
+    : 0;
 }
