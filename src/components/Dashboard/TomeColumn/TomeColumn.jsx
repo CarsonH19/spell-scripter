@@ -1,6 +1,6 @@
 import classes from "./TomeColumn.module.css";
 
-import { tomes } from "../../../data/tomes";
+import { TOMES } from "../../../data/tomes";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +14,6 @@ export default function TomeColumn() {
   const dispatch = useDispatch();
   const tomeSlice = useSelector((state) => state.tome);
   // console.log(tomeSlice[0]);
-
 
   const handleOpenTome = (tome) => {
     // updateTome
@@ -31,13 +30,14 @@ export default function TomeColumn() {
       <div className={classes.filter}>
         {/* Add a filter button logic */}
         <button>All</button>
-        <button>Mastered</button>
+        <button>Complete</button>
         <button>Incomplete</button>
       </div>
       <div className={classes.tomes}>
         {/* Map each tome into a div element  */}
-        {tomes.map((tome, index) => {
-          if (tome.unlocked) {
+        {TOMES.map((tome, index) => {
+          console.log(index);
+          if (tomeSlice[index].unlocked) {
             let status;
             if (tomeSlice[index].complete) {
               status = (

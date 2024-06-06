@@ -1,35 +1,22 @@
-export const tomeOfTesting = [
+export const QUESTIONS = [
   {
-    id: "q1",
-    complete: false,
-    text: "Test Question #1",
-    answers: [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
-  },
-  {
-    id: "q2",
-    complete: false,
-    text: "Test Question #2",
-    answers: [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
-  },
-  {
-    id: "q3",
-    complete: false,
-    text: "Test Question #3",
-    answers: [
-      "A",
-      "B",
-      "C",
-      "D"
+    name: "Introduction",
+    questions: [
+      {
+        id: "q1",
+        text: "Test Question #1",
+        answers: ["A", "B", "C", "D"],
+      },
+      {
+        id: "q2",
+        text: "Test Question #2",
+        answers: ["A", "B", "C", "D"],
+      },
+      {
+        id: "q3",
+        text: "Test Question #3",
+        answers: ["A", "B", "C", "D"],
+      },
     ],
   },
 ];

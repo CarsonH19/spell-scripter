@@ -1,9 +1,11 @@
-export let tomes = [
+// ALERT!
+// tomes.js & tome-slice must contain the same number of indices
+
+
+export const TOMES = [
   // INTRODUCTION
   {
     name: "Introduction",
-    unlocked: true,
-    complete: false,
     lesson: [
       {
         page: 1,
@@ -104,58 +106,40 @@ export let tomes = [
     ],
   },
   // NEW TOME
-  {
-    name: "JavaScript in HTML",
-    unlocked: true,
-    complete: false,
-    lesson: [],
-  },
-  {
-    name: "Simple Operations",
-    unlocked: true,
-    complete: false,
-    lesson: [],
-  },
+  // {
+  //   name: "JavaScript in HTML",
+  //   lesson: [],
+  // },
+  // {
+  //   name: "Simple Operations",
+  //   lesson: [],
+  // },
   // {
   //   name: "Variables",
-  //   unlocked: true,
-  //   complete: false,
   //   lesson: [],
   // },
   // {
   //   name: "Data Types",
-  //   unlocked: true,
-  //   complete: false,
   //   lesson: [],
   // },
   // {
   //   name: "Operators",
-  //   unlocked: true,
-  //   complete: false,
   //   lesson: [],
   // },
   // {
   //   name: "Assignment Operators",
-  //   unlocked: true,
-  //   complete: false,
   //   lesson: [],
   // },
   // {
   //   name: "Strings",
-  //   unlocked: true,
-  //   complete: false,
   //   lesson: [],
   // },
   // {
   //   name: "Template Literals",
-  //   unlocked: true,
-  //   complete: false,
   //   lesson: [],
   // },
   // {
   //   name: "String Concatenation",
-  //   unlocked: true,
-  //   complete: false,
   //   lesson: [],
   // },
 ];

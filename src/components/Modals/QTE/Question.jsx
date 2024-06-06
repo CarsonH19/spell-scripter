@@ -3,13 +3,20 @@ import classes from "./QTE.module.css";
 import QuestionTimer from "./QuestionTimer.jsx";
 import Answers from "./Answers.jsx";
 import { setResult } from "../../../util/cast-spell.js";
+import { useDispatch } from "react-redux";
 
-export default function Question({ question }) {
+import { QUESTIONS } from "../../../data/questions";
+import { tomeActions } from "../../../store/tome-slice.js";
+
+export default function Question({ questionIndex, tomeIndex }) {
   const [answer, setAnswer] = useState({
     selectedAnswer: "",
     isCorrect: null,
   });
 
+  const dispatch = useDispatch();
+
+  const question = QUESTIONS[tomeIndex].questions[questionIndex];
   let timer = 30000;
 
   if (answer.selectedAnswer) {
@@ -28,6 +35,9 @@ export default function Question({ question }) {
 
     setTimeout(() => {
       const isCorrect = question.answers[0] === selectedAnswer;
+
+      dispatch(tomeActions.answerQuestion({ tomeIndex, questionIndex }));
+
       setAnswer({
         selectedAnswer,
         isCorrect,

@@ -59,6 +59,9 @@ function selectModal() {
   const state = store.getState().ui;
   let activeModal = findActiveModal(state);
 
+  // Passed as a prop to the Tome & QTE modals
+  const tome = store.getState().ui.tome;
+
   switch (activeModal) {
     case "heroesModal":
       return <HeroesModal />;
@@ -73,7 +76,6 @@ function selectModal() {
       return <SpellbookModal />;
 
     case "tomesModal": {
-      const tome = store.getState().ui.tome;
       return <TomesModal tome={tome} />;
     }
 

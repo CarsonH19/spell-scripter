@@ -26,10 +26,10 @@ export default function TomesModal({ tome }) {
   };
 
   const handleComplete = () => {
+    // Finding the tome's index in the state slice array
     for (let i = 0; i < tomes.length; i++) {
       if (tomes[i].name === tome.name) {
         dispatch(tomeActions.complete(i));
-        console.log(tomes[i]);
       }
     }
 
