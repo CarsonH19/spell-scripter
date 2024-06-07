@@ -47,7 +47,17 @@ const tomeSlice = createSlice({
     },
     unlock(state, action) {
       // action.payload is the index of the tome in the state array
-      state[action.payload].unlocked = true;
+      const { tomeIndex } = action.payload;
+
+      // Check if >50% have been answered
+      const isHalfAnswered = (questions) => {
+        const answeredCount = questions.filter((q) => q.answered).length;
+        return answeredCount > questions.length / 2;
+      };
+
+      if (isHalfAnswered(state[tomeIndex].questions)) {
+        state[tomeIndex + 1].unlocked = true;
+      }
     },
     answerQuestion(state, action) {
       // action.payload is an object containing tomeIndex and questionIndex

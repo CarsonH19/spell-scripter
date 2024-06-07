@@ -20,7 +20,6 @@ export default function TomeColumn() {
       masteryPoints++;
     }
   }
-  // const masteryPoints = useSelector((state) => state.player.masteryPoints);
 
   const handleOpenTome = (tome) => {
     // update the current open tome
