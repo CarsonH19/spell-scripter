@@ -6,7 +6,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uiActions } from "../../../store/ui-slice";
 import { tomeActions } from "../../../store/tome-slice";
-// import { tomes } from "../../../data/tomes";
+
+import TomeQuestion from "./TomeQuestion";
 
 export default function TomesModal({ tome }) {
   const [index, setIndex] = useState(0);
@@ -22,6 +23,11 @@ export default function TomesModal({ tome }) {
   const handlePrevPage = () => {
     if (index > 0) {
       setIndex((prevIndex) => prevIndex - 1);
+    }
+  };
+
+  const handleSelectAnswer = (answer) => {
+    if (answer === tome.lesson[index].answer[0]) {
     }
   };
 
@@ -51,7 +57,12 @@ export default function TomesModal({ tome }) {
       break;
 
     case "QUESTION":
-      pageContent = <div className={classes.content}>QUESTION</div>;
+      pageContent = (
+        <div className={classes.content}>
+          <h3>{tome.lesson[index].question}</h3>
+          <TomeQuestion answers={tome.lesson[index].answers} />
+        </div>
+      );
       break;
 
     case "SUMMARY":

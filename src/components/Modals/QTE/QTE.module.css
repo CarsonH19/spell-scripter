@@ -82,6 +82,7 @@
   background: #6cb7f5;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  margin: 0;
 }
 
 .answer button:hover,

@@ -1,7 +1,6 @@
 // ALERT!
 // tomes.js & tome-slice must contain the same number of indices
 
-
 export const TOMES = [
   // INTRODUCTION
   {
@@ -40,7 +39,7 @@ export const TOMES = [
         type: "QUESTION",
         title: "",
         question: "Which function is used to generate output to the console?",
-        answers: ["print()", "write()", "console.log()"],
+        answers: ["console.log()", "output.console()", "print()", "write()"],
       },
       {
         page: 5,
