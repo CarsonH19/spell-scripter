@@ -103,3 +103,23 @@
 .tomes-info p {
   text-align: left;
 }
+
+/* Tome Completion */
+/* 
+.tome-complete {
+  visibility: visible;
+  position: absolute;
+  z-index: 99;
+  bottom: -640%;
+  left: 0%;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  opacity: 0.8;
+  height: auto;
+  min-width: 10rem;
+  max-width: 10rem; 
+  font-size:  0.8rem;
+  pointer-events: none;
+} */

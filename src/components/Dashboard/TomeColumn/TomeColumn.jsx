@@ -39,7 +39,9 @@ export default function TomeColumn() {
       <Tooltip
         title={"Tomes:"}
         position={"tomes-info"}
-        detailOne={"Study tomes to learn different JavaScript concepts to aid you in spell casting. By successfully casting spells within a dungeon you can master tomes and acquire mastery points."}
+        detailOne={
+          "Study tomes to learn different JavaScript concepts to aid you in spell casting. By successfully casting spells within a dungeon you can master tomes and acquire mastery points."
+        }
       >
         <FontAwesomeIcon
           icon={faCircleInfo}
@@ -63,21 +65,29 @@ export default function TomeColumn() {
             const percentage = calculatePercentage(tome.questions);
             let status;
 
-            if (tome.complete) {
-              status = (
-                <FontAwesomeIcon
-                  icon={faCircleCheck}
-                  className={classes.complete}
-                />
-              );
-            } else {
-              status = (
-                <FontAwesomeIcon
-                  icon={faCircleXmark}
-                  className={classes.incomplete}
-                />
-              );
-            }
+            // if (tome.complete) {
+            //   status = (
+            //     <Tooltip
+            //       title={"Tomes:"}
+            //       // position="tome-complete"
+            //       detailOne={
+            //         "This tome has been studied"
+            //       }
+            //     >
+            //       <FontAwesomeIcon
+            //         icon={faCircleCheck}
+            //         className={classes.complete}
+            //       />
+            //     </Tooltip>
+            //   );
+            // } else {
+            //   status = (
+            //     <FontAwesomeIcon
+            //       icon={faCircleXmark}
+            //       className={classes.incomplete}
+            //     />
+            //   );
+            // }
 
             return (
               <div
@@ -90,7 +100,7 @@ export default function TomeColumn() {
                   <progress value={percentage} max="100"></progress>
                   {percentage === 100 ? <p>Mastered</p> : <p>{percentage}%</p>}
                 </div>
-                {status}
+                {/* {status} */}
               </div>
             );
           }
