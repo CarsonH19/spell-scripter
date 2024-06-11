@@ -24,10 +24,10 @@ export default function Buttons() {
       >
         Inventory
       </button>
+      <button onClick={() => handleOpenModal("partyModal")}>Party</button>
       <button onClick={() => handleOpenModal("tomesModal")}>Tomes</button>
       <button onClick={() => handleOpenModal("questsModal")}>Quests</button>
       <button onClick={() => handleOpenModal("settingsModal")}>Settings</button>
-      <button onClick={() => handleOpenModal("helpModal")}>?</button>
     </div>
   );
 }
