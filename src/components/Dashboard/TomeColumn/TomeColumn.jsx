@@ -1,8 +1,13 @@
 import classes from "./TomeColumn.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleInfo,
+  faCircleXmark,
+  faCircleCheck,
+} from "@fortawesome/free-solid-svg-icons";
+
+import Tooltip from "../../UI/Tooltip";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -31,6 +36,16 @@ export default function TomeColumn() {
 
   return (
     <div className={classes.column}>
+      <Tooltip
+        title={"Tomes:"}
+        position={"tomes-info"}
+        detailOne={"Study tomes to learn different JavaScript concepts to aid you in spell casting. By successfully casting spells within a dungeon you can master tomes and acquire mastery points."}
+      >
+        <FontAwesomeIcon
+          icon={faCircleInfo}
+          className={classes["tomes-info-icon"]}
+        />
+      </Tooltip>
       <h1>Tomes</h1>
       <p>Mastery Points: {masteryPoints}</p>
       <div className={classes.filter}>

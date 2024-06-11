@@ -1,9 +1,9 @@
 :root {
 --text: rgb(222, 221, 221);
---background: #252b3b;
---primary: #e3d6be;
---secondary: #fff3b4;
---accent: #212121;
+--background: #2D3250;
+--primary: #424769;
+--secondary: #7077A1;
+--accent: #f6b17a;
 
 background-color: var(--background);
 }
@@ -20,7 +20,7 @@ background-color: var(--background);
 h1, h2, h3, h4, h5 {
   margin: 0;
   padding: 0;
-  color: var(--primary);
+  color: var(--text);
 }
 
 p {
@@ -30,8 +30,8 @@ p {
 }
 
 button {
-  /* background-color: var(--primary); */
-  border: 1px solid var(--accent);
+  background-color: var(--accent);
+  border: 1px solid var(--primary);
 }
 
 div {
