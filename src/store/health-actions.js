@@ -1,5 +1,6 @@
 import store from "./index";
 import { combatActions } from "./combat-slice";
+import { uiActions } from "./ui-slice";
 
 import loot from "../util/loot";
 
@@ -42,11 +43,18 @@ function checkForDeath(dispatch, id) {
   const order = store.getState().combat.order;
   let character = order.find((char) => char.id === id);
 
-  if (character.currentHealth <= 0) {
+  if (character.currentHealth <= 0 && character.identifier === "PLAYER") {
+    dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true
+    dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // false
+  }
+
+  if (character.currentHealth <= 0 && character.identifier === "ENEMY") {
     // Check defeated enemy for loot & add them to dungeon-slice
     loot(dispatch, character);
+  }
 
-    // Removes defeated character 
+  if (character.currentHealth <= 0 && character.identifier !== "PLAYER") {
+    // Removes defeated character
     setTimeout(() => {
       dispatch(combatActions.removeCharacter({ character }));
     }, 2000);

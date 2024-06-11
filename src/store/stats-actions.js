@@ -186,7 +186,7 @@ export default function updateStatTotals(dispatch, id) {
   }
 
   function calculateDefense(guard, totalAgility) {
-    let defense = 10 + totalAgility;
+    let defense = 8 + totalAgility;
 
     // Guarding (+50% defense)
     if (guard) {

@@ -217,8 +217,6 @@ export default async function combatLoop(dispatch) {
 
   // Check if combat is over
   if (endCombat(dispatch)) {
-    dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true
-    dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // false
     return; // exit the loop
   } else {
     await delay(2000);
@@ -369,8 +367,8 @@ function checkBehavior(character) {
 function endCombat(dispatch) {
   const order = store.getState().combat.order;
 
-  const playerIndex = order.findIndex((char) => char.id === "Player");
-  const player = order[playerIndex];
+  // const playerIndex = order.findIndex((char) => char.id === "Player");
+  // const player = order[playerIndex];
 
   const enemies = [];
   for (let i = 0; i < order.length; i++) {
@@ -379,10 +377,11 @@ function endCombat(dispatch) {
     }
   }
 
-  if (player.currentHealth <= 0) {
-    alert("You've died!");
-    return true;
-  }
+  // if (player.currentHealth <= 0) {
+  //   dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true
+  //   dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // false
+  //   return true;
+  // }
 
   if (enemies.length <= 0) {
     dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
