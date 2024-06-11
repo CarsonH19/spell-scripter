@@ -15,7 +15,7 @@ export default function Threat() {
       <Tooltip 
         title={"Threat:"} 
         position={"threat"}
-        detailOne={"Threat determines the difficulty of the encounters you will face. Threat is raised after each cleared room, when a spell fails, and other specific instances."}
+        detailOne={"Threat determines the difficulty of the encounters you will face. Threat is raised after each cleared room, when you fail to cast a spell, and in other specific instances."}
       >
         <FontAwesomeIcon icon={faSkull} className={classes.skull}/>
       </Tooltip>

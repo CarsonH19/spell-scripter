@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 
 import { QUESTIONS } from "../../../data/questions";
 import { tomeActions } from "../../../store/tome-slice.js";
+import { dungeonActions } from "../../../store/dungeon-slice.js";
 
 export default function Question({ questionIndex, tomeIndex }) {
   const [answer, setAnswer] = useState({
@@ -42,6 +43,11 @@ export default function Question({ questionIndex, tomeIndex }) {
       dispatch(tomeActions.master({ tomeIndex }));
       // Check if a new tome should be unlocked (50%)
       dispatch(tomeActions.unlock({ tomeIndex }));
+
+      // Check if answer is wrong and increment threat
+      if (!isCorrect) {
+        dispatch(dungeonActions.addThreat(1));
+      }
 
       setAnswer({
         selectedAnswer,
