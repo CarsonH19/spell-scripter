@@ -35,13 +35,16 @@ export default function PlayerColumn() {
   return (
     <div className={classes.column}>
       <div className={classes.player}>
-        <p>{player.name}</p>
-        <p>Level: {player.level}</p>
+        <div>
+          <p>{player.name}</p>
+          <p>Level: {player.level}</p>
+        </div>
 
         <div className={classes["attributes-container"]}>
           <Tooltip
             title={"What are Attributes?"}
-            position={"tomes-info"}
+            container={"attributes-info-container"}
+            position={"attributes-info"}
             detailOne={
               "Attributes determine your stats within the dungeon. Using points you can decide which stats you'd like to upgrade. Acquire more attribute points by reaching higher levels."
             }
@@ -51,7 +54,7 @@ export default function PlayerColumn() {
               className={classes["attributes-info-icon"]}
             />
           </Tooltip>
-          <p>Attribute Points Available: {player.attributePoints}</p>
+          <p>Attribute Points: {player.attributePoints}</p>
           <div className={classes.attribute}>
             <FontAwesomeIcon
               icon={faCaretLeft}
@@ -83,7 +86,6 @@ export default function PlayerColumn() {
               icon={faCaretLeft}
               className={classes["arrow-icon"]}
               onClick={() => handleChangeAttribute("DECREASE", "AGILITY")}
-
             />
             <Tooltip
               title={"Agility Attribute:"}

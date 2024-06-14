@@ -9,6 +9,7 @@ export default function Tooltip({
   detailTwo,
   children,
   position = "tooltip",
+  container = "container"
 }) {
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -22,7 +23,7 @@ export default function Tooltip({
 
   return (
     <div
-      className={classes.container}
+      className={classes[container]}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

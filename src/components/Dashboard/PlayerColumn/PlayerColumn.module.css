@@ -17,16 +17,23 @@
   justify-content: space-between;
   align-items: center;
   gap: 3rem;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding: 1rem;
   flex: 3;
 }
 
 .player .attributes-container {
+position: relative;
 display: flex;
 flex-direction: column;
 align-items: center;
 gap: 1rem;
+width: 100%;
+}
+
+.attributes-info-icon {
+  height: 1rem;
+  color: var(--secondary);
+
 }
 
 .player .attributes-container .attribute {
@@ -41,9 +48,14 @@ gap: 1rem;
 }
 
 .attribute .arrow-icon {
-  height: 1.3rem;
+  height: 1.5rem;
   color: var(--accent);
   cursor: pointer;
+}
+
+.attribute .arrow-icon:hover {
+  transition: 0.3s;
+  scale: 1.3;
 }
 
 .column hr {

@@ -84,6 +84,6 @@
 }
 
 .tomes-info-icon {
-  color: var(--accent);
-  height: 1.2rem;
+  color: var(--secondary);
+  height: 1rem;
 }
