@@ -13,19 +13,37 @@
   position: relative;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 3rem;
   padding-left: 3rem;
   padding-right: 3rem;
-  flex: 1;
+  flex: 3;
 }
 
-.player div {
+.player .attributes-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1rem;
+}
+
+.player .attributes-container .attribute {
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  flex: 1;
+  justify-content: center;
+  gap: 1.5rem
+}
+
+.attribute .attribute-icon {
+  height: 1.5rem;
+  color: var(--secondary);
+}
+
+.attribute .arrow-icon {
+  height: 1.3rem;
+  color: var(--accent);
+  cursor: pointer;
 }
 
 .column hr {
@@ -35,7 +53,6 @@
 
 .column .menu {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   flex: 1;

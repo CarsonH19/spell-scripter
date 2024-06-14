@@ -37,7 +37,7 @@ export default function TomeColumn() {
   return (
     <div className={classes.column}>
       <Tooltip
-        title={"Tomes:"}
+        title={"What Are Tomes?"}
         position={"tomes-info"}
         detailOne={
           "Study tomes to learn different JavaScript concepts to aid you in spell casting. By successfully casting spells within a dungeon you can master tomes and acquire mastery points."

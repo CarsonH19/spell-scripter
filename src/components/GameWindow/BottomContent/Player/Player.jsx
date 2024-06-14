@@ -2,8 +2,8 @@ import classes from "./Player.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
-  faShieldHalved,
-  faFireFlameCurved,
+  // faShieldHalved,
+  // faFireFlameCurved,
   faHandFist,
   faPersonRunning,
   faHatWizard,

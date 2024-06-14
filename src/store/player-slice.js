@@ -7,32 +7,33 @@ const playerSlice = createSlice({
     id: "Player",
     identifier: "PLAYER",
     image: "",
-    damageDisplay: '',
+    damageDisplay: "",
     level: 1,
     masteryPoints: 0,
+    attributePoints: 3,
     currentHealth: 75,
     currentMana: 50,
     stats: {
-      baseStrength: 1,
+      baseStrength: 0,
       strength: {
-        totalStrength: 1,
+        totalStrength: 0,
         attack: 10,
         maxHealth: 100,
-        healthRegen: 2,
+        healthRegen: 0,
       },
-      baseAgility: 2,
+      baseAgility: 0,
       agility: {
-        totalAgility: 2,
-        defense: 10,
+        totalAgility: 0,
+        defense: 0,
         speed: 0,
-        hitChance: 2,
+        hitChance: 0,
       },
-      baseArcana: 3,
+      baseArcana: 0,
       arcana: {
-        totalArcana: 3,
+        totalArcana: 0,
         spellPower: 0,
-        maxMana: 50,
-        manaRegen: 2,
+        maxMana: 0,
+        manaRegen: 0,
       },
     },
     weaknesses: [],
@@ -48,6 +49,33 @@ const playerSlice = createSlice({
     },
   },
   reducers: {
+    changeAttributes(state, action) {
+      const { change, attribute } = action.payload;
+      const attributeMap = {
+        STRENGTH: "baseStrength",
+        AGILITY: "baseAgility",
+        ARCANA: "baseArcana",
+      };
+
+      const statAttribute = attributeMap[attribute];
+
+      if (statAttribute) {
+        switch (change) {
+          case "INCREASE":
+            if (state.attributePoints > 0) {
+              state.stats[statAttribute]++;
+              state.attributePoints--;
+            }
+            break;
+          case "DECREASE":
+            if (state.stats[statAttribute] > 0) {
+              state.stats[statAttribute]--;
+              state.attributePoints++;
+            }
+            break;
+        }
+      }
+    },
     changeSpellList(state, action) {
       const change = action.payload.change;
       const spell = action.payload.spell;
@@ -84,7 +112,7 @@ const playerSlice = createSlice({
               state.inventory.questItems.push(item);
             }
 
-            console.log("ITEM ADDED")
+            console.log("ITEM ADDED");
           }
           break;
 
