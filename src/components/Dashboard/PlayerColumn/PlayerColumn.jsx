@@ -18,6 +18,7 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 import { playerActions } from "../../../store/player-slice";
+import updateStatTotals from "../../../store/stats-actions";
 
 export default function PlayerColumn() {
   const dispatch = useDispatch();
@@ -30,14 +31,16 @@ export default function PlayerColumn() {
 
   const handleChangeAttribute = (change, attribute) => {
     dispatch(playerActions.changeAttributes({ change, attribute }));
+    updateStatTotals(dispatch, "Player");
   };
 
   return (
     <div className={classes.column}>
       <div className={classes.player}>
         <div>
-          <p>{player.name}</p>
+          <h1>{player.name}</h1>
           <p>Level: {player.level}</p>
+          <p>Mastery Points: {player.masteryPoints} / 3</p>
         </div>
 
         <div className={classes["attributes-container"]}>
@@ -54,83 +57,98 @@ export default function PlayerColumn() {
               className={classes["attributes-info-icon"]}
             />
           </Tooltip>
-          <p>Attribute Points: {player.attributePoints}</p>
-          <div className={classes.attribute}>
-            <FontAwesomeIcon
-              icon={faCaretLeft}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("DECREASE", "STRENGTH")}
-            />
+          <h4>Attribute Points: {player.attributePoints}</h4>
 
-            <Tooltip
-              title={"Strength Attribute:"}
-              detailOne={
-                "Strength determines your Max HP, HP Regeneration, and Attack."
-              }
-            >
+          <div className={classes.stats}>
+            <div className={classes.attribute}>
               <FontAwesomeIcon
-                icon={faHandFist}
-                className={classes["attribute-icon"]}
+                icon={faCaretLeft}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("DECREASE", "STRENGTH")}
               />
-            </Tooltip>
-            <FontAwesomeIcon
-              icon={faCaretRight}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("INCREASE", "STRENGTH")}
-            />
-          </div>
-          <p>{player.stats.baseStrength}</p>
 
-          <div className={classes.attribute}>
-            <FontAwesomeIcon
-              icon={faCaretLeft}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("DECREASE", "AGILITY")}
-            />
-            <Tooltip
-              title={"Agility Attribute:"}
-              detailOne={
-                "Agility determines your Defense, Hit Chance, and Speed."
-              }
-            >
+              <Tooltip
+                title={"Strength Attribute:"}
+                detailOne={
+                  "Strength determines your Max HP, HP Regeneration, and Attack."
+                }
+              >
+                <FontAwesomeIcon
+                  icon={faHandFist}
+                  className={classes["attribute-icon"]}
+                />
+              </Tooltip>
               <FontAwesomeIcon
-                icon={faPersonRunning}
-                className={classes["attribute-icon"]}
+                icon={faCaretRight}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("INCREASE", "STRENGTH")}
               />
-            </Tooltip>
-            <FontAwesomeIcon
-              icon={faCaretRight}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("INCREASE", "AGILITY")}
-            />
+            </div>
+            <p>{player.stats.baseStrength}</p>
+            <p>Max HP: {player.stats.strength.maxHealth}</p>
+            <p>Attack: {player.stats.strength.attack}</p>
+            <p>HP Regeneration: {player.stats.strength.healthRegen}</p>
           </div>
-          <p>{player.stats.baseAgility}</p>
 
-          <div className={classes.attribute}>
-            <FontAwesomeIcon
-              icon={faCaretLeft}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("DECREASE", "ARCANA")}
-            />
-            <Tooltip
-              title={"Arcana Attribute:"}
-              detailOne={
-                "Arcana determines your Max MP, MP Regeneration, and Spell Power."
-              }
-            >
+          <div className={classes.stats}>
+            <div className={classes.attribute}>
               <FontAwesomeIcon
-                icon={faHatWizard}
-                className={classes["attribute-icon"]}
+                icon={faCaretLeft}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("DECREASE", "AGILITY")}
               />
-            </Tooltip>
-            <FontAwesomeIcon
-              icon={faCaretRight}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("INCREASE", "ARCANA")}
-            />
+              <Tooltip
+                title={"Agility Attribute:"}
+                detailOne={
+                  "Agility determines your Defense, Hit Chance, and Speed."
+                }
+              >
+                <FontAwesomeIcon
+                  icon={faPersonRunning}
+                  className={classes["attribute-icon"]}
+                />
+              </Tooltip>
+              <FontAwesomeIcon
+                icon={faCaretRight}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("INCREASE", "AGILITY")}
+              />
+            </div>
+            <p>{player.stats.baseAgility}</p>
+            <p>Defense: {player.stats.agility.defense}</p>
+            <p>Hit Chance: {player.stats.agility.hitChance}</p>
+            <p>Initiative Speed: {player.stats.agility.speed}</p>
           </div>
-          <p>{player.stats.baseArcana}</p>
-          <button>Reset</button>
+
+          <div className={classes.stats}>
+            <div className={classes.attribute}>
+              <FontAwesomeIcon
+                icon={faCaretLeft}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("DECREASE", "ARCANA")}
+              />
+              <Tooltip
+                title={"Arcana Attribute:"}
+                detailOne={
+                  "Arcana determines your Max MP, MP Regeneration, and Spell Power."
+                }
+              >
+                <FontAwesomeIcon
+                  icon={faHatWizard}
+                  className={classes["attribute-icon"]}
+                />
+              </Tooltip>
+              <FontAwesomeIcon
+                icon={faCaretRight}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("INCREASE", "ARCANA")}
+              />
+            </div>
+            <p>{player.stats.baseArcana}</p>
+            <p>Max MP: {player.stats.arcana.maxMana}</p>
+            <p>Spell Power: {player.stats.arcana.spellPower}</p>
+            <p>MP Regeneration: {player.stats.arcana.manaRegen}</p>
+          </div>
         </div>
       </div>
       <hr />

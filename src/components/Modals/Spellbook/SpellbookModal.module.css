@@ -2,11 +2,11 @@
   height: 90%;
   width: 50%;
   min-width: 50rem;
-  background-color: rgb(29, 26, 38);
+  background-color: var(--background);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid white;
+  border: 2px solid var(--secondary);
   padding: 1rem;
   overflow: visible;
 }
@@ -16,7 +16,7 @@
   font-size: 1.5rem;
   padding: 0rem;
   margin: 0;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid var(--secondary);
   width: 30%;
 }
 
@@ -32,17 +32,17 @@
 .spellbook .buttons button {
   height: 1.5rem;
   font-size: 0.8rem;
-  border: 1px solid white;
+  border: 2px solid var(--secondary);
   border-bottom: none;
   cursor: pointer;
-  background-color: rgb(29, 26, 38);
-  color: white;
+  background-color: var(--background);
+  color: var(--text);
 }
 
 .spellbook .buttons button.active {
-  background-color: white;
+  background-color: var(--secondary);
   font-size: 0.8rem;
-  color: rgb(29, 26, 38)
+  color: var(--text);
 }
 
 .spellbook .content {
@@ -51,58 +51,153 @@
   display: flex;
 }
 
-.spellbook .content .prepare {
+.spellbook .content .container {
   display: flex;
   padding: 1rem;
   padding-top: 0;
   flex: 1;
 }
 
-.spellbook .content .prepare .schools {
+.spellbook .content .container .schools {
   margin-right: 2rem;
   margin-left: 0;
   padding: 0;
   list-style: none;
-  width: 15%;
+  width: 30%;
 }
 
-.spellbook .content .prepare .schools h3 {
+.spellbook .content .container .schools h3 {
   text-align: center;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid var(--secondary);
 }
 
 
-.spellbook .content .prepare .schools ol {
+.spellbook .content .container .schools ol {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   margin-left: 0;
   padding: 0;
   list-style: none;
   width: 100%;
-}
-
-.spellbook .content .prepare .schools ol li {
-  cursor: pointer;
-  margin-bottom: 1rem;
-  border: 1px solid red;
-  font-size: 1rem;
-  text-align: center;
-}
-
-.spellbook .content .prepare .spells{
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(29, 26, 38);
-  flex: 1;
   height: 100%;
 }
 
-.spellbook .content .prepare .spells h3 {
+.spellbook .content .container .schools ol .inactive-school {
+  cursor: pointer;
+  margin-bottom: 1rem;
+  border: 1px solid var(--accent);
+  background-color: var(--primary);
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.spellbook .content .container .schools ol .active-school {
+  background-color: var(--accent);
+  color: var(--background);
+  cursor: pointer;
+  margin-bottom: 1rem;
+  border: 1px solid var(--accent);
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+
+.spellbook .content .container .schools ol li:hover {
+  background-color: var(--accent);
+  color: var(--background);
+  cursor: pointer;;
+}
+
+
+.spellbook .content .container .skill-tree {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  gap: 0.5rem;
+}
+
+.spellbook .content .container .skill-tree .expertise {
+  position: relative;
+  height: 25%;
+  width: 100%;
+  border: 2px solid var(--secondary);
+  background-color: var(--primary);
+}
+
+.spellbook .content .container .skill-tree .closed {
+  /* opacity: 50%; */
+  /* pointer-events: none; */
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+.skill-tree .expertise h3 {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.2rem;
+}
+
+.skill-tree .expertise h4 {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.2rem;
+}
+
+.spellbook .content .container .skill-tree .expertise p {
+  text-align: center;
+}
+
+.skill-tree .expertise ul {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.skill-tree .expertise ul li {
+  margin: 0;
+  margin-top: 1rem;
+  padding: 0;
+  height: 4rem;
+  width: 4rem;
+  border: 2px solid var(--accent);
+  border-radius: 10%;
+}
+
+.spellbook .content .container .skill-tree button {
+  width: 14rem;
+
+}
+
+/* SPELLS */
+
+.spellbook .content .container .spells{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  flex: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.spellbook .content .container .spells h3 {
   color: white;
   text-align: center;
   margin-top: 1rem;
 }
 
-
-.spellbook .content .prepare .spells ul {
+.spellbook .content .container .spells ul {
   width: 100%;
   padding: 1rem;
   margin: 0;
@@ -111,49 +206,51 @@
   grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); 
   gap: 2rem;
   flex: 1;
-  background-color: white;
+  background-color: var(--primary);
+  border: 2px solid var(--secondary);
   /* gap: 1rem; */
 }
 
-.spellbook .content .prepare .spells ul li {
+.spellbook .content .container .spells ul li {
   list-style: none;
   aspect-ratio: 1;
   width: 4rem;
   height: 4rem;
-  border: 2px solid red;
+  border: 2px solid var(--accent);
   cursor: pointer;
   border-radius: 10%;
-  color: black;
+  color: var(--text);
 }
 
-.spellbook .content .prepare .spells ul li:hover {
+.spellbook .content .container .spells ul li:hover {
   transition: 0.3s;
   scale: 1.1;
 }
 
-.spellbook .content .prepare .prepared {
+.spellbook .content .container .prepared {
   position: relative;
-  border: 1px solid white;
-  margin: 1rem;
+  border: 1px solid var(--secondary);
+  margin-top: 1rem;
+  width: 100%;
   /* overflow: visible; */
 }
 
-.spellbook .content .prepare .prepared ul {
-  background-color: rgb(29, 26, 38);
+.spellbook .content .container .prepared ul {
+  background-color: var(--primary);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); 
   height: 6rem;
 }
 
-.spellbook .content .prepare .prepared .counter {
+.spellbook .content .container .prepared .counter {
   position: absolute;
-  color: white;
+  color: var(--text);
   right: 5%;
   top: 0%;
 }
 
-.spellbook .content .prepare .prepared ul li {
-  color: white;
+.spellbook .content .container .prepared ul li {
+  color: var(--accent);
   width: 4rem;
   height: 4rem
 }

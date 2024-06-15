@@ -22,6 +22,7 @@ import QuickTimeEventModal from "./QTE/QuickTimeEventModal";
 import DungeonTomesModal from "./DungeonTomes/DungeonTomesModal";
 
 import store from "../../store";
+import PartyModal from "./Party/PartyModal";
 
 export default function Modal() {
   const dispatch = useDispatch();
@@ -95,6 +96,9 @@ function selectModal() {
 
     case "quickTimeEventModal":
       return <QuickTimeEventModal />;
+
+    case "partyModal":
+      return <PartyModal />
   }
 }
 

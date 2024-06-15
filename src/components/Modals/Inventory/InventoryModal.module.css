@@ -16,11 +16,11 @@
   height: 90%;
   width: 50%;
   min-width: 50rem;
-  background-color: var(--accent);
+  background-color: var(--background);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid white;
+  border: 2px solid var(--secondary);
   padding: 1rem;
 }
 
@@ -29,7 +29,7 @@
   font-size: 1.5rem;
   padding: 0rem;
   margin: 0;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid var(--secondary);
   width: 30%;
 }
 
@@ -39,9 +39,9 @@
   flex: 1;
 }
 
-.inventory .container .vertical {
-  border-left: 2px solid white;
-}
+/* .inventory .container .vertical {
+  border-left: 2px solid red;
+} */
 
 .inventory .container .left {
   display: flex;
@@ -81,7 +81,7 @@
 .inventory .container .left .stats ul li {
   height: 2rem;
   width: 2rem;
-  background-color: #ad0505; 
+  background-color: var(--secondary); 
   list-style: none;
   cursor: pointer; 
 }
@@ -104,28 +104,27 @@
   margin-top: 3rem;
   width: 90%;
   /* gap: 4rem; */
-  border-bottom: 2px solid white;
 }
 
 .buttons button {
   height: 1.5rem;
   font-size: 0.8rem;
-  border: 1px solid white;
+  border: 1px solid var(--secondary);
   border-bottom: none;
   cursor: pointer;
-  background-color: rgb(29, 26, 38);
-  color: white;
+  background-color: var(--background);
+  color: var(--text);
 }
 
 button.active {
-  background-color: white;
+  background-color: var(--primary);
   font-size: 0.8rem;
-  color: rgb(29, 26, 38)
 }
 
 .inventory .container .right .items {
   width: 90%;
-  background-color: white;
+  background-color: var(--primary);
+  border: 1px solid var(--secondary);
   flex: 3;
   padding: 1rem;
   margin: 0;
@@ -141,12 +140,12 @@ button.active {
 }
 
 .items li {
-  color: black;
+  color: var(--text);
   aspect-ratio: 1;
   height: 4rem;
   width: 4rem;
   list-style: none;
-  border: 1px solid red;
+  border: 1px solid var(--accent);
   cursor: pointer;
   border-radius: 10%;
 }
@@ -160,12 +159,12 @@ button.active {
 
 .inventory .container .right .attuned {
   width: 90%;
-  background-color: rgb(29, 26, 38);
+  background-color: var(--background);
   flex: 1;
   text-align: center;
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
+  margin-top: 1rem;
 }
 
 .attuned h1 {
@@ -173,7 +172,7 @@ button.active {
 }
 
 .attuned ul {
-  border: 1px solid white;
+  border: 1px solid var(--secondary);
   margin: 0;
   padding: 1rem;
   /* flex: 1; */
@@ -182,6 +181,8 @@ button.active {
   align-items: center;
   gap: 1rem;
   height: 8rem;
+  background-color: var(--primary);
+
 }
 
 .attuned ul div li {
@@ -189,7 +190,7 @@ button.active {
   aspect-ratio: 1;
   width: 4rem;
   height: 4rem;
-  border: 2px solid red;
+  border: 2px solid var(--secondary);
   cursor: pointer;
   border-radius: 10%;
 }

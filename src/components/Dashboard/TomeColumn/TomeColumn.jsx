@@ -49,13 +49,10 @@ export default function TomeColumn() {
         />
       </Tooltip>
       <h1>Tomes</h1>
-      <p>Mastery Points: {masteryPoints}</p>
-      <div className={classes.filter}>
-        {/* Add a filter button logic */}
-        <button>All</button>
-        <button>Complete</button>
-        <button>Incomplete</button>
-      </div>
+      {/* <p>Mastery Points: {masteryPoints}</p> */}
+      {/* <div className={classes.filter}>
+        NOTE: Add buttons to filter tomes?
+      </div> */}
       <div className={classes.tomes}>
         {tomeSlice.map((tome, index) => {
           const tomeInfo = TOMES[index];

@@ -1,0 +1,40 @@
+.party {
+  height: 90%;
+  width: 90%;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid var(--secondary);
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.party h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 0rem;
+  margin: 0;
+  border-bottom: 2px solid var(--secondary);
+  width: 30%;
+}
+
+.party .container {
+  display: flex;
+  height: 90%;
+  width: 90%;
+  border: 1px solid var(--secondary);
+}
+
+.party .container .images {
+  width: 70%;
+  border: 1px solid var(--secondary);
+
+}
+
+.party .container .stats {
+  width: 30%;
+  border: 1px solid var(--secondary);
+
+
+}

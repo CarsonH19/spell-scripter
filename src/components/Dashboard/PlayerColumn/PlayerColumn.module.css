@@ -21,6 +21,14 @@
   flex: 3;
 }
 
+.player h1 {
+  text-align: center;
+}
+
+.player p {
+  text-align: center;
+}
+
 .player .attributes-container {
 position: relative;
 display: flex;
@@ -36,10 +44,17 @@ width: 100%;
 
 }
 
-.player .attributes-container .attribute {
+.player .attributes-container .stats .attribute {
   display: flex;
   justify-content: center;
   gap: 1.5rem
+}
+
+.player .attributes-container .stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .attribute .attribute-icon {
@@ -74,7 +89,7 @@ width: 100%;
   width: 2rem;
   cursor: pointer;
   height: auto;
-  color: var(--secondary);
+  color: var(--accent);
 }
 
 .column .menu .icon:hover {

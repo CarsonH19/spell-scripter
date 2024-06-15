@@ -23,6 +23,7 @@ const uiSlice = createSlice({
       helpModal: false,
       confirmationModal: false,
       quickTimeEventModal: false,
+      partyModal: false,
     },
     tome: null,
   },

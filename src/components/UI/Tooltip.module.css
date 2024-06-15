@@ -144,3 +144,42 @@
 .attributes-info p {
   text-align: left;
 }
+
+/* SKILLS */
+
+.skill {
+  visibility: visible;
+  position: absolute;
+  z-index: 99;
+  bottom: 120%; /* Position above the item */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  opacity: 0.8;
+  height: auto;
+  min-width: 10rem;
+  max-width: 10rem;
+  font-size: 0.8rem;
+  pointer-events: none;
+  text-align: center; /* Optional: Center text inside tooltip */
+}
+
+/* Additional CSS to style the tooltip's arrow */
+.skill::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Position the arrow at the bottom of the tooltip */
+  left: 50%; /* Center the arrow horizontally */
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent; /* Arrow pointing down */
+}
+
+
+.skill .title {
+  font-weight: 600;
+}

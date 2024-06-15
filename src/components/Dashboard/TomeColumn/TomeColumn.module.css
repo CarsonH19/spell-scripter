@@ -18,20 +18,19 @@
 
 }
 
-.column .filter {
+/* .column .filter {
   display: flex;
   justify-content: center;
   gap: 2rem;
   margin: 1rem;
-}
+} */
 
 .column .tomes {
   height: 80%;
   width: 100%;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
   gap: 0.5rem;
   overflow: auto;
 }
@@ -41,7 +40,7 @@
   padding: 1rem;
   width: 100%;
   height: 6rem;
-  border: 1px solid red;
+  border: 2px solid var(--accent);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,12 +52,22 @@
 
 .tome p {
   text-align: center;
+  font-size: 1.0rem;
+  font-weight: 800;
 }
 
 .tome:hover {
-  border: 1px solid white;
+  background-color: var(--accent);
   transition: 0.3s ease;
   cursor: pointer;
+}
+
+.tome:hover h3 {
+  color: var(--primary);
+}
+
+.tome:hover p {
+  color: var(--primary);
 }
 
 .complete {
