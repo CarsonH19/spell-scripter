@@ -1,14 +1,14 @@
 .column {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 33%;
   height: 100%;
   border: 3px solid var(--secondary);
   min-width: 310px;
   padding: 1rem;
-}
-
-.column p {
-  text-align: center;
+  background-color: var(--background);
 }
 
 .column h1 {
@@ -28,16 +28,12 @@
 .column .tomes {
   height: 80%;
   width: 100%;
-  border: 3px solid var(--accent);
+  border: 3px solid var(--secondary);
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
   gap: 0.5rem;
   overflow: auto;
-}
-
-.column hr {
-  background-color: var(--accent);
 }
 
 .tome {
@@ -51,17 +47,13 @@
   align-items: center;
   justify-content: center;
   gap: 0rem;
-  /* cursor: pointer; */
   transition: 0.3s ease;
+  background-color: var(--primary);
 }
 
-/* .tome:has(.complete) {
-  cursor: pointer;
+.tome p {
+  text-align: center;
 }
-
-.tome:has(.incomplete) {
-  pointer-events: none;
-} */
 
 .tome:hover {
   border: 1px solid white;

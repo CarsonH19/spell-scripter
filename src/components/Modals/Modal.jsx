@@ -19,23 +19,16 @@ import TradeModal from "./Trade/TradeModal";
 import HelpModal from "./Help/HelpModal";
 import ConfirmationModal from "./Confirmation/ConfirmationModal";
 import QuickTimeEventModal from "./QTE/QuickTimeEventModal";
+import DungeonTomesModal from "./DungeonTomes/DungeonTomesModal";
 
 import store from "../../store";
-
-import { TOMES } from "../../data/tomes";
-
-// import { useEffect } from "react";
 
 export default function Modal() {
   const dispatch = useDispatch();
   const activeModal = selectModal();
   const ui = useSelector((state) => state.ui);
   const continueCheck = findActiveModal(ui);
-
-  // useEffect(() => {
-  //   //
-  // }, [ui]);
-
+  
   const handleClose = () => {
     // Render continue button when RoomSummaryModal is closed
     if (continueCheck === "roomSummaryModal") {
@@ -81,6 +74,9 @@ function selectModal() {
     case "tomesModal": {
       return <TomesModal tome={tome}/>;
     }
+
+    case "dungeonTomesModal":
+      return <DungeonTomesModal />
 
     case "roomSummaryModal":
       return <RoomSummaryModal />;

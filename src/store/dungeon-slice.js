@@ -5,7 +5,7 @@ const dungeonSlice = createSlice({
   initialState: {
     name: "",
     roomCounter: 0,
-    threat: 0,
+    threat: -1,
     danger: false,
     image: null,
     music: null,

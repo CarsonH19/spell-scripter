@@ -16,6 +16,7 @@ const uiSlice = createSlice({
       questsModal: false,
       spellbookModal: false,
       tomesModal: false,
+      dungeonTomesModal: false,
       roomSummaryModal: false,
       tradeModal: false,
       settingsModal: false,

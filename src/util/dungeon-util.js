@@ -25,7 +25,7 @@ export function setDungeon(dispatch, dungeonName) {
   switch (dungeonName) {
     case "The Great Catacomb":
       dungeon.name = "The Great Catacomb";
-      dungeon.threat = 1;
+      dungeon.threat = 0;
       dungeon.image = ""; // dungeon entrance image
       // dungeon.music = '' // Dungeon entrance music
       dungeon.contents; // add Entrance event

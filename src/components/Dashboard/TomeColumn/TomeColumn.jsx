@@ -1,11 +1,7 @@
 import classes from "./TomeColumn.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleInfo,
-  faCircleXmark,
-  faCircleCheck,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 import Tooltip from "../../UI/Tooltip";
 
@@ -18,6 +14,7 @@ import { TOMES } from "../../../data/tomes";
 export default function TomeColumn() {
   const dispatch = useDispatch();
   const tomeSlice = useSelector((state) => state.tome);
+  const isModalOpen = useSelector((state) => state.ui.modalIsVisible);
 
   let masteryPoints = 0;
   for (let i = 0; i < tomeSlice.length; i++) {
@@ -30,7 +27,9 @@ export default function TomeColumn() {
     // update the current open tome
     dispatch(uiActions.updateTome(tome));
     // Open tome modal
-    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
+    if (!isModalOpen) {
+      dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
+    }
     dispatch(uiActions.toggleModal({ modal: "tomesModal", open: "OPEN" }));
   };
 
@@ -38,6 +37,7 @@ export default function TomeColumn() {
     <div className={classes.column}>
       <Tooltip
         title={"What Are Tomes?"}
+        container={"tomes-info-container"}
         position={"tomes-info"}
         detailOne={
           "Study tomes to learn different JavaScript concepts to aid you in spell casting. By successfully casting spells within a dungeon you can master tomes and acquire mastery points."
@@ -57,37 +57,11 @@ export default function TomeColumn() {
         <button>Incomplete</button>
       </div>
       <div className={classes.tomes}>
-        {/* Map each tome into a div element  */}
         {tomeSlice.map((tome, index) => {
           const tomeInfo = TOMES[index];
 
           if (tome.unlocked) {
             const percentage = calculatePercentage(tome.questions);
-            let status;
-
-            // if (tome.complete) {
-            //   status = (
-            //     <Tooltip
-            //       title={"Tomes:"}
-            //       // position="tome-complete"
-            //       detailOne={
-            //         "This tome has been studied"
-            //       }
-            //     >
-            //       <FontAwesomeIcon
-            //         icon={faCircleCheck}
-            //         className={classes.complete}
-            //       />
-            //     </Tooltip>
-            //   );
-            // } else {
-            //   status = (
-            //     <FontAwesomeIcon
-            //       icon={faCircleXmark}
-            //       className={classes.incomplete}
-            //     />
-            //   );
-            // }
 
             return (
               <div
@@ -100,7 +74,6 @@ export default function TomeColumn() {
                   <progress value={percentage} max="100"></progress>
                   {percentage === 100 ? <p>Mastered</p> : <p>{percentage}%</p>}
                 </div>
-                {/* {status} */}
               </div>
             );
           }
