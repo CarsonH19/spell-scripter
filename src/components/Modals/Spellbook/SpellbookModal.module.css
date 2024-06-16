@@ -177,7 +177,11 @@
 
 .spellbook .content .container .skill-tree button {
   width: 14rem;
-
+  height: 4rem;
+  font-size: 1rem;
+  color: var(--background);
+  cursor: pointer;
+  border-radius: 0.5rem;
 }
 
 /* SPELLS */

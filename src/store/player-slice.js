@@ -9,7 +9,7 @@ const playerSlice = createSlice({
     image: "",
     damageDisplay: "",
     level: 1,
-    masteryPoints: 0,
+    masteryPoints: 9,
     attributePoints: 3,
     currentHealth: 75,
     currentMana: 50,
@@ -49,6 +49,19 @@ const playerSlice = createSlice({
     },
   },
   reducers: {
+    changeMasteryPoints(state, action) {
+      const { change } = action.payload;
+
+      switch (change) {
+        case "INCREASE":
+          state.masteryPoints++;
+          break;
+
+        case "DECREASE":
+          state.masteryPoints--;
+          break;
+      }
+    },
     changeAttributes(state, action) {
       const { change, attribute } = action.payload;
       const attributeMap = {

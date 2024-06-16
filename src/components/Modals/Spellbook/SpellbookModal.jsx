@@ -49,39 +49,54 @@ export default function SpellbookModal() {
               >
                 Evocation
               </li>
-              <li className={
+              <li
+                className={
                   school === "restoration"
                     ? classes["active-school"]
                     : classes["inactive-school"]
-                } onClick={() => handleSchoolChange("restoration")}>
+                }
+                onClick={() => handleSchoolChange("restoration")}
+              >
                 Restoration
               </li>
-              <li className={
+              <li
+                className={
                   school === "abjuration"
                     ? classes["active-school"]
                     : classes["inactive-school"]
-                } onClick={() => handleSchoolChange("abjuration")}>
+                }
+                onClick={() => handleSchoolChange("abjuration")}
+              >
                 Abjuration
               </li>
-              <li className={
+              <li
+                className={
                   school === "conjuration"
                     ? classes["active-school"]
                     : classes["inactive-school"]
-                } onClick={() => handleSchoolChange("conjuration")}>
+                }
+                onClick={() => handleSchoolChange("conjuration")}
+              >
                 Conjuration
               </li>
-              <li className={
+              <li
+                className={
                   school === "enchantment"
                     ? classes["active-school"]
                     : classes["inactive-school"]
-                } onClick={() => handleSchoolChange("enchantment")}>
+                }
+                onClick={() => handleSchoolChange("enchantment")}
+              >
                 Enchantment
               </li>
-              <li className={
+              <li
+                className={
                   school === "necromancy"
                     ? classes["active-school"]
                     : classes["inactive-school"]
-                } onClick={() => handleSchoolChange("necromancy")}>
+                }
+                onClick={() => handleSchoolChange("necromancy")}
+              >
                 Necromancy
               </li>
             </ol>
@@ -96,6 +111,9 @@ export default function SpellbookModal() {
               <h3>Expert</h3>
               {pointsExpended >= 17 && <h4>{pointsExpended} / 24</h4>}
               <ul>
+                {console.log(spellbook[school].expert)};
+                {console.log(spellbook[school])};
+
                 {spellbook[school].expert.map((skill) => (
                   <Tooltip
                     key={skill.name}
@@ -149,7 +167,6 @@ export default function SpellbookModal() {
                     >
                       <Skill key={skill.name} skill={skill} />
                     </Tooltip>
-                    <p>0/0</p>
                   </>
                 ))}
               </ul>
@@ -171,7 +188,7 @@ export default function SpellbookModal() {
                       detailOne={skill.text}
                       position="skill"
                     >
-                      <Skill key={skill.name} skill={skill} />
+                      <Skill key={skill.name} skill={skill} school={school} />
                     </Tooltip>
                     <p>
                       {skill.points} / {skill.max}
@@ -180,7 +197,7 @@ export default function SpellbookModal() {
                 ))}
               </ul>
             </div>
-
+            <h3>Mastery Points: {player.masteryPoints}</h3>
             <button>Reset Mastery Points</button>
           </div>
         </div>

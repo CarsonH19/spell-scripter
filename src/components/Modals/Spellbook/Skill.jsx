@@ -2,18 +2,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { playerActions } from "../../../store/player-slice";
 
 import Icon from "../../UI/Icon";
+import { spellbookActions } from "../../../store/spellbook-slice";
 
-export default function Skill({ skill }) {
-  // const dispatch = useDispatch();
-  // const player = useSelector((state) => state.player);
+export default function Skill({ school, skill }) {
+  const dispatch = useDispatch();
+  const player = useSelector((state) => state.player);
 
-  // const handleSpellClick = (spell) => {
-  //   if (player.spellList.includes(spell)) {
-  //     dispatch(playerActions.changeSpellList({ change: "REMOVE", spell }));
-  //   } else {
-  //     dispatch(playerActions.changeSpellList({ change: "ADD", spell }));
-  //   }
-  // };
+  console.log(skill.name);
+  const handleSkillClick = (school, name) => {
+    // Check if point is available and add point to skill
+    console.log("HANDLE");
 
-  return <Icon />;
+    if (player.masteryPoints > 0) {
+      console.log("DISPATCH 1");
+      const added = dispatch(spellbookActions.expendPoint({ school, name }));
+
+      // If point was added successfully deduct the point from the player-slice
+      if (added) {
+        console.log("DISPATCH 2");
+        dispatch(playerActions.changeMasteryPoints({ change: "DECREASE" }));
+      }
+    }
+  };
+
+  return <Icon onClick={() => handleSkillClick(school, skill.name)} />;
 }

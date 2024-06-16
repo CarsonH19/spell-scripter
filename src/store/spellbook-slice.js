@@ -50,7 +50,20 @@ const spellbookSlice = createSlice({
 
   reducers: {
     expendPoint(state, action) {
-      // expend a point to unlock a skill
+      // payloads are strings
+      const { school, name } = action.payload;
+      console.log(name);
+      for (let expertise in state[school]) {
+        const skill = state[school][expertise].find(
+          (skill) => skill.name === name
+        );
+        console.log(skill);
+
+        if (skill && skill.points < skill.max) {
+          skill.points = skill.points + 1;
+          // return true; // used to verify point was spent and decrement masteryPoints in player-slice.js
+        }
+      }
     },
     resetSkillTree(state, action) {
       // Reset all points expended in a skill tree
