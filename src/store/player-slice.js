@@ -50,15 +50,15 @@ const playerSlice = createSlice({
   },
   reducers: {
     changeMasteryPoints(state, action) {
-      const { change } = action.payload;
+      const { change, quantity } = action.payload;
 
       switch (change) {
         case "INCREASE":
-          state.masteryPoints++;
+          state.masteryPoints += quantity;
           break;
 
         case "DECREASE":
-          state.masteryPoints--;
+          state.masteryPoints -= quantity;
           break;
       }
     },

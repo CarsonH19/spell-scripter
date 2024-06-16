@@ -20,45 +20,15 @@
   width: 30%;
 }
 
-.spellbook .buttons {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 2rem;
-  padding-bottom: 0;
-  width: 40%;
-}
-
-.spellbook .buttons button {
-  height: 1.5rem;
-  font-size: 0.8rem;
-  border: 2px solid var(--secondary);
-  border-bottom: none;
-  cursor: pointer;
-  background-color: var(--background);
-  color: var(--text);
-}
-
-.spellbook .buttons button.active {
-  background-color: var(--secondary);
-  font-size: 0.8rem;
-  color: var(--text);
-}
-
-.spellbook .content {
-  width: 100%;
-  flex: 1;
-  display: flex;
-}
-
-.spellbook .content .container {
+.spellbook .container {
   display: flex;
   padding: 1rem;
-  padding-top: 0;
-  flex: 1;
+  margin: 1rem;
+  height: 100%;
+  width: 100%;
 }
 
-.spellbook .content .container .schools {
+.spellbook .container .schools {
   margin-right: 2rem;
   margin-left: 0;
   padding: 0;
@@ -66,13 +36,13 @@
   width: 30%;
 }
 
-.spellbook .content .container .schools h3 {
+.spellbook .container .schools h3 {
   text-align: center;
   border-bottom: 2px solid var(--secondary);
 }
 
 
-.spellbook .content .container .schools ol {
+.spellbook .container .schools ol {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -83,7 +53,7 @@
   height: 100%;
 }
 
-.spellbook .content .container .schools ol .inactive-school {
+.spellbook .container .schools ol .inactive-school {
   cursor: pointer;
   margin-bottom: 1rem;
   border: 1px solid var(--accent);
@@ -92,7 +62,7 @@
   text-align: center;
 }
 
-.spellbook .content .container .schools ol .active-school {
+.spellbook .container .schools ol .active-school {
   background-color: var(--accent);
   color: var(--background);
   cursor: pointer;
@@ -103,14 +73,14 @@
 }
 
 
-.spellbook .content .container .schools ol li:hover {
+.spellbook .container .schools ol li:hover {
   background-color: var(--accent);
   color: var(--background);
-  cursor: pointer;;
+  cursor: pointer;
 }
 
 
-.spellbook .content .container .skill-tree {
+.spellbook .container .skill-tree {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -119,7 +89,7 @@
   gap: 0.5rem;
 }
 
-.spellbook .content .container .skill-tree .expertise {
+.spellbook .container .skill-tree .expertise {
   position: relative;
   height: 25%;
   width: 100%;
@@ -127,7 +97,7 @@
   background-color: var(--primary);
 }
 
-.spellbook .content .container .skill-tree .closed {
+.spellbook .container .skill-tree .closed {
   /* opacity: 50%; */
   /* pointer-events: none; */
   background: repeating-linear-gradient(
@@ -151,7 +121,7 @@
   top: 0.2rem;
 }
 
-.spellbook .content .container .skill-tree .expertise p {
+.spellbook .container .skill-tree .expertise p {
   text-align: center;
 }
 
@@ -175,7 +145,7 @@
   border-radius: 10%;
 }
 
-.spellbook .content .container .skill-tree button {
+.spellbook .container .skill-tree button {
   width: 14rem;
   height: 4rem;
   font-size: 1rem;
@@ -186,7 +156,7 @@
 
 /* SPELLS */
 
-.spellbook .content .container .spells{
+.spellbook .container .spells{
   display: flex;
   flex-direction: column;
   background-color: var(--background);
@@ -195,13 +165,13 @@
   width: 100%;
 }
 
-.spellbook .content .container .spells h3 {
+.spellbook .container .spells h3 {
   color: white;
   text-align: center;
   margin-top: 1rem;
 }
 
-.spellbook .content .container .spells ul {
+.spellbook .container .spells ul {
   width: 100%;
   padding: 1rem;
   margin: 0;
@@ -215,7 +185,7 @@
   /* gap: 1rem; */
 }
 
-.spellbook .content .container .spells ul li {
+.spellbook .container .spells ul li {
   list-style: none;
   aspect-ratio: 1;
   width: 4rem;
@@ -226,12 +196,12 @@
   color: var(--text);
 }
 
-.spellbook .content .container .spells ul li:hover {
+.spellbook .container .spells ul li:hover {
   transition: 0.3s;
   scale: 1.1;
 }
 
-.spellbook .content .container .prepared {
+.spellbook .container .prepared {
   position: relative;
   border: 1px solid var(--secondary);
   margin-top: 1rem;
@@ -239,21 +209,21 @@
   /* overflow: visible; */
 }
 
-.spellbook .content .container .prepared ul {
+.spellbook .container .prepared ul {
   background-color: var(--primary);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); 
   height: 6rem;
 }
 
-.spellbook .content .container .prepared .counter {
+.spellbook .container .prepared .counter {
   position: absolute;
   color: var(--text);
   right: 5%;
   top: 0%;
 }
 
-.spellbook .content .container .prepared ul li {
+.spellbook .container .prepared ul li {
   color: var(--accent);
   width: 4rem;
   height: 4rem

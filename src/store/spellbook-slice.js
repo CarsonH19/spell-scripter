@@ -52,12 +52,10 @@ const spellbookSlice = createSlice({
     expendPoint(state, action) {
       // payloads are strings
       const { school, name } = action.payload;
-      console.log(name);
       for (let expertise in state[school]) {
         const skill = state[school][expertise].find(
           (skill) => skill.name === name
         );
-        console.log(skill);
 
         if (skill && skill.points < skill.max) {
           skill.points = skill.points + 1;
@@ -67,6 +65,15 @@ const spellbookSlice = createSlice({
     },
     resetSkillTree(state, action) {
       // Reset all points expended in a skill tree
+      const { school } = action.payload;
+
+      // Iterate over each expertise in the school object
+      for (let expertise in state[school]) {
+        // Iterate over each skill in the current expertise
+        state[school][expertise].forEach((skill) => {
+          skill.points = 0;
+        });
+      }
     },
   },
 });
