@@ -90,8 +90,7 @@ const playerSlice = createSlice({
       }
     },
     changeSpellList(state, action) {
-      const change = action.payload.change;
-      const spellName = action.payload.spell;
+      const { change, spellName } = action.payload;
 
       switch (change) {
         case "ADD":

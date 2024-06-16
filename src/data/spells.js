@@ -25,11 +25,6 @@ const SPELLS = {
     {
       name: "Frostbite",
       school: `Novice Evocation`,
-      // description: (spellPower) => {
-      //   return `Envelope an enemy in frost, dealing 8 - ${
-      //     spellPower + 8
-      //   } Ice damage.`;
-      // },
       image: "",
       spellTarget: "ENEMIES",
       spellType: "HIT",
@@ -40,11 +35,6 @@ const SPELLS = {
     {
       name: "Shock",
       school: `Novice Evocation`,
-      // description: (spellPower) => {
-      //   return `Shock an enemy with static electricity, dealing 10 - ${
-      //     spellPower + 10
-      //   } Lightning damage.`;
-      // },
       image: "",
       spellTarget: "ENEMIES",
       spellType: "HIT",
@@ -159,22 +149,5 @@ const SPELLS = {
     },
   ],
 };
-
-// export let spellList = [
-//   SPELLS.EVOCATION.FIREBOLT,
-//   SPELLS.RESORATION.LESSER_HEAL,
-// ];
-
-export function changeSpellAccess(school, spell, change) {
-  for (let i = 0; i < school.length; i++) {
-    if (school[i].name === spell.name) {
-      if (change === "UNLOCK") {
-        school[i].unlocked = true;
-      } else if (change === "LOCK") {
-        school[i].unlocked = false;
-      }
-    }
-  }
-}
 
 export default SPELLS;

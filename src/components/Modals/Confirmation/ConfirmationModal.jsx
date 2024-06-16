@@ -3,7 +3,7 @@ import classes from "./ConfirmationModal.module.css";
 import { uiActions } from "../../../store/ui-slice";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getRoomEnemies } from "../../../util/dungeon-util";
+// import { getRoomEnemies } from "../../../util/dungeon-util";
 import { combatActions } from "../../../store/combat-slice";
 
 import updateStatTotals from "../../../store/stats-actions";
@@ -11,10 +11,14 @@ import updateStatTotals from "../../../store/stats-actions";
 import Icon from "../../UI/Icon";
 import Tooltip from "../../UI/Tooltip";
 
+import SPELLS from "../../../data/spells";
+import spellDescriptions from "../../../util/spell-descriptions";
+
 export default function ConfirmationModal() {
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon.name);
-  const preparedSpells = useSelector((state) => state.player.spellList);
+  const spellList = useSelector((state) => state.player.spellList);
+  console.log(spellList);
   const partyMembers = useSelector((state) => state.hero.party);
   const attunedItems = useSelector(
     (state) => state.player.inventory.attunedItems
@@ -28,7 +32,6 @@ export default function ConfirmationModal() {
   const player = useSelector((state) => state.player);
 
   const characters = [...heroes, player];
-  console.log(characters);
 
   const handleConfirmation = () => {
     dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // false
@@ -61,20 +64,32 @@ export default function ConfirmationModal() {
       <h1>{dungeon}</h1>
       <div className={classes.container}>
         <div className={classes.section}>
-          <h3>Prepared Spells</h3>
+          <h3>Spell List</h3>
           <div className={classes.block}>
             <ul>
-              {preparedSpells.map((spell) => (
-                <Tooltip
-                  key={spell.name}
-                  title={spell.name}
-                  text={spell.school}
-                  detailOne={spell.description}
-                >
-                  <Icon key={spell.name}>{spell.name}</Icon>
-                </Tooltip>
-              ))}
-              <p className={classes.tracker}>{preparedSpells.length} / 0</p>
+              {spellList.map((spell) => {
+                console.log(spell);
+                // SPELL objects
+                const spellObject = getSpell(spell);
+                // spell-descriptions.js
+                const snakeCaseSpellName = toSnakeCase(spell);
+                const descriptionFunction =
+                  spellDescriptions[snakeCaseSpellName];
+                const spellDescription = descriptionFunction(
+                  player.stats.arcana.spellPower
+                );
+
+                return (
+                  <Tooltip
+                    key={spellObject.name}
+                    title={spellObject.name}
+                    text={spellObject.school}
+                    detailOne={spellDescription}
+                  >
+                    <Icon key={spellObject.name} />
+                  </Tooltip>
+                );
+              })}
             </ul>
             <button onClick={() => handleClickChange("spellbookModal")}>
               Change
@@ -121,4 +136,20 @@ export default function ConfirmationModal() {
       </div>
     </div>
   );
+}
+
+function toSnakeCase(str) {
+  return str.toUpperCase().replace(/\s+/g, "_");
+}
+
+function getSpell(spellName) {
+  for (let school in SPELLS) {
+    const spell = SPELLS[school].find((spell) => spell.name === spellName);
+    if (spell) {
+      return { ...spell };
+    }
+  }
+
+  console.error(`Spell "${spellName}" does not exist in any school.`);
+  return null;
 }
