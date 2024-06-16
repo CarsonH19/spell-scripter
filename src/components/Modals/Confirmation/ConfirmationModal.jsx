@@ -11,7 +11,7 @@ import updateStatTotals from "../../../store/stats-actions";
 import Icon from "../../UI/Icon";
 import Tooltip from "../../UI/Tooltip";
 
-import SPELLS from "../../../data/spells";
+import { getSpell } from "../../../util/spell-util";
 import spellDescriptions from "../../../util/spell-descriptions";
 
 export default function ConfirmationModal() {
@@ -68,7 +68,6 @@ export default function ConfirmationModal() {
           <div className={classes.block}>
             <ul>
               {spellList.map((spell) => {
-                console.log(spell);
                 // SPELL objects
                 const spellObject = getSpell(spell);
                 // spell-descriptions.js
@@ -85,6 +84,8 @@ export default function ConfirmationModal() {
                     title={spellObject.name}
                     text={spellObject.school}
                     detailOne={spellDescription}
+                    detailTwo={`Mana Cost: ${spellObject.manaCost}`}
+                    position="skill"
                   >
                     <Icon key={spellObject.name} />
                   </Tooltip>
@@ -140,16 +141,4 @@ export default function ConfirmationModal() {
 
 function toSnakeCase(str) {
   return str.toUpperCase().replace(/\s+/g, "_");
-}
-
-function getSpell(spellName) {
-  for (let school in SPELLS) {
-    const spell = SPELLS[school].find((spell) => spell.name === spellName);
-    if (spell) {
-      return { ...spell };
-    }
-  }
-
-  console.error(`Spell "${spellName}" does not exist in any school.`);
-  return null;
 }

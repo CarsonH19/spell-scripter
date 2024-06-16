@@ -155,10 +155,10 @@
   left: 50%; /* Center horizontally */
   transform: translateX(-50%); /* Center horizontally */
   background-color: black;
-  color: white;
+  color: var(--text);
   padding: 5px;
   border-radius: 5px;
-  opacity: 0.8;
+  opacity: 1;
   height: auto;
   min-width: 10rem;
   max-width: 10rem;

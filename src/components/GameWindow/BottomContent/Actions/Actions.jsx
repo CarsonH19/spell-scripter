@@ -7,6 +7,11 @@ import { setSelect } from "../../../../store/combat-actions";
 
 import Item from "../../../Modals/Inventory/Item";
 import castSpell from "../../../../util/cast-spell";
+import { getSpell } from "../../../../util/spell-util";
+
+import Tooltip from "../../../UI/Tooltip";
+
+import spellDescriptions from "../../../../util/spell-descriptions";
 
 export default function Actions() {
   const dispatch = useDispatch();
@@ -32,7 +37,7 @@ export default function Actions() {
   };
 
   const player = findCharacterById();
-  
+
   const handlePlayerChoice = (action) => {
     setPlayerAction(action);
 
@@ -67,14 +72,38 @@ export default function Actions() {
     content = (
       <div className={classes.spells}>
         <h3>Spell List</h3>
-        {spellList.map((spell) => (
-          <li
-          className={playerMana < spell.manaCost ? classes.disabled : ''}            key={spell.name}
-            onClick={() => handleSelectChoice(spell, "spellListIsVisible")}
-          >
-            {spell.name}
-          </li>
-        ))}
+        {spellList.map((spell) => {
+          // SPELLS Object
+          const spellObject = getSpell(spell);
+          // spell-descriptions.js
+          const snakeCaseSpellName = toSnakeCase(spell);
+          const descriptionFunction = spellDescriptions[snakeCaseSpellName];
+          const spellDescription = descriptionFunction(
+            player.stats.arcana.spellPower
+          );
+          return (
+            <Tooltip
+              key={spellObject.name}
+              title={spellObject.name}
+              text={spellObject.school}
+              detailOne={spellDescription}
+              detailTwo={`Mana Cost: ${spellObject.manaCost}`}
+              position="skill"
+            >
+              <li
+                className={
+                  playerMana < spellObject.manaCost ? classes.disabled : ""
+                }
+                key={spellObject.name}
+                onClick={() =>
+                  handleSelectChoice(spellObject, "spellListIsVisible")
+                }
+              >
+                {spellObject.name}
+              </li>
+            </Tooltip>
+          );
+        })}
         <p
           onClick={() => handleCloseList("spellListIsVisible")}
           className={classes.close}
@@ -158,4 +187,8 @@ export default function Actions() {
   }
 
   return content;
+}
+
+function toSnakeCase(str) {
+  return str.toUpperCase().replace(/\s+/g, "_");
 }
