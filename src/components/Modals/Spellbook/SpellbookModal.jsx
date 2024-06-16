@@ -5,7 +5,6 @@ import Skill from "./Skill";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import Tooltip from "../../UI/Tooltip";
 import { spellbookActions } from "../../../store/spellbook-slice";
 import { playerActions } from "../../../store/player-slice";
 

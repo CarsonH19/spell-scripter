@@ -33,7 +33,7 @@ export default async function activateItem(dispatch, item) {
           // equip item to attunedItems
           dispatch(playerActions.changeAttunement({ item, change: "ADD" }));
 
-          // using combat-slice for equiping during combat.
+          // using combat-slice for equipping during combat.
           // must update player state at the end of the dungeon gameplay
           changeStatusEffect(dispatch, player, "ADD", item);
         }

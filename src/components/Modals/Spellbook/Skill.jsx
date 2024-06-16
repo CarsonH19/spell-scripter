@@ -2,13 +2,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { playerActions } from "../../../store/player-slice";
 
 import Icon from "../../UI/Icon";
-import Tooltip
- from "../../UI/Tooltip";
+import Tooltip from "../../UI/Tooltip";
 import { spellbookActions } from "../../../store/spellbook-slice";
+
+import spellDescriptions from "../../../util/spell-descriptions";
 
 export default function Skill({ school, skill, isSkillActive }) {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
+  const spellPower = useSelector(
+    (state) => state.player.stats.arcana.spellPower
+  );
+
+  let skillDescription;
+  let descriptionFunction;
+
+  if (skill.text === "Spell") {
+    const snakeCaseSpellName = toSnakeCase(skill.name);
+    descriptionFunction = spellDescriptions[snakeCaseSpellName];
+    console.log(descriptionFunction);
+    skillDescription = descriptionFunction(spellPower);
+  } else {
+    skillDescription = skill.description;
+  }
 
   const handleSkillClick = (school, name) => {
     // Check if point is available and add point to skill
@@ -20,6 +36,15 @@ export default function Skill({ school, skill, isSkillActive }) {
         dispatch(
           playerActions.changeMasteryPoints({ change: "DECREASE", quantity: 1 })
         );
+
+        if (skill.text === "Spell") {
+          dispatch(
+            playerActions.changeSpellList({
+              change: "ADD",
+              spellName: skill.name,
+            })
+          );
+        }
       }
     }
   };
@@ -29,7 +54,8 @@ export default function Skill({ school, skill, isSkillActive }) {
       <Tooltip
         key={skill.name}
         title={skill.name}
-        detailOne={skill.text}
+        text={skill.text}
+        detailOne={skillDescription}
         position="skill"
       >
         <Icon
@@ -45,4 +71,8 @@ export default function Skill({ school, skill, isSkillActive }) {
       </p>
     </div>
   );
+}
+
+function toSnakeCase(str) {
+  return str.toUpperCase().replace(/\s+/g, "_");
 }

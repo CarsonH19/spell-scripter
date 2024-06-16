@@ -25,7 +25,6 @@ export default async function castSpell(dispatch, spell) {
   dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
 
   if (!getQuickTimeEventResult) {
-    console.log("QTE FAILED");
     return;
   }
 
@@ -49,7 +48,7 @@ export default async function castSpell(dispatch, spell) {
           );
 
           target = await getTarget("ENEMIES");
-          console.log("Target: ", target);
+          // console.log("Target: ", target);
           const hit = rollToHit(player, target);
 
           if (hit) {

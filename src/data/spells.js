@@ -15,8 +15,6 @@ const SPELLS = {
     {
       name: "Firebolt",
       school: `Novice Evocation`,
-      description: `Shoot a bolt of flame towards an enemy, dealing ${spellPower} to ${spellPower + 10} fire damage.`,
-      unlocked: true,
       image: "",
       spellTarget: "ENEMY",
       spellType: "HIT",
@@ -25,10 +23,41 @@ const SPELLS = {
       manaCost: 10,
     },
     {
+      name: "Frostbite",
+      school: `Novice Evocation`,
+      // description: (spellPower) => {
+      //   return `Envelope an enemy in frost, dealing 8 - ${
+      //     spellPower + 8
+      //   } Ice damage.`;
+      // },
+      image: "",
+      spellTarget: "ENEMIES",
+      spellType: "HIT",
+      damageType: DAMAGE_TYPES.ICE,
+      baseDamage: 16,
+      manaCost: 10,
+    },
+    {
+      name: "Shock",
+      school: `Novice Evocation`,
+      // description: (spellPower) => {
+      //   return `Shock an enemy with static electricity, dealing 10 - ${
+      //     spellPower + 10
+      //   } Lightning damage.`;
+      // },
+      image: "",
+      spellTarget: "ENEMIES",
+      spellType: "HIT",
+      damageType: DAMAGE_TYPES.LIGHTNING,
+      baseDamage: 10,
+      manaCost: 10,
+    },
+    {
       name: "Fireball",
       school: `Apprentice Evocation`,
-      description: `Shoot a ball of fire that explodes, dealing ${spellPower} to ${spellPower + 8} fire damage to all enemies.`,
-      unlocked: false,
+      description: `Shoot a ball of fire that explodes, dealing ${spellPower} to ${
+        spellPower + 8
+      } fire damage to all enemies.`,
       image: "",
       spellTarget: "ENEMIES",
       spellType: "HIT",
@@ -37,38 +66,15 @@ const SPELLS = {
       manaCost: 30,
     },
     {
-      name: "Immolate",
-      school: `Adept Evocation`,
-      description: `Incinerate a Burning enemy that has 30HP or less.`,
-      unlocked: false,
+      name: "Chain Lightning",
+      school: `Apprentice Evocation`,
+      description: `Shoot a bolt of lighting which has a chance to leap to additional targets, dealing ${spellPower} to ${
+        spellPower + 12
+      } lightning damage to each target it hits.`,
       image: "",
-      spellTarget: "ENEMY",
+      spellTarget: "ENEMy",
       spellType: "HIT",
-      damageType: DAMAGE_TYPES.FIRE,
-      baseDamage: 30,
-      manaCost: 10,
-    },
-    {
-      name: "Meteor",
-      school: `Master Evocation`,
-      description: `Rain down cataclysmic fire, Burning and dealing ${spellPower} to ${spellPower + 24} fire damage to all enemies.`,
-      unlocked: false,
-      image: "",
-      spellTarget: "ENEMIES",
-      spellType: "HIT",
-      damageType: DAMAGE_TYPES.FIRE,
-      baseDamage: 16,
-      manaCost: 10,
-    },
-    {
-      name: "Frostbite",
-      school: `Novice Evocation`,
-      description: `Envelope an enemy in frost, dealing ${spellPower} to ${spellPower + 10} ice damage.`,
-      unlocked: true,
-      image: "",
-      spellTarget: "ENEMIES",
-      spellType: "HIT",
-      damageType: DAMAGE_TYPES.ICE,
+      damageType: DAMAGE_TYPES.LIGHTNING,
       baseDamage: 16,
       manaCost: 10,
     },
@@ -76,7 +82,6 @@ const SPELLS = {
       name: "Blizzard",
       school: `Adept Evocation`,
       description: `Evoke frigid wind to cover the area, dealing ${spellPower} ice damage for 3 rounds.`,
-      unlocked: false,
       image: "",
       spellTarget: "ENEMIES",
       spellType: "HIT",
@@ -85,34 +90,22 @@ const SPELLS = {
       manaCost: 30,
     },
     {
-      name: "Static Touch",
-      school: `Novice Evocation`,
-      description: `Touch an enemy with static electricity, dealing ${spellPower} to ${spellPower + 10} lightning damage.`,
-      unlocked: true,
+      name: "Immolate",
+      school: `Adept Evocation`,
+      description: `Incinerate a Burning enemy that has 30HP or less.`,
       image: "",
-      spellTarget: "ENEMIES",
+      spellTarget: "ENEMY",
       spellType: "HIT",
-      damageType: DAMAGE_TYPES.LIGHTNING,
-      baseDamage: 10,
-      manaCost: 10,
-    },
-    {
-      name: "Chain Lightning",
-      school: `Apprentice Evocation`,
-      description: `Shoot a bolt of lighting which has a chance to leap to additional targets, dealing ${spellPower} to ${spellPower + 12} lightning damage to each target it hits.`,
-      unlocked: false,
-      image: "",
-      spellTarget: "ENEMy",
-      spellType: "HIT",
-      damageType: DAMAGE_TYPES.LIGHTNING,
-      baseDamage: 16,
+      damageType: DAMAGE_TYPES.FIRE,
+      baseDamage: 30,
       manaCost: 10,
     },
     {
       name: "Storm",
       school: `Adept Evocation`,
-      description: `Evoke a lightning storm that strikes a random enemy for 5 rounds, dealing ${spellPower} to ${spellPower + 12} lightning damage.`,
-      unlocked: false,
+      description: `Evoke a lightning storm that strikes a random enemy for 5 rounds, dealing ${spellPower} to ${
+        spellPower + 12
+      } lightning damage.`,
       image: "",
       spellTarget: "ENEMy",
       spellType: "HIT",
@@ -120,11 +113,23 @@ const SPELLS = {
       baseDamage: 16,
       manaCost: 30,
     },
+    {
+      name: "Meteor",
+      school: `Master Evocation`,
+      description: `Rain down cataclysmic fire, Burning and dealing ${spellPower} to ${
+        spellPower + 24
+      } fire damage to all enemies.`,
+      image: "",
+      spellTarget: "ENEMIES",
+      spellType: "HIT",
+      damageType: DAMAGE_TYPES.FIRE,
+      baseDamage: 16,
+      manaCost: 10,
+    },
   ],
   restoration: [
     {
       name: "Lesser Heal",
-      unlocked: true,
       image: "",
       spellTarget: "ALLY",
       spellType: "HEAL",
@@ -135,7 +140,6 @@ const SPELLS = {
   abjuration: [
     {
       name: "Bark Skin",
-      unlocked: true,
       image: "",
       spellTarget: "ALLY",
       spellType: "BUFF",

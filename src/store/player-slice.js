@@ -91,16 +91,16 @@ const playerSlice = createSlice({
     },
     changeSpellList(state, action) {
       const change = action.payload.change;
-      const spell = action.payload.spell;
+      const spellName = action.payload.spell;
 
       switch (change) {
         case "ADD":
-          state.spellList.push(spell);
+          state.spellList.push(spellName);
           break;
         case "REMOVE":
           {
             const spellIndex = state.spellList.findIndex(
-              (index) => index.name === spell.name
+              (index) => index.name === spellName
             );
             if (spellIndex !== -1) {
               state.spellList.splice(spellIndex, 1);
