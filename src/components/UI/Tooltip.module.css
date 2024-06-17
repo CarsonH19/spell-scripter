@@ -190,3 +190,85 @@
 .skill .title {
   font-weight: 600;
 }
+
+/* STATUS EFFECTS */
+
+.effect-left {
+  visibility: visible;
+  position: absolute;
+  z-index: 99;
+  bottom: 140%; /* Position above the item */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  background-color: black;
+  color: var(--text);
+  padding: 5px;
+  border-radius: 5px;
+  opacity: 1;
+  height: auto;
+  min-width: 12rem;
+  max-width: 12rem;
+  font-size: 0.8rem;
+  pointer-events: none;
+  text-align: center; /* Optional: Center text inside tooltip */
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+/* Additional CSS to style the tooltip's arrow */
+.effect-left::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Position the arrow at the bottom of the tooltip */
+  left: 50%; /* Center the arrow horizontally */
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent; /* Arrow pointing down */
+}
+
+
+.effect-left .title {
+  font-weight: 600;
+}
+
+.effect-right {
+  visibility: visible;
+  position: absolute;
+  z-index: 99;
+  bottom: 140%; /* Position above the item */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  background-color: black;
+  color: var(--text);
+  padding: 5px;
+  border-radius: 5px;
+  opacity: 1;
+  height: auto;
+  min-width: 12rem;
+  max-width: 12rem;
+  font-size: 0.8rem;
+  pointer-events: none;
+  text-align: center; /* Optional: Center text inside tooltip */
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+/* Additional CSS to style the tooltip's arrow */
+.effect-right::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Position the arrow at the bottom of the tooltip */
+  left: 50%; /* Center the arrow horizontally */
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent; /* Arrow pointing down */
+}
+
+
+.effect-right .title {
+  font-weight: 600;
+}

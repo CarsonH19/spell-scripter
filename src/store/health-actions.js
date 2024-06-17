@@ -56,7 +56,7 @@ function checkForDeath(dispatch, id) {
     );
 
     if (ui.continueIsVisible) {
-      dispatch(uiActions.toggle({ modal: "continuIsVisible" }));
+      dispatch(uiActions.toggle({ modal: "continueIsVisible" }));
     }
 
     dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true

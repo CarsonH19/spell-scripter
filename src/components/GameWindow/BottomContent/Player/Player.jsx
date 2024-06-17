@@ -95,23 +95,6 @@ export default function Player() {
             style={{ width: `${player.stats.arcana.maxMana / 5 + 10}rem` }}
           ></progress>
         </div>
-        <div className={classes.statusEffects}>
-          {player.statusEffects.map((effect) => {
-            if (effect.display) {
-              const content = (
-                <Tooltip
-                  key={effect.name}
-                  title={effect.name}
-                  text={effect.description}
-                  detail={`Duration: ${effect.duration} rounds`}
-                >
-                  <img src="" className={classes.effect} />
-                </Tooltip>
-              );
-              return content;
-            }
-          })}
-        </div>
       </div>
 
       <div
@@ -119,21 +102,42 @@ export default function Player() {
           isHighlighted === player.id ? classes.highlighted : ""
         } ${isCharacterTurn === player.id ? classes.turn : ""}`}
       >
-        {showDamage && <p>{player.damageDisplay}</p>}{" "}
+        {showDamage && <p>{player.damageDisplay}</p>}
       </div>
-      <div>
-        <p>
-          <FontAwesomeIcon icon={faHandFist} />{" "}
-          {player.stats.strength.totalStrength}
-        </p>
-        <p>
-          <FontAwesomeIcon icon={faPersonRunning} />{" "}
-          {player.stats.agility.totalAgility}
-        </p>
-        <p>
-          <FontAwesomeIcon icon={faHatWizard} />{" "}
-          {player.stats.arcana.totalArcana}
-        </p>
+      <div className={classes["attributes-container"]}>
+        <div className={classes.attribute}>
+          <FontAwesomeIcon icon={faHandFist} />
+          <p>:</p>
+          <p>{player.stats.strength.totalStrength}</p>
+        </div>
+        <div className={classes.attribute}>
+          <FontAwesomeIcon icon={faPersonRunning} />
+          <p>:</p>
+          <p>{player.stats.agility.totalAgility}</p>
+        </div>
+        <div className={classes.attribute}>
+          <FontAwesomeIcon icon={faHatWizard} />
+          <p>:</p>
+          <p>{player.stats.arcana.totalArcana}</p>
+        </div>
+      </div>
+      <div className={classes.statusEffects}>
+        {player.statusEffects.map((effect) => {
+          if (effect.display) {
+            const content = (
+              <Tooltip
+                key={effect.name}
+                title={effect.name}
+                detailOne={effect.description}
+                detailTwo={`Duration: ${effect.duration} rounds`}
+                position={"effect-right"}
+              >
+                <img src="" className={classes.effect} />
+              </Tooltip>
+            );
+            return content;
+          }
+        })}
       </div>
     </div>
   );

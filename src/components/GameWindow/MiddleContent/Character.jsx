@@ -90,22 +90,6 @@ export default function Character({ character }) {
               : classes.heroInfo
           }`}
         >
-          {/* <p>
-            <FontAwesomeIcon icon={faHatWizard} />{" "}
-            {character.stats.arcana.totalArcana}
-          </p>
-          <p>
-            <FontAwesomeIcon icon={faPersonRunning} />{" "}
-            {character.stats.agility.totalAgility}
-          </p>
-          <p>
-            <FontAwesomeIcon icon={faHandFist} />{" "}
-            {character.stats.strength.totalStrength}
-          </p> */}
-          {/* <p>
-            <FontAwesomeIcon icon={faShieldHalved} />{" "}
-            {character.stats.agility.defense}
-          </p> */}
           <p>
             <FontAwesomeIcon icon={faHeart} /> {character.currentHealth}/
             {character.stats.strength.maxHealth}
@@ -119,16 +103,21 @@ export default function Character({ character }) {
         </progress>
       </div>
       <div className={classes.statusEffects}>
-        {character.statusEffects.map((effect) => (
-          <Tooltip
-            key={effect.name}
-            title={effect.name}
-            text={effect.description}
-            detail={`Duration: ${effect.duration} rounds`}
-          >
-            <img src="" className={classes.effect} />
-          </Tooltip>
-        ))}
+        {character.statusEffects.map((effect) => {
+          const isCharacterEnemy = character.identifier === "ENEMY";
+
+          return (
+            <Tooltip
+              key={effect.name}
+              title={effect.name}
+              detailOne={effect.description}
+              detailTwo={`Duration: ${effect.duration} rounds`}
+              position={isCharacterEnemy ? "effect-right" : "effect-left"}
+            >
+              <img src="" className={classes.effect} />
+            </Tooltip>
+          );
+        })}
       </div>
     </div>
   );
