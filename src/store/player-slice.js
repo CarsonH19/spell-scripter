@@ -111,18 +111,6 @@ const playerSlice = createSlice({
         }
       }
     },
-    // checkTotalMasteryPoints(state, action) {
-    //   // Determines if a new mastery point should be added to the player-slice or not
-    //   const { tomeSlice } = action.payload;
-    //   // Must add +1 to totalPoints because the player starts with 1 mastery point
-    //   const totalPoints = calculateAllMasteredTomes(tomeSlice) + 1;
-
-    //   if (totalPoints > state.totalMasteryPoints) {
-    //     console.log("MASTERY POINT ADDED");
-    //     state.masteryPoints += totalPoints - state.totalMasteryPoints;
-    //     state.totalMasteryPoints = totalPoints;
-    //   }
-    // },
     changeMasteryPoints(state, action) {
       const { change, quantity } = action.payload;
 
@@ -195,8 +183,6 @@ const playerSlice = createSlice({
             } else if (item.type === "QUEST ITEM") {
               state.inventory.questItems.push(item);
             }
-
-            console.log("ITEM ADDED");
           }
           break;
 

@@ -24,6 +24,8 @@ export default function PlayerColumn() {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
 
+  const minAttack = player.stats.strength.attack
+
   const handleOpenModal = (modal) => {
     dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
     dispatch(uiActions.toggleModal({ modal, open: "OPEN" }));
@@ -86,7 +88,7 @@ export default function PlayerColumn() {
             </div>
             <p>{player.stats.baseStrength}</p>
             <p>Max HP: {player.stats.strength.maxHealth}</p>
-            <p>Attack: {player.stats.strength.attack}</p>
+            <p>Attack: {Math.floor(player.stats.strength.attack / 2)} - {player.stats.strength.attack}</p>
             <p>HP Regeneration: {player.stats.strength.healthRegen}</p>
           </div>
 
