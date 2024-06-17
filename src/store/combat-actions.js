@@ -299,19 +299,20 @@ export function rollToHit(attacker, target) {
 export function calcDamage(character, spell, spellPower) {
   if (spell) {
     const damage =
-      Math.floor(Math.random() * character.baseDamage) + spellPower + 1;
+      Math.floor(Math.random() * spell.baseDamage) + spellPower + 1;
 
-    if (damage < Math.floor(spellPower / 2)) {
-      return Math.floor(spellPower / 2)
-    } 
+    if (damage < spell.baseDamage) {
+      return spell.baseDamage;
+    }
 
     return damage;
   } else {
-    const damage = Math.floor(Math.random() * character.stats.strength.attack) + 1;
+    const damage =
+      Math.floor(Math.random() * character.stats.strength.attack) + 1;
 
     if (damage < Math.floor(character.stats.strength.attack / 2)) {
-      return Math.floor(character.stats.strength.attack / 2)
-    } 
+      return Math.floor(character.stats.strength.attack / 2);
+    }
 
     return damage;
   }

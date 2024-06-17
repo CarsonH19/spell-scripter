@@ -19,7 +19,7 @@ const SPELLS = {
       spellTarget: "ENEMY",
       spellType: "HIT",
       damageType: DAMAGE_TYPES.FIRE,
-      baseDamage: 10,
+      baseDamage: 6,
       manaCost: 10,
     },
     {
@@ -29,7 +29,7 @@ const SPELLS = {
       spellTarget: "ENEMIES",
       spellType: "HIT",
       damageType: DAMAGE_TYPES.ICE,
-      baseDamage: 16,
+      baseDamage: 8,
       manaCost: 10,
     },
     {

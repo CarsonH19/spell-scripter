@@ -18,9 +18,8 @@ export default async function castSpell(dispatch, spell) {
     combatActions.updateMana({ value: spell.manaCost, change: "REMOVE" })
   );
 
-  // TESTING QTE
   openQuickTimeEvent(dispatch);
-  const getQuickTimeEventResult = await getResult(); // true = success / false = failed
+  const getQuickTimeEventResult = await getResult(); // true/false
 
   dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
 
@@ -48,18 +47,14 @@ export default async function castSpell(dispatch, spell) {
           );
 
           target = await getTarget("ENEMIES");
-          // console.log("Target: ", target);
-          const hit = rollToHit(player, target);
 
-          if (hit) {
-            let damage = calcDamage(
-              spell,
-              "SPELL",
-              player.stats.arcana.spellPower
-            );
-            damage += player.stats.arcana.spellPower;
-            changeHealth(dispatch, target, "DAMAGE", damage, null);
-          }
+          let damage = calcDamage(
+            player,
+            spell,
+            player.stats.arcana.spellPower
+          );
+
+          changeHealth(dispatch, target, "DAMAGE", damage, null);
         }
         // spell.spellType === "SAVE"
       }
