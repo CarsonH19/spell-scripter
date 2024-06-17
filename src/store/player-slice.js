@@ -10,9 +10,9 @@ const playerSlice = createSlice({
     identifier: "PLAYER",
     image: "",
     damageDisplay: "",
-    level: 1,
+    level: 9,
     masteryPoints: 9,
-    attributePoints: 3,
+    attributePoints: 12,
     currentHealth: 75,
     currentMana: 50,
     stats: {
@@ -77,7 +77,7 @@ const playerSlice = createSlice({
       if (statAttribute) {
         switch (change) {
           case "INCREASE":
-            if (state.attributePoints > 0) {
+            if (state.attributePoints > 0 && state.stats[statAttribute] < 9) {
               state.stats[statAttribute]++;
               state.attributePoints--;
             }
