@@ -6,6 +6,7 @@ import Tooltip from "../../UI/Tooltip";
 import { spellbookActions } from "../../../store/spellbook-slice";
 
 import spellDescriptions from "../../../util/spell-descriptions";
+import { getSpell } from "../../../util/spell-util";
 
 export default function Skill({ school, skill, isSkillActive }) {
   const dispatch = useDispatch();
@@ -14,16 +15,27 @@ export default function Skill({ school, skill, isSkillActive }) {
     (state) => state.player.stats.arcana.spellPower
   );
 
+  const isSpell = skill.type === "Spell";
+  let spellObject;
   let skillDescription;
   let descriptionFunction;
 
-  if (skill.text === "Spell") {
+  if (isSpell) {
+    spellObject = getSpell(skill.name);
+    console.log(spellObject);
+    console.log(skill.name);
+
     const snakeCaseSpellName = toSnakeCase(skill.name);
     descriptionFunction = spellDescriptions[snakeCaseSpellName];
-    console.log(descriptionFunction);
     skillDescription = descriptionFunction(spellPower);
   } else {
-    skillDescription = skill.description;
+    let descriptionIndex;
+    if (skill.points < skill.max) {
+      descriptionIndex = skill.points;
+    } else {
+      descriptionIndex = skill.max - 1;
+    }
+    skillDescription = skill.description[descriptionIndex];
   }
 
   const handleSkillClick = (school, name) => {
@@ -37,7 +49,7 @@ export default function Skill({ school, skill, isSkillActive }) {
           playerActions.changeMasteryPoints({ change: "DECREASE", quantity: 1 })
         );
 
-        if (skill.text === "Spell") {
+        if (isSpell) {
           dispatch(
             playerActions.changeSpellList({
               change: "ADD",
@@ -54,8 +66,11 @@ export default function Skill({ school, skill, isSkillActive }) {
       <Tooltip
         key={skill.name}
         title={skill.name}
-        text={skill.text}
+        text={skill.type}
         detailOne={skillDescription}
+        {...(isSpell && spellObject
+          ? { detailTwo: `Mana Cost: ${spellObject.manaCost}` }
+          : {})}
         position="skill"
       >
         <Icon

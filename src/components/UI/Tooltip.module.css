@@ -151,7 +151,7 @@
   visibility: visible;
   position: absolute;
   z-index: 99;
-  bottom: 120%; /* Position above the item */
+  bottom: 100%; /* Position above the item */
   left: 50%; /* Center horizontally */
   transform: translateX(-50%); /* Center horizontally */
   background-color: black;
@@ -160,11 +160,18 @@
   border-radius: 5px;
   opacity: 1;
   height: auto;
-  min-width: 10rem;
-  max-width: 10rem;
+  min-width: 12rem;
+  max-width: 12rem;
   font-size: 0.8rem;
   pointer-events: none;
   text-align: center; /* Optional: Center text inside tooltip */
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.skill p {
+  
 }
 
 /* Additional CSS to style the tooltip's arrow */

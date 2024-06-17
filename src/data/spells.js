@@ -45,9 +45,6 @@ const SPELLS = {
     {
       name: "Fireball",
       school: `Apprentice Evocation`,
-      description: `Shoot a ball of fire that explodes, dealing ${spellPower} to ${
-        spellPower + 8
-      } fire damage to all enemies.`,
       image: "",
       spellTarget: "ENEMIES",
       spellType: "HIT",
@@ -58,9 +55,6 @@ const SPELLS = {
     {
       name: "Chain Lightning",
       school: `Apprentice Evocation`,
-      description: `Shoot a bolt of lighting which has a chance to leap to additional targets, dealing ${spellPower} to ${
-        spellPower + 12
-      } lightning damage to each target it hits.`,
       image: "",
       spellTarget: "ENEMy",
       spellType: "HIT",
@@ -91,11 +85,8 @@ const SPELLS = {
       manaCost: 10,
     },
     {
-      name: "Storm",
+      name: "Storm Sphere",
       school: `Adept Evocation`,
-      description: `Evoke a lightning storm that strikes a random enemy for 5 rounds, dealing ${spellPower} to ${
-        spellPower + 12
-      } lightning damage.`,
       image: "",
       spellTarget: "ENEMy",
       spellType: "HIT",
@@ -105,10 +96,7 @@ const SPELLS = {
     },
     {
       name: "Meteor",
-      school: `Master Evocation`,
-      description: `Rain down cataclysmic fire, Burning and dealing ${spellPower} to ${
-        spellPower + 24
-      } fire damage to all enemies.`,
+      school: `Expert Evocation`,
       image: "",
       spellTarget: "ENEMIES",
       spellType: "HIT",
