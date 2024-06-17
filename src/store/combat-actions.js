@@ -90,7 +90,7 @@ export default async function combatLoop(dispatch) {
                     text: `Casting ${selectedSpell.name}`,
                   })
                 );
-                
+
                 // Restart the while loop allowing players to change actions
                 if (selectedSpell === null) continue;
                 await castSpell(dispatch, selectedSpell);
@@ -107,7 +107,6 @@ export default async function combatLoop(dispatch) {
 
                 const target = await getTarget("ENEMIES");
                 const hit = rollToHit(player, target);
-
 
                 if (hit) {
                   const damage = calcDamage(player);
@@ -297,14 +296,23 @@ export function rollToHit(attacker, target) {
   }
 }
 
-// NEED TO INCORPORATE STRENGTH BONUS & SPELL POWER
-export function calcDamage(source, spell, spellPower) {
+export function calcDamage(character, spell, spellPower) {
   if (spell) {
     const damage =
-      Math.floor(Math.random() * source.baseDamage) + 1 + spellPower;
+      Math.floor(Math.random() * character.baseDamage) + spellPower + 1;
+
+    if (damage < Math.floor(spellPower / 2)) {
+      return Math.floor(spellPower / 2)
+    } 
+
     return damage;
   } else {
-    const damage = Math.floor(Math.random() * source.stats.strength.attack) + 1;
+    const damage = Math.floor(Math.random() * character.stats.strength.attack) + 1;
+
+    if (damage < Math.floor(character.stats.strength.attack / 2)) {
+      return Math.floor(character.stats.strength.attack / 2)
+    } 
+
     return damage;
   }
 }
