@@ -10,9 +10,10 @@ const playerSlice = createSlice({
     identifier: "PLAYER",
     image: "",
     damageDisplay: "",
-    level: 9,
-    masteryPoints: 9,
-    attributePoints: 12,
+    level: 1,
+    masteryPoints: 1,
+    totalMasteryPoints: 1,
+    attributePoints: 3,
     currentHealth: 75,
     currentMana: 50,
     stats: {
@@ -51,6 +52,77 @@ const playerSlice = createSlice({
     },
   },
   reducers: {
+    checkForLevelUp(state, action) {
+      // Increases mastery & attribute points
+      const { tomeSlice } = action.payload;
+      let totalMasteryPoints = 1;
+      for (let i = 0; i < tomeSlice.length; i++) {
+        if (tomeSlice[i].mastered) {
+          totalMasteryPoints++;
+        }
+      }
+
+      if (totalMasteryPoints > state.totalMasteryPoints) {
+        console.log("MASTERY POINT ADDED");
+        state.masteryPoints += totalMasteryPoints - state.totalMasteryPoints;
+        state.totalMasteryPoints = totalMasteryPoints;
+      }
+
+      // Conditionally check for which level the player should be
+      if (totalMasteryPoints > 48) {
+        if (state.level !== 9) {
+          state.level = 9;
+          state.attributePoints++;
+        }
+      } else if (totalMasteryPoints > 32) {
+        if (state.level !== 8) {
+          state.level = 8;
+          state.attributePoints++;
+        }
+      } else if (totalMasteryPoints > 24) {
+        if (state.level !== 7) {
+          state.level = 7;
+          state.attributePoints++;
+        }
+      } else if (totalMasteryPoints > 17) {
+        if (state.level !== 6) {
+          state.level = 6;
+          state.attributePoints++;
+        }
+      } else if (totalMasteryPoints > 11) {
+        if (state.level !== 5) {
+          state.level = 5;
+          state.attributePoints++;
+        }
+      } else if (totalMasteryPoints > 6) {
+        if (state.level !== 4) {
+          state.level = 4;
+          state.attributePoints++;
+        }
+      } else if (totalMasteryPoints > 3) {
+        if (state.level !== 3) {
+          state.level = 3;
+          state.attributePoints++;
+        }
+      } else if (totalMasteryPoints > 1) {
+        if (state.level !== 2) {
+          state.level = 2;
+          state.attributePoints++;
+        }
+      }
+    },
+    // checkTotalMasteryPoints(state, action) {
+    //   // Determines if a new mastery point should be added to the player-slice or not
+    //   const { tomeSlice } = action.payload;
+    //   // Must add +1 to totalPoints because the player starts with 1 mastery point
+    //   const totalPoints = calculateAllMasteredTomes(tomeSlice) + 1;
+
+    //   if (totalPoints > state.totalMasteryPoints) {
+    //     console.log("MASTERY POINT ADDED");
+    //     state.masteryPoints += totalPoints - state.totalMasteryPoints;
+    //     state.totalMasteryPoints = totalPoints;
+    //   }
+    // },
     changeMasteryPoints(state, action) {
       const { change, quantity } = action.payload;
 

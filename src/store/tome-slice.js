@@ -72,12 +72,8 @@ const tomeSlice = createSlice({
 
       if (allAnswered) {
         state[tomeIndex].mastered = true;
-        console.log("Tome Mastered");
       }
     },
-    // unlock(state, action) {
-    //   Check if Tome is mastered unlock next tomes
-    // },
   },
 });
 

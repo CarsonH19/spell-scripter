@@ -13,7 +13,7 @@ export default function SpellbookModal() {
   const dispatch = useDispatch();
 
   const spellbook = useSelector((state) => state.spellbook);
-  const pointsExpended = calculateTotalPoints(spellbook[school]);
+  const pointsExpended = calculateSchoolPoints(spellbook[school]);
   const player = useSelector((state) => state.player);
 
   const handleSchoolChange = (name) => {
@@ -22,7 +22,7 @@ export default function SpellbookModal() {
 
   const handleResetButton = (school) => {
     // Calculate total points expended in skill tree
-    const totalPoints = calculateTotalPoints(spellbook[school]);
+    const totalPoints = calculateSchoolPoints(spellbook[school]);
     // Remove points from spellbook-slice
     dispatch(spellbookActions.resetSkillTree({ school, totalPoints }));
     // Return points to player-slice masteryPoints
@@ -217,13 +217,13 @@ export default function SpellbookModal() {
   );
 }
 
-function calculateTotalPoints(category) {
+export function calculateSchoolPoints(school) {
   let totalPoints = 0;
 
-  for (let level in category) {
-    const spells = category[level];
-    spells.forEach((spell) => {
-      totalPoints += spell.points;
+  for (let expertise in school) {
+    const skill = school[expertise];
+    skill.forEach((skill) => {
+      totalPoints += skill.points;
     });
   }
 

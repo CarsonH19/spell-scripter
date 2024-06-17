@@ -40,7 +40,7 @@ export default function PlayerColumn() {
         <div>
           <h1>{player.name}</h1>
           <p>Level: {player.level}</p>
-          <p>Mastery Points: {player.masteryPoints} / 3</p>
+          <p>Mastery Points: {player.totalMasteryPoints}</p>
         </div>
 
         <div className={classes["attributes-container"]}>

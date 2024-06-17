@@ -37,12 +37,14 @@ export default function Question({ questionIndex, tomeIndex }) {
     setTimeout(() => {
       const isCorrect = question.answers[0] === selectedAnswer;
 
-      // Mark question as answered
-      dispatch(tomeActions.answerQuestion({ tomeIndex, questionIndex }));
-      // Check if the tome has been mastered (100%)
-      dispatch(tomeActions.master({ tomeIndex }));
-      // Check if a new tome should be unlocked (50%)
-      dispatch(tomeActions.unlock({ tomeIndex }));
+      if (isCorrect) {
+        // Mark question as answered
+        dispatch(tomeActions.answerQuestion({ tomeIndex, questionIndex }));
+        // Check if a new tome should be unlocked (50%)
+        dispatch(tomeActions.unlock({ tomeIndex }));
+        // Check if the tome has been mastered (100%)
+        dispatch(tomeActions.master({ tomeIndex }));
+      }
 
       // Check if answer is wrong and increment threat
       if (!isCorrect) {
