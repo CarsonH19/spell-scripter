@@ -41,9 +41,24 @@ export function changeHealth(
 
 function checkForDeath(dispatch, id) {
   const order = store.getState().combat.order;
+  const ui = store.getState().ui;
+
   let character = order.find((char) => char.id === id);
 
+  // Check for player death
   if (character.currentHealth <= 0 && character.identifier === "PLAYER") {
+    dispatch(
+      combatActions.updateHealth({
+        id: character.id,
+        change: "HEAL",
+        value: 999,
+      })
+    );
+
+    if (ui.continueIsVisible) {
+      dispatch(uiActions.toggle({ modal: "continuIsVisible" }));
+    }
+
     dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true
     dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // false
   }

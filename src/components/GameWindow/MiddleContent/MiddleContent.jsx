@@ -13,7 +13,7 @@ export default function MiddleContent() {
   const event = useSelector((state) => state.dungeon.contents.event);
 
   // Continue Button Logic
-  const continueVisible = useSelector((state) => state.ui.continueIsVisible);
+  const continueIsVisible = useSelector((state) => state.ui.continueIsVisible);
 
   const handleContinue = () => {
     dispatch(uiActions.toggle({ modal: "continueIsVisible" }));
@@ -23,7 +23,7 @@ export default function MiddleContent() {
   return (
     <div className={classes.middle}>
       <Party />
-      {continueVisible && <button className={classes.continue} onClick={handleContinue}>Continue</button>}
+      {continueIsVisible && <button className={classes.continue} onClick={handleContinue}>Continue</button>}
       {event && <EventOptions />}
       <Enemies />
     </div>

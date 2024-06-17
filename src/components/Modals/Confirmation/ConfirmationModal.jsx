@@ -45,11 +45,23 @@ export default function ConfirmationModal() {
       updateStatTotals(dispatch, heroes[i].id);
     }
 
-    // for (let i = 0; i < enemies.length; i++) {
-    //   updateStatTotals(dispatch, enemies[i].id);
-    // }
-
+    // Update player stats
     updateStatTotals(dispatch, player.id);
+
+    // Ensure all characters are at max health // NOTE: Is this needed?
+    characters.forEach((character) => {
+      dispatch(
+        combatActions.updateHealth({
+          id: character.id,
+          change: "HEAL",
+          value: 999,
+        })
+      );
+    });
+
+    if (ui.continueIsVisible) {
+      dispatch(uiActions.toggle({ modal: "continuIsVisible" }));
+    }
 
     dispatch(uiActions.toggle({ modal: "modalIsVisible" }));
   };

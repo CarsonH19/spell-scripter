@@ -14,7 +14,6 @@ export default function EventOptions() {
 
   useEffect(() => {
     setOpen(true);
-    console.log("counter", dungeon.roomCounter);
   }, [dungeon.roomCounter]);
 
   let eventOptions;
@@ -32,8 +31,6 @@ export default function EventOptions() {
     // sets complete to true (event options won't render)
     // dispatch(dungeonActions.completeEvent());
   };
-
-  console.log("open", open);
 
   return (
     <div className={classes.events}>
