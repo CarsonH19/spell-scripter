@@ -2,6 +2,7 @@ import { useState } from "react";
 import classes from "./SpellbookModal.module.css";
 
 import Skill from "./Skill";
+import School from "./School";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -43,66 +44,59 @@ export default function SpellbookModal() {
         <div className={classes.schools}>
           <h3>Schools of Magic</h3>
           <ol>
-            <li
-              className={
-                school === "evocation"
-                  ? classes["active-school"]
-                  : classes["inactive-school"]
-              }
-              onClick={() => handleSchoolChange("evocation")}
-            >
-              Evocation
-            </li>
-            <li
-              className={
-                school === "restoration"
-                  ? classes["active-school"]
-                  : classes["inactive-school"]
-              }
-              onClick={() => handleSchoolChange("restoration")}
-            >
-              Restoration
-            </li>
-            <li
-              className={
-                school === "abjuration"
-                  ? classes["active-school"]
-                  : classes["inactive-school"]
-              }
-              onClick={() => handleSchoolChange("abjuration")}
-            >
-              Abjuration
-            </li>
-            <li
-              className={
-                school === "conjuration"
-                  ? classes["active-school"]
-                  : classes["inactive-school"]
-              }
-              onClick={() => handleSchoolChange("conjuration")}
-            >
-              Conjuration
-            </li>
-            <li
-              className={
-                school === "enchantment"
-                  ? classes["active-school"]
-                  : classes["inactive-school"]
-              }
-              onClick={() => handleSchoolChange("enchantment")}
-            >
-              Enchantment
-            </li>
-            <li
-              className={
-                school === "necromancy"
-                  ? classes["active-school"]
-                  : classes["inactive-school"]
-              }
-              onClick={() => handleSchoolChange("necromancy")}
-            >
-              Necromancy
-            </li>
+            <School
+              text={"Evocation"}
+              active={school === "evocation"}
+              onChangeSchool={() => handleSchoolChange("evocation")}
+            />
+            {player.level >= 2 ? (
+              <School
+                text={"Abjuration"}
+                active={school === "abjuration"}
+                onChangeSchool={() => handleSchoolChange("abjuration")}
+              />
+            ) : (
+              <School text={"?"} />
+            )}
+
+            {player.level >= 3 ? (
+              <School
+                text={"Conjuration"}
+                active={school === "conjuration"}
+                onChangeSchool={() => handleSchoolChange("conjuration")}
+              />
+            ) : (
+              <School text={"?"} />
+            )}
+            {player.level >= 4 ? (
+              <School
+                text={"Restoration"}
+                active={school === "restoration"}
+                onChangeSchool={() => handleSchoolChange("restoration")}
+              />
+            ) : (
+              <School text={"?"} />
+            )}
+            {player.level >= 5 ? (
+              <School
+                text={"Enchantment"}
+                active={school === "enchantment"}
+                onChangeSchool={() => handleSchoolChange("enchantment")}
+              />
+            ) : (
+              <School text={"?"} />
+            )}
+
+            {/* Unlock Necromancy through beating the final boss of The great Catacombs?*/}
+            {player.level >= 6 ? (
+              <School
+                text={"Necromancy"}
+                active={school === "necromancy"}
+                onChangeSchool={() => handleSchoolChange("necromancy")}
+              />
+            ) : (
+              <School text={"?"} />
+            )}
           </ol>
         </div>
 

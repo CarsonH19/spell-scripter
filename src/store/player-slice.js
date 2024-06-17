@@ -10,7 +10,7 @@ const playerSlice = createSlice({
     identifier: "PLAYER",
     image: "",
     damageDisplay: "",
-    level: 1,
+    level: 9,
     masteryPoints: 1,
     totalMasteryPoints: 1,
     attributePoints: 3,
