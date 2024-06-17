@@ -186,6 +186,7 @@ export default function updateStatTotals(dispatch, id) {
   }
 
   function calculateDefense(guard, totalAgility) {
+    // Base defense of 8
     let defense = 8 + totalAgility;
 
     // Guarding (+50% defense)
@@ -197,7 +198,8 @@ export default function updateStatTotals(dispatch, id) {
   }
 
   function calculateSpeed(totalAgility) {
-    const speed = 10 + totalAgility;
+    // +1 per agility / d20 roll + speed
+    const speed = totalAgility;
 
     return speed;
   }

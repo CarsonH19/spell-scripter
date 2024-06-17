@@ -116,8 +116,8 @@ export default function PlayerColumn() {
             </div>
             <p>{player.stats.baseAgility}</p>
             <p>Defense: {player.stats.agility.defense}</p>
-            <p>Hit Chance: {player.stats.agility.hitChance}</p>
-            <p>Initiative Speed: {player.stats.agility.speed}</p>
+            <p>Hit Chance Bonus: +{player.stats.agility.hitChance}</p>
+            <p>Speed Bonus: +{player.stats.agility.speed}</p>
           </div>
 
           <div className={classes.stats}>
