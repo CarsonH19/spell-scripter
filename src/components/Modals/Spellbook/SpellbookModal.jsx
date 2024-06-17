@@ -21,14 +21,19 @@ export default function SpellbookModal() {
   };
 
   const handleResetButton = (school) => {
+    // Calculate total points expended in skill tree
     const totalPoints = calculateTotalPoints(spellbook[school]);
+    // Remove points from spellbook-slice
     dispatch(spellbookActions.resetSkillTree({ school, totalPoints }));
+    // Return points to player-slice masteryPoints
     dispatch(
       playerActions.changeMasteryPoints({
         change: "INCREASE",
         quantity: totalPoints,
       })
     );
+    // Remove all spells from player-slice spellList that are from the school reset
+    dispatch(playerActions.changeSpellList({ change: "RESET", school }));
   };
 
   return (

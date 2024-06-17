@@ -1,6 +1,6 @@
 import store from "../store/index";
 
-const spellPower = store.getState().player.stats.arcana.spellPower;
+// const spellPower = store.getState().player.stats.arcana.spellPower;
 
 const DAMAGE_TYPES = {
   PHYSICAL: "PHYSICAL",
@@ -65,7 +65,6 @@ const SPELLS = {
     {
       name: "Blizzard",
       school: `Adept Evocation`,
-      description: `Evoke frigid wind to cover the area, dealing ${spellPower} ice damage for 3 rounds.`,
       image: "",
       spellTarget: "ENEMIES",
       spellType: "HIT",
@@ -76,7 +75,7 @@ const SPELLS = {
     {
       name: "Immolate",
       school: `Adept Evocation`,
-      description: `Incinerate a Burning enemy that has 30HP or less.`,
+      // description: `Incinerate a Burning enemy that has 30HP or less.`,
       image: "",
       spellTarget: "ENEMY",
       spellType: "HIT",

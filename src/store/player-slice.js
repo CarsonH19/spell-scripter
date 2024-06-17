@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import SPELLS from "../data/spells";
+
 const playerSlice = createSlice({
   name: "player",
   initialState: {
@@ -90,20 +92,18 @@ const playerSlice = createSlice({
       }
     },
     changeSpellList(state, action) {
-      const { change, spellName } = action.payload;
+      const { change, spellName, school } = action.payload;
 
       switch (change) {
         case "ADD":
           state.spellList.push(spellName);
           break;
-        case "REMOVE":
+        case "RESET":
           {
-            const spellIndex = state.spellList.findIndex(
-              (index) => index.name === spellName
+            const schoolSpells = SPELLS[school].map((spell) => spell.name);
+            state.spellList = state.spellList.filter(
+              (name) => !schoolSpells.includes(name)
             );
-            if (spellIndex !== -1) {
-              state.spellList.splice(spellIndex, 1);
-            }
           }
           break;
       }
