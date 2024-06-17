@@ -41,7 +41,6 @@ export default async function combatLoop(dispatch) {
     let character = order[i];
 
     if (!character) {
-      console.log("NO CHARACTER");
       continue;
     }
 
@@ -60,9 +59,9 @@ export default async function combatLoop(dispatch) {
 
       // COMPLETE TASKS AT BEGINNING OF ROUND
       // Decrement existing status effect durations
-      checkStatusEffect(dispatch, character.id, "DECREMENT");
+      // checkStatusEffect(dispatch, character.id, "DECREMENT");
 
-      // Check for status effects with duration 0 and remove
+      // Check for status effects with duration 0 or and remove
       checkStatusEffect(dispatch, character.id, "REMOVE");
 
       // Check for status effects with functions and call
@@ -216,6 +215,12 @@ export default async function combatLoop(dispatch) {
 
   // Check if combat is over
   if (endCombat(dispatch)) {
+    // COMPLETE TASKS AT THE END OF COMBAT
+    // Check if effect durations are rounds/actions and remove them from player & heroes
+    for (let i = 0; i < order.length; i++) {
+      if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER")
+        checkStatusEffect(dispatch, order[i].id, "END");
+    }
     return; // exit the loop
   } else {
     await delay(2000);
@@ -325,8 +330,6 @@ function roll20(bonus = 0) {
 // TEMPORARY TARGETING FOR HEROES & ENEMIES
 function randomTarget(attacker) {
   const order = store.getState().combat.order;
-  // const playerIndex = order.findIndex((char) => char.id === "Player");
-  // const player = order[playerIndex];
 
   let targetGroup = [];
   if (attacker.identifier === "HERO" || attacker.identifier === "PLAYER") {
@@ -376,21 +379,12 @@ function checkBehavior(character) {
 function endCombat(dispatch) {
   const order = store.getState().combat.order;
 
-  // const playerIndex = order.findIndex((char) => char.id === "Player");
-  // const player = order[playerIndex];
-
   const enemies = [];
   for (let i = 0; i < order.length; i++) {
     if (order[i].identifier === "ENEMY") {
       enemies.push(order[i]);
     }
   }
-
-  // if (player.currentHealth <= 0) {
-  //   dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true
-  //   dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // false
-  //   return true;
-  // }
 
   if (enemies.length <= 0) {
     dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true

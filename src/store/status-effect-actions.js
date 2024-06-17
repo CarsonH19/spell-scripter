@@ -15,7 +15,6 @@ export default function changeStatusEffect(
 ) {
   // CHECK IF target is valid
   if (!target) {
-    console.log("changeStatusEffect", target, change, statusEffect);
     return;
   }
 
@@ -36,8 +35,6 @@ export default function changeStatusEffect(
     const index = order.findIndex((char) => char.id === target.id);
     target = order[index];
   }
-
-  console.log("STATUS", target);
 
   // Check if status effect already exists
   if (!checkCurrentStatusEffects(target, statusEffect) && change === "ADD") {
@@ -71,8 +68,6 @@ export default function changeStatusEffect(
         reset = effect.duration;
       }
     });
-
-    console.log("STATUS", checkCurrentStatusEffects(target, statusEffect));
 
     dispatch(
       combatActions.updateStatusEffectDuration({
@@ -121,10 +116,31 @@ export function checkStatusEffect(dispatch, id, check) {
   const index = order.findIndex((char) => char.id === id);
   const statusEffects = order[index].statusEffects;
 
+  console.log("checkStatusEffect", check);
+
   switch (check) {
     case "REMOVE": // Check for removal
       for (let i = 0; i < statusEffects.length; i++) {
         if (statusEffects[i].duration <= 0) {
+          dispatch(
+            combatActions.updateStatusEffects({
+              id,
+              statusEffect: statusEffects[i],
+              change: "REMOVE",
+            })
+          );
+        }
+      }
+
+      updateStatTotals(dispatch, id);
+      break;
+
+    case "END": // End effects with round/action durations after combat
+      for (let i = 0; i < statusEffects.length; i++) {
+        if (
+          statusEffects[i].durationType === "ROUND" ||
+          statusEffects[i].durationType === "ACTION"
+        ) {
           dispatch(
             combatActions.updateStatusEffects({
               id,

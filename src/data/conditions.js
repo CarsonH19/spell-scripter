@@ -4,6 +4,7 @@ const CONDITIONS = {
     display: true,
     image: "",
     description: "You take damage on the start of each of your turns",
+    durationType: "ROUND",
     duration: 3,
     stats: {},
     function: true,
@@ -28,7 +29,8 @@ const CONDITIONS = {
     display: true,
     image: "",
     description: "Defense +50%",
-    duration: 1, // Is immediately decremented so it must be set to 2
+    durationType: "ROUND",
+    duration: 1, 
     stats: {},
   },
 };
