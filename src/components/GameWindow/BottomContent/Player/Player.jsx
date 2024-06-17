@@ -129,7 +129,9 @@ export default function Player() {
                 key={effect.name}
                 title={effect.name}
                 detailOne={effect.description}
-                detailTwo={`Duration: ${effect.duration} rounds`}
+                detailTwo={`Duration: ${effect.duration} ${
+                  effect.duration > 1 ? "rounds" : "round"
+                }`}
                 position={"effect-right"}
               >
                 <img src="" className={classes.effect} />

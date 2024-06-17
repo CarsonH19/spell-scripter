@@ -111,7 +111,9 @@ export default function Character({ character }) {
               key={effect.name}
               title={effect.name}
               detailOne={effect.description}
-              detailTwo={`Duration: ${effect.duration} rounds`}
+              detailTwo={`Duration: ${effect.duration} ${
+                effect.duration > 1 ? "rounds" : "round"
+              }`}
               position={isCharacterEnemy ? "effect-right" : "effect-left"}
             >
               <img src="" className={classes.effect} />
