@@ -289,6 +289,7 @@ const playerSlice = createSlice({
       state.stats.strength.totalStrength = action.payload.totalStrength;
       state.stats.strength.maxHealth = action.payload.maxHealth;
       state.stats.strength.attack = action.payload.attack;
+      state.stats.strength.healthRegen = action.payload.healthRegen;
 
       // Check if current HP is greater than max HP
       if (state.currentHealth > state.stats.strength.maxHealth) {
@@ -305,6 +306,7 @@ const playerSlice = createSlice({
       state.stats.arcana.totalArcana = action.payload.totalArcana;
       state.stats.arcana.spellPower = action.payload.spellPower;
       state.stats.arcana.maxMana = action.payload.maxMana;
+      state.stats.arcana.manaRegen = action.payload.manaRegen;
     },
   },
 });

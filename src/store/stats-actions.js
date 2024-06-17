@@ -66,7 +66,7 @@ export default function updateStatTotals(dispatch, id) {
       if (item.stats && item.stats.arcana) {
         totalArcana += item.stats.arcana.arcanaChange || 0;
         maxMana += item.stats.arcana.maxMana || 0;
-        manaRegen += item.stats.strength.manaRegen || 0;
+        manaRegen += item.stats.arcana.manaRegen || 0;
         spellPower += item.stats.arcana.spellPower || 0;
       }
 
@@ -93,7 +93,7 @@ export default function updateStatTotals(dispatch, id) {
   // Arcana
   if (totalArcana < 0) totalArcana = 0;
   maxMana += calculateMaxMana(character, totalArcana);
-  manaRegen += calculateManaRegen(character, totalStrength);
+  manaRegen += calculateManaRegen(character, totalArcana);
   spellPower += calculateSpellPower(character, totalArcana);
 
   dispatch(
