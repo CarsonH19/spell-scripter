@@ -80,7 +80,7 @@ export default function updateStatTotals(dispatch, id) {
   if (totalStrength < 0) totalStrength = 0;
 
   maxHealth += calculateMaxHealth(character, totalStrength);
-  healthRegen += calculateHealthRegen(character, totalStrength);
+  healthRegen += calculateHealthRegen(totalStrength);
   attack += calculateAttackBonus(character, totalStrength);
 
   // Agility
@@ -93,7 +93,7 @@ export default function updateStatTotals(dispatch, id) {
   // Arcana
   if (totalArcana < 0) totalArcana = 0;
   maxMana += calculateMaxMana(character, totalArcana);
-  manaRegen += calculateManaRegen(character, totalArcana);
+  manaRegen += calculateManaRegen(totalArcana);
   spellPower += calculateSpellPower(character, totalArcana);
 
   dispatch(
@@ -150,12 +150,12 @@ export default function updateStatTotals(dispatch, id) {
     return maxHealth;
   }
 
-  function calculateHealthRegen(character, totalStrength) {
-    let baseHealthRegen = character.level * 2;
+  function calculateHealthRegen(totalStrength) {
+    // let baseHealthRegen = character.level * 2;
     let strengthHealthRegenBonus = totalStrength * 2;
-    let totalHealthRegen = baseHealthRegen + strengthHealthRegenBonus;
+    // let totalHealthRegen = baseHealthRegen + strengthHealthRegenBonus;
 
-    return totalHealthRegen;
+    return strengthHealthRegenBonus;
   }
 
   function calculateAttackBonus(character, totalStrength) {
@@ -227,12 +227,12 @@ export default function updateStatTotals(dispatch, id) {
     return maxMana;
   }
 
-  function calculateManaRegen(character, totalArcana) {
-    let baseManaRegen = character.level * 2;
+  function calculateManaRegen(totalArcana) {
+    // let baseManaRegen = character.level * 2;
     let arcanaManaRegenBonus = totalArcana * 2;
-    let totalManaRegen = baseManaRegen + arcanaManaRegenBonus;
+    // let totalManaRegen = baseManaRegen + arcanaManaRegenBonus;
 
-    return totalManaRegen;
+    return arcanaManaRegenBonus;
   }
 
   function calculateSpellPower(character, totalArcana) {

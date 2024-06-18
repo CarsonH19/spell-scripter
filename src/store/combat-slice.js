@@ -78,6 +78,7 @@ const combatSlice = createSlice({
       character.stats.strength.totalStrength = action.payload.totalStrength;
       character.stats.strength.maxHealth = action.payload.maxHealth;
       character.stats.strength.attack = action.payload.attack;
+      character.stats.strength.healthRegen = action.payload.healthRegen;
 
       // Check if current HP is greater than max HP
       if (character.currentHealth > character.stats.strength.maxHealth) {
@@ -119,6 +120,7 @@ const combatSlice = createSlice({
       }
 
       if (change === "HEAL") {
+        console.log("HEAL", value);
         character.currentHealth += value;
 
         // Prevents Healing Above Max

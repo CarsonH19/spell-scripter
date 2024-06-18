@@ -9,7 +9,7 @@ let heroes = [
     // audio: {},
     level: 1,
     currentHealth: 50,
-    damageDisplay: '',
+    damageDisplay: "",
     currentMana: 50,
     currentExp: 0,
     expToNextLevel: 100,
@@ -19,6 +19,7 @@ let heroes = [
         totalStrength: 1,
         attack: 10,
         maxHealth: 100,
+        healthRegen: 0,
       },
       baseAgility: 2,
       agility: {
@@ -32,6 +33,7 @@ let heroes = [
         totalArcana: 3,
         spellPower: 0,
         maxMana: 50,
+        manaRegen: 0,
       },
     },
     weaknesses: [],
@@ -50,7 +52,7 @@ let heroes = [
     // audio: {},
     level: 1,
     currentHealth: 50,
-    damageDisplay: '',
+    damageDisplay: "",
     currentMana: 50,
     currentExp: 0,
     expToNextLevel: 100,
@@ -60,6 +62,7 @@ let heroes = [
         totalStrength: 1,
         attack: 10,
         maxHealth: 100,
+        healthRegen: 0
       },
       baseAgility: 2,
       agility: {
@@ -91,7 +94,7 @@ let heroes = [
     image: "",
     level: 1,
     currentHealth: 50,
-    damageDisplay: '',
+    damageDisplay: "",
     currentMana: 50,
     currentExp: 0,
     expToNextLevel: 100,
@@ -122,8 +125,6 @@ let heroes = [
     behavior: "RANDOM",
     statusEffects: [],
   },
-
-  
 ];
 // WARLOCK
 // EVOKER

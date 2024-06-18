@@ -35,7 +35,6 @@ export function changeHealth(
   // }
 
   dispatch(combatActions.updateHealth({ id, change, value }));
-  // updateStatTotals(dispatch, id);
   checkForDeath(dispatch, id);
 }
 

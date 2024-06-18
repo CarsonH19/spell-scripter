@@ -59,7 +59,6 @@ export function createNewRoom(dispatch) {
   switch (roomContent) {
     case "EVENT":
       // get Event
-      console.log("EVENT");
       newRoom.contents.event = getRoomEvent();
       break;
 
@@ -75,12 +74,11 @@ export function createNewRoom(dispatch) {
 // // Determine if room will contain an event or monsters.
 function getRoomContent() {
   const eventChance = Math.floor(Math.random() * 100);
-  console.log("eventChance", eventChance);
   if (eventChance > 79) {
     // ~20% Chance for an event
     return "EVENT";
   } else {
-    return "MONSTERS";
+    return "ENEMIES";
   }
 }
 
@@ -89,7 +87,6 @@ function getRoomEvent() {
   // Iterate through the array and create a new array with incomplete events.
   // // Special events will only be completed once and therefore may not be added
   // Randomly choose an event from the new array
-  console.log(EVENTS.SPIKE_WALLS);
   return EVENTS.SPIKE_WALLS;
 }
 
@@ -167,7 +164,6 @@ export function getRoomEnemies() {
           id: uuidv4(),
           damageDisplay: "",
         });
-        console.log(enemiesArray);
         break;
       }
     }
@@ -191,6 +187,7 @@ function constructStats(stats) {
       totalStrength: 0,
       attack: 0,
       maxHealth: 0,
+      healthRegen: 0,
     },
     baseAgility: stats.baseAgility,
     agility: {
@@ -203,7 +200,7 @@ function constructStats(stats) {
     arcana: {
       totalArcana: 0,
       spellPower: 0,
-      maxMana: 0,
+      maxMana: 0, // NOTE: Should I remove this because HEROES & ENEMIES will use ability cool down instead of mana?
     },
   };
 }
