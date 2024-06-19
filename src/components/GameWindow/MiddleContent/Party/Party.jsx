@@ -1,6 +1,5 @@
 import classes from "./Party.module.css";
 
-// import Hero from "./Hero/Hero";
 import Character from "../Character";
 
 import { useSelector } from "react-redux";

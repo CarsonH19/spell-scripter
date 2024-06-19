@@ -1,12 +1,6 @@
 import classes from "./Character.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHeart,
-  faShieldHalved,
-  faHandFist,
-  faHatWizard,
-  faPersonRunning,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import Tooltip from "../../UI/Tooltip";
 

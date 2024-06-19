@@ -31,7 +31,6 @@ const Icon = ({ character }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Render your icon content here */}
     </div>
   );
 };

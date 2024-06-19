@@ -164,7 +164,7 @@ export default async function combatLoop(dispatch) {
         await delay(2000);
 
         // check behavior to determine action
-        const action = checkBehavior(character); // return a destructured object checking the action and target
+        const action = checkBehaviorAction(character); // return a destructured object checking the action and target
 
         switch (action) {
           case "ATTACK":
@@ -365,7 +365,7 @@ function randomTarget(attacker) {
 //                           BEHAVIOR
 // =============================================================
 
-function checkBehavior(character) {
+function checkBehaviorAction(character) {
   switch (character.behavior) {
     case "RANDOM":
       if (character.currentHealth > 30) {
@@ -374,6 +374,10 @@ function checkBehavior(character) {
         return "ATTACK"; // later switch to guard
       }
   }
+}
+
+function checkBehaviorTarget(order) {
+  //
 }
 
 function endCombat(dispatch) {

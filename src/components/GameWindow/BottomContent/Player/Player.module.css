@@ -27,7 +27,7 @@
 }
 
 .player .turn {
-  border: 2px solid rgb(255, 247, 0);
+  border: 2px solid var(--accent);
 }
 
 .player .attributes-container {

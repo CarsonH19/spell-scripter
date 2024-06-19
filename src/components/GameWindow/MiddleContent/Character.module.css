@@ -14,7 +14,7 @@
 .character .image {
   height: 4rem;
   width: 4rem;
-  border: 1px solid red;
+  border: 1px solid var(--secondary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,20 +25,21 @@
   font-size: 2rem;
 }
 .character .highlighted {
-  border: 2px solid white;
+  border: 2px solid var(--text);
 }
 
 .character .turn {
-  border: 2px solid rgb(255, 247, 0);
-}
-
-.character .highlighted + .container {
-  width: 50%; 
+  border: 2px solid var(--accent);
 }
 
 .character:has(.turn) .container {
   width: 50%;
 }
+
+.character:has(.highlighted) .container {
+  width: 50%;
+}
+
 
 .character .container {
   position: absolute; 
