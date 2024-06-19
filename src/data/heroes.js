@@ -39,7 +39,7 @@ let heroes = [
     weaknesses: [],
     resistances: [],
     immunities: [],
-    behavior: "RANDOM",
+    behavior: "DOMINANT",
     statusEffects: [],
   },
   // ROGUE
@@ -62,7 +62,7 @@ let heroes = [
         totalStrength: 1,
         attack: 10,
         maxHealth: 100,
-        healthRegen: 0
+        healthRegen: 0,
       },
       baseAgility: 2,
       agility: {
@@ -81,7 +81,7 @@ let heroes = [
     weaknesses: [],
     resistances: [],
     immunities: [],
-    behavior: "RANDOM",
+    behavior: "ERRATIC",
     statusEffects: [],
   },
 
@@ -119,10 +119,15 @@ let heroes = [
         maxMana: 50,
       },
     },
+    behavior: "ASTUTE",
+    abilityA: {
+      cooldown: 0,
+      focus: "", 
+      function: "",
+    },
     weaknesses: [],
     resistances: [],
     immunities: [],
-    behavior: "RANDOM",
     statusEffects: [],
   },
 ];

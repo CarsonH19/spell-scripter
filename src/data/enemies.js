@@ -65,7 +65,7 @@ const GNAWERS = {
     weaknesses: [],
     resistances: [],
     immunities: [],
-    behavior: "RANDOM",
+    behavior: "ERRATIC",
     statusEffects: [],
   },
 };
@@ -263,7 +263,7 @@ const UNDEAD = {
     weaknesses: [],
     resistances: [],
     immunities: [],
-    behavior: "RANDOM",
+    behavior: "ERRATIC",
     statusEffects: [],
   },
   SKELETAL_WARRIOR: {
@@ -283,7 +283,7 @@ const UNDEAD = {
     weaknesses: [],
     resistances: [],
     immunities: [],
-    behavior: "RANDOM",
+    behavior: "ERRATIC",
     statusEffects: [],
   },
   SKELETAL_ARCHER: {
@@ -303,7 +303,7 @@ const UNDEAD = {
     weaknesses: [],
     resistances: [],
     immunities: [],
-    behavior: "RANDOM",
+    behavior: "ERRATIC",
     statusEffects: [],
   },
   SKELETAL_MAGE: {
@@ -323,7 +323,7 @@ const UNDEAD = {
     weaknesses: [],
     resistances: [],
     immunities: [],
-    behavior: "RANDOM",
+    behavior: "ERRATIC",
     statusEffects: [],
   },
   CORPSE_ORACLE: {
@@ -443,7 +443,7 @@ const UNDEAD = {
     weaknesses: [],
     resistances: [],
     immunities: ["POISONED"],
-    behavior: "RANDOM",
+    behavior: "ERRATIC",
     statusEffects: [],
   },
 };

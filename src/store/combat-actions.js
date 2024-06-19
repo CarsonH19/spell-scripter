@@ -14,6 +14,11 @@ import { logActions } from "./log-slice.js";
 
 import activateItem from "./item-actions.js";
 
+import {
+  checkBehaviorAction,
+  checkBehaviorAttackTarget,
+} from "../util/behaviors.js";
+
 let playerActionResolver;
 let targetResolver;
 let selectResolver;
@@ -133,10 +138,8 @@ export default async function combatLoop(dispatch) {
               break;
             case "USE ITEM":
               {
-                console.log("USE ITEM");
                 // choose a spell from spell list
                 const selectedItem = await select();
-                console.log(selectedItem);
                 // Restart the while loop allowing players to change actions
                 if (selectedItem === null) continue;
                 await activateItem(dispatch, selectedItem);
@@ -164,15 +167,14 @@ export default async function combatLoop(dispatch) {
         await delay(2000);
 
         // check behavior to determine action
-        const action = checkBehaviorAction(character); // return a destructured object checking the action and target
-
+        const action = checkBehaviorAction(character);
+        console.log(action);
+        
         switch (action) {
           case "ATTACK":
             {
-              // check behavior object to and call the correct target
-              // create a singular targeting function with helper functions for each targeting behavior
-
-              const target = randomTarget(character);
+              const target = checkBehaviorAttackTarget(character);
+              console.log(target);
 
               dispatch(
                 logActions.updateLogs({
@@ -203,6 +205,7 @@ export default async function combatLoop(dispatch) {
             changeStatusEffect(dispatch, character, "ADD", CONDITIONS.GUARD);
             break;
           case "ABILITY":
+            console.log("ABILITY");
             break;
         }
       }
@@ -327,33 +330,6 @@ function roll20(bonus = 0) {
   return Math.floor(Math.random() * 21) + bonus;
 }
 
-// TEMPORARY TARGETING FOR HEROES & ENEMIES
-function randomTarget(attacker) {
-  const order = store.getState().combat.order;
-
-  let targetGroup = [];
-  if (attacker.identifier === "HERO" || attacker.identifier === "PLAYER") {
-    for (let i = 0; i < order.length; i++) {
-      if (order[i].identifier === "ENEMY") {
-        targetGroup.push(order[i]);
-      }
-    }
-    const randomIndex = Math.floor(Math.random() * targetGroup.length);
-    return targetGroup[randomIndex];
-  }
-
-  if (attacker.identifier === "ENEMY") {
-    for (let i = 0; i < order.length; i++) {
-      if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER") {
-        targetGroup.push(order[i]);
-      }
-    }
-
-    const randomIndex = Math.floor(Math.random() * targetGroup.length);
-    return targetGroup[randomIndex];
-  }
-}
-
 // =============================================================
 //                          ABILITIES
 // =============================================================
@@ -362,23 +338,8 @@ function randomTarget(attacker) {
 // checkForPassiveAbility(character);
 
 // =============================================================
-//                           BEHAVIOR
+//                       END COMBAT
 // =============================================================
-
-function checkBehaviorAction(character) {
-  switch (character.behavior) {
-    case "RANDOM":
-      if (character.currentHealth > 30) {
-        return "ATTACK";
-      } else {
-        return "ATTACK"; // later switch to guard
-      }
-  }
-}
-
-function checkBehaviorTarget(order) {
-  //
-}
 
 function endCombat(dispatch) {
   const order = store.getState().combat.order;
