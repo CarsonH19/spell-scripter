@@ -1,4 +1,5 @@
 import store from "../store/index";
+import { checkAbilityCooldowns } from "./ability-functions";
 
 //Erratic = random actions / random targets
 // Require additional info
@@ -65,23 +66,7 @@ export function checkBehaviorAction(character) {
 }
 
 export function checkBehaviorAttackTarget(character) {
-  const order = store.getState().combat.order;
-  let targetGroup = [];
-
-  // Determine targetGroup
-  if (character.identifier === "HERO" || character.identifier === "PLAYER") {
-    for (let i = 0; i < order.length; i++) {
-      if (order[i].identifier === "ENEMY") {
-        targetGroup.push(order[i]);
-      }
-    }
-  } else if (character.identifier === "ENEMY") {
-    for (let i = 0; i < order.length; i++) {
-      if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER") {
-        targetGroup.push(order[i]);
-      }
-    }
-  }
+  let targetGroup = findTargetGroup(character);
 
   switch (character.behavior) {
     case "ERRATIC":
@@ -124,35 +109,34 @@ export function checkBehaviorAttackTarget(character) {
     }
 
     case "AGGRESSIVE": // Always attacks randomly
-    case "SUPPORTIVE": // Attacks randomly while above 50% HP
-      {
-        const randomIndex = Math.floor(Math.random() * targetGroup.length);
-        return targetGroup[randomIndex]
-
-      }
+    case "SUPPORTIVE": {
+      // Attacks randomly while above 50% HP
+      const randomIndex = Math.floor(Math.random() * targetGroup.length);
+      return targetGroup[randomIndex];
+    }
 
     // case "DEFENSIVE": This behavior never attacks
   }
 }
 
-export function checkBehaviorAbilityTarget(character) {
-  // check character abilityA & abilityB objects
-}
+export function findTargetGroup(character) {
+  const order = store.getState().combat.order;
+  let targetGroup = [];
 
-function checkAbilityCooldowns(character) {
-  let abilityA = false;
-  let abilityB = false;
-
-  if ("cooldownA" in character) {
-    if (character.cooldownA === 0) {
-      abilityA = true;
+  // Determine targetGroup
+  if (character.identifier === "HERO" || character.identifier === "PLAYER") {
+    for (let i = 0; i < order.length; i++) {
+      if (order[i].identifier === "ENEMY") {
+        targetGroup.push(order[i]);
+      }
+    }
+  } else if (character.identifier === "ENEMY") {
+    for (let i = 0; i < order.length; i++) {
+      if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER") {
+        targetGroup.push(order[i]);
+      }
     }
   }
-  if ("cooldownB" in character) {
-    if (character.cooldownB === 0) {
-      abilityB = true;
-    }
-  }
 
-  return { abilityA, abilityB };
+  return targetGroup;
 }

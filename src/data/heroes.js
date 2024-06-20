@@ -1,4 +1,4 @@
-let heroes = [
+const heroes = [
   // PALADIN
   {
     name: "Siggurd",
@@ -36,10 +36,16 @@ let heroes = [
         manaRegen: 0,
       },
     },
+    behavior: "DOMINANT",
+    abilityA: {
+      cooldown: 0,
+      reset: 3,
+      focus: "HIGHEST-HEALTH", 
+      function: "HOLY_SMITE",
+    },
     weaknesses: [],
     resistances: [],
     immunities: [],
-    behavior: "DOMINANT",
     statusEffects: [],
   },
   // ROGUE
@@ -121,7 +127,7 @@ let heroes = [
     },
     behavior: "ASTUTE",
     abilityA: {
-      cooldown: 0,
+      cooldown: 3,
       focus: "", 
       function: "",
     },

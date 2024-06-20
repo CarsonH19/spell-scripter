@@ -233,6 +233,27 @@ const combatSlice = createSlice({
         }
       }
     },
+    updateCooldown(state, action) {
+      // Locate character
+      const { id, ability, change, reset } = action.payload;
+      const findCharacterById = (id) => {
+        const characters = state.order;
+        return characters.find((char) => char.id === id);
+      };
+      const character = findCharacterById(id);
+
+      // Access ability
+      switch (change) {
+        case "RESET":
+          console.log("RESET COOLDOWN");
+          character[ability].cooldown = character[ability].reset;
+          break;
+        case "DECREMENT":
+          console.log("DECREMENT COOLDOWN");
+          character[ability].cooldown--;
+          break;
+      }
+    },
   },
 });
 

@@ -19,6 +19,11 @@ import {
   checkBehaviorAttackTarget,
 } from "../util/behaviors.js";
 
+import {
+  decrementAbilityCooldowns,
+  useAbility,
+} from "../util/ability-functions.js";
+
 let playerActionResolver;
 let targetResolver;
 let selectResolver;
@@ -169,7 +174,7 @@ export default async function combatLoop(dispatch) {
         // check behavior to determine action
         const action = checkBehaviorAction(character);
         console.log(action);
-        
+
         switch (action) {
           case "ATTACK":
             {
@@ -202,10 +207,12 @@ export default async function combatLoop(dispatch) {
             }
             break;
           case "GUARD":
+            // Adds the Guarding condition to the characters active status effects
             changeStatusEffect(dispatch, character, "ADD", CONDITIONS.GUARD);
             break;
           case "ABILITY":
-            console.log("ABILITY");
+            // Function: checks which ability (A or B), checks focus to find target, dispatches actions to perform ability
+            useAbility(dispatch, character);
             break;
         }
       }
@@ -219,6 +226,10 @@ export default async function combatLoop(dispatch) {
   // Check if combat is over
   if (endCombat(dispatch)) {
     // COMPLETE TASKS AT THE END OF COMBAT
+
+    // Reduce the characters cooldowns
+    decrementAbilityCooldowns(dispatch, character);
+    
     // Check if effect durations are rounds/actions and remove them from player & heroes
     for (let i = 0; i < order.length; i++) {
       if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER")
@@ -329,13 +340,6 @@ export function calcDamage(character, spell, spellPower) {
 function roll20(bonus = 0) {
   return Math.floor(Math.random() * 21) + bonus;
 }
-
-// =============================================================
-//                          ABILITIES
-// =============================================================
-
-// call passive ability if available.
-// checkForPassiveAbility(character);
 
 // =============================================================
 //                       END COMBAT
