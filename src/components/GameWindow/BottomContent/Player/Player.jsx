@@ -124,20 +124,35 @@ export default function Player() {
       <div className={classes.statusEffects}>
         {player.statusEffects.map((effect) => {
           if (effect.display) {
-            const content = (
+            let duration;
+            if (effect.duration === "ROUND") {
+              duration = `Duration: ${effect.duration} ${
+                effect.duration > 1 ? "rounds" : "round"
+              }`;
+            } else if ("ROOM") {
+              `Duration: ${effect.duration} ${
+                effect.duration > 1 ? "rooms" : "room"
+              }`;
+            }
+
+            return (
               <Tooltip
                 key={effect.name}
                 title={effect.name}
-                detailOne={effect.description}
-                detailTwo={`Duration: ${effect.duration} ${
-                  effect.duration > 1 ? "rounds" : "round"
-                }`}
+                text={effect.description}
+                detailOne={duration}
+                detailTwo={
+                  effect.effect
+                    ? effect.effect.map((line, index) => (
+                        <span key={index}>{line}</span>
+                      ))
+                    : null
+                }
                 position={"effect-right"}
               >
                 <img src="" className={classes.effect} />
               </Tooltip>
             );
-            return content;
           }
         })}
       </div>

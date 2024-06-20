@@ -37,10 +37,14 @@ const heroes = [
       },
     },
     behavior: "DOMINANT",
+    passive: {
+      type: "BEFORE_COMBAT",
+      function: "RADIANT_AURA"
+    },
     abilityA: {
       cooldown: 0,
       reset: 3,
-      focus: "HIGHEST-HEALTH", 
+      focus: "HIGHEST_HEALTH", 
       function: "HOLY_SMITE",
     },
     weaknesses: [],

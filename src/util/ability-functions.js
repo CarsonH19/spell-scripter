@@ -26,20 +26,20 @@ export function useAbility(dispatch, character) {
 
   switch (character[ability].focus) {
     // case "SELF":
-    // case "RANDOM-HERO":
-    // case "RANDOM-ENEMY":
+    // case "RANDOM_HERO":
+    // case "RANDOM_ENEMY":
     // case "HEROES":
     // case "ENEMIES":
-    // case "HIGHEST-STRENGTH":
-    // case "HIGHEST-AGILITY":
-    // case "HIGHEST-ARCANA":
-    // case "HIGHEST-HEALTH":
-    // case "LOWEST-HEALTH":
-    // case "HIGHEST-DEFENSE":
-    // case "HIGHEST-ATTACK":
+    // case "HIGHEST_STRENGTH":
+    // case "HIGHEST_AGILITY":
+    // case "HIGHEST_ARCANA":
+    // case "HIGHEST_HEALTH":
+    // case "LOWEST_HEALTH":
+    // case "HIGHEST_DEFENSE":
+    // case "HIGHEST_ATTACK":
 
     // DAMAGING ABILITIES
-    case "HIGHEST-HEALTH":
+    case "HIGHEST_HEALTH":
       // Siggurd
       // NOTE: If multiple characters use this focus can I add an if-statement to check for the correct name?
       for (let i = 0; i < targetGroup.length; i++) {

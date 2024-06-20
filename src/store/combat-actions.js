@@ -24,15 +24,21 @@ import {
   useAbility,
 } from "../util/ability-functions.js";
 
+import { checkForPassiveAbility } from "../util/passive-functions.js";
+
 let playerActionResolver;
 let targetResolver;
 let selectResolver;
 
 export default async function combatLoop(dispatch) {
+  // Iterate through all characters and call passive abilities before combat
+  // NOTE: Passives will be called on each round of combat.
   let order = store.getState().combat.order;
-  // console.log(order);
+  for (let i = 0; i < order.length; i++) {
+    checkForPassiveAbility(dispatch, order[i], "BEFORE_COMBAT");
+  }
 
-  // Iterate through the initiative order
+  // Iterate through the initiative order simulating a turn of combat.
   for (let i = 0; i < order.length; i++) {
     // get the updated values for player and enemies on each iteration
     let order = store.getState().combat.order;
@@ -78,7 +84,7 @@ export default async function combatLoop(dispatch) {
       checkStatusEffect(dispatch, character.id, "CALL");
 
       // call passive ability if available.
-      // checkForPassiveAbility(character);
+      // checkForPassiveAbility(dispatch, character, "DURING_COMBAT");
 
       if (order[i].identifier === "PLAYER") {
         console.log(`${order[i].name}'s turn!`);
@@ -220,6 +226,9 @@ export default async function combatLoop(dispatch) {
 
       // COMPLETE TASKS AT END OF ROUND
       dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
+
+      // Reduce the characters cooldowns
+      decrementAbilityCooldowns(dispatch, character);
     }
   }
 
@@ -227,9 +236,6 @@ export default async function combatLoop(dispatch) {
   if (endCombat(dispatch)) {
     // COMPLETE TASKS AT THE END OF COMBAT
 
-    // Reduce the characters cooldowns
-    decrementAbilityCooldowns(dispatch, character);
-    
     // Check if effect durations are rounds/actions and remove them from player & heroes
     for (let i = 0; i < order.length; i++) {
       if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER")
@@ -238,6 +244,8 @@ export default async function combatLoop(dispatch) {
     return; // exit the loop
   } else {
     await delay(2000);
+
+    // COMPLETE TASKS AT THE END OF THE ROUND
     combatLoop(dispatch); // continue the loop
   }
 }

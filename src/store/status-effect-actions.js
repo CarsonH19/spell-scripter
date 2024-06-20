@@ -60,23 +60,17 @@ export default function changeStatusEffect(
     checkCurrentStatusEffects(target, statusEffect) &&
     change === "ADD"
   ) {
-    // If condition already exists reset its duration
-    let reset;
-    Object.keys(CONDITIONS).forEach((effectKey) => {
-      const effect = CONDITIONS[effectKey];
-      if (effect.name === statusEffect.name) {
-        reset = effect.duration;
-      }
-    });
-
-    dispatch(
-      combatActions.updateStatusEffectDuration({
-        id: target.id,
-        name: statusEffect.name,
-        change: "RESET",
-        reset,
-      })
-    );
+    // If condition already exists and has a reset property, reset its duration
+    if ("reset" in statusEffect) {
+      dispatch(
+        combatActions.updateStatusEffectDuration({
+          id: target.id,
+          name: statusEffect.name,
+          change: "RESET",
+          reset: statusEffect.reset,
+        })
+      );
+    }
   } else if (change === "REMOVE") {
     // ADD player-slice reducer here
     if (dashboard) {

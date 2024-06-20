@@ -6,6 +6,7 @@ const CONDITIONS = {
     description: "You take damage on the start of each of your turns",
     durationType: "ROUND",
     duration: 3,
+    reset: 3,
     stats: {},
     function: true,
   },
@@ -15,6 +16,7 @@ const CONDITIONS = {
     image: "",
     description: "You take damage on the start of each of your turns",
     duration: 3,
+    reset: 3,
     stats: {
       strength: {
         strengthChange: -1,
@@ -28,9 +30,11 @@ const CONDITIONS = {
     name: "Action: Guarding",
     display: true,
     image: "",
-    description: "Defense +50%",
+    description: "Guarding from incoming attacks.",
+    effect: ["Defense +50%"],
     durationType: "ROUND",
     duration: 1, 
+    reset: 1,
     stats: {},
   },
 };

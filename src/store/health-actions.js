@@ -38,6 +38,8 @@ export function changeHealth(
   checkForDeath(dispatch, id);
 }
 
+
+// NOTE: Use this function to remove/end passive effects if a character is defeated
 function checkForDeath(dispatch, id) {
   const order = store.getState().combat.order;
   const ui = store.getState().ui;
