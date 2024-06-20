@@ -7,11 +7,17 @@ import { useDispatch } from "react-redux";
 
 import { setDungeon } from "../../../util/dungeon-util";
 
+// TEST HERO LEVELING
+import { HERO_LEVELING_MAP } from "../../../util/hero-leveling";
+import { levelUpHero } from "../../../util/hero-leveling";
 
 export default function DungeonColumn() {
   const dispatch = useDispatch();
 
   const handleEnter = () => {
+    //TEST HERO LEVELING
+    levelUpHero("Siggurd", HERO_LEVELING_MAP.SIGGURD.TWO);
+
     dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
 
     setDungeon(dispatch, "The Great Catacomb");

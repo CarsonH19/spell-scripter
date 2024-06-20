@@ -156,7 +156,6 @@ export function getRoomEnemies() {
     for (const { enemy, probability } of shuffledEnemyTypes) {
       cumulativeProbability += probability;
       if (rand <= cumulativeProbability) {
-        // Add the strength, agility, and arcana keys to the enemies stats object
         const baseStats = constructStats(enemy.stats);
         enemiesArray.push({
           ...enemy,
@@ -180,7 +179,7 @@ function shuffle(array) {
   return array;
 }
 
-function constructStats(stats) {
+export function constructStats(stats) {
   return {
     baseStrength: stats.baseStrength,
     strength: {

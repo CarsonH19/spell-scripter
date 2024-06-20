@@ -1,4 +1,4 @@
-const heroes = [
+let heroes = [
   // PALADIN
   {
     name: "Siggurd",
@@ -8,43 +8,21 @@ const heroes = [
     image: "",
     // audio: {},
     level: 1,
-    currentHealth: 50,
-    damageDisplay: "",
-    currentMana: 50,
-    currentExp: 0,
-    expToNextLevel: 100,
+    currentHealth: 0,
     stats: {
-      baseStrength: 3,
-      strength: {
-        totalStrength: 1,
-        attack: 10,
-        maxHealth: 100,
-        healthRegen: 0,
-      },
-      baseAgility: 2,
-      agility: {
-        totalAgility: 2,
-        defense: 10,
-        speed: 0,
-        hitChance: 2,
-      },
-      baseArcana: 3,
-      arcana: {
-        totalArcana: 3,
-        spellPower: 0,
-        maxMana: 50,
-        manaRegen: 0,
-      },
+      baseStrength: 2,
+      baseAgility: 0,
+      baseArcana: 1,
     },
     behavior: "DOMINANT",
     passive: {
       type: "BEFORE_COMBAT",
-      function: "RADIANT_AURA"
+      function: "RADIANT_AURA",
     },
     abilityA: {
       cooldown: 0,
       reset: 3,
-      focus: "HIGHEST_HEALTH", 
+      focus: "HIGHEST_HEALTH",
       function: "HOLY_SMITE",
     },
     weaknesses: [],
@@ -61,32 +39,11 @@ const heroes = [
     image: "",
     // audio: {},
     level: 1,
-    currentHealth: 50,
-    damageDisplay: "",
-    currentMana: 50,
-    currentExp: 0,
-    expToNextLevel: 100,
+    currentHealth: 0,
     stats: {
-      baseStrength: 2,
-      strength: {
-        totalStrength: 1,
-        attack: 10,
-        maxHealth: 100,
-        healthRegen: 0,
-      },
+      baseStrength: 1,
       baseAgility: 2,
-      agility: {
-        totalAgility: 2,
-        defense: 10,
-        speed: 0,
-        hitChance: 2,
-      },
-      baseArcana: 3,
-      arcana: {
-        totalArcana: 3,
-        spellPower: 0,
-        maxMana: 50,
-      },
+      baseArcana: 0,
     },
     weaknesses: [],
     resistances: [],
@@ -103,38 +60,18 @@ const heroes = [
     identifier: "HERO",
     image: "",
     level: 1,
-    currentHealth: 50,
-    damageDisplay: "",
-    currentMana: 50,
-    currentExp: 0,
-    expToNextLevel: 100,
+    currentHealth: 0,
     stats: {
-      baseStrength: 1,
-      strength: {
-        totalStrength: 1,
-        attack: 10,
-        maxHealth: 100,
-      },
-      baseAgility: 2,
-      agility: {
-        totalAgility: 2,
-        defense: 10,
-        speed: 0,
-        hitChance: 2,
-      },
-      baseArcana: 3,
-      arcana: {
-        totalArcana: 3,
-        spellPower: 0,
-        maxMana: 50,
-      },
+      baseStrength: 0,
+      baseAgility: 1,
+      baseArcana: 2,
     },
     behavior: "ASTUTE",
-    abilityA: {
-      cooldown: 3,
-      focus: "", 
-      function: "",
-    },
+    // abilityA: {
+    //   cooldown: 3,
+    //   focus: "",
+    //   function: "",
+    // },
     weaknesses: [],
     resistances: [],
     immunities: [],
@@ -144,19 +81,5 @@ const heroes = [
 // WARLOCK
 // EVOKER
 // RISEN
-
-export function changeHeroAccess(name, change) {
-  for (let i = 0; i < heroes.length; i++) {
-    if (heroes[i].name === name) {
-      if (change === "UNLOCK") {
-        heroes[i].unlocked = true;
-      } else if (change === "LOCK") {
-        heroes[i].unlocked = false;
-      }
-    }
-  }
-}
-
-// Create a function update hero information (level, exp, stats, etc...)
 
 export default heroes;

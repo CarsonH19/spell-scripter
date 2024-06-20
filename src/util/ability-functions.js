@@ -1,17 +1,25 @@
+import store from "../store/index";
+
 import { changeHealth } from "../store/health-actions";
-import heroes from "../data/heroes";
 import { combatActions } from "../store/combat-slice";
 import { findTargetGroup } from "./behaviors";
 
 const abilityFunctions = {
   HOLY_SMITE: (dispatch, target) => {
     // Double damage & no roll to hit
-    let damage = heroes[0].stats.strength.attack * 2;
+    const siggurd = findCharacterInOrder("Siggurd");
+
+    let damage = siggurd.stats.strength.attack * 2;
     changeHealth(dispatch, target, "DAMAGE", damage);
   },
 };
 
 export default abilityFunctions;
+
+function findCharacterInOrder(id) {
+  const order = store.getState().combat.order;
+  return order.find((character) => character.id === id);
+}
 
 export function useAbility(dispatch, character) {
   const targetGroup = findTargetGroup(character);

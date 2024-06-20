@@ -18,7 +18,6 @@ export default function ConfirmationModal() {
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon.name);
   const spellList = useSelector((state) => state.player.spellList);
-  console.log(spellList);
   const partyMembers = useSelector((state) => state.hero.party);
   const attunedItems = useSelector(
     (state) => state.player.inventory.attunedItems
@@ -37,16 +36,13 @@ export default function ConfirmationModal() {
     dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // false
     dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // true
 
-    // the following are only used for testing
+    // Add the characters array to the combat-slice order
     dispatch(combatActions.setInitiative({ characters }));
 
-    // TESTING CODE update all stats
-    for (let i = 0; i < heroes.length; i++) {
-      updateStatTotals(dispatch, heroes[i].id);
+    // Update all characters stats
+    for (let i = 0; i < characters.length; i++) {
+      updateStatTotals(dispatch, characters[i].id);
     }
-
-    // Update player stats
-    updateStatTotals(dispatch, player.id);
 
     // Ensure all characters are at max health // NOTE: Is this needed?
     characters.forEach((character) => {
@@ -68,7 +64,6 @@ export default function ConfirmationModal() {
 
   const handleClickChange = (modal) => {
     dispatch(uiActions.toggleModal({ modal, open: "OPEN" }));
-    console.log(ui);
   };
 
   return (

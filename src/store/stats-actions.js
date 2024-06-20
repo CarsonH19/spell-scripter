@@ -22,8 +22,6 @@ export default function updateStatTotals(dispatch, id) {
     sliceActions = combatActions;
   }
 
-  // console.log("STAT ACTIONS", character)
-
   let totalStrength = character.stats.baseStrength;
   let maxHealth = 0;
   let healthRegen = 0;

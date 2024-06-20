@@ -87,7 +87,6 @@ export default async function combatLoop(dispatch) {
       // checkForPassiveAbility(dispatch, character, "DURING_COMBAT");
 
       if (order[i].identifier === "PLAYER") {
-        console.log(`${order[i].name}'s turn!`);
         let action = false;
 
         while (!action) {
@@ -173,19 +172,17 @@ export default async function combatLoop(dispatch) {
       }
 
       if (order[i].identifier === "HERO" || order[i].identifier === "ENEMY") {
-        character.currentHealth > 0 && console.log(`${order[i].name}'s turn!`);
+        character.currentHealth > 0 && console.log("TURN", order[i]);
 
         await delay(2000);
 
         // check behavior to determine action
         const action = checkBehaviorAction(character);
-        console.log(action);
 
         switch (action) {
           case "ATTACK":
             {
               const target = checkBehaviorAttackTarget(character);
-              console.log(target);
 
               dispatch(
                 logActions.updateLogs({
