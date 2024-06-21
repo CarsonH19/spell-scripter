@@ -11,7 +11,7 @@ const playerSlice = createSlice({
     image: "",
     damageDisplay: "",
     level: 9,
-    masteryPoints: 1,
+    masteryPoints: 18,
     totalMasteryPoints: 1,
     attributePoints: 3,
     currentHealth: 75,

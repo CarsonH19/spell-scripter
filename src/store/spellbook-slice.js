@@ -3,6 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const spellbookSlice = createSlice({
   name: "spellbook",
   initialState: {
+    // =======================================
+    //                EVOCATION
+    // =======================================
     evocation: {
       novice: [
         {
@@ -28,13 +31,6 @@ const spellbookSlice = createSlice({
         },
       ],
       apprentice: [
-        // {
-        //   name: "",
-        //   type: "",
-        //   description: "",
-        //   points: 0,
-        //   max: 1,
-        // },
         {
           name: "Smoldering Heart",
           type: "Buff",
@@ -149,11 +145,123 @@ const spellbookSlice = createSlice({
         // },
       ],
     },
+    // =======================================
+    //                ABJURATION
+    // =======================================
     abjuration: {
-      novice: [],
-      apprentice: [],
-      adept: [],
-      expert: [],
+      novice: [
+        {
+          name: "Bark Skin",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+        {
+          name: "Barrier",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+        {
+          name: "Boundless",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+      ],
+      apprentice: [
+        {
+          name: "Death Ward",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+        {
+          name: "Dispel Magic",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+        {
+          name: "Arcane Shield",
+          type: "Ability",
+          description: [
+            "Gain an Arcane Shield that shields absorbs damage. The shield gains temporary HP after each Alteration spell is cast up to a max of 18HP.",
+            "Your Arcane Shield becomes more powerful and can gain a max of 27HP",
+            "Your Arcane Shield becomes more powerful and can gain a max of 36HP",
+          ],
+          points: 0,
+          max: 3,
+        },
+        {
+          name: "Ward From Evil",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+        {
+          name: "Stone Skin",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+      ],
+      adept: [
+        {
+          name: "Shell",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+        {
+          name: "Improved Arcane Shield",
+          type: "Ability",
+          description: [
+            "You enter each room with an Arcane Shield of 3HP",
+            "You enter each room with an Arcane Shield of 6HP",
+            "You enter each room with an Arcane Shield of 9HP",
+            "You enter each room with an Arcane Shield of 12HP",
+            "You enter each room with an Arcane Shield of 15HP",
+          ],
+          points: 0,
+          max: 5,
+        },
+        {
+          name: "Abjurer",
+          type: "Buff",
+          description: [
+            "The mana cost of all Abjeration spells is reduced by 2MP",
+            "The mana cost of all Abjeration spells is reduced by 4MP",
+            "The mana cost of all Abjeration spells is reduced by 6MP",
+          ],
+          points: 0,
+          max: 3,
+        },
+        {
+          name: "Steel Skin",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+      ],
+      expert: [
+        {
+          name: "Invulnerability",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+      ],
     },
     conjuration: {
       novice: [],

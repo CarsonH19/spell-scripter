@@ -18,7 +18,7 @@ const tomeSlice = createSlice({
       ],
     },
     {
-      name: "JavaScript in HTML",
+      name: "JavaScript Basics",
       unlocked: false,
       complete: false,
       mastered: false,

@@ -108,7 +108,7 @@ export default function SpellbookModal() {
               pointsExpended < 17 ? classes.closed : ""
             }`}
           >
-            <h3>Expert</h3>
+            {pointsExpended >= 17 && <h3>Expert</h3>}
             {pointsExpended >= 17 && <h4>{pointsExpended} / 18</h4>}
             <ul>
               {spellbook[school].expert.map((skill) => {
@@ -132,7 +132,7 @@ export default function SpellbookModal() {
               pointsExpended < 9 || pointsExpended >= 17 ? classes.closed : ""
             }`}
           >
-            <h3>Adept</h3>
+            {pointsExpended >= 9 && pointsExpended < 17 && <h3>Adept</h3>}
             {pointsExpended >= 9 && pointsExpended < 17 && (
               <h4>{pointsExpended} / 17</h4>
             )}
@@ -158,7 +158,7 @@ export default function SpellbookModal() {
               pointsExpended < 3 || pointsExpended >= 9 ? classes.closed : ""
             }`}
           >
-            <h3>Apprentice</h3>
+            {pointsExpended >= 3 && pointsExpended < 9 && <h3>Apprentice</h3>}
             {pointsExpended >= 3 && pointsExpended < 9 && (
               <h4>{pointsExpended} / 9</h4>
             )}
@@ -184,7 +184,7 @@ export default function SpellbookModal() {
               pointsExpended >= 3 ? classes.closed : ""
             }`}
           >
-            <h3>Novice</h3>
+            {pointsExpended < 3 && <h3>Novice</h3>}
             {pointsExpended < 3 && <h4>{pointsExpended} / 3</h4>}
             <ul>
               {spellbook[school].novice.map((skill) => {
