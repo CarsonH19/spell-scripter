@@ -13,7 +13,7 @@ export const TOMES = [
         text: [
           `In this course, we'll learn the basic concepts of JavaScript - one of the most popular programming languages that makes websites dynamic and interactive. With JavaScript, you can also create mobile apps and games, process data, and much more!`,
         ],
-        code: "// TESTING!!!",
+        code: `console.log("Hello")`,
       },
       {
         page: 2,

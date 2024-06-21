@@ -1,11 +1,12 @@
 .editor-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  width: 60%;
+  height: 60%;
   margin: 1rem;
   padding: 1rem;
-  background-color: var(--background);
+  border: 3px solid var(--secondary);
+  border-radius: 10px;
 }
 
 .editor-header {
@@ -13,7 +14,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 10%;
+  /* height: 10%; */
   width: 100%;
 }
 
@@ -26,7 +27,7 @@
 
 .editor-header div {
   display: flex;
-  gap: 1rem
+  gap: 1rem;
 }
 
 .editor-columns div p {
@@ -63,9 +64,15 @@
 
 .output {
   width: 50%;
-  height: 90%;
-  border: 1px solid #333;
-  /* padding: 0.5rem; */
+  height: 100%;
+  border: 1px solid var(--primary);
+  color: var(--text);
+  overflow: auto;
+  padding-left: 0.5rem;
+  /* margin-top: 1rem; */
 }
 
-
+.error {
+  border-color: red;
+  color: red;
+}
