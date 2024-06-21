@@ -8,6 +8,7 @@ import { uiActions } from "../../../store/ui-slice";
 import { tomeActions } from "../../../store/tome-slice";
 
 import TomeQuestion from "./TomeQuestion";
+import TomeText from "./TomeText";
 import CodeEditor from "../../CodeEditor/CodeEditor";
 
 export default function TomesModal({ tome }) {
@@ -50,10 +51,8 @@ export default function TomesModal({ tome }) {
       pageContent = (
         <div className={classes.content}>
           <h2>{tome.lesson[index].title}</h2>
-          {tome.lesson[index].text.map((text, index) => (
-            <p key={index}>{text}</p>
-          ))}
-          <CodeEditor code={tome.lesson[index].code}/>
+          <TomeText text={tome.lesson[index].text} />
+          <CodeEditor code={tome.lesson[index].code} />
         </div>
       );
       break;
@@ -71,9 +70,7 @@ export default function TomesModal({ tome }) {
       pageContent = (
         <>
           <div className={classes.content}>
-            {tome.lesson[index].text.map((text, index) => (
-              <p key={index}>{text}</p>
-            ))}
+            <h2>Summary</h2>
             <ul>
               {tome.lesson[index].listItems.map((item, index) => (
                 <li key={index}>{item}</li>

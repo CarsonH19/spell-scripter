@@ -30,8 +30,7 @@ export const TOMES = [
         type: "INFO", // change type to "EDITOR"?
         title: "Output",
         text: [
-          "The console is part of the web browser and allows you to log messages, run JavaScript code, and see errors and warnings.",
-          `Let's kick things off by creating a program that displays "Hello World!" to the console using the <b>console.log()</b> function.`,
+          `The console is part of the web browser and allows you to log messages, run JavaScript code, and see errors and warnings. Let's kick things off by creating a program that displays "Hello World!" to the console using the console.log() function.`,
         ],
         codeEditor: true, // add code editor details here
       },
@@ -67,8 +66,7 @@ export const TOMES = [
         title: "Output",
         text: [
           "You can use the console.log() function as many times as you want. Each statement outputs text from a new line.",
-          `A computer program is a list of "instructions" to be "executed" by a computer.`,
-          `In a programming language, these programming instructions are called statements.`,
+          `A computer program is a list of "instructions" to be "executed" by a computer. In a programming language, these programming instructions are called statements.`,
         ],
         codeEditor: true,
       },
@@ -94,10 +92,8 @@ export const TOMES = [
       {
         page: 10,
         type: "SUMMARY",
-        title: "Summary",
-        text: [
-          `Amazing, you have taken the first step! Let's summarize what you've just learned:`,
-        ],
+        title: `Let's review what you've just learned:`,
+        // text: [`Let's summarize what you've just learned:`],
         listItems: [
           `The console is part of the web browser and allows you to log messages, run JavaScript code, and see errors and warnings.`,
           `console.log() is used to display a text to the console`,

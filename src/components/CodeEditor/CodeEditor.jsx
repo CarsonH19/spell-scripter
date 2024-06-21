@@ -6,9 +6,12 @@ import { useRef, useState } from "react";
 import Output from "./Output";
 
 import { executeCode } from "../../util/code-editor";
-import { useToast } from "@chakra-ui/react";
+import { Fade, useToast } from "@chakra-ui/react";
 
 import { Button } from "@chakra-ui/react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpRightAndDownLeftFromCenter } from "@fortawesome/free-solid-svg-icons";
 
 export default function CodeEditor({ code }) {
   const editorRef = useRef();
@@ -47,10 +50,14 @@ export default function CodeEditor({ code }) {
 
   return (
     <div className={classes["editor-container"]}>
+      <FontAwesomeIcon
+        icon={faUpRightAndDownLeftFromCenter}
+        className={classes.expand}
+      />
+      <h3>Code Editor</h3>
       <div className={classes["editor-header"]}>
         <p>JS</p>
         <div>
-          {/* <p>Output</p> */}
           <Button isLoading={isLoading} onClick={runCode}>
             Run Code
           </Button>
@@ -59,7 +66,8 @@ export default function CodeEditor({ code }) {
       <div className={classes["editor-columns"]}>
         <Editor
           height="100%"
-          width="50%"
+          width="60%"
+          cursor="pointer"
           theme="vs-dark"
           defaultLanguage="javascript"
           defaultValue={code}

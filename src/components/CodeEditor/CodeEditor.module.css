@@ -1,20 +1,45 @@
 .editor-container {
+  position: relative;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
   width: 60%;
-  height: 60%;
-  margin: 1rem;
+  min-width: 35rem;
+  height: 20rem;
   padding: 1rem;
   border: 3px solid var(--secondary);
+  background-color: var(--dark);
   border-radius: 10px;
 }
+
+.editor-container h3 {
+  position: absolute;
+  font-size: 1.5rem;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.editor-container .expand {
+  position: absolute;
+  z-index: 98;
+  bottom: 7%;
+  left: 4%;
+  height: 1.2rem;
+  color: var(--accent);
+}
+
+.editor-container .expand:hover {
+  scale: 1.2;
+  transition: 0.3s;
+}
+
 
 .editor-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* height: 10%; */
   width: 100%;
 }
 
@@ -57,16 +82,19 @@
   display: flex;
   width: 100%;
   height: 100%;
-  gap: 1rem;
+  border: 2px solid var(--primary);
 }
 
-
+.editor-columns:first-child {
+  cursor: pointer;
+}
 
 .output {
-  width: 50%;
-  height: 100%;
-  border: 1px solid var(--primary);
+  width: 40%;
+  /* height: ; */
+  border-left: 2px solid var(--primary);
   color: var(--text);
+  font-size: 0.9rem;
   overflow: auto;
   padding-left: 0.5rem;
   /* margin-top: 1rem; */
