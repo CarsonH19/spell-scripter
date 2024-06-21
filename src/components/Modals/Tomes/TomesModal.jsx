@@ -8,6 +8,7 @@ import { uiActions } from "../../../store/ui-slice";
 import { tomeActions } from "../../../store/tome-slice";
 
 import TomeQuestion from "./TomeQuestion";
+import CodeEditor from "../../CodeEditor/CodeEditor";
 
 export default function TomesModal({ tome }) {
   const [index, setIndex] = useState(0);
@@ -26,10 +27,10 @@ export default function TomesModal({ tome }) {
     }
   };
 
-  const handleSelectAnswer = (answer) => {
-    if (answer === tome.lesson[index].answer[0]) {
-    }
-  };
+  // const handleSelectAnswer = (answer) => {
+  //   if (answer === tome.lesson[index].answer[0]) {
+  //   }
+  // };
 
   const handleComplete = () => {
     // Finding the tome's index in the state slice array
@@ -52,6 +53,7 @@ export default function TomesModal({ tome }) {
           {tome.lesson[index].text.map((text, index) => (
             <p key={index}>{text}</p>
           ))}
+          <CodeEditor code={tome.lesson[index].code}/>
         </div>
       );
       break;
