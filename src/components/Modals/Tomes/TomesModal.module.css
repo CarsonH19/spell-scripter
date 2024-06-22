@@ -50,19 +50,25 @@
 .content ul {
   font-size: 1.5rem;
   margin-bottom: 15rem;
+  width: 30rem;
 }
 
 .content ul li {
   margin-bottom: 1rem;
 }
  
-.tomesModal button {
-  height: 5rem;
+/* .tomesModal button {
+  position: absolute;
+  bottom: 10%;
+  height: 4rem;
   width: 10rem;
   font-size: 1.5rem;
-  margin: 2rem;
+  margin: 1rem;
+  border-radius: 10px;
+  color: var(--dark);
+  background-color: var(--accent);
   cursor: pointer;
-}
+} */
 
 .tomesModal button:hover {
   scale: 1.1;

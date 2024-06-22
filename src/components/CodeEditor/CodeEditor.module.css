@@ -10,9 +10,28 @@
   border: 3px solid var(--secondary);
   background-color: var(--dark);
   border-radius: 10px;
+  z-index: 99;
 }
 
-.editor-container h3 {
+.expanded-editor {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 95%;
+  height: 90%;
+  padding: 1rem;
+  border: 3px solid var(--secondary);
+  background-color: var(--dark);
+  border-radius: 10px;
+  z-index: 99;
+}
+
+.editor-container h3,
+.expanded-editor h3 {
   position: absolute;
   font-size: 1.5rem;
   top: 5%;
@@ -20,11 +39,20 @@
   transform: translateX(-50%);
 }
 
-.editor-container .expand {
+.expanded-editor h3 {
+  position: absolute;
+  font-size: 1.5rem;
+  top: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.editor-container .expand,
+.expanded-editor .expand  {
   position: absolute;
   z-index: 98;
-  bottom: 7%;
-  left: 4%;
+  bottom: 1.5rem;
+  left: 1.5rem;
   height: 1.2rem;
   color: var(--accent);
 }
@@ -42,8 +70,7 @@
   align-items: center;
   width: 100%;
 }
-
-.editor-container .editor-header p {
+ .editor-header p {
   font-size: 1rem;
   font-weight: 600;
   color: var(--accent);
@@ -73,16 +100,17 @@
 }
 
 .editor-header div button:hover {
-  color: var(--text);
-  border-color: var(--text);
+  color: var(--dark);
+  background-color: var(--accent);
   scale: 1;
 }
 
-.editor-container .editor-columns {
+ .editor-columns {
   display: flex;
   width: 100%;
   height: 100%;
   border: 2px solid var(--primary);
+  overflow: hidden;
 }
 
 .editor-columns:first-child {
@@ -90,8 +118,7 @@
 }
 
 .output {
-  width: 40%;
-  /* height: ; */
+  width: 50%;
   border-left: 2px solid var(--primary);
   color: var(--text);
   font-size: 0.9rem;
@@ -103,4 +130,8 @@
 .error {
   border-color: red;
   color: red;
+}
+
+.error p {
+  color: red
 }

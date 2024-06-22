@@ -33,16 +33,16 @@ export default function TomesModal({ tome }) {
   //   }
   // };
 
-  const handleComplete = () => {
-    // Finding the tome's index in the state slice array
-    for (let i = 0; i < tomes.length; i++) {
-      if (tomes[i].name === tome.name) {
-        dispatch(tomeActions.complete(i));
-      }
-    }
+  // const handleComplete = () => {
+  //   // Finding the tome's index in the state slice array
+  //   for (let i = 0; i < tomes.length; i++) {
+  //     if (tomes[i].name === tome.name) {
+  //       dispatch(tomeActions.complete(i));
+  //     }
+  //   }
 
-    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
-  };
+  //   dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
+  // };
 
   let pageContent;
 
@@ -78,7 +78,7 @@ export default function TomesModal({ tome }) {
               ))}
             </ul>
           </div>
-          <button onClick={handleComplete}>Complete</button>
+          {/* <button onClick={handleComplete}>Complete</button> */}
         </>
       );
       break;

@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import Output from "./Output";
 
 import { executeCode } from "../../util/code-editor";
-import { Fade, useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 import { Button } from "@chakra-ui/react";
 
@@ -19,6 +19,7 @@ export default function CodeEditor({ code }) {
   const [output, setOutput] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const toast = useToast();
 
@@ -33,10 +34,9 @@ export default function CodeEditor({ code }) {
     try {
       setIsLoading(true);
       const { run: result } = await executeCode(sourceCode);
-      setOutput(result.output);
+      setOutput(result.output.split("\n"));
       result.stderr ? setIsError(true) : setIsError(false);
     } catch (error) {
-      console.log(error);
       toast({
         title: "An error occurred.",
         description: error.message || "Unable to run code",
@@ -48,11 +48,20 @@ export default function CodeEditor({ code }) {
     }
   };
 
+  const handleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <div className={classes["editor-container"]}>
+    <div
+      className={
+        isExpanded ? classes["expanded-editor"] : classes["editor-container"]
+      }
+    >
       <FontAwesomeIcon
         icon={faUpRightAndDownLeftFromCenter}
         className={classes.expand}
+        onClick={handleExpand}
       />
       <h3>Code Editor</h3>
       <div className={classes["editor-header"]}>
@@ -66,7 +75,7 @@ export default function CodeEditor({ code }) {
       <div className={classes["editor-columns"]}>
         <Editor
           height="100%"
-          width="60%"
+          width="50%"
           cursor="pointer"
           theme="vs-dark"
           defaultLanguage="javascript"
