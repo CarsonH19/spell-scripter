@@ -12,9 +12,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 // import theme from "./util/code-editor.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <ChakraProvider>
+  <ChakraProvider>
     <Provider store={store}>
       <App />
     </Provider>
-  // </ChakraProvider>
+  </ChakraProvider>
 );
