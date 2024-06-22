@@ -60,6 +60,7 @@ export default function TomesModal({ tome }) {
     case "QUESTION":
       pageContent = (
         <div className={classes.content}>
+          <h2>Question</h2>
           <h3>{tome.lesson[index].question}</h3>
           <TomeQuestion answers={tome.lesson[index].answers} />
         </div>

@@ -29,7 +29,6 @@ function getRandomQuestionIndices() {
   let loop;
 
   while (!loop) {
-    console.log("LOOP CALLED");
     tomeIndices = [];
     questionIndices = [];
     isReviewQuestion = Math.random() < 0.2;
@@ -93,9 +92,6 @@ function getRandomQuestionIndices() {
     // Exit the while loop
     loop = true;
   }
-
-  console.log(tomeIndex);
-  console.log(questionIndex);
 
   // Return tomeIndex & questionIndex
   return {
