@@ -2,7 +2,7 @@ import store from "../store/index";
 
 import { changeHealth } from "../store/health-actions";
 import { combatActions } from "../store/combat-slice";
-import { findTargetGroup } from "./behaviors";
+import changeStatusEffect from "../store/status-effect-actions";
 
 const abilityFunctions = {
   HOLY_SMITE: (dispatch, target) => {
@@ -12,9 +12,31 @@ const abilityFunctions = {
     let damage = siggurd.stats.strength.attack * 2;
     changeHealth(dispatch, target, "DAMAGE", damage);
   },
+  DIVINE_GUARDIAN: (dispatch, target) => {
+    // Siggurd takes all damage from the hero with lowest health for 3 rounds
+
+    const DIVINE_GUARDIAN = {
+      name: "Divine Guardian",
+      display: true,
+      image: "",
+      description: "All damage taken will be redirected to Siggurd instead.",
+      effect: ["Damage -100%"],
+      durationType: "ROUND",
+      duration: 3,
+      reset: 3,
+      stats: {},
+    };
+
+    console.log("GUARDIAN", target);
+    changeStatusEffect(dispatch, target, "ADD", DIVINE_GUARDIAN);
+  },
 };
 
 export default abilityFunctions;
+
+// ===========================================
+//             HELPER FUNCTIONS
+// ===========================================
 
 function findCharacterInOrder(id) {
   const order = store.getState().combat.order;
@@ -22,9 +44,6 @@ function findCharacterInOrder(id) {
 }
 
 export function useAbility(dispatch, character) {
-  const targetGroup = findTargetGroup(character);
-  let target = targetGroup[0];
-
   // check character abilityA & abilityB objects
   const { abilityA } = checkAbilityCooldowns(character);
 
@@ -32,24 +51,65 @@ export function useAbility(dispatch, character) {
   let ability = abilityA ? "abilityA" : "abilityB";
   const abilityFunction = abilityFunctions[character[ability].function];
 
+  // NOTE: If multiple characters use this focus can I add an if-statement to check for the correct name?
   switch (character[ability].focus) {
     // case "SELF":
+    // break;
+
     // case "RANDOM_HERO":
+    // break;
+
     // case "RANDOM_ENEMY":
+    // break;
+
     // case "HEROES":
+    // break;
+
     // case "ENEMIES":
+    // break;
+
     // case "HIGHEST_STRENGTH":
+    // break;
+
     // case "HIGHEST_AGILITY":
+    // break;
+
     // case "HIGHEST_ARCANA":
+    // break;
+
     // case "HIGHEST_HEALTH":
-    // case "LOWEST_HEALTH":
+    // break;
+
+    case "LOWEST_HEALTH":
+      {
+        // Siggurd B - Divine Guardian
+        const targetGroup = findTargetGroup("HEROES");
+        console.log("SIGGURD", targetGroup);
+        const player = targetGroup.find((player) => player.id === "Player");
+        let lowestHealthHero = player;
+        for (let i = 0; i < targetGroup.length; i++) {
+          if (
+            lowestHealthHero.currentHealth > targetGroup[i].currentHealth &&
+            targetGroup[i].name !== "Siggurd"
+          ) {
+            lowestHealthHero = targetGroup[i];
+          }
+        }
+        abilityFunction(dispatch, lowestHealthHero);
+      }
+      break;
+
     // case "HIGHEST_DEFENSE":
+    // break;
+
     // case "HIGHEST_ATTACK":
+    // break;
 
     // DAMAGING ABILITIES
-    case "HIGHEST_HEALTH":
-      // Siggurd
-      // NOTE: If multiple characters use this focus can I add an if-statement to check for the correct name?
+    case "HIGHEST_HEALTH": {
+      // Siggurd A - Holy Smite
+      const targetGroup = findTargetGroup("ENEMIES");
+      let target = targetGroup[0];
       for (let i = 0; i < targetGroup.length; i++) {
         if (targetGroup[i].currentHealth > target.currentHealth) {
           target = targetGroup[i];
@@ -58,6 +118,7 @@ export function useAbility(dispatch, character) {
       abilityFunction(dispatch, target);
 
       break;
+    }
   }
 
   dispatch(
@@ -112,4 +173,27 @@ export function decrementAbilityCooldowns(dispatch, character) {
       );
     }
   }
+}
+
+// Returns an array of the desired group from the current combat order
+export function findTargetGroup(group) {
+  const order = store.getState().combat.order;
+  let targetGroup = [];
+
+  // Determine targetGroup
+  if (group === "ENEMIES") {
+    for (let i = 0; i < order.length; i++) {
+      if (order[i].identifier === "ENEMY") {
+        targetGroup.push(order[i]);
+      }
+    }
+  } else if (group === "HEROES") {
+    for (let i = 0; i < order.length; i++) {
+      if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER") {
+        targetGroup.push(order[i]);
+      }
+    }
+  }
+
+  return targetGroup;
 }

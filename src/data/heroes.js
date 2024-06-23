@@ -25,6 +25,12 @@ let heroes = [
       focus: "HIGHEST_HEALTH",
       function: "HOLY_SMITE",
     },
+    abilityB: {
+      cooldown: 0,
+      reset: 9,
+      focus: "LOWEST_HEALTH",
+      function: "DIVINE_GUARDIAN",
+    },
     weaknesses: [],
     resistances: [],
     immunities: [],

@@ -1,9 +1,9 @@
 import { changeHealth } from "../store/health-actions";
 
-const conditionFunctions = {
+const statusEffectFunctions = {
   BURNING: (dispatch, target) => {
     changeHealth(dispatch, target, "DAMAGE", 5);
   },
 };
 
-export default conditionFunctions;
+export default statusEffectFunctions;

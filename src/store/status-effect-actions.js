@@ -5,7 +5,7 @@ import store from "../store";
 import CONDITIONS from "../data/conditions";
 import updateStatTotals from "../store/stats-actions";
 import { playerActions } from "../store/player-slice";
-import conditionFunctions from "../util/condition-functions";
+import statusEffectFunctions from "../util/status-effect-functions";
 
 export default function changeStatusEffect(
   dispatch,
@@ -37,7 +37,10 @@ export default function changeStatusEffect(
   }
 
   // Check if status effect already exists
-  if (!checkCurrentStatusEffects(target, statusEffect) && change === "ADD") {
+  if (
+    !checkCurrentStatusEffects(target, statusEffect.name) &&
+    change === "ADD"
+  ) {
     if (dashboard && target.identifier === "PLAYER") {
       // If the player is on the dashboard the player-slice object is updated
       dispatch(
@@ -57,7 +60,7 @@ export default function changeStatusEffect(
       );
     }
   } else if (
-    checkCurrentStatusEffects(target, statusEffect) &&
+    checkCurrentStatusEffects(target, statusEffect.name) &&
     change === "ADD"
   ) {
     // If condition already exists and has a reset property, reset its duration
@@ -88,29 +91,27 @@ export default function changeStatusEffect(
 
   updateStatTotals(dispatch, target.id);
   return false;
-
-  // Checks to see if the target already has the status effect
-  function checkCurrentStatusEffects(target, statusEffect) {
-    if (target.statusEffects.length > 0) {
-      const statusIndex = target.statusEffects.findIndex(
-        (effect) => effect.name === statusEffect.name
-      );
-      if (statusIndex !== -1) {
-        return true;
-      }
-    }
-
-    return false;
-  }
 }
 
-// Called within combatLoop
+// Checks to see if the target already has the status effect
+export function checkCurrentStatusEffects(target, effectName) {
+  if (target.statusEffects.length > 0) {
+    const statusIndex = target.statusEffects.findIndex(
+      (effect) => effect.name === effectName
+    );
+    if (statusIndex !== -1) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+// Called within combatLoop to handle status effect changes
 export function checkStatusEffect(dispatch, id, check) {
   const order = store.getState().combat.order;
   const index = order.findIndex((char) => char.id === id);
   const statusEffects = order[index].statusEffects;
-
-  console.log("checkStatusEffect", check);
 
   switch (check) {
     case "REMOVE": // Check for removal
@@ -166,9 +167,9 @@ export function checkStatusEffect(dispatch, id, check) {
       for (let i = 0; i < statusEffects.length; i++) {
         if (statusEffects[i].function) {
           const snakeCaseItem = toSnakeCase(statusEffects[i].name);
-          const conditionFunction = conditionFunctions[snakeCaseItem];
-          if (conditionFunction) {
-            conditionFunction(dispatch, order[index]);
+          const statusEffectFunction = statusEffectFunctions[snakeCaseItem];
+          if (statusEffectFunction) {
+            statusEffectFunctions(dispatch, order[index]);
           }
         }
       }

@@ -3,6 +3,7 @@ import { combatActions } from "./combat-slice";
 import { uiActions } from "./ui-slice";
 
 import loot from "../util/loot";
+import { checkCurrentStatusEffects } from "./status-effect-actions";
 
 export function changeHealth(
   dispatch,
@@ -11,7 +12,12 @@ export function changeHealth(
   value = 0,
   damageType = null
 ) {
-  const id = target.id;
+  let id = target.id;
+
+  // ABILITY - Siggurd B
+  if (checkCurrentStatusEffects(target, "Divine Guardian")) {
+    id = "Siggurd" ;
+  }
 
   if (change === "DAMAGE") {
     for (let i = 0; i < target.weaknesses.length; i++) {
