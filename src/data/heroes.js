@@ -27,7 +27,7 @@ let siggurd = {
   abilityB: {
     cooldown: 0,
     reset: 9,
-    focus: "LOWEST_HEALTH",
+    focus: "HEROES",
     function: "DIVINE_GUARDIAN",
   },
   weaknesses: [],
@@ -56,12 +56,12 @@ let riven = {
     type: "OUTSIDE_COMBAT",
     function: "LOOT_SENSE",
   },
-  // abilityA: {
-  //   cooldown: 0,
-  //   reset: 3,
-  //   focus: "HIGHEST_HEALTH",
-  //   function: "HOLY_SMITE",
-  // },
+  abilityA: {
+    cooldown: 0,
+    reset: 3,
+    focus: "LOWEST_HEALTH",
+    function: "VENOM_STRIKE",
+  },
   // abilityB: {
   //   cooldown: 0,
   //   reset: 9,

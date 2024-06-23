@@ -3,13 +3,16 @@ import store from "../store/index";
 import { changeHealth } from "../store/health-actions";
 import { combatActions } from "../store/combat-slice";
 import changeStatusEffect from "../store/status-effect-actions";
+import CONDITIONS from "../data/conditions";
 
 const abilityFunctions = {
   HOLY_SMITE: (dispatch, target) => {
     // Double damage & no roll to hit
     const siggurd = findCharacterInOrder("Siggurd");
 
-    let damage = siggurd.stats.strength.attack * 2;
+    let damage = siggurd.stats.strength.attack;
+    damage += siggurd.stats.arcana.spellPower * 2;
+
     changeHealth(dispatch, target, "DAMAGE", damage);
   },
   DIVINE_GUARDIAN: (dispatch, target) => {
@@ -27,8 +30,17 @@ const abilityFunctions = {
       stats: {},
     };
 
-    console.log("GUARDIAN", target);
     changeStatusEffect(dispatch, target, "ADD", DIVINE_GUARDIAN);
+  },
+  VENOM_STRIKE: (dispatch, target) => {
+
+    console.log("POISONED")
+    // Double damage & no roll to hit
+    const riven = findCharacterInOrder("Riven");
+
+    const damage = riven.stats.strength.attack;
+    changeHealth(dispatch, target, "DAMAGE", damage);
+    changeStatusEffect(dispatch, target, "ADD", CONDITIONS.POISONED);
   },
 };
 
@@ -62,8 +74,26 @@ export function useAbility(dispatch, character) {
     // case "RANDOM_ENEMY":
     // break;
 
-    // case "HEROES":
-    // break;
+    case "HEROES":
+      {
+        // Siggurd B - Divine Guardian
+        if (character.name === "Siggurd") {
+          const targetGroup = findTargetGroup("HEROES");
+          const player = targetGroup.find((player) => player.id === "Player");
+          let lowestHealthHero = player;
+          for (let i = 0; i < targetGroup.length; i++) {
+            if (
+              lowestHealthHero.currentHealth > targetGroup[i].currentHealth &&
+              targetGroup[i].name !== "Siggurd"
+            ) {
+              lowestHealthHero = targetGroup[i];
+            }
+          }
+        }
+
+        abilityFunction(dispatch, lowestHealthHero);
+      }
+      break;
 
     // case "ENEMIES":
     // break;
@@ -82,20 +112,16 @@ export function useAbility(dispatch, character) {
 
     case "LOWEST_HEALTH":
       {
-        // Siggurd B - Divine Guardian
-        const targetGroup = findTargetGroup("HEROES");
-        console.log("SIGGURD", targetGroup);
-        const player = targetGroup.find((player) => player.id === "Player");
-        let lowestHealthHero = player;
+        // Riven A - Venom Strike
+        const targetGroup = findTargetGroup("ENEMIES");
+        let target = targetGroup[0];
         for (let i = 0; i < targetGroup.length; i++) {
-          if (
-            lowestHealthHero.currentHealth > targetGroup[i].currentHealth &&
-            targetGroup[i].name !== "Siggurd"
-          ) {
-            lowestHealthHero = targetGroup[i];
+          if (target.currentHealth > targetGroup[i].currentHealth) {
+            target = targetGroup[i];
           }
         }
-        abilityFunction(dispatch, lowestHealthHero);
+
+        abilityFunction(dispatch, target);
       }
       break;
 
@@ -106,19 +132,21 @@ export function useAbility(dispatch, character) {
     // break;
 
     // DAMAGING ABILITIES
-    case "HIGHEST_HEALTH": {
-      // Siggurd A - Holy Smite
-      const targetGroup = findTargetGroup("ENEMIES");
-      let target = targetGroup[0];
-      for (let i = 0; i < targetGroup.length; i++) {
-        if (targetGroup[i].currentHealth > target.currentHealth) {
-          target = targetGroup[i];
+    case "HIGHEST_HEALTH":
+      {
+        // Siggurd A - Holy Smite
+        if (character.name === "Siggurd") {
+          const targetGroup = findTargetGroup("ENEMIES");
+          let target = targetGroup[0];
+          for (let i = 0; i < targetGroup.length; i++) {
+            if (targetGroup[i].currentHealth > target.currentHealth) {
+              target = targetGroup[i];
+            }
+          }
+          abilityFunction(dispatch, target);
         }
       }
-      abilityFunction(dispatch, target);
-
       break;
-    }
   }
 
   dispatch(

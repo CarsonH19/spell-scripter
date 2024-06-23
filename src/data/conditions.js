@@ -14,7 +14,9 @@ const CONDITIONS = {
     name: "Poisoned",
     display: true,
     image: "",
-    description: "You take damage on the start of each of your turns",
+    description: "Weakened from poison.",
+    effect: ["Strength -1", "Agility -1"],
+    durationType: "ROUND",
     duration: 3,
     reset: 3,
     stats: {
@@ -22,7 +24,7 @@ const CONDITIONS = {
         strengthChange: -1,
       },
       agility: {
-        agilityChange: -2,
+        agilityChange: -1,
       },
     },
   },
@@ -33,7 +35,7 @@ const CONDITIONS = {
     description: "Guarding from incoming attacks.",
     effect: ["Defense +50%"],
     durationType: "ROUND",
-    duration: 1, 
+    duration: 1,
     reset: 1,
     stats: {},
   },

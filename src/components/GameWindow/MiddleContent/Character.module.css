@@ -112,6 +112,10 @@
   cursor: pointer; 
 }
 
+.statusEffects span {
+  display: block;
+}
+
 .character:hover .container .statusEffects .effect {
   transition: 0.6s;
   opacity: 1;

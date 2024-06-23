@@ -102,7 +102,7 @@ export default function Character({ character }) {
         {character.statusEffects.map((effect) => {
           const isCharacterEnemy = character.identifier === "ENEMY";
           let duration;
-          if (effect.duration === "ROUND") {
+          if (effect.durationType === "ROUND") {
             duration = `Duration: ${effect.duration} ${
               effect.duration > 1 ? "rounds" : "round"
             }`;
