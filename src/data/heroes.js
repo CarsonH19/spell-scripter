@@ -62,12 +62,12 @@ let riven = {
     focus: "LOWEST_HEALTH",
     function: "VENOM_STRIKE",
   },
-  // abilityB: {
-  //   cooldown: 0,
-  //   reset: 9,
-  //   focus: "LOWEST_HEALTH",
-  //   function: "DIVINE_GUARDIAN",
-  // },
+  abilityB: {
+    cooldown: 0,
+    reset: 9,
+    focus: "ENEMIES",
+    function: "SMOKE_BOMB",
+  },
   weaknesses: [],
   resistances: [],
   immunities: [],

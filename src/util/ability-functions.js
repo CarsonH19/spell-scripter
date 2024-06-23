@@ -33,14 +33,36 @@ const abilityFunctions = {
     changeStatusEffect(dispatch, target, "ADD", DIVINE_GUARDIAN);
   },
   VENOM_STRIKE: (dispatch, target) => {
-
-    console.log("POISONED")
     // Double damage & no roll to hit
     const riven = findCharacterInOrder("Riven");
 
     const damage = riven.stats.strength.attack;
     changeHealth(dispatch, target, "DAMAGE", damage);
     changeStatusEffect(dispatch, target, "ADD", CONDITIONS.POISONED);
+  },
+  SMOKE_BOMB: (dispatch, targets) => {
+    const SMOKE_BOMB = {
+      name: "Smoke Bomb",
+      display: true,
+      image: "",
+      description: "Riven's smoke bomb obscures the enemies vision.",
+      effect: ["Hit Chance -2"],
+      durationType: "ROUND",
+      duration: 3,
+      reset: 3,
+      stats: {
+        agility: {
+          hitChance: -2,
+        },
+      },
+    };
+
+    console.log("BOOM")
+
+    for (let i = 0; i < targets.length; i++) {
+      console.log("SMOKE")
+      changeStatusEffect(dispatch, targets[i], "ADD", SMOKE_BOMB);
+    }
   },
 };
 
@@ -95,8 +117,14 @@ export function useAbility(dispatch, character) {
       }
       break;
 
-    // case "ENEMIES":
-    // break;
+    case "ENEMIES":
+      {
+        const targetGroup = findTargetGroup("ENEMIES");
+
+        // Riven B - Smoke Bomb
+        abilityFunction(dispatch, targetGroup);
+      }
+      break;
 
     // case "HIGHEST_STRENGTH":
     // break;
