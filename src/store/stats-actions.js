@@ -94,6 +94,18 @@ export default function updateStatTotals(dispatch, id) {
   manaRegen += calculateManaRegen(totalArcana);
   spellPower += calculateSpellPower(character, totalArcana);
 
+  if (healthRegen < 0) {
+    healthRegen = 0;
+  }
+
+  if (manaRegen < 0) {
+    manaRegen = 0;
+  }
+
+  if (spellPower < 0) {
+    spellPower = 0;
+  }
+
   dispatch(
     sliceActions.updateStats({
       id: character.id,
@@ -149,11 +161,13 @@ export default function updateStatTotals(dispatch, id) {
   }
 
   function calculateHealthRegen(totalStrength) {
-    // let baseHealthRegen = character.level * 2;
-    let strengthHealthRegenBonus = totalStrength * 2;
-    // let totalHealthRegen = baseHealthRegen + strengthHealthRegenBonus;
+    let healthRegen = totalStrength * 2;
 
-    return strengthHealthRegenBonus;
+    if (healthRegen < 0) {
+      healthRegen = 0;
+    }
+
+    return healthRegen;
   }
 
   function calculateAttackBonus(character, totalStrength) {
@@ -226,11 +240,13 @@ export default function updateStatTotals(dispatch, id) {
   }
 
   function calculateManaRegen(totalArcana) {
-    // let baseManaRegen = character.level * 2;
-    let arcanaManaRegenBonus = totalArcana * 2;
-    // let totalManaRegen = baseManaRegen + arcanaManaRegenBonus;
+    let manaRegen = totalArcana * 2;
 
-    return arcanaManaRegenBonus;
+    if (manaRegen < 0) {
+      manaRegen = 0;
+    }
+
+    return manaRegen;
   }
 
   function calculateSpellPower(character, totalArcana) {
