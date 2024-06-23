@@ -96,7 +96,9 @@ export default function Character({ character }) {
           Health Bar
         </progress>
       </div>
-      <div className={classes.statusEffects}>
+      <div className={`${classes.statusEffects} ${
+          character.identifier === "HERO" ? classes.heroStatusEffects : ""
+        }`}>
         {character.statusEffects.map((effect) => {
           const isCharacterEnemy = character.identifier === "ENEMY";
           let duration;

@@ -38,19 +38,26 @@
   width: 50%; 
   height: 100%; 
   overflow: visible;
-  opacity: 1;}
+  opacity: 1;
+}
 
 .character:has(.highlighted) .container {
   transition: 0.3s ease-in;
   width: 50%; 
   height: 100%; 
   overflow: visible;
-  opacity: 1;}
-
-.character:has(.turn) .container {
-  width: 50%;
+  opacity: 1;
 }
 
+.character:has(.turn) .container .statusEffects {
+  transition: 1s;
+  opacity: 1;
+}
+
+.character:has(.highlighted) .container .statusEffects {
+  transition: 1s;
+  opacity: 1;
+}
 
 
 .character .container {
@@ -80,17 +87,22 @@
   opacity: 1; 
 }
 
-.container .statusEffects {
+.character .container .statusEffects {
   display: flex;
   gap: 0.5rem;
   margin: 0;
   opacity: 0;
-  margin-top: -2rem;
+  margin-top: -1.8rem;
 } 
 
 .character:hover .container .statusEffects {
   transition: 1s;
   opacity: 1;
+}
+
+.character .container .heroStatusEffects {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .container .statusEffects .effect {
@@ -104,7 +116,6 @@
   transition: 0.6s;
   opacity: 1;
 }
-
 
 .character .container .name {
   font-size: 0.8rem;
