@@ -1,9 +1,13 @@
+import store from "../store/index";
+
 import EQUIPMENT from "../data/equipment";
 import CONSUMABLES from "../data/consumables";
 
 import { v4 as uuidv4 } from "uuid";
 
 import { dungeonActions } from "../store/dungeon-slice";
+import { checkForPassiveAbility } from "./passive-functions";
+import heroes from "../data/heroes";
 
 export default function loot(dispatch, enemy) {
   let lootTable;
@@ -35,18 +39,25 @@ export default function loot(dispatch, enemy) {
   // Determines the enemies loot
   const enemyloot = calculateLoot(lootTable);
 
-  console.log("ENEMY LOOT", enemyloot);
   // Add loot to dungeon-slice items array
   for (const item of enemyloot) {
     dispatch(dungeonActions.addItem(item));
-    console.log("Item Added to Dungeon Slice", item);
   }
 }
 
 function calculateLoot(lootTable) {
+  const order = store.getState().combat.order;
   const loot = [];
   const randomNumber = Math.random();
   let totalProbability = 0;
+
+  // PASSIVE - Riven
+  const isRivenFound = order.some((hero) => hero.name === "Riven");
+  if (isRivenFound) {
+    totalProbability += 0.5;
+  }
+
+  console.log(totalProbability);
 
   // Shuffle the loot table to ensure equal chances
   const shuffledLootTable = shuffle([...lootTable]);
@@ -60,6 +71,7 @@ function calculateLoot(lootTable) {
       break; // Exit loop when an item is found or nothing is dropped
     }
   }
+
   return loot;
 }
 

@@ -2,6 +2,7 @@ import store from "../store/index";
 import changeStatusEffect from "../store/status-effect-actions";
 
 const passiveFunctions = {
+  // Siggurd
   RADIANT_AURA: (dispatch) => {
     const order = store.getState().combat.order;
     const radiantAura = {
@@ -23,31 +24,40 @@ const passiveFunctions = {
       }
     }
   },
+  // Riven
+  LOOT_SENSE: () => {
+    // 5% increase of finding items
+    return;
+  },
 };
 
 export default passiveFunctions;
 
-export function checkForPassiveAbility(dispatch, character, type) {
+export function checkForPassiveAbility(dispatch, character, when) {
+  // Checks if character is in the combat order
+  const order = store.getState().combat.order;
+  let isCharacterInParty = order.find((char) => char.id === character.id);
+  if (!isCharacterInParty) return;
+
+  // Checks if character has a passive ability
   if (!("passive" in character)) return;
 
   const passiveFunction = passiveFunctions[character.passive.function];
 
-  switch (type) {
+  switch (when) {
     case "OUTSIDE_COMBAT":
       if (
-        "passive" in character &&
         "type" in character.passive &&
-        character.passive.type === "BEFORE_COMBAT"
+        character.passive.when === "OUTSIDE_COMBAT"
       ) {
-        passiveFunction(dispatch, character);
+        return passiveFunction();
       }
       break;
 
     case "BEFORE_COMBAT":
       if (
-        "passive" in character &&
-        "type" in character.passive &&
-        character.passive.type === "BEFORE_COMBAT"
+        "when" in character.passive &&
+        character.passive.when === "BEFORE_COMBAT"
       ) {
         passiveFunction(dispatch, character);
       }
@@ -55,9 +65,8 @@ export function checkForPassiveAbility(dispatch, character, type) {
 
     case "DURING_COMBAT":
       if (
-        "passive" in character &&
-        "type" in character.passive &&
-        character.passive.type === "DURING_COMBAT"
+        "when" in character.passive &&
+        character.passive.when === "DURING_COMBAT"
       ) {
         passiveFunction(dispatch, character);
       }
@@ -65,12 +74,14 @@ export function checkForPassiveAbility(dispatch, character, type) {
 
     case "AFTER_COMBAT":
       if (
-        "passive" in character &&
-        "type" in character.passive &&
-        character.passive.type === "AFTER_COMBAT"
+        "when" in character.passive &&
+        character.passive.when === "AFTER_COMBAT"
       ) {
         passiveFunction(dispatch, character);
       }
       break;
+
+    default:
+      return;
   }
 }

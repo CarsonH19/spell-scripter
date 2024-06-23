@@ -72,6 +72,7 @@ function checkForDeath(dispatch, id) {
 
   if (character.currentHealth <= 0 && character.identifier === "ENEMY") {
     // Check defeated enemy for loot & add them to dungeon-slice
+    console.log("LOOT IS CALLED");
     loot(dispatch, character);
   }
 
