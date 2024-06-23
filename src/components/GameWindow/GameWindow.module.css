@@ -6,3 +6,9 @@
   height: 100%;
   min-width: 930px;
 }
+
+.window button {
+  background-color: var(--accent);
+  color: var(--dark);
+  border-radius: 10px;
+}

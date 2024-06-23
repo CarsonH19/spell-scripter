@@ -40,18 +40,18 @@ p {
 }
 
 button {
-  background-color: transparent;
+  background-color: var(--accent);
   border: 2px solid var(--accent);
-  color: var(--accent);
+  color: var(--dark);
   border-radius: 10px;
 }
 
-button:hover {
+/* button:hover {
   transition: 0.3s;
   background-color: var(--accent);
   border: 2px solid var(--accent);
   color: var(--dark);
-}
+} */
 
 div {
   border-color: var(--accent);

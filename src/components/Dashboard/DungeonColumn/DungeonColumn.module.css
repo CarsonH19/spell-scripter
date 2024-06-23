@@ -46,4 +46,7 @@
   width: 16rem;
   height: 4rem;
   bottom: 2rem;
+  background-color: var(--accent);
+  color: var(--dark);
+  border-radius: 10px;
 }

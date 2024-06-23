@@ -111,5 +111,8 @@
 .confirmation .container button {
   width: 8rem;
   height: 3rem;
+  background-color: var(--accent);
+  color: var(--dark);
+  border-radius: 10px;
 }
 
