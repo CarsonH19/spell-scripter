@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // ALERT!
-// tomes.js & tome-slice must contain the same number of indices
+// tomes.js & tome-slice must contain the same number of indices and have their data in the same order
+// questions.js & tome-slice questions must also have matching id's
 
 const tomeSlice = createSlice({
   name: "tome",
@@ -9,7 +10,6 @@ const tomeSlice = createSlice({
     {
       name: "Introduction",
       unlocked: true,
-      complete: false,
       mastered: false,
       questions: [
         { id: "q1", answered: false },
@@ -18,9 +18,8 @@ const tomeSlice = createSlice({
       ],
     },
     {
-      name: "JavaScript Basics",
-      unlocked: false,
-      complete: false,
+      name: "Comments",
+      unlocked: true,
       mastered: false,
       questions: [
         { id: "q1", answered: false },
@@ -30,8 +29,67 @@ const tomeSlice = createSlice({
     },
     {
       name: "Simple Operations",
-      unlocked: false,
-      complete: false,
+      unlocked: true,
+      mastered: false,
+      questions: [
+        { id: "q1", answered: false },
+        { id: "q2", answered: false },
+        { id: "q3", answered: false },
+      ],
+    },
+    {
+      name: "Variables",
+      unlocked: true,
+      mastered: false,
+      questions: [
+        { id: "q1", answered: false },
+        { id: "q2", answered: false },
+        { id: "q3", answered: false },
+      ],
+    },
+    {
+      name: "Data Types",
+      unlocked: true,
+      mastered: false,
+      questions: [
+        { id: "q1", answered: false },
+        { id: "q2", answered: false },
+        { id: "q3", answered: false },
+      ],
+    },
+    {
+      name: "Assignment Operators",
+      unlocked: true,
+      mastered: false,
+      questions: [
+        { id: "q1", answered: false },
+        { id: "q2", answered: false },
+        { id: "q3", answered: false },
+      ],
+    },
+    {
+      name: "Strings",
+      unlocked: true,
+      mastered: false,
+      questions: [
+        { id: "q1", answered: false },
+        { id: "q2", answered: false },
+        { id: "q3", answered: false },
+      ],
+    },
+    {
+      name: "Template Literals",
+      unlocked: true,
+      mastered: false,
+      questions: [
+        { id: "q1", answered: false },
+        { id: "q2", answered: false },
+        { id: "q3", answered: false },
+      ],
+    },
+    {
+      name: "String Concatenation",
+      unlocked: true,
       mastered: false,
       questions: [
         { id: "q1", answered: false },

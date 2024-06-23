@@ -175,12 +175,12 @@ export default function Actions() {
           >
             Use Item
           </button>
-          <button
+          {/* <button
             disabled={isDisabled || !isCharacterTurn}
             onClick={() => handlePlayerChoice("FLEE")}
           >
             Flee
-          </button>
+          </button> */}
         </div>
       </div>
     );

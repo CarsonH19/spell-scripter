@@ -13,12 +13,11 @@ export const TOMES = [
         text: [
           `In this course, we'll learn the basic concepts of JavaScript - one of the most popular programming languages that makes websites dynamic and interactive. With JavaScript, you can also create mobile apps and games, process data, and much more!`,
         ],
-        code: `console.log("Hello")`,
+        code: `// Your journey starts here.`,
       },
       {
         page: 2,
         type: "QUESTION",
-        title: "",
         question: "What is JavaScript?",
         answers: [
           "One of the most popular programming languages in the world.",
@@ -27,17 +26,17 @@ export const TOMES = [
       },
       {
         page: 3,
-        type: "INFO", // change type to "EDITOR"?
+        type: "INFO",
         title: "Output",
         text: [
           `The console is part of the web browser and allows you to log messages, run JavaScript code, and see errors and warnings. Let's kick things off by creating a program that displays "Hello World!" to the console using the console.log() function.`,
+          "Try it out below!",
         ],
-        codeEditor: true, // add code editor details here
+        code: `console.log("Hello World!")\n\n\n\n\n\n\n\n/*Click the double arrows\nto enlarge the Code Editor!*/`,
       },
       {
         page: 4,
         type: "QUESTION",
-        title: "",
         question: "Which function is used to generate output to the console?",
         answers: ["console.log()", "output.console()", "print()", "write()"],
       },
@@ -45,13 +44,15 @@ export const TOMES = [
         page: 5,
         type: "INFO",
         title: "Text",
-        text: ["To use text in JavaScript, we need to enclose it in quotes:"],
-        codeEditor: true,
+        text: [
+          "To use text in JavaScript, we need to enclose it in quotes.",
+          `Tap the "Run Code" button in the Code Editor to see output! Try and change the text yourself!`,
+        ],
+        code: `console.log("Change me!")`,
       },
       {
         page: 6,
         type: "QUESTION",
-        title: "",
         question: `How do you output "Game Over" to the console?`,
         answers: [
           `console.log("Game Over");`,
@@ -68,19 +69,21 @@ export const TOMES = [
           "You can use the console.log() function as many times as you want. Each statement outputs text from a new line.",
           `A computer program is a list of "instructions" to be "executed" by a computer. In a programming language, these programming instructions are called statements.`,
         ],
-        codeEditor: true,
+        code: `console.log("I'm a statement!")\nconsole.log("So am I!")`,
       },
       {
         page: 8,
         type: "INFO",
         title: "Numbers",
-        text: [`When working with numbers, quotes are not needed.`],
-        codeEditor: true,
+        text: [
+          `When working with numbers, quotes are not needed.`,
+          "How old are you? Try to change the code below to output your age!",
+        ],
+        code: `console.log(19)`,
       },
       {
         page: 9,
         type: "QUESTION",
-        title: "",
         question: `How do you output the number 19 to the console?`,
         answers: [
           `console.log(19);`,
@@ -93,89 +96,87 @@ export const TOMES = [
         page: 10,
         type: "SUMMARY",
         title: `Let's review what you've just learned:`,
-        // text: [`Let's summarize what you've just learned:`],
         listItems: [
-          `The console is part of the web browser and allows you to log messages, run JavaScript code, and see errors and warnings.`,
+          `the console is part of the web browser and allows you to log messages, run JavaScript code, and see errors and warnings`,
           `console.log() is used to display a text to the console`,
         ],
       },
     ],
   },
   {
-    name: "JavaScript Basics",
+    name: "Comments",
     lesson: [
+      // {
+      //   page: 1,
+      //   type: "INFO",
+      //   title: "The <script> Tag",
+      //   text: [
+      //     `You can add JavaScript code in an HTML document using the <script> tag.`,
+      //   ],
+      // },
+      // {
+      //   page: 2,
+      //   type: "QUESTION",
+      //   question: "Which HTML tag is used for JavaScript code?",
+      //   answers: ["<script>", "<p>", "<img>", "<JavaScript>"],
+      // },
+      // {
+      //   page: 3,
+      //   type: "INFO",
+      //   title: "Alert Box",
+      //   text: [
+      //     `Another way to display messages is an alert box.`,
+      //     `You can generate them by using the alert() function`,
+      //     `Just like with the console.log(), here the text should be enclosed in quotes.`,
+      //   ],
+      //   code: `alert("I'm an alert box!")`,
+      // },
+      // {
+      //   page: 4,
+      //   type: "QUESTION",
+      //   question: `How would you generate an alert box with the text "Wizard"?`,
+      //   answers: [
+      //     `alert("Wizard");`,
+      //     `Alert("wizard");`,
+      //     `alert.box("Wizard");`,
+      //     `<alert>("Wizard");`,
+      //   ],
+      // },
       {
         page: 1,
         type: "INFO",
-        title: "The <script> Tag",
-        text: [
-          `You can add JavaScript code in an HTML document using the <script> tag.`,
-        ],
-      },
-      {
-        page: 2,
-        type: "QUESTION",
-        title: "",
-        question: "Which HTML tag is used for JavaScript code?",
-        answers: ["<script>", "<p>", "<img>", "<JavaScript>"],
-      },
-      {
-        page: 3,
-        type: "INFO",
-        title: "Alert Box",
-        text: [
-          `Another way to display messages is an alert box.`,
-          `You can generate them by using the <b>alert()</b> function`,
-          `Just like with the console.log(), here the text should be enclosed in quotes.`,
-        ],
-      },
-      {
-        page: 4,
-        type: "QUESTION",
-        title: "",
-        question: `How would you generate an alert box with the text "Wizard"?`,
-        answers: [
-          `alert("Wizard");`,
-          `Alert("wizard");`,
-          `alert.box("Wizard");`,
-          `<alert>("Wizard");`,
-        ],
-      },
-      {
-        page: 5,
-        type: "INFO",
-        title: "Comments",
+        title: "Single-line Comments",
         text: [
           `Comments are explanatory statements that you can include in a program to benefit the person reading your code.`,
           `A single-line comment starts with //`,
           `The compiler ignores everything that appears in the comment, so none of that information affects the result.`,
         ],
+        code: `// I'm a comment! So i'll be ignored!\nconsole.log("I'm not a comment!")`,
       },
       {
-        page: 6,
+        page: 2,
         type: "QUESTION",
-        title: "",
         question: `Which of the following is a valid JavaScript comment?`,
         answers: [
           `// Am I a comment?`,
           `# This is correct`,
-          `<>This is a comment<>;`,
-          `/ What about this? /;`,
+          `<>This is a comment<>`,
+          `/ What about this? /`,
         ],
       },
       {
-        page: 7,
+        page: 3,
         type: "INFO",
-        title: "Comments",
+        title: "Multi-line Comments",
         text: [
           `You can also create multi-line comments.`,
           `They start with /* and end with */, making everything in between a comment.`,
         ],
+        code: `/* Using this syntax\nyou can write longer\ncomments across as many\nlines as you need!*/`,
       },
       {
-        page: 8,
+        page: 4,
         type: "QUESTION",
-        title: "",
         question: `What syntax do you use to make a multi-line comment?`,
         answers: [
           `/* Think carefully.... */`,
@@ -185,14 +186,13 @@ export const TOMES = [
         ],
       },
       {
-        page: 9,
+        page: 5,
         type: "SUMMARY",
-        title: "Summary",
-        text: [`Let's summarize what you've just learned:`],
+        title: `Let's review what you've just learned:`,
         listItems: [
-          `you can add JavaScript code to an HTML document using the <script></script> tag`,
-          `alert() generates an alert box with a message`,
-          `comments are used to explain the code`,
+          `comments are used to explain the code to other developers.`,
+          `single-line comments start with //`,
+          `multi-line comments start with /* and end with */`,
         ],
       },
     ],
@@ -207,13 +207,12 @@ export const TOMES = [
         text: [
           `Let's talk about calculations! They are everywhere, including in programming. So, they will be in your future programs too!`,
           `Performing a calculation in JavaScript is simple, just enter it into the console.log() function`,
-          `Example: console.log(1+2);`,
         ],
+        code: `console.log(1+2);`,
       },
       {
         page: 2,
         type: "QUESTION",
-        title: "",
         question: `What does console.log(3+4) output?`,
         answers: [`7`, `34`, `3+4`, `1`],
       },
@@ -221,24 +220,19 @@ export const TOMES = [
         page: 3,
         type: "INFO",
         title: "Multiple Calculations",
-        text: [
-          `You can perform multiple calculations within one statement`,
-          `Example: console.log(5+6-1);`,
-        ],
+        text: [`You can perform multiple calculations within one statement`],
+        code: `console.log(6+5-1);`,
       },
       {
         page: 4,
         type: "INFO",
         title: "Multiplication",
-        text: [
-          `Multiplication is done using an asterisk symbol (*).`,
-          `Example: console.log(5*3);`,
-        ],
+        text: [`Multiplication is done using an asterisk symbol (*).`],
+        code: `console.log(5*3);`,
       },
       {
         page: 5,
         type: "QUESTION",
-        title: "",
         question: `Which code will output the result of multiplying 3 by 4?`,
         answers: [
           `console.log(3*4)`,
@@ -251,10 +245,8 @@ export const TOMES = [
         page: 6,
         type: "INFO",
         title: "Division",
-        text: [
-          `Division is done using a slash.`,
-          `Example: console.log(16/4);`,
-        ],
+        text: [`Division is done using a slash.`],
+        code: `console.log(16/4);`,
       },
       {
         page: 7,
@@ -262,13 +254,12 @@ export const TOMES = [
         title: "Order of Operations",
         text: [
           `Just like in regular math, multiplication and division is calculated before addition and subtraction.`,
-          `Example: console.log(4+2*5);`,
         ],
+        code: `console.log(4+2*5);`,
       },
       {
         page: 8,
         type: "QUESTION",
-        title: "",
         question: `What is the output of console.log(1+2*3)?`,
         answers: [`7`, `6`, `3`, `9`],
       },
@@ -278,13 +269,12 @@ export const TOMES = [
         title: "Order of Operations",
         text: [
           `To control precedence, use parentheses to indicate the order in which you want to perform operations.`,
-          `Example: console.log((8+2)*3);`,
         ],
+        code: `console.log((8+2)*3);`,
       },
       {
         page: 10,
         type: "QUESTION",
-        title: "",
         question: `Which of the following would output 7?`,
         answers: [
           `console.log((1+1)+(10/2));`,
@@ -296,8 +286,7 @@ export const TOMES = [
       {
         page: 11,
         type: "SUMMARY",
-        title: "Summary",
-        text: [`Let's summarize what you've just learned:`],
+        title: `Let's review what you've just learned:`,
         listItems: [
           `Calculations can be done directly in the console.log() function`,
           `Multiplication and division have higher precedence than addition and subtraction have`,
@@ -306,40 +295,245 @@ export const TOMES = [
       },
     ],
   },
-  // {
-  //   name: "Variables",
-  //   lesson: [],
-  // },
-  // {
-  //   name: "Data Types",
-  //   lesson: [],
-  // },
-  // {
-  //   name: "Operators",
-  //   lesson: [],
-  // },
-  // {
-  //   name: "Assignment Operators",
-  //   lesson: [],
-  // },
-  // {
-  //   name: "Strings",
-  //   lesson: [],
-  // },
-  // {
-  //   name: "Template Literals",
-  //   lesson: [],
-  // },
-  // {
-  //   name: "String Concatenation",
-  //   lesson: [],
-  // },
+  {
+    name: "Variables",
+    lesson: [
+      {
+        page: 1,
+        type: "INFO",
+        title: "Creating Variables",
+        text: [
+          `In apps, we usually need to store some values and work with them throughout the program to make accessing them much more convenient. We do this by using variables, which are containers for storing values.`,
+          `One way a variable can be created is by using the let keyword.`,
+        ],
+        code: `let spell;\n//"let" is the keyword used to create a variable\n//"spell" is the name of this variable`,
+      },
+      {
+        page: 2,
+        type: "QUESTION",
+        question: `What are variables?`,
+        answers: [`containers for storing values`, `values`, `functions`],
+      },
+      {
+        page: 3,
+        type: "INFO",
+        title: "Initialization",
+        text: [
+          `After creating the variable we can give it a value. This is called initialization.`,
+          `You can assign a value to a variable by using an equal sign (=).`,
+        ],
+        code: `let spell;\nspell = "Firebolt"\n//Now the spell variable has the value "Firebolt";`,
+      },
+      {
+        page: 4,
+        type: "QUESTION",
+        question: `Which of the following correctly create a variable and assign it a value?`,
+        answers: [
+          `let action = "Attack";`,
+          `let = "Guard";`,
+          `variable = "Cast Spell";`,
+          `let action = Use Item;`,
+        ],
+      },
+      {
+        page: 5,
+        type: "INFO",
+        title: "Initialize & Assign",
+        text: [`You can also assign your variable a value during creation.`],
+        code: `let game = "Spell Scripter";\n//Remember, we must enclose text values in quotes.`,
+      },
+      {
+        page: 6,
+        type: "INFO",
+        title: "Output",
+        text: [
+          `After initializing a variable, we can output its value using console.log().`,
+          `Use the Code Editor to modify the code, assign your name to the variable and output it.`,
+        ],
+        code: `let hero = "Siggurd";\nconsole.log(hero);`,
+      },
+      {
+        page: 7,
+        type: "QUESTION",
+        question: `Which of the following output a variable?`,
+        answers: [
+          `console.log(damage);`,
+          `console.log("damage");`,
+          `console.log(let damage = 12);`,
+          `console.log(9);`,
+        ],
+      },
+      {
+        page: 8,
+        type: "INFO",
+        title: "Changing Values",
+        text: [
+          `Variables can change their value during the program. That's why they are called variables.`,
+          `What do you think the output of the code below will be?`,
+        ],
+        code: `let level = 7;\nlevel = 8\n\nconsole.log(level);`,
+      },
+      {
+        page: 9,
+        type: "QUESTION",
+        question: `What is the output of this code?`,
+        js: [
+          `let health = 20;`,
+          `health = 8;`,
+          `health = 12`,
+          `console.log(health)`,
+        ],
+        answers: [`12`, `20`, `8`, `40`],
+      },
+      {
+        page: 10,
+        type: "INFO",
+        title: "Constants",
+        text: [
+          `There can be cases when you need to tell the program that the variable can't change its value throughout the program. Constants are variables declared using the const keyword.`,
+          `Constants must have a value when declared and they cannot change their value.`,
+        ],
+        code: `const spell = "Firebolt";\nconsole.log(spell);\nspell = "Frostbite"; // this will result in an error`,
+      },
+      {
+        page: 11,
+        type: "INFO",
+        title: "Rules of Naming Variables",
+        text: [
+          `variable names must begin with a letter, an underscore _ or a dollar sign $. They cannot contain spaces and can only contain letters, numbers, underscores, or dollar signs.`,
+          `Variable names are case-sensitive, which means that, for example, "Name" and "name" variables would be different`,
+        ],
+        code: `let enemy* = "Skeleton" // this will result in an error`,
+      },
+      {
+        page: 12,
+        type: "QUESTION",
+        question: `Which of the following variables are named correctly?`,
+        answers: [
+          `let _Evocation = "School";`,
+          `let 1enemy = "Skeleton";`,
+          `let new item = "Potion";`,
+          `let +spell = "Bark Skin"`,
+        ],
+      },
+      {
+        page: 13,
+        type: "SUMMARY",
+        title: `Let's review what you've just learned:`,
+        listItems: [
+          `variables are containers for storing values`,
+          `variables can be created with the let keyword and can change their values`,
+          `constants are created with the const keyword. They are similar to variables, but can't change their values after initialization`,
+        ],
+      },
+    ],
+  },
+  {
+    name: "Data Types",
+    lesson: [
+      {
+        page: 1,
+        type: "INFO",
+        title: "Strings",
+        text: [
+          `The term 'data type' refers to the types of values a program can work with. We've already gotten familiar with two types of data: text and number.`,
+          `Text in quotes, like "Hello World" is called a string.`,
+        ],
+        code: `let msg = "I am a string";\nlet msg2 = 'I am a string as well';\nconsole.log(msg);\nconsole.log(msg2);`,
+      },
+      {
+        page: 2,
+        type: "QUESTION",
+        question: `Which of the following is a string?`,
+        answers: [`"Twenty Nine"`, `"Warrior`, `Dungeon`, `14`],
+      },
+      {
+        page: 3,
+        type: "INFO",
+        title: "Strings",
+        text: [
+          `Everything in quotes is a string, even numbers.`,
+          `In the code below, 15 is a string, not a number, which means that the program will treat it as a text consisting of two symbols: "1" and "5".`,
+        ],
+        code: `console.log("15");`,
+      },
+      {
+        page: 4,
+        type: "QUESTION",
+        question: `What is the data type of the given value?`,
+        js: [`let number = "3"`],
+        answers: [`String`, `Number`],
+      },
+      {
+        page: 5,
+        type: "INFO",
+        title: "Numbers",
+        text: [`Numbers can be written with or without decimals.`],
+        code: `let x = 5; //whole number\nlet y = 8.4; //decimal\nconsole.log(x);\nconsole.log(y);`,
+      },
+      {
+        page: 6,
+        type: "INFO",
+        title: "Numbers",
+        text: [
+          `You can add, subtract and multiply numbers, producing another number as a result.`,
+        ],
+        code: `let x = 54;\nlet y = 6;\nconsole.log(x*y);\nconsole.log(x/y);`,
+      },
+      {
+        page: 7,
+        type: "QUESTION",
+        question: `What is the output of the following code?`,
+        js: [`let x = 4`, `let y = 8`, `console.log(x + y)`],
+        answers: [`12`, `4`, `8`, `10`],
+      },
+      {
+        page: 8,
+        type: "INFO",
+        title: "Booleans",
+        text: [
+          `Very often, in programming, you will need a data type that can only have one of two values. For example, a yes or no.`,
+          `For this, JavaScript has the Boolean data type which can only take the values true or false.`,
+        ],
+        code: `let isEnemy = true;\nlet isHero = false;\nconsole.log(isEnemy);\nconsole.log(isHero);`,
+      },
+      {
+        page: 9,
+        type: "QUESTION",
+        question: `Which of the following values is a Boolean?`,
+        answers: [`false`, `4`, `spellbook`, `"true"`],
+      },
+      {
+        page: 10,
+        type: "SUMMARY",
+        title: `Let's review what you've just learned:`,
+        listItems: [
+          `the term data type refers to the types of values a program can work with.`,
+          `everything in quotes is a string, even numbers`,
+          `both whole numbers and decimals in JavaScript belong to the one number data type`,
+          `boolean data type is used to only have one of two values: true or false`,
+        ],
+      },
+    ],
+  },
+  {
+    name: "Operators",
+    lesson: [],
+  },
+  {
+    name: "Assignment Operators",
+    lesson: [],
+  },
+  {
+    name: "Strings",
+    lesson: [],
+  },
+  {
+    name: "Template Literals",
+    lesson: [],
+  },
+  {
+    name: "String Concatenation",
+    lesson: [],
+  },
 ];
-
-// Add a preview page to show mastery progress
-// // add a "Overview Section"
-// // add a progress bar with %
-// // add a study button to the preview page
-
-// Add a complete button on the last page.
-// add a page counter

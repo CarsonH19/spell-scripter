@@ -75,7 +75,7 @@ export default function CodeEditor({ code }) {
       <div className={classes["editor-columns"]}>
         <Editor
           height="100%"
-          width="50%"
+          width="65%"
           cursor="pointer"
           theme="vs-dark"
           defaultLanguage="javascript"

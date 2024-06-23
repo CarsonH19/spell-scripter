@@ -9,6 +9,8 @@ import { QUESTIONS } from "../../../data/questions";
 import { tomeActions } from "../../../store/tome-slice.js";
 import { dungeonActions } from "../../../store/dungeon-slice.js";
 
+import { Code } from '@chakra-ui/react'
+
 export default function Question({ questionIndex, tomeIndex }) {
   const [answer, setAnswer] = useState({
     selectedAnswer: "",

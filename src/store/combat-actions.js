@@ -26,6 +26,9 @@ import {
 
 import { checkForPassiveAbility } from "../util/passive-functions.js";
 
+import { createNewRoom } from "../util/dungeon-util.js";
+import { dungeonActions } from "./dungeon-slice.js";
+
 let playerActionResolver;
 let targetResolver;
 let selectResolver;
@@ -155,15 +158,50 @@ export default async function combatLoop(dispatch) {
                 await activateItem(dispatch, selectedItem);
               }
               break;
-            case "FLEE":
-              {
-                // calculate average speed of enemies + modifier for each enemy
-                // roll20 against the enemies
-                // on success flee
-                // endCombat
-                // createNewRoom
-              }
-              break;
+            // case "FLEE":
+            //   {
+                
+            //     let allySpeed = 0;
+            //     let enemySpeed = 0;
+            //     for (let i = 0; i < order.length; i++) {
+            //       if (character.identifier === "ENEMY") {
+            //         enemySpeed++;
+            //         enemySpeed = enemySpeed + character.stats.agility.speed;
+            //       } else {
+            //         allySpeed++;
+            //         allySpeed = allySpeed + character.stats.agility.speed;
+            //       }
+            //     }
+
+            //     const roll20AllySpeed = roll20(allySpeed);
+            //     const roll20EnemySpeed = roll20(enemySpeed);
+
+            //     console.log(roll20AllySpeed);
+            //     console.log(roll20EnemySpeed);
+
+            //     if (roll20AllySpeed > roll20EnemySpeed) {
+            //       const room = store.getState().dungeon;
+            //       console.log("RUNNING");
+            //       dispatch(
+            //         dungeonActions.updateRoom({
+            //           name: room.name,
+            //           roomCounter: room.roomCounter - 1,
+            //           threat: room.threat - 1,
+            //           danger: false,
+            //           image: room.image,
+            //           music: room.music,
+            //           contents: {
+            //             enemies: [],
+            //             items: [],
+            //             event: null,
+            //           },
+            //         })
+            //       );
+            //       createNewRoom(dispatch);
+            //       return;
+            //     }
+            //   }
+            //   break;
           }
 
           // Exit the while loop
