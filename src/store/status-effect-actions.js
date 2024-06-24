@@ -51,9 +51,6 @@ export default function changeStatusEffect(
       );
     } else {
       // If the player is in a dungeon the combat-slice object is updated
-      console.log("New Status Effect", statusEffect);
-      console.log(target);
-      console.log(change);
       dispatch(
         combatActions.updateStatusEffects({
           id: target.id,
@@ -111,12 +108,11 @@ export function checkCurrentStatusEffects(target, effectName) {
 }
 
 // Called within combatLoop to handle status effect changes
-export function checkStatusEffect(dispatch, id, check) {
+export function checkStatusEffect(dispatch, id, check, type) {
   const order = store.getState().combat.order;
   const index = order.findIndex((char) => char.id === id);
   const statusEffects = order[index].statusEffects;
 
-  console.log("statusEffects", statusEffects);
   switch (check) {
     case "REMOVE": // Check for removal
       for (let i = 0; i < statusEffects.length; i++) {
@@ -155,7 +151,10 @@ export function checkStatusEffect(dispatch, id, check) {
 
     case "DECREMENT": // Check for duration decrement
       for (let i = 0; i < statusEffects.length; i++) {
-        if (statusEffects[i].duration) {
+        if (
+          statusEffects[i].duration &&
+          statusEffects[i].durationType === type
+        ) {
           dispatch(
             combatActions.updateStatusEffectDuration({
               id,

@@ -96,9 +96,11 @@ export default function Character({ character }) {
           Health Bar
         </progress>
       </div>
-      <div className={`${classes.statusEffects} ${
+      <div
+        className={`${classes.statusEffects} ${
           character.identifier === "HERO" ? classes.heroStatusEffects : ""
-        }`}>
+        }`}
+      >
         {character.statusEffects.map((effect) => {
           const isCharacterEnemy = character.identifier === "ENEMY";
           let duration;
@@ -106,8 +108,8 @@ export default function Character({ character }) {
             duration = `Duration: ${effect.duration} ${
               effect.duration > 1 ? "rounds" : "round"
             }`;
-          } else if ("ROOM") {
-            `Duration: ${effect.duration} ${
+          } else if (effect.durationType === "ROOM") {
+            duration = `Duration: ${effect.duration} ${
               effect.duration > 1 ? "rooms" : "room"
             }`;
           }

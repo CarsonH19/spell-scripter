@@ -16,12 +16,11 @@ const abilityFunctions = {
     changeHealth(dispatch, target, "DAMAGE", damage);
   },
   DIVINE_GUARDIAN: (dispatch, target) => {
-    // Siggurd takes all damage from the hero with lowest health for 3 rounds
-
     const DIVINE_GUARDIAN = {
       name: "Divine Guardian",
       display: true,
       image: "",
+      type: "BUFF",
       description: "All damage taken will be redirected to Siggurd instead.",
       effect: ["Damage -100%"],
       durationType: "ROUND",
@@ -33,7 +32,6 @@ const abilityFunctions = {
     changeStatusEffect(dispatch, target, "ADD", DIVINE_GUARDIAN);
   },
   VENOM_STRIKE: (dispatch, target) => {
-    // Double damage & no roll to hit
     const riven = findCharacterInOrder("Riven");
 
     const damage = riven.stats.strength.attack;
@@ -45,6 +43,7 @@ const abilityFunctions = {
       name: "Smoke Bomb",
       display: true,
       image: "",
+      type: "DEBUFF",
       description: "Riven's smoke bomb obscures the enemies vision.",
       effect: ["Hit Chance -2"],
       durationType: "ROUND",
@@ -57,12 +56,35 @@ const abilityFunctions = {
       },
     };
 
-    console.log("BOOM");
-
     for (let i = 0; i < targets.length; i++) {
-      console.log("SMOKE");
       changeStatusEffect(dispatch, targets[i], "ADD", SMOKE_BOMB);
     }
+  },
+  CLEANSING_FLAME: (dispatch, target, statusEffect) => {
+    const liheth = findCharacterInOrder("Liheth");
+    if (statusEffect) {
+      changeStatusEffect(dispatch, target, "REMOVE", statusEffect);
+    }
+    changeHealth(dispatch, target, "HEAL", liheth.stats.arcana.spellPower);
+  },
+  UNDYING_FLAME: (dispatch, target) => {
+    const UNDYING_FLAME = {
+      name: "Undying Flame",
+      display: true,
+      image: "",
+      type: "BUFF",
+      description:
+        "Upon dropping to 0HP the target will not die, but instead come back to live with 50% its max HP.",
+      effect: [""],
+      durationType: "ROOM",
+      duration: 3,
+      reset: 3,
+      stats: {},
+    };
+
+    console.log("UNDYING FLAME", target);
+
+    changeStatusEffect(dispatch, target, "ADD", UNDYING_FLAME);
   },
 };
 
@@ -111,9 +133,35 @@ export function useAbility(dispatch, character) {
               lowestHealthHero = targetGroup[i];
             }
           }
+          abilityFunction(dispatch, lowestHealthHero);
         }
 
-        abilityFunction(dispatch, lowestHealthHero);
+        // Liheth A - Cleansing Flame
+        if (character.name === "Liheth") {
+          const targetGroup = findTargetGroup("HEROES");
+          let debuffGroup = [];
+          for (let i = 0; i < targetGroup.length; i++) {
+            if (targetGroup[i].statusEffects.length > 0) {
+              for (let j = 0; j < targetGroup[i].statusEffects.length; j++) {
+                if (targetGroup[i].statusEffects[j].type === "DEBUFF") {
+                  debuffGroup.push({
+                    target: targetGroup[i],
+                    statusEffect: targetGroup[i].statusEffects[j],
+                  });
+                }
+              }
+            }
+          }
+
+          if (debuffGroup.length > 0) {
+            const randomIndex = Math.floor(Math.random() * debuffGroup.length);
+            const { target, statusEffect } = debuffGroup[randomIndex];
+            abilityFunction(dispatch, target, statusEffect);
+          } else {
+            const index = Math.floor(Math.random() * targetGroup.length);
+            abilityFunction(dispatch, targetGroup[index]);
+          }
+        }
       }
       break;
 
@@ -140,8 +188,19 @@ export function useAbility(dispatch, character) {
 
     case "LOWEST_HEALTH":
       {
+        let targetGroup;
+
         // Riven A - Venom Strike
-        const targetGroup = findTargetGroup("ENEMIES");
+        if (character.name === "Riven") {
+          targetGroup = findTargetGroup("ENEMIES");
+          abilityFunction(dispatch, target);
+        }
+
+        // Liheth B - Undying Flame
+        if (character.name === "Liheth") {
+          targetGroup = findTargetGroup("HEROES");
+        }
+
         let target = targetGroup[0];
         for (let i = 0; i < targetGroup.length; i++) {
           if (target.currentHealth > targetGroup[i].currentHealth) {
@@ -151,6 +210,7 @@ export function useAbility(dispatch, character) {
 
         abilityFunction(dispatch, target);
       }
+
       break;
 
     // case "HIGHEST_DEFENSE":

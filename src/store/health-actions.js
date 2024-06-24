@@ -3,7 +3,9 @@ import { combatActions } from "./combat-slice";
 import { uiActions } from "./ui-slice";
 
 import loot from "../util/loot";
-import { checkCurrentStatusEffects } from "./status-effect-actions";
+import changeStatusEffect, {
+  checkCurrentStatusEffects,
+} from "./status-effect-actions";
 
 export function changeHealth(
   dispatch,
@@ -14,9 +16,9 @@ export function changeHealth(
 ) {
   let id = target.id;
 
-  // ABILITY - Siggurd B
+  // ABILITY - Siggurd B - Divine Guardian
   if (checkCurrentStatusEffects(target, "Divine Guardian")) {
-    id = "Siggurd" ;
+    id = "Siggurd";
   }
 
   if (change === "DAMAGE") {
@@ -36,14 +38,22 @@ export function changeHealth(
     dispatch(combatActions.updateDamageDisplay({ id, value }));
   }
 
-  // if (change === "HEAL") {
-  // currently not needed
-  // }
+  // ABILITY - Liheth B - Undying Flames
+  if (
+    checkCurrentStatusEffects(target, "Undying Flame") &&
+    value > target.currentHealth
+  ) {
+    const halfMax = target.stats.strength.maxHealth / 2;
+    dispatch(
+      combatActions.updateHealth({ id, change: "REPLACE", value: halfMax })
+    );
+    changeStatusEffect(dispatch, target, "REMOVE", { name: "Undying Flame" });
+    return;
+  }
 
   dispatch(combatActions.updateHealth({ id, change, value }));
   checkForDeath(dispatch, id);
 }
-
 
 // NOTE: Use this function to remove/end passive effects if a character is defeated
 function checkForDeath(dispatch, id) {

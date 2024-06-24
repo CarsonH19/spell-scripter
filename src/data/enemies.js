@@ -29,8 +29,8 @@ const UNDEAD = {
     currentHealth: 10,
     currentMana: 0,
     stats: {
-      baseStrength: 0,
-      baseAgility: 0,
+      baseStrength: 8,
+      baseAgility: 8,
       baseArcana: 0,
     },
     weaknesses: [],

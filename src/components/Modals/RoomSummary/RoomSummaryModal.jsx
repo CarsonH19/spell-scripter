@@ -4,7 +4,8 @@ import { dungeonActions } from "../../../store/dungeon-slice";
 import { useEffect } from "react";
 import { playerActions } from "../../../store/player-slice";
 import { changeHealth } from "../../../store/health-actions";
-import combatSlice, { combatActions } from "../../../store/combat-slice";
+import { combatActions } from "../../../store/combat-slice";
+import { checkStatusEffect } from "../../../store/status-effect-actions";
 
 export default function RoomSummaryModal() {
   const dispatch = useDispatch();
@@ -23,8 +24,9 @@ export default function RoomSummaryModal() {
       );
     }
 
-    // Regen Health for Player & Heroes
+
     for (let i = 0; i < order.length; i++) {
+      // Regen Health for Player & Heroes
       if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER") {
         changeHealth(
           dispatch,
@@ -42,6 +44,9 @@ export default function RoomSummaryModal() {
             })
           );
         }
+
+        // Decrement Status Effects
+        checkStatusEffect(dispatch, order[i].id, "DECREMENT", "ROOM");
       }
     }
   }, [dispatch, itemsLooted]);

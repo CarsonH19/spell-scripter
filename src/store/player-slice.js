@@ -20,8 +20,8 @@ const playerSlice = createSlice({
       baseStrength: 0,
       strength: {
         totalStrength: 0,
-        attack: 10,
-        maxHealth: 100,
+        attack: 0,
+        maxHealth: 0,
         healthRegen: 0,
       },
       baseAgility: 0,

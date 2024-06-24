@@ -119,13 +119,16 @@ const combatSlice = createSlice({
       }
 
       if (change === "HEAL") {
-        console.log("HEAL", value);
         character.currentHealth += value;
 
         // Prevents Healing Above Max
         if (character.currentHealth > character.stats.strength.maxHealth) {
           character.currentHealth = character.stats.strength.maxHealth;
         }
+      }
+
+      if (change == "REPLACE") {
+        character.currentHealth = value;
       }
     },
     updateMana(state, action) {
@@ -244,11 +247,9 @@ const combatSlice = createSlice({
       // Access ability
       switch (change) {
         case "RESET":
-          console.log("RESET COOLDOWN");
           character[ability].cooldown = character[ability].reset;
           break;
         case "DECREMENT":
-          console.log("DECREMENT COOLDOWN");
           character[ability].cooldown--;
           break;
       }

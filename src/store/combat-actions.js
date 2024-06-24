@@ -61,6 +61,8 @@ export default async function combatLoop(dispatch) {
     order = store.getState().combat.order;
     let character = order.find((char) => char.id === characterCheck.id);
 
+    await delay(1000);
+
     // If all enemies, player, or current character is dead the loop will skip the combat logic
     // need to check if the character is alive
     if (
@@ -77,9 +79,8 @@ export default async function combatLoop(dispatch) {
       // COMPLETE TASKS AT BEGINNING OF ROUND
       // Check for status effects with duration 0 or and remove
       checkStatusEffect(dispatch, character.id, "REMOVE");
-
-      // call passive ability if available.
-      // checkForPassiveAbility(dispatch, character, "DURING_COMBAT");
+      // Decrement Status Effects
+      checkStatusEffect(dispatch, character.id, "DECREMENT", "ROUND");
 
       if (order[i].identifier === "PLAYER") {
         let action = false;
@@ -159,8 +160,11 @@ export default async function combatLoop(dispatch) {
 
       if (order[i].identifier === "HERO" || order[i].identifier === "ENEMY") {
         character.currentHealth > 0 && console.log("TURN", order[i]);
+        order = store.getState().combat.order;
+        const enemies = order.some((enemy) => enemy.identifier === "ENEMY");
+        if (!enemies) continue;
 
-        await delay(2000);
+        await delay(1000);
 
         // check behavior to determine action
         const action = checkBehaviorAction(character);
@@ -178,6 +182,7 @@ export default async function combatLoop(dispatch) {
               );
 
               const hit = rollToHit(character, target);
+              console.log("ATTACKING", target);
               if (hit) {
                 // PASSIVE - Liheth
                 checkForPassiveAbility(
@@ -187,6 +192,7 @@ export default async function combatLoop(dispatch) {
                   target
                 );
 
+                changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
                 const damage = calcDamage(character);
                 // Create a new slice property to show the attack outcome
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
