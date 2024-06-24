@@ -51,6 +51,9 @@ export default function changeStatusEffect(
       );
     } else {
       // If the player is in a dungeon the combat-slice object is updated
+      console.log("New Status Effect", statusEffect);
+      console.log(target);
+      console.log(change);
       dispatch(
         combatActions.updateStatusEffects({
           id: target.id,
@@ -113,6 +116,7 @@ export function checkStatusEffect(dispatch, id, check) {
   const index = order.findIndex((char) => char.id === id);
   const statusEffects = order[index].statusEffects;
 
+  console.log("statusEffects", statusEffects);
   switch (check) {
     case "REMOVE": // Check for removal
       for (let i = 0; i < statusEffects.length; i++) {
@@ -166,10 +170,10 @@ export function checkStatusEffect(dispatch, id, check) {
     case "CALL": // Check for status effect function call
       for (let i = 0; i < statusEffects.length; i++) {
         if (statusEffects[i].function) {
-          const snakeCaseItem = toSnakeCase(statusEffects[i].name);
-          const statusEffectFunction = statusEffectFunctions[snakeCaseItem];
+          const statusEffectFunction =
+            statusEffectFunctions[statusEffects[i].function];
           if (statusEffectFunction) {
-            statusEffectFunctions(dispatch, order[index]);
+            statusEffectFunction(dispatch, order[index]);
           }
         }
       }
@@ -177,6 +181,6 @@ export function checkStatusEffect(dispatch, id, check) {
   }
 }
 
-function toSnakeCase(str) {
-  return str.toUpperCase().replace(/\s+/g, "_");
-}
+// function toSnakeCase(str) {
+//   return str.toUpperCase().replace(/\s+/g, "_");
+// }

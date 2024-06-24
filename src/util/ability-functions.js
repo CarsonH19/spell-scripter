@@ -57,10 +57,10 @@ const abilityFunctions = {
       },
     };
 
-    console.log("BOOM")
+    console.log("BOOM");
 
     for (let i = 0; i < targets.length; i++) {
-      console.log("SMOKE")
+      console.log("SMOKE");
       changeStatusEffect(dispatch, targets[i], "ADD", SMOKE_BOMB);
     }
   },
@@ -206,27 +206,39 @@ export function checkAbilityCooldowns(character) {
 }
 
 export function decrementAbilityCooldowns(dispatch, character) {
-  if ("abilityA" in character && "cooldown" in character.abilityA) {
-    if (character.abilityA.cooldown > 0) {
-      dispatch(
-        combatActions.updateCooldown({
-          id: character.id,
-          ability: "abilityA",
-          change: "DECREMENT",
-        })
-      );
+  // Ability A - Heroes must be level 3 or higher
+  if (
+    (character.identifier === "HERO" && character.level >= 3) ||
+    character.identifier === "ENEMY"
+  ) {
+    if ("abilityA" in character && "cooldown" in character.abilityA) {
+      if (character.abilityA.cooldown > 0) {
+        dispatch(
+          combatActions.updateCooldown({
+            id: character.id,
+            ability: "abilityA",
+            change: "DECREMENT",
+          })
+        );
+      }
     }
   }
 
-  if ("abilityB" in character && "cooldown" in character.abilityB) {
-    if (character.abilityB.cooldown > 0) {
-      dispatch(
-        combatActions.updateCooldown({
-          id: character.id,
-          ability: "abilityB",
-          change: "DECREMENT",
-        })
-      );
+  // Ability A - Heroes must be level 6 or higher
+  if (
+    (character.identifier === "HERO" && character.level >= 6) ||
+    character.identifier === "ENEMY"
+  ) {
+    if ("abilityB" in character && "cooldown" in character.abilityB) {
+      if (character.abilityB.cooldown > 0) {
+        dispatch(
+          combatActions.updateCooldown({
+            id: character.id,
+            ability: "abilityB",
+            change: "DECREMENT",
+          })
+        );
+      }
     }
   }
 }

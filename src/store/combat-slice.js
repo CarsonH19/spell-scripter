@@ -30,7 +30,6 @@ const combatSlice = createSlice({
 
       switch (change) {
         case "ADD":
-          console.log("CALLED");
           state.isCharacterTurn = action.payload.id;
           break;
 

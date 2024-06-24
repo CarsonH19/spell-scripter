@@ -1,3 +1,4 @@
+import CONDITIONS from "../data/conditions";
 import store from "../store/index";
 import changeStatusEffect from "../store/status-effect-actions";
 
@@ -29,11 +30,20 @@ const passiveFunctions = {
     // 5% increase of finding items
     return;
   },
+  //Liheth
+  BURNING_DEVOTION: (dispatch, target) => {
+    const burnChance = Math.random();
+
+    // 10% Chance to cause the Burning Condition
+    if (burnChance > 0.9) {
+      changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
+    }
+  },
 };
 
 export default passiveFunctions;
 
-export function checkForPassiveAbility(dispatch, character, when) {
+export function checkForPassiveAbility(dispatch, character, when, target) {
   // Checks if character is in the combat order
   const order = store.getState().combat.order;
   let isCharacterInParty = order.find((char) => char.id === character.id);
@@ -68,7 +78,7 @@ export function checkForPassiveAbility(dispatch, character, when) {
         "when" in character.passive &&
         character.passive.when === "DURING_COMBAT"
       ) {
-        passiveFunction(dispatch, character);
+        passiveFunction(dispatch, target);
       }
       break;
 

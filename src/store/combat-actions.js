@@ -26,9 +26,6 @@ import {
 
 import { checkForPassiveAbility } from "../util/passive-functions.js";
 
-import { createNewRoom } from "../util/dungeon-util.js";
-import { dungeonActions } from "./dungeon-slice.js";
-
 let playerActionResolver;
 let targetResolver;
 let selectResolver;
@@ -57,18 +54,19 @@ export default async function combatLoop(dispatch) {
       }
     }
 
-    let character = order[i];
-
-    if (!character) {
-      continue;
-    }
+    let characterCheck = order[i];
+    if (!characterCheck) continue;
+    // Check status effect that call functions at the start of the character's turn
+    checkStatusEffect(dispatch, order[i].id, "CALL");
+    order = store.getState().combat.order;
+    let character = order.find((char) => char.id === characterCheck.id);
 
     // If all enemies, player, or current character is dead the loop will skip the combat logic
     // need to check if the character is alive
     if (
       enemies.length > 0 &&
       player.currentHealth >= 0 &&
-      character.currentHealth >= 0
+      character.currentHealth > 0
     ) {
       dispatch(
         combatActions.initiativeTracker({ id: character.id, change: "ADD" })
@@ -77,14 +75,8 @@ export default async function combatLoop(dispatch) {
       await delay(1000);
 
       // COMPLETE TASKS AT BEGINNING OF ROUND
-      // Decrement existing status effect durations
-      // checkStatusEffect(dispatch, character.id, "DECREMENT");
-
       // Check for status effects with duration 0 or and remove
       checkStatusEffect(dispatch, character.id, "REMOVE");
-
-      // Check for status effects with functions and call
-      checkStatusEffect(dispatch, character.id, "CALL");
 
       // call passive ability if available.
       // checkForPassiveAbility(dispatch, character, "DURING_COMBAT");
@@ -158,50 +150,6 @@ export default async function combatLoop(dispatch) {
                 await activateItem(dispatch, selectedItem);
               }
               break;
-            // case "FLEE":
-            //   {
-                
-            //     let allySpeed = 0;
-            //     let enemySpeed = 0;
-            //     for (let i = 0; i < order.length; i++) {
-            //       if (character.identifier === "ENEMY") {
-            //         enemySpeed++;
-            //         enemySpeed = enemySpeed + character.stats.agility.speed;
-            //       } else {
-            //         allySpeed++;
-            //         allySpeed = allySpeed + character.stats.agility.speed;
-            //       }
-            //     }
-
-            //     const roll20AllySpeed = roll20(allySpeed);
-            //     const roll20EnemySpeed = roll20(enemySpeed);
-
-            //     console.log(roll20AllySpeed);
-            //     console.log(roll20EnemySpeed);
-
-            //     if (roll20AllySpeed > roll20EnemySpeed) {
-            //       const room = store.getState().dungeon;
-            //       console.log("RUNNING");
-            //       dispatch(
-            //         dungeonActions.updateRoom({
-            //           name: room.name,
-            //           roomCounter: room.roomCounter - 1,
-            //           threat: room.threat - 1,
-            //           danger: false,
-            //           image: room.image,
-            //           music: room.music,
-            //           contents: {
-            //             enemies: [],
-            //             items: [],
-            //             event: null,
-            //           },
-            //         })
-            //       );
-            //       createNewRoom(dispatch);
-            //       return;
-            //     }
-            //   }
-            //   break;
           }
 
           // Exit the while loop
@@ -230,9 +178,15 @@ export default async function combatLoop(dispatch) {
               );
 
               const hit = rollToHit(character, target);
-              // console.log("ATTACK", target, hit);
               if (hit) {
-                changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
+                // PASSIVE - Liheth
+                checkForPassiveAbility(
+                  dispatch,
+                  order[i],
+                  "DURING_COMBAT",
+                  target
+                );
+
                 const damage = calcDamage(character);
                 // Create a new slice property to show the attack outcome
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
