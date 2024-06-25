@@ -28,7 +28,6 @@ export default function HeroesModal() {
     setHoveredElement(updatedHero);
   };
 
-
   const handleChangeParty = (hero) => {
     const isInParty = party.find((char) => char.id === hero.id);
 
@@ -50,31 +49,24 @@ export default function HeroesModal() {
     <div className={classes.hero}>
       <h1>Heroes</h1>
       <div className={classes.container}>
-        <ul className={classes.left}>
-          {heroes.map((hero) => {
-            if (hero.unlocked) {
-              return (
-                <Icon
-                  key={hero.name}
-                  style={{ backgroundImage: `url(${hero.image})` }}
-                  alt={hero.name}
-                  onMouseEnter={() => handleHoveredHero(hero)}
-                  onClick={() => handleChangeParty(hero)}
-                />
-              );
-            }
-          })}
-        </ul>
-        <div className={classes.right}>
-          <div className={classes.selected}>
-            {hoveredElement ? (
-              <HeroStats hero={hoveredElement} />
-            ) : (
-              <p>Please select a hero.</p>
-            )}
-          </div>
+        <div className={classes.left}>
+          <ul className={classes.heroes}>
+            {heroes.map((hero) => {
+              if (hero.unlocked) {
+                return (
+                  <Icon
+                    key={hero.name}
+                    style={{ backgroundImage: `url(${hero.image})` }}
+                    alt={hero.name}
+                    onMouseEnter={() => handleHoveredHero(hero)}
+                    onClick={() => handleChangeParty(hero)}
+                  />
+                );
+              }
+            })}
+          </ul>
           <div className={classes.party}>
-            <h3>Selected Party Members</h3>
+            <p>Selected Party Members</p>
             <ul>
               {party.map((hero) => (
                 <Icon
@@ -87,6 +79,13 @@ export default function HeroesModal() {
               ))}
             </ul>
           </div>
+        </div>
+        <div className={classes.right}>
+          {hoveredElement ? (
+            <HeroStats hero={hoveredElement} />
+          ) : (
+            <p>Please select a hero.</p>
+          )}
         </div>
       </div>
     </div>

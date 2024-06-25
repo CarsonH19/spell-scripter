@@ -1,11 +1,11 @@
 .hero {
   height: 90%;
   width: 90%;
-  background-color: rgb(29, 26, 38);
+  background-color: var(--background);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid white;
+  border: 2px solid var(--secondary);
   padding: 1rem;
 }
 
@@ -14,96 +14,86 @@
   font-size: 1.5rem;
   padding: 0rem;
   margin: 0;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid var(--secondary);
   width: 30%;
 }
 
-.hero .container {
-  flex: 1;
-  margin-top: 2rem;
-  width: 100%;
-  border: 1px solid red;
-  display: flex;
-}
-
-.hero .container .left {
-  flex: 1;
-  border: 1px solid red;
-  padding: 1rem;
-  margin: 0;
-  display: grid;
-  align-content: flex-start;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); 
-  gap: 2rem;
-}
-
-.hero .container .left li {
-  aspect-ratio: 1;
-  list-style: none;
-  height: 4rem;
-  width: 4rem;
-  border: 1px solid red;
-  cursor: pointer;
-  border-radius: 10%;
-}
-
-.hero .container .left li:hover {
-  transition: 0.3s;
-  scale: 1.1;
-  border: 1px solid white;
-}
-
-.hero .container .right {
-  flex: 1;
-  border: 1px solid red;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.hero .container .right .selected {
-  flex: 1;
-  border: 1px solid red;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.selected img {
-  width: 50%;
-  height: 100%;
-  border: 1px solid red;
-}
-.stats {
-  flex: 1;
-  /* margin: 1rem; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.stats div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* justify-content: space-between; */
-  margin: 1rem;
-}
-
-.stats div h4 {
-  margin: 0;
-}
-
-.text {
+.name .level {
   margin: 0;
   font-size: 1rem;
 }
 
-.hero .container .right .party {
+.name h3 {
+  border-bottom: 2px solid var(--secondary);
+  font-size: 1.5rem;
+}
+
+.name h5 {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.hero h4 {
+  font-weight: 600;
+}
+
+.hero .container {
+  margin-top: 2rem;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--secondary);
+  display: flex;
+}
+
+.hero .container .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 65%;
+  padding: 1rem;
+
+}
+
+.hero .container .left .heroes {
+  margin: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.hero .container .left .heroes li {
+  aspect-ratio: 1;
+  list-style: none;
+  height: 4rem;
+  width: 4rem;
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  border-radius: 10%;
+}
+
+.hero .container .left .heroes li:hover {
+  transition: 0.3s;
+  scale: 1.1;
+  border: 1px solid var(--text);
+}
+
+.hero .container .right {
+  width: 35%;
+  min-width: 30rem;
+  height: 100%;
+  border: 1px solid var(--secondary);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.party {
   height: 8rem;
-  border: 1px solid red;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -119,14 +109,54 @@
   align-items: center;
   margin: 0;
   padding: 0;
-  flex: 1;
   gap: 2rem;
+}
+
+.party p {
+  border-bottom: 2px solid var(--secondary);
+  margin: 1rem;
+  text-align: center;
 }
 
 .party ul li {
   height: 4rem;
   width: 4rem;
-  border: 1px solid red;
+  border: 1px solid var(--accent);
   border-radius: 10%;
   list-style: none;
 } 
+
+.party ul li:hover {
+  transition: 0.3s;
+  scale: 1.1;
+  border: 1px solid var(--text);
+}
+
+.right .abilities {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.right .locked {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 8rem;
+  width: 90%;
+  border: 1px solid var(--secondary);
+  padding: 0.5rem;
+  background-color: var(--dark);
+}
+
+.right .unlocked {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 8rem;
+  width: 90%;
+  border: 1px solid var(--secondary);
+  padding: 0.5rem;
+}
+

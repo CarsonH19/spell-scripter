@@ -140,3 +140,27 @@ export function findTargetGroup(character) {
 
   return targetGroup;
 }
+
+export const BEHAVIORS = {
+  SUPPORTIVE: {
+    description: "Focuses on supporting allies through buffing or healing.",
+  },
+  RUTHLESS: {
+    description: "Focuses on attacking the enemy with the lowest health.",
+  },
+  DOMINANT: {
+    description: "Focuses on attacking the enemy with the greatest Strength.",
+  },
+  ASTUTE: {
+    description: "Focuses on attacking the enemy with the greatest Arcana.",
+  },
+  DEFENSIVE: {
+    description: "Focuses on guarding rather than attacking.",
+  },
+  AGGRESSIVE: {
+    description: "Focuses on attacking at all times."
+  },
+  ERRATIC: {
+    description: "Doesn't have a focus and instead performs actions randomly."
+  }
+};
