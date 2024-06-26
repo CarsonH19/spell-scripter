@@ -24,6 +24,7 @@ const uiSlice = createSlice({
       confirmationModal: false,
       quickTimeEventModal: false,
       partyModal: false,
+      levelUpModal: false,
     },
     tome: null,
   },

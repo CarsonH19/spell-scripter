@@ -63,7 +63,6 @@ const playerSlice = createSlice({
       }
 
       if (totalMasteryPoints > state.totalMasteryPoints) {
-        console.log("MASTERY POINT ADDED");
         state.masteryPoints += totalMasteryPoints - state.totalMasteryPoints;
         state.totalMasteryPoints = totalMasteryPoints;
       }

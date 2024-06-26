@@ -20,6 +20,7 @@ import HelpModal from "./Help/HelpModal";
 import ConfirmationModal from "./Confirmation/ConfirmationModal";
 import QuickTimeEventModal from "./QTE/QuickTimeEventModal";
 import DungeonTomesModal from "./DungeonTomes/DungeonTomesModal";
+import LevelUpModal from "./LevelUp/LevelUpModal";
 
 import store from "../../store";
 import PartyModal from "./Party/PartyModal";
@@ -63,18 +64,17 @@ function selectModal() {
     case "heroesModal":
       return <HeroesModal />;
 
-    case "inventoryModal": {
+    case "inventoryModal": 
       return <InventoryModal />;
-    }
+    
     case "questsModal":
       return <QuestsModal />;
 
     case "spellbookModal":
       return <SpellbookModal />;
 
-    case "tomesModal": {
+    case "tomesModal": 
       return <TomesModal tome={tome}/>;
-    }
 
     case "dungeonTomesModal":
       return <DungeonTomesModal />
@@ -99,6 +99,9 @@ function selectModal() {
 
     case "partyModal":
       return <PartyModal />
+
+    case "levelUpModal":
+      return <LevelUpModal />
   }
 }
 
