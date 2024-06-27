@@ -26,10 +26,8 @@ export default function ConfirmationModal() {
   // Test
   const ui = useSelector((state) => state.ui);
 
-  // const enemies = getRoomEnemies();
   const heroes = useSelector((state) => state.hero.party);
   const player = useSelector((state) => state.player);
-
   const characters = [...heroes, player];
 
   const handleConfirmation = () => {
@@ -54,6 +52,13 @@ export default function ConfirmationModal() {
         })
       );
     });
+
+    dispatch(
+      combatActions.updateMana({
+        change: "ADD",
+        value: 999,
+      })
+    );
 
     if (ui.continueIsVisible) {
       dispatch(uiActions.toggle({ modal: "continuIsVisible" }));

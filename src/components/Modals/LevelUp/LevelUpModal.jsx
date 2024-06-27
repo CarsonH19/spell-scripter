@@ -4,7 +4,8 @@ import Attributes from "../../Dashboard/PlayerColumn/Attributes";
 import { useSelector } from "react-redux";
 
 export default function LevelUpModal() {
-  const playerLevel = useSelector((state) => state.player.level);
+  // const playerLevel = useSelector((state) => state.player.level);
+  
   return (
     <div className={classes["level-up"]}>
       <h1>Level Up!</h1>

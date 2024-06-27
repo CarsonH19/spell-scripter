@@ -155,9 +155,9 @@ const combatSlice = createSlice({
       if (change === "ADD") {
         character.currentMana += value;
 
-        // Prevents Healing Above Max
-        if (character.currentMana > character.stats.strength.currentMana) {
-          character.currentMana = character.stats.strength.currentMana;
+        // Prevents mana above max
+        if (character.currentMana > character.stats.arcana.maxMana) {
+          character.currentMana = character.stats.arcana.maxMana;
         }
       }
     },
@@ -229,9 +229,25 @@ const combatSlice = createSlice({
           statusEffect.duration--;
           break;
 
-        case "RESET": {
+        case "RESET":
           const reset = action.payload.reset;
           statusEffect.duration = reset;
+          break;
+
+        case "STACK": {
+          console.log("Status Effect STACKED!");
+          // Increment stack
+          statusEffect.stack = statusEffect.stack + 1;
+          //Remove status effect
+          const statusIndex = character.statusEffects.findIndex(
+            (effect) => effect.name === statusEffect.name
+          );
+          if (statusIndex !== -1) {
+            character.statusEffects.splice(statusIndex, 1);
+          }
+          // Add the updated status effect
+          console.log(statusEffect);
+          character.statusEffects.push(statusEffect);
         }
       }
     },

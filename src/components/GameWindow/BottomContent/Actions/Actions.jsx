@@ -10,6 +10,7 @@ import castSpell from "../../../../util/cast-spell";
 import { getSpell } from "../../../../util/spell-util";
 
 import Tooltip from "../../../UI/Tooltip";
+import Icon from "../../../UI/Icon";
 
 import spellDescriptions from "../../../../util/spell-descriptions";
 
@@ -72,38 +73,41 @@ export default function Actions() {
     content = (
       <div className={classes.spells}>
         <h3>Spell List</h3>
-        {spellList.map((spell) => {
-          // SPELLS Object
-          const spellObject = getSpell(spell);
-          // spell-descriptions.js
-          const snakeCaseSpellName = toSnakeCase(spell);
-          const descriptionFunction = spellDescriptions[snakeCaseSpellName];
-          const spellDescription = descriptionFunction(
-            player.stats.arcana.spellPower
-          );
-          return (
-            <Tooltip
-              key={spellObject.name}
-              title={spellObject.name}
-              text={spellObject.school}
-              detailOne={spellDescription}
-              detailTwo={`Mana Cost: ${spellObject.manaCost}`}
-              position="skill"
-            >
-              <li
-                className={
-                  playerMana < spellObject.manaCost ? classes.disabled : ""
-                }
+        <ul>
+          {spellList.map((spell) => {
+            // SPELLS Object
+            const spellObject = getSpell(spell);
+            // spell-descriptions.js
+            const snakeCaseSpellName = toSnakeCase(spell);
+            const descriptionFunction = spellDescriptions[snakeCaseSpellName];
+            const spellDescription = descriptionFunction(
+              player.stats.arcana.spellPower
+            );
+            return (
+              <Tooltip
                 key={spellObject.name}
-                onClick={() =>
-                  handleSelectChoice(spellObject, "spellListIsVisible")
-                }
+                title={spellObject.name}
+                text={spellObject.school}
+                detailOne={spellDescription}
+                detailTwo={`Mana Cost: ${spellObject.manaCost}`}
+                position="skill"
+                container="spell-list-container"
               >
-                {spellObject.name}
-              </li>
-            </Tooltip>
-          );
-        })}
+                <Icon
+                  className={
+                    playerMana < spellObject.manaCost ? classes.disabled : ""
+                  }
+                  key={spellObject.name}
+                  onClick={() =>
+                    handleSelectChoice(spellObject, "spellListIsVisible")
+                  }
+                >
+                  {/* {spellObject.name} */}
+                </Icon>
+              </Tooltip>
+            );
+          })}
+        </ul>
         <p
           onClick={() => handleCloseList("spellListIsVisible")}
           className={classes.close}
@@ -175,12 +179,6 @@ export default function Actions() {
           >
             Use Item
           </button>
-          {/* <button
-            disabled={isDisabled || !isCharacterTurn}
-            onClick={() => handlePlayerChoice("FLEE")}
-          >
-            Flee
-          </button> */}
         </div>
       </div>
     );

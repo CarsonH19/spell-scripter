@@ -9,6 +9,7 @@ import { changeHealth } from "../store/health-actions";
 import changeStatusEffect from "../store/status-effect-actions";
 
 import { openQuickTimeEvent } from "../store/ui-actions";
+import CONDITIONS from "../data/conditions";
 
 let quickTimeEventResolver;
 
@@ -28,7 +29,7 @@ export default async function castSpell(dispatch, spell) {
   }
 
   const order = store.getState().combat.order;
-
+  const enemies = order.filter((char) => char.identifier === "ENEMY");
   const playerIndex = order.findIndex((char) => char.id === "Player");
   const player = order[playerIndex];
 
@@ -48,15 +49,19 @@ export default async function castSpell(dispatch, spell) {
 
           target = await getTarget("ENEMIES");
 
-          let damage = calcDamage(
+          const damage = calcDamage(
             player,
             spell,
             player.stats.arcana.spellPower
           );
 
-          changeHealth(dispatch, target, "DAMAGE", damage, null);
+          if (spell.name === "Chain Lightning") {
+            castChainLightning(dispatch, target, damage);
+          } else {
+            // Firebolt - Frostbite - Shock
+            changeHealth(dispatch, target, "DAMAGE", damage, null);
+          }
         }
-        // spell.spellType === "SAVE"
       }
       break;
     case "ALLY": // single ally targeted
@@ -84,7 +89,26 @@ export default async function castSpell(dispatch, spell) {
         }
       }
       break;
-    case "ENEMIES": // all enemies targeted
+    case "ENEMIES":
+      {
+        const damage = calcDamage(
+          player,
+          spell,
+          player.stats.arcana.spellPower
+        );
+
+        if (spell.spellType === "HIT") {
+          if (spell.name === "Fireball") {
+            castFireball(dispatch, enemies, damage);
+          }
+        }
+
+        if (spell.spellType === "DEBUFF") {
+          if (spell.name === "Blizzard") {
+            castBlizzard(dispatch, enemies);
+          }
+        }
+      }
       break;
     case "ALLIES": // all allies including the player targeted
       break;
@@ -93,11 +117,55 @@ export default async function castSpell(dispatch, spell) {
   }
 }
 
-// choose a target
-// check hit or save
-// // roll20
-// if spell hits call spell function / pass target as an argument
-// dispatch changeHealth/changeStatus
+// =============================================================
+//                     SPELL FUNCTIONS
+// =============================================================
+function castFireball(dispatch, enemies, damage) {
+  for (let i = 0; i < enemies.length; i++) {
+    changeHealth(dispatch, enemies[i], "DAMAGE", damage, null);
+  }
+}
+
+function castChainLightning(dispatch, target, damage) {
+  let chain = true;
+  const order = store.getState().combat.order;
+  const enemies = order.filter((char) => char.identifier === "ENEMY");
+  const hitEnemies = [target.id];
+
+  // Damage the initial target
+  changeHealth(dispatch, target, "DAMAGE", damage, null);
+
+  while (chain) {
+    const chainChance = Math.random();
+    if (chainChance < 0.5) {
+      chain = false;
+    } else {
+      // Filter out the already hit enemies to find new targets
+      const remainingEnemies = enemies.filter(
+        (enemy) => !hitEnemies.includes(enemy.id)
+      );
+
+      if (remainingEnemies.length === 0) {
+        chain = false;
+      } else {
+        console.log("CHAIN");
+        // Select a new target randomly from the remaining enemies
+        const newTarget =
+          remainingEnemies[Math.floor(Math.random() * remainingEnemies.length)];
+        // Damage the new target
+        changeHealth(dispatch, newTarget, "DAMAGE", damage, null);
+        // Add the new target to the list of hit enemies
+        hitEnemies.push(newTarget.id);
+      }
+    }
+  }
+}
+
+function castBlizzard(dispatch, enemies) {
+  for (let i = 0; i < enemies.length; i++) {
+    changeStatusEffect(dispatch, enemies[i], "ADD", CONDITIONS.CHILLED);
+  }
+}
 
 // =============================================================
 //                     QTE SUCCESS / FAILED

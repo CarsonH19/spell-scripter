@@ -309,8 +309,11 @@
   border-color: transparent black transparent transparent; /* Arrow pointing left */
 }
 
-
-
 .right-middle .title {
   font-weight: 600;
+}
+
+.spell-list-container {
+  aspect-ratio: 1;
+  flex: 0 1 3rem; 
 }

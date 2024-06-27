@@ -103,6 +103,7 @@ export default function Character({ character }) {
       >
         {character.statusEffects.map((effect) => {
           const isCharacterEnemy = character.identifier === "ENEMY";
+          // Duration logic
           let duration;
           if (effect.durationType === "ROUND") {
             duration = `Duration: ${effect.duration} ${
@@ -112,6 +113,14 @@ export default function Character({ character }) {
             duration = `Duration: ${effect.duration} ${
               effect.duration > 1 ? "rooms" : "room"
             }`;
+          }
+
+          // Stack logic
+          let stack;
+          if ("stack" in effect) {
+            stack = true;
+          } else {
+            stack = false;
           }
 
           return (
@@ -130,6 +139,7 @@ export default function Character({ character }) {
               position={isCharacterEnemy ? "effect-right" : "effect-left"}
             >
               <img src="" className={classes.effect} />
+              {stack && effect.stack > 1 && <p className={classes["effect-stack"]}>x{effect.stack}</p>}
             </Tooltip>
           );
         })}

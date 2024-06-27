@@ -17,8 +17,8 @@ const CONDITIONS = {
     display: true,
     image: "",
     type: "DEBUFF",
-    // description: "Weakened from poison.",
-    effect: ["Strength -1", "Agility -1"],
+    // description: "",
+    effect: ["Strength -1"],
     durationType: "ROUND",
     duration: 3,
     reset: 3,
@@ -26,9 +26,27 @@ const CONDITIONS = {
       strength: {
         strengthChange: -1,
       },
-      agility: {
-        agilityChange: -1,
-      },
+    },
+  },
+  CHILLED: {
+    name: "Chilled",
+    display: true,
+    image: "",
+    type: "DEBUFF",
+    stack: 1,
+    // description: "",
+    get effect() {
+      return [`Agility -${this.stack}`];
+    },
+    durationType: "ROUND",
+    duration: 3,
+    reset: 3,
+    get stats() {
+      return {
+        agility: {
+          agilityChange: -1 * this.stack,
+        },
+      };
     },
   },
   GUARD: {

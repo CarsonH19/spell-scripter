@@ -63,8 +63,56 @@ export default function changeStatusEffect(
     checkCurrentStatusEffects(target, statusEffect.name) &&
     change === "ADD"
   ) {
-    // If condition already exists and has a reset property, reset its duration
-    if ("reset" in statusEffect) {
+    // if condition exists & has the stack property, increment the stack
+    if ("stack" in statusEffect) {
+      // Find status effect stack in current combat order
+      const order = store.getState().combat.order;
+      const character = order.find((char) => char.id === target.id);
+      const currentEffect = character.statusEffects.find(
+        (effect) => effect.name === statusEffect.name
+      );
+      
+      // Remove status effect
+      dispatch(
+        combatActions.updateStatusEffects({
+          id: target.id,
+          change: "REMOVE",
+          statusEffect,
+        })
+      );
+
+      console.log("CURRENT", currentEffect);
+
+      // Update stack manually in status effect
+      let updatedStatusEffect = {
+        ...statusEffect,
+        stack: currentEffect.stack + 1,
+        duration: statusEffect.reset,
+        get effect() {
+          return [`Agility -${this.stack}`];
+        },
+        get stats() {
+          return {
+            agility: {
+              agilityChange: -1 * this.stack,
+            },
+          };
+        },
+      };
+
+      console.log(updatedStatusEffect);
+
+      // Add updated status effect
+      dispatch(
+        combatActions.updateStatusEffects({
+          id: target.id,
+          change: "ADD",
+          statusEffect: updatedStatusEffect,
+        })
+      );
+
+      // If condition already exists and has a reset property, reset its duration
+    } else if ("reset" in statusEffect) {
       dispatch(
         combatActions.updateStatusEffectDuration({
           id: target.id,

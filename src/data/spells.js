@@ -29,7 +29,7 @@ const SPELLS = {
       name: "Frostbite",
       school: `Novice Evocation`,
       image: "",
-      spellTarget: "ENEMIES",
+      spellTarget: "ENEMY",
       spellType: "HIT",
       damageType: DAMAGE_TYPES.ICE,
       baseDamage: 8,
@@ -39,7 +39,7 @@ const SPELLS = {
       name: "Shock",
       school: `Novice Evocation`,
       image: "",
-      spellTarget: "ENEMIES",
+      spellTarget: "ENEMY",
       spellType: "HIT",
       damageType: DAMAGE_TYPES.LIGHTNING,
       baseDamage: 10,
@@ -59,7 +59,7 @@ const SPELLS = {
       name: "Chain Lightning",
       school: `Apprentice Evocation`,
       image: "",
-      spellTarget: "ENEMy",
+      spellTarget: "ENEMY",
       spellType: "HIT",
       damageType: DAMAGE_TYPES.LIGHTNING,
       baseDamage: 16,
@@ -70,7 +70,7 @@ const SPELLS = {
       school: `Adept Evocation`,
       image: "",
       spellTarget: "ENEMIES",
-      spellType: "HIT",
+      spellType: "DEBUFF",
       damageType: DAMAGE_TYPES.ICE,
       baseDamage: 0,
       manaCost: 30,
@@ -89,7 +89,7 @@ const SPELLS = {
       name: "Storm Sphere",
       school: `Adept Evocation`,
       image: "",
-      spellTarget: "ENEMy",
+      spellTarget: "ALLY",
       spellType: "HIT",
       damageType: DAMAGE_TYPES.LIGHTNING,
       baseDamage: 16,
@@ -100,19 +100,9 @@ const SPELLS = {
       school: `Expert Evocation`,
       image: "",
       spellTarget: "ENEMIES",
-      spellType: "HIT",
+      spellType: "BUFF",
       damageType: DAMAGE_TYPES.FIRE,
       baseDamage: 16,
-      manaCost: 10,
-    },
-  ],
-  restoration: [
-    {
-      name: "Lesser Heal",
-      image: "",
-      spellTarget: "ALLY",
-      spellType: "HEAL",
-      healValue: 10,
       manaCost: 10,
     },
   ],
@@ -285,6 +275,32 @@ const SPELLS = {
         duration: 3,
         stats: {},
       },
+      manaCost: 10,
+    },
+  ],
+  // =======================================
+  //              CONJURATION
+  // =======================================
+  restoration: [
+    {
+      name: "Lesser Heal",
+      image: "",
+      spellTarget: "ALLY",
+      spellType: "HEAL",
+      healValue: 10,
+      manaCost: 10,
+    },
+  ],
+  // =======================================
+  //             RESTORATION
+  // =======================================
+  restoration: [
+    {
+      name: "Lesser Heal",
+      image: "",
+      spellTarget: "ALLY",
+      spellType: "HEAL",
+      healValue: 10,
       manaCost: 10,
     },
   ],

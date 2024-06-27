@@ -16,7 +16,6 @@ export default function Dashboard() {
   const tomeSlice = useSelector((state) => state.tome);
   const playerLevel = useSelector((state) => state.player.level);
   const isModalOpen = useSelector((state) => state.ui.modalIsVisible);
-  console.log("1st", playerLevel);
 
   useEffect(() => {
     dispatch(playerActions.checkForLevelUp({ tomeSlice }));
@@ -24,10 +23,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const currentLevel = store.getState().player.level;
-    console.log("2nd", currentLevel);
-
     if (playerLevel !== currentLevel && !isModalOpen) {
-      console.log("Player level changed:", currentLevel);
       dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
       dispatch(uiActions.toggleModal({ modal: "levelUpModal", open: "OPEN" }));
     }
