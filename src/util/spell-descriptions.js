@@ -28,12 +28,12 @@ const spellDescriptions = {
     } Lightning damage to each target it hits.`;
   },
   BLIZZARD: () => {
-    return `Evoke a frigid snowstorm for 3 rounds, potentially inflicting the Chilled condition on all enemies at the start of each of your turns.`;
+    return `Evoke a frigid snowstorm, inflicting the Chilled condition on all enemies.`;
   },
   STORM_SPHERE: (spellPower) => {
     return `Surround yourself in a sphere of lightning, dealing ${Math.round(
       spellPower / 2
-    )} Lightning damage to all enemies who Attack you for 5 rounds.`;
+    )} Lightning damage to all enemies who Attack you for 1 room.`;
   },
   METEOR: (spellPower) => {
     return `Rain down cataclysmic fire, inflicting the Burning condition and dealing 18 to ${

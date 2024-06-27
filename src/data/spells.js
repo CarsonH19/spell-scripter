@@ -72,7 +72,6 @@ const SPELLS = {
       spellTarget: "ENEMIES",
       spellType: "DEBUFF",
       damageType: DAMAGE_TYPES.ICE,
-      baseDamage: 0,
       manaCost: 30,
     },
     // {
@@ -92,7 +91,6 @@ const SPELLS = {
       spellTarget: "SELF",
       spellType: "BUFF",
       damageType: DAMAGE_TYPES.LIGHTNING,
-      baseDamage: 16,
       manaCost: 30,
     },
     {
@@ -100,7 +98,7 @@ const SPELLS = {
       school: `Expert Evocation`,
       image: "",
       spellTarget: "ENEMIES",
-      spellType: "BUFF",
+      spellType: "HIT",
       damageType: DAMAGE_TYPES.FIRE,
       baseDamage: 16,
       manaCost: 10,

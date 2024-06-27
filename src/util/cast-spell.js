@@ -91,15 +91,19 @@ export default async function castSpell(dispatch, spell) {
       break;
     case "ENEMIES":
       {
-        const damage = calcDamage(
-          player,
-          spell,
-          player.stats.arcana.spellPower
-        );
-
         if (spell.spellType === "HIT") {
+          const damage = calcDamage(
+            player,
+            spell,
+            player.stats.arcana.spellPower
+          );
+
           if (spell.name === "Fireball") {
             castFireball(dispatch, enemies, damage);
+          }
+
+          if (spell.name === "Meteor") {
+            castMeteor(dispatch, enemies, damage);
           }
         }
 
@@ -183,18 +187,25 @@ function castStormSphere(dispatch, player) {
     type: "BUFF",
     // description: "",
     effect: [
-      `All enemies who Attack you for are dealt ${Math.round(
+      `All enemies who Attack you are dealt ${Math.round(
         spellPower / 2
       )} Lightning damage.`,
     ],
-    durationType: "ROUND",
-    duration: 5,
-    reset: 5,
+    durationType: "ROOM",
+    duration: 1,
+    reset: 1,
     stats: {},
     function: "STORM_SPHERE",
   };
 
   changeStatusEffect(dispatch, player, "ADD", STORM_SPHERE);
+}
+
+function castMeteor(dispatch, enemies, damage) {
+  for (let i = 0; i < enemies.length; i++) {
+    changeHealth(dispatch, enemies[i], "DAMAGE", damage, null);
+    changeStatusEffect(dispatch, enemies[i], "ADD", CONDITIONS.BURNING);
+  }
 }
 
 // =============================================================

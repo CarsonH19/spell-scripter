@@ -124,15 +124,24 @@ export default function Player() {
       <div className={classes.statusEffects}>
         {player.statusEffects.map((effect) => {
           if (effect.display) {
+            // Duration logic
             let duration;
-            if (effect.duration === "ROUND") {
+            if (effect.durationType === "ROUND") {
               duration = `Duration: ${effect.duration} ${
                 effect.duration > 1 ? "rounds" : "round"
               }`;
-            } else if ("ROOM") {
-              `Duration: ${effect.duration} ${
+            } else if (effect.durationType === "ROOM") {
+              duration = `Duration: ${effect.duration} ${
                 effect.duration > 1 ? "rooms" : "room"
               }`;
+            }
+
+            // Stack logic
+            let stack;
+            if ("stack" in effect) {
+              stack = true;
+            } else {
+              stack = false;
             }
 
             return (
@@ -148,9 +157,12 @@ export default function Player() {
                       ))
                     : null
                 }
-                position={"effect-right"}
+                position="skill"
               >
                 <img src="" className={classes.effect} />
+                {stack && effect.stack > 1 && (
+                  <p className={classes["effect-stack"]}>x{effect.stack}</p>
+                )}
               </Tooltip>
             );
           }

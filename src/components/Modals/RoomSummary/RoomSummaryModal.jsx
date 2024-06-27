@@ -47,6 +47,8 @@ export default function RoomSummaryModal() {
 
         // Decrement Status Effects
         checkStatusEffect(dispatch, order[i].id, "DECREMENT", "ROOM");
+        checkStatusEffect(dispatch, order[i].id, "REMOVE");
+
       }
     }
   }, [dispatch, itemsLooted]);
