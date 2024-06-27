@@ -139,7 +139,7 @@ export default function SpellbookModal() {
             <ul>
               {spellbook[school].adept.map((skill) => {
                 const isSkillActive =
-                  skill.points < skill.max && pointsExpended >= 9;
+                  skill.points < skill.max && pointsExpended >= 9 && pointsExpended < 17;
 
                 return (
                   <Skill
@@ -165,7 +165,7 @@ export default function SpellbookModal() {
             <ul>
               {spellbook[school].apprentice.map((skill) => {
                 const isSkillActive =
-                  skill.points < skill.max && pointsExpended >= 3;
+                  skill.points < skill.max && pointsExpended >= 3 && pointsExpended < 9;
 
                 return (
                   <Skill

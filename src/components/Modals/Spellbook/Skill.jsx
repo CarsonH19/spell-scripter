@@ -22,8 +22,6 @@ export default function Skill({ school, skill, isSkillActive }) {
 
   if (isSpell) {
     spellObject = getSpell(skill.name);
-    console.log(spellObject);
-    console.log(skill.name);
 
     const snakeCaseSpellName = toSnakeCase(skill.name);
     descriptionFunction = spellDescriptions[snakeCaseSpellName];
