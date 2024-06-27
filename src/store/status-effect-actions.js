@@ -2,7 +2,6 @@ import { combatActions } from "../store/combat-slice";
 
 import store from "../store";
 
-import CONDITIONS from "../data/conditions";
 import updateStatTotals from "../store/stats-actions";
 import { playerActions } from "../store/player-slice";
 import statusEffectFunctions from "../util/status-effect-functions";

@@ -5,6 +5,7 @@ import castSpell from "../util/cast-spell";
 import setTargetType from "../util/targeting";
 import CONDITIONS from "../data/conditions";
 import changeStatusEffect, {
+  checkCurrentStatusEffects,
   checkStatusEffect,
 } from "./status-effect-actions.js";
 
@@ -25,6 +26,7 @@ import {
 } from "../util/ability-functions.js";
 
 import { checkForPassiveAbility } from "../util/passive-functions.js";
+import statusEffectFunctions from "../util/status-effect-functions.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -116,7 +118,7 @@ export default async function combatLoop(dispatch) {
                 );
 
                 const target = await getTarget("ENEMIES");
-                const hit = rollToHit(player, target);
+                const hit = rollToHit(dispatch, player, target);
 
                 if (hit) {
                   const damage = calcDamage(player);
@@ -181,7 +183,7 @@ export default async function combatLoop(dispatch) {
                 })
               );
 
-              const hit = rollToHit(character, target);
+              const hit = rollToHit(dispatch, character, target);
               console.log("ATTACKING", target);
               if (hit) {
                 // PASSIVE - Liheth
@@ -305,11 +307,17 @@ export function setTarget(object) {
 //                      ATTACK HANDLING
 // =============================================================
 
-export function rollToHit(attacker, target) {
+export function rollToHit(dispatch, attacker, target) {
   let bonus = attacker.stats.agility.hitChance;
   let defense = target.stats.agility.defense;
 
   const chanceToHit = roll20(bonus);
+
+  // STATUS EFFECT - Storm Shield
+  if (checkCurrentStatusEffects(target, "Storm Sphere")) {
+    const castStormShield = statusEffectFunctions["STORM_SPHERE"];
+    castStormShield(dispatch, attacker);
+  }
 
   if (chanceToHit > defense) {
     return true;

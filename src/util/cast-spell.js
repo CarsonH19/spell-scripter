@@ -112,6 +112,12 @@ export default async function castSpell(dispatch, spell) {
       break;
     case "ALLIES": // all allies including the player targeted
       break;
+
+    case "SELF": // only the player is targeted
+      if (spell.name === "Storm Sphere") {
+        castStormSphere(dispatch, player);
+      }
+      break;
     case "ALL": // all characters in initiative are targeted
       break;
   }
@@ -165,6 +171,30 @@ function castBlizzard(dispatch, enemies) {
   for (let i = 0; i < enemies.length; i++) {
     changeStatusEffect(dispatch, enemies[i], "ADD", CONDITIONS.CHILLED);
   }
+}
+
+function castStormSphere(dispatch, player) {
+  const spellPower = store.getState().player.stats.arcana.spellPower;
+
+  const STORM_SPHERE = {
+    name: "Storm Sphere",
+    display: true,
+    image: "",
+    type: "BUFF",
+    // description: "",
+    effect: [
+      `All enemies who Attack you for are dealt ${Math.round(
+        spellPower / 2
+      )} Lightning damage.`,
+    ],
+    durationType: "ROUND",
+    duration: 5,
+    reset: 5,
+    stats: {},
+    function: "STORM_SPHERE",
+  };
+
+  changeStatusEffect(dispatch, player, "ADD", STORM_SPHERE);
 }
 
 // =============================================================

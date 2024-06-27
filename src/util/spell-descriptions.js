@@ -33,7 +33,7 @@ const spellDescriptions = {
   STORM_SPHERE: (spellPower) => {
     return `Surround yourself in a sphere of lightning, dealing ${Math.round(
       spellPower / 2
-    )} Lightning damage to all enemies who Attack you for 3 rounds.`;
+    )} Lightning damage to all enemies who Attack you for 5 rounds.`;
   },
   METEOR: (spellPower) => {
     return `Rain down cataclysmic fire, inflicting the Burning condition and dealing 18 to ${
