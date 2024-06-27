@@ -184,7 +184,6 @@ export default async function combatLoop(dispatch) {
               );
 
               const hit = rollToHit(dispatch, character, target);
-              console.log("ATTACKING", target);
               if (hit) {
                 // PASSIVE - Liheth
                 checkForPassiveAbility(

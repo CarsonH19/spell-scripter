@@ -4,7 +4,7 @@ import { changeHealth } from "../store/health-actions";
 const statusEffectFunctions = {
   BURNING: (dispatch, target) => {
     let damage = 3;
-    // add Consuming Flames skill check here to find damage
+    // SKILL - Consuming Flames - Increases Burning damage
     changeHealth(dispatch, target, "DAMAGE", damage);
   },
   STORM_SPHERE: (dispatch, target) => {

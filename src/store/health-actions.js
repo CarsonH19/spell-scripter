@@ -6,6 +6,9 @@ import loot from "../util/loot";
 import changeStatusEffect, {
   checkCurrentStatusEffects,
 } from "./status-effect-actions";
+import CONDITIONS from "../data/conditions";
+
+import { checkSkillPoints } from "../util/spellbook-util";
 
 export function changeHealth(
   dispatch,
@@ -21,6 +24,48 @@ export function changeHealth(
     id = "Siggurd";
   }
 
+  // Damage Type Conditions
+  if (damageType) {
+    let chance = Math.random();
+    if (damageType === "FIRE") {
+      // SKILL - Smoldering Heart - Increase Burning chance
+      const skillPoints = checkSkillPoints("Smoldering Heart");
+      for (let i = 0; i < skillPoints; i++) {
+        chance += 0.05;
+      }
+
+      console.log(chance);
+      if (chance > 0.95) {
+        changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
+      }
+    }
+
+    if (damageType === "ICE") {
+      // SKILL - Frigid Gaze - Increase Chilled chance
+      const skillPoints = checkSkillPoints("Frigid Gaze");
+      for (let i = 0; i < skillPoints; i++) {
+        chance += 0.04;
+      }
+
+      if (chance > 0.96) {
+        changeStatusEffect(dispatch, target, "ADD", CONDITIONS.CHILLED);
+      }
+    }
+
+    if (damageType === "LIGHTNING") {
+      // SKILL - Charged Touch - Increase Stunned chance
+      const skillPoints = checkSkillPoints("Charged Touch");
+      for (let i = 0; i < skillPoints; i++) {
+        chance += 0.03;
+      }
+
+      if (chance > 0.97) {
+        changeStatusEffect(dispatch, target, "ADD", CONDITIONS.STUNNED);
+      }
+    }
+  }
+
+  // Weaknesses & Resistances
   if (change === "DAMAGE") {
     for (let i = 0; i < target.weaknesses.length; i++) {
       if (target.weaknesses[i] === damageType) {

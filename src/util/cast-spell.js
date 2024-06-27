@@ -59,7 +59,7 @@ export default async function castSpell(dispatch, spell) {
             castChainLightning(dispatch, target, damage);
           } else {
             // Firebolt - Frostbite - Shock
-            changeHealth(dispatch, target, "DAMAGE", damage, null);
+            changeHealth(dispatch, target, "DAMAGE", damage, spell.damageType);
           }
         }
       }
@@ -132,7 +132,7 @@ export default async function castSpell(dispatch, spell) {
 // =============================================================
 function castFireball(dispatch, enemies, damage) {
   for (let i = 0; i < enemies.length; i++) {
-    changeHealth(dispatch, enemies[i], "DAMAGE", damage, null);
+    changeHealth(dispatch, enemies[i], "DAMAGE", damage, "FIRE");
   }
 }
 
@@ -143,7 +143,7 @@ function castChainLightning(dispatch, target, damage) {
   const hitEnemies = [target.id];
 
   // Damage the initial target
-  changeHealth(dispatch, target, "DAMAGE", damage, null);
+  changeHealth(dispatch, target, "DAMAGE", damage, "LIGHTNING");
 
   while (chain) {
     const chainChance = Math.random();
@@ -163,7 +163,7 @@ function castChainLightning(dispatch, target, damage) {
         const newTarget =
           remainingEnemies[Math.floor(Math.random() * remainingEnemies.length)];
         // Damage the new target
-        changeHealth(dispatch, newTarget, "DAMAGE", damage, null);
+        changeHealth(dispatch, newTarget, "DAMAGE", damage, "LIGHTNING");
         // Add the new target to the list of hit enemies
         hitEnemies.push(newTarget.id);
       }
@@ -203,7 +203,7 @@ function castStormSphere(dispatch, player) {
 
 function castMeteor(dispatch, enemies, damage) {
   for (let i = 0; i < enemies.length; i++) {
-    changeHealth(dispatch, enemies[i], "DAMAGE", damage, null);
+    changeHealth(dispatch, enemies[i], "DAMAGE", damage, "FIRE");
     changeStatusEffect(dispatch, enemies[i], "ADD", CONDITIONS.BURNING);
   }
 }
