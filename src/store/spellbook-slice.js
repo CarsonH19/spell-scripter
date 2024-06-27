@@ -117,12 +117,12 @@ const spellbookSlice = createSlice({
           max: 1,
         },
         {
-          name: "Deep Chill",
+          name: "Frozen Solid",
           type: "Buff",
           description: [
-            "Enemies Chilled by your spells have their Agility reduced by 2",
-            "Enemies Chilled by your spells have their Agility reduced by 3",
-            "Enemies Chilled by your spells have their Agility reduced by 4",
+            "Enemies Chilled by your spells take 3% more damage from Attacks for each stack of Chilled they possess.",
+            "Enemies Chilled by your spells take 6% more damage from Attacks for each stack of Chilled they possess.",
+            "Enemies Chilled by your spells take 9% more damage from Attacks for each stack of Chilled they possess.",
           ],
           points: 0,
           max: 3,

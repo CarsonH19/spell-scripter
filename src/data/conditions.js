@@ -49,6 +49,18 @@ const CONDITIONS = {
       };
     },
   },
+  STUNNED: {
+    name: "Stunned",
+    display: true,
+    image: "",
+    type: "DEBUFF",
+    // description: "",
+    effect: ["The target can't take an action on its turn."],
+    durationType: "ROUND",
+    duration: 1,
+    reset: 1,
+    stats: {},
+  },
   GUARD: {
     name: "Guarding",
     display: true,

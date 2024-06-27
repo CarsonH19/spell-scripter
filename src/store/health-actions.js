@@ -65,6 +65,25 @@ export function changeHealth(
     }
   }
 
+  // SKILL - Frozen Solid - Extra damage when Chilled
+  if (checkCurrentStatusEffects(target, "Chilled")) {
+    const chilled = target.statusEffects.find(
+      (effect) => effect.name === "Chilled"
+    );
+    console.log(value);
+    const skillPoints = checkSkillPoints("Frozen Solid");
+    let multiplier = 1;
+
+    for (let i = 0; i < chilled.stack; i++) {
+      for (let j = 0; j < skillPoints; j++) {
+        multiplier += 0.03;
+      }
+    }
+
+    value = value * multiplier;
+    console.log(value);
+  }
+
   // Weaknesses & Resistances
   if (change === "DAMAGE") {
     for (let i = 0; i < target.weaknesses.length; i++) {

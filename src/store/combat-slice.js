@@ -97,7 +97,8 @@ const combatSlice = createSlice({
     },
     updateHealth(state, action) {
       const change = action.payload.change;
-      const value = action.payload.value;
+      let value = action.payload.value;
+      value = Math.round(value);
 
       // Locate character
       const id = action.payload.id;

@@ -79,6 +79,11 @@ export default async function combatLoop(dispatch) {
       await delay(1000);
 
       // COMPLETE TASKS AT BEGINNING OF ROUND
+      // STATUS EFFECT - Stunned - Target can't take actions
+      const isStunned = checkCurrentStatusEffects(character, "Stunned");
+      if (isStunned) {
+        continue;
+      }
       // Check for status effects with duration 0 or and remove
       checkStatusEffect(dispatch, character.id, "REMOVE");
       // Decrement Status Effects

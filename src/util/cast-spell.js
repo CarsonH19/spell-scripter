@@ -10,14 +10,14 @@ import changeStatusEffect from "../store/status-effect-actions";
 
 import { openQuickTimeEvent } from "../store/ui-actions";
 import CONDITIONS from "../data/conditions";
+import { checkSkillPoints } from "./spellbook-util";
 
 let quickTimeEventResolver;
 
 export default async function castSpell(dispatch, spell) {
   // Subtract spell's mana cost from player's current mana
-  dispatch(
-    combatActions.updateMana({ value: spell.manaCost, change: "REMOVE" })
-  );
+  const manaCost = calculateManaCost(spell);
+  dispatch(combatActions.updateMana({ value: manaCost, change: "REMOVE" }));
 
   openQuickTimeEvent(dispatch);
   const getQuickTimeEventResult = await getResult(); // true/false
@@ -206,6 +206,36 @@ function castMeteor(dispatch, enemies, damage) {
     changeHealth(dispatch, enemies[i], "DAMAGE", damage, "FIRE");
     changeStatusEffect(dispatch, enemies[i], "ADD", CONDITIONS.BURNING);
   }
+}
+
+function calculateManaCost(spell) {
+  let manaCost = spell.manaCost;
+  const evoker = checkSkillPoints("Evoker");
+  const abjurer = checkSkillPoints("Abjurer");
+
+  const evocation = [
+    "Novice Evocation",
+    "Apprentice Evocation",
+    "Adept Evocation",
+    "Expert Evocation",
+  ];
+
+  const abjuration = [
+    "Novice Abjuration",
+    "Apprentice Abjuration",
+    "Adept Abjuration",
+    "Expert Abjuration",
+  ];
+
+  if (evoker && evocation.includes(spell.school)) {
+    manaCost -= evoker * 2;
+  }
+
+  if (abjurer && abjuration.includes(spell.school)) {
+    manaCost -= abjurer * 2;
+  }
+
+  return manaCost;
 }
 
 // =============================================================
