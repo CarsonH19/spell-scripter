@@ -93,7 +93,13 @@ export default async function combatLoop(dispatch) {
         let action = false;
 
         while (!action) {
-          const playerAction = await getPlayerAction();
+          let playerAction;
+          // STATUS EFFECT - Restrained
+          if (checkCurrentStatusEffects(player, "Restrained")) {
+            playerAction = "GUARD";
+          } else {
+            playerAction = await getPlayerAction();
+          }
 
           switch (playerAction) {
             case "CAST SPELL":
@@ -173,8 +179,13 @@ export default async function combatLoop(dispatch) {
 
         await delay(1000);
 
-        // check behavior to determine action
-        const action = checkBehaviorAction(character);
+        let action;
+        // STATUS EFFECT - Restrained
+        if (checkCurrentStatusEffects(character, "Restrained")) {
+          action = "GUARD";
+        } else {
+          action = checkBehaviorAction(character);
+        }
 
         switch (action) {
           case "ATTACK":

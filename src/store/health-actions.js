@@ -70,7 +70,6 @@ export function changeHealth(
     const chilled = target.statusEffects.find(
       (effect) => effect.name === "Chilled"
     );
-    console.log(value);
     const skillPoints = checkSkillPoints("Frozen Solid");
     let multiplier = 1;
 
@@ -81,7 +80,6 @@ export function changeHealth(
     }
 
     value = value * multiplier;
-    console.log(value);
   }
 
   // Weaknesses & Resistances
@@ -97,9 +95,6 @@ export function changeHealth(
         value = value * 0.5;
       }
     }
-
-    // Only display damage
-    dispatch(combatActions.updateDamageDisplay({ id, value }));
   }
 
   // ABILITY - Liheth B - Undying Flames
@@ -115,6 +110,32 @@ export function changeHealth(
     return;
   }
 
+  // SPELL - Death Ward
+  if (
+    checkCurrentStatusEffects(target, "Death Ward") &&
+    value > target.currentHealth
+  ) {
+    dispatch(combatActions.updateHealth({ id, change: "REPLACE", value: 1 }));
+    changeStatusEffect(dispatch, target, "REMOVE", { name: "Death Ward" });
+    return;
+  }
+
+  // SPELL - Barrier & Shell
+  if (
+    checkCurrentStatusEffects(target, "Barrier") ||
+    checkCurrentStatusEffects(target, "Shell")
+  ) {
+    value = value * 0.5;
+    changeStatusEffect(dispatch, target, "REMOVE", { name: "Barrier" });
+  }
+
+  // SPELL - Invulnerability
+  if (checkCurrentStatusEffects(target, "Invulnerability")) {
+    value = value * 0;
+  }
+
+  value = Math.round(value);
+  dispatch(combatActions.updateDamageDisplay({ id, value }));
   dispatch(combatActions.updateHealth({ id, change, value }));
   checkForDeath(dispatch, id);
 }

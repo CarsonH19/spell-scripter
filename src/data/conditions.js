@@ -61,6 +61,18 @@ const CONDITIONS = {
     reset: 1,
     stats: {},
   },
+  RESTRAINED: {
+    name: "Restrained",
+    display: true,
+    image: "",
+    type: "DEBUFF",
+    description: "The target is unable to move freely.",
+    effect: ["The target can only take the Guard action."],
+    durationType: "ROUND",
+    duration: 1,
+    reset: 1,
+    stats: {},
+  },
   GUARD: {
     name: "Guarding",
     display: true,

@@ -62,7 +62,25 @@ export default async function castSpell(dispatch, spell) {
             changeHealth(dispatch, target, "DAMAGE", damage, spell.damageType);
           }
         }
+
+        if (spell.spellType === "DEBUFF") {
+          if (spell.name === "Dispel Magic") {
+            let buffs = [];
+            for (let i = 0; i < target.statusEffects.length; i++) {
+              if (target.statusEffects[i].type === "BUFF") {
+                buffs.push([target.statusEffects[i].type]);
+              }
+            }
+
+            if (buffs.length > 0) {
+              const randomIndex = Math.floor(Math.random() * buffs.length);
+              const statusEffect = buffs[randomIndex];
+              changeStatusEffect(dispatch, target, "REMOVE", statusEffect);
+            }
+          }
+        }
       }
+
       break;
     case "ALLY": // single ally targeted
       {
@@ -83,8 +101,27 @@ export default async function castSpell(dispatch, spell) {
 
         if (spell.spellType === "BUFF") {
           target = await getTarget("ALLIES");
-          // console.log("Target: ", target);
           const statusEffect = spell.statusEffect;
+
+          // SKILL - Dual Casting
+          const points = checkSkillPoints("Dual Casting");
+
+          if (
+            (spell.school === "Novice Abjuration" ||
+              spell.school === "Apprentice Abjuration") &&
+            points > 1
+          ) {
+            const chance = points * 0.333;
+            const number = Math.random();
+
+            if (chance > number - 0.01) {
+              const order = store.getState().combat.order;
+              const allies = order.filter((ally) => ally.id !== target.id);
+              const index = Math.floor(Math.random() * allies.length);
+              changeStatusEffect(dispatch, allies[index], "ADD", statusEffect);
+            }
+          }
+
           changeStatusEffect(dispatch, target, "ADD", statusEffect);
         }
       }

@@ -82,8 +82,6 @@ const abilityFunctions = {
       stats: {},
     };
 
-    console.log("UNDYING FLAME", target);
-
     changeStatusEffect(dispatch, target, "ADD", UNDYING_FLAME);
   },
 };

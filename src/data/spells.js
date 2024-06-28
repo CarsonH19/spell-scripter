@@ -178,7 +178,7 @@ const SPELLS = {
         display: true,
         image: "",
         description:
-          "If the target falls below 0HP, it instead retains 1HP and the spell ends.",
+          "If the target takes damage and would fall to 0HP, it instead retains 1HP and the spell ends.",
         effect: [""],
         // durationType: "INDEFINITE",
         // duration: 3,
