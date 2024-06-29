@@ -17,6 +17,7 @@ import changeStatusEffect from "../../../store/status-effect-actions";
 import CONDITIONS from "../../../data/conditions";
 import { checkSkillPoints } from "../../../util/spellbook-util";
 import { createArcaneShield } from "../../../util/skills";
+import statusEffectFunctions from "../../../util/status-effect-functions";
 
 export default function ConfirmationModal() {
   const dispatch = useDispatch();

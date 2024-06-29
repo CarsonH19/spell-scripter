@@ -225,9 +225,9 @@ const spellbookSlice = createSlice({
           name: "Improved Arcane Shield",
           type: "Ability",
           description: [
-            "You enter each room with an Arcane Shield of 6HP",
-            "You enter each room with an Arcane Shield of 12HP",
-            "You enter each room with an Arcane Shield of 18HP",
+            "You enter each room with a minimum of 6HP in your Arcane Shield",
+            "You enter each room with a minimum of 12HP in your Arcane Shield",
+            "You enter each room with a minimum of 18HP in your Arcane Shield",
           ],
           points: 0,
           max: 3,
@@ -279,6 +279,18 @@ const spellbookSlice = createSlice({
       expert: [],
     },
     restoration: {
+      novice: [],
+      apprentice: [],
+      adept: [],
+      expert: [],
+    },
+    enchantment: {
+      novice: [],
+      apprentice: [],
+      adept: [],
+      expert: [],
+    },
+    necromancy: {
       novice: [],
       apprentice: [],
       adept: [],

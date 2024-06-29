@@ -3,6 +3,7 @@ import { changeHealth } from "../store/health-actions";
 import { checkSkillPoints } from "./spellbook-util";
 import { combatActions } from "../store/combat-slice";
 import { checkForDeath } from "../store/health-actions";
+import { createArcaneShield } from "./skills";
 
 // These functions are called when a target has the status effect
 
@@ -70,6 +71,24 @@ const statusEffectFunctions = {
           }
         }
         break;
+
+      case "RESET":
+        {
+          const improvedArcaneShield = checkSkillPoints(
+            "Improved Arcane Shield"
+          );
+          if (improvedArcaneShield * 6 > statusEffect.currentHealth) {
+            // Reset the shield to starting HP & return
+            dispatch(
+              combatActions.updateStatusEffects({
+                id: "Player",
+                change: "ADD",
+                statusEffect: createArcaneShield(),
+              })
+            );
+          }
+        }
+        return;
     }
     // Prevent exceeding max HP
     if (health > statusEffect.maxHealth) {

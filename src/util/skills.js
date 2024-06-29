@@ -6,7 +6,9 @@ export const createArcaneShield = () => {
   const arcaneShield = abjuration.apprentice.find(
     (skill) => skill.name === "Arcane Shield"
   );
-  const arcaneShieldPoints = arcaneShield.points;
+  const improvedArcaneShield = abjuration.adept.find(
+    (skill) => skill.name === "Improved Arcane Shield"
+  );
 
   return {
     name: "Arcane Shield",
@@ -14,9 +16,11 @@ export const createArcaneShield = () => {
     image: "",
     type: "BUFF",
     description: "A magical shield empowered by Abjuration spells.",
-    currentHealth: 0,
+    get currentHealth() {
+      return improvedArcaneShield.points * 6;
+    },
     get maxHealth() {
-      return arcaneShieldPoints * 9 + 9;
+      return arcaneShield.points * 9 + 9;
     },
     get effect() {
       return [`${this.currentHealth}/${this.maxHealth}HP`];

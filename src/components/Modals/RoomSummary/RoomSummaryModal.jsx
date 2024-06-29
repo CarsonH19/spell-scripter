@@ -6,6 +6,8 @@ import { playerActions } from "../../../store/player-slice";
 import { changeHealth } from "../../../store/health-actions";
 import { combatActions } from "../../../store/combat-slice";
 import { checkStatusEffect } from "../../../store/status-effect-actions";
+import { checkSkillPoints } from "../../../util/spellbook-util";
+import statusEffectFunctions from "../../../util/status-effect-functions";
 
 export default function RoomSummaryModal() {
   const dispatch = useDispatch();
@@ -23,7 +25,6 @@ export default function RoomSummaryModal() {
         playerActions.changeInventory({ item: itemsLooted[i], change: "ADD" })
       );
     }
-
 
     for (let i = 0; i < order.length; i++) {
       // Regen Health for Player & Heroes
@@ -48,8 +49,15 @@ export default function RoomSummaryModal() {
         // Decrement Status Effects
         checkStatusEffect(dispatch, order[i].id, "DECREMENT", "ROOM");
         checkStatusEffect(dispatch, order[i].id, "REMOVE");
-
       }
+    }
+
+    // SKILL - Improved Arcane Shield
+    const improvedArcaneShield = checkSkillPoints("Improved Arcane Shield");
+    if (improvedArcaneShield) {
+      const player = order.find((char) => char.id === "Player");
+      const arcaneShieldFunction = statusEffectFunctions["ARCANE_SHIELD"];
+      arcaneShieldFunction(dispatch, null, player, "RESET", null);
     }
   }, [dispatch, itemsLooted]);
 
