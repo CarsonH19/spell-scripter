@@ -235,21 +235,21 @@ const combatSlice = createSlice({
           statusEffect.duration = reset;
           break;
 
-        case "STACK": {
-          console.log("Status Effect STACKED!");
-          // Increment stack
-          statusEffect.stack = statusEffect.stack + 1;
-          //Remove status effect
-          const statusIndex = character.statusEffects.findIndex(
-            (effect) => effect.name === statusEffect.name
-          );
-          if (statusIndex !== -1) {
-            character.statusEffects.splice(statusIndex, 1);
+        case "STACK":
+          {
+            // Increment stack
+            statusEffect.stack = statusEffect.stack + 1;
+            //Remove status effect
+            const statusIndex = character.statusEffects.findIndex(
+              (effect) => effect.name === statusEffect.name
+            );
+            if (statusIndex !== -1) {
+              character.statusEffects.splice(statusIndex, 1);
+            }
+            // Add the updated status effect
+            character.statusEffects.push(statusEffect);
           }
-          // Add the updated status effect
-          console.log(statusEffect);
-          character.statusEffects.push(statusEffect);
-        }
+          break;
       }
     },
     updateCooldown(state, action) {

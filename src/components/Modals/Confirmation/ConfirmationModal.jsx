@@ -13,6 +13,10 @@ import Tooltip from "../../UI/Tooltip";
 
 import { getSpell } from "../../../util/spell-util";
 import spellDescriptions from "../../../util/spell-descriptions";
+import changeStatusEffect from "../../../store/status-effect-actions";
+import CONDITIONS from "../../../data/conditions";
+import { checkSkillPoints } from "../../../util/spellbook-util";
+import { createArcaneShield } from "../../../util/skills";
 
 export default function ConfirmationModal() {
   const dispatch = useDispatch();
@@ -42,7 +46,7 @@ export default function ConfirmationModal() {
       updateStatTotals(dispatch, characters[i].id);
     }
 
-    // Ensure all characters are at max health // NOTE: Is this needed?
+    // Max Health
     characters.forEach((character) => {
       dispatch(
         combatActions.updateHealth({
@@ -53,12 +57,21 @@ export default function ConfirmationModal() {
       );
     });
 
+    // Full Mana
     dispatch(
       combatActions.updateMana({
         change: "ADD",
         value: 999,
       })
     );
+
+    // SKILL - Arcane Shield - Add status effect to player
+    const arcaneShield = checkSkillPoints("Arcane Shield");
+    if (arcaneShield) {
+      const statusEffect = createArcaneShield();
+      const index = characters.findIndex((char) => char.id === "Player");
+      changeStatusEffect(dispatch, characters[index], "ADD", statusEffect);
+    }
 
     if (ui.continueIsVisible) {
       dispatch(uiActions.toggle({ modal: "continuIsVisible" }));

@@ -1,16 +1,19 @@
 import store from "../store";
-import { getTarget, rollToHit, calcDamage } from "../store/combat-actions";
+import { getTarget, calcDamage } from "../store/combat-actions";
 
 import { combatActions } from "../store/combat-slice";
 import { logActions } from "../store/log-slice";
 import { uiActions } from "../store/ui-slice";
 
 import { changeHealth } from "../store/health-actions";
-import changeStatusEffect from "../store/status-effect-actions";
+import changeStatusEffect, {
+  checkCurrentStatusEffects,
+} from "../store/status-effect-actions";
 
 import { openQuickTimeEvent } from "../store/ui-actions";
 import CONDITIONS from "../data/conditions";
 import { checkSkillPoints } from "./spellbook-util";
+import statusEffectFunctions from "./status-effect-functions";
 
 let quickTimeEventResolver;
 
@@ -34,6 +37,13 @@ export default async function castSpell(dispatch, spell) {
   const player = order[playerIndex];
 
   let target;
+
+  // SKILL - Arcane Shield - Add temp. HP
+  const arcaneShield = checkSkillPoints("Arcane Shield");
+  if (arcaneShield) {
+    const arcaneShieldFunction = statusEffectFunctions["ARCANE_SHIELD"];
+    arcaneShieldFunction(dispatch, spell, player, "ADD", null);
+  }
 
   // check for spell target type & select a target if applicable
   switch (spell.spellTarget) {

@@ -9,6 +9,7 @@ import changeStatusEffect, {
 import CONDITIONS from "../data/conditions";
 
 import { checkSkillPoints } from "../util/spellbook-util";
+import statusEffectFunctions from "../util/status-effect-functions";
 
 export function changeHealth(
   dispatch,
@@ -134,6 +135,14 @@ export function changeHealth(
     value = value * 0;
   }
 
+  // SKILL - Arcane Shield - Remove temp. HP
+  const arcaneShield = checkSkillPoints("Arcane Shield");
+  if (arcaneShield && target.id === "Player") {
+    const arcaneShieldFunction = statusEffectFunctions["ARCANE_SHIELD"];
+    arcaneShieldFunction(dispatch, null, target, "REMOVE", value);
+    return;
+  }
+
   value = Math.round(value);
   dispatch(combatActions.updateDamageDisplay({ id, value }));
   dispatch(combatActions.updateHealth({ id, change, value }));
@@ -141,7 +150,7 @@ export function changeHealth(
 }
 
 // NOTE: Use this function to remove/end passive effects if a character is defeated
-function checkForDeath(dispatch, id) {
+export function checkForDeath(dispatch, id) {
   const order = store.getState().combat.order;
   const ui = store.getState().ui;
 

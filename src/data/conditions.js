@@ -1,10 +1,12 @@
+import store from "../store/index";
+
 const CONDITIONS = {
   BURNING: {
     name: "Burning",
     display: true,
     image: "",
     type: "DEBUFF",
-    description: "The target takes damage at that start of each of its turns.",
+    description: "The target takes damage at the start of each of its turns.",
     effect: [""],
     durationType: "ROUND",
     duration: 3,
@@ -17,7 +19,6 @@ const CONDITIONS = {
     display: true,
     image: "",
     type: "DEBUFF",
-    // description: "",
     effect: ["Strength -1"],
     durationType: "ROUND",
     duration: 3,
@@ -34,7 +35,6 @@ const CONDITIONS = {
     image: "",
     type: "DEBUFF",
     stack: 1,
-    // description: "",
     get effect() {
       return [`Agility -${this.stack}`];
     },
@@ -54,7 +54,6 @@ const CONDITIONS = {
     display: true,
     image: "",
     type: "DEBUFF",
-    // description: "",
     effect: ["The target can't take an action on its turn."],
     durationType: "ROUND",
     duration: 1,

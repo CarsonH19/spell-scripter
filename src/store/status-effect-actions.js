@@ -80,8 +80,6 @@ export default function changeStatusEffect(
         })
       );
 
-      console.log("CURRENT", currentEffect);
-
       // Update stack manually in status effect
       let updatedStatusEffect = {
         ...statusEffect,
@@ -98,8 +96,6 @@ export default function changeStatusEffect(
           };
         },
       };
-
-      console.log(updatedStatusEffect);
 
       // Add updated status effect
       dispatch(
