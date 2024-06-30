@@ -41,7 +41,7 @@ export default async function combatLoop(dispatch) {
     checkForPassiveAbility(dispatch, order[i], "BEFORE_COMBAT");
   }
 
-  // Iterate through the initiative order simulating a turn of combat.
+  // Iterate through the initiative order simulating a round of combat.
   for (let i = 0; i < order.length; i++) {
     // get the updated values for player and enemies on each iteration
     let order = store.getState().combat.order;
@@ -51,6 +51,7 @@ export default async function combatLoop(dispatch) {
     const player = order[playerIndex];
 
     const enemies = [];
+    console.log(enemies);
     for (let i = 0; i < order.length; i++) {
       if (order[i].identifier === "ENEMY") {
         enemies.push(order[i]);
@@ -194,6 +195,8 @@ export default async function combatLoop(dispatch) {
           action = checkBehaviorAction(character);
         }
 
+        console.log("ACTION", action);
+
         switch (action) {
           case "ATTACK":
             {
@@ -256,6 +259,7 @@ export default async function combatLoop(dispatch) {
   // Check if combat is over
   if (endCombat(dispatch)) {
     // COMPLETE TASKS AT THE END OF COMBAT
+    dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
 
     // Check if effect durations are rounds/actions and remove them from player & heroes
     for (let i = 0; i < order.length; i++) {
@@ -265,7 +269,6 @@ export default async function combatLoop(dispatch) {
     return; // exit the loop
   } else {
     await delay(2000);
-
     // COMPLETE TASKS AT THE END OF THE ROUND
     combatLoop(dispatch); // continue the loop
   }

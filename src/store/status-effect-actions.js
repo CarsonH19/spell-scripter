@@ -70,7 +70,7 @@ export default function changeStatusEffect(
       const currentEffect = character.statusEffects.find(
         (effect) => effect.name === statusEffect.name
       );
-      
+
       // Remove status effect
       dispatch(
         combatActions.updateStatusEffects({
@@ -155,6 +155,11 @@ export function checkStatusEffect(dispatch, id, check, type) {
   const order = store.getState().combat.order;
   const index = order.findIndex((char) => char.id === id);
   const statusEffects = order[index].statusEffects;
+
+  if (!statusEffects) {
+    console.log("Undefined variable");
+    return;
+  }
 
   switch (check) {
     case "REMOVE": // Check for removal
