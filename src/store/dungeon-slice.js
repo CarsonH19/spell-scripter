@@ -26,14 +26,11 @@ const dungeonSlice = createSlice({
       const danger = action.payload.danger;
       state.danger = danger;
     },
-    changeEnemies(state, action) {
-      const enemy = action.payload.enemy;
-      const change = action.payload.change;
-
-      const enemies = state.contents.enemies;
-
+    addEnemy(state, action) {
+      const {enemy, change} = action.payload;
+      
       if (change === "ADD") {
-        enemies.push(enemy);
+        state.contents.enemies.push(enemy);
       }
 
       if (change === "REMOVE") {

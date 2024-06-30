@@ -1,10 +1,18 @@
-import { createNewRoom } from "./dungeon-util";
+import { buildEnemy, createNewRoom } from "./dungeon-util";
 import { changeHealth } from "../store/health-actions";
 
 import { uiActions } from "../store/ui-slice";
 
 import store from "../store/index";
+
+import { v4 as uuidv4 } from "uuid";
+
 import { openModal } from "../store/ui-actions";
+import { UNDEAD } from "../data/enemies";
+import CONSUMABLES from "../data/consumables";
+import EQUIPMENT from "../data/equipment";
+import { dungeonActions } from "../store/dungeon-slice";
+import { startCombat } from "../store/combat-actions";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 
@@ -48,6 +56,59 @@ const eventFunctions = {
 
     await delay(4000);
     openModal(dispatch, "roomSummaryModal");
+  },
+  COFFIN: async (dispatch, choice) => {
+    const dungeon = store.getState().dungeon;
+    const chance = Math.random();
+    let enemy;
+    let loot = [
+      CONSUMABLES.CRYPTBREAD,
+      CONSUMABLES.MARROWSTONE_CHEESE,
+      CONSUMABLES.LESSER_HEALTH_POTION,
+      CONSUMABLES.LESSER_MANA_POTION,
+      CONSUMABLES.ROTBANE_FERN,
+      CONSUMABLES.GRAVEBLOOM,
+    ];
+
+    if (dungeon.threat > 50) {
+      enemy = UNDEAD["DEATH_KNIGHT"];
+      loot.push([EQUIPMENT.RATTLEBONE_CHESTPLATE]);
+    } else if (dungeon.threat > 40) {
+      enemy = UNDEAD["GRAVE_WITCH"];
+      loot.push([EQUIPMENT.RATTLEBONE_PAULDRONS]);
+    } else if (dungeon.threat > 30) {
+      enemy = UNDEAD["BONE_TITAN"];
+      loot.push([EQUIPMENT.RATTLEBONE_WRISTGUARDS]);
+    } else if (dungeon.threat > 20) {
+      enemy = UNDEAD["CORPSE_ORACLE"];
+      loot.push([EQUIPMENT.GHOULBONE_HELMET]);
+    } else if (dungeon.threat > 10) {
+      enemy = UNDEAD["SKELETAL_WARRIOR"];
+      loot.push([EQUIPMENT.GHOULBONE_GREAVES]);
+    } else {
+      enemy = UNDEAD["DECREPIT_SKELETON"];
+      loot.push([EQUIPMENT.GHOULBONE_ARMGUARDS]);
+    }
+
+    if (choice === "Open" && chance > 0.4) {
+      // Add enemy to dungeon
+      dispatch(
+        dungeonActions.addEnemy({ enemy: buildEnemy(enemy), change: "ADD" })
+      );
+      // Get Random Loot
+      const randomIndex = Math.floor(Math.random() * loot.length);
+      // Add Random Loot to dungeon
+      dispatch(dungeonActions.addItem({ ...loot[randomIndex], id: uuidv4() }));
+      // Start combat
+      await delay(4000);
+      startCombat(dispatch);
+    } else {
+      await delay(4000);
+      openModal(dispatch, "roomSummaryModal");
+    }
+
+    const dungeon2 = store.getState().dungeon;
+    console.log("DUNGEON", dungeon2);
   },
 };
 

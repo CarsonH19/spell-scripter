@@ -7,22 +7,16 @@ import TopContent from "./TopContent/TopContent";
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-
-import { combatActions } from "../../store/combat-slice";
-
-import combatLoop from "../../store/combat-actions";
+import { startCombat } from "../../store/combat-actions";
 
 export default function GameWindow() {
   const dispatch = useDispatch();
   const room = useSelector((state) => state.dungeon);
-  const currentOrder = useSelector((state) => state.combat.order);
-  const characters = [...room.contents.enemies, ...currentOrder];
 
   useEffect(() => {
     // If there is no event in the dungeon-slice combat will begin
     if (!room.contents.event) {
-      dispatch(combatActions.setInitiative({ characters }));
-      combatLoop(dispatch);
+      startCombat(dispatch);
     }
 
     // dispatch(logActions.updateLogs({ text: "TESTING", logArray: "NARRATION" }));

@@ -1,6 +1,6 @@
 export const DUNGEON_ENTRANCE = {
   name: "Dungeon Entrance",
-  eventType: "ENTRANCE",
+  type: "ENTRANCE",
   description: "",
   options: [
     {
@@ -11,11 +11,28 @@ export const DUNGEON_ENTRANCE = {
   ],
 };
 
+export const COFFIN = {
+  name: "Coffin",
+  type: "CHOICE",
+  description: "An ornately decorated coffin is found. Do you wish to open it?",
+  options: [
+    {
+      text: ["Open"],
+      function: "COFFIN",
+      narration: "You decide to open the coffin.",
+    },
+    {
+      text: ["Leave"],
+      function: "COFFIN",
+      narration: "You decide to leave the coffin.",
+    },
+  ],
+};
+
 export const TRAPS = [
   {
     name: "Poison Darts",
-    eventType: "TRAP",
-    complete: false,
+    type: "TRAP",
     description:
       "A hidden mechanism triggers a volley of poison darts from the walls.",
     options: [
@@ -34,8 +51,7 @@ export const TRAPS = [
   },
   {
     name: "Spike Walls",
-    eventType: "TRAP",
-    complete: false,
+    type: "TRAP",
     description: "The walls start to close in, revealing deadly spikes.",
     options: [
       {
@@ -54,8 +70,7 @@ export const TRAPS = [
   },
   {
     name: "Collapsing Ceiling",
-    eventType: "TRAP",
-    complete: false,
+    type: "TRAP",
     description:
       "The ceiling begins to collapse, threatening to crush everything below.",
     options: [
@@ -75,8 +90,7 @@ export const TRAPS = [
   },
   {
     name: "Floor Spikes",
-    eventType: "TRAP",
-    complete: false,
+    type: "TRAP",
     description: "Pressure plates on the floor trigger spikes to shoot up.",
     options: [
       {
@@ -94,8 +108,7 @@ export const TRAPS = [
   },
   {
     name: "Rotating Blade",
-    eventType: "TRAP",
-    complete: false,
+    type: "TRAP",
     description:
       "A hidden blade starts spinning, threatening to cut anything in its path.",
     options: [
@@ -114,8 +127,7 @@ export const TRAPS = [
   },
   {
     name: "Poisonous Mist",
-    eventType: "TRAP",
-    complete: false,
+    type: "TRAP",
     description: "The room fills with a noxious, magical mist.",
     options: [
       {
@@ -132,8 +144,7 @@ export const TRAPS = [
   },
   {
     name: "Magic Rune",
-    eventType: "TRAP",
-    complete: false,
+    type: "TRAP",
     description: "Stepping on a rune triggers a magical explosion.",
     options: [
       {

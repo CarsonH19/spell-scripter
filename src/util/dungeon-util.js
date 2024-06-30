@@ -2,7 +2,7 @@ import { dungeonActions } from "../store/dungeon-slice";
 
 import { UNDEAD } from "../data/enemies";
 
-import { DUNGEON_ENTRANCE, TRAPS } from "../data/events";
+import { COFFIN, DUNGEON_ENTRANCE, TRAPS } from "../data/events";
 
 import store from "../store/index";
 
@@ -89,23 +89,22 @@ function getRoomContent() {
 
 function getRoomEvent() {
   const dungeon = store.getState().dungeon;
-
   let events = [];
-  console.log(dungeon.name);
-  // add a series of conditional checks to see which events are added to the events array
+
   // check dungeon
   switch (dungeon.name) {
     case "The Great Catacomb":
-      for (let i = 0; i < TRAPS.length; i++) {
-        events.push(TRAPS[i]);
-      }
-      {
-        // check area
-        // if (dungeon.area === "Rattling Halls") {
-        //   events.push();
-        // } else if (dungeon.area === "Ghostlight Crypts") {
-        // }
-      }
+      // for (let i = 0; i < TRAPS.length; i++) {
+      //   events.push(TRAPS[i]);
+      // }
+
+      events.push(COFFIN);
+      // check area
+      // if (dungeon.area === "Rattling Halls") {
+      //   events.push();
+      // } else if (dungeon.area === "Ghostlight Crypts") {
+      // }
+
       break;
   }
 
@@ -217,6 +216,16 @@ function shuffle(array) {
   return array;
 }
 
+export function buildEnemy(enemy) {
+  const baseStats = constructStats(enemy.stats);
+  return {
+    ...enemy,
+    stats: baseStats,
+    id: uuidv4(),
+    damageDisplay: "",
+  };
+}
+
 export function constructStats(stats) {
   return {
     baseStrength: stats.baseStrength,
@@ -237,7 +246,6 @@ export function constructStats(stats) {
     arcana: {
       totalArcana: 0,
       spellPower: 0,
-      maxMana: 0, // NOTE: Should I remove this because HEROES & ENEMIES will use ability cool down instead of mana?
     },
   };
 }

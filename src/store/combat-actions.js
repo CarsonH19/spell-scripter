@@ -37,6 +37,9 @@ export default async function combatLoop(dispatch) {
   // Iterate through all characters and call passive abilities before combat
   // NOTE: Passives will be called on each round of combat.
   let order = store.getState().combat.order;
+  const dungeon = store.getState().dungeon;
+  console.log(dungeon);
+
   for (let i = 0; i < order.length; i++) {
     checkForPassiveAbility(dispatch, order[i], "BEFORE_COMBAT");
   }
@@ -219,7 +222,6 @@ export default async function combatLoop(dispatch) {
                   target
                 );
 
-                changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
                 const damage = calcDamage(character);
                 // Create a new slice property to show the attack outcome
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
@@ -403,4 +405,13 @@ function endCombat(dispatch) {
 
 async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// STARTING COMBAT
+export function startCombat(dispatch) {
+  const room = store.getState().dungeon;
+  const currentOrder = store.getState().combat.order;
+  const characters = [...room.contents.enemies, ...currentOrder];
+  dispatch(combatActions.setInitiative({ characters }));
+  combatLoop(dispatch);
 }

@@ -10,6 +10,7 @@ export default function EventOptions() {
 
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon);
+  const isTrap = dungeon.event.type === "TRAP";
 
   useEffect(() => {
     setOpen(true);
@@ -31,12 +32,18 @@ export default function EventOptions() {
       {open &&
         eventOptions.map((option) => {
           const eventFunction = eventFunctions[option.function];
+          let optionChoice;
+          if (isTrap) {
+            optionChoice = option.text[1];
+          } else {
+            optionChoice = option.text;
+          }
 
           return (
             <button
               key={option.text}
               onClick={() =>
-                handleClickEventOption(dispatch, eventFunction, option.text[1])
+                handleClickEventOption(dispatch, eventFunction, optionChoice)
               }
             >
               {Array.isArray(option.text) ? (
