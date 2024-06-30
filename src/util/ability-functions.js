@@ -96,7 +96,6 @@ const abilityFunctions = {
   // ===========================================
   // Skeletal Archer
   MULTI_SHOT: (dispatch, character, target) => {
-    console.log("MULTI-SHOT!");
     const hit = rollToHit(dispatch, character, target);
     if (hit) {
       const damage = calcDamage(character);
@@ -109,6 +108,10 @@ const abilityFunctions = {
         })
       );
     }
+  },
+  CHILL_OF_THE_GRAVE: (dispatch, character, target) => {
+    const damage = 6 + character.stats.arcana.spellPower;
+    changeHealth(dispatch, target, "DAMAGE", damage, "ICE");
   },
 };
 
@@ -188,6 +191,13 @@ export function useAbility(dispatch, character) {
           const arrow2 = Math.floor(Math.random() * targetGroup.length);
           abilityFunction(dispatch, character, targetGroup[arrow1]);
           abilityFunction(dispatch, character, targetGroup[arrow2]);
+        }
+
+        // Skeletal Mage - Chill of the Grave
+        if (character.name === "Skeletal Mage") {
+          const targetGroup = findTargetGroup("HEROES");
+          const index = Math.floor(Math.random() * targetGroup.length);
+          abilityFunction(dispatch, character, targetGroup[index]);
         }
       }
       break;
