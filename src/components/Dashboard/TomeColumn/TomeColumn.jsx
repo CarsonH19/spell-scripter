@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { uiActions } from "../../../store/ui-slice";
 
 import { TOMES } from "../../../data/tomes";
+import { openModal } from "../../../store/ui-actions";
 
 export default function TomeColumn() {
   const dispatch = useDispatch();
@@ -25,12 +26,9 @@ export default function TomeColumn() {
 
   const handleOpenTome = (tome) => {
     // update the current open tome
-    dispatch(uiActions.updateTome(tome));
+    dispatch(uiActions.updateActiveTome(tome));
     // Open tome modal
-    if (!isModalOpen) {
-      dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
-    }
-    dispatch(uiActions.toggleModal({ modal: "tomesModal", open: "OPEN" }));
+    openModal(dispatch, "tomesModal");
   };
 
   return (

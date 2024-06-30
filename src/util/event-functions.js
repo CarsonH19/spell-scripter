@@ -4,6 +4,7 @@ import { changeHealth } from "../store/health-actions";
 import { uiActions } from "../store/ui-slice";
 
 import store from "../store/index";
+import { openModal } from "../store/ui-actions";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 
@@ -34,7 +35,7 @@ const eventFunctions = {
       console.log("SUCCESS", success);
     }
 
-    callRoomSummaryModal(dispatch);
+    openModal(dispatch, "roomSummaryModal");
   },
 };
 
@@ -63,9 +64,4 @@ export default eventFunctions;
 
 function roll20(bonus = 0) {
   return Math.floor(Math.random() * 21) + bonus;
-}
-
-function callRoomSummaryModal(dispatch) {
-  dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
-  dispatch(uiActions.toggleModal({ modal: "roomSummaryModal", open: "OPEN" }));
 }

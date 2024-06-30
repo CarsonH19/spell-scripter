@@ -10,6 +10,7 @@ import PlayerColumn from "./PlayerColumn/PlayerColumn";
 import TomeColumn from "./TomeColumn/TomeColumn";
 import { playerActions } from "../../store/player-slice";
 import { uiActions } from "../../store/ui-slice";
+import { openModal } from "../../store/ui-actions";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -24,8 +25,7 @@ export default function Dashboard() {
   useEffect(() => {
     const currentLevel = store.getState().player.level;
     if (playerLevel !== currentLevel && !isModalOpen) {
-      dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
-      dispatch(uiActions.toggleModal({ modal: "levelUpModal", open: "OPEN" }));
+      openModal(dispatch, "levelUpModal");
     }
   }, [dispatch, playerLevel]);
 

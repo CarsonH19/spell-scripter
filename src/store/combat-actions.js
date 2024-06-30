@@ -27,6 +27,7 @@ import {
 
 import { checkForPassiveAbility } from "../util/passive-functions.js";
 import statusEffectFunctions from "../util/status-effect-functions.js";
+import { openModal } from "./ui-actions.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -107,16 +108,21 @@ export default async function combatLoop(dispatch) {
                 // choose a spell from spell list
                 const selectedSpell = await select();
 
-                dispatch(
-                  logActions.updateLogs({
-                    change: "ADD",
-                    text: `Casting ${selectedSpell.name}`,
-                  })
-                );
-
-                // Restart the while loop allowing players to change actions
                 if (selectedSpell === null) continue;
-                await castSpell(dispatch, selectedSpell);
+
+                if (selectedSpell) {
+                  dispatch(
+                    logActions.updateLogs({
+                      change: "ADD",
+                      text: `Casting ${selectedSpell.name}`,
+                    })
+                  );
+
+                  // Restart the while loop allowing players to change actions
+                  await castSpell(dispatch, selectedSpell);
+                }
+
+                console.log("SPELL PASSED");
               }
               break;
             case "ATTACK":
@@ -171,6 +177,8 @@ export default async function combatLoop(dispatch) {
         }
       }
 
+      console.log("PLAYER PASSED");
+
       if (order[i].identifier === "HERO" || order[i].identifier === "ENEMY") {
         character.currentHealth > 0 && console.log("TURN", order[i]);
         order = store.getState().combat.order;
@@ -180,6 +188,7 @@ export default async function combatLoop(dispatch) {
         await delay(1000);
 
         let action;
+
         // STATUS EFFECT - Restrained
         if (checkCurrentStatusEffects(character, "Restrained")) {
           action = "GUARD";
@@ -234,7 +243,7 @@ export default async function combatLoop(dispatch) {
             break;
         }
       }
-      await delay(2000);
+      await delay(1000);
 
       // COMPLETE TASKS AT END OF ROUND
       dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
@@ -243,6 +252,8 @@ export default async function combatLoop(dispatch) {
       decrementAbilityCooldowns(dispatch, character);
     }
   }
+
+  await delay(1000);
 
   // Check if combat is over
   if (endCombat(dispatch)) {
@@ -382,10 +393,7 @@ function endCombat(dispatch) {
   }
 
   if (enemies.length <= 0) {
-    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
-    dispatch(
-      uiActions.toggleModal({ modal: "roomSummaryModal", open: "OPEN" })
-    ); // set to true
+    openModal(dispatch, "roomSummaryModal");
     return true;
   }
 

@@ -35,7 +35,6 @@ export function changeHealth(
         chance += 0.05;
       }
 
-      console.log(chance);
       if (chance > 0.95) {
         changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
       }
@@ -157,7 +156,7 @@ export function checkForDeath(dispatch, id) {
   let character = order.find((char) => char.id === id);
 
   // Check for player death
-  if (character.currentHealth <= 0 && character.identifier === "PLAYER") {
+  if (character.currentHealth <= 0 && character.id === "Player") {
     dispatch(
       combatActions.updateHealth({
         id: character.id,
@@ -166,17 +165,19 @@ export function checkForDeath(dispatch, id) {
       })
     );
 
-    if (ui.continueIsVisible) {
-      dispatch(uiActions.toggle({ modal: "continueIsVisible" }));
-    }
-
-    dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true
-    dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // false
+    dispatch(
+      uiActions.changeUi({ element: "continueIsVisible", visible: false })
+    );
+    dispatch(
+      uiActions.changeUi({ element: "dashboardIsVisible", visible: true })
+    );
+    dispatch(
+      uiActions.changeUi({ element: "gameWindowIsVisible", visible: true })
+    );
   }
 
   if (character.currentHealth <= 0 && character.identifier === "ENEMY") {
     // Check defeated enemy for loot & add them to dungeon-slice
-    console.log("LOOT IS CALLED");
     loot(dispatch, character);
   }
 

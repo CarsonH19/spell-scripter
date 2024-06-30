@@ -47,11 +47,11 @@ export default function Actions() {
     setPlayerAction(action);
 
     if (action === "CAST SPELL") {
-      dispatch(uiActions.toggle({ modal: "spellListIsVisible" })); // set to true
+      dispatch(uiActions.changeUi({ element: "spellListIsVisible", visible: true })); 
     }
 
     if (action === "USE ITEM") {
-      dispatch(uiActions.toggle({ modal: "itemListIsVisible" })); // set to true
+      dispatch(uiActions.changeUi({ element: "itemListIsVisible", visible: true })); 
     }
   };
 
@@ -59,12 +59,12 @@ export default function Actions() {
     setSelect(choice);
     castSpell(dispatch, choice);
 
-    dispatch(uiActions.toggle({ modal })); // set to false
+    dispatch(uiActions.changeUi({ element: modal, visible: false })); 
   };
 
   const handleCloseList = (modal) => {
     setSelect(null);
-    dispatch(uiActions.toggle({ modal })); // set to false
+    dispatch(uiActions.changeUi({ element: modal, visible: false })); 
   };
 
   let content;

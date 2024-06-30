@@ -16,14 +16,20 @@ export default function MiddleContent() {
   const continueIsVisible = useSelector((state) => state.ui.continueIsVisible);
 
   const handleContinue = () => {
-    dispatch(uiActions.toggle({ modal: "continueIsVisible" }));
+    dispatch(
+      uiActions.changeUi({ element: "continueIsVisible", visible: true })
+    );
     createNewRoom(dispatch);
   };
 
   return (
     <div className={classes.middle}>
       <Party />
-      {continueIsVisible && <button className={classes.continue} onClick={handleContinue}>Continue</button>}
+      {continueIsVisible && (
+        <button className={classes.continue} onClick={handleContinue}>
+          Continue
+        </button>
+      )}
       {event && <EventOptions />}
       <Enemies />
     </div>

@@ -5,9 +5,13 @@ export default function SettingsModal() {
   const dispatch = useDispatch();
 
   const handleExitDungeon = () => {
-    dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true
-    dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // false
-    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
+    dispatch(
+      uiActions.changeUi({ element: "dashboardIsVisible", visible: true })
+    ); 
+    dispatch(
+      uiActions.changeUi({ element: "gameWindowIsVisible", visible: false })
+    );
+    dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
   };
 
   return (

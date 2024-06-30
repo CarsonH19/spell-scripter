@@ -29,14 +29,14 @@ const uiSlice = createSlice({
     tome: null,
   },
   reducers: {
-    updateTome(state, action) {
+    updateActiveTome(state, action) {
       state.tome = action.payload;
     },
-    toggle(state, action) {
-      const { modal } = action.payload;
-      state[modal] = !state[modal];
+    changeUi(state, action) {
+      const { element, visible } = action.payload;
+      state[element] = visible;    
     },
-    toggleModal(state, action) {
+    openModal(state, action) {
       const modal = action.payload.modal;
       // Set all modals to false
       Object.keys(state.modal).forEach((key) => {

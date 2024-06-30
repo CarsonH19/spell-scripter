@@ -36,8 +36,12 @@ export default function ConfirmationModal() {
   const characters = [...heroes, player];
 
   const handleConfirmation = () => {
-    dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // false
-    dispatch(uiActions.toggle({ modal: "gameWindowIsVisible" })); // true
+    dispatch(
+      uiActions.changeUi({ element: "dashboardIsVisible", visible: false })
+    ); // false
+    dispatch(
+      uiActions.changeUi({ element: "gameWindowIsVisible", visible: true })
+    ); // true
 
     // Add the characters array to the combat-slice order
     dispatch(combatActions.setInitiative({ characters }));
@@ -74,15 +78,15 @@ export default function ConfirmationModal() {
       changeStatusEffect(dispatch, characters[index], "ADD", statusEffect);
     }
 
-    if (ui.continueIsVisible) {
-      dispatch(uiActions.toggle({ modal: "continuIsVisible" }));
-    }
+    dispatch(
+      uiActions.changeUi({ element: "continueIsVisible", visible: false })
+    );
 
-    dispatch(uiActions.toggle({ modal: "modalIsVisible" }));
+    dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
   };
 
   const handleClickChange = (modal) => {
-    dispatch(uiActions.toggleModal({ modal, open: "OPEN" }));
+    openModal(dispatch, modal);
   };
 
   return (

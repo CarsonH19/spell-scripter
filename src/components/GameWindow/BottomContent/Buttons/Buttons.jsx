@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { uiActions } from "../../../../store/ui-slice";
 
 import { useSelector } from "react-redux";
+import { openModal } from "../../../../store/ui-actions";
 
 export default function Buttons() {
   const dispatch = useDispatch();
@@ -12,8 +13,7 @@ export default function Buttons() {
   const danger = useSelector((state) => state.dungeon.danger);
 
   const handleOpenModal = (modal) => {
-    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
-    dispatch(uiActions.toggleModal({ modal, open: "OPEN" }));
+    openModal(dispatch, modal);
   };
 
   return (

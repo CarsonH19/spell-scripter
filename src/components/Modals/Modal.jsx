@@ -34,10 +34,10 @@ export default function Modal() {
   const handleClose = () => {
     // Render continue button when RoomSummaryModal is closed
     if (continueCheck === "roomSummaryModal") {
-      dispatch(uiActions.toggle({ modal: "continueIsVisible" })); // set to true
+      dispatch(uiActions.changeUi({ element: "continueIsVisible", visible: true }));
     }
 
-    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
+    dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false })); 
   };
 
   return createPortal(

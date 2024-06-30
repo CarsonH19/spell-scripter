@@ -18,7 +18,7 @@ export default function Item({ item, count }) {
     activateItem(dispatch, item);
 
     if (isItemListOpen) {
-      dispatch(uiActions.toggle({ modal: "itemListIsVisible" })); // set to false
+      dispatch(uiActions.changeUi({ element: "itemListIsVisible", visible: false }));
     }
   };
 

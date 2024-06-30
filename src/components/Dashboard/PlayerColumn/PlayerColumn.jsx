@@ -14,14 +14,14 @@ import {
 import Attributes from "./Attributes";
 
 import { useDispatch, useSelector } from "react-redux";
+import { openModal } from "../../../store/ui-actions";
 
 export default function PlayerColumn() {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
 
   const handleOpenModal = (modal) => {
-    dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
-    dispatch(uiActions.toggleModal({ modal, open: "OPEN" }));
+    openModal(dispatch, modal);
   };
 
   return (

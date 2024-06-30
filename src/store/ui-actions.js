@@ -1,9 +1,10 @@
 import { uiActions } from "./ui-slice";
+import store from "./index";
 
-export function openQuickTimeEvent(dispatch) {
-  dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to true
-  dispatch(
-    uiActions.toggleModal({ modal: "quickTimeEventModal", open: "OPEN" })
-  );
+export function openModal(dispatch, modal) {
+  dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: true }));
+  dispatch(uiActions.openModal({ modal, open: true }));
+
+  const ui = store.getState().ui;
+  console.log(ui);
 }
-

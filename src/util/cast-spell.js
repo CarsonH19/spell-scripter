@@ -10,7 +10,7 @@ import changeStatusEffect, {
   checkCurrentStatusEffects,
 } from "../store/status-effect-actions";
 
-import { openQuickTimeEvent } from "../store/ui-actions";
+import { openModal } from "../store/ui-actions";
 import CONDITIONS from "../data/conditions";
 import { checkSkillPoints } from "./spellbook-util";
 import statusEffectFunctions from "./status-effect-functions";
@@ -20,18 +20,18 @@ import updateStatTotals from "../store/stats-actions";
 let quickTimeEventResolver;
 
 export default async function castSpell(dispatch, spell) {
-  // Subtract spell's mana cost from player's current mana
   const manaCost = calculateManaCost(spell);
   dispatch(combatActions.updateMana({ value: manaCost, change: "REMOVE" }));
 
-  openQuickTimeEvent(dispatch);
-  const getQuickTimeEventResult = await getResult(); // true/false
+  openModal(dispatch, "quickTimeEventModal");
 
-  dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
+  const getQuickTimeEventResult = await getResult();
 
   if (!getQuickTimeEventResult) {
     return;
   }
+
+  dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
 
   const order = store.getState().combat.order;
   const enemies = order.filter((char) => char.identifier === "ENEMY");
@@ -200,6 +200,8 @@ export default async function castSpell(dispatch, spell) {
     default:
       return;
   }
+
+  console.log("CAST SPELL END");
 }
 
 // =============================================================

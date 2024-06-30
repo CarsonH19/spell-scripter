@@ -12,8 +12,10 @@ export default function StartGame() {
   const dispatch = useDispatch();
 
   const handleStart = () => {
-    dispatch(uiActions.toggle({ modal: "startIsVisible" })); // false
-    dispatch(uiActions.toggle({ modal: "dashboardIsVisible" })); // true
+    dispatch(uiActions.changeUi({ element: "startIsVisible", visible: false })); // false
+    dispatch(
+      uiActions.changeUi({ element: "dashboardIsVisible", visible: true })
+    ); // true
 
     // TEST CODE FOR INVENTORY
     let test = 10;
@@ -38,19 +40,19 @@ export default function StartGame() {
     dispatch(
       playerActions.changeInventory({
         item: { ...EQUIPMENT.BLACKHEART_CROWN, id: uuidv4() },
-          change: "ADD",
+        change: "ADD",
       })
     );
     dispatch(
       playerActions.changeInventory({
         item: { ...EQUIPMENT.BLACKHEART_REGALIA, id: uuidv4() },
-          change: "ADD",
+        change: "ADD",
       })
     );
     dispatch(
       playerActions.changeInventory({
         item: { ...EQUIPMENT.BLACKHEART_SCEPTER, id: uuidv4() },
-          change: "ADD",
+        change: "ADD",
       })
     );
   };
