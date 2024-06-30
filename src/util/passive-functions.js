@@ -3,6 +3,9 @@ import store from "../store/index";
 import changeStatusEffect from "../store/status-effect-actions";
 
 const passiveFunctions = {
+  // ===========================================
+  //                HEROES
+  // ===========================================
   // Siggurd
   RADIANT_AURA: (dispatch) => {
     const order = store.getState().combat.order;
@@ -38,6 +41,35 @@ const passiveFunctions = {
     // 10% Chance to cause the Burning Condition
     if (burnChance > 0.9) {
       changeStatusEffect(dispatch, target, "ADD", CONDITIONS.BURNING);
+    }
+  },
+  // ===========================================
+  //                ENEMIES
+  // ===========================================
+  // Skeletal Warrior
+  RATTLE_OF_WAR: (dispatch) => {
+    const order = store.getState().combat.order;
+    const RATTLE_OF_WAR = {
+      name: "Rattle of War",
+      display: true,
+      image: "",
+      type: "BUFF",
+      description:
+        "The undead's strength grows in the presence of a skeletal warrior.",
+      effect: ["+2 Attack"],
+      stats: { strength: { attack: +2 } },
+      function: false,
+    };
+
+    for (let i = 0; i < order.length; i++) {
+      if (
+        order[i].identifier === "ENEMY" &&
+        order[i].type === "UNDEAD" &&
+        order[i].name !== "Skeletal Warrior"
+      ) {
+        // Add Radiant Aura to all Undead Enemies
+        changeStatusEffect(dispatch, order[i], "ADD", RATTLE_OF_WAR);
+      }
     }
   },
 };

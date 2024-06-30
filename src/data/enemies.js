@@ -53,6 +53,12 @@ const UNDEAD = {
       baseAgility: 0,
       baseArcana: 0,
     },
+    passive: {
+      name: "Rattle of War",
+      description: `Undead enemies have their Attack increased while in the presence of a skeletal warrior.`,
+      when: "BEFORE_COMBAT",
+      function: "RATTLE_OF_WAR",
+    },
     weaknesses: [],
     resistances: [],
     immunities: [],
