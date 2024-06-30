@@ -42,6 +42,7 @@ export function createNewRoom(dispatch) {
     ...dungeon,
     roomCounter: dungeon.roomCounter + 1,
     threat: dungeon.threat + 1,
+    danger: true,
     image: null,
     music: null,
     contents: {

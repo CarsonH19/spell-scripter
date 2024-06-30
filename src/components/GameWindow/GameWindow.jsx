@@ -9,10 +9,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { combatActions } from "../../store/combat-slice";
-import { dungeonActions } from "../../store/dungeon-slice";
 
 import combatLoop from "../../store/combat-actions";
-import { logActions } from "../../store/log-slice";
 
 export default function GameWindow() {
   const dispatch = useDispatch();
@@ -21,8 +19,6 @@ export default function GameWindow() {
   const characters = [...room.contents.enemies, ...currentOrder];
 
   useEffect(() => {
-    dispatch(dungeonActions.dangerToggle()); // toggle on
-
     // If there is no event in the dungeon-slice combat will begin
     if (!room.contents.event) {
       dispatch(combatActions.setInitiative({ characters }));

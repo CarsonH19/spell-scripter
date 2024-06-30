@@ -1,4 +1,6 @@
 import classes from "./Actions.module.css";
+
+import store from "../../../../store/index";
 import { setPlayerAction } from "../../../../store/combat-actions";
 import { useSelector, useDispatch } from "react-redux";
 import { uiActions } from "../../../../store/ui-slice";
@@ -13,12 +15,18 @@ import Tooltip from "../../../UI/Tooltip";
 import Icon from "../../../UI/Icon";
 
 import spellDescriptions from "../../../../util/spell-descriptions";
+import { useEffect, useState } from "react";
 
 export default function Actions() {
   const dispatch = useDispatch();
-
+  // Player
+  const player = findCharacterById();
+  // Event
+  const event = useSelector((state) => state.dungeon.event);
+  //Spells
   const spellUI = useSelector((state) => state.ui.spellListIsVisible);
   const spellList = useSelector((state) => state.player.spellList);
+  // Items
   const itemUI = useSelector((state) => state.ui.itemListIsVisible);
   const itemList = useSelector((state) => state.player.inventory.consumables);
 
@@ -28,16 +36,12 @@ export default function Actions() {
     (state) => state.combat.isCharacterTurn === playerID
   );
   const danger = useSelector((state) => state.dungeon.danger);
-  const isDisabled = !isCharacterTurn && !danger;
+  const isDisabled = (!isCharacterTurn && danger) || event;
+  const [search, setSearch] = useState("BEFORE COMBAT");
 
-  // mana tracking for spell button disabled
-  const order = useSelector((state) => state.combat.order);
-
-  const findCharacterById = () => {
-    return order.find((char) => char.id === "Player");
-  };
-
-  const player = findCharacterById();
+  useEffect(() => {
+    setSearch(danger ? "DURING COMBAT" : "BEFORE COMBAT");
+  }, [danger]);
 
   const handlePlayerChoice = (action) => {
     setPlayerAction(action);
@@ -53,9 +57,7 @@ export default function Actions() {
 
   const handleSelectChoice = (choice, modal) => {
     setSelect(choice);
-    if (danger) {
-      castSpell(dispatch, choice);
-    }
+    castSpell(dispatch, choice);
 
     dispatch(uiActions.toggle({ modal })); // set to false
   };
@@ -83,29 +85,35 @@ export default function Actions() {
             const spellDescription = descriptionFunction(
               player.stats.arcana.spellPower
             );
-            return (
-              <Tooltip
-                key={spellObject.name}
-                title={spellObject.name}
-                text={spellObject.school}
-                detailOne={spellDescription}
-                detailTwo={`Mana Cost: ${spellObject.manaCost}`}
-                position="skill"
-                container="spell-list-container"
-              >
-                <Icon
-                  className={
-                    playerMana < spellObject.manaCost ? classes.disabled : ""
-                  }
+
+            if (
+              spellObject.castTime === search ||
+              spellObject.castTime === "ANYTIME"
+            ) {
+              return (
+                <Tooltip
                   key={spellObject.name}
-                  onClick={() =>
-                    handleSelectChoice(spellObject, "spellListIsVisible")
-                  }
+                  title={spellObject.name}
+                  text={spellObject.school}
+                  detailOne={spellDescription}
+                  detailTwo={`Mana Cost: ${spellObject.manaCost}`}
+                  position="skill"
+                  container="spell-list-container"
                 >
-                  {/* {spellObject.name} */}
-                </Icon>
-              </Tooltip>
-            );
+                  <Icon
+                    className={
+                      playerMana < spellObject.manaCost ? classes.disabled : ""
+                    }
+                    key={spellObject.name}
+                    onClick={() =>
+                      handleSelectChoice(spellObject, "spellListIsVisible")
+                    }
+                  >
+                    {/* {spellObject.name} */}
+                  </Icon>
+                </Tooltip>
+              );
+            }
           })}
         </ul>
         <p
@@ -190,3 +198,9 @@ export default function Actions() {
 function toSnakeCase(str) {
   return str.toUpperCase().replace(/\s+/g, "_");
 }
+
+const findCharacterById = () => {
+  // mana tracking for spell button disabled
+  const order = useSelector((state) => state.combat.order);
+  return order.find((char) => char.id === "Player");
+};

@@ -22,8 +22,9 @@ const dungeonSlice = createSlice({
         ...action.payload,
       };
     },
-    dangerToggle(state){
-      state.danger = !state.danger
+    dangerToggle(state, action) {
+      const danger = action.payload.danger;
+      state.danger = danger;
     },
     changeEnemies(state, action) {
       const enemy = action.payload.enemy;
