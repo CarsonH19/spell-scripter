@@ -13,7 +13,7 @@ export function checkBehaviorAction(character) {
 
   switch (character.behavior) {
     case "ERRATIC": // Random actions & targets
-      const actions = ["ATTACK", "DEFENSE", "ABILITY"];
+      const actions = ["ATTACK", "GUARD", "ABILITY"];
       let randomIndex;
 
       if (abilityA || abilityB) {

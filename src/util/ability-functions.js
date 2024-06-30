@@ -4,8 +4,13 @@ import { changeHealth } from "../store/health-actions";
 import { combatActions } from "../store/combat-slice";
 import changeStatusEffect from "../store/status-effect-actions";
 import CONDITIONS from "../data/conditions";
+import { calcDamage, rollToHit } from "../store/combat-actions";
 
 const abilityFunctions = {
+  // ===========================================
+  //                HEROES
+  // ===========================================
+  // Siggurd
   HOLY_SMITE: (dispatch, target) => {
     // Double damage & no roll to hit
     const siggurd = findCharacterInOrder("Siggurd");
@@ -31,6 +36,7 @@ const abilityFunctions = {
 
     changeStatusEffect(dispatch, target, "ADD", DIVINE_GUARDIAN);
   },
+  // Riven
   VENOM_STRIKE: (dispatch, target) => {
     const riven = findCharacterInOrder("Riven");
 
@@ -60,6 +66,7 @@ const abilityFunctions = {
       changeStatusEffect(dispatch, targets[i], "ADD", SMOKE_BOMB);
     }
   },
+  // Liheth
   CLEANSING_FLAME: (dispatch, target, statusEffect) => {
     const liheth = findCharacterInOrder("Liheth");
     if (statusEffect) {
@@ -83,6 +90,25 @@ const abilityFunctions = {
     };
 
     changeStatusEffect(dispatch, target, "ADD", UNDYING_FLAME);
+  },
+  // ===========================================
+  //                ENEMIES
+  // ===========================================
+  // Skeletal Archer
+  MULTI_SHOT: (dispatch, character, target) => {
+    console.log("MULTI-SHOT!");
+    const hit = rollToHit(dispatch, character, target);
+    if (hit) {
+      const damage = calcDamage(character);
+      changeHealth(dispatch, target, "DAMAGE", damage);
+    } else {
+      dispatch(
+        combatActions.updateDamageDisplay({
+          id: target.id,
+          value: "Miss!",
+        })
+      );
+    }
   },
 };
 
@@ -108,12 +134,6 @@ export function useAbility(dispatch, character) {
   // NOTE: If multiple characters use this focus can I add an if-statement to check for the correct name?
   switch (character[ability].focus) {
     // case "SELF":
-    // break;
-
-    // case "RANDOM_HERO":
-    // break;
-
-    // case "RANDOM_ENEMY":
     // break;
 
     case "HEROES":
@@ -159,6 +179,15 @@ export function useAbility(dispatch, character) {
             const index = Math.floor(Math.random() * targetGroup.length);
             abilityFunction(dispatch, targetGroup[index]);
           }
+        }
+
+        // Skeletal Archer - Multi-shot
+        if (character.name === "Skeletal Archer") {
+          const targetGroup = findTargetGroup("HEROES");
+          const arrow1 = Math.floor(Math.random() * targetGroup.length);
+          const arrow2 = Math.floor(Math.random() * targetGroup.length);
+          abilityFunction(dispatch, character, targetGroup[arrow1]);
+          abilityFunction(dispatch, character, targetGroup[arrow2]);
         }
       }
       break;
