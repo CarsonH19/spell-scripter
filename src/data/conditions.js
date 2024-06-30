@@ -6,7 +6,7 @@ const CONDITIONS = {
     display: true,
     image: "",
     type: "DEBUFF",
-    description: "The target takes damage at the start of each of its turns.",
+    description: "The target takes Fire damage at the start of each of its turns.",
     effect: [""],
     durationType: "ROUND",
     duration: 3,

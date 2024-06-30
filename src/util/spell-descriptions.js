@@ -41,37 +41,67 @@ const spellDescriptions = {
     } Fire damage to all enemies.`;
   },
   // =======================================
-  //                ABJURATION
+  //               ABJURATION
   // =======================================
   BARK_SKIN: () => {
     return `Give a target the durability of bark, increasing the target's Defense +1 for 3 rounds.`;
   },
   BARRIER: () => {
-    return `Place a magical barrier around a target. The next instance of damage received by the target is halved and the spell ends.`;
+    return `Place a magical barrier around an ally. The next instance of damage received by the target is halved and the spell ends.`;
   },
   BOUNDLESS: () => {
-    return `Protect a target from being Restrained. The target gains immunity to the Restrained condition for 3 rounds.`;
+    return `Protect an ally from being Restrained. The target gains immunity to the Restrained condition for 3 rounds.`;
   },
   DEATH_WARD: () => {
-    return `Place a ward on a target protecting it from death. If the target falls below 0HP, it instead retains 1HP and the spell ends.`;
+    return `Place a ward on an ally protecting it from death. If the target falls below 0HP, it instead retains 1HP and the spell ends.`;
   },
   DISPEL_MAGIC: () => {
-    return `Dispel a random magical effect on a target that is making it more powerful.`;
+    return `Dispel a random magical effect on an enemy that is making it more powerful.`;
   },
   WARD_FROM_EVIL: () => {
-    return `Place a ward on a target protecting it from evil. Undead creatures that attack the target will have an increased chance to miss their attacks.`;
+    return `Place a ward on an ally protecting it from evil. Undead creatures that attack the target will have an increased chance to miss their attacks.`;
   },
   STONE_SKIN: () => {
-    return `Give a target the durability of stone, increasing the target's Defense +2 for 3 rounds.`;
+    return `Give an ally the durability of stone, increasing the target's Defense +2 for 3 rounds.`;
   },
   STEEL_SKIN: () => {
-    return `Give a target the durability of steel, increasing the target's Defense +3 for 3 rounds.`;
+    return `Give an ally the durability of steel, increasing the ally's Defense +3 for 3 rounds.`;
   },
   SHELL: () => {
-    return `Place a magical shell around a target. All instances of damage received by the target are halved for 3 rounds.`;
+    return `Place a magical shell around an ally. All instances of damage received by the target are halved for 3 rounds.`;
   },
   INVULNERABILITY: () => {
-    return `Grant a target invulnerability. The target cannot be damaged for 3 rounds.`;
+    return `Grant an ally invulnerability. The target cannot be damaged for 3 rounds.`;
+  },
+  // =======================================
+  //              CONJURATION
+  // =======================================
+  CONJURE_WEAPON: () => {
+    return `Grant an ally a magical weapon, increasing the ally's Attack +2 for 3 rooms.`;
+  },
+  CONJURE_FEAST: () => {
+    return `Conjure a feast for all allies to consume, increasing their Health Regeneration +2 for 3 rooms.`;
+  },
+  SUMMON_BEAST: () => {
+    return `Summon a beast to join your party and fight alongside you. You can only have one summon active at a time.`;
+  },
+  SUMMON_KNIGHT: () => {
+    return `Summon a knight to join your party and fight alongside you. You can only have one summon active at a time.`;
+  },
+  CONJURE_KEY: () => {
+    return `Conjure a key to open locked doors.`;
+  },
+  SUMMON_DRAKE: () => {
+    return `Summon a drake to join your party and fight alongside you. You can only have one summon active at a time.`;
+  },
+  SUMMON_GOLEM: () => {
+    return `Summon a golem to join your party and fight alongside you. You can only have one summon active at a time.`;
+  },
+  CONJURE_PORTAL: () => {
+    return `Conjure a portal, allowing you to enter into an area of your choice that you've previously discovered within your current dungeon.`;
+  },
+  SUMMON_HERO: () => {
+    return `Summon a hero that is currently not in your party. You can have a maximum of 3 heroes in your party at a time.`;
   },
 };
 

@@ -2,6 +2,7 @@ import store from "./index";
 
 import { combatActions } from "./combat-slice";
 import { playerActions } from "./player-slice";
+import { checkSkillPoints } from "../util/spellbook-util";
 
 export default function updateStatTotals(dispatch, id) {
   let character;
@@ -104,6 +105,33 @@ export default function updateStatTotals(dispatch, id) {
 
   if (spellPower < 0) {
     spellPower = 0;
+  }
+
+  if ("summon" in character) {
+    // SKILL - Summoned Dexterity
+    const summonedDexterity = checkSkillPoints("Summoned Dexterity");
+    if (summonedDexterity) {
+      for (let i = 0; i < summonedDexterity; i++) {
+        speed++;
+        hitChance++;
+      }
+    }
+
+    // SKILL - Summoned Might
+    const summonedMight = checkSkillPoints("Summoned Might");
+    if (summonedMight) {
+      for (let i = 0; i < summonedMight; i++) {
+        attack += 2;
+      }
+    }
+
+    // SKILL - Summoned Resilience
+    const summonedResilience = checkSkillPoints("Summoned Resilience");
+    if (summonedResilience) {
+      for (let i = 0; i < summonedResilience; i++) {
+        maxHealth += 10;
+      }
+    }
   }
 
   dispatch(

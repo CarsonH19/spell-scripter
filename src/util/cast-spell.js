@@ -14,6 +14,8 @@ import { openQuickTimeEvent } from "../store/ui-actions";
 import CONDITIONS from "../data/conditions";
 import { checkSkillPoints } from "./spellbook-util";
 import statusEffectFunctions from "./status-effect-functions";
+import { constructStats } from "./dungeon-util";
+import updateStatTotals from "../store/stats-actions";
 
 let quickTimeEventResolver;
 
@@ -171,6 +173,32 @@ export default async function castSpell(dispatch, spell) {
       break;
     case "ALL": // all characters in initiative are targeted
       break;
+
+    case "CONJURE":
+      {
+        if (spell.spellType === "SUMMON") {
+          const baseStats = constructStats(spell.summon.stats);
+          let summon = {
+            ...spell.summon,
+            stats: baseStats,
+            damageDisplay: "",
+          };
+
+          dispatch(combatActions.addCharacter({ character: summon }));
+          updateStatTotals(dispatch, summon.id);
+          dispatch(
+            combatActions.updateHealth({
+              id: summon.id,
+              change: "HEAL",
+              value: 999,
+            })
+          );
+        }
+      }
+      break;
+
+    default:
+      return;
   }
 }
 

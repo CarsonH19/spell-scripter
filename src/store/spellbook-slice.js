@@ -273,10 +273,123 @@ const spellbookSlice = createSlice({
       ],
     },
     conjuration: {
-      novice: [],
-      apprentice: [],
-      adept: [],
-      expert: [],
+      novice: [
+        {
+          name: "Conjure Weapon",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+        {
+          name: "Summon Beast",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+        {
+          name: "Conjure Feast",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+      ],
+      apprentice: [
+        {
+          name: "Conjure Key",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+        {
+          name: "Summoned Resilience",
+          type: "Buff",
+          description: [
+            "Increase the max HP of your summons by +10.",
+            "Increase the max HP of your summons by +20.",
+            "Increase the max HP of your summons by +30.",
+          ],
+          points: 0,
+          max: 3,
+        },
+        {
+          name: "Summoned Dexterity",
+          type: "Buff",
+          description: [
+            "Increase the Speed & Hit Chance of your summons by +1.",
+            "Increase the Speed & Hit Chance of your summons by +2.",
+            "Increase the Speed & Hit Chance of your summons by +3.",
+          ],
+          points: 0,
+          max: 3,
+        },
+        {
+          name: "Summon Knight",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+      ],
+      adept: [
+        {
+          name: "Summon Drake",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+        {
+          name: "Conjure Portal",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+        {
+          name: "Conjurer",
+          type: "Buff",
+          description: [
+            "The mana cost of all Conjuration spells is reduced by 2MP",
+            "The mana cost of all Conjuration spells is reduced by 4MP",
+            "The mana cost of all Conjuration spells is reduced by 6MP",
+          ],
+          points: 0,
+          max: 3,
+        },
+        {
+          name: "Summoned Might",
+          type: "Buff",
+          description: [
+            "Increase the Attack of your summons by +2.",
+            "Increase the Attack of your summons by +4.",
+            "Increase the Attack of your summons by +6.",
+            "Increase the Attack of your summons by +8.",
+            "Increase the Attack of your summons by +10.",
+          ],
+          points: 0,
+          max: 5,
+        },
+        {
+          name: "Summon Golem",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+      ],
+      expert: [
+        {
+          name: "Summon Hero",
+          type: "Spell",
+          // description: spells-descriptions.js
+          points: 0,
+          max: 1,
+        },
+      ],
     },
     restoration: {
       novice: [],
