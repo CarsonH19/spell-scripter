@@ -17,7 +17,7 @@ export default function MiddleContent() {
 
   const handleContinue = () => {
     dispatch(
-      uiActions.changeUi({ element: "continueIsVisible", visible: true })
+      uiActions.changeUi({ element: "continueIsVisible", visible: false })
     );
     createNewRoom(dispatch);
   };

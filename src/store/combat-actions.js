@@ -177,8 +177,6 @@ export default async function combatLoop(dispatch) {
         }
       }
 
-      console.log("PLAYER PASSED");
-
       if (order[i].identifier === "HERO" || order[i].identifier === "ENEMY") {
         character.currentHealth > 0 && console.log("TURN", order[i]);
         order = store.getState().combat.order;
