@@ -2,7 +2,7 @@ import { dungeonActions } from "../store/dungeon-slice";
 
 import { UNDEAD } from "../data/enemies";
 
-import EVENTS from "../data/events";
+import { DUNGEON_ENTRANCE, TRAPS } from "../data/events";
 
 import store from "../store/index";
 
@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
     name: "",
+    area: "",
     roomCounter: 0,
     threat: 0,
     image: null,
@@ -18,7 +19,7 @@ export function setDungeon(dispatch, dungeonName) {
     contents: {
       enemies: [],
       items: [],
-      event: EVENTS.DUNGEON_ENTRANCE,
+      event: DUNGEON_ENTRANCE,
     },
   };
 
@@ -48,7 +49,7 @@ export function createNewRoom(dispatch) {
     contents: {
       roomName: "",
       enemies: [],
-      items: [], // Add items from enemy drops
+      items: [],
       event: null,
     },
   };
@@ -56,7 +57,6 @@ export function createNewRoom(dispatch) {
   // getRoomImage(); // NOTE: Do I need to get this after the contents?
 
   const roomContent = getRoomContent();
-
   switch (roomContent) {
     case "EVENT":
       // get Event
@@ -74,21 +74,58 @@ export function createNewRoom(dispatch) {
 
 // // Determine if room will contain an event or monsters.
 function getRoomContent() {
-  const eventChance = Math.floor(Math.random() * 100);
-  if (eventChance > 79) {
-    // ~20% Chance for an event
-    return "EVENT";
-  } else {
-    return "ENEMIES";
-  }
+  // const eventChance = Math.floor(Math.random() * 100);
+  // if (eventChance > 0) {
+  // 79
+  // ~20% Chance for an event
+
+  return "EVENT";
+  // }
+
+  // else {
+  //   return "ENEMIES";
+  // }
 }
 
 function getRoomEvent() {
-  // import the events array
-  // Iterate through the array and create a new array with incomplete events.
-  // // Special events will only be completed once and therefore may not be added
+  const dungeon = store.getState().dungeon;
+
+  let events = [];
+  console.log(dungeon.name);
+  // add a series of conditional checks to see which events are added to the events array
+  // check dungeon
+  switch (dungeon.name) {
+    case "The Great Catacomb":
+      for (let i = 0; i < TRAPS.length; i++) {
+        events.push(TRAPS[i]);
+      }
+      {
+        // check area
+        // if (dungeon.area === "Rattling Halls") {
+        //   events.push();
+        // } else if (dungeon.area === "Ghostlight Crypts") {
+        // }
+      }
+      break;
+  }
+
+  // check heroes
+  // check threat
+  console.log(events);
   // Randomly choose an event from the new array
-  return EVENTS.SPIKE_WALLS;
+  const randomIndex = Math.floor(Math.random() * events.length);
+  return events[randomIndex];
+}
+
+function checkHero(heroName) {
+  const order = store.getState().combat.order;
+  const heroes = order.filter((hero) => hero.identifier === "HERO");
+  const isHero = heroes.find((hero) => hero.name === heroName);
+  if (isHero) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 export function getRoomEnemies() {

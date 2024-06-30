@@ -1,11 +1,12 @@
 .events {
-  width: 30%;
+  width: 70%;
   display: flex;
   justify-content: center;
   gap: 2rem;
 }
 
 .events button {
-  height: 2rem;
-  width: 8rem;
+  height: 4rem;
+  width: 12rem;
+  padding: 0.5rem;
 }

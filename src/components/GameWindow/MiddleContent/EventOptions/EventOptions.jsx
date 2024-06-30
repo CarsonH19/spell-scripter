@@ -36,10 +36,18 @@ export default function EventOptions() {
             <button
               key={option.text}
               onClick={() =>
-                handleClickEventOption(dispatch, eventFunction, option.text)
+                handleClickEventOption(dispatch, eventFunction, option.text[1])
               }
             >
-              {option.text}
+              {Array.isArray(option.text) ? (
+                option.text.map((line, index) => (
+                  <span key={index} style={{ display: "block" }}>
+                    {line}
+                  </span>
+                ))
+              ) : (
+                <span>{option.text}</span>
+              )}
             </button>
           );
         })}
