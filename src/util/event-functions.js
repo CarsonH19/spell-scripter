@@ -106,11 +106,73 @@ const eventFunctions = {
       await delay(4000);
       openModal(dispatch, "roomSummaryModal");
     }
+  },
+  PATH: async (dispatch, choice) => {
+    const path = store.getState().dungeon.contents.event.name;
+    console.log("CHOICE", choice);
+    if (choice === "Enter") {
+      dispatch(dungeonActions.changePath(path));
+      console.log("PATH", path);
+      // Room transition
+      // Change background
+      // Display "You've entered Wailing Warrens"
+      // Start dialogue
+    } else {
+      console.log("ELSEEEEEEE")
+      // await delay(4000);
+      // openModal(dispatch, "roomSummaryModal");
+    }
 
-    const dungeon2 = store.getState().dungeon;
-    console.log("DUNGEON", dungeon2);
+    await delay(4000);
+    openModal(dispatch, "roomSummaryModal");
   },
 };
+
+export default eventFunctions;
+
+// ==================================
+//          HELPER FUNCTIONS
+// ==================================
+
+// function createPathEvent() {
+//   const dungeon = store.getState().dungeon;
+
+//   let path = {
+//     name: "Path",
+//     type: "CHOICE",
+//     description: "The path splits in two. Which direction shall you go?",
+//     options: [
+//       {
+//         text: [],
+//         function: "PATH",
+//         get narration() {
+//           return `You choose to go to the ${this.options[0].text}.`;
+//         },
+//       },
+//       {
+//         text: [],
+//         function: "PATH",
+//         get narration() {
+//           return `You choose to go to the ${this.options[1].text}.`;
+//         },
+//       },
+//     ],
+//   };
+
+//   switch (dungeon.name) {
+//     case "The Great Catacomb":
+//       {
+//         if (dungeon.threat > 50) {
+//         } else if (dungeon.threat > 25) {
+//         } else {
+//           // Gnawers' Nest - Rats
+//           // Shadowed Crypts - Thieves
+//           // Rattling Halls - Undead
+//         }
+//       }
+//       break;
+//   }
+// }
 
 function trapSuccessChance(player, difficulty, stat) {
   let playerChoice;
@@ -132,11 +194,10 @@ function trapSuccessChance(player, difficulty, stat) {
   }
 }
 
-export default eventFunctions;
-
 function roll20(bonus = 0) {
   return Math.floor(Math.random() * 21) + bonus;
 }
+
 async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }

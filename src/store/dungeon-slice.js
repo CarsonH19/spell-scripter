@@ -4,6 +4,7 @@ const dungeonSlice = createSlice({
   name: "dungeon",
   initialState: {
     name: "",
+    path: null,
     roomCounter: 0,
     threat: -1,
     danger: false,
@@ -26,9 +27,12 @@ const dungeonSlice = createSlice({
       const danger = action.payload.danger;
       state.danger = danger;
     },
+    changePath(state, action) {
+      state.path = action.payload;
+    },
     addEnemy(state, action) {
-      const {enemy, change} = action.payload;
-      
+      const { enemy, change } = action.payload;
+
       if (change === "ADD") {
         state.contents.enemies.push(enemy);
       }

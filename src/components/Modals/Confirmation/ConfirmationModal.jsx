@@ -18,6 +18,7 @@ import CONDITIONS from "../../../data/conditions";
 import { checkSkillPoints } from "../../../util/spellbook-util";
 import { createArcaneShield } from "../../../util/skills";
 import statusEffectFunctions from "../../../util/status-effect-functions";
+import { openModal } from "../../../store/ui-actions";
 
 export default function ConfirmationModal() {
   const dispatch = useDispatch();

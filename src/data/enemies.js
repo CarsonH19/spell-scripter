@@ -19,6 +19,9 @@ const CONDITIONS = {
 };
 
 const UNDEAD = {
+  // =====================================
+  //             SKELETONS
+  // =====================================
   DECREPIT_SKELETON: {
     name: "Decrepit Skeleton",
     identifier: "ENEMY",
@@ -29,8 +32,8 @@ const UNDEAD = {
     currentHealth: 10,
     currentMana: 0,
     stats: {
-      baseStrength: 8,
-      baseAgility: 8,
+      baseStrength: 0,
+      baseAgility: 0,
       baseArcana: 0,
     },
     weaknesses: [],
@@ -238,6 +241,69 @@ const UNDEAD = {
     weaknesses: [],
     resistances: [],
     immunities: ["POISONED"],
+    behavior: "ERRATIC",
+    statusEffects: [],
+  },
+  // =====================================
+  //             GHOSTS
+  // =====================================
+  LOST_SOUL: {
+    name: "Lost Soul",
+    identifier: "ENEMY",
+    image: "",
+    type: ENEMY_TYPES.UNDEAD,
+    // audio: {},
+    level: 1,
+    currentHealth: 0,
+    currentMana: 0,
+    stats: {
+      baseStrength: 0,
+      baseAgility: 0,
+      baseArcana: 0,
+    },
+    weaknesses: [],
+    resistances: [],
+    immunities: [],
+    behavior: "DEFENSIVE",
+    statusEffects: [],
+  },
+  SHADOW: {
+    name: "Shadow",
+    identifier: "ENEMY",
+    image: "",
+    type: ENEMY_TYPES.UNDEAD,
+    // audio: {},
+    level: 2,
+    currentHealth: 10,
+    currentMana: 0,
+    stats: {
+      baseStrength: 0,
+      baseAgility: 2,
+      baseArcana: 0,
+    },
+    weaknesses: [],
+    resistances: [],
+    immunities: [],
+    behavior: "ERRATIC",
+    statusEffects: [],
+  },
+  BANSHEE: {
+    name: "Banshee",
+    identifier: "ENEMY",
+    image: "",
+    type: ENEMY_TYPES.UNDEAD,
+    // audio: {},
+    level: 3,
+    currentHealth: 0,
+    currentMana: 0,
+    stats: {
+      baseStrength: 0,
+      baseAgility: 2,
+      baseArcana: 1,
+    },
+    weaknesses: [],
+    resistances: [],
+    immunities: [],
     behavior: "ERRATIC",
     statusEffects: [],
   },

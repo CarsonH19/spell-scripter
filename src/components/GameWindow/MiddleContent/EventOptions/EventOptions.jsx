@@ -10,7 +10,8 @@ export default function EventOptions() {
 
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon);
-  const isTrap = dungeon.event.type === "TRAP";
+  console.log(dungeon);
+  const isTrap = dungeon.contents.event.type === "TRAP";
 
   useEffect(() => {
     setOpen(true);
@@ -36,7 +37,7 @@ export default function EventOptions() {
           if (isTrap) {
             optionChoice = option.text[1];
           } else {
-            optionChoice = option.text;
+            optionChoice = option.text[0];
           }
 
           return (

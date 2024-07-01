@@ -16,6 +16,7 @@ export default function updateStatTotals(dispatch, id) {
   } else {
     const findCharacterById = (id) => {
       const characters = store.getState().combat.order;
+      console.log(characters);
       return characters.find((char) => char.id === id);
     };
 

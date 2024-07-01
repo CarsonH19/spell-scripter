@@ -10,7 +10,7 @@ import changeStatusEffect, {
 } from "./status-effect-actions.js";
 
 import { uiActions } from "./ui-slice.js";
-import { combatActions } from "./combat-slice.js";
+import combatSlice, { combatActions } from "./combat-slice.js";
 import { logActions } from "./log-slice.js";
 
 import activateItem from "./item-actions.js";
@@ -28,6 +28,8 @@ import {
 import { checkForPassiveAbility } from "../util/passive-functions.js";
 import statusEffectFunctions from "../util/status-effect-functions.js";
 import { openModal } from "./ui-actions.js";
+
+import updateStatTotals from "./stats-actions.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -413,5 +415,18 @@ export function startCombat(dispatch) {
   const currentOrder = store.getState().combat.order;
   const characters = [...room.contents.enemies, ...currentOrder];
   dispatch(combatActions.setInitiative({ characters }));
+  for (let i = 0; i < characters.length; i++) {
+    updateStatTotals(dispatch, characters[i].id);
+
+    if (characters[i].identifier === "ENEMY") {
+      dispatch(
+        combatActions.updateHealth({
+          change: "HEAL",
+          value: 999,
+          id: characters[i].id,
+        })
+      );
+    }
+  }
   combatLoop(dispatch);
 }

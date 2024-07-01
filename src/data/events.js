@@ -4,7 +4,7 @@ export const DUNGEON_ENTRANCE = {
   description: "",
   options: [
     {
-      text: "Enter",
+      text: ["Enter"],
       function: "DUNGEON_ENTRANCE_ENTER",
       narration: "",
     },
@@ -157,6 +157,27 @@ export const TRAPS = [
         text: ["Avoid", "(Agility)"],
         function: "TRAP",
         narration: "You carefully step around the rune, avoiding its trigger.",
+      },
+    ],
+  },
+];
+
+export const PATHS = [
+  {
+    name: "Wailing Warrens",
+    type: "CHOICE",
+    description:
+      "You discover a crumbling archway shrouded in mist, with spectral faces flickering in the shadows and a haunting wail echoing from deep within. Do you wish to enter?",
+    options: [
+      {
+        text: ["Enter"],
+        function: "PATH",
+        narration: "You decide to enter.",
+      },
+      {
+        text: ["Leave"],
+        function: "PATH",
+        narration: "You decide to leave.",
       },
     ],
   },
