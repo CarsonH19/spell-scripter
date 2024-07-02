@@ -10,10 +10,12 @@
 .player .image {
   aspect-ratio: 1;
  height: 100%;
- border: 1px solid gray;
+ border: 3px solid var(--primary);
  display: flex;
  justify-content: center;
  align-items: center;
+ background-position: center;
+ background-color: var(--primary);
 }
 
 .player .image p {

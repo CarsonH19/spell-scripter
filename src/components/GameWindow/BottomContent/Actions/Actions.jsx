@@ -196,7 +196,11 @@ export default function Actions() {
     );
   }
 
-  return content;
+  if (event) {
+    return;
+  } else {
+    return content;
+  }
 }
 
 function toSnakeCase(str) {

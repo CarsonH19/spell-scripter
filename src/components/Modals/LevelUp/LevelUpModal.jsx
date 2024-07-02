@@ -1,6 +1,6 @@
+import Attributes from "../Inventory/Attributes";
 import classes from "./LevelUpModal.module.css";
 
-import Attributes from "../../Dashboard/PlayerColumn/Attributes";
 import { useSelector } from "react-redux";
 
 export default function LevelUpModal() {

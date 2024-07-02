@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const dungeonSlice = createSlice({
   name: "dungeon",
   initialState: {
-    name: "",
+    name: "The Great Catacomb",
     path: null,
     roomCounter: 0,
     threat: -1,
     danger: false,
-    image: null,
+    image: "src/assets/image/catacomb-entrance.jpg",
     music: null,
     contents: {
       enemies: [],

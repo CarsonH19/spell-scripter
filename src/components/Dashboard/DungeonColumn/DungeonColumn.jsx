@@ -3,7 +3,7 @@ import classes from "./DungeonColumn.module.css";
 // following imports are only used for testing
 import { uiActions } from "../../../store/ui-slice";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { setDungeon } from "../../../util/dungeon-util";
 
@@ -14,11 +14,12 @@ import { openModal } from "../../../store/ui-actions";
 
 export default function DungeonColumn() {
   const dispatch = useDispatch();
+  const dungeon = useSelector((state) => state.dungeon);
 
   const handleEnter = () => {
     //TEST HERO LEVELING
     levelUpHero("Siggurd", HERO_LEVELING_MAP.SIGGURD.TWO);
-    
+
     setDungeon(dispatch, "The Great Catacomb");
     openModal(dispatch, "confirmationModal");
   };
@@ -27,7 +28,12 @@ export default function DungeonColumn() {
     <div className={classes.column}>
       <h1>Dungeons</h1>
       <div className={classes.dungeons}>
-        <div className={classes.selection}>
+        <div
+          className={classes.selection}
+          style={{
+            backgroundImage: `url(${dungeon.image})`,
+          }}
+        >
           <h2> The Great Catacombs</h2>
           <p> Mastery Points Required: 0</p>
         </div>

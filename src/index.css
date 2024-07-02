@@ -13,6 +13,9 @@ background-color: var(--background);
   height: 100vh;
   width: 100vw; 
   background-color: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 * {
@@ -40,8 +43,8 @@ p {
 }
 
 button {
-  background-color: var(--accent);
-  border: 2px solid var(--accent);
+  /* background-color: var(--accent);
+  border: 2px solid var(--accent); */
   color: var(--dark);
   border-radius: 10px;
 }
@@ -63,8 +66,8 @@ body {
   width: 100vw;
   background-color: var(--background);
   /* background-image: url(assets/skull-texture.jpg); */
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-size: cover;
-  background-blend-mode: overlay;
+  background-blend-mode: overlay; */
 }
 

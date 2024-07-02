@@ -28,7 +28,7 @@ export function setDungeon(dispatch, dungeonName) {
       dungeon.name = "The Great Catacomb";
       dungeon.path = null;
       dungeon.threat = 0;
-      dungeon.image = ""; // dungeon entrance image
+      dungeon.image = "src/assets/image/catacomb-entrance.jpg";
       // dungeon.music = '' // Dungeon entrance music
       dungeon.contents; // add Entrance event
       break;
@@ -55,7 +55,8 @@ export function createNewRoom(dispatch) {
     },
   };
 
-  // getRoomImage(); // NOTE: Do I need to get this after the contents?
+  // Get random image
+  newRoom.image = getRoomImage();
 
   // if (dungeon.roomCounter % 10) {
   // } else {
@@ -165,60 +166,61 @@ export function getRoomEnemies() {
       break;
     }
 
-    case null: {
-      enemyTypes = [
-        { enemy: UNDEAD.DECREPIT_SKELETON, probability: 0.4 },
-        { enemy: UNDEAD.SKELETAL_WARRIOR, probability: 0.2 },
-        { enemy: UNDEAD.SKELETAL_ARCHER, probability: 0.2 },
-        { enemy: UNDEAD.SKELETAL_MAGE, probability: 0.2 },
-      ];
-
-      // Adjust enemy types based on threat level
-      if (threat > 60) {
-        // extremely high tier enemies
+    case null:
+      {
         enemyTypes = [
-          { enemy: UNDEAD.GRAVE_WITCH, probability: 0.2 },
-          { enemy: UNDEAD.BONE_TITAN, probability: 0.3 },
-          { enemy: UNDEAD.REAPER, probability: 0.3 },
-          { enemy: UNDEAD.DEATH_KNIGHT, probability: 0.1 },
-          { enemy: UNDEAD.FLOOD_OF_BONES, probability: 0.1 },
-        ];
-      } else if (threat > 40) {
-        // high tier enemies
-        enemyTypes = [
-          { enemy: UNDEAD.GRAVE_WITCH, probability: 0.1 },
-          { enemy: UNDEAD.BONE_TITAN, probability: 0.3 },
-          { enemy: UNDEAD.REAPER, probability: 0.3 },
-          { enemy: UNDEAD.CORPSE_ORACLE, probability: 0.2 },
-        ];
-      } else if (threat > 20) {
-        // mid tier enemies
-        enemyTypes = [
-          { enemy: UNDEAD.BONE_TITAN, probability: 0.1 },
-          { enemy: UNDEAD.REAPER, probability: 0.1 },
-          { enemy: UNDEAD.CORPSE_ORACLE, probability: 0.2 },
+          { enemy: UNDEAD.DECREPIT_SKELETON, probability: 0.4 },
           { enemy: UNDEAD.SKELETAL_WARRIOR, probability: 0.2 },
           { enemy: UNDEAD.SKELETAL_ARCHER, probability: 0.2 },
           { enemy: UNDEAD.SKELETAL_MAGE, probability: 0.2 },
         ];
+
+        // Adjust enemy types based on threat level
+        if (threat > 60) {
+          // extremely high tier enemies
+          enemyTypes = [
+            { enemy: UNDEAD.GRAVE_WITCH, probability: 0.2 },
+            { enemy: UNDEAD.BONE_TITAN, probability: 0.3 },
+            { enemy: UNDEAD.REAPER, probability: 0.3 },
+            { enemy: UNDEAD.DEATH_KNIGHT, probability: 0.1 },
+            { enemy: UNDEAD.FLOOD_OF_BONES, probability: 0.1 },
+          ];
+        } else if (threat > 40) {
+          // high tier enemies
+          enemyTypes = [
+            { enemy: UNDEAD.GRAVE_WITCH, probability: 0.1 },
+            { enemy: UNDEAD.BONE_TITAN, probability: 0.3 },
+            { enemy: UNDEAD.REAPER, probability: 0.3 },
+            { enemy: UNDEAD.CORPSE_ORACLE, probability: 0.2 },
+          ];
+        } else if (threat > 20) {
+          // mid tier enemies
+          enemyTypes = [
+            { enemy: UNDEAD.BONE_TITAN, probability: 0.1 },
+            { enemy: UNDEAD.REAPER, probability: 0.1 },
+            { enemy: UNDEAD.CORPSE_ORACLE, probability: 0.2 },
+            { enemy: UNDEAD.SKELETAL_WARRIOR, probability: 0.2 },
+            { enemy: UNDEAD.SKELETAL_ARCHER, probability: 0.2 },
+            { enemy: UNDEAD.SKELETAL_MAGE, probability: 0.2 },
+          ];
+        }
+
+        // Calculate the number of enemies based on the threat level
+        numberOfEnemies;
+        if (threat >= 80) {
+          numberOfEnemies = 5;
+        } else if (threat >= 60) {
+          numberOfEnemies = Math.floor(Math.random() * 2) + 4; // Between 4 to 5 enemies
+        } else if (threat >= 40) {
+          numberOfEnemies = Math.floor(Math.random() * 2) + 3; // Between 3 to 4 enemies
+        } else if (threat >= 20) {
+          numberOfEnemies = Math.floor(Math.random() * 2) + 2; // Between 2 to 3 enemies
+        } else {
+          numberOfEnemies = Math.floor(Math.random() * 2) + 1; // Between 1 to 2 enemies
+        }
       }
 
-      // Calculate the number of enemies based on the threat level
-      numberOfEnemies;
-      if (threat >= 80) {
-        numberOfEnemies = 5;
-      } else if (threat >= 60) {
-        numberOfEnemies = Math.floor(Math.random() * 2) + 4; // Between 4 to 5 enemies
-      } else if (threat >= 40) {
-        numberOfEnemies = Math.floor(Math.random() * 2) + 3; // Between 3 to 4 enemies
-      } else if (threat >= 20) {
-        numberOfEnemies = Math.floor(Math.random() * 2) + 2; // Between 2 to 3 enemies
-      } else {
-        numberOfEnemies = Math.floor(Math.random() * 2) + 1; // Between 1 to 2 enemies
-      }
-    }
-
-    break;
+      break;
   }
 
   // Generate random enemies based on their probabilities
@@ -283,10 +285,32 @@ export function constructStats(stats) {
   };
 }
 
-// function getRoomImage(dungeon) {
-//   switch (dungeon) {
-//     case 1:
-//       // execute different code to find room image
-//       break;
-//   }
-// }
+function getRoomImage() {
+  const dungeon = store.getState().dungeon;
+  let imageList = [];
+
+  switch (dungeon.name) {
+    case "The Great Catacomb":
+      imageList = [
+        "src/assets/image/catacomb1.jpg",
+        "src/assets/image/catacomb2.jpg",
+        "src/assets/image/catacomb3.jpg",
+        "src/assets/image/catacomb4.jpg",
+        "src/assets/image/catacomb5.jpg",
+        "src/assets/image/catacomb6.jpg",
+        "src/assets/image/catacomb7.jpg",
+      ];
+      break;
+    // You can add more cases here for other dungeons
+    default:
+      // Handle cases where dungeon is not matched
+      imageList = [
+        // "src/assets/image/default1.jpg",
+        // "src/assets/image/default2.jpg",
+      ];
+      break;
+  }
+
+  const randomIndex = Math.floor(Math.random() * imageList.length);
+  return imageList[randomIndex];
+}

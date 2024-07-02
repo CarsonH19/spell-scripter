@@ -200,3 +200,47 @@ button.active {
   scale: 1.1;
 }
 
+/* ATTRIBUTES */
+
+.attributes-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  }
+  
+  .attributes-info-icon {
+    height: 1rem;
+    color: var(--secondary);
+  
+  }
+   .attributes-container .stats .attribute {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem
+  }
+  
+   .attributes-container .stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  
+  .attribute .attribute-icon {
+    height: 1.5rem;
+    color: var(--secondary);
+  }
+  
+  .attribute .arrow-icon {
+    height: 1.5rem;
+    color: var(--accent);
+    cursor: pointer;
+  }
+  
+  .attribute .arrow-icon:hover {
+    transition: 0.3s;
+    scale: 1.3;
+  }

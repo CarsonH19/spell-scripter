@@ -1,4 +1,4 @@
-import classes from "./PlayerColumn.module.css";
+import classes from "./InventoryModal.module.css";
 
 import { uiActions } from "../../../store/ui-slice";
 import Tooltip from "../../UI/Tooltip";

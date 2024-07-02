@@ -12,7 +12,7 @@ import { startCombat } from "../../store/combat-actions";
 export default function GameWindow() {
   const dispatch = useDispatch();
   const room = useSelector((state) => state.dungeon);
-
+  console.log(room);
   useEffect(() => {
     // If there is no event in the dungeon-slice combat will begin
     if (!room.contents.event) {
@@ -24,7 +24,12 @@ export default function GameWindow() {
   }, [room.roomCounter]);
 
   return (
-    <div className={classes.window}>
+    <div
+      className={classes.window}
+      style={{
+        backgroundImage: `url(${room.image})`,
+      }}
+    >
       <TopContent />
       <MiddleContent />
       <BottomContent />

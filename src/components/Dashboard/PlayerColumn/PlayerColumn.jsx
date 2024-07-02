@@ -1,20 +1,15 @@
 import classes from "./PlayerColumn.module.css";
-
-import { uiActions } from "../../../store/ui-slice";
+import { useDispatch, useSelector } from "react-redux";
+import { openModal } from "../../../store/ui-actions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBookOpen,
   faToolbox,
+  faBookOpen,
   faUsersLine,
   faPersonCircleExclamation,
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
-
-import Attributes from "./Attributes";
-
-import { useDispatch, useSelector } from "react-redux";
-import { openModal } from "../../../store/ui-actions";
 
 export default function PlayerColumn() {
   const dispatch = useDispatch();
@@ -33,7 +28,11 @@ export default function PlayerColumn() {
           <p>Mastery Points: {player.totalMasteryPoints}</p>
         </div>
 
-        <Attributes />
+        <img
+          className={classes["player-image"]}
+          src={`${player.image}`}
+          alt=""
+        />
 
         <div className={classes.menu}>
           <FontAwesomeIcon

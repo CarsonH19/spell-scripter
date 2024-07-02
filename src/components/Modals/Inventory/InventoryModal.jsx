@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 import Item from "./Item";
 import Stats from "./Stats";
-
+import Attributes from "./Attributes";
 import Tooltip from "../../UI/Tooltip";
 
 export default function InventoryModal() {
@@ -48,7 +48,8 @@ export default function InventoryModal() {
       <h1>Inventory</h1>
       <div className={classes.container}>
         <div className={classes.left}>
-          <Stats />
+          <Attributes />
+          {/* <Stats /> */}
         </div>
         {/* <div className={classes.vertical}></div> */}
         <div className={classes.right}>
@@ -79,7 +80,9 @@ export default function InventoryModal() {
                 title={item.name}
                 text={item.rarity}
                 detailOne={item.description}
-                detailTwo={item.effect.map((line, index) => <span key={index}>{line}</span>)}
+                detailTwo={item.effect.map((line, index) => (
+                  <span key={index}>{line}</span>
+                ))}
               >
                 <Item key={item.id} item={item} count={item.counter} />
               </Tooltip>
