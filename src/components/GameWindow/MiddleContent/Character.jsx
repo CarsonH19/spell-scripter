@@ -139,7 +139,9 @@ export default function Character({ character }) {
               position={isCharacterEnemy ? "effect-right" : "effect-left"}
             >
               <img src="" className={classes.effect} />
-              {stack && effect.stack > 1 && <p className={classes["effect-stack"]}>x{effect.stack}</p>}
+              {stack && effect.stack > 1 && (
+                <p className={classes["effect-stack"]}>x{effect.stack}</p>
+              )}
             </Tooltip>
           );
         })}
@@ -152,6 +154,9 @@ export default function Character({ character }) {
       className={`${classes.image} ${
         isHighlighted ? classes.highlighted : ""
       } ${isCharacterTurn === character.id ? classes.turn : ""}`}
+      style={{
+        backgroundImage: `url(${character.icon})`,
+      }}
     >
       {showDamage && <p>{character.damageDisplay}</p>}{" "}
     </div>
