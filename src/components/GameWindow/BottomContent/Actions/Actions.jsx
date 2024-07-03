@@ -169,6 +169,7 @@ export default function Actions() {
         <button
           disabled={isDisabled}
           onClick={() => handlePlayerChoice("CAST SPELL")}
+          className={isDisabled ? classes["disabled-btn"] : ""}
         >
           Cast Spell
         </button>
@@ -176,18 +177,23 @@ export default function Actions() {
           <button
             disabled={isDisabled || !isCharacterTurn}
             onClick={() => handlePlayerChoice("ATTACK")}
+            className={isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""}
           >
             Attack
           </button>
           <button
             disabled={isDisabled || !isCharacterTurn}
             onClick={() => handlePlayerChoice("GUARD")}
+            className={isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""}
+
           >
             Guard
           </button>
           <button
             disabled={isDisabled || !isCharacterTurn}
             onClick={() => handlePlayerChoice("USE ITEM")}
+            className={isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""}
+
           >
             Use Item
           </button>
