@@ -17,10 +17,12 @@
   color: var(--text);
   border-radius: 10px;
   font-size: 1.2rem;
+  transition: 0.3s;
 }
 
 .window button:hover {
   transition: 0.3s;
   background-color: var(--text);
   color: var(--primary);
+  /* border: 3px solid var(--primary); */
 }

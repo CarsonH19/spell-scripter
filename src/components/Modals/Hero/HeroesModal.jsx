@@ -15,7 +15,7 @@ import { constructStats } from "../../../util/dungeon-util";
 export default function HeroesModal() {
   const dispatch = useDispatch();
   const party = useSelector((state) => state.hero.party);
-  const [hoveredElement, setHoveredElement] = useState(null);
+  const [hoveredElement, setHoveredElement] = useState("");
 
   const handleHoveredHero = (hero) => {
     const baseStats = constructStats(hero.stats);
@@ -65,6 +65,7 @@ export default function HeroesModal() {
               }
             })}
           </ul>
+          <img src={hoveredElement.image} alt={hoveredElement.name} />
           <div className={classes.party}>
             <p>Selected Party Members</p>
             <ul>

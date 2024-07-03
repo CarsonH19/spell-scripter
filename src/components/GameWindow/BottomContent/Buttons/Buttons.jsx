@@ -6,6 +6,15 @@ import { uiActions } from "../../../../store/ui-slice";
 import { useSelector } from "react-redux";
 import { openModal } from "../../../../store/ui-actions";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faToolbox,
+  faScroll,
+  faUsersLine,
+  faPersonCircleExclamation,
+  faGear,
+} from "@fortawesome/free-solid-svg-icons";
+
 export default function Buttons() {
   const dispatch = useDispatch();
 
@@ -18,18 +27,32 @@ export default function Buttons() {
 
   return (
     <div className={classes.buttons}>
-      <button
+      <FontAwesomeIcon
+        className={classes.icon}
+        icon={faToolbox}
         disabled={danger}
         onClick={() => handleOpenModal("inventoryModal")}
-      >
-        Inventory
-      </button>
-      <button onClick={() => handleOpenModal("partyModal")}>Party</button>
-      <button onClick={() => handleOpenModal("dungeonTomesModal")}>
-        Tomes
-      </button>
-      <button onClick={() => handleOpenModal("questsModal")}>Quests</button>
-      <button onClick={() => handleOpenModal("settingsModal")}>Settings</button>
+      />
+      <FontAwesomeIcon
+        className={classes.icon}
+        icon={faUsersLine}
+        onClick={() => handleOpenModal("partyModal")}
+      />
+      <FontAwesomeIcon
+        className={classes.icon}
+        icon={faPersonCircleExclamation}
+        onClick={() => handleOpenModal("questsModal")}
+      />{" "}
+      <FontAwesomeIcon
+        className={classes.icon}
+        icon={faScroll}
+        onClick={() => handleOpenModal("dungeonTomesModal")}
+      />
+      <FontAwesomeIcon
+        className={classes.icon}
+        icon={faGear}
+        onClick={() => handleOpenModal("settingsModal")}
+      />
     </div>
   );
 }

@@ -43,7 +43,6 @@ export default function HeroStats({ hero }) {
     );
   }
 
-  console.log(BEHAVIORS[hero.behavior].description);
   return (
     <>
       <div className={classes.name}>
@@ -56,13 +55,14 @@ export default function HeroStats({ hero }) {
           <h5>{behavior}</h5>
         </Tooltip>
         <p className={classes.level}>Level: {hero.level}</p>
-        
       </div>
       <div>
         <h4>Attributes</h4>
-        <p>Strength: {hero.stats.baseStrength}</p>
-        <p>Agility: {hero.stats.baseAgility}</p>
-        <p>Arcana: {hero.stats.baseArcana}</p>
+        <div className={classes.attributes}>
+          <p>Strength: {hero.stats.baseStrength}</p>
+          <p>Agility: {hero.stats.baseAgility}</p>
+          <p>Arcana: {hero.stats.baseArcana}</p>
+        </div>
       </div>
       {/* <div className={classes.abilities}> */}
       <div className={classes.unlocked}>

@@ -95,5 +95,6 @@ font-size: 1.2rem;
 }
 
 .disabled-btn {
-  opacity: 0.5;
+  opacity: 0.4;
+  pointer-events: none;
 }

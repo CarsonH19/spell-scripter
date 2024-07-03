@@ -4,7 +4,8 @@ let siggurd = {
   id: "Siggurd",
   unlocked: true,
   identifier: "HERO",
-  image: "",
+  image: "src/assets/image/heroes/siggurd-fullbody.png",
+  icon: "src/assets/image/heroes/siggurd-icon.png",
   // audio: {},
   level: 1,
   currentHealth: 0,
@@ -93,7 +94,7 @@ let liheth = {
   id: "Liheth",
   unlocked: true,
   identifier: "HERO",
-  image: "",
+  image: "src/assets/image/heroes/liheth2-fullbody.png",
   level: 6,
   currentHealth: 0,
   stats: {
