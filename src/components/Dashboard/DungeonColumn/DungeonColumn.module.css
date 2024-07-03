@@ -32,8 +32,10 @@
   align-items: center;
   justify-content: space-between;
   height: 45%;
+  max-height: 17rem;
   width: auto;
-  border: 3px solid var(--accent);
+  max-width: 31rem;
+  border: 3px solid var(--secondary);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

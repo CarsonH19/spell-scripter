@@ -19,7 +19,7 @@ export default function Buttons() {
   return (
     <div className={classes.buttons}>
       <button
-        disabled={!danger}
+        disabled={danger}
         onClick={() => handleOpenModal("inventoryModal")}
       >
         Inventory
