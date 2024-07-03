@@ -23,15 +23,18 @@ const Icon = ({ character }) => {
     dispatch(combatActions.clearHighlight());
   };
 
+  console.log(character);
   return (
     <div
       className={`${isHighlighted ? classes.highlighted : classes.icon} ${
         isCharacterTurn ? classes.turn : ""
       }`}
+      style={{
+        backgroundImage: `url(${character.icon})`,
+      }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-    >
-    </div>
+    ></div>
   );
 };
 

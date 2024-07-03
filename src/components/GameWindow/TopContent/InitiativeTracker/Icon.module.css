@@ -1,16 +1,23 @@
 .highlighted {
-  height: 2rem;
-  width: 2rem;
+  height: 2.5rem;
+  width: 2.5em;
   border: 2px solid var(--text);
+  border-radius: 5px;
+  background-size: cover;
 }
 
 .icon {
-  height: 2rem;
-  width: 2rem;
-  border: 1px solid var(--secondary);
+  height: 2.5rem;
+  width: 2.5em;
+  border: 3px solid var(--primary);
+  border-radius: 5px;
+  background-size: cover;
 }
 
-
 .turn {
+  height: 2.5rem;
+  width: 2.5em;
   border: 2px solid var(--accent);
+  border-radius: 5px;
+  background-size: cover;
 }
