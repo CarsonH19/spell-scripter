@@ -66,7 +66,6 @@ export default function Player() {
     <div className={classes.player} onClick={handleSetTarget}>
       <div className={classes.health}>
         <p className={classes.name}>{player.name}</p>
-        <hr />
         <div className={classes.healthInfo}>
           <div>
             <Tooltip title={"Health Points"}>

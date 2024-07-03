@@ -22,8 +22,8 @@
 .player .image p {
   margin: 0;
   font-size: 4rem;
-}
 
+}
 
 .player .highlighted {
   border: 2px solid white;
@@ -55,7 +55,7 @@
 .health {
   position: absolute; 
   left: 0rem; 
-  top: -5.5rem;
+  top: -7rem;
   width: 30rem; 
 }
 
@@ -69,7 +69,8 @@
   position: relative;
   font-size: 2rem;
   font-weight: 600;
-  margin-bottom: -0.9rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 3px solid var(--text);
 }
 
  .health .healthInfo, 

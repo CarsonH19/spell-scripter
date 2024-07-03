@@ -49,7 +49,8 @@ let riven = {
   id: "Riven",
   unlocked: true,
   identifier: "HERO",
-  image: "",
+  image: "src/assets/image/heroes/riven-fullbody.png",
+  icon: "src/assets/image/heroes/riven-icon.png",
   // audio: {},
   level: 1,
   currentHealth: 0,
@@ -95,6 +96,7 @@ let liheth = {
   unlocked: true,
   identifier: "HERO",
   image: "src/assets/image/heroes/liheth2-fullbody.png",
+  icon: "src/assets/image/heroes/liheth-icon.png",
   level: 6,
   currentHealth: 0,
   stats: {
