@@ -1,6 +1,6 @@
 import classes from "./Enemies.module.css";
 
-import Character from "../../BottomContent/Character";
+import Character from "../Character";
 
 import { useSelector } from "react-redux";
 

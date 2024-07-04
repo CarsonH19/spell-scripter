@@ -25,7 +25,8 @@ const UNDEAD = {
   DECREPIT_SKELETON: {
     name: "Decrepit Skeleton",
     identifier: "ENEMY",
-    image: "",
+    image: "src/assets/image/enemies/skeletal-warrior-fullbody.png",
+    icon: "src/assets/image/enemies/skeletal-warrior-icon.png",
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 1,
@@ -45,7 +46,7 @@ const UNDEAD = {
   SKELETAL_WARRIOR: {
     name: "Skeletal Warrior",
     identifier: "ENEMY",
-    image: "",
+    image: "src/assets/image/enemies/skeletal-warrior-fullbody.png",
     icon: "src/assets/image/enemies/skeletal-warrior-icon.png",
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
@@ -72,7 +73,7 @@ const UNDEAD = {
   SKELETAL_ARCHER: {
     name: "Skeletal Archer",
     identifier: "ENEMY",
-    image: "",
+    image: "src/assets/image/enemies/skeletal-archer-fullbody.png",
     icon: "src/assets/image/enemies/skeletal-archer-icon.png",
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
@@ -101,7 +102,7 @@ const UNDEAD = {
   SKELETAL_MAGE: {
     name: "Skeletal Mage",
     identifier: "ENEMY",
-    image: "",
+    image: "src/assets/image/enemies/skeletal-mage-fullbody.png",
     icon: "src/assets/image/enemies/skeletal-mage-icon.png",
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},

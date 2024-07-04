@@ -291,15 +291,7 @@ function getRoomImage() {
 
   switch (dungeon.name) {
     case "The Great Catacomb":
-      imageList = [
-        "src/assets/image/catacomb1.jpg",
-        "src/assets/image/catacomb2.jpg",
-        "src/assets/image/catacomb3.jpg",
-        "src/assets/image/catacomb4.jpg",
-        "src/assets/image/catacomb5.jpg",
-        "src/assets/image/catacomb6.jpg",
-        "src/assets/image/catacomb7.jpg",
-      ];
+      imageList = ["src/assets/image/catacomb-1.png"];
       break;
     // You can add more cases here for other dungeons
     default:
