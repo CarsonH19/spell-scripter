@@ -10,7 +10,7 @@ export default function Party() {
   return (
     <div className={classes.party}>
       {order.map((hero) => {
-        if (hero.identifier === "HERO") {
+        if (hero.identifier === "HERO" || hero.identifier === "PLAYER") {
           return <Character key={hero.id} character={hero} />;
         }
       })}

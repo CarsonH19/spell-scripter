@@ -1,5 +1,15 @@
 .bottom {
-  height: 25vh;
+  height: 50%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
+  align-items: flex-end;
+}
+
+/* space-between */
+
+.bottom .test {
+  width: 30rem;
+  height: 100%;
+  border: 9px solid red;
 }

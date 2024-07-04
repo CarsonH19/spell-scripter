@@ -1,6 +1,6 @@
 import classes from "./MiddleContent.module.css";
 
-import Party from "./Party/Party";
+import Party from "../BottomContent/Party/Party";
 import EventOptions from "./EventOptions/EventOptions";
 import Enemies from "./Enemies/Enemies";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,14 +24,14 @@ export default function MiddleContent() {
 
   return (
     <div className={classes.middle}>
-      <Party />
+      {/* <Party /> */}
       {continueIsVisible && (
         <button className={classes.continue} onClick={handleContinue}>
           Continue
         </button>
       )}
       {event && <EventOptions />}
-      <Enemies />
+      {/* <Enemies /> */}
     </div>
   );
 }

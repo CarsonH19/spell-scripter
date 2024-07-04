@@ -28,7 +28,7 @@ export function setDungeon(dispatch, dungeonName) {
       dungeon.name = "The Great Catacomb";
       dungeon.path = null;
       dungeon.threat = 0;
-      dungeon.image = "src/assets/image/catacomb-entrance.jpg";
+      dungeon.image = "src/assets/image/catacomb-1.png";
       // dungeon.music = '' // Dungeon entrance music
       dungeon.contents; // add Entrance event
       break;

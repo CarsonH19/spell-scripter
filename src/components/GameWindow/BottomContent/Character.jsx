@@ -154,16 +154,17 @@ export default function Character({ character }) {
       className={`${classes.image} ${
         isHighlighted ? classes.highlighted : ""
       } ${isCharacterTurn === character.id ? classes.turn : ""}`}
-      style={{
-        backgroundImage: `url(${character.icon})`,
-      }}
+      // style={{
+      //   backgroundImage: `url(${character.icon})`,
+      // }}
     >
+      <img src={character.image} alt={character.name} />
       {showDamage && <p>{character.damageDisplay}</p>}{" "}
     </div>
   );
 
   let content;
-  if (character.identifier === "HERO") {
+  if (character.identifier === "HERO" || character.identifier === "PLAYER") {
     content = (
       <>
         {image}
