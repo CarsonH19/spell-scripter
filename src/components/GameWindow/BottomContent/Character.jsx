@@ -98,7 +98,7 @@ export default function Character({ character }) {
       </div>
       <div
         className={`${classes.statusEffects} ${
-          character.identifier === "HERO" ? classes.heroStatusEffects : ""
+          character.identifier !== "ENEMY" ? classes.heroStatusEffects : ""
         }`}
       >
         {character.statusEffects.map((effect) => {

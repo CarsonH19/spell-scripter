@@ -13,6 +13,7 @@ import { getSpell } from "../../../../util/spell-util";
 
 import Tooltip from "../../../UI/Tooltip";
 import Icon from "../../../UI/Icon";
+import Buttons from "../Buttons/Buttons";
 
 import spellDescriptions from "../../../../util/spell-descriptions";
 import { useEffect, useState } from "react";
@@ -173,31 +174,34 @@ export default function Actions() {
         >
           Cast Spell
         </button>
-        <div>
-          <button
-            disabled={isDisabled || !isCharacterTurn}
-            onClick={() => handlePlayerChoice("ATTACK")}
-            className={isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""}
-          >
-            Attack
-          </button>
-          <button
-            disabled={isDisabled || !isCharacterTurn}
-            onClick={() => handlePlayerChoice("GUARD")}
-            className={isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""}
-
-          >
-            Guard
-          </button>
-          <button
-            disabled={isDisabled || !isCharacterTurn}
-            onClick={() => handlePlayerChoice("USE ITEM")}
-            className={isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""}
-
-          >
-            Use Item
-          </button>
-        </div>
+        <button
+          disabled={isDisabled || !isCharacterTurn}
+          onClick={() => handlePlayerChoice("ATTACK")}
+          className={
+            isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
+          }
+        >
+          Attack
+        </button>
+        <button
+          disabled={isDisabled || !isCharacterTurn}
+          onClick={() => handlePlayerChoice("GUARD")}
+          className={
+            isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
+          }
+        >
+          Guard
+        </button>
+        <button
+          disabled={isDisabled || !isCharacterTurn}
+          onClick={() => handlePlayerChoice("USE ITEM")}
+          className={
+            isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
+          }
+        >
+          Use Item
+        </button>
+        <Buttons/>
       </div>
     );
   }

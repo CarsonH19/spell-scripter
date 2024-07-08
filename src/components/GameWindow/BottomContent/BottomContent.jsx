@@ -10,6 +10,7 @@ export default function BottomContent() {
   return (
     <div className={classes.bottom}>
       <Party />
+      <Actions/>
       <Enemies />      
     </div>
   );
