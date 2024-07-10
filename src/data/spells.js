@@ -1,5 +1,5 @@
 import store from "../store/index";
-import { beast, knight, drake, golem } from "./summons";
+import { hound, knight, drake, golem } from "./summons";
 
 // const spellPower = store.getState().player.stats.arcana.spellPower;
 
@@ -19,7 +19,7 @@ const SPELLS = {
     {
       name: "Firebolt",
       school: `Novice Evocation`,
-      image: "",
+      image: "src/assets/images/spellbook/evocation/firebolt.png",
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
       spellType: "HIT",
@@ -30,7 +30,7 @@ const SPELLS = {
     {
       name: "Frostbite",
       school: `Novice Evocation`,
-      image: "",
+      image: "src/assets/images/spellbook/evocation/frostbite.png",
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
       spellType: "HIT",
@@ -41,7 +41,7 @@ const SPELLS = {
     {
       name: "Shock",
       school: `Novice Evocation`,
-      image: "",
+      image: "src/assets/images/spellbook/evocation/shock.png",
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
       spellType: "HIT",
@@ -52,7 +52,7 @@ const SPELLS = {
     {
       name: "Fireball",
       school: `Apprentice Evocation`,
-      image: "",
+      image: "src/assets/images/spellbook/evocation/fireball.png",
       castTime: "DURING COMBAT",
       spellTarget: "ENEMIES",
       spellType: "HIT",
@@ -63,7 +63,7 @@ const SPELLS = {
     {
       name: "Chain Lightning",
       school: `Apprentice Evocation`,
-      image: "",
+      image: "src/assets/images/spellbook/evocation/chain-lightning.png",
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
       spellType: "HIT",
@@ -74,7 +74,7 @@ const SPELLS = {
     {
       name: "Blizzard",
       school: `Adept Evocation`,
-      image: "",
+      image: "src/assets/images/spellbook/evocation/blizzard.png",
       castTime: "DURING COMBAT",
       spellTarget: "ENEMIES",
       spellType: "DEBUFF",
@@ -94,7 +94,7 @@ const SPELLS = {
     {
       name: "Storm Sphere",
       school: `Adept Evocation`,
-      image: "",
+      image: "src/assets/images/spellbook/evocation/storm-sphere.png",
       castTime: "ANYTIME",
       spellTarget: "SELF",
       spellType: "BUFF",
@@ -104,7 +104,7 @@ const SPELLS = {
     {
       name: "Meteor",
       school: `Expert Evocation`,
-      image: "",
+      image: "src/assets/images/spellbook/evocation/meteor.png",
       castTime: "DURING COMBAT",
       spellTarget: "ENEMIES",
       spellType: "HIT",
@@ -120,7 +120,7 @@ const SPELLS = {
     {
       name: "Bark Skin",
       school: "Novice Abjuration",
-      image: "",
+      image: "src/assets/images/spellbook/abjuration/bark-skin.png",
       castTime: "ANYTIME",
       spellTarget: "ALLY",
       spellType: "BUFF",
@@ -143,7 +143,7 @@ const SPELLS = {
     {
       name: "Barrier",
       school: "Novice Abjuration",
-      image: "",
+      image: "src/assets/images/spellbook/abjuration/barrier.png",
       castTime: "ANYTIME",
       spellTarget: "ALLY",
       spellType: "BUFF",
@@ -163,7 +163,7 @@ const SPELLS = {
     {
       name: "Boundless",
       school: "Novice Abjuration",
-      image: "",
+      image: "src/assets/images/spellbook/abjuration/boundless.png",
       castTime: "ANYTIME",
       spellTarget: "ALLY",
       spellType: "BUFF",
@@ -182,7 +182,7 @@ const SPELLS = {
     {
       name: "Death Ward",
       school: "Apprentice Abjuration",
-      image: "",
+      image: "src/assets/images/spellbook/abjuration/death-ward.png",
       castTime: "ANYTIME",
       spellTarget: "ALLY",
       spellType: "BUFF",
@@ -202,7 +202,7 @@ const SPELLS = {
     {
       name: "Dispel Magic",
       school: "Apprentice Abjuration",
-      image: "",
+      image: "src/assets/images/spellbook/abjuration/dispel-magic.png",
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
       spellType: "DEBUFF",
@@ -211,7 +211,7 @@ const SPELLS = {
     {
       name: "Ward From Evil",
       school: "Apprentice Abjuration",
-      image: "",
+      image: "src/assets/images/spellbook/abjuration/ward-from-evil.png",
       castTime: "ANYTIME",
       spellTarget: "ALLY",
       spellType: "BUFF",
@@ -220,7 +220,7 @@ const SPELLS = {
     {
       name: "Stone Skin",
       school: "Apprentice Abjuration",
-      image: "",
+      image: "src/assets/images/spellbook/abjuration/stone-skin.png",
       castTime: "ANYTIME",
       spellTarget: "ALLY",
       spellType: "BUFF",
@@ -243,7 +243,7 @@ const SPELLS = {
     {
       name: "Shell",
       school: "Adept Abjuration",
-      image: "",
+      image: "src/assets/images/spellbook/abjuration/shell.png",
       castTime: "DURING COMBAT",
       spellTarget: "ALLY",
       spellType: "BUFF",
@@ -263,7 +263,7 @@ const SPELLS = {
     {
       name: "Steel Skin",
       school: "Adept Abjuration",
-      image: "",
+      image: "src/assets/images/spellbook/abjuration/steel-skin.png",
       castTime: "ANYTIME",
       spellTarget: "ALLY",
       spellType: "BUFF",
@@ -286,7 +286,7 @@ const SPELLS = {
     {
       name: "Invulnerability",
       school: "Expert Abjuration",
-      image: "",
+      image: "src/assets/images/spellbook/abjuration/invulnerability.png",
       castTime: "DURING COMBAT",
       spellTarget: "ALLY",
       spellType: "BUFF",
@@ -310,7 +310,7 @@ const SPELLS = {
     {
       name: "Conjure Weapon",
       school: `Novice Conjuration`,
-      image: "",
+      image: "src/assets/images/spellbook/conjuration/conjure-weapon.png",
       castTime: "ANYTIME",
       spellTarget: "ALLY",
       spellType: "BUFF",
@@ -331,19 +331,19 @@ const SPELLS = {
       manaCost: 10,
     },
     {
-      name: "Summon Beast",
+      name: "Summon Hound",
       school: `Novice Conjuration`,
-      image: "",
+      image: "src/assets/images/spellbook/conjuration/summon-hound.png",
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "SUMMON",
-      summon: beast,
+      summon: hound,
       manaCost: 10,
     },
     {
       name: "Conjure Feast",
       school: `Novice Conjuration`,
-      image: "",
+      image: "src/assets/images/spellbook/conjuration/conjure-feast.png",
       castTime: "BEFORE COMBAT",
       spellTarget: "ALLIES",
       spellType: "BUFF",
@@ -366,7 +366,7 @@ const SPELLS = {
     {
       name: "Conjure Key",
       school: `Apprentice Conjuration`,
-      image: "",
+      image: "src/assets/images/spellbook/conjuration/conjure-key.png",
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "ITEM",
@@ -376,7 +376,7 @@ const SPELLS = {
     {
       name: "Summon Knight",
       school: `Apprentice Conjuration`,
-      image: "",
+      image: "src/assets/images/spellbook/conjuration/summon-knight.png",
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "SUMMON",
@@ -386,7 +386,7 @@ const SPELLS = {
     {
       name: "Summon Drake",
       school: `Adept Conjuration`,
-      image: "",
+      image: "src/assets/images/spellbook/conjuration/summon-drake.png",
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "SUMMON",
@@ -396,7 +396,7 @@ const SPELLS = {
     {
       name: "Summon Golem",
       school: `Adept Conjuration`,
-      image: "",
+      image: "src/assets/images/spellbook/conjuration/summon-golem.png",
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "SUMMON",
@@ -406,7 +406,7 @@ const SPELLS = {
     {
       name: "Conjure Portal",
       school: `Adept Conjuration`,
-      image: "",
+      image: "src/assets/images/spellbook/conjuration/conjure-portal.png",
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "SUMMON",
@@ -415,7 +415,7 @@ const SPELLS = {
     {
       name: "Summon Hero",
       school: `Expert Conjuration`,
-      image: "",
+      image: "src/assets/images/spellbook/conjuration/summon-hero.png",
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "SUMMON",

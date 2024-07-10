@@ -166,6 +166,7 @@ const spellbookSlice = createSlice({
       novice: [
         {
           name: "Bark Skin",
+          image: "src/assets/images/spellbook/abjuration/bark-skin.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -173,6 +174,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Barrier",
+          image: "src/assets/images/spellbook/abjuration/barrier.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -180,6 +182,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Boundless",
+          image: "src/assets/images/spellbook/abjuration/boundless.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -189,6 +192,7 @@ const spellbookSlice = createSlice({
       apprentice: [
         {
           name: "Death Ward",
+          image: "src/assets/images/spellbook/abjuration/death-ward.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -196,6 +200,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Dispel Magic",
+          image: "src/assets/images/spellbook/abjuration/dispel-magic.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -203,6 +208,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Arcane Shield",
+          image: "src/assets/images/spellbook/abjuration/arcane-shield.png",
           type: "Ability",
           description: [
             "Gain an Arcane Shield that shields absorbs damage. The shield gains temporary HP after each Alteration spell is cast up to a max of 18HP.",
@@ -214,6 +220,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Ward From Evil",
+          image: "src/assets/images/spellbook/abjuration/ward-from-evil.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -221,6 +228,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Stone Skin",
+          image: "src/assets/images/spellbook/abjuration/stone-skin.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -230,6 +238,7 @@ const spellbookSlice = createSlice({
       adept: [
         {
           name: "Shell",
+          image: "src/assets/images/spellbook/abjuration/shell.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -237,6 +246,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Improved Arcane Shield",
+          image: "src/assets/images/spellbook/abjuration/improved-arcane-shield.png",
           type: "Ability",
           description: [
             "You enter each room with a minimum of 6HP in your Arcane Shield",
@@ -248,6 +258,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Abjurer",
+          image: "src/assets/images/spellbook/abjuration/abjurer.png",
           type: "Buff",
           description: [
             "The mana cost of all Abjuration spells is reduced by 2MP",
@@ -259,6 +270,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Dual Casting",
+          image: "src/assets/images/spellbook/abjuration/dual-casting.png",
           type: "Buff",
           description: [
             "When targeting an ally with a Novice or Apprentice Abjuration spell there is a 33% chance to target an additional random ally.",
@@ -270,6 +282,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Steel Skin",
+          image: "src/assets/images/spellbook/abjuration/steel-skin.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -279,6 +292,7 @@ const spellbookSlice = createSlice({
       expert: [
         {
           name: "Invulnerability",
+          image: "src/assets/images/spellbook/abjuration/invulnerability.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -290,13 +304,15 @@ const spellbookSlice = createSlice({
       novice: [
         {
           name: "Conjure Weapon",
+          image: "src/assets/images/spellbook/conjuration/conjure-weapon.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
           max: 1,
         },
         {
-          name: "Summon Beast",
+          name: "Summon Hound",
+          image: "src/assets/images/spellbook/conjuration/summon-hound.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -304,6 +320,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Conjure Feast",
+          image: "src/assets/images/spellbook/conjuration/conjure-feast.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -313,6 +330,7 @@ const spellbookSlice = createSlice({
       apprentice: [
         {
           name: "Conjure Key",
+          image: "src/assets/images/spellbook/conjuration/conjure-key.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -320,6 +338,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Summoned Resilience",
+          image: "src/assets/images/spellbook/conjuration/summoned-resilience.png",
           type: "Buff",
           description: [
             "Increase the max HP of your summons by +10.",
@@ -331,6 +350,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Summoned Dexterity",
+          image: "src/assets/images/spellbook/conjuration/summoned-dexterity.png",
           type: "Buff",
           description: [
             "Increase the Speed & Hit Chance of your summons by +1.",
@@ -342,6 +362,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Summon Knight",
+          image: "src/assets/images/spellbook/conjuration/summon-knight.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -351,6 +372,7 @@ const spellbookSlice = createSlice({
       adept: [
         {
           name: "Summon Drake",
+          image: "src/assets/images/spellbook/conjuration/summon-drake.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -358,6 +380,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Conjure Portal",
+          image: "src/assets/images/spellbook/conjuration/conjure-portal.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -365,6 +388,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Conjurer",
+          image: "src/assets/images/spellbook/conjuration/conjurer.png",
           type: "Buff",
           description: [
             "The mana cost of all Conjuration spells is reduced by 2MP",
@@ -376,6 +400,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Summoned Might",
+          image: "src/assets/images/spellbook/conjuration/summoned-might.png",
           type: "Buff",
           description: [
             "Increase the Attack of your summons by +2.",
@@ -389,6 +414,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Summon Golem",
+          image: "src/assets/images/spellbook/conjuration/summon-stone-golem.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -398,6 +424,7 @@ const spellbookSlice = createSlice({
       expert: [
         {
           name: "Summon Hero",
+          image: "src/assets/images/spellbook/conjuration/summon-hero.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,

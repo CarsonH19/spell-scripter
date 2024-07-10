@@ -88,8 +88,9 @@ export default function Skill({ school, skill, activeExpertise }) {
                   ? "var(--text)"
                   : "var(--secondary)"
                 : "var(--secondary)",
-              opacity: activeSkill ? "1" : !activeExpertise ? "1" : "",
+              opacity: activeSkill ? "1" : activeExpertise ? "1" : "",
               cursor: skill.points < skill.max ? "pointer" : "",
+              pointerEvents: skill.points === skill.max ? "none" : "auto",
             }}
           />
         </Tooltip>
@@ -107,7 +108,11 @@ export default function Skill({ school, skill, activeExpertise }) {
           }}
         />
       )}
-      <p>
+      <p
+        style={{
+          opacity: activeSkill ? "1" : "0.4",
+        }}
+      >
         {skill.points} / {skill.max}
       </p>
     </div>

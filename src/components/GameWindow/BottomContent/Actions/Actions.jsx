@@ -113,6 +113,9 @@ export default function Actions() {
                     onClick={() =>
                       handleSelectChoice(spellObject, "spellListIsVisible")
                     }
+                    style={{
+                      backgroundImage: `url(${spellObject.image})`,
+                    }}
                   >
                     {/* {spellObject.name} */}
                   </Icon>
@@ -201,7 +204,7 @@ export default function Actions() {
         >
           Use Item
         </button>
-        <Buttons/>
+        <Buttons />
       </div>
     );
   }

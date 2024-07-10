@@ -14,7 +14,7 @@ export default function HeroStats({ hero }) {
   if (hero.level >= 3) {
     abilityA = (
       <div className={classes.unlocked}>
-        <h4>{hero.abilityB.name}</h4>
+        <h4>{hero.abilityA.name}</h4>
         <p>{hero.abilityA.description}</p>
       </div>
     );

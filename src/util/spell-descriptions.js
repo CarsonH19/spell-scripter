@@ -82,8 +82,8 @@ const spellDescriptions = {
   CONJURE_FEAST: () => {
     return `Conjure a feast for all allies to consume, increasing their Health Regeneration +2 for 3 rooms.`;
   },
-  SUMMON_BEAST: () => {
-    return `Summon a beast to join your party and fight alongside you. You can only have one summon active at a time.`;
+  SUMMON_HOUND: () => {
+    return `Summon a hound to join your party and fight alongside you. You can only have one summon active at a time.`;
   },
   SUMMON_KNIGHT: () => {
     return `Summon a knight to join your party and fight alongside you. You can only have one summon active at a time.`;

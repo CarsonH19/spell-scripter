@@ -1,4 +1,4 @@
-let beast = {
+let hound = {
   name: "Hound",
   id: "Hound",
   unlocked: true,
@@ -156,4 +156,4 @@ let golem = {
   statusEffects: [],
 };
 
-export { beast, knight, drake, golem };
+export { hound, knight, drake, golem };

@@ -28,7 +28,7 @@
 .spells {
   position: relative;
   width: 20%;
-  height: 100%;
+  height: 70%;
   padding: 0.5rem;
   overflow: auto;
   /* border: 1px solid var(--accent); */
@@ -51,31 +51,33 @@ position: absolute;
 right: 2%;
 top: 0%;
 cursor: pointer;
-color: var(--accent);
+color: var(--text);
 font-weight: 600;
 font-size: 1.2rem;
 }
 
 .spells ul {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  display: grid;
+  align-content: start;
+  justify-content: start;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr)); 
+  gap: 0.5rem;
   height: 90%;
   width: 90%;
   padding: 0.5rem;
-  border: 1px solid var(--secondary);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .spells li {
   list-style: none;
   cursor: pointer;
   aspect-ratio: 1;
-  /* flex: 1 1 3rem; Flex-grow, flex-shrink, flex-basis */
-  /* font-size: 1.1rem; */
-  color: var(--text);
-  border: 1px solid red;
+  border: 3px solid var(--primary);
+  border-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .spells li:hover {
