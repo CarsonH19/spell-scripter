@@ -12,14 +12,18 @@ import { startCombat } from "../../store/combat-actions";
 export default function GameWindow() {
   const dispatch = useDispatch();
   const room = useSelector((state) => state.dungeon);
-  console.log(room);
+  
   useEffect(() => {
     // If there is no event in the dungeon-slice combat will begin
     if (!room.contents.event) {
       startCombat(dispatch);
-    }
+    } 
 
-    // dispatch(logActions.updateLogs({ text: "TESTING", logArray: "NARRATION" }));
+    // If event call the event narrative and pause it
+    // if (room.contents.event) {
+    //   dispatch(logActions.updateLogs({ change: "PAUSE" }));
+    // }
+
     // Dependency: Update when room counter increments
   }, [room.roomCounter]);
 

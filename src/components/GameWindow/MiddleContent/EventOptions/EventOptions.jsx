@@ -4,6 +4,7 @@ import classes from "./EventOptions.module.css";
 import eventFunctions from "../../../../util/event-functions";
 
 import { useEffect, useState } from "react";
+import { logActions } from "../../../../store/log-slice";
 
 export default function EventOptions() {
   const [open, setOpen] = useState(true);
@@ -24,6 +25,8 @@ export default function EventOptions() {
 
   const handleClickEventOption = (dispatch, eventFunction, detail) => {
     setOpen(false);
+    dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+    dispatch(logActions.updateLogs({ change: "CLEAR" }));
     eventFunction(dispatch, detail);
   };
 

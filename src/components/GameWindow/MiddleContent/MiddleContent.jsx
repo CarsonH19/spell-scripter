@@ -5,12 +5,25 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { createNewRoom } from "../../../util/dungeon-util";
 import { uiActions } from "../../../store/ui-slice";
+import { logActions } from "../../../store/log-slice";
+
+import { useEffect } from "react";
 
 export default function MiddleContent() {
   const dispatch = useDispatch();
   const event = useSelector((state) => state.dungeon.contents.event);
 
-  // Continue Button Logic
+  // Event Logic
+  useEffect(() => {
+    if (event) {
+      dispatch(logActions.updateLogs({ change: "PAUSE" }));
+      dispatch(
+        logActions.updateLogs({ change: "ADD", text: event.description })
+      );
+    }
+  }, [event]);
+
+  // Continue Logic
   const continueIsVisible = useSelector((state) => state.ui.continueIsVisible);
 
   const handleContinue = () => {

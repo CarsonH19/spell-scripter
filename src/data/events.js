@@ -1,12 +1,12 @@
 export const DUNGEON_ENTRANCE = {
   name: "Dungeon Entrance",
   type: "ENTRANCE",
-  description: "",
+  description: "Are you prepared?",
   options: [
     {
       text: ["Enter"],
       function: "DUNGEON_ENTRANCE_ENTER",
-      narration: "",
+      narration: "Are you prepared?",
     },
   ],
 };
