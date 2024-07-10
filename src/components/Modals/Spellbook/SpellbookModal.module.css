@@ -135,96 +135,42 @@
   align-items: center;
 }
 
+.skill-tree .expertise ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* gap: 1rem; */
+}
+
 .skill-tree .expertise ul li {
   margin: 0;
   margin-top: 1rem;
   padding: 0;
   height: 4rem;
   width: 4rem;
-  border: 2px solid var(--accent);
+  border: 2px solid var(--secondary);
   border-radius: 10%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.4;
+}
+
+.skill-tree .expertise ul li:hover {
+  transition: 0.3s;
+  border: 2px solid var(--accent);
+  opacity: 1;
 }
 
 .spellbook .container .skill-tree button {
   width: 14rem;
   height: 4rem;
   font-size: 1rem;
-  color: var(--background);
+  color: var(--primary);
+  background-color: var(--accent);
   cursor: pointer;
   border-radius: 0.5rem;
 }
 
-/* SPELLS */
-
-.spellbook .container .spells{
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background);
-  flex: 1;
-  height: 100%;
-  width: 100%;
-}
-
-.spellbook .container .spells h3 {
-  color: white;
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.spellbook .container .spells ul {
-  width: 100%;
-  padding: 1rem;
-  margin: 0;
-  display: grid;
-  align-content: flex-start;
-  grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); 
-  gap: 2rem;
-  flex: 1;
-  background-color: var(--primary);
-  border: 2px solid var(--secondary);
-  /* gap: 1rem; */
-}
-
-.spellbook .container .spells ul li {
-  list-style: none;
-  aspect-ratio: 1;
-  width: 4rem;
-  height: 4rem;
-  border: 2px solid var(--accent);
-  cursor: pointer;
-  border-radius: 10%;
-  color: var(--text);
-}
-
-.spellbook .container .spells ul li:hover {
-  transition: 0.3s;
-  scale: 1.1;
-}
-
-.spellbook .container .prepared {
-  position: relative;
-  border: 1px solid var(--secondary);
-  margin-top: 1rem;
-  width: 100%;
-  /* overflow: visible; */
-}
-
-.spellbook .container .prepared ul {
-  background-color: var(--primary);
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); 
-  height: 6rem;
-}
-
-.spellbook .container .prepared .counter {
-  position: absolute;
-  color: var(--text);
-  right: 5%;
-  top: 0%;
-}
-
-.spellbook .container .prepared ul li {
-  color: var(--accent);
-  width: 4rem;
-  height: 4rem
-}

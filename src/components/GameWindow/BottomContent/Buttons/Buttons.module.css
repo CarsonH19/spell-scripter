@@ -1,12 +1,12 @@
 .buttons {
   position: absolute;
-  bottom: 0%;
+  top: 94%;
   left: 50%;
   transform: translate(-50%, -50%); 
   width: 33%;
   justify-items: flex-end;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: flex-end;
   gap: 0.5rem;
 }

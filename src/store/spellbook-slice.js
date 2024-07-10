@@ -10,6 +10,7 @@ const spellbookSlice = createSlice({
       novice: [
         {
           name: "Firebolt",
+          image: "src/assets/images/spellbook/evocation/firebolt.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -17,6 +18,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Frostbite",
+          image: "src/assets/images/spellbook/evocation/frostbite.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -24,6 +26,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Shock",
+          image: "src/assets/images/spellbook/evocation/shock.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -33,6 +36,7 @@ const spellbookSlice = createSlice({
       apprentice: [
         {
           name: "Smoldering Heart",
+          image: "src/assets/images/spellbook/evocation/smoldering-heart.png",
           type: "Buff",
           description: [
             "When casting spells that deal Fire damage, you have a 10% chance to inflict the Burning condition.",
@@ -44,6 +48,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Fireball",
+          image: "src/assets/images/spellbook/evocation/fireball.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -51,6 +56,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Frigid Gaze",
+          image: "src/assets/images/spellbook/evocation/frigid-gaze.png",
           type: "Buff",
           description: [
             "When casting spells that deal Ice damage, you have a 8% chance to inflict the Chilled condition.",
@@ -62,6 +68,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Chain Lightning",
+          image: "src/assets/images/spellbook/evocation/chain-lightning.png",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -69,6 +76,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Charged Touch",
+          image: "src/assets/images/spellbook/evocation/charged-touch.png",
           type: "Buff",
           description: [
             "When casting spells that deal Lightning damage, you have a 6% chance to inflict the Stunned condition.",
@@ -82,6 +90,7 @@ const spellbookSlice = createSlice({
       adept: [
         {
           name: "Consuming Flames",
+          image: "src/assets/images/spellbook/evocation/consuming-flames.png",
           type: "Buff",
           description: [
             "Enemies Burning from your spells are dealt 5 Fire damage each round.",
@@ -93,6 +102,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Blizzard",
+          image: "src/assets/images/spellbook/evocation/blizzard.png",
           type: "Spell",
           // description: "",
           points: 0,
@@ -100,6 +110,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Evoker",
+          image: "src/assets/images/spellbook/evocation/evoker.png",
           type: "Buff",
           description: [
             "The mana cost of all Evocation spells is reduced by 2MP",
@@ -111,6 +122,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Storm Sphere",
+          image: "src/assets/images/spellbook/evocation/storm-sphere.png",
           type: "Spell",
           // description: "",
           points: 0,
@@ -118,6 +130,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Frozen Solid",
+          image: "src/assets/images/spellbook/evocation/frozen-solid.png",
           type: "Buff",
           description: [
             "Enemies Chilled by your spells take 3% more damage from Attacks for each stack of Chilled they possess.",
@@ -131,6 +144,7 @@ const spellbookSlice = createSlice({
       expert: [
         {
           name: "Meteor",
+          image: "src/assets/images/spellbook/evocation/meteor.png",
           type: "Spell",
           // description: "",
           points: 0,

@@ -9,7 +9,7 @@
   background-size: cover;
   padding: 1rem;
   padding-bottom: 0rem;
-  border: 2px solid var(--dark);
+  border: 0.5rem solid var(--primary);
   background-color: rgba(0, 0, 0, 0.1);
 }
 

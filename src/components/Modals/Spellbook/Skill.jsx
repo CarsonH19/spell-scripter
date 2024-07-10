@@ -8,13 +8,14 @@ import { spellbookActions } from "../../../store/spellbook-slice";
 import spellDescriptions from "../../../util/spell-descriptions";
 import { getSpell } from "../../../util/spell-util";
 
-export default function Skill({ school, skill, isSkillActive }) {
+export default function Skill({ school, skill, activeExpertise }) {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
   const spellPower = useSelector(
     (state) => state.player.stats.arcana.spellPower
   );
 
+  const activeSkill = skill.points > 0;
   const isSpell = skill.type === "Spell";
   let spellObject;
   let skillDescription;
@@ -61,24 +62,51 @@ export default function Skill({ school, skill, isSkillActive }) {
 
   return (
     <div key={skill.name}>
-      <Tooltip
-        key={skill.name}
-        title={skill.name}
-        text={skill.type}
-        detailOne={skillDescription}
-        {...(isSpell && spellObject
-          ? { detailTwo: `Mana Cost: ${spellObject.manaCost}` }
-          : {})}
-        position="skill"
-      >
+      {(activeExpertise || activeSkill) && (
+        <Tooltip
+          key={skill.name}
+          title={skill.name}
+          text={skill.type}
+          detailOne={skillDescription}
+          {...(isSpell && spellObject
+            ? { detailTwo: `Mana Cost: ${spellObject.manaCost}` }
+            : {})}
+          position="skill"
+        >
+          <Icon
+            onClick={
+              activeExpertise
+                ? () => handleSkillClick(school, skill.name)
+                : undefined
+            }
+            style={{
+              backgroundImage: `url(${skill.image})`,
+              borderStyle: "solid",
+              borderWidth: "2px",
+              borderColor: activeSkill
+                ? skill.points === skill.max
+                  ? "var(--text)"
+                  : "var(--secondary)"
+                : "var(--secondary)",
+              opacity: activeSkill ? "1" : !activeExpertise ? "1" : "",
+              cursor: skill.points < skill.max ? "pointer" : "",
+            }}
+          />
+        </Tooltip>
+      )}
+      {!activeExpertise && !activeSkill && (
         <Icon
           onClick={
-            isSkillActive
+            activeExpertise
               ? () => handleSkillClick(school, skill.name)
               : undefined
           }
+          style={{
+            backgroundImage: `url(${skill.image})`,
+            pointerEvents: "none",
+          }}
         />
-      </Tooltip>
+      )}
       <p>
         {skill.points} / {skill.max}
       </p>

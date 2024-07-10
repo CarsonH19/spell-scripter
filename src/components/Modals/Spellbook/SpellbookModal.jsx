@@ -112,7 +112,7 @@ export default function SpellbookModal() {
             {pointsExpended >= 17 && <h4>{pointsExpended} / 18</h4>}
             <ul>
               {spellbook[school].expert.map((skill) => {
-                const isSkillActive =
+                const activeExpertise =
                   skill.points < skill.max && pointsExpended >= 17;
 
                 return (
@@ -120,7 +120,7 @@ export default function SpellbookModal() {
                     key={skill.name}
                     skill={skill}
                     school={school}
-                    isSkillActive={isSkillActive}
+                    activeExpertise={skill.points > 0 || activeExpertise}
                   />
                 );
               })}
@@ -138,15 +138,17 @@ export default function SpellbookModal() {
             )}
             <ul>
               {spellbook[school].adept.map((skill) => {
-                const isSkillActive =
-                  skill.points < skill.max && pointsExpended >= 9 && pointsExpended < 17;
+                const activeExpertise =
+                  skill.points < skill.max &&
+                  pointsExpended >= 9 &&
+                  pointsExpended < 17;
 
                 return (
                   <Skill
                     key={skill.name}
                     skill={skill}
                     school={school}
-                    isSkillActive={isSkillActive}
+                    activeExpertise={skill.points > 0 || activeExpertise}
                   />
                 );
               })}
@@ -164,15 +166,17 @@ export default function SpellbookModal() {
             )}
             <ul>
               {spellbook[school].apprentice.map((skill) => {
-                const isSkillActive =
-                  skill.points < skill.max && pointsExpended >= 3 && pointsExpended < 9;
+                const activeExpertise =
+                  skill.points < skill.max &&
+                  pointsExpended >= 3 &&
+                  pointsExpended < 9;
 
                 return (
                   <Skill
                     key={skill.name}
                     skill={skill}
                     school={school}
-                    isSkillActive={isSkillActive}
+                    activeExpertise={skill.points > 0 || activeExpertise}
                   />
                 );
               })}
@@ -188,7 +192,7 @@ export default function SpellbookModal() {
             {pointsExpended < 3 && <h4>{pointsExpended} / 3</h4>}
             <ul>
               {spellbook[school].novice.map((skill) => {
-                const isSkillActive =
+                const activeExpertise =
                   skill.points < skill.max && pointsExpended < 3;
 
                 return (
@@ -196,7 +200,7 @@ export default function SpellbookModal() {
                     key={skill.name}
                     skill={skill}
                     school={school}
-                    isSkillActive={isSkillActive}
+                    activeExpertise={activeExpertise}
                   />
                 );
               })}
