@@ -10,7 +10,6 @@ export default function EventOptions() {
 
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon);
-  console.log(dungeon);
   const isTrap = dungeon.contents.event.type === "TRAP";
 
   useEffect(() => {

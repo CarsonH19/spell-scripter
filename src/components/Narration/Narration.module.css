@@ -17,5 +17,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 2rem;
-  color: white;
+  color: var(--text);
+  z-index: 3;
+  /* border: 3px solid red; */
 }

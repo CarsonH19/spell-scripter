@@ -117,13 +117,6 @@ export default async function combatLoop(dispatch) {
                 if (selectedSpell === null) continue;
 
                 if (selectedSpell) {
-                  dispatch(
-                    logActions.updateLogs({
-                      change: "ADD",
-                      text: `Casting ${selectedSpell.name}`,
-                    })
-                  );
-
                   // Restart the while loop allowing players to change actions
                   await castSpell(dispatch, selectedSpell);
                 }

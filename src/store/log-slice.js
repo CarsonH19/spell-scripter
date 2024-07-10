@@ -6,27 +6,36 @@ const logSlice = createSlice({
   name: "log",
   initialState: {
     narration: [],
-    // tome: [],
-    // combat: [],
-    // event: [],
-    // inventory: [],
+    paused: false,
   },
   reducers: {
     updateLogs(state, action) {
-      let change = action.payload.change;
+      const change = action.payload.change;
 
       switch (change) {
         case "ADD":
           {
             // console.log("ADDED");
-            let text = action.payload.text;
+            const text = action.payload.text;
             state.narration.push(text);
           }
           break;
 
         case "REMOVE":
-          // console.log("REMOVED");
-          state.narration.shift();
+          if (!state.paused) {
+            // console.log("REMOVED");
+            state.narration.shift();
+          }
+          break;
+
+        case "PAUSE":
+          console.log("PAUSED");
+          state.paused = true;
+          break;
+
+        case "UNPAUSE":
+          console.log("UNPAUSE");
+          state.paused = false;
           break;
       }
     },

@@ -28,7 +28,20 @@ export default async function castSpell(dispatch, spell) {
   const getQuickTimeEventResult = await getResult();
 
   if (!getQuickTimeEventResult) {
+    dispatch(
+      logActions.updateLogs({
+        change: "ADD",
+        text: `Cast Failed!`,
+      })
+    );
     return;
+  } else {
+    dispatch(
+      logActions.updateLogs({
+        change: "ADD",
+        text: `Casting ${spell.name}`,
+      })
+    );
   }
 
   dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));

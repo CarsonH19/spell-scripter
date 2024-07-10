@@ -121,14 +121,6 @@ const spellbookSlice = createSlice({
           max: 3,
         },
         {
-          name: "Storm Sphere",
-          image: "src/assets/images/spellbook/evocation/storm-sphere.png",
-          type: "Spell",
-          // description: "",
-          points: 0,
-          max: 1,
-        },
-        {
           name: "Frozen Solid",
           image: "src/assets/images/spellbook/evocation/frozen-solid.png",
           type: "Buff",
@@ -139,6 +131,14 @@ const spellbookSlice = createSlice({
           ],
           points: 0,
           max: 3,
+        },
+        {
+          name: "Storm Sphere",
+          image: "src/assets/images/spellbook/evocation/storm-sphere.png",
+          type: "Spell",
+          // description: "",
+          points: 0,
+          max: 1,
         },
       ],
       expert: [

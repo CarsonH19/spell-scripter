@@ -15,7 +15,7 @@
 .character .image {
   position: relative;
   width: auto; /* Adjust this based on your layout needs */
-  height: 25rem; /* Set a fixed height for the container */
+  height: 30rem; 
   margin-bottom: 0rem;
   display: flex;
   justify-content: flex-start;
@@ -53,7 +53,7 @@
 }
 
 .character .turn {
-  border-top: 4px solid var(--accent);
+  /* border-top: 4px solid var(--accent); */
   opacity: 1;
 }
 
