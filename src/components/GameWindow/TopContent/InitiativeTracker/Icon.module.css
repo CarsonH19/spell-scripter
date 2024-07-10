@@ -4,16 +4,16 @@
   border: 2px solid var(--text);
   border-radius: 5px;
   background-size: cover;
+  background-color: var(--primary);
 }
 
 .icon {
   height: 2.5rem;
   width: 2.5em;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--secondary);
   border-radius: 5px;
   background-size: cover;
-  background-color: var(--secondary);
-
+  background-color: var(--primary);
 }
 
 .turn {
@@ -22,4 +22,5 @@
   border: 2px solid var(--accent);
   border-radius: 5px;
   background-size: cover;
+  background-color: var(--primary);
 }

@@ -1,4 +1,5 @@
 .actions {
+  position: relative;
   width: 20%;
   height: 95%;
   margin: 0rem;
@@ -14,6 +15,7 @@
 .actions button {
   height: 4rem;
   width: 80%;
+  border: 1px solid var(--text);
 }
 
 

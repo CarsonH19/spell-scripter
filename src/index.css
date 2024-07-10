@@ -50,13 +50,6 @@ button {
   border-radius: 10px;
 }
 
-/* button:hover {
-  transition: 0.3s;
-  background-color: var(--accent);
-  border: 2px solid var(--accent);
-  color: var(--dark);
-} */
-
 div {
   border-color: var(--accent);
 }

@@ -9,4 +9,5 @@
   height: 4rem;
   width: 12rem;
   padding: 0.5rem;
+  border: 1px solid var(--text);
 }

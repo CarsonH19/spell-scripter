@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   overflow: visible;
+  box-sizing: border-box; 
 }
 
 .enemy {
@@ -12,14 +13,17 @@
 }
 
 .character .image {
+  position: relative;
   width: auto; /* Adjust this based on your layout needs */
-  height: 22rem; /* Set a fixed height for the container */
+  height: 25rem; /* Set a fixed height for the container */
   margin-bottom: 0rem;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
   border-radius: 10px;
   overflow: visible; 
+  box-sizing: border-box;
+  opacity: 0.9;
 }
 
 .character img {
@@ -27,24 +31,30 @@
   height: 100%;
   object-fit: cover; 
   overflow: visible;
+  box-sizing: border-box;
 }
 
 .character:hover .image {
-  transform: 0.3s;
-  scale: 1.05;
-
+  /* border-top: 4px solid var(--text); */
+  opacity: 1;
 }
 
 .character .image p {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
   margin: 0;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 .character .highlighted {
-  border: 2px solid var(--text);
+  /* border-top: 4px solid var(--text); */
+  opacity: 1;
 }
 
 .character .turn {
-  border: 2px solid var(--accent);
+  border-top: 4px solid var(--accent);
+  opacity: 1;
 }
 
 .character:has(.turn) .container {
@@ -77,7 +87,7 @@
 
 .character .container {
   position: absolute;
-  top: 30%;
+  top: 33.5%;
   left: 50%;
   transform: translate(-50%, -50%);  
   width: 0%; 
@@ -110,6 +120,7 @@
   margin: 0;
   opacity: 0;
   margin-top: -1.8rem;
+  justify-content: center;
 } 
 
 .character:hover .container .statusEffects {
@@ -119,7 +130,7 @@
 
 .character .container .heroStatusEffects {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .container .statusEffects .effect {

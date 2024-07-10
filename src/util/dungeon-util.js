@@ -28,7 +28,7 @@ export function setDungeon(dispatch, dungeonName) {
       dungeon.name = "The Great Catacomb";
       dungeon.path = null;
       dungeon.threat = 0;
-      dungeon.image = "src/assets/image/catacomb-1.png";
+      dungeon.image = "src/assets/images/backgrounds/catacomb-entrance.png";
       // dungeon.music = '' // Dungeon entrance music
       dungeon.contents; // add Entrance event
       break;
@@ -291,7 +291,29 @@ function getRoomImage() {
 
   switch (dungeon.name) {
     case "The Great Catacomb":
-      imageList = ["src/assets/image/catacomb-1.png"];
+      imageList = [
+        "src/assets/images/backgrounds/catacomb-1.png",
+        "src/assets/images/backgrounds/catacomb-2.png",
+        "src/assets/images/backgrounds/catacomb-3.png",
+        "src/assets/images/backgrounds/catacomb-4.png",
+        "src/assets/images/backgrounds/catacomb-5.png",
+        "src/assets/images/backgrounds/catacomb-6.png",
+        "src/assets/images/backgrounds/catacomb-7.png",
+        "src/assets/images/backgrounds/catacomb-8.png",
+        "src/assets/images/backgrounds/catacomb-9.png",
+        "src/assets/images/backgrounds/catacomb-10.png",
+        "src/assets/images/backgrounds/catacomb-11.png",
+        "src/assets/images/backgrounds/catacomb-12.png",
+        "src/assets/images/backgrounds/catacomb-13.png",
+        "src/assets/images/backgrounds/catacomb-14.png",
+        "src/assets/images/backgrounds/catacomb-15.png",
+        "src/assets/images/backgrounds/catacomb-16.png",
+        "src/assets/images/backgrounds/catacomb-17.png",
+        "src/assets/images/backgrounds/catacomb-18.png",
+        "src/assets/images/backgrounds/catacomb-19.png",
+        "src/assets/images/backgrounds/catacomb-20.png",
+        "src/assets/images/backgrounds/catacomb-21.png",
+      ];
       break;
     // You can add more cases here for other dungeons
     default:

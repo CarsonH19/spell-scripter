@@ -1,5 +1,10 @@
 .buttons {
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
   width: 33%;
+  justify-items: flex-end;
   display: flex;
   justify-content: space-evenly;
   align-items: flex-end;
@@ -11,15 +16,17 @@
   width: 2rem;
   padding: 0.5rem;
   border-radius: 10px;
-  color: var(--primary);
-  border: 3px solid var(--primary);
+  border-color: var(--text);
+  background-color: var(--primary);
+  border: 1px solid var(--text);
+  z-index: 1;
 }
 
 
 .buttons .icon:hover {
   transition: 0.3s;
   border-radius: 10px;
-  color: var(--text);
-  border-color: var(--text);
-  background-color: var(--primary);
+  color: var(--primary);
+  background-color: var(--text);
+
 }
