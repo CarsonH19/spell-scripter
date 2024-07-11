@@ -31,6 +31,8 @@
   width: 20%;
   height: 70%;
   padding: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
   overflow: auto;
   /* border: 1px solid var(--accent); */
   /* background-color: var(--primary); */

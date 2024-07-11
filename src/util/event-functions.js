@@ -13,6 +13,7 @@ import CONSUMABLES from "../data/consumables";
 import EQUIPMENT from "../data/equipment";
 import { dungeonActions } from "../store/dungeon-slice";
 import { startCombat } from "../store/combat-actions";
+import { logActions } from "../store/log-slice";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 
@@ -46,7 +47,7 @@ const eventFunctions = {
       damage = 10;
     }
 
-    const success = trapSuccessChance(player, difficulty, stat);
+    const success = trapSuccessChance(dispatch, player, difficulty, stat);
 
     if (!success) {
       changeHealth(dispatch, player, "DAMAGE", damage);
@@ -173,7 +174,7 @@ export default eventFunctions;
 //   }
 // }
 
-function trapSuccessChance(player, difficulty, stat) {
+function trapSuccessChance(dispatch, player, difficulty, stat) {
   let playerChoice;
 
   if (stat === "(Strength)") {
@@ -187,8 +188,10 @@ function trapSuccessChance(player, difficulty, stat) {
   const successChance = roll20(playerChoice);
 
   if (successChance > difficulty) {
+    dispatch(logActions.updateLogs({ change: "ADD", text: "Success!" }));
     return true;
   } else {
+    dispatch(logActions.updateLogs({ change: "ADD", text: "Fail!" }));
     return false;
   }
 }

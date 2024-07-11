@@ -14,7 +14,7 @@
 
 .character .image {
   position: relative;
-  width: auto; /* Adjust this based on your layout needs */
+  width: auto;
   height: 30rem; 
   margin-bottom: 0rem;
   display: flex;
@@ -131,9 +131,14 @@
 }
 
 .container .statusEffects .effect {
-  height: 1.5rem;
-  width: 1.5rem;
-  background-color: #ad0505; 
+  height: 1.8rem;
+  width: 1.8rem;
+  background-color: #ad0505;
+  border: 2px solid var(--primary);
+  border-radius: 3px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
   cursor: pointer; 
 }
 

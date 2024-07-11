@@ -30,6 +30,7 @@ import statusEffectFunctions from "../util/status-effect-functions.js";
 import { openModal } from "./ui-actions.js";
 
 import updateStatTotals from "./stats-actions.js";
+import Character from "../components/GameWindow/BottomContent/Character.jsx";
 
 let playerActionResolver;
 let targetResolver;
@@ -192,7 +193,7 @@ export default async function combatLoop(dispatch) {
           action = checkBehaviorAction(character);
         }
 
-        console.log("ACTION", action);
+        // console.log("ACTION", action);
 
         switch (action) {
           case "ATTACK":

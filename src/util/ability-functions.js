@@ -2,6 +2,7 @@ import store from "../store/index";
 
 import { changeHealth } from "../store/health-actions";
 import { combatActions } from "../store/combat-slice";
+import { logActions } from "../store/log-slice";
 import changeStatusEffect from "../store/status-effect-actions";
 import CONDITIONS from "../data/conditions";
 import { calcDamage, rollToHit } from "../store/combat-actions";
@@ -133,6 +134,14 @@ export function useAbility(dispatch, character) {
   // Conditionally check which ability the character is using A or B
   let ability = abilityA ? "abilityA" : "abilityB";
   const abilityFunction = abilityFunctions[character[ability].function];
+
+  // Narrative
+  dispatch(
+    logActions.updateLogs({
+      change: "ADD",
+      text: `${character.name} uses ${character[ability].name}!`,
+    })
+  );
 
   // NOTE: If multiple characters use this focus can I add an if-statement to check for the correct name?
   switch (character[ability].focus) {

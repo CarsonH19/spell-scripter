@@ -137,9 +137,15 @@ export default function Character({ character }) {
                       ))
                     : null
                 }
-                position={isCharacterEnemy ? "effect-right" : "effect-left"}
+                position={"effect"}
               >
-                <img src="" className={classes.effect} />
+                <div
+                  // src={`url(${effect.image})`}
+                  className={classes.effect}
+                  style={{
+                    backgroundImage: `url(${effect.image})`,
+                  }}
+                ></div>
                 {stack && effect.stack > 1 && (
                   <p className={classes["effect-stack"]}>x{effect.stack}</p>
                 )}

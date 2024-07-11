@@ -13,7 +13,7 @@ export const createArcaneShield = () => {
   return {
     name: "Arcane Shield",
     display: true,
-    image: "",
+    image: "src/assets/images/spellbook/abjuration/arcane-shield.png",
     type: "BUFF",
     description: "A magical shield empowered by Abjuration spells.",
     get currentHealth() {

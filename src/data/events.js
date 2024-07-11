@@ -1,12 +1,12 @@
 export const DUNGEON_ENTRANCE = {
   name: "Dungeon Entrance",
   type: "ENTRANCE",
-  description: "Are you prepared?",
+  description: "",
   options: [
     {
       text: ["Enter"],
       function: "DUNGEON_ENTRANCE_ENTER",
-      narration: "Are you prepared?",
+      narration: "",
     },
   ],
 };
@@ -40,12 +40,12 @@ export const TRAPS = [
         text: ["Shield", "(Strength)"],
         function: "TRAP",
         narration:
-          "You raise your shield just in time to block the poison darts.",
+          "You attempt to shield yourself using nearby debris.",
       },
       {
         text: ["Dodge", "(Agility)"],
         function: "TRAP",
-        narration: "You swiftly dodge the incoming darts, avoiding the poison.",
+        narration: "You attempt to dodge the incoming darts.",
       },
     ],
   },
@@ -58,13 +58,13 @@ export const TRAPS = [
         text: ["Hold Back", "(Strength)"],
         function: "TRAP",
         narration:
-          "You use your strength to hold the walls back, preventing them from closing in.",
+          "You attempt to use your strength to hold the walls back.",
       },
       {
         text: ["Squeeze Through", "(Agility)"],
         function: "TRAP",
         narration:
-          "You nimbly maneuver through the narrowing gap, avoiding the spikes.",
+          "You attempt to maneuver through the narrowing gap and avoid the spikes.",
       },
     ],
   },
@@ -78,13 +78,13 @@ export const TRAPS = [
         text: ["Hold Up", "(Strength)"],
         function: "TRAP",
         narration:
-          "You use your immense strength to hold up the ceiling long enough to escape.",
+          "You attempt to use your strength to hold up the ceiling long enough to escape.",
       },
       {
         text: ["Sprint", "(Agility)"],
         function: "TRAP",
         narration:
-          "You sprint through the collapsing area, narrowly avoiding being crushed.",
+          "You attempt to sprint through the collapsing area to avoid being crushed.",
       },
     ],
   },
@@ -96,13 +96,13 @@ export const TRAPS = [
       {
         text: ["Leap Over", "(Strength)"],
         function: "TRAP",
-        narration: "You leap over the pressure plates, avoiding the spikes.",
+        narration: "You attempt to leap over the pressure plates to avoid the spikes.",
       },
       {
         text: ["Disarm", "(Agility)"],
         function: "TRAP",
         narration:
-          "You carefully disarm the pressure plates, rendering the trap harmless.",
+          "You attempt to disarm the pressure plates to render the trap harmless.",
       },
     ],
   },
@@ -116,12 +116,12 @@ export const TRAPS = [
         text: ["Parry", "(Strength)"],
         function: "TRAP",
         narration:
-          "You use your weapon to parry the blade, creating an opening to escape.",
+          "You attempt to use your weapon to parry the blade and create an opening to escape.",
       },
       {
         text: ["Duck", "(Agility)"],
         function: "TRAP",
-        narration: "You duck under the blade, avoiding its deadly arc.",
+        narration: "You attempt to duck under the blade and avoid its deadly arc.",
       },
     ],
   },
@@ -133,12 +133,12 @@ export const TRAPS = [
       {
         text: ["Hold Breath", "(Strength)"],
         function: "TRAP",
-        narration: "You hold your breath and quickly find an exit.",
+        narration: "You attempt to hold your breath and quickly find an exit.",
       },
       {
         text: ["Find Vent", "(Agility)"],
         function: "TRAP",
-        narration: "You locate and open a vent to disperse the mist.",
+        narration: "You attempt to locate and open an opening to disperse the poisonous mist.",
       },
     ],
   },
@@ -151,12 +151,12 @@ export const TRAPS = [
         text: ["Crush Rune", "(Strength)"],
         function: "TRAP",
         narration:
-          "You use brute force to crush the rune, stopping its magical effect.",
+          "You attempt to use force to crush the rune and stop its magical effect.",
       },
       {
-        text: ["Avoid", "(Agility)"],
+        text: ["Dive Away", "(Agility)"],
         function: "TRAP",
-        narration: "You carefully step around the rune, avoiding its trigger.",
+        narration: "You attempt to dive away from the rune's explosion.",
       },
     ],
   },

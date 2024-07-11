@@ -71,7 +71,7 @@ export default function ConfirmationModal() {
       })
     );
 
-    // SKILL - Arcane Shield - Add status effect to player
+    //  Shield - Add status effect to player
     const arcaneShield = checkSkillPoints("Arcane Shield");
     if (arcaneShield) {
       const statusEffect = createArcaneShield();
