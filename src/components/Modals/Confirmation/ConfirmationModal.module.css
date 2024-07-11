@@ -1,22 +1,79 @@
 .confirmation {
   background-color: var(--background);
-  /* background-image: url(src/assets/skull-texture.jpg); */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-blend-mode: overlay;
   height: 90%;
   width: 80%;
   min-width: 50rem;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 3px solid var(--secondary);
   padding: 1rem;
-  /* overflow: visible; */
 }
 
-.confirmation h1 {
+/* Heroes */
+
+.confirmation .heroes {
+  height: 90%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 3px solid var(--secondary); */
+}
+
+.heroes h3 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 1rem;
+}
+
+.confirmation .heroes ul {
+  /* border-bottom: 1px solid yellow; */
+  width: 100%;
+  height: 65%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.confirmation .heroes ul div {
+  width: 33%;
+  border-bottom: 1px solid var(--secondary);
+}
+
+.confirmation .heroes ul div {
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  list-style: none;
+  width: 100%;
+  height: 90%;
+  overflow: visible;
+}
+
+.confirmation .heroes ul div p {
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 1px solid var(--text);
+  width: 8rem;
+  text-align: center;
+  overflow: visible;
+}
+
+.confirmation .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  height: 90%;
+}
+
+.confirmation .container h1 {
   text-align: center;
   font-size: 1.5rem;
   padding: 0rem;
@@ -25,57 +82,46 @@
   width: 40%;
 }
 
-.confirmation .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 90%;
-  height: 100%;
-}
-
-.confirmation .container .section {
+.confirmation .container .spells {
   position: relative;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.confirmation .container .section .block {
+.confirmation .container .spells  {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  flex-direction: row;
-  margin-right: -7rem;
-  width: 100%;
+  width: 90%;
+  height: 40%;
+
 }
 
 .confirmation .container h3 {
   padding: 0rem;
   margin: 0;
-  /* border-bottom: 1px solid white;
-  width: 50%; */
   text-align: center;
 }
 
 
-.confirmation .container .section .block ul {
-  position: relative;
-  display: flex;
+.confirmation .container .spells  ul {
+  display: grid;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr)); 
+  gap: 1rem;
+  height: 90%;
+  width: 90%;
+  padding: 0.5rem;
+  overflow-y: auto;
   list-style: none;
-  gap: 2rem;
-  border: 3px solid var(--accent);
-  min-width: 30%;
-  width: auto;
-  height: 7rem;
-  margin: 0;
-  padding: 1rem;
-  /* overflow-y: scroll; */
+  gap: 1rem;
+  border: 3px solid var(--secondary);
+  overflow: visible;
 }
 
 .confirmation .container .tracker {
@@ -85,7 +131,7 @@
 }
 
 
-.confirmation .container .section .block ul div li {
+.confirmation .container .spells ul div li {
   aspect-ratio: 1;
   list-style: none;
   height: 4rem;
@@ -95,20 +141,20 @@
   border-radius: 10%;
 }
 
-.confirmation .container .section .block ul div li:hover {
+.confirmation .container .spells ul div li:hover {
   transition: 0.3s;
   transform: scale(1.1); 
   border: 1px solid white;
 }
 
-.confirmation .container .section button {
+.confirmation .container .spells button {
   width: 5rem;
   height: 1.5rem;
 }
 
 
 
-.confirmation .container button {
+.confirmation .container button, .confirmation .heroes button {
   width: 8rem;
   height: 3rem;
   background-color: var(--accent);
@@ -116,3 +162,10 @@
   border-radius: 10px;
 }
 
+.confirmation .container .spells ul div li {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px solid var(--secondary);
+  background-color: var(--primary);
+}

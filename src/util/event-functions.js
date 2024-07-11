@@ -174,7 +174,7 @@ export default eventFunctions;
 //   }
 // }
 
-function trapSuccessChance(dispatch, player, difficulty, stat) {
+async function trapSuccessChance(dispatch, player, difficulty, stat) {
   let playerChoice;
 
   if (stat === "(Strength)") {
@@ -186,6 +186,8 @@ function trapSuccessChance(dispatch, player, difficulty, stat) {
   }
 
   const successChance = roll20(playerChoice);
+
+  await delay(1000);
 
   if (successChance > difficulty) {
     dispatch(logActions.updateLogs({ change: "ADD", text: "Success!" }));

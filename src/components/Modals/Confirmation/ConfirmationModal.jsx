@@ -92,77 +92,77 @@ export default function ConfirmationModal() {
 
   return (
     <div className={classes.confirmation}>
-      <h1>{dungeon}</h1>
+      <div className={classes.heroes}>
+        <h3>Party Members</h3>
+        <ul>
+          {partyMembers.map((hero) => (
+            <div
+              key={hero.name}
+              style={{
+                backgroundImage: `url(${hero.image})`,
+              }}
+            >
+              <p>{hero.name}</p>
+            </div>
+          ))}
+        </ul>
+        <button onClick={() => handleClickChange("heroesModal")}>Change</button>
+      </div>
       <div className={classes.container}>
-        <div className={classes.section}>
+        <h1>{dungeon}</h1>
+        <div className={classes.spells}>
           <h3>Spell List</h3>
-          <div className={classes.block}>
-            <ul>
-              {spellList.map((spell) => {
-                // SPELL objects
-                const spellObject = getSpell(spell);
-                // spell-descriptions.js
-                const snakeCaseSpellName = toSnakeCase(spell);
-                const descriptionFunction =
-                  spellDescriptions[snakeCaseSpellName];
-                const spellDescription = descriptionFunction(
-                  player.stats.arcana.spellPower
-                );
+          <ul>
+            {spellList.map((spell) => {
+              // SPELL objects
+              const spellObject = getSpell(spell);
+              // spell-descriptions.js
+              const snakeCaseSpellName = toSnakeCase(spell);
+              const descriptionFunction = spellDescriptions[snakeCaseSpellName];
+              const spellDescription = descriptionFunction(
+                player.stats.arcana.spellPower
+              );
 
-                return (
-                  <Tooltip
+              return (
+                <Tooltip
+                  key={spellObject.name}
+                  title={spellObject.name}
+                  text={spellObject.school}
+                  detailOne={spellDescription}
+                  detailTwo={`Mana Cost: ${spellObject.manaCost}`}
+                  position="skill"
+                >
+                  <Icon
                     key={spellObject.name}
-                    title={spellObject.name}
-                    text={spellObject.school}
-                    detailOne={spellDescription}
-                    detailTwo={`Mana Cost: ${spellObject.manaCost}`}
-                    position="skill"
-                  >
-                    <Icon key={spellObject.name} />
-                  </Tooltip>
-                );
-              })}
-            </ul>
-            <button onClick={() => handleClickChange("spellbookModal")}>
-              Change
-            </button>
-          </div>
-        </div>
-        <div className={classes.section}>
-          <h3>Party Members</h3>
-          <div className={classes.block}>
-            <ul>
-              {partyMembers.map((hero) => (
-                <Tooltip key={hero.name} title={hero.name} text={hero.level}>
-                  <Icon key={hero.name}>{hero.name}</Icon>
+                    style={{
+                      backgroundImage: `url(${spellObject.image})`,
+                    }}
+                  />
                 </Tooltip>
-              ))}
-              <p className={classes.tracker}>{partyMembers.length} / 3</p>
-            </ul>
-            <button onClick={() => handleClickChange("heroesModal")}>
-              Change
-            </button>
-          </div>
+              );
+            })}
+          </ul>
+          <button onClick={() => handleClickChange("spellbookModal")}>
+            Change
+          </button>
         </div>
+
         <div className={classes.section}>
           <h3>Attuned Items</h3>
-          <div className={classes.block}>
-            <ul>
-              {attunedItems.map((item) => (
-                <Tooltip
-                  key={item.name}
-                  title={item.name}
-                  text={item.description}
-                >
-                  <Icon key={item.name}>{item.name}</Icon>
-                </Tooltip>
-              ))}
-              <p className={classes.tracker}>{attunedItems.length} / 5</p>
-            </ul>
-            <button onClick={() => handleClickChange("inventoryModal")}>
-              Change
-            </button>
-          </div>
+          <ul>
+            {attunedItems.map((item) => (
+              <Tooltip
+                key={item.name}
+                title={item.name}
+                text={item.description}
+              >
+                <Icon key={item.name}>{item.name}</Icon>
+              </Tooltip>
+            ))}
+          </ul>
+          <button onClick={() => handleClickChange("inventoryModal")}>
+            Change
+          </button>
         </div>
         <button onClick={handleConfirmation}>Confirm</button>
       </div>
