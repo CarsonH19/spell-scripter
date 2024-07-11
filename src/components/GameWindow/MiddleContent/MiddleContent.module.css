@@ -10,9 +10,13 @@
 
 .middle .continue {
   position: absolute;
-  width: 6rem;
-  height: 2rem;;
-  top: 40%;
+  top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
+  height: auto;
+  min-height: 4rem;
+  min-width: 12rem;
+  width: auto;
+  padding: 0.5rem;
+  border: 1px solid var(--text);
 }

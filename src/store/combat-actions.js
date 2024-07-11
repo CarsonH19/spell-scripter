@@ -121,7 +121,6 @@ export default async function combatLoop(dispatch) {
                   await castSpell(dispatch, selectedSpell);
                 }
 
-                console.log("SPELL PASSED");
               }
               break;
             case "ATTACK":

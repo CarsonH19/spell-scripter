@@ -1,10 +1,10 @@
 import classes from "./Buttons.module.css";
 
 import { useDispatch } from "react-redux";
-import { uiActions } from "../../../../store/ui-slice";
+import { uiActions } from "../../../store/ui-slice";
 
 import { useSelector } from "react-redux";
-import { openModal } from "../../../../store/ui-actions";
+import { openModal } from "../../../store/ui-actions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

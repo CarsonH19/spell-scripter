@@ -118,7 +118,6 @@ const eventFunctions = {
       // Display "You've entered Wailing Warrens"
       // Start dialogue
     } else {
-      console.log("ELSEEEEEEE")
       // await delay(4000);
       // openModal(dispatch, "roomSummaryModal");
     }

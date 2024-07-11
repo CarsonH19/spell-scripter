@@ -4,6 +4,7 @@ import classes from "./Narration.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { logActions } from "../../store/log-slice";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Narration() {
   const narration = useSelector((state) => state.log.narration);
@@ -30,9 +31,11 @@ export default function Narration() {
 
   return createPortal(
     <div className={classes.narration}>
-      {narration.map((text) => (
-        <p key={text}>{text}</p>
-      ))}
+      <div>
+        {narration.map((text) => (
+          <p key={uuidv4()}>{text}</p>
+        ))}
+      </div>
     </div>,
     document.getElementById("narration")
   );

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { startCombat } from "../../store/combat-actions";
+import Buttons from "./Buttons/Buttons";
 
 export default function GameWindow() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ export default function GameWindow() {
       <TopContent />
       <MiddleContent />
       <BottomContent />
+      <Buttons />
     </div>
   );
 }

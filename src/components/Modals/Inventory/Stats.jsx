@@ -16,8 +16,6 @@ export default function Stats() {
     player = store.getState().player;
   }
 
-  console.log(player)
-
   return (
     <div className={classes.stats}>
       <h3>Stats</h3>

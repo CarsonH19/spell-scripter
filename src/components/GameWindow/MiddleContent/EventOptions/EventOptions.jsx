@@ -23,10 +23,11 @@ export default function EventOptions() {
     eventOptions = dungeon.contents.event.options;
   }
 
-  const handleClickEventOption = (dispatch, eventFunction, detail) => {
+  const handleClickEventOption = (dispatch, eventFunction, detail, option) => {
     setOpen(false);
     dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
     dispatch(logActions.updateLogs({ change: "CLEAR" }));
+    dispatch(logActions.updateLogs({ change: "ADD", text: option.narration }));
     eventFunction(dispatch, detail);
   };
 
@@ -46,7 +47,12 @@ export default function EventOptions() {
             <button
               key={option.text}
               onClick={() =>
-                handleClickEventOption(dispatch, eventFunction, optionChoice)
+                handleClickEventOption(
+                  dispatch,
+                  eventFunction,
+                  optionChoice,
+                  option
+                )
               }
             >
               {Array.isArray(option.text) ? (

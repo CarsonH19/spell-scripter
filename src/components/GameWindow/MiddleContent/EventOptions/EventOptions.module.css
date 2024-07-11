@@ -10,8 +10,9 @@
 }
 
 .events button {
-  height: 4rem;
-  width: 12rem;
+  height: auto;
+  min-width: 12rem;
+  width: auto;
   padding: 0.5rem;
   border: 1px solid var(--text);
 }

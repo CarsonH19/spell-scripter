@@ -13,7 +13,6 @@ import { getSpell } from "../../../../util/spell-util";
 
 import Tooltip from "../../../UI/Tooltip";
 import Icon from "../../../UI/Icon";
-import Buttons from "../Buttons/Buttons";
 
 import spellDescriptions from "../../../../util/spell-descriptions";
 import { useEffect, useState } from "react";
@@ -24,6 +23,7 @@ export default function Actions() {
   const player = findCharacterById();
   // Event
   const event = useSelector((state) => state.dungeon.event);
+  const entrance = event && event.type === "ENTRANCE";
   //Spells
   const spellUI = useSelector((state) => state.ui.spellListIsVisible);
   const spellList = useSelector((state) => state.player.spellList);
@@ -170,41 +170,48 @@ export default function Actions() {
   } else {
     content = (
       <div className={classes.actions}>
-        <button
-          disabled={isDisabled}
-          onClick={() => handlePlayerChoice("CAST SPELL")}
-          className={isDisabled ? classes["disabled-btn"] : ""}
-        >
-          Cast Spell
-        </button>
-        <button
-          disabled={isDisabled || !isCharacterTurn}
-          onClick={() => handlePlayerChoice("ATTACK")}
-          className={
-            isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
-          }
-        >
-          Attack
-        </button>
-        <button
-          disabled={isDisabled || !isCharacterTurn}
-          onClick={() => handlePlayerChoice("GUARD")}
-          className={
-            isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
-          }
-        >
-          Guard
-        </button>
-        <button
-          disabled={isDisabled || !isCharacterTurn}
-          onClick={() => handlePlayerChoice("USE ITEM")}
-          className={
-            isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
-          }
-        >
-          Use Item
-        </button>
-        <Buttons />
+        {(!isDisabled || entrance) && (
+          <button
+            disabled={isDisabled}
+            onClick={() => handlePlayerChoice("CAST SPELL")}
+            className={isDisabled ? classes["disabled-btn"] : ""}
+          >
+            Cast Spell
+          </button>
+        )}
+        {(!isDisabled && isCharacterTurn) && (
+          <button
+            disabled={isDisabled || !isCharacterTurn}
+            onClick={() => handlePlayerChoice("ATTACK")}
+            className={
+              isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
+            }
+          >
+            Attack
+          </button>
+        )}
+        {(!isDisabled && isCharacterTurn) && (
+          <button
+            disabled={isDisabled || !isCharacterTurn}
+            onClick={() => handlePlayerChoice("GUARD")}
+            className={
+              isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
+            }
+          >
+            Guard
+          </button>
+        )}
+        {(!isDisabled && isCharacterTurn) && (
+          <button
+            disabled={isDisabled || !isCharacterTurn}
+            onClick={() => handlePlayerChoice("USE ITEM")}
+            className={
+              isDisabled || !isCharacterTurn ? classes["disabled-btn"] : ""
+            }
+          >
+            Use Item
+          </button>
+        )}
       </div>
     );
   }

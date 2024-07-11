@@ -102,48 +102,50 @@ export default function Character({ character }) {
         }`}
       >
         {character.statusEffects.map((effect) => {
-          const isCharacterEnemy = character.identifier === "ENEMY";
-          // Duration logic
-          let duration;
-          if (effect.durationType === "ROUND") {
-            duration = `Duration: ${effect.duration} ${
-              effect.duration > 1 ? "rounds" : "round"
-            }`;
-          } else if (effect.durationType === "ROOM") {
-            duration = `Duration: ${effect.duration} ${
-              effect.duration > 1 ? "rooms" : "room"
-            }`;
-          }
+          if (effect.display) {
+            const isCharacterEnemy = character.identifier === "ENEMY";
+            // Duration logic
+            let duration;
+            if (effect.durationType === "ROUND") {
+              duration = `Duration: ${effect.duration} ${
+                effect.duration > 1 ? "rounds" : "round"
+              }`;
+            } else if (effect.durationType === "ROOM") {
+              duration = `Duration: ${effect.duration} ${
+                effect.duration > 1 ? "rooms" : "room"
+              }`;
+            }
 
-          // Stack logic
-          let stack;
-          if ("stack" in effect) {
-            stack = true;
-          } else {
-            stack = false;
-          }
+            // Stack logic
+            let stack;
+            if ("stack" in effect) {
+              stack = true;
+            } else {
+              stack = false;
+            }
 
-          return (
-            <Tooltip
-              key={effect.name}
-              title={effect.name}
-              text={effect.description}
-              detailOne={duration}
-              detailTwo={
-                effect.effect
-                  ? effect.effect.map((line, index) => (
-                      <span key={index}>{line}</span>
-                    ))
-                  : null
-              }
-              position={isCharacterEnemy ? "effect-right" : "effect-left"}
-            >
-              <img src="" className={classes.effect} />
-              {stack && effect.stack > 1 && (
-                <p className={classes["effect-stack"]}>x{effect.stack}</p>
-              )}
-            </Tooltip>
-          );
+            return (
+              <Tooltip
+                key={effect.name}
+                title={effect.name}
+                text={effect.description}
+                detailOne={duration}
+                detailTwo={
+                  effect.effect
+                    ? effect.effect.map((line, index) => (
+                        <span key={index}>{line}</span>
+                      ))
+                    : null
+                }
+                position={isCharacterEnemy ? "effect-right" : "effect-left"}
+              >
+                <img src="" className={classes.effect} />
+                {stack && effect.stack > 1 && (
+                  <p className={classes["effect-stack"]}>x{effect.stack}</p>
+                )}
+              </Tooltip>
+            );
+          }
         })}
       </div>
     </div>

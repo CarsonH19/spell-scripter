@@ -59,7 +59,7 @@
 
 .character:has(.turn) .container {
   transition: 0.3s ease-in;
-  width: 100%; 
+  width: 12rem;
   height: 100%; 
   overflow: visible;
   opacity: 1;
@@ -68,7 +68,7 @@
 
 .character:has(.highlighted) .container {
   transition: 0.3s ease-in;
-  width: 100%; 
+  width: 12rem;
   height: 100%; 
   overflow: visible;
   opacity: 1;
@@ -92,10 +92,7 @@
   transform: translate(-50%, -50%);  
   width: 0%; 
   overflow: hidden;
-  /* transition: width 3s ease; */
   opacity: 0;
-  /* background-color: rgba(0, 0, 0, 0.7); */
-
 }
 
 .heroContainer {
@@ -108,7 +105,7 @@
 
 .character:hover .container {
   transition: 0.3s ease-in;
-  width: 100%;
+  width: 12rem;
   height: 100%; 
   overflow: visible;
   opacity: 1; 

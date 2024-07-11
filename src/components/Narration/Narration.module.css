@@ -11,14 +11,17 @@
   pointer-events: none;
 }
 
-.narration p {
+.narration div {
   position: absolute;
-  top: 20%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 3;
+  
+}
+
+.narration div p {
   font-size: 1.5rem;
   color: var(--text);
   text-align: center;
-  z-index: 3;
-  /* border: 3px solid red; */
 }

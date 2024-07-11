@@ -5,9 +5,10 @@
   margin: 0rem;
   margin-left: 1rem;
   margin-right: 1rem;
+  margin-bottom: 4.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
 }

@@ -23,7 +23,6 @@ const Icon = ({ character }) => {
     dispatch(combatActions.clearHighlight());
   };
 
-  console.log(character);
   return (
     <div
       className={`${isHighlighted ? classes.highlighted : classes.icon} ${

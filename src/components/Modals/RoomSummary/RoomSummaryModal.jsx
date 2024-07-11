@@ -18,7 +18,6 @@ export default function RoomSummaryModal() {
   useEffect(() => {
     // Toggle off danger
     dispatch(dungeonActions.dangerToggle({ danger: false }));
-    console.log("NO DANGER");
 
     // Add items looted from room/enemies to player's inventory
     for (let i = 0; i < itemsLooted.length; i++) {
