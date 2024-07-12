@@ -120,7 +120,7 @@ export default function SpellbookModal() {
                     key={skill.name}
                     skill={skill}
                     school={school}
-                    activeExpertise={skill.points > 0 || activeExpertise}
+                    activeExpertise={activeExpertise}
                   />
                 );
               })}
@@ -148,7 +148,7 @@ export default function SpellbookModal() {
                     key={skill.name}
                     skill={skill}
                     school={school}
-                    activeExpertise={skill.points > 0 || activeExpertise}
+                    activeExpertise={activeExpertise}
                   />
                 );
               })}
@@ -176,7 +176,7 @@ export default function SpellbookModal() {
                     key={skill.name}
                     skill={skill}
                     school={school}
-                    activeExpertise={skill.points > 0 || activeExpertise}
+                    activeExpertise={activeExpertise}
                   />
                 );
               })}

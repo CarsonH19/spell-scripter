@@ -83,14 +83,20 @@ export default function Skill({ school, skill, activeExpertise }) {
               backgroundImage: `url(${skill.image})`,
               borderStyle: "solid",
               borderWidth: "2px",
-              borderColor: activeSkill
+              borderColor: activeExpertise
                 ? skill.points === skill.max
                   ? "var(--text)"
-                  : "var(--secondary)"
+                  : "var(--accent)"
+                : skill.points === skill.max
+                ? "var(--text)"
                 : "var(--secondary)",
               opacity: activeSkill ? "1" : activeExpertise ? "1" : "",
               cursor: skill.points < skill.max ? "pointer" : "",
-              pointerEvents: skill.points === skill.max ? "none" : "auto",
+              pointerEvents: activeExpertise
+                ? skill.points === skill.max
+                  ? "none"
+                  : "auto"
+                : "none",
             }}
           />
         </Tooltip>
