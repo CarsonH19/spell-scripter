@@ -85,9 +85,7 @@ export default function HeroesModal() {
                   }}
                   onMouseEnter={() => handleHoveredHero(party[0])}
                   onClick={() => handleChangeParty(party[0])}
-                >
-                 
-                </Icon>
+                ></Icon>
               )) || <Icon className={classes.empty}></Icon>}
               {/* PARTY MEMBER 2 */}
               {(party[1] && (
@@ -98,8 +96,7 @@ export default function HeroesModal() {
                   }}
                   onMouseEnter={() => handleHoveredHero(party[1])}
                   onClick={() => handleChangeParty(party[1])}
-                >
-                </Icon>
+                ></Icon>
               )) || <Icon className={classes.empty}></Icon>}
               {/* PARTY MEMBER 3 */}
               {(party[2] && (
@@ -110,20 +107,8 @@ export default function HeroesModal() {
                   }}
                   onMouseEnter={() => handleHoveredHero(party[2])}
                   onClick={() => handleChangeParty(party[2])}
-                >
-                </Icon>
+                ></Icon>
               )) || <Icon className={classes.empty}></Icon>}
-
-              {/* <Icon
-                key={hero.name}
-                src=""
-                alt={hero.name}
-                onMouseEnter={() => handleHoveredHero(hero)}
-                onClick={() => handleChangeParty(hero)}
-                style={{
-                  backgroundImage: `url(${hero.icon})`,
-                }}
-              /> */}
             </ul>
           </div>
         </div>

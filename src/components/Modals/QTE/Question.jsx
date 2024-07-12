@@ -9,8 +9,6 @@ import { QUESTIONS } from "../../../data/questions";
 import { tomeActions } from "../../../store/tome-slice.js";
 import { dungeonActions } from "../../../store/dungeon-slice.js";
 
-import { Code } from '@chakra-ui/react'
-
 export default function Question({ questionIndex, tomeIndex }) {
   const [answer, setAnswer] = useState({
     selectedAnswer: "",
@@ -59,7 +57,7 @@ export default function Question({ questionIndex, tomeIndex }) {
       });
 
       setTimeout(() => {
-        setResult(isCorrect);
+        setResult(dispatch, isCorrect);
         // FIX: If question is correct set question.complete to true.
       }, 2000);
     }, 1000);
@@ -71,9 +69,8 @@ export default function Question({ questionIndex, tomeIndex }) {
       isCorrect: false,
     });
 
-    setTimeout(() => {
-      setResult(false);
-    }, 2000);
+    dispatch(dungeonActions.addThreat(1));
+    setResult(dispatch, false);
   }
 
   let answerState = "";

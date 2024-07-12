@@ -340,8 +340,9 @@ export async function getResult() {
 }
 
 // Function to set the QTE result in the QTE component
-export function setResult(result) {
+export function setResult(dispatch, result) {
   if (quickTimeEventResolver) {
+    dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
     quickTimeEventResolver(result);
     quickTimeEventResolver = null;
   }
