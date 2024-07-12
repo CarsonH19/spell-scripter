@@ -112,7 +112,19 @@ export default function RoomSummaryModal() {
             <h2>Items Looted</h2>
             <ul>
               {itemsLooted.map((item) => {
-                return <li key={item.id}>{item.name}</li>;
+                return (
+                  <Tooltip
+                    key={item.id}
+                    position="room-summary-icon"
+                    title={item.name}
+                  >
+                    <li
+                      // style={{
+                      //   backgroundImage: `url(${item.icon})`,
+                      // }}
+                    ></li>
+                  </Tooltip>
+                );
               })}
             </ul>
           </div>

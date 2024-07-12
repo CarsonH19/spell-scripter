@@ -17,9 +17,14 @@ export default function MiddleContent() {
   useEffect(() => {
     if (dungeon.contents.event) {
       dispatch(logActions.updateLogs({ change: "PAUSE" }));
-      dispatch(
-        logActions.updateLogs({ change: "ADD", text: dungeon.contents.event.description })
-      );
+      for (let i = 0; i < dungeon.contents.event.description.length; i++) {
+        dispatch(
+          logActions.updateLogs({
+            change: "ADD",
+            text: dungeon.contents.event.description[i],
+          })
+        );
+      }
     }
   }, [dungeon.roomCounter]);
 

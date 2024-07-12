@@ -57,11 +57,12 @@ export default function HeroesModal() {
                 return (
                   <Icon
                     key={hero.name}
-                    style={{ 
+                    style={{
                       backgroundImage: `url(${hero.icon})`,
-                      borderColor: isInParty ? "var(--primary)" : "var(--accent)"
-
-                   }}
+                      borderColor: isInParty
+                        ? "var(--primary)"
+                        : "var(--accent)",
+                    }}
                     alt={hero.name}
                     className={isInParty ? classes.selected : ""}
                     onMouseEnter={() => handleHoveredHero(hero)}
@@ -75,18 +76,54 @@ export default function HeroesModal() {
           <div className={classes.party}>
             <p>Selected Party Members</p>
             <ul>
-              {party.map((hero) => (
+              {/* PARTY MEMBER 1 */}
+              {(party[0] && (
                 <Icon
-                  key={hero.name}
-                  src=""
-                  alt={hero.name}
-                  onMouseEnter={() => handleHoveredHero(hero)}
-                  onClick={() => handleChangeParty(hero)}
+                  className={classes.chosen}
                   style={{
-                    backgroundImage: `url(${hero.icon})`,
+                    backgroundImage: `url(${party[0].icon})`,
                   }}
-                />
-              ))}
+                  onMouseEnter={() => handleHoveredHero(party[0])}
+                  onClick={() => handleChangeParty(party[0])}
+                >
+                 
+                </Icon>
+              )) || <Icon className={classes.empty}></Icon>}
+              {/* PARTY MEMBER 2 */}
+              {(party[1] && (
+                <Icon
+                  className={classes.chosen}
+                  style={{
+                    backgroundImage: `url(${party[1].icon})`,
+                  }}
+                  onMouseEnter={() => handleHoveredHero(party[1])}
+                  onClick={() => handleChangeParty(party[1])}
+                >
+                </Icon>
+              )) || <Icon className={classes.empty}></Icon>}
+              {/* PARTY MEMBER 3 */}
+              {(party[2] && (
+                <Icon
+                  className={classes.chosen}
+                  style={{
+                    backgroundImage: `url(${party[2].icon})`,
+                  }}
+                  onMouseEnter={() => handleHoveredHero(party[2])}
+                  onClick={() => handleChangeParty(party[2])}
+                >
+                </Icon>
+              )) || <Icon className={classes.empty}></Icon>}
+
+              {/* <Icon
+                key={hero.name}
+                src=""
+                alt={hero.name}
+                onMouseEnter={() => handleHoveredHero(hero)}
+                onClick={() => handleChangeParty(hero)}
+                style={{
+                  backgroundImage: `url(${hero.icon})`,
+                }}
+              /> */}
             </ul>
           </div>
         </div>

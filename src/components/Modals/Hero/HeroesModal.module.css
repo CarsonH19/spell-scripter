@@ -95,7 +95,6 @@
   border-bottom: 1px solid var(--secondary);
 }
 
-
 .hero .container .right {
   width: 40%;
   min-width: 30rem;
@@ -140,7 +139,7 @@
   text-align: center;
 }
 
-.party ul li {
+.party ul .chosen {
   height: 4rem;
   width: 4rem;
   border: 2px solid var(--accent);
@@ -150,6 +149,20 @@
   background-repeat: no-repeat;
   background-size: cover;
 } 
+
+.party ul .empty {
+  height: 4rem;
+  width: 4rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--secondary);
+  pointer-events: none;
+  border-radius: 10%;
+  list-style: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 
 .party ul li:hover {
@@ -191,3 +204,4 @@
   display: flex;
   justify-content: space-evenly;
 }
+

@@ -7,7 +7,7 @@ let siggurd = {
   image: "src/assets/images/heroes/siggurd.png",
   icon: "src/assets/images/heroes/siggurd-icon.png",
   // audio: {},
-  level: 1,
+  level: 7,
   currentHealth: 0,
   stats: {
     baseStrength: 2,
@@ -52,7 +52,7 @@ let riven = {
   image: "src/assets/images/heroes/grave-robber.png",
   icon: "src/assets/images/heroes/grave-robber-icon.png",
   // audio: {},
-  level: 1,
+  level: 7,
   currentHealth: 0,
   stats: {
     baseStrength: 1,
@@ -97,7 +97,7 @@ let liheth = {
   identifier: "HERO",
   image: "src/assets/images/heroes/liheth.png",
   icon: "src/assets/images/heroes/liheth-icon.png",
-  level: 6,
+  level: 7,
   currentHealth: 0,
   stats: {
     baseStrength: 0,
