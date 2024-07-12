@@ -1,6 +1,5 @@
 import classes from "./Actions.module.css";
 
-import store from "../../../../store/index";
 import { setPlayerAction } from "../../../../store/combat-actions";
 import { useSelector, useDispatch } from "react-redux";
 import { uiActions } from "../../../../store/ui-slice";
@@ -16,6 +15,12 @@ import Icon from "../../../UI/Icon";
 
 import spellDescriptions from "../../../../util/spell-descriptions";
 import { useEffect, useState } from "react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHandSparkles,
+  faCircleXmark,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Actions() {
   const dispatch = useDispatch();
@@ -79,6 +84,19 @@ export default function Actions() {
 
     content = (
       <div className={classes.spells}>
+        <div className={classes.mana}>
+          {/* ICONS */}
+          <span>
+            <FontAwesomeIcon icon={faHandSparkles} />
+            {player.currentMana} / {player.stats.arcana.maxMana}
+          </span>
+          {/* MANA BAR */}
+          <progress
+            max={player.stats.arcana.maxMana}
+            value={player.currentMana}
+            className={classes.mana}
+          ></progress>
+        </div>
         <h3>Spell List</h3>
         <ul>
           {spellList.map((spell) => {
@@ -124,12 +142,11 @@ export default function Actions() {
             }
           })}
         </ul>
-        <p
+        <FontAwesomeIcon
+          icon={faCircleXmark}
           onClick={() => handleCloseList("spellListIsVisible")}
           className={classes.close}
-        >
-          x
-        </p>
+        />
       </div>
     );
   } else if (itemUI) {
@@ -179,7 +196,7 @@ export default function Actions() {
             Cast Spell
           </button>
         )}
-        {(!isDisabled && isCharacterTurn) && (
+        {!isDisabled && isCharacterTurn && (
           <button
             disabled={isDisabled || !isCharacterTurn}
             onClick={() => handlePlayerChoice("ATTACK")}
@@ -190,7 +207,7 @@ export default function Actions() {
             Attack
           </button>
         )}
-        {(!isDisabled && isCharacterTurn) && (
+        {!isDisabled && isCharacterTurn && (
           <button
             disabled={isDisabled || !isCharacterTurn}
             onClick={() => handlePlayerChoice("GUARD")}
@@ -201,7 +218,7 @@ export default function Actions() {
             Guard
           </button>
         )}
-        {(!isDisabled && isCharacterTurn) && (
+        {!isDisabled && isCharacterTurn && (
           <button
             disabled={isDisabled || !isCharacterTurn}
             onClick={() => handlePlayerChoice("USE ITEM")}
