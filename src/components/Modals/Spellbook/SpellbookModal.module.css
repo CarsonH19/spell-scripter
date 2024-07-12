@@ -158,12 +158,12 @@
   opacity: 0.4;
 }
 
-.skill-tree .expertise ul li:hover {
+/* .skill-tree .expertise ul li:hover {
   transition: 0.3s;
-  border: 2px solid var(--accent);
+  border: 2px solid var(--text);
   opacity: 1;
-  scale: 1.1;
-}
+  transform: scale(1.1);
+} */
 
 .spellbook .container .skill-tree button {
   width: 14rem;
@@ -175,3 +175,10 @@
   border-radius: 0.5rem;
 }
 
+.skill:hover {
+  border-color: var(--text);
+  transition: 0.3s;
+  border: 2px solid var(--text);
+  opacity: 1;
+  transform: scale(1.1);
+}

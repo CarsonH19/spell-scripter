@@ -105,7 +105,7 @@ export default function SpellbookModal() {
 
           <div
             className={`${classes.expertise} ${
-              pointsExpended < 17 ? classes.closed : ""
+              pointsExpended > 17 ? "" : classes.closed
             }`}
           >
             {pointsExpended >= 17 && <h3>Expert</h3>}
@@ -129,7 +129,7 @@ export default function SpellbookModal() {
 
           <div
             className={`${classes.expertise} ${
-              pointsExpended < 9 || pointsExpended >= 17 ? classes.closed : ""
+              pointsExpended >= 9 ? "" : classes.closed
             }`}
           >
             {pointsExpended >= 9 && pointsExpended < 17 && <h3>Adept</h3>}
@@ -157,7 +157,7 @@ export default function SpellbookModal() {
 
           <div
             className={`${classes.expertise} ${
-              pointsExpended < 3 || pointsExpended >= 9 ? classes.closed : ""
+              pointsExpended >= 3 ? "" : classes.closed
             }`}
           >
             {pointsExpended >= 3 && pointsExpended < 9 && <h3>Apprentice</h3>}
@@ -183,11 +183,7 @@ export default function SpellbookModal() {
             </ul>
           </div>
 
-          <div
-            className={`${classes.expertise} ${
-              pointsExpended >= 3 ? classes.closed : ""
-            }`}
-          >
+          <div className={`${classes.expertise}`}>
             {pointsExpended < 3 && <h3>Novice</h3>}
             {pointsExpended < 3 && <h4>{pointsExpended} / 3</h4>}
             <ul>

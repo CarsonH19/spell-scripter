@@ -1,3 +1,4 @@
+import classes from "./SpellbookModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { playerActions } from "../../../store/player-slice";
 
@@ -8,7 +9,11 @@ import { spellbookActions } from "../../../store/spellbook-slice";
 import spellDescriptions from "../../../util/spell-descriptions";
 import { getSpell } from "../../../util/spell-util";
 
+import { useState } from "react";
+
 export default function Skill({ school, skill, activeExpertise }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
   const spellPower = useSelector(
@@ -79,18 +84,23 @@ export default function Skill({ school, skill, activeExpertise }) {
                 ? () => handleSkillClick(school, skill.name)
                 : undefined
             }
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className={classes.skill}
             style={{
               backgroundImage: `url(${skill.image})`,
               borderStyle: "solid",
               borderWidth: "2px",
-              borderColor: activeExpertise
+              borderColor: isHovered
+                ? "var(--text)"
+                : activeExpertise
                 ? skill.points === skill.max
                   ? "var(--text)"
                   : "var(--accent)"
                 : skill.points === skill.max
                 ? "var(--text)"
                 : "var(--secondary)",
-              opacity: activeSkill ? "1" : activeExpertise ? "1" : "",
+              opacity: activeExpertise ? isHovered || activeSkill ? "1" : "0.8" : activeSkill ? "1" : "0.4",
               cursor: skill.points < skill.max ? "pointer" : "",
               pointerEvents: activeExpertise
                 ? skill.points === skill.max
