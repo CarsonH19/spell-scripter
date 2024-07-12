@@ -110,15 +110,19 @@ const eventFunctions = {
   },
   PATH: async (dispatch, choice) => {
     const path = store.getState().dungeon.contents.event.name;
-    console.log("CHOICE", choice);
     if (choice === "Enter") {
       dispatch(dungeonActions.changePath(path));
-      console.log("PATH", path);
+      dispatch(
+        dungeonActions.eventOutcome({ outcome: `You entered the ${path}.` })
+      );
       // Room transition
       // Change background
       // Display "You've entered Wailing Warrens"
       // Start dialogue
     } else {
+      dispatch(
+        dungeonActions.eventOutcome({ outcome: `You chose not to enter.` })
+      );
       // await delay(4000);
       // openModal(dispatch, "roomSummaryModal");
     }
@@ -191,9 +195,19 @@ async function trapSuccessChance(dispatch, player, difficulty, stat) {
 
   if (successChance > difficulty) {
     dispatch(logActions.updateLogs({ change: "ADD", text: "Success!" }));
+    dispatch(
+      dungeonActions.eventOutcome({
+        outcome: "You successfully overcame the trap.",
+      })
+    );
     return true;
   } else {
     dispatch(logActions.updateLogs({ change: "ADD", text: "Fail!" }));
+    dispatch(
+      dungeonActions.eventOutcome({
+        outcome: "You failed to overcome the trap.",
+      })
+    );
     return false;
   }
 }

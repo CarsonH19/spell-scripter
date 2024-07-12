@@ -5,6 +5,7 @@ import eventFunctions from "../../../../util/event-functions";
 
 import { useEffect, useState } from "react";
 import { logActions } from "../../../../store/log-slice";
+import { dungeonActions } from "../../../../store/dungeon-slice";
 
 export default function EventOptions() {
   const [open, setOpen] = useState(true);
@@ -25,6 +26,9 @@ export default function EventOptions() {
 
   const handleClickEventOption = (dispatch, eventFunction, detail, option) => {
     setOpen(false);
+
+    // Add Outcome to event to display the outcome in the Room Summary Modal
+    dispatch(dungeonActions.eventOutcome({ outcome: option.outcome }));
     dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
     dispatch(logActions.updateLogs({ change: "CLEAR" }));
     dispatch(logActions.updateLogs({ change: "ADD", text: option.narration }));

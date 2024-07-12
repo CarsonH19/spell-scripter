@@ -64,6 +64,10 @@ const dungeonSlice = createSlice({
     incrementRoomCounter(state) {
       state.roomCounter++;
     },
+    eventOutcome(state, action) {
+      const { outcome } = action.payload;
+      state.contents.event.outcome = outcome;
+    },
   },
 });
 

@@ -1,7 +1,7 @@
 export const DUNGEON_ENTRANCE = {
   name: "Dungeon Entrance",
   type: "ENTRANCE",
-  description: "",
+  description: [""],
   options: [
     {
       text: ["Enter"],
@@ -14,7 +14,10 @@ export const DUNGEON_ENTRANCE = {
 export const COFFIN = {
   name: "Coffin",
   type: "CHOICE",
-  description: "An ornately decorated coffin is found. Do you wish to open it?",
+  description: [
+    "An ornately decorated coffin is found",
+    "Do you wish to open it?",
+  ],
   options: [
     {
       text: ["Open"],
@@ -33,14 +36,14 @@ export const TRAPS = [
   {
     name: "Poison Darts",
     type: "TRAP",
-    description:
+    description: [
       "A hidden mechanism triggers a volley of poison darts from the walls.",
+    ],
     options: [
       {
         text: ["Shield", "(Strength)"],
         function: "TRAP",
-        narration:
-          "You attempt to shield yourself using nearby debris.",
+        narration: "You attempt to shield yourself using nearby debris.",
       },
       {
         text: ["Dodge", "(Agility)"],
@@ -52,13 +55,12 @@ export const TRAPS = [
   {
     name: "Spike Walls",
     type: "TRAP",
-    description: "The walls start to close in, revealing deadly spikes.",
+    description: ["The walls start to close in, revealing deadly spikes."],
     options: [
       {
         text: ["Hold Back", "(Strength)"],
         function: "TRAP",
-        narration:
-          "You attempt to use your strength to hold the walls back.",
+        narration: "You attempt to use your strength to hold the walls back.",
       },
       {
         text: ["Squeeze Through", "(Agility)"],
@@ -71,8 +73,9 @@ export const TRAPS = [
   {
     name: "Collapsing Ceiling",
     type: "TRAP",
-    description:
+    description: [
       "The ceiling begins to collapse, threatening to crush everything below.",
+    ],
     options: [
       {
         text: ["Hold Up", "(Strength)"],
@@ -91,12 +94,13 @@ export const TRAPS = [
   {
     name: "Floor Spikes",
     type: "TRAP",
-    description: "Pressure plates on the floor trigger spikes to shoot up.",
+    description: ["Pressure plates on the floor trigger spikes to shoot up."],
     options: [
       {
         text: ["Leap Over", "(Strength)"],
         function: "TRAP",
-        narration: "You attempt to leap over the pressure plates to avoid the spikes.",
+        narration:
+          "You attempt to leap over the pressure plates to avoid the spikes.",
       },
       {
         text: ["Disarm", "(Agility)"],
@@ -109,8 +113,9 @@ export const TRAPS = [
   {
     name: "Rotating Blade",
     type: "TRAP",
-    description:
+    description: [
       "A hidden blade starts spinning, threatening to cut anything in its path.",
+    ],
     options: [
       {
         text: ["Parry", "(Strength)"],
@@ -121,14 +126,15 @@ export const TRAPS = [
       {
         text: ["Duck", "(Agility)"],
         function: "TRAP",
-        narration: "You attempt to duck under the blade and avoid its deadly arc.",
+        narration:
+          "You attempt to duck under the blade and avoid its deadly arc.",
       },
     ],
   },
   {
     name: "Poisonous Mist",
     type: "TRAP",
-    description: "The room fills with a noxious, magical mist.",
+    description: ["The room fills with a noxious, magical mist."],
     options: [
       {
         text: ["Hold Breath", "(Strength)"],
@@ -138,14 +144,15 @@ export const TRAPS = [
       {
         text: ["Find Vent", "(Agility)"],
         function: "TRAP",
-        narration: "You attempt to locate and open an opening to disperse the poisonous mist.",
+        narration:
+          "You attempt to locate and open an opening to disperse the poisonous mist.",
       },
     ],
   },
   {
     name: "Magic Rune",
     type: "TRAP",
-    description: "Stepping on a rune triggers a magical explosion.",
+    description: ["Stepping on a rune triggers a magical explosion."],
     options: [
       {
         text: ["Crush Rune", "(Strength)"],
@@ -166,8 +173,10 @@ export const PATHS = [
   {
     name: "Wailing Warrens",
     type: "CHOICE",
-    description:
-      "You discover a crumbling archway shrouded in mist, with spectral faces flickering in the shadows and a haunting wail echoing from deep within. Do you wish to enter?",
+    description: [
+      "You discover a crumbling archway shrouded in mist, with spectral faces flickering in the shadows and a haunting wail echoing from deep within.",
+      "Do you wish to enter?",
+    ],
     options: [
       {
         text: ["Enter"],
