@@ -53,11 +53,17 @@ export default function HeroesModal() {
           <ul className={classes.heroes}>
             {heroes.map((hero) => {
               if (hero.unlocked) {
+                const isInParty = party.find((char) => char.id === hero.id);
                 return (
                   <Icon
                     key={hero.name}
-                    style={{ backgroundImage: `url(${hero.image})` }}
+                    style={{ 
+                      backgroundImage: `url(${hero.icon})`,
+                      borderColor: isInParty ? "var(--primary)" : "var(--accent)"
+
+                   }}
                     alt={hero.name}
+                    className={isInParty ? classes.selected : ""}
                     onMouseEnter={() => handleHoveredHero(hero)}
                     onClick={() => handleChangeParty(hero)}
                   />
@@ -76,6 +82,9 @@ export default function HeroesModal() {
                   alt={hero.name}
                   onMouseEnter={() => handleHoveredHero(hero)}
                   onClick={() => handleChangeParty(hero)}
+                  style={{
+                    backgroundImage: `url(${hero.icon})`,
+                  }}
                 />
               ))}
             </ul>

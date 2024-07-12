@@ -68,9 +68,18 @@
   list-style: none;
   height: 4rem;
   width: 4rem;
-  border: 1px solid var(--accent);
+  border: 2px solid var(--accent);
   cursor: pointer;
   border-radius: 10%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.heroes .selected {
+  pointer-events: none;
+  border: 2px solid var(--primary);
+  opacity: 0.5;
 }
 
 .hero .container .left .heroes li:hover {
@@ -103,10 +112,12 @@
 }
 
 .party {
-  height: 8rem;
+  /* height: 2rem; */
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .party h3 {
@@ -117,24 +128,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  margin: 1.5rem;
   padding: 0;
   gap: 2rem;
 }
 
 .party p {
   border-bottom: 2px solid var(--secondary);
-  margin: 1rem;
+  /* margin: 1rem; */
+  width: 90%;
   text-align: center;
 }
 
 .party ul li {
   height: 4rem;
   width: 4rem;
-  border: 1px solid var(--accent);
+  border: 2px solid var(--accent);
   border-radius: 10%;
   list-style: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 } 
+
 
 .party ul li:hover {
   transition: 0.3s;
