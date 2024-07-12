@@ -1,171 +1,241 @@
 .confirmation {
+  position: relative;
   background-color: var(--background);
-  height: 90%;
-  width: 80%;
+  height: 100%;
+  width: 100%;
   min-width: 50rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   border: 3px solid var(--secondary);
   padding: 1rem;
 }
 
+.confirmation h1 {
+  text-align: center;
+  font-size: 2rem;
+  padding-top: 1rem;
+  margin: 0;
+  border-bottom: 1px solid var(--primary);
+  width: 40%;
+  height: 10%;
+}
+
+.confirmation .content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 80%;
+  padding: 1rem;
+}
+
+.content h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1rem;
+  margin-bottom: 0rem;
+  width: 12rem;
+  border-bottom: 1px solid var(--text);
+}
+
 /* Heroes */
 
-.confirmation .heroes {
-  height: 90%;
-  width: 50%;
+.content .heroes {
+  position: relative;
+  height: 100%;
+  width: 33%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* border: 3px solid var(--secondary); */
+ 
 }
+
+.player {
+  position: relative;
+  height: 100%;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* .confirmation .player h3 {
+  margin-bottom: 1rem;
+} */
+
+
+
+.player-image {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  opacity: 0.2;
+  z-index: 0;
+  opacity: 0;
+}
+
 
 .heroes h3 {
-  text-align: center;
-  font-size: 1.2rem;
-  margin: 1rem;
+  margin-bottom: 3rem;
 }
 
-.confirmation .heroes ul {
-  /* border-bottom: 1px solid yellow; */
+.content .heroes ul {
   width: 100%;
   height: 65%;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
+  overflow: visible;
 }
 
-.confirmation .heroes ul div {
+.content .heroes ul div {
   width: 33%;
   border-bottom: 1px solid var(--secondary);
 }
 
-.confirmation .heroes ul div {
-  position: relative;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  list-style: none;
-  width: 100%;
-  height: 90%;
+.content .heroes ul div {
+  width: 33%;
+  height: 100%;
   overflow: visible;
 }
 
-.confirmation .heroes ul div p {
+.heroes ul div img {
+  width: 100%; 
+  height: 100%;
+  object-fit: cover; 
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.content .heroes ul div p {
   position: absolute;
   top: -1rem;
   left: 50%;
   transform: translateX(-50%);
-  border-bottom: 1px solid var(--text);
+  /* border-bottom: 1px solid var(--text); */
   width: 8rem;
   text-align: center;
   overflow: visible;
+  font-size: 0.8rem;
+  opacity: 0;
 }
 
-.confirmation .container {
+/* .content .heroes .change {
+  position: absolute;
+  top: 85%;
+  height: 1.5rem;
+  color: var(--accent);
+} */
+
+.content .container .change,
+.content .heroes .change {
+  height: 1.5rem;
+  color: var(--accent);
+}
+
+.content .container .change {
+  margin: 1rem;
+}
+
+.content .change:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.content .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 50%;
-  height: 90%;
+  width: 33%;
+  height: 100%;
 }
 
-.confirmation .container h1 {
+.content .container .dungeon {
   text-align: center;
-  font-size: 1.5rem;
-  padding: 0rem;
-  margin: 0;
-  border-bottom: 1px solid var(--primary);
-  width: 40%;
 }
 
-.confirmation .container .spells {
+.content .container .spells {
+  overflow: auto;
+  overflow: visible;
+}
+
+.content .container .spells,
+.content .container .attuned  {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  /* gap: 0.5rem; */
+  width: 100%;
+  /* height: 60%; */
 }
 
-.confirmation .container .spells  {
+.content .container .attuned {
+  height: 30%; 
+}
+
+.content .container .spells ul,
+.content .container .attuned ul {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  width: 90%;
-  height: 40%;
-
-}
-
-.confirmation .container h3 {
-  padding: 0rem;
-  margin: 0;
-  text-align: center;
-}
-
-
-.confirmation .container .spells  ul {
-  display: grid;
   justify-content: center;
   align-items: flex-start;
-  grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr)); 
+  flex-wrap: wrap;
   gap: 1rem;
   height: 90%;
   width: 90%;
   padding: 0.5rem;
-  overflow-y: auto;
   list-style: none;
   gap: 1rem;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
   overflow: visible;
 }
 
-.confirmation .container .tracker {
-  position: absolute;
-  right: 0.5rem;
-  top: -1rem;
-}
-
-
-.confirmation .container .spells ul div li {
+.content .container .spells ul div li,
+.content .container .attuned ul div li,
+.content .container .attuned ul li  {
   aspect-ratio: 1;
   list-style: none;
   height: 4rem;
   width: 4rem;
-  border: 1px solid red;
   cursor: pointer;
   border-radius: 10%;
-}
-
-.confirmation .container .spells ul div li:hover {
-  transition: 0.3s;
-  transform: scale(1.1); 
-  border: 1px solid white;
-}
-
-.confirmation .container .spells button {
-  width: 5rem;
-  height: 1.5rem;
-}
-
-
-
-.confirmation .container button, .confirmation .heroes button {
-  width: 8rem;
-  height: 3rem;
-  background-color: var(--accent);
-  color: var(--dark);
-  border-radius: 10px;
-}
-
-.confirmation .container .spells ul div li {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   border: 2px solid var(--secondary);
   background-color: var(--primary);
+}
+
+.content .container .spells ul div li:hover {
+  transition: 0.3s;
+  transform: scale(1.1); 
+  border: 1px solid white;
+}
+
+.content .container .spells .change {
+  height: 1.5rem;
+  color: var(--accent);
+}
+
+.content .container .attuned .empty {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: auto;
+}
+
+.confirmation .ready {
+  height: 10%;
+}
+
+.confirmation button {
+  width: 16rem;
+  height: 4rem;
+  background-color: var(--accent);
+  color: var(--background);
 }

@@ -17,7 +17,7 @@ import updateStatTotals from "../../../store/stats-actions";
 
 import { useDispatch, useSelector } from "react-redux";
 
-export default function Attributes() {
+export default function Attributes({ noInfo }) {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
   const inDungeon = useSelector((state) => state.ui.gameWindowIsVisible);
@@ -28,22 +28,23 @@ export default function Attributes() {
   };
   return (
     <div className={classes["attributes-container"]}>
-      <Tooltip
-        title={"What are Attributes?"}
-        container={"attributes-info-container"}
-        position={"attributes-info"}
-        detailOne={
-          "Attributes determine your stats within the dungeon. Using points you can decide which stats you'd like to upgrade. Acquire more attribute points by reaching higher levels."
-        }
-      >
-        <FontAwesomeIcon
-          icon={faCircleInfo}
-          className={classes["attributes-info-icon"]}
-        />
-      </Tooltip>
+      {!noInfo && (
+        <Tooltip
+          title={"What are Attributes?"}
+          container={"attributes-info-container"}
+          position={"attributes-info"}
+          detailOne={
+            "Attributes determine your stats within the dungeon. Using points you can decide which stats you'd like to upgrade. Acquire more attribute points by reaching higher levels."
+          }
+        >
+          <FontAwesomeIcon
+            icon={faCircleInfo}
+            className={classes["attributes-info-icon"]}
+          />
+        </Tooltip>
+      )}
       {inDungeon && <h4>Stats</h4>}
       {!inDungeon && <h4>Attribute Points: {player.attributePoints}</h4>}
-
 
       <div className={classes.stats}>
         <div className={classes.attribute}>

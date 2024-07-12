@@ -25,14 +25,6 @@
   /* overflow: hidden; */
 }
 
-.player svg {
-  color: red;
-  height: 0px;
-}
-
-/* .player svg:hover {
-  cursor: pointer;
-} */
 
 .player-image {
   max-width: 100%;
