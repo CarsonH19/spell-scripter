@@ -40,23 +40,32 @@
   flex-direction: column;
   align-items: center;
   overflow: visible;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 1rem;
 }
 
 .spells h3 {
   border-bottom: 1px solid var(--text);
   text-align: center;
   width: 100%;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .spells .close {
 position: absolute;
 right: 2%;
-top: 0%;
+top: 2%;
 cursor: pointer;
 color: var(--text);
 font-weight: 600;
 font-size: 1.2rem;
+z-index: 3;
+}
+
+.spells .close:hover {
+  transform: scale(1.1);
 }
 
 .spells .mana {
@@ -71,6 +80,18 @@ font-size: 1.2rem;
   width: 100%;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  margin: 0;
+  margin-bottom: 0rem;
+  padding: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.spells .mana span .icon {
+  margin-bottom: 0.3rem;
+
 }
 
 .spells .mana progress {
@@ -78,44 +99,49 @@ font-size: 1.2rem;
   -moz-appearance: none;
   appearance: none;
   width: 100%;
-  height: 0.8rem; 
-  color: #00bfff;
+  height: 0.6rem; 
+  color: #4193f1;
   border-radius: 10px;
   border: 1px solid var(--primary);
+  border-radius: 5px;
 }
 
 .mana progress[value]::-webkit-progress-bar,
 .mana progress[value] {
   background-color: var(--secondary);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; 
+  border-radius: 5px; 
 }
 
 .mana progress[value]::-webkit-progress-value {
-  background-color: #00bfff;
+  background-color: #4193f1;
   transition: all 0.1s ease-out;
+  border-radius: 5px;
 }
 
 .mana progress[value]::-moz-progress-bar {
-  background-color: #00bfff;
+  background-color: #4193f1;
   transition: all 0.1s ease-out;
-  
+  border-radius: 5px;
 }
 
 
 .spells ul {
-  display: grid;
-  align-content: start;
-  justify-content: start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr)); 
   gap: 0.5rem;
-  height: 90%;
-  width: 90%;
+  width: 100%;
+  /* height: 100%; */
   padding: 0.5rem;
   overflow-y: auto;
+  /* border: 1px solid red; */
 }
 
 .spells li {
+  width: 4rem;
+  height: 4rem;
   list-style: none;
   cursor: pointer;
   aspect-ratio: 1;

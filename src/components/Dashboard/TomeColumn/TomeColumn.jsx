@@ -47,14 +47,9 @@ export default function TomeColumn() {
         />
       </Tooltip>
       <h1>Tomes</h1>
-      {/* <p>Mastery Points: {masteryPoints}</p> */}
-      {/* <div className={classes.filter}>
-        NOTE: Add buttons to filter tomes?
-      </div> */}
       <div className={classes.tomes}>
         {tomeSlice.map((tome, index) => {
           const tomeInfo = TOMES[index];
-
           if (tome.unlocked) {
             const percentage = calculatePercentage(tome.questions);
 
@@ -65,10 +60,21 @@ export default function TomeColumn() {
                 onClick={() => handleOpenTome(tomeInfo)}
               >
                 <h3>{tome.name}</h3>
-                <div>
-                  <progress value={percentage} max="100"></progress>
-                  {percentage === 100 ? <p>Mastered</p> : <p>{percentage}%</p>}
+                <div
+                  className={classes.bar}
+                  style={{
+                    width: `${percentage}%`,
+                  }}
+                >
+                  <div
+                    className={classes.progress}
+                    style={{
+                      width: `${percentage}%`,
+                    }}
+                  ></div>
+                  {/* <progress value={percentage} max="100"></progress> */}
                 </div>
+                {percentage === 100 ? <p>Mastered</p> : <p>{percentage}%</p>}
               </div>
             );
           }

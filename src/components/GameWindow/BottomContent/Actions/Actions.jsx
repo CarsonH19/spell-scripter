@@ -87,7 +87,7 @@ export default function Actions() {
         <div className={classes.mana}>
           {/* ICONS */}
           <span>
-            <FontAwesomeIcon icon={faHandSparkles} />
+            <FontAwesomeIcon icon={faHandSparkles}className={classes.icon} />
             {player.currentMana} / {player.stats.arcana.maxMana}
           </span>
           {/* MANA BAR */}
