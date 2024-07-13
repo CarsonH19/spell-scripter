@@ -98,22 +98,26 @@ export default function SpellbookModal() {
               <School text={"?"} />
             )}
           </ol>
+          <div className={classes.header}>
+            <h3>Mastery Points: {player.masteryPoints}</h3>
+            <button onClick={() => handleResetButton(school)}>
+              Reset School Mastery
+            </button>
+          </div>
         </div>
 
         <div className={classes["skill-tree"]}>
-          <h3>Mastery Points: {player.masteryPoints}</h3>
-
           <div
             className={`${classes.expertise} ${
-              pointsExpended > 17 ? "" : classes.closed
+              pointsExpended >= 15 ? "" : classes.closed
             }`}
           >
-            {pointsExpended >= 17 && <h3>Expert</h3>}
-            {pointsExpended >= 17 && <h4>{pointsExpended} / 18</h4>}
+            {pointsExpended >= 15 && <h3>Expert</h3>}
+            {pointsExpended >= 15 && <h4>{pointsExpended} / 16</h4>}
             <ul>
               {spellbook[school].expert.map((skill) => {
                 const activeExpertise =
-                  skill.points < skill.max && pointsExpended >= 17;
+                  skill.points < skill.max && pointsExpended >= 15;
 
                 return (
                   <Skill
@@ -129,18 +133,18 @@ export default function SpellbookModal() {
 
           <div
             className={`${classes.expertise} ${
-              pointsExpended >= 9 ? "" : classes.closed
+              pointsExpended >= 8 ? "" : classes.closed
             }`}
           >
-            {pointsExpended >= 9 && pointsExpended < 17 && <h3>Adept</h3>}
-            {pointsExpended >= 9 && pointsExpended < 17 && (
-              <h4>{pointsExpended} / 17</h4>
+            {pointsExpended >= 8 && pointsExpended < 15 && <h3>Adept</h3>}
+            {pointsExpended >= 8 && pointsExpended < 15 && (
+              <h4>{pointsExpended} / 15</h4>
             )}
             <ul>
               {spellbook[school].adept.map((skill) => {
                 const activeExpertise =
                   skill.points < skill.max &&
-                  pointsExpended >= 9 &&
+                  pointsExpended >= 8 &&
                   pointsExpended < 17;
 
                 return (
@@ -160,16 +164,16 @@ export default function SpellbookModal() {
               pointsExpended >= 3 ? "" : classes.closed
             }`}
           >
-            {pointsExpended >= 3 && pointsExpended < 9 && <h3>Apprentice</h3>}
-            {pointsExpended >= 3 && pointsExpended < 9 && (
-              <h4>{pointsExpended} / 9</h4>
+            {pointsExpended >= 3 && pointsExpended < 8 && <h3>Apprentice</h3>}
+            {pointsExpended >= 3 && pointsExpended < 8 && (
+              <h4>{pointsExpended} / 8</h4>
             )}
             <ul>
               {spellbook[school].apprentice.map((skill) => {
                 const activeExpertise =
                   skill.points < skill.max &&
                   pointsExpended >= 3 &&
-                  pointsExpended < 9;
+                  pointsExpended < 8;
 
                 return (
                   <Skill
@@ -202,9 +206,6 @@ export default function SpellbookModal() {
               })}
             </ul>
           </div>
-          <button onClick={() => handleResetButton(school)}>
-            Reset School Mastery
-          </button>
         </div>
       </div>
     </div>

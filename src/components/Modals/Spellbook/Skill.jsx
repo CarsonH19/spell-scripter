@@ -10,6 +10,7 @@ import spellDescriptions from "../../../util/spell-descriptions";
 import { getSpell } from "../../../util/spell-util";
 
 import { useState } from "react";
+import { isAction } from "redux";
 
 export default function Skill({ school, skill, activeExpertise }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -78,37 +79,40 @@ export default function Skill({ school, skill, activeExpertise }) {
             : {})}
           position="skill"
         >
-          <Icon
-            onClick={
-              activeExpertise
-                ? () => handleSkillClick(school, skill.name)
-                : undefined
-            }
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className={classes.skill}
-            style={{
-              backgroundImage: `url(${skill.image})`,
-              borderStyle: "solid",
-              borderWidth: "2px",
-              borderColor: isHovered
-                ? "var(--text)"
-                : activeExpertise
-                ? skill.points === skill.max
+          <div className={classes.shadow}>
+            <Icon
+              onClick={
+                activeExpertise
+                  ? () => handleSkillClick(school, skill.name)
+                  : undefined
+              }
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className={classes.skill}
+              style={{
+                backgroundImage: `url(${skill.image})`,
+                borderStyle: "solid",
+                borderWidth: "1px",
+                borderColor: isHovered
                   ? "var(--text)"
-                  : "var(--accent)"
-                : skill.points === skill.max
-                ? "var(--text)"
-                : "var(--secondary)",
-              opacity: activeExpertise ? isHovered || activeSkill ? "1" : "0.8" : activeSkill ? "1" : "0.4",
-              cursor: skill.points < skill.max ? "pointer" : "",
-              pointerEvents: activeExpertise
-                ? skill.points === skill.max
-                  ? "none"
-                  : "auto"
-                : "none",
-            }}
-          />
+                  : activeExpertise
+                  ? skill.points === skill.max
+                    ? "var(--text)"
+                    : "var(--secondary)"
+                  : skill.points === skill.max
+                  ? "var(--text)"
+                  : "var(--secondary)",
+                opacity: "1",
+                cursor: skill.points < skill.max ? "pointer" : "",
+                pointerEvents: activeExpertise
+                  ? skill.points === skill.max
+                    ? "none"
+                    : "auto"
+                  : "none",
+                boxShadow: activeSkill ? " inset 0px 0px 0px rgba(0, 0, 0, 4.8)" : ""
+              }}
+            />
+          </div>
         </Tooltip>
       )}
       {!activeExpertise && !activeSkill && (
