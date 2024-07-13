@@ -130,6 +130,63 @@ const eventFunctions = {
     await delay(4000);
     openModal(dispatch, "roomSummaryModal");
   },
+  BONEVAULT: async (dispatch, choice) => {
+    const order = store.getState().combat.order;
+    const player = order.find((char) => char.id === "Player");
+    // Check for key
+    
+    if (choice === "Unlock") {
+      // Remove Key
+
+      // 5 potential rooms
+      let vault = Math.floor(Math.random() * 5) + 1;
+
+      switch (vault) {
+        case 1:
+          // Reward Only
+          // transition to new room
+          // dispatch narrative
+          // Add random items to dungeon
+          // Call roomSummary
+          break;
+
+        case 2:
+          // Reward & Mild Encounter
+          // transition to new room
+          // dispatch narrative
+          // Add random items to dungeon
+          // Determine enemies
+          break;
+
+        case 3:
+          // Reward & Moderate Encounter
+          // transition to new room
+          // dispatch narrative
+          // Determine enemies
+          // Add random items to dungeon
+          break;
+
+        case 4:
+          // Reward & Deadly Encounter
+          // transition to new room
+          // dispatch narrative
+          // Add random items to dungeon
+          // determine enemies
+          break;
+
+        case 5:
+          // transition to new room
+          // Special room
+          // Secret Boss?
+          // Sealed Hero?
+          // dispatch narrative
+          break;
+      }
+    } else if (choice === "Leave") {
+      await delay(4000);
+      openModal(dispatch, "roomSummaryModal");
+    }
+  },
 };
 
 export default eventFunctions;

@@ -191,3 +191,27 @@ export const PATHS = [
     ],
   },
 ];
+
+
+export const BONEVAULT = [
+  {
+    name: "Bonevault",
+    type: "CHOICE",
+    description: [
+      "You discover a locked door.",
+      "Do you wish to unlock it?",
+    ],
+    options: [
+      {
+        text: ["Unlock"],
+        function: "BONEVAULT",
+        narration: "You decide to unlock it.",
+      },
+      {
+        text: ["Leave"],
+        function: "PATH",
+        narration: "You decide to leave.",
+      },
+    ],
+  },
+];

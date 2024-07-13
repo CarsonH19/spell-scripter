@@ -24,7 +24,7 @@ export default function EventOptions() {
     eventOptions = dungeon.contents.event.options;
   }
 
-  const handleClickEventOption = (dispatch, eventFunction, detail, option) => {
+  const handleClickEventOption = (dispatch, eventFunction, choice, option) => {
     setOpen(false);
 
     // Add Outcome to event to display the outcome in the Room Summary Modal
@@ -32,7 +32,7 @@ export default function EventOptions() {
     dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
     dispatch(logActions.updateLogs({ change: "CLEAR" }));
     dispatch(logActions.updateLogs({ change: "ADD", text: option.narration }));
-    eventFunction(dispatch, detail);
+    eventFunction(dispatch, choice);
   };
 
   return (
@@ -40,11 +40,11 @@ export default function EventOptions() {
       {open &&
         eventOptions.map((option) => {
           const eventFunction = eventFunctions[option.function];
-          let optionChoice;
+          let choice;
           if (isTrap) {
-            optionChoice = option.text[1];
+            choice = option.text[1];
           } else {
-            optionChoice = option.text[0];
+            choice = option.text[0];
           }
 
           return (
@@ -54,7 +54,7 @@ export default function EventOptions() {
                 handleClickEventOption(
                   dispatch,
                   eventFunction,
-                  optionChoice,
+                  choice,
                   option
                 )
               }
