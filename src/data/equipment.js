@@ -1,5 +1,159 @@
 const EQUIPMENT = {
   // ====================================================================
+  //                          COMMON ITEMS
+  // ====================================================================
+  EVERTORCH: {
+    name: "Evertorch",
+    description:
+      "This torch emits an ethereal luminescent glow in the presence of danger.",
+    display: false,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Common",
+    useInCombat: false,
+    effect: [
+      "You have a greater chance of successfully avoiding traps.",
+      "+1 Speed",
+    ],
+    stats: {},
+  },
+  SUNSTONE: {
+    name: "Sunstone",
+    description: "",
+    display: true,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Common",
+    useInCombat: false,
+    effect: [
+      "Undead in your presence take 2 damage at the start of each round of combat.",
+    ],
+    stats: {},
+  },
+  RITUAL_BLADE: {
+    name: "Ritual Blade",
+    description: "",
+    display: false,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Common",
+    useInCombat: false,
+    effect: ["+3 Attack when attacking humanoid and beast type enemies."],
+    stats: {},
+  },
+  MIST_VEIL_CLOAK: {
+    name: "Mist Veil Cloak",
+    description: "",
+    display: true,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Common",
+    useInCombat: false,
+    effect: ["All attacks have a 5% chance of missing."],
+    stats: {},
+  },
+  // ====================================================================
+  //                          RARE ITEMS
+  // ====================================================================
+  BLOODSTONE: {
+    name: "Bloodstone",
+    description: "",
+    display: false,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: ["You recover a small amount of health after defeating an enemy."],
+    stats: {},
+  },
+  WRAITHBANE: {
+    name: "Wraithbane",
+    description: "",
+    display: false,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: ["Your attacks ignore the Incorporeal condition."],
+    stats: {},
+  },
+  CURSED_MIRROR: {
+    name: "Cursed Mirror",
+    description: "",
+    display: false,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: [
+      "A portion of damage taken from attacks is reflected back to the attacker.",
+    ],
+    stats: {},
+  },
+  REVENANTS_RAGE: {
+    name: "Revenants Rage",
+    description: "",
+    display: false,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: ["+5 Attack while below 30HP."],
+    stats: {},
+  },
+  PLAUGEWARD_PENDANT: {
+    name: "Plagueward Pendant",
+    description: "",
+    display: false,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: ["You are immune to the Poisoned condition."],
+    stats: {},
+  },
+  GHOSTSHROUD_TALISMAN: {
+    name: "Ghostshroud Talisman",
+    description: "",
+    display: false,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: ["You are immune to the Haunted condition."],
+    stats: {},
+  },
+  CHILLBREAKER_BAND: {
+    name: "Chillbreaker Band",
+    description: "",
+    display: false,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: ["You are immune to the Chilled condition."],
+    stats: {},
+  },
+  SOULREAVER: {
+    name: "Soulreaver",
+    description: "",
+    display: false,
+    image: "",
+    type: "EQUIPMENT",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: [
+      "ou gain +1 Attack for each consecutive attack up to a max of +5.",
+    ],
+    stats: {},
+  },
+  // ====================================================================
+  //                          EPIC ITEMS
+  // ====================================================================
+ // ====================================================================
+  //                          LEGENDARY ITEMS
+  // ====================================================================
+  // ====================================================================
   //                          COMMON SETS
   // ====================================================================
 

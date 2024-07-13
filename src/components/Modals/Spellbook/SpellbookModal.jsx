@@ -145,7 +145,7 @@ export default function SpellbookModal() {
                 const activeExpertise =
                   skill.points < skill.max &&
                   pointsExpended >= 8 &&
-                  pointsExpended < 17;
+                  pointsExpended < 15;
 
                 return (
                   <Skill
