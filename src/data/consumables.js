@@ -5,7 +5,7 @@ const CONSUMABLES = {
   CRYPTBREAD: {
     name: "Cryptbread",
     description: "A chunk of stale bread as hard as stone.",
-    image: "",
+    image: "src/assets/images/items/consumables/cryptbread.jpg",
     type: "CONSUMABLE",
     rarity: "Common",
     useInCombat: false,
@@ -15,7 +15,7 @@ const CONSUMABLES = {
   MARROWSTONE_CHEESE: {
     name: "Marrowstone Cheese",
     description: "",
-    image: "",
+    image: "src/assets/images/items/consumables/marrowstone-cheese.jpg",
     type: "CONSUMABLE",
     rarity: "Common",
     useInCombat: false,
@@ -65,19 +65,19 @@ const CONSUMABLES = {
   // ====================================================================
   //                           RARE CONSUMABLES
   // ====================================================================
-  LESSER_HEALTH_POTION: {
+  HEALTH_POTION: {
     name: "Lesser Health Potion",
     description: "A small vial of glowing red liquid.",
-    image: "",
+    image: "src/assets/images/items/consumables/health-potion.jpg",
     type: "CONSUMABLE",
     rarity: "Rare",
     useInCombat: true,
     effect: ["Restores 25HP.", "Can be used in combat."],
     // soundEffect: gulpingWater24,
   },
-  LESSER_MANA_POTION: {
+  MANA_POTION: {
     name: "Lesser Mana Potion",
-    description: "",
+    description: "src/assets/images/items/consumables/mana-potion.jpg",
     image: "",
     type: "CONSUMABLE",
     rarity: "Rare",
@@ -94,16 +94,6 @@ const CONSUMABLES = {
     useInCombat: false,
     effect: "",
     // soundEffect: chewCrackersMouth,
-  },
-  BONE_MARROW_SOUP: {
-    name: "Bone Marrow Soup",
-    description: "",
-    image: "",
-    type: "CONSUMABLE",
-    rarity: "Rare",
-    useInCombat: false,
-    effect: "Restores 25HP.",
-    // soundEffect: gulpingWater24,
   },
   TOMBSTONE_TRUFFLE: {
     name: "Tombstone Truffle",

@@ -1,3 +1,6 @@
+import CONSUMABLES from "./consumables";
+import EQUIPMENT from "./equipment";
+
 const ENEMY_TYPES = {
   HOUND: "HOUND",
   HUMANOID: "HUMANOID",
@@ -42,6 +45,16 @@ const UNDEAD = {
     immunities: [],
     behavior: "ERRATIC",
     statusEffects: [],
+    lootTable: [
+      { item: CONSUMABLES.GRAVEBLOOM, probability: 0.03 },
+      { item: CONSUMABLES.ROTBANE_FERN, probability: 0.03 },
+      { item: CONSUMABLES.MARROWSTONE_CHEESE, probability: 0.03 },
+      { item: CONSUMABLES.CRYPTBREAD, probability: 0.03 },
+      { item: EQUIPMENT.GHOULBONE_ARMGUARDS, probability: 0.01 },
+      { item: EQUIPMENT.GHOULBONE_GREAVES, probability: 0.01 },
+      { item: EQUIPMENT.GHOULBONE_HELMET, probability: 0.01 },
+      { item: null, probability: 0.85 },
+    ],
   },
   SKELETAL_WARRIOR: {
     name: "Skeletal Warrior",
@@ -69,6 +82,7 @@ const UNDEAD = {
     immunities: [],
     behavior: "ERRATIC",
     statusEffects: [],
+    lootTable: [],
   },
   SKELETAL_ARCHER: {
     name: "Skeletal Archer",
@@ -98,6 +112,7 @@ const UNDEAD = {
     immunities: [],
     behavior: "ERRATIC",
     statusEffects: [],
+    lootTable: [],
   },
   SKELETAL_MAGE: {
     name: "Skeletal Mage",
@@ -127,6 +142,7 @@ const UNDEAD = {
     immunities: [],
     behavior: "ERRATIC",
     statusEffects: [],
+    lootTable: [],
   },
   CORPSE_ORACLE: {
     name: "Corpse Oracle",
