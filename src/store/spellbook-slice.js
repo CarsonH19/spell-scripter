@@ -211,7 +211,7 @@ const spellbookSlice = createSlice({
           image: "src/assets/images/spellbook/abjuration/arcane-shield.png",
           type: "Ability",
           description: [
-            "Gain an Arcane Shield that shields absorbs damage. The shield gains temporary HP after each Alteration spell is cast up to a max of 18HP.",
+            "Gain an Arcane Shield that absorbs damage. The shield gains temporary HP after each Alteration spell is cast up to a max of 18HP.",
             "Your Arcane Shield becomes more powerful and can gain a max of 27HP",
             "Your Arcane Shield becomes more powerful and can gain a max of 36HP",
           ],

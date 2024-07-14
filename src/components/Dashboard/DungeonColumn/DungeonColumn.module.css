@@ -42,7 +42,6 @@
 .column .dungeons .description {
   text-align: center;
   width: 100%;
-  border: 3px solid var(--accent);
   margin: 0;
 }
 

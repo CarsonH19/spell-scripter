@@ -197,7 +197,7 @@
 } */
 
 .skill {
-  box-shadow: inset 1rem 1rem 3rem rgba(0, 0, 0, 2);
+  box-shadow: inset 0.5rem 0.5rem 2rem rgba(0, 0, 0, 2);
 }
 
 .skill:hover {
