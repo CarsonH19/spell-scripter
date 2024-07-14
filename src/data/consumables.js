@@ -66,7 +66,7 @@ const CONSUMABLES = {
   //                           RARE CONSUMABLES
   // ====================================================================
   HEALTH_POTION: {
-    name: "Lesser Health Potion",
+    name: "Health Potion",
     description: "A small vial of glowing red liquid.",
     image: "src/assets/images/items/consumables/health-potion.jpg",
     type: "CONSUMABLE",
@@ -76,13 +76,13 @@ const CONSUMABLES = {
     // soundEffect: gulpingWater24,
   },
   MANA_POTION: {
-    name: "Lesser Mana Potion",
-    description: "src/assets/images/items/consumables/mana-potion.jpg",
-    image: "",
+    name: "Mana Potion",
+    description: "",
+    image: "src/assets/images/items/consumables/mana-potion.jpg",
     type: "CONSUMABLE",
     rarity: "Rare",
     useInCombat: true,
-    effect: "Restores 25MP.",
+    effect: ["Restores 25MP.", "Can be used in combat."],
     // soundEffect: gulpingWater24,
   },
   LICHROOT: {

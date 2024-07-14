@@ -1,17 +1,23 @@
 import classes from "./InventoryModal.module.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Item from "./Item";
-import Stats from "./Stats";
 import Attributes from "./Attributes";
 import Tooltip from "../../UI/Tooltip";
+import Icon from "../../UI/Icon";
+import updateStatTotals from "../../../store/stats-actions";
 
 export default function InventoryModal() {
   const [active, setActive] = useState(1);
+  const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
+
+  useEffect(() => {
+    updateStatTotals(dispatch, player.id);
+  }, [player.inventory]);
 
   const handleButtonClick = (index) => {
     setActive(index);
@@ -77,11 +83,15 @@ export default function InventoryModal() {
             {counters.map((item) => (
               <Tooltip
                 key={item.id}
+                // container="item-container"
+                position="item"
                 title={item.name}
                 text={item.rarity}
                 detailOne={item.description}
                 detailTwo={item.effect.map((line, index) => (
-                  <span key={index}>{line}</span>
+                  <span key={index} className={classes["item-effect"]}>
+                    {line}
+                  </span>
                 ))}
               >
                 <Item key={item.id} item={item} count={item.counter} />
@@ -92,16 +102,114 @@ export default function InventoryModal() {
           <div className={classes.attuned}>
             <h3>Attuned</h3>
             <ul>
-              {attunedItems.map((item) => (
+              {/* ITEM 1 */}
+              {(attunedItems[0] && (
                 <Tooltip
-                  key={item.id}
-                  title={item.name}
-                  text={"Test"}
-                  detail={`Test`}
+                  key={attunedItems[0].id}
+                  position="item"
+                  title={attunedItems[0].name}
+                  text={attunedItems[0].rarity}
+                  detailOne={attunedItems[0].description}
+                  detailTwo={attunedItems[0].effect.map((line, index) => (
+                    <span key={index} className={classes["item-effect"]}>
+                      {line}
+                    </span>
+                  ))}
                 >
-                  <Item key={item.id} item={item} />
+                  <Item
+                    key={attunedItems[0].id}
+                    item={attunedItems[0]}
+                    count={attunedItems[0].counter}
+                  />
                 </Tooltip>
-              ))}
+              )) || <Icon className={classes.empty}></Icon>}
+              {/* ITEM 2 */}
+              {(attunedItems[1] && (
+                <Tooltip
+                  key={attunedItems[1].id}
+                  position="item"
+                  title={attunedItems[1].name}
+                  text={attunedItems[1].rarity}
+                  detailOne={attunedItems[1].description}
+                  detailTwo={attunedItems[1].effect.map((line, index) => (
+                    <span key={index} className={classes["item-effect"]}>
+                      {line}
+                    </span>
+                  ))}
+                >
+                  <Item
+                    key={attunedItems[1].id}
+                    item={attunedItems[1]}
+                    count={attunedItems[1].counter}
+                  />
+                </Tooltip>
+              )) || <Icon className={classes.empty}></Icon>}
+
+              {/* ITEM 3 */}
+              {(attunedItems[2] && (
+                <Tooltip
+                  key={attunedItems[2].id}
+                  position="item"
+                  title={attunedItems[2].name}
+                  text={attunedItems[2].rarity}
+                  detailOne={attunedItems[2].description}
+                  detailTwo={attunedItems[2].effect.map((line, index) => (
+                    <span key={index} className={classes["item-effect"]}>
+                      {line}
+                    </span>
+                  ))}
+                >
+                  <Item
+                    key={attunedItems[2].id}
+                    item={attunedItems[2]}
+                    count={attunedItems[2].counter}
+                  />
+                </Tooltip>
+              )) || <Icon className={classes.empty}></Icon>}
+
+              {/* ITEM 4 */}
+              {(attunedItems[3] && (
+                <Tooltip
+                  key={attunedItems[3].id}
+                  position="item"
+                  title={attunedItems[3].name}
+                  text={attunedItems[3].rarity}
+                  detailOne={attunedItems[3].description}
+                  detailTwo={attunedItems[3].effect.map((line, index) => (
+                    <span key={index} className={classes["item-effect"]}>
+                      {line}
+                    </span>
+                  ))}
+                >
+                  <Item
+                    key={attunedItems[3].id}
+                    item={attunedItems[3]}
+                    count={attunedItems[3].counter}
+                  />
+                </Tooltip>
+              )) || <Icon className={classes.empty}></Icon>}
+
+              {/* ITEM 5 */}
+              {(attunedItems[4] && (
+                <Tooltip
+                  key={attunedItems[4].id}
+                  position="item"
+                  title={attunedItems[4].name}
+                  text={attunedItems[4].rarity}
+                  detailOne={attunedItems[4].description}
+                  detailTwo={attunedItems[4].effect.map((line, index) => (
+                    <span key={index} className={classes["item-effect"]}>
+                      {line}
+                    </span>
+                  ))}
+                >
+                  <Item
+                    key={attunedItems[4].id}
+                    item={attunedItems[4]}
+                    count={attunedItems[4].counter}
+                  />
+                </Tooltip>
+              )) || <Icon className={classes.empty}></Icon>}
             </ul>
           </div>
         </div>

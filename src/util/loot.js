@@ -66,8 +66,8 @@ function getRandomLoot(dispatch) {
         { item: EQUIPMENT.CURSED_MIRROR, probability: 0.05 },
         { item: EQUIPMENT.WRAITHBANE, probability: 0.05 },
         { item: EQUIPMENT.RATTLEBONE_CHESTPLATE, probability: 0.05 },
-        { item: EQUIPMENT.RATTLEBONE_PAULDRONS, probability: 0.05 },
-        { item: EQUIPMENT.RATTLEBONE_WRISTGUARDS, probability: 0.05 },
+        { item: EQUIPMENT.RATTLEBONE_GAUNTLETS, probability: 0.05 },
+        { item: EQUIPMENT.RATTLEBONE_HELMET, probability: 0.05 },
         { item: null, probability: 0.35 },
       ];
       break;

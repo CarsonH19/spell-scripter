@@ -18,13 +18,20 @@ export default function Item({ item, count }) {
     activateItem(dispatch, item);
 
     if (isItemListOpen) {
-      dispatch(uiActions.changeUi({ element: "itemListIsVisible", visible: false }));
+      dispatch(
+        uiActions.changeUi({ element: "itemListIsVisible", visible: false })
+      );
     }
   };
 
   return (
-    <Icon onClick={() => handleItemClick(item)}>
-      {item.name} {count > 1 ? `x${count}` : ""}
+    <Icon
+      onClick={() => handleItemClick(item)}
+      style={{
+        backgroundImage: `url(${item.image})`,
+      }}
+    >
+      <span>{count > 1 ? `x${count}` : ""}</span>
     </Icon>
   );
 }
