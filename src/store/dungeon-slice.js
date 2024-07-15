@@ -30,6 +30,9 @@ const dungeonSlice = createSlice({
     changePath(state, action) {
       state.path = action.payload;
     },
+    changeBackground(state, action) {
+      state.image = action.payload;
+    },
     addEnemy(state, action) {
       const { enemy, change } = action.payload;
 

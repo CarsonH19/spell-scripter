@@ -139,6 +139,12 @@ const eventFunctions = {
         console.log("Loot INCOMING");
         getRandomLoot(dispatch);
 
+        // Transition Animation
+
+        // New Background - "ADD RANDOM BACKGROUND"
+        const newBackground = "src/assets/images/backgrounds/catacomb-6.png";
+        dispatch(dungeonActions.changeBackground(newBackground));
+
         // 5 potential rooms
         const difficulty = Math.floor(Math.random() * 4);
 
