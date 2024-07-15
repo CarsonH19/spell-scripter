@@ -136,16 +136,13 @@ const eventFunctions = {
         // Remove Key
         activateItem(dispatch, key);
         // Get Random Loot
-        console.log("Loot INCOMING");
         getRandomLoot(dispatch);
 
         // Transition Animation
-
         // New Background - "ADD RANDOM BACKGROUND"
         const newBackground = "src/assets/images/backgrounds/catacomb-6.png";
         dispatch(dungeonActions.changeBackground(newBackground));
 
-        // 5 potential rooms
         const difficulty = Math.floor(Math.random() * 4);
 
         if (dungeon.threat > 50) {
@@ -179,7 +176,6 @@ const eventFunctions = {
 
         for (let i = 0; i < difficulty; i++) {
           const index = Math.floor(Math.random() * enemyGroup.length);
-          console.log(enemyGroup[index]);
           enemies.push(enemyGroup[index]);
         }
 
@@ -192,10 +188,29 @@ const eventFunctions = {
             })
           );
         }
+
+        dispatch(
+          dungeonActions.eventOutcome({
+            outcome: `You chose to unlock the door and enter.`,
+          })
+        );
         await delay(4000);
         startCombat(dispatch);
       }
     } else if (choice === "Leave") {
+      dispatch(
+        dungeonActions.eventOutcome({ outcome: `You chose not to enter.` })
+      );
+      await delay(4000);
+      openModal(dispatch, "roomSummaryModal");
+    }
+  },
+  CANDLELIGHT_SHRINE: async (dispatch, choice) => {
+    if ((choice = "Rest")) {
+      // Add fade transition
+      // Get random candle
+      getRandomLoot(dispatch);
+      dispatch(dungeonActions.eventOutcome({ outcome: `You chose to rest.` }));
       await delay(4000);
       openModal(dispatch, "roomSummaryModal");
     }

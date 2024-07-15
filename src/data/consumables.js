@@ -164,8 +164,7 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Rare",
     useInCombat: true,
-    effect:
-      "While lit undead enemies may flee from you. Effects persist for 5 rooms.",
+    effect: ["While lit undead enemies may flee from you."],
     // soundEffect: flameLicks2,
   },
   SOOTHING_CANDLE: {
@@ -175,8 +174,7 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Rare",
     useInCombat: true,
-    effect:
-      "While lit all allies gain +6 HP Regeneration. Effects persist for 5 rooms.",
+    effect: ["While lit all allies gain +6 HP Regeneration."],
     // soundEffect: flameLicks2,
   },
   FLICKERING_CANDLE: {
@@ -186,10 +184,8 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Rare",
     useInCombat: true,
-    effect: [
-      "While lit all allies gain +1 Dexterity",
-      "Effects persist for 5 rooms.",
-    ],
+    effect: ["While lit all allies gain +1 Dexterity"],
+
     // soundEffect: flameLicks2,
   },
   BLAZING_CANDLE: {
@@ -199,10 +195,7 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Rare",
     useInCombat: true,
-    effect: [
-      "While lit all allies gain +1 Strength",
-      "Effects persist for 5 rooms.",
-    ],
+    effect: ["While lit all allies gain +1 Strength"],
     // soundEffect: flameLicks2,
   },
   INVOKING_CANDLE: {
@@ -212,10 +205,7 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Rare",
     useInCombat: true,
-    effect: [
-      "While lit all allies gain +1 Arcana",
-      "Effects persist for 5 rooms.",
-    ],
+    effect: ["While lit all allies gain +1 Arcana"],
     // soundEffect: flameLicks2,
   },
   // ====================================================================

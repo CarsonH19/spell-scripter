@@ -8,6 +8,7 @@ import {
   PATHS,
   TRAPS,
   BONEVAULT,
+  CANDLELIGHT_SHRINE,
 } from "../data/events";
 
 import store from "../store/index";
@@ -106,11 +107,8 @@ function getRoomEvent() {
         // }
         // events.push(COFFIN);
         // events.push(PATHS[0]);
-        events.push(BONEVAULT);
-        events.push(BONEVAULT);
-        events.push(BONEVAULT);
-        events.push(BONEVAULT);
-        events.push(BONEVAULT);
+        // events.push(BONEVAULT);
+        events.push(CANDLELIGHT_SHRINE);
       }
 
       // Add path specific events

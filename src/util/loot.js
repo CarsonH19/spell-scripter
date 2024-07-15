@@ -58,7 +58,7 @@ export function getRandomLoot(dispatch) {
   // Check Event
   switch (dungeon.contents.event.name) {
     case "Bonevault":
-      console.log("BONEVAULT");
+      // NOTE - Check threat to determine more difficult bonevaults w/ different loot
       lootTable = [
         { item: EQUIPMENT.RATTLEBONE_CHESTPLATE, probability: 0.1 },
         { item: EQUIPMENT.RATTLEBONE_GAUNTLETS, probability: 0.1 },
@@ -90,6 +90,16 @@ export function getRandomLoot(dispatch) {
       ];
       break;
 
+    case "Candlelight Shrine":
+      lootTable = [
+        { item: CONSUMABLES.WARDING_CANDLE, probability: 0.2 },
+        { item: CONSUMABLES.SOOTHING_CANDLE, probability: 0.2 },
+        { item: CONSUMABLES.INVOKING_CANDLE, probability: 0.2 },
+        { item: CONSUMABLES.FLICKERING_CANDLE, probability: 0.2 },
+        { item: CONSUMABLES.BLAZING_CANDLE, probability: 0.2 },
+      ];
+      break;
+
     default:
       break;
   }
@@ -118,9 +128,11 @@ function calculateLoot(lootTable) {
 
   for (const lootEntry of shuffledLootTable) {
     totalProbability += lootEntry.probability;
+    console.log("NUMBER", randomNumber);
+    console.log("PROBABILITY", totalProbability);
     if (randomNumber < totalProbability) {
       if (lootEntry.item) {
-        console.log(shuffledLootTable);
+        console.log("LOOT TABLE", shuffledLootTable);
         console.log("LOOT", lootEntry.item);
 
         return { ...lootEntry.item, id: uuidv4() };

@@ -209,3 +209,16 @@ export const BONEVAULT = {
     },
   ],
 };
+
+export const CANDLELIGHT_SHRINE = {
+  name: "Candlelight Shrine",
+  type: "CHOICE",
+  description: ["You discover a Candlelight Shrine."],
+  options: [
+    {
+      text: ["Rest"],
+      function: "CANDLELIGHT_SHRINE",
+      narration: "You decide to rest.",
+    },
+  ],
+};
