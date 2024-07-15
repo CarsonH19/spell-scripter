@@ -119,7 +119,7 @@ export default function ConfirmationModal() {
             src={`${player.image}`}
             alt=""
           />
-          <Attributes noInfo={true}/>
+          <Attributes noInfo={true} />
         </div>
         <div className={classes.container}>
           {/* <div className={classes.dungeon}>
@@ -147,7 +147,7 @@ export default function ConfirmationModal() {
                     text={spellObject.school}
                     detailOne={spellDescription}
                     detailTwo={`Mana Cost: ${spellObject.manaCost}`}
-                    position="skill"
+                    position="item"
                   >
                     <Icon
                       key={spellObject.name}
@@ -172,54 +172,109 @@ export default function ConfirmationModal() {
               {/* ITEM 1 */}
               {(attunedItems[0] && (
                 <Tooltip
+                  key={attunedItems[0].id}
+                  position="item"
                   title={attunedItems[0].name}
-                  text={attunedItems[0].description}
-                  position="skill"
+                  text={attunedItems[0].rarity}
+                  detailOne={attunedItems[0].description}
+                  detailTwo={attunedItems[0].effect.map((line, index) => (
+                    <span key={index} className={classes["item-effect"]}>
+                      {line}
+                    </span>
+                  ))}
                 >
-                  <Icon>{attunedItems[0].name}</Icon>
+                  <Icon
+                    style={{
+                      backgroundImage: `url(${attunedItems[0].image})`,
+                    }}
+                  ></Icon>
                 </Tooltip>
               )) || <Icon className={classes.empty}></Icon>}
               {/* ITEM 2 */}
               {(attunedItems[1] && (
                 <Tooltip
+                  key={attunedItems[1].id}
+                  position="item"
                   title={attunedItems[1].name}
-                  text={attunedItems[1].description}
-                  position="skill"
+                  text={attunedItems[1].rarity}
+                  detailOne={attunedItems[1].description}
+                  detailTwo={attunedItems[1].effect.map((line, index) => (
+                    <span key={index} className={classes["item-effect"]}>
+                      {line}
+                    </span>
+                  ))}
                 >
-                  <Icon>{attunedItems[1].name}</Icon>
+                  <Icon
+                    style={{
+                      backgroundImage: `url(${attunedItems[1].image})`,
+                    }}
+                  ></Icon>
                 </Tooltip>
               )) || <Icon className={classes.empty}></Icon>}
 
               {/* ITEM 3 */}
               {(attunedItems[2] && (
                 <Tooltip
+                  key={attunedItems[2].id}
+                  position="item"
                   title={attunedItems[2].name}
-                  text={attunedItems[2].description}
-                  position="skill"
+                  text={attunedItems[2].rarity}
+                  detailOne={attunedItems[2].description}
+                  detailTwo={attunedItems[2].effect.map((line, index) => (
+                    <span key={index} className={classes["item-effect"]}>
+                      {line}
+                    </span>
+                  ))}
                 >
-                  <Icon>{attunedItems[2].name}</Icon>
+                  <Icon
+                    style={{
+                      backgroundImage: `url(${attunedItems[2].image})`,
+                    }}
+                  ></Icon>
                 </Tooltip>
               )) || <Icon className={classes.empty}></Icon>}
 
               {/* ITEM 4 */}
               {(attunedItems[3] && (
                 <Tooltip
+                  key={attunedItems[3].id}
+                  position="item"
                   title={attunedItems[3].name}
-                  text={attunedItems[3].description}
-                  position="skill"
+                  text={attunedItems[3].rarity}
+                  detailOne={attunedItems[3].description}
+                  detailTwo={attunedItems[3].effect.map((line, index) => (
+                    <span key={index} className={classes["item-effect"]}>
+                      {line}
+                    </span>
+                  ))}
                 >
-                  <Icon>{attunedItems[3].name}</Icon>
+                  <Icon
+                    style={{
+                      backgroundImage: `url(${attunedItems[3].image})`,
+                    }}
+                  ></Icon>
                 </Tooltip>
               )) || <Icon className={classes.empty}></Icon>}
 
               {/* ITEM 5 */}
               {(attunedItems[4] && (
                 <Tooltip
+                  key={attunedItems[4].id}
+                  position="item"
                   title={attunedItems[4].name}
-                  text={attunedItems[4].description}
-                  position="skill"
+                  text={attunedItems[4].rarity}
+                  detailOne={attunedItems[4].description}
+                  detailTwo={attunedItems[4].effect.map((line, index) => (
+                    <span key={index} className={classes["item-effect"]}>
+                      {line}
+                    </span>
+                  ))}
                 >
-                  <Icon>{attunedItems[4].name}</Icon>
+                  <Icon
+                    style={{
+                      backgroundImage: `url(${attunedItems[4].image})`,
+                    }}
+                  ></Icon>
                 </Tooltip>
               )) || <Icon className={classes.empty}></Icon>}
             </ul>

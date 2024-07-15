@@ -63,6 +63,8 @@ export function createNewRoom(dispatch) {
   };
 
   // if (dungeon.roomCounter % 10) {
+  // // check threat
+  // // Get random path event
   // } else {
   const roomContent = getRoomContent();
   switch (roomContent) {
@@ -86,7 +88,7 @@ export function createNewRoom(dispatch) {
 // // Determine if room will contain an event or monsters.
 function getRoomContent() {
   const eventChance = Math.floor(Math.random() * 100);
-  if (eventChance > 0) {
+  if (eventChance > 50) {
     // 79
     // ~20% Chance for an event
     return "EVENT";
@@ -104,12 +106,12 @@ function getRoomEvent() {
     case "The Great Catacomb":
       // Add general non-path events
       if (!dungeon.path) {
-        // for (let i = 0; i < TRAPS.length; i++) {
-        //   events.push(TRAPS[i]);
-        // }
-        // events.push(COFFIN);
-        // events.push(PATHS[0]);
-        // events.push(BONEVAULT);
+        for (let i = 0; i < TRAPS.length; i++) {
+          events.push(TRAPS[i]);
+        }
+        events.push(COFFIN);
+        events.push(PATHS[0]);
+        events.push(BONEVAULT);
         events.push(CANDLELIGHT_SHRINE);
       }
 

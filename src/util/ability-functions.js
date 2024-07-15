@@ -239,7 +239,6 @@ export function useAbility(dispatch, character) {
         // Riven A - Venom Strike
         if (character.name === "Riven") {
           targetGroup = findTargetGroup("ENEMIES");
-          abilityFunction(dispatch, target);
         }
 
         // Liheth B - Undying Flame

@@ -213,7 +213,8 @@
   background-color: var(--primary);
 }
 
-.content .container .spells ul div li:hover {
+.content .container .spells ul div li:hover,
+.content .container .attuned ul div li:hover {
   transition: 0.3s;
   transform: scale(1.1); 
   border: 1px solid white;

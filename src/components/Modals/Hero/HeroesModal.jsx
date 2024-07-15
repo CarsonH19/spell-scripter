@@ -15,7 +15,8 @@ import { constructStats } from "../../../util/dungeon-util";
 export default function HeroesModal() {
   const dispatch = useDispatch();
   const party = useSelector((state) => state.hero.party);
-  const [hoveredElement, setHoveredElement] = useState("");
+  const hasHero = heroes.some((hero) => hero.unlocked);
+  const [hoveredElement, setHoveredElement] = useState(hasHero ? heroes[0] : "");
 
   const handleHoveredHero = (hero) => {
     const baseStats = constructStats(hero.stats);
@@ -116,7 +117,7 @@ export default function HeroesModal() {
           {hoveredElement ? (
             <HeroStats hero={hoveredElement} />
           ) : (
-            <p>Please select a hero.</p>
+            <p>No heroes available.</p>
           )}
         </div>
       </div>
