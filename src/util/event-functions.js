@@ -206,10 +206,21 @@ const eventFunctions = {
     }
   },
   CANDLELIGHT_SHRINE: async (dispatch, choice) => {
-    if ((choice = "Rest")) {
+    if (choice === "Rest") {
+      const order = store.getState().combat.order;
       // Add fade transition
+
+      // Heal all allies
+      for (let i = 0; i < order.length; i++) {
+        const halfHealth = order[i].stats.strength.maxHealth;
+        const value = Math.round(halfHealth / 2);
+        console.log(value);
+        changeHealth(dispatch, order[i], "HEAL", value);
+      }
+      
       // Get random candle
       getRandomLoot(dispatch);
+
       dispatch(dungeonActions.eventOutcome({ outcome: `You chose to rest.` }));
       await delay(4000);
       openModal(dispatch, "roomSummaryModal");

@@ -77,6 +77,8 @@ export function createNewRoom(dispatch) {
       break;
   }
   // }
+
+  // Get background after room contents have been determined 
   newRoom.image = getRoomImage(newRoom);
   dispatch(dungeonActions.updateRoom(newRoom));
 }
@@ -283,33 +285,7 @@ export function constructStats(stats) {
 function getRoomImage(dungeon) {
   let imageList = [];
 
-  // check for event specific backgrounds
-  if (dungeon.contents.event) {
-    switch (dungeon.contents.event.name) {
-      case "Bonevault":
-        imageList = [
-          "src/assets/images/backgrounds/bonevault-1.png",
-          "src/assets/images/backgrounds/bonevault-2.png",
-          "src/assets/images/backgrounds/bonevault-3.png",
-          "src/assets/images/backgrounds/bonevault-4.png",
-        ];
-    }
-    const randomIndex = Math.floor(Math.random() * imageList.length);
-    return imageList[randomIndex];
-  }
-
-  // Check for path specific backgrounds
-  if (dungeon.path) {
-    switch (dungeon.path.name) {
-      case "Wailing Warrens":
-        imageList = [];
-        break;
-    }
-    const randomIndex = Math.floor(Math.random() * imageList.length);
-    return imageList[randomIndex];
-  }
-
-  // Add general random dungeon background
+  // Use general dungeon images
   switch (dungeon.name) {
     case "The Great Catacomb":
       imageList = [
@@ -334,6 +310,42 @@ function getRoomImage(dungeon) {
       ];
       break;
   }
+
+  // Check for path specific backgrounds (replaces dungeon imageList)
+  if (dungeon.path) {
+    switch (dungeon.path.name) {
+      case "Wailing Warrens":
+        imageList = [];
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  // Check for event specific backgrounds (replaces dungeon & path imageList)
+  if (dungeon.contents.event) {
+    switch (dungeon.contents.event.name) {
+      case "Bonevault":
+        imageList = [
+          "src/assets/images/backgrounds/bonevault-1.png",
+          "src/assets/images/backgrounds/bonevault-2.png",
+          "src/assets/images/backgrounds/bonevault-3.png",
+          "src/assets/images/backgrounds/bonevault-4.png",
+        ];
+        break;
+
+      // case "Candlelight Shrine":
+      //   imageList = []; // NOTE: Add image
+      //   break;
+
+      default:
+        break;
+    }
+  }
+
+  console.log(imageList);
+
   const randomIndex = Math.floor(Math.random() * imageList.length);
   return imageList[randomIndex];
 }

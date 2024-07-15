@@ -199,7 +199,7 @@ const CONSUMABLES = {
     // soundEffect: flameLicks2,
   },
   INVOKING_CANDLE: {
-    name: " Candle",
+    name: "Invoking Candle",
     description: "Purple Candle",
     image: "src/assets/images/items/consumables/invoking-candle.jpg",
     type: "CONSUMABLE",
