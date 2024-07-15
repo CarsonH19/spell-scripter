@@ -36,7 +36,7 @@ export default function StartGame() {
 
       dispatch(
         playerActions.changeInventory({
-          item: { ...CONSUMABLES.MARROWSTONE_CHEESE, id: uuidv4() },
+          item: { ...CONSUMABLES.SKELETON_KEY, id: uuidv4() },
           change: "ADD",
         })
       );

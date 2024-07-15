@@ -14,6 +14,8 @@ import EQUIPMENT from "../data/equipment";
 import { dungeonActions } from "../store/dungeon-slice";
 import { startCombat } from "../store/combat-actions";
 import { logActions } from "../store/log-slice";
+import { getRandomLoot } from "./loot";
+import activateItem from "../store/item-actions";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 
@@ -53,8 +55,6 @@ const eventFunctions = {
       changeHealth(dispatch, player, "DAMAGE", damage);
     }
 
-    console.log("SUCCESS", success);
-
     await delay(4000);
     openModal(dispatch, "roomSummaryModal");
   },
@@ -62,44 +62,30 @@ const eventFunctions = {
     const dungeon = store.getState().dungeon;
     const chance = Math.random();
     let enemy;
-    let loot = [
-      CONSUMABLES.CRYPTBREAD,
-      CONSUMABLES.MARROWSTONE_CHEESE,
-      CONSUMABLES.LESSER_HEALTH_POTION,
-      CONSUMABLES.LESSER_MANA_POTION,
-      CONSUMABLES.ROTBANE_FERN,
-      CONSUMABLES.GRAVEBLOOM,
-    ];
 
     if (dungeon.threat > 50) {
       enemy = UNDEAD["DEATH_KNIGHT"];
-      loot.push([EQUIPMENT.RATTLEBONE_CHESTPLATE]);
     } else if (dungeon.threat > 40) {
       enemy = UNDEAD["GRAVE_WITCH"];
-      loot.push([EQUIPMENT.RATTLEBONE_PAULDRONS]);
     } else if (dungeon.threat > 30) {
       enemy = UNDEAD["BONE_TITAN"];
-      loot.push([EQUIPMENT.RATTLEBONE_WRISTGUARDS]);
     } else if (dungeon.threat > 20) {
       enemy = UNDEAD["CORPSE_ORACLE"];
-      loot.push([EQUIPMENT.GHOULBONE_HELMET]);
     } else if (dungeon.threat > 10) {
       enemy = UNDEAD["SKELETAL_WARRIOR"];
-      loot.push([EQUIPMENT.GHOULBONE_GREAVES]);
     } else {
       enemy = UNDEAD["DECREPIT_SKELETON"];
-      loot.push([EQUIPMENT.GHOULBONE_ARMGUARDS]);
     }
+
+    // Get Random Loot
+    getRandomLoot(dispatch);
 
     if (choice === "Open" && chance > 0.4) {
       // Add enemy to dungeon
       dispatch(
         dungeonActions.addEnemy({ enemy: buildEnemy(enemy), change: "ADD" })
       );
-      // Get Random Loot
-      const randomIndex = Math.floor(Math.random() * loot.length);
-      // Add Random Loot to dungeon
-      dispatch(dungeonActions.addItem({ ...loot[randomIndex], id: uuidv4() }));
+
       // Start combat
       await delay(4000);
       startCombat(dispatch);
@@ -132,55 +118,76 @@ const eventFunctions = {
   },
   BONEVAULT: async (dispatch, choice) => {
     const order = store.getState().combat.order;
+    const dungeon = store.getState().dungeon;
     const player = order.find((char) => char.id === "Player");
-    // Check for key
-    
+    const key = player.inventory.consumables.find(
+      (item) => item.name === "Skeleton Key"
+    );
+    let enemyGroup;
+    let enemies = [];
+
     if (choice === "Unlock") {
-      // Remove Key
+      if (!key) {
+        // You do not have a key to open the door
+        // dispatch to narrative
+        await delay(4000);
+        openModal(dispatch, "roomSummaryModal");
+      } else if (key) {
+        // Remove Key
+        activateItem(dispatch, key);
+        // Get Random Loot
+        console.log("Loot INCOMING");
+        getRandomLoot(dispatch);
 
-      // 5 potential rooms
-      let vault = Math.floor(Math.random() * 5) + 1;
+        // 5 potential rooms
+        const difficulty = Math.floor(Math.random() * 4);
 
-      switch (vault) {
-        case 1:
-          // Reward Only
-          // transition to new room
-          // dispatch narrative
-          // Add random items to dungeon
-          // Call roomSummary
-          break;
+        if (dungeon.threat > 50) {
+          enemyGroup = [
+            UNDEAD.DEATH_KNIGHT,
+            UNDEAD.DEATH_KNIGHT,
+            UNDEAD.GRAVE_WITCH,
+          ];
+        } else if (dungeon.threat > 40) {
+          enemyGroup = [UNDEAD.GRAVE_WITCH, UNDEAD.BONE_TITAN, UNDEAD.REAPER];
+        } else if (dungeon.threat > 30) {
+          enemyGroup = [UNDEAD.BONE_TITAN, UNDEAD.REAPER, UNDEAD.CORPSE_ORACLE];
+        } else if (dungeon.threat > 20) {
+          enemyGroup = [UNDEAD.CORPSE_ORACLE, UNDEAD.SKELETAL_MAGE, BONE_TITAN];
+        } else if (dungeon.threat > 10) {
+          enemyGroup = [
+            UNDEAD.CORPSE_ORACLE,
+            UNDEAD.SKELETAL_MAGE,
+            UNDEAD.SKELETAL_ARCHER,
+            UNDEAD.SKELETAL_WARRIOR,
+          ];
+        } else {
+          enemyGroup = [
+            UNDEAD.DECREPIT_SKELETON,
+            UNDEAD.DECREPIT_SKELETON,
+            UNDEAD.SKELETAL_MAGE,
+            UNDEAD.SKELETAL_ARCHER,
+            UNDEAD.SKELETAL_WARRIOR,
+          ];
+        }
 
-        case 2:
-          // Reward & Mild Encounter
-          // transition to new room
-          // dispatch narrative
-          // Add random items to dungeon
-          // Determine enemies
-          break;
+        for (let i = 0; i < difficulty; i++) {
+          const index = Math.floor(Math.random() * enemyGroup.length);
+          console.log(enemyGroup[index]);
+          enemies.push(enemyGroup[index]);
+        }
 
-        case 3:
-          // Reward & Moderate Encounter
-          // transition to new room
-          // dispatch narrative
-          // Determine enemies
-          // Add random items to dungeon
-          break;
-
-        case 4:
-          // Reward & Deadly Encounter
-          // transition to new room
-          // dispatch narrative
-          // Add random items to dungeon
-          // determine enemies
-          break;
-
-        case 5:
-          // transition to new room
-          // Special room
-          // Secret Boss?
-          // Sealed Hero?
-          // dispatch narrative
-          break;
+        // Add enemies to dungeon
+        for (let i = 0; i < enemies.length; i++) {
+          dispatch(
+            dungeonActions.addEnemy({
+              enemy: buildEnemy(enemies[i]),
+              change: "ADD",
+            })
+          );
+        }
+        await delay(4000);
+        startCombat(dispatch);
       }
     } else if (choice === "Leave") {
       await delay(4000);

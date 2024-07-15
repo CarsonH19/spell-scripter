@@ -2,7 +2,13 @@ import { dungeonActions } from "../store/dungeon-slice";
 
 import { UNDEAD } from "../data/enemies";
 
-import { COFFIN, DUNGEON_ENTRANCE, PATHS, TRAPS } from "../data/events";
+import {
+  COFFIN,
+  DUNGEON_ENTRANCE,
+  PATHS,
+  TRAPS,
+  BONEVAULT,
+} from "../data/events";
 
 import store from "../store/index";
 
@@ -55,9 +61,6 @@ export function createNewRoom(dispatch) {
     },
   };
 
-  // Get random image
-  newRoom.image = getRoomImage();
-
   // if (dungeon.roomCounter % 10) {
   // } else {
   const roomContent = getRoomContent();
@@ -73,14 +76,14 @@ export function createNewRoom(dispatch) {
       break;
   }
   // }
-
+  newRoom.image = getRoomImage(newRoom);
   dispatch(dungeonActions.updateRoom(newRoom));
 }
 
 // // Determine if room will contain an event or monsters.
 function getRoomContent() {
   const eventChance = Math.floor(Math.random() * 100);
-  if (eventChance > 55) {
+  if (eventChance > 0) {
     // 79
     // ~20% Chance for an event
     return "EVENT";
@@ -98,22 +101,16 @@ function getRoomEvent() {
     case "The Great Catacomb":
       // Add general non-path events
       if (!dungeon.path) {
-        for (let i = 0; i < TRAPS.length; i++) {
-          events.push(TRAPS[i]);
-        }
-        events.push(COFFIN);
-        events.push(PATHS[0]);
-        events.push(PATHS[0]);
-        events.push(PATHS[0]);
-        events.push(PATHS[0]);
-        events.push(PATHS[0]);
-        events.push(PATHS[0]);
-        events.push(PATHS[0]);
-        events.push(PATHS[0]);
-        events.push(PATHS[0]);
-        events.push(PATHS[0]);
-        events.push(PATHS[0]);
-        events.push(PATHS[0]);
+        // for (let i = 0; i < TRAPS.length; i++) {
+        //   events.push(TRAPS[i]);
+        // }
+        // events.push(COFFIN);
+        // events.push(PATHS[0]);
+        events.push(BONEVAULT);
+        events.push(BONEVAULT);
+        events.push(BONEVAULT);
+        events.push(BONEVAULT);
+        events.push(BONEVAULT);
       }
 
       // Add path specific events
@@ -285,10 +282,36 @@ export function constructStats(stats) {
   };
 }
 
-function getRoomImage() {
-  const dungeon = store.getState().dungeon;
+function getRoomImage(dungeon) {
   let imageList = [];
 
+  // check for event specific backgrounds
+  if (dungeon.contents.event) {
+    switch (dungeon.contents.event.name) {
+      case "Bonevault":
+        imageList = [
+          "src/assets/images/backgrounds/bonevault-1.png",
+          "src/assets/images/backgrounds/bonevault-2.png",
+          "src/assets/images/backgrounds/bonevault-3.png",
+          "src/assets/images/backgrounds/bonevault-4.png",
+        ];
+    }
+    const randomIndex = Math.floor(Math.random() * imageList.length);
+    return imageList[randomIndex];
+  }
+
+  // Check for path specific backgrounds
+  if (dungeon.path) {
+    switch (dungeon.path.name) {
+      case "Wailing Warrens":
+        imageList = [];
+        break;
+    }
+    const randomIndex = Math.floor(Math.random() * imageList.length);
+    return imageList[randomIndex];
+  }
+
+  // Add general random dungeon background
   switch (dungeon.name) {
     case "The Great Catacomb":
       imageList = [
@@ -312,16 +335,7 @@ function getRoomImage() {
         "src/assets/images/backgrounds/catacomb-20.png",
       ];
       break;
-    // You can add more cases here for other dungeons
-    default:
-      // Handle cases where dungeon is not matched
-      imageList = [
-        // "src/assets/image/default1.jpg",
-        // "src/assets/image/default2.jpg",
-      ];
-      break;
   }
-
   const randomIndex = Math.floor(Math.random() * imageList.length);
   return imageList[randomIndex];
 }

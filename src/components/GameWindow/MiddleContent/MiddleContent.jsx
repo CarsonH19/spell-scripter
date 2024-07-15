@@ -17,6 +17,7 @@ export default function MiddleContent() {
   useEffect(() => {
     if (dungeon.contents.event) {
       dispatch(logActions.updateLogs({ change: "PAUSE" }));
+      console.log(dungeon.contents.event)
       for (let i = 0; i < dungeon.contents.event.description.length; i++) {
         dispatch(
           logActions.updateLogs({
