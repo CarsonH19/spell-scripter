@@ -94,10 +94,10 @@ const eventFunctions = {
       openModal(dispatch, "roomSummaryModal");
     }
   },
-  PATH: async (dispatch, choice) => {
+  PATH_ENTRANCE: async (dispatch, choice) => {
     const path = store.getState().dungeon.contents.event.name;
     if (choice === "Enter") {
-      dispatch(dungeonActions.changePath(path));
+      dispatch(dungeonActions.beginPath(path));
       dispatch(
         dungeonActions.eventOutcome({ outcome: `You entered the ${path}.` })
       );
@@ -115,6 +115,17 @@ const eventFunctions = {
 
     await delay(4000);
     openModal(dispatch, "roomSummaryModal");
+  },
+  PATH_EXIT: async (dispatch) => {
+    const path = store.getState().dungeon.path;
+    if (choice === "Leave") {
+      dispatch(dungeonActions.beginPath(null));
+      dispatch(
+        dungeonActions.eventOutcome({ outcome: `You left the ${path}.` })
+      );
+      await delay(4000);
+      openModal(dispatch, "roomSummaryModal");
+    }
   },
   BONEVAULT: async (dispatch, choice) => {
     const order = store.getState().combat.order;

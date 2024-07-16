@@ -168,7 +168,8 @@ const UNDEAD = {
       { item: EQUIPMENT.BONEMAIL, probability: 0.01 }, // change to a wand
       { item: EQUIPMENT.GHOULBONE_ARMGUARDS, probability: 0.01 },
       { item: null, probability: 0.85 },
-    ],  },
+    ],
+  },
   CORPSE_ORACLE: {
     name: "Corpse Oracle",
     identifier: "ENEMY",
@@ -311,6 +312,7 @@ const UNDEAD = {
     immunities: [],
     behavior: "DEFENSIVE",
     statusEffects: [],
+    lootTable: [],
   },
   SHADOW: {
     name: "Shadow",
@@ -331,6 +333,7 @@ const UNDEAD = {
     immunities: [],
     behavior: "ERRATIC",
     statusEffects: [],
+    lootTable: [],
   },
   BANSHEE: {
     name: "Banshee",
@@ -351,6 +354,7 @@ const UNDEAD = {
     immunities: [],
     behavior: "ERRATIC",
     statusEffects: [],
+    lootTable: [],
   },
 };
 

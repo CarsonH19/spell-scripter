@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Item from "./Item";
-import Attributes from "./Attributes";
+import Attributes from "../Attribute/Attributes";
 import Tooltip from "../../UI/Tooltip";
 import Icon from "../../UI/Icon";
 import updateStatTotals from "../../../store/stats-actions";

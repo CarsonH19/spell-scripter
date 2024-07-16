@@ -9,7 +9,7 @@ import updateStatTotals from "../../../store/stats-actions";
 
 import Icon from "../../UI/Icon";
 import Tooltip from "../../UI/Tooltip";
-import Attributes from "../Inventory/Attributes";
+import Attributes from "../Attribute/Attributes";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRepeat } from "@fortawesome/free-solid-svg-icons";

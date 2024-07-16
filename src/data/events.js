@@ -169,29 +169,6 @@ export const TRAPS = [
   },
 ];
 
-export const PATHS = [
-  {
-    name: "Wailing Warrens",
-    type: "CHOICE",
-    description: [
-      "You discover a hole in the wall leading into the abyss, spectral faces flicker in the darkness and a haunting wail echoes from deep within.",
-      "Do you wish to enter?",
-    ],
-    options: [
-      {
-        text: ["Enter"],
-        function: "PATH",
-        narration: "You decide to enter.",
-      },
-      {
-        text: ["Leave"],
-        function: "PATH",
-        narration: "You decide to leave.",
-      },
-    ],
-  },
-];
-
 export const BONEVAULT = {
   name: "Bonevault",
   type: "CHOICE",
@@ -219,6 +196,44 @@ export const CANDLELIGHT_SHRINE = {
       text: ["Rest"],
       function: "CANDLELIGHT_SHRINE",
       narration: "You decide to rest.",
+    },
+  ],
+};
+
+export const PATHS = [
+  {
+    name: "Wailing Warrens",
+    type: "CHOICE",
+    description: [
+      "You discover a hole in the wall leading into the abyss, spectral faces flicker in the darkness and a haunting wail echoes from deep within.",
+      "Do you wish to enter?",
+    ],
+    options: [
+      {
+        text: ["Enter"],
+        function: "PATH_ENTRANCE",
+        narration: "You decide to enter.",
+      },
+      {
+        text: ["Leave"],
+        function: "PATH_ENTRANCE",
+        narration: "You decide to leave.",
+      },
+    ],
+  },
+];
+
+export const WAILING_WARRENS_EXIT = {
+  name: "Wailing Warrens Exit",
+  type: "CHOICE",
+  description: [
+    "You discover a whole in the wall leading back to The Great Catacomb.",
+  ],
+  options: [
+    {
+      text: ["Leave"],
+      function: "WAILING_WARREN_EXIT",
+      narration: "You decide to leave.",
     },
   ],
 };

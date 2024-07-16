@@ -5,10 +5,12 @@ const dungeonSlice = createSlice({
   initialState: {
     name: "The Great Catacomb",
     path: null,
+    pathCounter: null,
     roomCounter: 0,
     threat: -1,
     danger: false,
-    image: "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance.jpg",
+    image:
+      "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance.jpg",
     music: null,
     contents: {
       enemies: [],
@@ -27,8 +29,15 @@ const dungeonSlice = createSlice({
       const danger = action.payload.danger;
       state.danger = danger;
     },
-    changePath(state, action) {
+    beginPath(state, action) {
       state.path = action.payload;
+
+      if (action.payload !== null) {
+        const rooms = Math.floor(Math.random() * 12);
+        state.pathCounter = rooms;
+      } else {
+        state.pathCounter = null;
+      }
     },
     changeBackground(state, action) {
       state.image = action.payload;

@@ -19,6 +19,7 @@ export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
     name: "",
     path: null,
+    pathCounter: null,
     roomCounter: 0,
     threat: 0,
     image: null,
@@ -34,6 +35,7 @@ export function setDungeon(dispatch, dungeonName) {
     case "The Great Catacomb":
       dungeon.name = "The Great Catacomb";
       dungeon.path = null;
+      dungeon.pathCounter = null;
       dungeon.threat = 0;
       dungeon.image =
         "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance.jpg";
@@ -50,6 +52,8 @@ export function createNewRoom(dispatch) {
 
   let newRoom = {
     ...dungeon,
+    pathCounter:
+      dungeon.pathCounter > 0 ? dungeon.pathCounter - 1 : dungeon.pathCounter,
     roomCounter: dungeon.roomCounter + 1,
     threat: dungeon.threat + 1,
     danger: true,
@@ -70,14 +74,17 @@ export function createNewRoom(dispatch) {
   const roomContent = getRoomContent();
   switch (roomContent) {
     case "EVENT":
-      // get Event
+      // get event
       newRoom.contents.event = getRoomEvent();
       break;
 
-    default:
-      // get monsters
+    case "ENEMIES":
+      // get enemies
       newRoom.contents.enemies = getRoomEnemies();
       break;
+
+    case "EXIT PATH":
+      newRoom.contents.event = getPathExit();
   }
   // }
 
@@ -88,12 +95,21 @@ export function createNewRoom(dispatch) {
 
 // // Determine if room will contain an event or monsters.
 function getRoomContent() {
+  const pathCounter = store.getState().dungeon.pathCounter;
   const eventChance = Math.floor(Math.random() * 100);
+  console.log("PATH COUNTER", pathCounter);
+
+  if (pathCounter <= 0 && pathCounter !== null) {
+    return "EXIT PATH";
+  }
+
+  // Add switch statement to determine event chance in different paths or the main dungeon
   if (eventChance > 50) {
     // 79
     // ~20% Chance for an event
     return "EVENT";
   } else {
+    console.log("ENEMIES");
     return "ENEMIES";
   }
 }
@@ -151,6 +167,8 @@ export function getRoomEnemies() {
   let enemiesArray = [];
   let enemyTypes;
   let numberOfEnemies;
+
+  console.log("ENEMIES", dungeon.path)
 
   switch (dungeon.path) {
     case "Wailing Warrens": {
@@ -361,4 +379,14 @@ function getRoomImage(dungeon) {
 
   const randomIndex = Math.floor(Math.random() * imageList.length);
   return imageList[randomIndex];
+}
+
+function getPathExit() {
+  const path = store.getState().dungeon.path;
+
+  switch (path) {
+    case "Wailing Warrens":
+      return;
+      break;
+  }
 }

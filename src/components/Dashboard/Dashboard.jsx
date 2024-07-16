@@ -25,7 +25,7 @@ export default function Dashboard() {
   useEffect(() => {
     const currentLevel = store.getState().player.level;
     if (playerLevel !== currentLevel && !isModalOpen) {
-      openModal(dispatch, "levelUpModal");
+      openModal(dispatch, "attributeModal");
     }
   }, [dispatch, playerLevel]);
 

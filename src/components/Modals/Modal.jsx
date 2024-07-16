@@ -20,7 +20,7 @@ import HelpModal from "./Help/HelpModal";
 import ConfirmationModal from "./Confirmation/ConfirmationModal";
 import QuickTimeEventModal from "./QTE/QuickTimeEventModal";
 import DungeonTomesModal from "./DungeonTomes/DungeonTomesModal";
-import LevelUpModal from "./LevelUp/LevelUpModal";
+import AttributeModal from "./Attribute/AttributeModal";
 
 import store from "../../store";
 import PartyModal from "./Party/PartyModal";
@@ -100,8 +100,8 @@ function selectModal() {
     case "partyModal":
       return <PartyModal />
 
-    case "levelUpModal":
-      return <LevelUpModal />
+    case "attributeModal":
+      return <AttributeModal />
   }
 }
 

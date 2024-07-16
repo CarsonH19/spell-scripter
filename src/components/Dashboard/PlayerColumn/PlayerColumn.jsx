@@ -6,9 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faToolbox,
   faBookOpen,
-  faUsersLine,
-  faPersonCircleExclamation,
+  faUsers,
+  faCircleExclamation,
   faGear,
+  faUser,
+  faCubes,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function PlayerColumn() {
@@ -31,37 +33,58 @@ export default function PlayerColumn() {
         <img
           className={classes["player-image"]}
           src={`${player.image}`}
-          alt=""
+          alt="Player Image"
         />
 
         <div className={classes.menu}>
-          <FontAwesomeIcon
-            className={classes.icon}
-            icon={faBookOpen}
-            onClick={() => handleOpenModal("spellbookModal")}
-          />
-          <FontAwesomeIcon
-            className={classes.icon}
-            icon={faToolbox}
-            onClick={() => handleOpenModal("inventoryModal")}
-          />
-          <FontAwesomeIcon
-            className={classes.icon}
-            icon={faUsersLine}
-            onClick={() => handleOpenModal("heroesModal")}
-          />
-          <FontAwesomeIcon
-            className={classes.icon}
-            icon={faPersonCircleExclamation}
-            onClick={() => handleOpenModal("questsModal")}
-          />
-          <FontAwesomeIcon
-            className={classes.icon}
-            icon={faGear}
-            onClick={() => handleOpenModal("settingsModal")}
-          />
+          <div>
+            <FontAwesomeIcon
+              className={classes.icon}
+              icon={faBookOpen}
+              onClick={() => handleOpenModal("spellbookModal")}
+            />
+            <p>Spellbook</p>
+          </div>
+          <div>
+            <FontAwesomeIcon
+              className={classes.icon}
+              icon={faToolbox}
+              onClick={() => handleOpenModal("inventoryModal")}
+            />
+            <p>Inventory</p>
+          </div>
+          <div>
+            <FontAwesomeIcon
+              className={classes.icon}
+              icon={faUsers}
+              onClick={() => handleOpenModal("heroesModal")}
+            />
+            <p>Heroes</p>
+          </div>
+          <div>
+            <FontAwesomeIcon
+              className={classes.icon}
+              icon={faCircleExclamation}
+              onClick={() => handleOpenModal("questsModal")}
+            />
+            <p>Quests</p>
+          </div>
+          <div>
+            <FontAwesomeIcon
+              className={classes.icon}
+              icon={faCubes}
+              onClick={() => handleOpenModal("attributeModal")}
+            />
+            <p>Attributes</p>
+          </div>
+
         </div>
       </div>
+      <FontAwesomeIcon
+              className={classes.settings}
+              icon={faGear}
+              onClick={() => handleOpenModal("settingsModal")}
+            />
     </div>
   );
 }
