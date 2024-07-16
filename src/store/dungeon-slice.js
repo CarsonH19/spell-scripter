@@ -8,7 +8,7 @@ const dungeonSlice = createSlice({
     roomCounter: 0,
     threat: -1,
     danger: false,
-    image: "src/assets/images/backgrounds/catacomb-entrance.png",
+    image: "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance.jpg",
     music: null,
     contents: {
       enemies: [],

@@ -69,19 +69,19 @@ export default function StartGame() {
     );
     dispatch(
       playerActions.changeInventory({
-        item: { ...EQUIPMENT.RATTLEBONE_CHESTPLATE, id: uuidv4() },
+        item: { ...EQUIPMENT.GHOULBONE_CHESTPIECE, id: uuidv4() },
         change: "ADD",
       })
     );
     dispatch(
       playerActions.changeInventory({
-        item: { ...EQUIPMENT.RATTLEBONE_GAUNTLETS, id: uuidv4() },
+        item: { ...EQUIPMENT.GHOULBONE_HELMET, id: uuidv4() },
         change: "ADD",
       })
     );
     dispatch(
       playerActions.changeInventory({
-        item: { ...EQUIPMENT.RATTLEBONE_HELMET, id: uuidv4() },
+        item: { ...EQUIPMENT.GHOULBONE_PAULDRON, id: uuidv4() },
         change: "ADD",
       })
     );
@@ -117,7 +117,7 @@ export default function StartGame() {
     );
     dispatch(
       playerActions.changeInventory({
-        item: { ...EQUIPMENT.WRAITHBANE, id: uuidv4() },
+        item: { ...EQUIPMENT.SPINE_OF_THE_NECROMANCER, id: uuidv4() },
         change: "ADD",
       })
     );

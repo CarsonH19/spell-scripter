@@ -174,7 +174,7 @@ export const PATHS = [
     name: "Wailing Warrens",
     type: "CHOICE",
     description: [
-      "You discover a crumbling archway shrouded in mist, with spectral faces flickering in the shadows and a haunting wail echoing from deep within.",
+      "You discover a hole in the wall leading into the abyss, spectral faces flicker in the darkness and a haunting wail echoes from deep within.",
       "Do you wish to enter?",
     ],
     options: [

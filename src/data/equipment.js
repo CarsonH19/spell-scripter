@@ -133,7 +133,7 @@ const EQUIPMENT = {
     stats: {},
   },
   REVENANTS_RAGE: {
-    name: "Revenants Rage",
+    name: "Revenant's Rage",
     description: "",
     display: false,
     image: "src/assets/images/items/equipment/revenants-rage.jpg",
@@ -416,7 +416,7 @@ const EQUIPMENT = {
     name: "Plagueborn Legwraps",
     description: "",
     display: false,
-    image: "src/assets/images/items/equipment/plagueborn-legwraps.jpg",
+    image: "src/assets/images/items/equipment/plagueborn-leg-wraps.jpg",
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
@@ -464,22 +464,22 @@ const EQUIPMENT = {
   // Ghoulbone Set - Undead
   // Bonus: +20 Max HP
 
-  GHOULBONE_GREAVES: {
-    name: "Ghoulbone Greaves",
+  GHOULBONE_CHESTPIECE: {
+    name: "Ghoulbone Chestpiece",
     description: "",
     display: false,
-    image: "",
+    image: "src/assets/images/items/equipment/ghoulbone-chestpiece.jpg",
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
     effect: ["+2 Attack"],
     stats: { strength: { attack: +2 } },
   },
-  GHOULBONE_ARMGUARDS: {
-    name: "Ghoulbone Armguards",
+  GHOULBONE_PAULDRON: {
+    name: "Ghoulbone Pauldron",
     description: "",
     display: false,
-    image: "",
+    image: "src/assets/images/items/equipment/ghoulbone-pauldron.jpg",
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
@@ -490,7 +490,7 @@ const EQUIPMENT = {
     name: "Ghoulbone Helmet",
     description: "",
     display: false,
-    image: "",
+    image: "src/assets/images/items/equipment/ghoulbone-helmet.jpg",
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,

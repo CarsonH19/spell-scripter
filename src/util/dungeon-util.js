@@ -35,7 +35,8 @@ export function setDungeon(dispatch, dungeonName) {
       dungeon.name = "The Great Catacomb";
       dungeon.path = null;
       dungeon.threat = 0;
-      dungeon.image = "src/assets/images/backgrounds/catacomb-entrance.jpg";
+      dungeon.image =
+        "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance.jpg";
       // dungeon.music = '' // Dungeon entrance music
       dungeon.contents; // add Entrance event
       break;
@@ -80,7 +81,7 @@ export function createNewRoom(dispatch) {
   }
   // }
 
-  // Get background after room contents have been determined 
+  // Get background after room contents have been determined
   newRoom.image = getRoomImage(newRoom);
   dispatch(dungeonActions.updateRoom(newRoom));
 }
@@ -107,13 +108,13 @@ function getRoomEvent() {
       // Add general non-path events
       if (!dungeon.path) {
         // Check threat to add events relative to threat
-        for (let i = 0; i < TRAPS.length; i++) {
-          events.push(TRAPS[i]);
-        }
-        events.push(COFFIN);
-        // events.push(PATHS[0]); // Paths are random or added every 10 rooms
-        events.push(BONEVAULT);
-        events.push(CANDLELIGHT_SHRINE);
+        // for (let i = 0; i < TRAPS.length; i++) {
+        //   events.push(TRAPS[i]);
+        // }
+        // events.push(COFFIN);
+        events.push(PATHS[0]); // Paths are random or added every 10 rooms
+        // events.push(BONEVAULT);
+        // events.push(CANDLELIGHT_SHRINE);
       }
 
       // Add path specific events
@@ -288,34 +289,36 @@ function getRoomImage(dungeon) {
   // Use general dungeon images
   switch (dungeon.name) {
     case "The Great Catacomb":
-      imageList = [
-        "src/assets/images/backgrounds/catacomb-1.jpg",
-        "src/assets/images/backgrounds/catacomb-2.jpg",
-        "src/assets/images/backgrounds/catacomb-3.jpg",
-        "src/assets/images/backgrounds/catacomb-4.jpg",
-        "src/assets/images/backgrounds/catacomb-5.jpg",
-        "src/assets/images/backgrounds/catacomb-6.jpg",
-        "src/assets/images/backgrounds/catacomb-7.jpg",
-        "src/assets/images/backgrounds/catacomb-8.jpg",
-        "src/assets/images/backgrounds/catacomb-9.jpg",
-        // "src/assets/images/backgrounds/catacomb-10.jpg",
-        "src/assets/images/backgrounds/catacomb-11.jpg",
-        "src/assets/images/backgrounds/catacomb-12.jpg",
-        // "src/assets/images/backgrounds/catacomb-13.jpg",
-        "src/assets/images/backgrounds/catacomb-14.jpg",
-        "src/assets/images/backgrounds/catacomb-15.jpg",
-        "src/assets/images/backgrounds/catacomb-16.jpg",
-        // "src/assets/images/backgrounds/catacomb-17.jpg",
-        "src/assets/images/backgrounds/catacomb-20.jpg",
-      ];
+      {
+        // Number of images in the assets folder
+        const images = 27;
+        imageList = [];
+        for (let i = 1; i < images; i++)
+          [
+            imageList.push(`src/assets/images/backgrounds/the-great-catacomb/catacomb-${i}.jpg
+      `),
+          ];
+      }
       break;
   }
 
+  console.log(dungeon);
   // Check for path specific backgrounds (replaces dungeon imageList)
   if (dungeon.path) {
-    switch (dungeon.path.name) {
+    console.log(dungeon.path);
+
+    switch (dungeon.path) {
       case "Wailing Warrens":
-        imageList = [];
+        {
+          // Number of images in the assets folder
+          const images = 10;
+          imageList = [];
+          for (let i = 1; i < images; i++)
+            [
+              imageList.push(`src/assets/images/backgrounds/wailing-warrens/wailing-warrens-${i}.jpg
+        `),
+            ];
+        }
         break;
 
       default:
@@ -328,16 +331,26 @@ function getRoomImage(dungeon) {
     switch (dungeon.contents.event.name) {
       case "Bonevault":
         imageList = [
-          "src/assets/images/backgrounds/bonevault-1.jpg",
-          "src/assets/images/backgrounds/bonevault-2.jpg",
-          "src/assets/images/backgrounds/bonevault-3.jpg",
-          "src/assets/images/backgrounds/bonevault-4.jpg",
+          "src/assets/images/backgrounds/events/bonevault-1.jpg",
+          "src/assets/images/backgrounds/events/bonevault-2.jpg",
+          "src/assets/images/backgrounds/events/bonevault-3.jpg",
+          "src/assets/images/backgrounds/events/bonevault-4.jpg",
         ];
         break;
 
-      // case "Candlelight Shrine":
-      //   imageList = []; // NOTE: Add image
-      //   break;
+      case "Candlelight Shrine":
+        imageList = [
+          "src/assets/images/backgrounds/events/candlelight-shrine-1.jpg",
+        ];
+        break;
+
+      case "Wailing Warrens":
+        imageList = [
+          "src/assets/images/backgrounds/events/wailing-warrens-entrance-1.jpg",
+          "src/assets/images/backgrounds/events/wailing-warrens-entrance-2.jpg",
+          "src/assets/images/backgrounds/events/wailing-warrens-entrance-3.jpg",
+        ];
+        break;
 
       default:
         break;

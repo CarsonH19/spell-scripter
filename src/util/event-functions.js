@@ -140,7 +140,7 @@ const eventFunctions = {
 
         // Transition Animation
         // New Background - "ADD RANDOM BACKGROUND"
-        const newBackground = "src/assets/images/backgrounds/catacomb-6.png";
+        const newBackground = "src/assets/images/backgrounds/catacomb-6.jpg";
         dispatch(dungeonActions.changeBackground(newBackground));
 
         const difficulty = Math.floor(Math.random() * 4);
@@ -217,7 +217,7 @@ const eventFunctions = {
         console.log(value);
         changeHealth(dispatch, order[i], "HEAL", value);
       }
-      
+
       // Get random candle
       getRandomLoot(dispatch);
 
