@@ -31,7 +31,9 @@ export default function Attributes() {
     <div className={classes["attributes-container"]}>
       {inDungeon && <h4>Stats</h4>}
       {!inDungeon && (
-        <div className={classes.cubes}>
+        <div className={classes.cubes} style={{
+          color: player.attributePoints > 0 ? "var(--accent)" : "var(--text)"
+        }}>
           <FontAwesomeIcon icon={faCubes} />
 
           <h4>{player.attributePoints}</h4>
@@ -41,35 +43,24 @@ export default function Attributes() {
       <div className={classes.stats}>
         <div className={classes.attribute}>
           <h4>Strength</h4>
-          {!inDungeon && (
-            <FontAwesomeIcon
-              icon={faCaretLeft}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("DECREASE", "STRENGTH")}
-            />
-          )}
+          <div>
+            {!inDungeon && (
+              <FontAwesomeIcon
+                icon={faCaretLeft}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("DECREASE", "STRENGTH")}
+              />
+            )}
+            <p className={classes["points"]}>{player.stats.baseStrength}</p>
 
-          {/* <Tooltip
-            title={"Strength Attribute:"}
-            detailOne={
-              "Strength determines your Max HP, HP Regeneration, and Attack."
-            }
-          > */}
-          <p className={classes["points"]}>{player.stats.baseStrength}</p>
-
-          {/* </Tooltip> */}
-          {!inDungeon && (
-            <FontAwesomeIcon
-              icon={faCaretRight}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("INCREASE", "STRENGTH")}
-            />
-          )}
-
-          {/* <FontAwesomeIcon
-            icon={faHandFist}
-            className={classes["attribute-icon"]}
-          /> */}
+            {!inDungeon && (
+              <FontAwesomeIcon
+                icon={faCaretRight}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("INCREASE", "STRENGTH")}
+              />
+            )}
+          </div>
         </div>
         <p className={classes.stat}>
           Max HP: {player.stats.strength.maxHealth}
@@ -86,33 +77,25 @@ export default function Attributes() {
       <div className={classes.stats}>
         <div className={classes.attribute}>
           <h4>Agility</h4>
-          {!inDungeon && (
-            <FontAwesomeIcon
-              icon={faCaretLeft}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("DECREASE", "AGILITY")}
-            />
-          )}
-          {/* <Tooltip
-            title={"Agility Attribute:"}
-            detailOne={
-              "Agility determines your Defense, Hit Chance, and Speed."
-            }
-          > */}
-          <p className={classes["points"]}>{player.stats.baseAgility}</p>
+          <div>
+            {!inDungeon && (
+              <FontAwesomeIcon
+                icon={faCaretLeft}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("DECREASE", "AGILITY")}
+              />
+            )}
 
-          {/* </Tooltip> */}
-          {!inDungeon && (
-            <FontAwesomeIcon
-              icon={faCaretRight}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("INCREASE", "AGILITY")}
-            />
-          )}
-          {/* <FontAwesomeIcon
-            icon={faPersonRunning}
-            className={classes["attribute-icon"]}
-          /> */}
+            <p className={classes["points"]}>{player.stats.baseAgility}</p>
+
+            {!inDungeon && (
+              <FontAwesomeIcon
+                icon={faCaretRight}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("INCREASE", "AGILITY")}
+              />
+            )}
+          </div>
         </div>
         <p className={classes.stat}>Defense: {player.stats.agility.defense}</p>
         <p className={classes.stat}>
@@ -126,29 +109,23 @@ export default function Attributes() {
       <div className={classes.stats}>
         <div className={classes.attribute}>
           <h4>Arcana</h4>
-          {!inDungeon && (
-            <FontAwesomeIcon
-              icon={faCaretLeft}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("DECREASE", "ARCANA")}
-            />
-          )}
-          {/* <Tooltip
-            title={"Arcana Attribute:"}
-            detailOne={
-              "Arcana determines your Max MP, MP Regeneration, and Spell Power."
-            }
-          > */}
-          <p className={classes["points"]}>{player.stats.baseArcana}</p>
-
-          {/* </Tooltip> */}
-          {!inDungeon && (
-            <FontAwesomeIcon
-              icon={faCaretRight}
-              className={classes["arrow-icon"]}
-              onClick={() => handleChangeAttribute("INCREASE", "ARCANA")}
-            />
-          )}
+          <div>
+            {!inDungeon && (
+              <FontAwesomeIcon
+                icon={faCaretLeft}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("DECREASE", "ARCANA")}
+              />
+            )}
+            <p className={classes["points"]}>{player.stats.baseArcana}</p>
+            {!inDungeon && (
+              <FontAwesomeIcon
+                icon={faCaretRight}
+                className={classes["arrow-icon"]}
+                onClick={() => handleChangeAttribute("INCREASE", "ARCANA")}
+              />
+            )}
+          </div>
         </div>
         <p className={classes.stat}>Max MP: {player.stats.arcana.maxMana}</p>
         <p className={classes.stat}>

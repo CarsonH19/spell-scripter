@@ -25,7 +25,7 @@ export default function ConfirmationModal() {
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon.name);
   const spellList = useSelector((state) => state.player.spellList);
-  const partyMembers = useSelector((state) => state.hero.party);
+  // const partyMembers = useSelector((state) => state.hero.party);
   const attunedItems = useSelector(
     (state) => state.player.inventory.attunedItems
   );
@@ -98,7 +98,7 @@ export default function ConfirmationModal() {
         <div className={classes.heroes}>
           <h3>Party</h3>
           <ul>
-            {partyMembers.map((hero) => (
+            {characters.map((hero) => (
               <div key={hero.name}>
                 <img src={`${hero.image}`} alt={hero.name} />
                 <p>{hero.name}</p>
@@ -112,14 +112,14 @@ export default function ConfirmationModal() {
           />
         </div>
         <div className={classes.player}>
-          <h3>Attributes</h3>
+          {/* <h3>Attributes</h3> */}
 
-          <img
+          {/* <img
             className={classes["player-image"]}
             src={`${player.image}`}
             alt=""
-          />
-          <Attributes noInfo={true} />
+          /> */}
+          <Attributes />
         </div>
         <div className={classes.container}>
           {/* <div className={classes.dungeon}>

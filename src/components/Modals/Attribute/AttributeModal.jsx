@@ -37,7 +37,9 @@ export default function AttributeModal({ levelUp }) {
             src={`${player.image}`}
             alt="Player Image"
           />
-          <Attributes />
+          <div>
+            <Attributes />
+          </div>
           <div className={classes.icons}>
             <FontAwesomeIcon
               icon={faHandFist}
@@ -52,20 +54,6 @@ export default function AttributeModal({ levelUp }) {
               className={classes["attribute-icon"]}
             />
           </div>
-
-          {/* <Tooltip
-            title={"What are Attributes?"}
-            className={classes["attributes-info-icon"]}
-            container={"attributes-info-container"}
-            position={"attributes-info"}
-            detailOne={
-              "Attributes determine your stats within the dungeon. Using points you can decide which stats you'd like to upgrade. Acquire more attribute points by reaching higher levels."
-            }
-          >
-            <FontAwesomeIcon
-              icon={faCircleInfo}
-            />
-          </Tooltip> */}
         </div>
       </>
     );
