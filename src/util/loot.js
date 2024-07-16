@@ -92,11 +92,12 @@ export function getRandomLoot(dispatch) {
 
     case "Candlelight Shrine":
       lootTable = [
-        { item: CONSUMABLES.WARDING_CANDLE, probability: 0.2 },
-        { item: CONSUMABLES.SOOTHING_CANDLE, probability: 0.2 },
-        { item: CONSUMABLES.INVOKING_CANDLE, probability: 0.2 },
-        { item: CONSUMABLES.FLICKERING_CANDLE, probability: 0.2 },
-        { item: CONSUMABLES.BLAZING_CANDLE, probability: 0.2 },
+        { item: CONSUMABLES.WARDING_CANDLE, probability: 0.167 },
+        { item: CONSUMABLES.SOOTHING_CANDLE, probability: 0.167 },
+        { item: CONSUMABLES.CALMING_CANDLE, probability: 0.167 },
+        { item: CONSUMABLES.INVOKING_CANDLE, probability: 0.167 },
+        { item: CONSUMABLES.FLICKERING_CANDLE, probability: 0.167 },
+        { item: CONSUMABLES.BLAZING_CANDLE, probability: 0.167 },
       ];
       break;
 

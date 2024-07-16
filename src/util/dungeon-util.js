@@ -35,7 +35,7 @@ export function setDungeon(dispatch, dungeonName) {
       dungeon.name = "The Great Catacomb";
       dungeon.path = null;
       dungeon.threat = 0;
-      dungeon.image = "src/assets/images/backgrounds/catacomb-entrance.png";
+      dungeon.image = "src/assets/images/backgrounds/catacomb-entrance.jpg";
       // dungeon.music = '' // Dungeon entrance music
       dungeon.contents; // add Entrance event
       break;
@@ -106,30 +106,28 @@ function getRoomEvent() {
     case "The Great Catacomb":
       // Add general non-path events
       if (!dungeon.path) {
+        // Check threat to add events relative to threat
         for (let i = 0; i < TRAPS.length; i++) {
           events.push(TRAPS[i]);
         }
         events.push(COFFIN);
-        events.push(PATHS[0]);
+        // events.push(PATHS[0]); // Paths are random or added every 10 rooms
         events.push(BONEVAULT);
         events.push(CANDLELIGHT_SHRINE);
       }
 
       // Add path specific events
       if (dungeon.path === "Wailing Warrens") {
-        events.push(COFFIN);
+        // Ghostly Choir
+        // Whispering Wall
+        // Echoing Bells
       }
       break;
   }
 
-  // check heroes
+  // check heroes & quests
   // check threat
 
-  // Change to use a threat greater than 10
-  // if (dungeon.threat > 0 && !dungeon.path) {
-  // Change to not use index
-  // }
-  console.log("EVENTS", events);
   // Randomly choose an event from the new array
   const randomIndex = Math.floor(Math.random() * events.length);
   return events[randomIndex];
@@ -291,24 +289,24 @@ function getRoomImage(dungeon) {
   switch (dungeon.name) {
     case "The Great Catacomb":
       imageList = [
-        "src/assets/images/backgrounds/catacomb-1.png",
-        "src/assets/images/backgrounds/catacomb-2.png",
-        "src/assets/images/backgrounds/catacomb-3.png",
-        "src/assets/images/backgrounds/catacomb-4.png",
-        "src/assets/images/backgrounds/catacomb-5.png",
-        "src/assets/images/backgrounds/catacomb-6.png",
-        "src/assets/images/backgrounds/catacomb-7.png",
-        "src/assets/images/backgrounds/catacomb-8.png",
-        "src/assets/images/backgrounds/catacomb-9.png",
-        // "src/assets/images/backgrounds/catacomb-10.png",
-        "src/assets/images/backgrounds/catacomb-11.png",
-        "src/assets/images/backgrounds/catacomb-12.png",
-        // "src/assets/images/backgrounds/catacomb-13.png",
-        "src/assets/images/backgrounds/catacomb-14.png",
-        "src/assets/images/backgrounds/catacomb-15.png",
-        "src/assets/images/backgrounds/catacomb-16.png",
-        // "src/assets/images/backgrounds/catacomb-17.png",
-        "src/assets/images/backgrounds/catacomb-20.png",
+        "src/assets/images/backgrounds/catacomb-1.jpg",
+        "src/assets/images/backgrounds/catacomb-2.jpg",
+        "src/assets/images/backgrounds/catacomb-3.jpg",
+        "src/assets/images/backgrounds/catacomb-4.jpg",
+        "src/assets/images/backgrounds/catacomb-5.jpg",
+        "src/assets/images/backgrounds/catacomb-6.jpg",
+        "src/assets/images/backgrounds/catacomb-7.jpg",
+        "src/assets/images/backgrounds/catacomb-8.jpg",
+        "src/assets/images/backgrounds/catacomb-9.jpg",
+        // "src/assets/images/backgrounds/catacomb-10.jpg",
+        "src/assets/images/backgrounds/catacomb-11.jpg",
+        "src/assets/images/backgrounds/catacomb-12.jpg",
+        // "src/assets/images/backgrounds/catacomb-13.jpg",
+        "src/assets/images/backgrounds/catacomb-14.jpg",
+        "src/assets/images/backgrounds/catacomb-15.jpg",
+        "src/assets/images/backgrounds/catacomb-16.jpg",
+        // "src/assets/images/backgrounds/catacomb-17.jpg",
+        "src/assets/images/backgrounds/catacomb-20.jpg",
       ];
       break;
   }
@@ -330,10 +328,10 @@ function getRoomImage(dungeon) {
     switch (dungeon.contents.event.name) {
       case "Bonevault":
         imageList = [
-          "src/assets/images/backgrounds/bonevault-1.png",
-          "src/assets/images/backgrounds/bonevault-2.png",
-          "src/assets/images/backgrounds/bonevault-3.png",
-          "src/assets/images/backgrounds/bonevault-4.png",
+          "src/assets/images/backgrounds/bonevault-1.jpg",
+          "src/assets/images/backgrounds/bonevault-2.jpg",
+          "src/assets/images/backgrounds/bonevault-3.jpg",
+          "src/assets/images/backgrounds/bonevault-4.jpg",
         ];
         break;
 

@@ -177,6 +177,16 @@ const CONSUMABLES = {
     effect: ["While lit all allies gain +6 HP Regeneration."],
     // soundEffect: flameLicks2,
   },
+  CALMING_CANDLE: {
+    name: "Calming Candle",
+    description: "Blue Candle",
+    image: "src/assets/images/items/consumables/calming-candle.jpg",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: true,
+    effect: ["While lit all allies gain +6 MP Regeneration."],
+    // soundEffect: flameLicks2,
+  },
   FLICKERING_CANDLE: {
     name: "Flickering Candle",
     description: "Yellow Candle",
