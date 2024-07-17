@@ -9,6 +9,7 @@ import {
   TRAPS,
   BONEVAULT,
   CANDLELIGHT_SHRINE,
+  WAILING_WARRENS_EXIT,
 } from "../data/events";
 
 import store from "../store/index";
@@ -95,22 +96,33 @@ export function createNewRoom(dispatch) {
 
 // // Determine if room will contain an event or monsters.
 function getRoomContent() {
+  const dungeon = store.getState().dungeon;
   const pathCounter = store.getState().dungeon.pathCounter;
   const eventChance = Math.floor(Math.random() * 100);
-  console.log("PATH COUNTER", pathCounter);
 
   if (pathCounter <= 0 && pathCounter !== null) {
+    console.log(pathCounter)
     return "EXIT PATH";
   }
 
-  // Add switch statement to determine event chance in different paths or the main dungeon
-  if (eventChance > 50) {
-    // 79
-    // ~20% Chance for an event
-    return "EVENT";
-  } else {
-    console.log("ENEMIES");
-    return "ENEMIES";
+  switch (dungeon.name) {
+    case "The Great Catacomb":
+      if (dungeon.path === "Wailing Warrens") {
+        if (pathCounter <= 0) {
+          // End path if counter is 0
+          return "EXIT PATH";
+        } else {
+          // NOTE - Currently set to always enemies
+          return "ENEMIES"; 
+        }
+      }
+
+      // Event chance for dungeon is 50%
+      if (eventChance > 50) {
+        return "EVENT";
+      } else {
+        return "ENEMIES";
+      }
   }
 }
 
@@ -168,21 +180,20 @@ export function getRoomEnemies() {
   let enemyTypes;
   let numberOfEnemies;
 
-  console.log("ENEMIES", dungeon.path)
-
   switch (dungeon.path) {
-    case "Wailing Warrens": {
-      enemyTypes = [
-        { enemy: UNDEAD.LOST_SOUL, probability: 0.4 },
-        { enemy: UNDEAD.SHADOW, probability: 0.4 },
-        { enemy: UNDEAD.BANSHEE, probability: 0.2 },
-      ];
+    case "Wailing Warrens":
+      {
+        enemyTypes = [
+          { enemy: UNDEAD.LOST_SOUL, probability: 0.4 },
+          { enemy: UNDEAD.SHADOW, probability: 0.4 },
+          { enemy: UNDEAD.BANSHEE, probability: 0.2 },
+        ];
 
-      numberOfEnemies = 3;
+        numberOfEnemies = 3;
+      }
       break;
-    }
 
-    case null:
+    default:
       {
         enemyTypes = [
           { enemy: UNDEAD.DECREPIT_SKELETON, probability: 0.4 },
@@ -222,7 +233,7 @@ export function getRoomEnemies() {
         }
 
         // Calculate the number of enemies based on the threat level
-        numberOfEnemies;
+        numberOfEnemies = 0;
         if (threat >= 80) {
           numberOfEnemies = 5;
         } else if (threat >= 60) {
@@ -235,7 +246,6 @@ export function getRoomEnemies() {
           numberOfEnemies = Math.floor(Math.random() * 2) + 1; // Between 1 to 2 enemies
         }
       }
-
       break;
   }
 
@@ -370,6 +380,14 @@ function getRoomImage(dungeon) {
         ];
         break;
 
+        case "Wailing Warrens Exit":
+          imageList = [
+            "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-1.jpg",
+            "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-2.jpg",
+            "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-3.jpg",
+          ];
+          break;
+
       default:
         break;
     }
@@ -386,7 +404,7 @@ function getPathExit() {
 
   switch (path) {
     case "Wailing Warrens":
-      return;
+      return WAILING_WARRENS_EXIT;
       break;
   }
 }

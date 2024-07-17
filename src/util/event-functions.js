@@ -97,6 +97,7 @@ const eventFunctions = {
   PATH_ENTRANCE: async (dispatch, choice) => {
     const path = store.getState().dungeon.contents.event.name;
     if (choice === "Enter") {
+      console.log("ENTERED PATH", path);
       dispatch(dungeonActions.beginPath(path));
       dispatch(
         dungeonActions.eventOutcome({ outcome: `You entered the ${path}.` })

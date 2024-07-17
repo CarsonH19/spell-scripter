@@ -158,6 +158,7 @@ export default function ConfirmationModal() {
                   </Tooltip>
                 );
               })}
+              {spellList.length === 0 && <p>No spells prepared!</p>}
             </ul>
             <FontAwesomeIcon
               className={classes.change}

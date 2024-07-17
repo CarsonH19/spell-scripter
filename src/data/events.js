@@ -232,7 +232,7 @@ export const WAILING_WARRENS_EXIT = {
   options: [
     {
       text: ["Leave"],
-      function: "WAILING_WARREN_EXIT",
+      function: "PATH_EXIT",
       narration: "You decide to leave.",
     },
   ],

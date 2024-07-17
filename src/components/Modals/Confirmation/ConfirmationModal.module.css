@@ -172,7 +172,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 65%;
+  max-height: 65%;
   width: 100%;
   overflow: visible;
 }
