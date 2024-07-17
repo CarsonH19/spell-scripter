@@ -60,20 +60,16 @@ export default function TomeColumn() {
                 onClick={() => handleOpenTome(tomeInfo)}
               >
                 <h3>{tome.name}</h3>
-                <div
-                  className={classes.bar}
-                  style={{
-                    width: `${percentage}%`,
-                  }}
-                >
+                {/* <div className={classes.bar}>
                   <div
                     className={classes.progress}
-                    style={{
-                      width: `${percentage}%`,
-                    }}
-                  ></div>
-                  {/* <progress value={percentage} max="100"></progress> */}
-                </div>
+                    // style={{
+                    //   width: `${percentage}%`,
+                    // }}
+                  ></div> 
+                </div> */}
+                <progress value={percentage} max="100"></progress>
+
                 {percentage === 100 ? <p>Mastered</p> : <p>{percentage}%</p>}
               </div>
             );
