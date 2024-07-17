@@ -13,20 +13,42 @@ import {
   faCubes,
 } from "@fortawesome/free-solid-svg-icons";
 
+import Tooltip from "../../UI/Tooltip";
+
 export default function PlayerColumn() {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
+  const { prevLevel, nextLevel } = setNextLevel(player.totalMasteryPoints);
 
   const handleOpenModal = (modal) => {
     openModal(dispatch, modal);
   };
 
+  console.log(prevLevel - player.totalMasteryPoints);
+
   return (
     <div className={classes.column}>
       <div className={classes.player}>
-        <div>
+        <div className={classes.header}>
           <h1>{player.name}</h1>
-          <p>Level: {player.level}</p>
+          <div className={classes["bar-info"]}>
+            <p>Level: {player.level}</p>
+            <p className={classes.percentage}>
+              {Math.round(
+                ((player.totalMasteryPoints - prevLevel) /
+                  (nextLevel - prevLevel)) *
+                  100
+              )}
+              %
+            </p>
+            <p>
+              {player.totalMasteryPoints}/{nextLevel}
+            </p>
+          </div>
+          <progress
+            value={player.totalMasteryPoints - prevLevel}
+            max={nextLevel - prevLevel}
+          ></progress>
           <p>Mastery Points: {player.totalMasteryPoints}</p>
         </div>
 
@@ -77,14 +99,33 @@ export default function PlayerColumn() {
             />
             <p>Attributes</p>
           </div>
-
         </div>
       </div>
       <FontAwesomeIcon
-              className={classes.settings}
-              icon={faGear}
-              onClick={() => handleOpenModal("settingsModal")}
-            />
+        className={classes.settings}
+        icon={faGear}
+        onClick={() => handleOpenModal("settingsModal")}
+      />
     </div>
   );
+}
+
+function setNextLevel(totalMasteryPoints) {
+  if (totalMasteryPoints <= 1) {
+    return { prevLevel: 1, nextLevel: 2 };
+  } else if (totalMasteryPoints <= 3) {
+    return { prevLevel: 2, nextLevel: 3 };
+  } else if (totalMasteryPoints <= 6) {
+    return { prevLevel: 3, nextLevel: 6 };
+  } else if (totalMasteryPoints <= 11) {
+    return { prevLevel: 6, nextLevel: 11 };
+  } else if (totalMasteryPoints <= 17) {
+    return { prevLevel: 11, nextLevel: 17 };
+  } else if (totalMasteryPoints <= 24) {
+    return { prevLevel: 17, nextLevel: 24 };
+  } else if (totalMasteryPoints <= 32) {
+    return { prevLevel: 24, nextLevel: 32 };
+  } else if (totalMasteryPoints <= 48) {
+    return { prevLevel: 32, nextLevel: 48 };
+  }
 }
