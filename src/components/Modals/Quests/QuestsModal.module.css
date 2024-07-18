@@ -112,6 +112,11 @@
 
 }
 
+.quest-list .active-quest:hover {
+  transform: scale(1.03);
+  transition: 0.3s;
+  cursor: pointer;
+}
 
 .quest-list .quest h3 {
   font-size: 1.2rem;

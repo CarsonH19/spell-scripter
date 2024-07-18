@@ -14,6 +14,8 @@ import { checkStatusEffect } from "../../../store/status-effect-actions";
 import { checkSkillPoints } from "../../../util/spellbook-util";
 import statusEffectFunctions from "../../../util/status-effect-functions";
 
+import progressActiveQuests from "../../../util/quest-util";
+
 export default function RoomSummaryModal() {
   const dispatch = useDispatch();
   const event = useSelector((state) => state.dungeon.contents.event);
@@ -62,7 +64,7 @@ export default function RoomSummaryModal() {
       }
     }
 
-    // SKILL - Improved Arcane Shield
+    // SKILL - Improved Arcane Shield - Add minimum temp. hit points to shield
     const improvedArcaneShield = checkSkillPoints("Improved Arcane Shield");
     if (improvedArcaneShield) {
       const player = order.find((char) => char.id === "Player");
@@ -119,9 +121,9 @@ export default function RoomSummaryModal() {
                     title={item.name}
                   >
                     <li
-                      // style={{
-                      //   backgroundImage: `url(${item.icon})`,
-                      // }}
+                    // style={{
+                    //   backgroundImage: `url(${item.icon})`,
+                    // }}
                     ></li>
                   </Tooltip>
                 );

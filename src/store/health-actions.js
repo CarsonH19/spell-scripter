@@ -10,6 +10,7 @@ import CONDITIONS from "../data/conditions";
 
 import { checkSkillPoints } from "../util/spellbook-util";
 import statusEffectFunctions from "../util/status-effect-functions";
+import progressActiveQuests from "../util/quest-util";
 
 export function changeHealth(
   dispatch,
@@ -177,6 +178,9 @@ export function checkForDeath(dispatch, id) {
   }
 
   if (character.currentHealth <= 0 && character.identifier === "ENEMY") {
+    // Check for quest progression from defeating foes
+    progressActiveQuests("SLAY");
+
     // Check defeated enemy for loot & add them to dungeon-slice
     loot(dispatch, character);
   }
