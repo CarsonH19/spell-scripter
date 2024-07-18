@@ -150,7 +150,7 @@ function getRoomEvent() {
         //   events.push(TRAPS[i]);
         // }
         // events.push(COFFIN);
-        events.push(PATHS[0]); // Paths are random or added every 10 rooms
+        // events.push(PATHS[0]); 
         // events.push(BONEVAULT);
         // events.push(CANDLELIGHT_SHRINE);
       }
