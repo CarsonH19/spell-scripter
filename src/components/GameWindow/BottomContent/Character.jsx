@@ -166,7 +166,7 @@ export default function Character({ character }) {
       //   backgroundImage: `url(${character.icon})`,
       // }}
     >
-      <img src={character.image} alt={character.name} />
+      <img src={`${character.image}.png`} alt={character.name} />
       {showDamage && <p>{character.damageDisplay}</p>}{" "}
     </div>
   );

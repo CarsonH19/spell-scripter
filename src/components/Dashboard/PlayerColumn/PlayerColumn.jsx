@@ -54,7 +54,7 @@ export default function PlayerColumn() {
 
         <img
           className={classes["player-image"]}
-          src={`${player.image}`}
+          src={`${player.image}.png`}
           alt="Player Image"
         />
 

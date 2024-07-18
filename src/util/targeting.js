@@ -5,7 +5,7 @@ export default function setTargetType(targets) {
   console.log(`targetType = ${targetType}`);
 }
 
-// This global variable will be used to set which targets can be selected by the player. Set the targetType by passing the type through the getTarget() function
+// This global variable will be used to set which targets can be selected by the player. Set the targetType by passing the type through the getTartion
 
 // types:
 // // ENEMIES - all enemies

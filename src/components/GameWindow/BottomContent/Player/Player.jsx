@@ -101,7 +101,7 @@ export default function Player() {
           isHighlighted === player.id ? classes.highlighted : ""
         } ${isCharacterTurn === player.id ? classes.turn : ""}`}
         style={{
-          backgroundImage: `url(${player.icon})`,
+          backgroundImage: `url(${player.icon}.png)`,
         }}
       >
         {showDamage && <p>{player.damageDisplay}</p>}

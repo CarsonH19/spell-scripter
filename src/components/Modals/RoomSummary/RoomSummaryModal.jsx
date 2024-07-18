@@ -98,7 +98,7 @@ export default function RoomSummaryModal() {
                   >
                     <li
                       style={{
-                        backgroundImage: `url(${enemy.icon})`,
+                        backgroundImage: `url(${enemy.icon}.png)`,
                       }}
                     ></li>
                   </Tooltip>

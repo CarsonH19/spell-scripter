@@ -44,7 +44,7 @@
 
 .player .header .bar-info .percentage {
   position: absolute;
-  top: 48%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
 }
@@ -81,13 +81,12 @@
 
 .player-image {
   position: absolute;
-  top: 48%;
+  top: 46%;
   left: 50%;
   transform: translate(-50%, -50%);   
   max-width: 100%;
   max-height: 70vh;
   object-fit: contain;
-  clip-path: url("#Player"); 
   /* border: 5px solid red; */
   pointer-events: none;
   z-index: 0;

@@ -77,6 +77,9 @@ const passiveFunctions = {
 export default passiveFunctions;
 
 export function checkForPassiveAbility(dispatch, character, when, target) {
+  // Cancel if character is not in order
+  if (!character.id) return;
+
   // Checks if character is in the combat order
   const order = store.getState().combat.order;
   let isCharacterInParty = order.find((char) => char.id === character.id);

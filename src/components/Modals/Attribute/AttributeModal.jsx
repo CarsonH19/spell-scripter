@@ -34,7 +34,7 @@ export default function AttributeModal({ levelUp }) {
         <div>
           <img
             className={classes["player-image"]}
-            src={`${player.image}`}
+            src={`${player.image}.png`}
             alt="Player Image"
           />
           <div>

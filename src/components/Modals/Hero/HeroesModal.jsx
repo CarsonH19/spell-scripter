@@ -59,7 +59,7 @@ export default function HeroesModal() {
                   <Icon
                     key={hero.name}
                     style={{
-                      backgroundImage: `url(${hero.icon})`,
+                      backgroundImage: `url(${hero.icon}.png)`,
                       borderColor: isInParty
                         ? "var(--primary)"
                         : "var(--accent)",
@@ -73,7 +73,7 @@ export default function HeroesModal() {
               }
             })}
           </ul>
-          <img src={hoveredElement.image} alt={hoveredElement.name} />
+          <img src={`${hoveredElement.image}.png`} alt={hoveredElement.name} />
           <div className={classes.party}>
             <p>Selected Party Members</p>
             <ul>
@@ -82,7 +82,7 @@ export default function HeroesModal() {
                 <Icon
                   className={classes.chosen}
                   style={{
-                    backgroundImage: `url(${party[0].icon})`,
+                    backgroundImage: `url(${party[0].icon}.png)`,
                   }}
                   onMouseEnter={() => handleHoveredHero(party[0])}
                   onClick={() => handleChangeParty(party[0])}
@@ -93,7 +93,7 @@ export default function HeroesModal() {
                 <Icon
                   className={classes.chosen}
                   style={{
-                    backgroundImage: `url(${party[1].icon})`,
+                    backgroundImage: `url(${party[1].icon}.png)`,
                   }}
                   onMouseEnter={() => handleHoveredHero(party[1])}
                   onClick={() => handleChangeParty(party[1])}
@@ -104,7 +104,7 @@ export default function HeroesModal() {
                 <Icon
                   className={classes.chosen}
                   style={{
-                    backgroundImage: `url(${party[2].icon})`,
+                    backgroundImage: `url(${party[2].icon}.png)`,
                   }}
                   onMouseEnter={() => handleHoveredHero(party[2])}
                   onClick={() => handleChangeParty(party[2])}

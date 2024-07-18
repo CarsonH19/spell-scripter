@@ -100,7 +100,7 @@ export default function ConfirmationModal() {
           <ul>
             {characters.map((hero) => (
               <div key={hero.name}>
-                <img src={`${hero.image}`} alt={hero.name} />
+                <img src={`${hero.image}.png`} alt={hero.name} />
                 <p>{hero.name}</p>
               </div>
             ))}

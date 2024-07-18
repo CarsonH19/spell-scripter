@@ -29,7 +29,7 @@ const Icon = ({ character }) => {
         isCharacterTurn ? classes.turn : ""
       }`}
       style={{
-        backgroundImage: `url(${character.icon})`,
+        backgroundImage: `url(${character.icon}.png)`,
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

@@ -1,5 +1,6 @@
 import CONSUMABLES from "./consumables";
 import EQUIPMENT from "./equipment";
+import { getCharacterImage } from "../util/misc-util";
 
 const ENEMY_TYPES = {
   HOUND: "HOUND",
@@ -28,8 +29,12 @@ const UNDEAD = {
   DECREPIT_SKELETON: {
     name: "Decrepit Skeleton",
     identifier: "ENEMY",
-    image: "src/assets/images/enemies/decrepit-skeleton.png",
-    icon: "src/assets/images/enemies/decrepit-skeleton-icon.png",
+    get image() {
+      return "src/assets/images/enemies/decrepit-skeleton";
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 1,
@@ -58,8 +63,12 @@ const UNDEAD = {
   SKELETAL_WARRIOR: {
     name: "Skeletal Warrior",
     identifier: "ENEMY",
-    image: "src/assets/images/enemies/skeletal-warrior.png",
-    icon: "src/assets/images/enemies/skeletal-warrior-icon.png",
+    get image() {
+      return getCharacterImage("src/assets/images/enemies/skeletal-warrior", 3);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 2,
@@ -95,8 +104,12 @@ const UNDEAD = {
   SKELETAL_ARCHER: {
     name: "Skeletal Archer",
     identifier: "ENEMY",
-    image: "src/assets/images/enemies/skeletal-archer.png",
-    icon: "src/assets/images/enemies/skeletal-archer-icon.png",
+    get image() {
+      return getCharacterImage("src/assets/images/enemies/skeletal-archer", 3);
+    },
+    icon() {
+      return `${this.image}-icon`;
+    },
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 2,
@@ -134,8 +147,12 @@ const UNDEAD = {
   SKELETAL_MAGE: {
     name: "Skeletal Mage",
     identifier: "ENEMY",
-    image: "src/assets/images/enemies/skeletal-mage.png",
-    icon: "src/assets/images/enemies/skeletal-mage-icon.png",
+    get image() {
+      return getCharacterImage("src/assets/images/enemies/skeletal-mage", 3);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 2,
@@ -293,10 +310,15 @@ const UNDEAD = {
   // =====================================
   //             GHOSTS
   // =====================================
-  LOST_SOUL: {
-    name: "Lost Soul",
+  WANDERING_WISP: {
+    name: "Wandering Wisp",
     identifier: "ENEMY",
-    image: "",
+    get image() {
+      return getCharacterImage("src/assets/images/enemies/wandering-wisp", 3);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 1,
@@ -317,7 +339,12 @@ const UNDEAD = {
   SHADOW: {
     name: "Shadow",
     identifier: "ENEMY",
-    image: "",
+    get image() {
+      return getCharacterImage("src/assets/images/enemies/shadow", 2);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 2,
@@ -338,7 +365,12 @@ const UNDEAD = {
   BANSHEE: {
     name: "Banshee",
     identifier: "ENEMY",
-    image: "",
+    get image() {
+      return "src/assets/images/enemies/banshee";
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 3,

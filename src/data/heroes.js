@@ -1,11 +1,19 @@
+import { getCharacterImage } from "../util/misc-util";
+
 // PALADIN
 let siggurd = {
   name: "Siggurd",
   id: "Siggurd",
   unlocked: true,
   identifier: "HERO",
-  image: "src/assets/images/heroes/siggurd.png",
-  icon: "src/assets/images/heroes/siggurd-icon.png",
+  get image() {
+    const imageList = ["src/assets/images/heroes/siggurd"];
+    const index = Math.floor(Math.random() * imageList.length);
+    return imageList[index];
+  },
+  get icon() {
+    return `${this.image}-icon`;
+  },
   // audio: {},
   level: 7,
   currentHealth: 0,
@@ -49,8 +57,13 @@ let riven = {
   id: "Riven",
   unlocked: true,
   identifier: "HERO",
-  image: "src/assets/images/heroes/grave-robber.png",
-  icon: "src/assets/images/heroes/grave-robber-icon.png",
+  get image() {
+    const imageList = ["src/assets/images/heroes/grave-robber"];
+    const index = Math.floor(Math.random() * imageList.length);
+    return imageList[index];  },
+  get icon() {
+    return `${this.image}-icon`;
+  },
   // audio: {},
   level: 7,
   currentHealth: 0,
@@ -95,8 +108,13 @@ let liheth = {
   id: "Liheth",
   unlocked: true,
   identifier: "HERO",
-  image: "src/assets/images/heroes/liheth.png",
-  icon: "src/assets/images/heroes/liheth-icon.png",
+  get image() {
+    const imageList = ["src/assets/images/heroes/liheth"];
+    const index = Math.floor(Math.random() * imageList.length);
+    return imageList[index];  },
+  get icon() {
+    return `${this.image}-icon`;
+  },
   level: 7,
   currentHealth: 0,
   stats: {

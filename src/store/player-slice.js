@@ -8,11 +8,17 @@ const playerSlice = createSlice({
     name: "Carson",
     id: "Player",
     identifier: "PLAYER",
-    image: "src/assets/images/player/player-1.png",
-    icon: "src/assets/images/player/character1-icon.png",
+    get image() {
+      const imageList = ["src/assets/images/player/player-1"];
+      const index = Math.floor(Math.random() * imageList.length);
+      return imageList[index];
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     damageDisplay: "",
     level: 3,
-    masteryPoints: 1,
+    masteryPoints: 4,
     totalMasteryPoints: 4,
     attributePoints: 12,
     currentHealth: 75,

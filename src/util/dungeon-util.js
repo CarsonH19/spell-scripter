@@ -48,6 +48,9 @@ export function setDungeon(dispatch, dungeonName) {
   dispatch(dungeonActions.updateRoom(dungeon));
 }
 
+// =====================================================================
+//                          CREATE NEW ROOM
+// =====================================================================
 export function createNewRoom(dispatch) {
   const dungeon = store.getState().dungeon;
 
@@ -94,14 +97,17 @@ export function createNewRoom(dispatch) {
   dispatch(dungeonActions.updateRoom(newRoom));
 }
 
-// // Determine if room will contain an event or monsters.
+// =====================================================================
+//                            CONTENTS
+// =====================================================================
+
 function getRoomContent() {
   const dungeon = store.getState().dungeon;
   const pathCounter = store.getState().dungeon.pathCounter;
   const eventChance = Math.floor(Math.random() * 100);
 
   if (pathCounter <= 0 && pathCounter !== null) {
-    console.log(pathCounter)
+    console.log(pathCounter);
     return "EXIT PATH";
   }
 
@@ -113,7 +119,7 @@ function getRoomContent() {
           return "EXIT PATH";
         } else {
           // NOTE - Currently set to always enemies
-          return "ENEMIES"; 
+          return "ENEMIES";
         }
       }
 
@@ -125,6 +131,10 @@ function getRoomContent() {
       }
   }
 }
+
+// =====================================================================
+//                            EVENTS
+// =====================================================================
 
 function getRoomEvent() {
   const dungeon = store.getState().dungeon;
@@ -173,6 +183,10 @@ function checkHero(heroName) {
   }
 }
 
+// =====================================================================
+//                                ENEMIES
+// =====================================================================
+
 export function getRoomEnemies() {
   const dungeon = store.getState().dungeon;
   const threat = store.getState().dungeon.threat;
@@ -184,7 +198,7 @@ export function getRoomEnemies() {
     case "Wailing Warrens":
       {
         enemyTypes = [
-          { enemy: UNDEAD.LOST_SOUL, probability: 0.4 },
+          { enemy: UNDEAD.WANDERING_WISP, probability: 0.4 },
           { enemy: UNDEAD.SHADOW, probability: 0.4 },
           { enemy: UNDEAD.BANSHEE, probability: 0.2 },
         ];
@@ -279,8 +293,11 @@ function shuffle(array) {
 
 export function buildEnemy(enemy) {
   const baseStats = constructStats(enemy.stats);
+  const image = enemy.image; // Call the image getter once and store the result
   return {
     ...enemy,
+    image: image,
+    icon: `${image}-icon`,
     stats: baseStats,
     id: uuidv4(),
     damageDisplay: "",
@@ -311,6 +328,10 @@ export function constructStats(stats) {
   };
 }
 
+// =====================================================================
+//                                IMAGE
+// =====================================================================
+
 function getRoomImage(dungeon) {
   let imageList = [];
 
@@ -330,11 +351,8 @@ function getRoomImage(dungeon) {
       break;
   }
 
-  console.log(dungeon);
   // Check for path specific backgrounds (replaces dungeon imageList)
   if (dungeon.path) {
-    console.log(dungeon.path);
-
     switch (dungeon.path) {
       case "Wailing Warrens":
         {
@@ -380,24 +398,27 @@ function getRoomImage(dungeon) {
         ];
         break;
 
-        case "Wailing Warrens Exit":
-          imageList = [
-            "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-1.jpg",
-            "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-2.jpg",
-            "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-3.jpg",
-          ];
-          break;
+      case "Wailing Warrens Exit":
+        imageList = [
+          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-1.jpg",
+          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-2.jpg",
+          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-3.jpg",
+        ];
+        break;
 
       default:
         break;
     }
   }
 
-  console.log(imageList);
-
   const randomIndex = Math.floor(Math.random() * imageList.length);
   return imageList[randomIndex];
 }
+
+
+// =====================================================================
+//                                PATH
+// =====================================================================
 
 function getPathExit() {
   const path = store.getState().dungeon.path;
