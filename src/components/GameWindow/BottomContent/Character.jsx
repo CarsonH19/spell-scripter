@@ -26,6 +26,7 @@ export default function Character({ character }) {
 
   const [showDamage, setShowDamage] = useState(false);
 
+  // Update damage display
   useEffect(() => {
     // Show the damage number
     setShowDamage(true);
@@ -46,6 +47,11 @@ export default function Character({ character }) {
     // Clear timeout to prevent memory leaks
     return () => clearTimeout(timeoutId);
   }, [character.damageDisplay]);
+
+  // Handle level up
+  useEffect(() => {
+    updateStatTotals(dispatch, character.id);
+  }, [character.level]);
 
   const handleSetTarget = () => {
     if (

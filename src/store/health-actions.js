@@ -179,7 +179,7 @@ export function checkForDeath(dispatch, id) {
 
   if (character.currentHealth <= 0 && character.identifier === "ENEMY") {
     // Check for quest progression from defeating foes
-    progressActiveQuests("SLAY");
+    progressActiveQuests(dispatch, "SLAY");
 
     // Check defeated enemy for loot & add them to dungeon-slice
     loot(dispatch, character);

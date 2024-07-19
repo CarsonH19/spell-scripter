@@ -15,6 +15,7 @@ import {
 import store from "../store/index";
 
 import { v4 as uuidv4 } from "uuid";
+import { checkForActiveQuest } from "./quest-util";
 
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
@@ -150,7 +151,7 @@ function getRoomEvent() {
         //   events.push(TRAPS[i]);
         // }
         // events.push(COFFIN);
-        // events.push(PATHS[0]); 
+        events.push(PATHS[0]);
         // events.push(BONEVAULT);
         // events.push(CANDLELIGHT_SHRINE);
       }
@@ -197,13 +198,20 @@ export function getRoomEnemies() {
   switch (dungeon.path) {
     case "Wailing Warrens":
       {
-        enemyTypes = [
-          { enemy: UNDEAD.WANDERING_WISP, probability: 0.4 },
-          { enemy: UNDEAD.SHADOW, probability: 0.4 },
-          { enemy: UNDEAD.BANSHEE, probability: 0.2 },
-        ];
-
-        numberOfEnemies = 3;
+        // QUEST - Siggurd - 2
+        if (
+          checkForActiveQuest("Siggurd", "Wails of the Banshee") &&
+          dungeon.pathCounter === 1
+        ) {
+          enemyTypes = [{ enemy: UNDEAD.BANSHEE, probability: 1 }];
+          numberOfEnemies = 1;
+        } else {
+          enemyTypes = [
+            { enemy: UNDEAD.WANDERING_WISP, probability: 0.1 },
+            { enemy: UNDEAD.SHADOW, probability: 0.9 },
+          ];
+          numberOfEnemies = 3;
+        }
       }
       break;
 
@@ -414,7 +422,6 @@ function getRoomImage(dungeon) {
   const randomIndex = Math.floor(Math.random() * imageList.length);
   return imageList[randomIndex];
 }
-
 
 // =====================================================================
 //                                PATH

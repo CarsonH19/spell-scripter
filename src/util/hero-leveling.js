@@ -1,4 +1,6 @@
+import store from "../store/index";
 import heroes from "../data/heroes";
+import { combatActions } from "../store/combat-slice";
 
 export function unlockHero(name) {
   for (let i = 0; i < heroes.length; i++) {
@@ -10,30 +12,36 @@ export function unlockHero(name) {
   }
 }
 
-export function levelUpHero(name, map) {
+export function levelUpHero(dispatch, name, map) {
+  // Level up the hero in the combat order
+  dispatch(combatActions.levelUpHero(name));
+
+  // Level up the hero template object
   for (let i = 0; i < heroes.length; i++) {
     if (heroes[i].name === name) {
       heroes[i].level = map.level;
       heroes[i].stats.baseStrength = map.strength;
       heroes[i].stats.baseAgility = map.agility;
       heroes[i].stats.baseArcana = map.arcana;
+
+      console.log("HERO LEVEL UP", heroes[i]);
     }
   }
 }
 
 export const HERO_LEVELING_MAP = {
-  SIGGURD: {
+  siggurd: {
     // Level 1 - Strength 2 - Agility 0 - Arcana 1
-    TWO: { level: 2, strength: 3, agility: 0, arcana: 1 },
-    THREE: { level: 3, strength: 3, agility: 1, arcana: 1 },
-    FOUR: { level: 4, strength: 4, agility: 1, arcana: 1 },
-    FIVE: { level: 5, strength: 4, agility: 1, arcana: 2 },
-    SIX: { level: 6, strength: 5, agility: 1, arcana: 2 },
-    SEVEN: { level: 7, strength: 5, agility: 1, arcana: 3 },
-    EIGHT: { level: 8, strength: 6, agility: 1, arcana: 3 },
-    NINE: { level: 9, strength: 6, agility: 2, arcana: 3 },
+    2: { level: 2, strength: 3, agility: 0, arcana: 1 },
+    3: { level: 3, strength: 3, agility: 1, arcana: 1 },
+    4: { level: 4, strength: 4, agility: 1, arcana: 1 },
+    5: { level: 5, strength: 4, agility: 1, arcana: 2 },
+    6: { level: 6, strength: 5, agility: 1, arcana: 2 },
+    7: { level: 7, strength: 5, agility: 1, arcana: 3 },
+    8: { level: 8, strength: 6, agility: 1, arcana: 3 },
+    9: { level: 9, strength: 6, agility: 2, arcana: 3 },
   },
-  RIVEN: {
+  riven: {
     // Level 1 - Strength 1 - Agility 2 - Arcana 0
     TWO: { level: 2, strength: 1, agility: 3, arcana: 0 },
     THREE: { level: 3, strength: 1, agility: 4, arcana: 0 },
@@ -44,7 +52,7 @@ export const HERO_LEVELING_MAP = {
     EIGHT: { level: 8, strength: 2, agility: 8, arcana: 0 },
     NINE: { level: 9, strength: 3, agility: 8, arcana: 0 },
   },
-  LIHETH: {
+  liheth: {
     // Level 1 - Strength 0 - Agility 1 - Arcana 2
     TWO: { level: 2, strength: 0, agility: 1, arcana: 3 },
     THREE: { level: 3, strength: 1, agility: 1, arcana: 3 },

@@ -33,7 +33,7 @@ const dungeonSlice = createSlice({
       state.path = action.payload;
 
       if (action.payload !== null) {
-        const rooms = Math.floor(Math.random() * 12);
+        const rooms = Math.floor(Math.random() * 0) + 2;
         state.pathCounter = rooms;
       } else {
         state.pathCounter = null;

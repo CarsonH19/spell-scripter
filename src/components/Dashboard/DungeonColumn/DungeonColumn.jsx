@@ -1,15 +1,6 @@
 import classes from "./DungeonColumn.module.css";
-
-// following imports are only used for testing
-import { uiActions } from "../../../store/ui-slice";
-
 import { useDispatch, useSelector } from "react-redux";
-
 import { setDungeon } from "../../../util/dungeon-util";
-
-// TEST HERO LEVELING
-import { HERO_LEVELING_MAP } from "../../../util/hero-leveling";
-import { levelUpHero } from "../../../util/hero-leveling";
 import { openModal } from "../../../store/ui-actions";
 
 export default function DungeonColumn() {
@@ -17,9 +8,6 @@ export default function DungeonColumn() {
   const dungeon = useSelector((state) => state.dungeon);
 
   const handleEnter = () => {
-    //TEST HERO LEVELING
-    levelUpHero("Siggurd", HERO_LEVELING_MAP.SIGGURD.TWO);
-
     setDungeon(dispatch, "The Great Catacomb");
     openModal(dispatch, "confirmationModal");
   };

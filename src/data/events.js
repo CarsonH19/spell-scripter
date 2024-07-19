@@ -181,7 +181,7 @@ export const BONEVAULT = {
     },
     {
       text: ["Leave"],
-      function: "PATH",
+      function: "BONEVAULT",
       narration: "You decide to leave.",
     },
   ],

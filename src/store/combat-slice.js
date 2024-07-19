@@ -271,6 +271,13 @@ const combatSlice = createSlice({
           break;
       }
     },
+    levelUpHero(state, action) {
+      const hero = state.order.find(
+        (character) => character.name === action.payload
+      );
+
+      hero.level = hero.level + 1;
+    },
   },
 });
 

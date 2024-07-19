@@ -15,7 +15,7 @@ let siggurd = {
     return `${this.image}-icon`;
   },
   // audio: {},
-  level: 7,
+  level: 1,
   currentHealth: 0,
   stats: {
     baseStrength: 2,
@@ -65,7 +65,7 @@ let riven = {
     return `${this.image}-icon`;
   },
   // audio: {},
-  level: 7,
+  level: 1,
   currentHealth: 0,
   stats: {
     baseStrength: 1,

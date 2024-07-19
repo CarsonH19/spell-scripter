@@ -38,7 +38,7 @@ const playerSlice = createSlice({
         speed: 0,
         hitChance: 0,
       },
-      baseArcana: 0,
+      baseArcana: 99,
       arcana: {
         totalArcana: 0,
         spellPower: 0,

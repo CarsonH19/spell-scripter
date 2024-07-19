@@ -1,6 +1,9 @@
 import { useDispatch } from "react-redux";
+
 import { uiActions } from "../../../store/ui-slice";
 import { logActions } from "../../../store/log-slice";
+import { dungeonActions } from "../../../store/dungeon-slice";
+
 
 export default function SettingsModal() {
   const dispatch = useDispatch();

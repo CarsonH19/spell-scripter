@@ -117,7 +117,7 @@ const eventFunctions = {
     await delay(4000);
     openModal(dispatch, "roomSummaryModal");
   },
-  PATH_EXIT: async (dispatch) => {
+  PATH_EXIT: async (dispatch, choice) => {
     const path = store.getState().dungeon.path;
     if (choice === "Leave") {
       dispatch(dungeonActions.beginPath(null));
