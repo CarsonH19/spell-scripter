@@ -13,60 +13,63 @@ export default function Dialogue() {
   const [index, setIndex] = useState(0);
   const dialogue = useSelector((state) => state.dialogue);
   const activeDialogue = dialogue[dialogue.active];
-
-  console.log("active", dialogue.active);
-  console.log("activeDialogue", activeDialogue);
-
   const dispatch = useDispatch();
 
+  const position =
+    activeDialogue[index].position === "LEFT" ? classes.left : classes.right;
+
   const handleNextPage = () => {
+    console.log("CALLED");
+
     if (index < activeDialogue.length - 1) {
       setIndex((prevIndex) => prevIndex + 1);
     }
   };
 
   const handlePrevPage = () => {
+    console.log("CALLED");
+
     if (index > 0) {
       setIndex((prevIndex) => prevIndex - 1);
     }
   };
 
-  // const position = dialogue;
-
   const handleEndDialogue = () => {
-    endDialogue();
+    endDialogue(dispatch);
     dispatch(dialogueActions.clearDialogue());
   };
 
   return createPortal(
-    <div className={classes.dialogue}>
-      <div
-        className={classes.image}
-        style={{
-          backgroundImage: `url(${activeDialogue[index].image})`,
-        }}
-      ></div>
-      <div className={classes["dialogue-box"]}>
-        <h3>{activeDialogue[index].speaker}</h3>
-        <p>{activeDialogue[index].text}</p>
-        <div className={classes["box-buttons"]}>
-          <FontAwesomeIcon
-            icon={faAnglesLeft}
-            onClick={handlePrevPage}
-            className={classes.arrow}
-          />
+    <div className={`${classes.dialogue}`}>
+      <div className={position}>
+        <img
+          className={classes.image}
+          src={activeDialogue[index].image}
+          alt=""
+        />
+        <div className={classes["dialogue-box"]}>
+          <div className={classes.speaker}>
+            <h3>{activeDialogue[index].speaker}</h3>
+            <p>{activeDialogue[index].text}</p>
+          </div>
+          <div className={classes["box-buttons"]}>
+            <FontAwesomeIcon
+              icon={faAnglesLeft}
+              onClick={handlePrevPage}
+              className={classes.arrow}
+            />
 
-          <FontAwesomeIcon
-            icon={faAnglesRight}
-            onClick={
-              index >= activeDialogue.length - 1
-                ? handleNextPage
-                : handleEndDialogue
-            }
-            className={classes.arrow}
-          />
+            <FontAwesomeIcon
+              icon={faAnglesRight}
+              onClick={
+                index === activeDialogue.length - 1
+                  ? handleEndDialogue
+                  : handleNextPage
+              }
+              className={classes.arrow}
+            />
+          </div>
         </div>
-        ;
       </div>
     </div>,
     document.getElementById("dialogue")
