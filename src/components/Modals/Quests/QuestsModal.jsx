@@ -73,14 +73,15 @@ export default function QuestsModal() {
       {hoveredElement && (
         <div className={classes.content}>
           <div className={classes.hero}>
-            <h2>{hoveredElement.name}</h2>
+            <h3>{hoveredElement.name}</h3>
             <img
               src={`${hoveredElement.image}.png`}
               alt={hoveredElement.name}
             />
           </div>
           <HeroQuests
-            quest={activeQuests[index]}
+            index={index}
+            quests={activeQuests}
             onLeftClick={handlePrevPage}
             onRightClick={handleNextPage}
           />

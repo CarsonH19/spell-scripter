@@ -64,11 +64,14 @@
   /* height: 100%; */
 }
 
-.quest-modal .content .hero h2{ 
+.quest-modal .content .hero h3{ 
   text-align: center;
   align-self: center;
   width: 50%;
   border-bottom: 1px solid var(--text);
+  margin: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .quest-modal .content .hero img {
@@ -142,9 +145,16 @@
   cursor: pointer;
 } */
 
+.quest-list .quest .title {
+  border-bottom: 1px solid var(--text);
+
+}
+
 .quest-list .quest h3 {
   font-size: 1.2rem;
   font-weight: 600;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .quest-modal .no-quests {
