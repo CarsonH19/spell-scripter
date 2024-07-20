@@ -39,10 +39,11 @@ let selectResolver;
 
 export default async function combatLoop(dispatch) {
   // Check for dialogue before starting combat
-  const dialogue = store.getState().dialogue;
-  console.log(dialogue);
   await checkForDialogue(dispatch, "BEFORE");
-  console.log("CONTINUE");
+  // Clear Narrative
+  dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+  dispatch(logActions.updateLogs({ change: "CLEAR" }));
+
   // Iterate through all characters and call passive abilities before combat
   // NOTE: Passives will be called on each round of combat.
   let order = store.getState().combat.order;
@@ -387,7 +388,7 @@ function roll20(bonus = 0) {
 //                       END COMBAT
 // =============================================================
 
-function endCombat(dispatch) {
+async function endCombat(dispatch) {
   const order = store.getState().combat.order;
 
   const enemies = [];
@@ -398,6 +399,8 @@ function endCombat(dispatch) {
   }
 
   if (enemies.length <= 0) {
+    console.log("CALLED!!!")
+    await checkForDialogue(dispatch, "AFTER");
     openModal(dispatch, "roomSummaryModal");
     return true;
   }

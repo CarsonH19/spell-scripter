@@ -26,7 +26,25 @@ export const SIGGURD_DIALOGUE = {
         text: "I hope you can hold your own!",
       },
     ],
-    after: [],
+    after: [
+      {
+        position: "RIGHT",
+        speaker: "Siggurd",
+        image: "src/assets/images/dialogue/siggurd-dialogue.png",
+        text: "Judgement has been given.",
+      },
+      {
+        position: "RIGHT",
+        speaker: "Siggurd",
+        image: "src/assets/images/dialogue/siggurd-dialogue.png",
+        text: "You're very capable, we should stay together, its safer that way.",
+      },
+      {
+        position: "RIGHT",
+        speaker: "Siggurd",
+        image: "src/assets/images/dialogue/siggurd-dialogue.png",
+        text: "Lets go!",
+      },
+    ],
   },
 };
-

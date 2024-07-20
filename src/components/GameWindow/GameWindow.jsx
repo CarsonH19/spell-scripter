@@ -19,13 +19,6 @@ export default function GameWindow() {
     if (!room.contents.event) {
       startCombat(dispatch);
     } 
-
-    // If event call the event narrative and pause it
-    // if (room.contents.event) {
-    //   dispatch(logActions.updateLogs({ change: "PAUSE" }));
-    // }
-
-    // Dependency: Update when room counter increments
   }, [room.roomCounter]);
 
   return (

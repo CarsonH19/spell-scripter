@@ -1,19 +1,16 @@
 import { dialogueActions } from "../store/dialogue-slice";
+import { SIGGURD_DIALOGUE } from "../data/dialogue";
 import store from "../store/index";
 
 let dialogueResolver;
 
 export default async function checkForDialogue(dispatch, beforeOrAfter) {
   const dialogue = store.getState().dialogue;
-  const dungeon = store.getState().dungeon;
-
-  console.log(dialogue);
-  console.log(dialogue.before);
-  console.log(dungeon);
-
+  console.log("DIALOGUE", dialogue);
   switch (beforeOrAfter) {
     case "BEFORE":
       if (dialogue.before.length > 0) {
+        await delay(2000);
         dispatch(dialogueActions.startDialogue("before"));
         await awaitDialogue();
       }
@@ -21,6 +18,8 @@ export default async function checkForDialogue(dispatch, beforeOrAfter) {
 
     case "AFTER":
       if (dialogue.after.length > 0) {
+        console.log("WAITING");
+        await delay(2000);
         dispatch(dialogueActions.startDialogue("after"));
         await awaitDialogue();
       }
@@ -28,9 +27,9 @@ export default async function checkForDialogue(dispatch, beforeOrAfter) {
   }
 }
 
-// // =============================================================
-// //       Awaiting dialogue before starting combat or event
-// // =============================================================
+// =============================================================
+//       Awaiting dialogue before starting combat or event
+// =============================================================
 
 // // Used to await the end of a dialogue
 export async function awaitDialogue() {
@@ -46,4 +45,51 @@ export function endDialogue(dispatch) {
     dialogueResolver("CONTINUE");
     dialogueResolver = null;
   }
+}
+
+// =============================================================
+//           Add dialogue when a new room is created
+// =============================================================
+
+export function getRoomDialogue(dispatch, dungeon) {
+  // Use general dungeon dialogue
+  switch (dungeon.name) {
+    case "The Great Catacomb":
+      //
+      break;
+  }
+
+  // Check for path specific dialogue
+  if (dungeon.path) {
+    switch (dungeon.path) {
+      case "Wailing Warrens":
+        //
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  // Check for event specific dialogue
+  if (dungeon.contents.event) {
+    switch (dungeon.contents.event.name) {
+      case "Bonevault":
+        //
+        break;
+
+      case "Aiding Siggurd":
+        dispatch(dialogueActions.updateDialogue(SIGGURD_DIALOGUE.UNLOCK_EVENT));
+        break;
+
+      default:
+        break;
+    }
+  }
+  // Misc.
+  // Check for misc. dialogue
+}
+
+async function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

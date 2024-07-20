@@ -237,3 +237,12 @@ export const WAILING_WARRENS_EXIT = {
     },
   ],
 };
+
+export const UNLOCK_HERO = {
+  SIGGURD: {
+    name: "Aiding Siggurd",
+    type: "AUTO",
+    description: [""],
+    function: "UNLOCK_HERO_SIGGURD",
+  },
+};

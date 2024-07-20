@@ -36,7 +36,6 @@ export default function Dialogue() {
 
   const handleEndDialogue = () => {
     endDialogue(dispatch);
-    dispatch(dialogueActions.clearDialogue());
   };
 
   return createPortal(

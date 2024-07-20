@@ -1,10 +1,10 @@
 import { getCharacterImage } from "../util/misc-util";
 
 // PALADIN
-let siggurd = {
+export let siggurd = {
   name: "Siggurd",
   id: "Siggurd",
-  unlocked: true,
+  unlocked: false,
   identifier: "HERO",
   get image() {
     const imageList = ["src/assets/images/heroes/siggurd"];
@@ -52,10 +52,10 @@ let siggurd = {
 };
 
 // ROGUE
-let riven = {
+export let riven = {
   name: "Riven",
   id: "Riven",
-  unlocked: true,
+  unlocked: false,
   identifier: "HERO",
   get image() {
     const imageList = ["src/assets/images/heroes/grave-robber"];
@@ -103,10 +103,10 @@ let riven = {
 };
 
 // PRIESTESS
-let liheth = {
+export let liheth = {
   name: "Liheth",
   id: "Liheth",
-  unlocked: true,
+  unlocked: false,
   identifier: "HERO",
   get image() {
     const imageList = ["src/assets/images/heroes/liheth"];

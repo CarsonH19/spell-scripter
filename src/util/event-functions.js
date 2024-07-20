@@ -16,6 +16,12 @@ import { startCombat } from "../store/combat-actions";
 import { logActions } from "../store/log-slice";
 import { getRandomLoot } from "./loot";
 import activateItem from "../store/item-actions";
+import heroes from "../data/heroes";
+import { constructStats } from "./dungeon-util";
+import updateStatTotals from "../store/stats-actions";
+
+import { combatActions } from "../store/combat-slice";
+import { dialogueActions } from "../store/dialogue-slice";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 
@@ -237,6 +243,44 @@ const eventFunctions = {
       await delay(4000);
       openModal(dispatch, "roomSummaryModal");
     }
+  },
+  UNLOCK_HERO_SIGGURD: async (dispatch) => {
+    // Add enemies to dungeon
+    for (let i = 0; i < 4; i++) {
+      dispatch(
+        dungeonActions.addEnemy({
+          enemy: buildEnemy(UNDEAD.DECREPIT_SKELETON),
+          change: "ADD",
+        })
+      );
+    }
+
+    // Add Siggurd to party
+    const baseStats = constructStats(heroes[0].stats);
+    let siggurd = {
+      ...heroes[0],
+      stats: baseStats,
+      damageDisplay: "",
+    };
+
+    dispatch(combatActions.addCharacter({ character: siggurd }));
+    updateStatTotals(dispatch, siggurd.id);
+    dispatch(
+      combatActions.updateHealth({
+        id: siggurd.id,
+        change: "HEAL",
+        value: 999,
+      })
+    );
+
+    // Add Event Outcome
+    dispatch(
+      dungeonActions.eventOutcome({
+        outcome: `You found Siggurd, the paladin, while exploring The Great Catacomb and aided him in defeating a hoard of undead. You decide to fight together as you continue on.`,
+      })
+    );
+
+    startCombat(dispatch);
   },
 };
 

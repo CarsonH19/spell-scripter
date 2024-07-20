@@ -13,17 +13,21 @@ export default function EventOptions() {
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon);
   const isTrap = dungeon.contents.event.type === "TRAP";
-
-  useEffect(() => {
-    setOpen(true);
-  }, [dungeon.roomCounter]);
-
+  const isAuto = dungeon.contents.event.type === "AUTO";
   let eventOptions;
 
-  if (dungeon) {
-    eventOptions = dungeon.contents.event.options;
-  }
+  useEffect(() => {
+    if (!isAuto) {
+      setOpen(true);
+    } else {
+      // Call auto event function
+      const eventFunction = eventFunctions[dungeon.contents.event.function];
+      eventFunction(dispatch);
+      // eventOptions = [];
+    }
+  }, [dungeon.roomCounter]);
 
+  const narrative = useSelector((state) => state.log.narration);
   const handleClickEventOption = (dispatch, eventFunction, choice, option) => {
     setOpen(false);
 
@@ -35,10 +39,13 @@ export default function EventOptions() {
     eventFunction(dispatch, choice);
   };
 
-  return (
-    <div className={classes.events}>
-      {open &&
-        eventOptions.map((option) => {
+  let content;
+
+  if (!isAuto) {
+    eventOptions = dungeon.contents.event.options;
+    content = (
+      <>
+        {eventOptions.map((option) => {
           const eventFunction = eventFunctions[option.function];
           let choice;
           if (isTrap) {
@@ -51,12 +58,7 @@ export default function EventOptions() {
             <button
               key={option.text}
               onClick={() =>
-                handleClickEventOption(
-                  dispatch,
-                  eventFunction,
-                  choice,
-                  option
-                )
+                handleClickEventOption(dispatch, eventFunction, choice, option)
               }
             >
               {Array.isArray(option.text) ? (
@@ -71,6 +73,9 @@ export default function EventOptions() {
             </button>
           );
         })}
-    </div>
-  );
+      </>
+    );
+  }
+
+  return <div className={classes.events}>{open && content}</div>;
 }

@@ -10,16 +10,16 @@ import {
   BONEVAULT,
   CANDLELIGHT_SHRINE,
   WAILING_WARRENS_EXIT,
+  UNLOCK_HERO,
 } from "../data/events";
 
 import store from "../store/index";
 
 import { v4 as uuidv4 } from "uuid";
 import { checkForActiveQuest } from "./quest-util";
-import { dialogueActions } from "../store/dialogue-slice";
 
-// TEST
-import { SIGGURD_DIALOGUE } from "../data/dialogue";
+import { getRoomDialogue } from "./dialogue-util";
+import heroes from "../data/heroes";
 
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
@@ -76,10 +76,6 @@ export function createNewRoom(dispatch) {
     },
   };
 
-  // if (dungeon.roomCounter % 10) {
-  // // check threat
-  // // Get random path event
-  // } else {
   const roomContent = getRoomContent();
   switch (roomContent) {
     case "EVENT":
@@ -95,11 +91,10 @@ export function createNewRoom(dispatch) {
     case "EXIT PATH":
       newRoom.contents.event = getPathExit();
   }
-  // }
 
   // check for dialogue
   // TESTING DIALOGUE
-  dispatch(dialogueActions.updateDialogue(SIGGURD_DIALOGUE.UNLOCK_EVENT));
+  getRoomDialogue(dispatch, newRoom);
 
   // Get background after room contents have been determined
   newRoom.image = getRoomImage(newRoom);
@@ -114,10 +109,10 @@ function getRoomContent() {
   const dungeon = store.getState().dungeon;
   const pathCounter = store.getState().dungeon.pathCounter;
   const eventChance = Math.floor(Math.random() * 100);
+  let content;
 
   if (pathCounter <= 0 && pathCounter !== null) {
-    console.log(pathCounter);
-    return "EXIT PATH";
+    content = "EXIT PATH";
   }
 
   switch (dungeon.name) {
@@ -125,20 +120,22 @@ function getRoomContent() {
       if (dungeon.path === "Wailing Warrens") {
         if (pathCounter <= 0) {
           // End path if counter is 0
-          return "EXIT PATH";
+          content = "EXIT PATH";
         } else {
           // NOTE - Currently set to always enemies
-          return "ENEMIES";
+          content = "ENEMIES";
         }
       }
 
       // Event chance for dungeon is 50%
       if (eventChance > 50) {
-        return "EVENT";
+        content = "EVENT";
       } else {
-        return "ENEMIES";
+        content = "ENEMIES";
       }
   }
+
+  return content;
 }
 
 // =====================================================================
@@ -159,9 +156,14 @@ function getRoomEvent() {
         //   events.push(TRAPS[i]);
         // }
         // events.push(COFFIN);
-        events.push(PATHS[0]);
+        // events.push(PATHS[0]);
         // events.push(BONEVAULT);
         // events.push(CANDLELIGHT_SHRINE);
+
+        if (!heroes[0].unlocked) {
+          console.log("HEROEASDFF")
+          events.push(UNLOCK_HERO.SIGGURD);
+        }
       }
 
       // Add path specific events
