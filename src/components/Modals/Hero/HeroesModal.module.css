@@ -1,6 +1,7 @@
 .hero {
   height: 90%;
-  width: 90%;
+  width: 80%;
+  min-height: 42rem;
   background-color: var(--background);
   display: flex;
   flex-direction: column;
@@ -42,8 +43,9 @@
   margin-top: 2rem;
   width: 100%;
   height: 90%;
-  border: 1px solid var(--secondary);
+  /* border: 1px solid var(--secondary); */
   display: flex;
+  gap: 1rem;
 }
 
 .hero .container .left {
@@ -51,7 +53,7 @@
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: center;
-  width: 65%;
+  width: 50%;
   padding: 1rem;
 
 }
@@ -97,10 +99,12 @@
 }
 
 .hero .container .right {
-  width: 40%;
+  width: 50%;
   min-width: 30rem;
   height: 100%;
   border: 1px solid var(--secondary);
+  background-color: var(--primary);
+  border-radius: 10px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -172,31 +176,35 @@
   border: 1px solid var(--text);
 }
 
-.right .abilities {
+/* .right .abilities {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+  border-radius: 8px;
+} */
 
 .right .locked {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 8rem;
+  min-height: 7rem;
   width: 90%;
   border: 1px solid var(--secondary);
   padding: 0.5rem;
   background-color: var(--dark);
+  border-radius: 8px;
 }
 
 .right .unlocked {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 8rem;
+  min-height: 7rem;
   width: 90%;
   border: 1px solid var(--secondary);
+  background-color: var(--background);
+  border-radius: 8px;
   padding: 0.5rem;
 }
 

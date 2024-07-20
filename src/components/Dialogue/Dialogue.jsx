@@ -19,16 +19,12 @@ export default function Dialogue() {
     activeDialogue[index].position === "LEFT" ? classes.left : classes.right;
 
   const handleNextPage = () => {
-    console.log("CALLED");
-
     if (index < activeDialogue.length - 1) {
       setIndex((prevIndex) => prevIndex + 1);
     }
   };
 
   const handlePrevPage = () => {
-    console.log("CALLED");
-
     if (index > 0) {
       setIndex((prevIndex) => prevIndex - 1);
     }

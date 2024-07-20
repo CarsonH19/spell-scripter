@@ -6,27 +6,51 @@ import classes from "./QuestsModal.module.css";
 import Icon from "../../UI/Icon";
 import HeroQuests from "./HeroQuests";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function QuestsModal() {
+  const [index, setIndex] = useState(0);
+
   const hasHero = heroes.some((hero) => hero.unlocked);
   const [hoveredElement, setHoveredElement] = useState(
-    hasHero ? heroes[0] : ""
+    hasHero ? heroes[0] : null
   );
 
-  const lowercaseName = hoveredElement.name.toLowerCase();
-  const activeQuests = quests[lowercaseName];
-  console.log(activeQuests)
+  let lowercaseName;
+  let activeQuests;
+
+  if (hoveredElement) {
+    lowercaseName = hoveredElement.name.toLowerCase();
+    activeQuests = quests[lowercaseName];
+    activeQuests = activeQuests.filter((quest) => quest.unlocked).reverse();
+  }
+
+  // useEffect(() => {
+  //   console.log()
+  //   setIndex(activeQuests.length - 1);
+  // }, []);
 
   const handleHoveredHero = (hero) => {
     setHoveredElement(hero);
+  };
+
+  const handleNextPage = () => {
+    if (index < activeQuests.length - 1) {
+      setIndex((prevIndex) => prevIndex + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (index > 0) {
+      setIndex((prevIndex) => prevIndex - 1);
+    }
   };
 
   return (
     <div className={classes["quest-modal"]}>
       <h1>Quests</h1>
       <ul className={classes.heroes}>
-        {heroes.map((hero) => {
+        {heroes.map((hero, index) => {
           if (hero.unlocked) {
             return (
               <Icon
@@ -38,22 +62,34 @@ export default function QuestsModal() {
                 onMouseEnter={() => handleHoveredHero(hero)}
               />
             );
-          } else {
-            return <Icon className={classes.empty}></Icon>;
+          }
+
+          if (heroes.length === 0) {
+            return <Icon key={0} className={classes.empty}></Icon>;
           }
         })}
       </ul>
-      <div className={classes.content}>
-        <div className={classes.hero}>
-          <h2>{hoveredElement.name}</h2>
-          <img src={`${hoveredElement.image}.png`} alt={hoveredElement.name} />
+
+      {hoveredElement && (
+        <div className={classes.content}>
+          <div className={classes.hero}>
+            <h2>{hoveredElement.name}</h2>
+            <img
+              src={`${hoveredElement.image}.png`}
+              alt={hoveredElement.name}
+            />
+          </div>
+          <HeroQuests
+            quest={activeQuests[index]}
+            onLeftClick={handlePrevPage}
+            onRightClick={handleNextPage}
+          />
         </div>
-        {hoveredElement ? (
-          <HeroQuests quests={activeQuests} />
-        ) : (
-          <p>No quests available.</p>
-        )}
-      </div>
+      )}
+
+      {!hoveredElement && (
+        <p className={classes["no-quests"]}>No quests available.</p>
+      )}
     </div>
   );
 }
