@@ -29,22 +29,6 @@ export default function TomesModal({ tome }) {
     }
   };
 
-  // const handleSelectAnswer = (answer) => {
-  //   if (answer === tome.lesson[index].answer[0]) {
-  //   }
-  // };
-
-  // const handleComplete = () => {
-  //   // Finding the tome's index in the state slice array
-  //   for (let i = 0; i < tomes.length; i++) {
-  //     if (tomes[i].name === tome.name) {
-  //       dispatch(tomeActions.complete(i));
-  //     }
-  //   }
-
-  //   dispatch(uiActions.toggle({ modal: "modalIsVisible" })); // set to false
-  // };
-
   let pageContent;
 
   switch (tome.lesson[index].type) {

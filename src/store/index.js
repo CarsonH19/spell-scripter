@@ -9,6 +9,7 @@ import logSlice from "./log-slice";
 import tomeSlice from "./tome-slice";
 import questionSlice from "./question-slice";
 import spellbookSlice from "./spellbook-slice";
+import dialogueSlice from "./dialogue-slice";
 
 const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ const store = configureStore({
     tome: tomeSlice.reducer,
     question: questionSlice.reducer,
     spellbook: spellbookSlice.reducer,
+    dialogue: dialogueSlice.reducer,
   },
 });
 

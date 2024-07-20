@@ -16,6 +16,10 @@ import store from "../store/index";
 
 import { v4 as uuidv4 } from "uuid";
 import { checkForActiveQuest } from "./quest-util";
+import { dialogueActions } from "../store/dialogue-slice";
+
+// TEST
+import { SIGGURD_DIALOGUE } from "../data/dialogue";
 
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
@@ -92,6 +96,10 @@ export function createNewRoom(dispatch) {
       newRoom.contents.event = getPathExit();
   }
   // }
+
+  // check for dialogue
+  // TESTING DIALOGUE
+  dispatch(dialogueActions.updateDialogue(SIGGURD_DIALOGUE.UNLOCK_EVENT));
 
   // Get background after room contents have been determined
   newRoom.image = getRoomImage(newRoom);

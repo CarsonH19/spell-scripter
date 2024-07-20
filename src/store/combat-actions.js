@@ -31,12 +31,18 @@ import { openModal } from "./ui-actions.js";
 
 import updateStatTotals from "./stats-actions.js";
 import Character from "../components/GameWindow/BottomContent/Character.jsx";
+import checkForDialogue from "../util/dialogue-util.js";
 
 let playerActionResolver;
 let targetResolver;
 let selectResolver;
 
 export default async function combatLoop(dispatch) {
+  // Check for dialogue before starting combat
+  const dialogue = store.getState().dialogue;
+  console.log(dialogue);
+  await checkForDialogue(dispatch, "BEFORE");
+  console.log("CONTINUE");
   // Iterate through all characters and call passive abilities before combat
   // NOTE: Passives will be called on each round of combat.
   let order = store.getState().combat.order;
@@ -122,8 +128,7 @@ export default async function combatLoop(dispatch) {
                   await castSpell(dispatch, selectedSpell);
                 }
 
-                console.log("PASSED")                
-
+                console.log("PASSED");
               }
               break;
             case "ATTACK":

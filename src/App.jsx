@@ -3,6 +3,7 @@ import StartGame from "./components/StartGame/StartGame";
 import GameWindow from "./components/GameWindow/GameWindow";
 import Modal from "./components/Modals/Modal";
 import Narration from "./components/Narration/Narration";
+import Dialogue from "./components/Dialogue/Dialogue";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -10,9 +11,11 @@ function App() {
   const dashboard = useSelector((state) => state.ui.dashboardIsVisible);
   const game = useSelector((state) => state.ui.gameWindowIsVisible);
   const modal = useSelector((state) => state.ui.modalIsVisible);
+  const dialogue = useSelector((state) => state.dialogue);
 
   return (
     <>
+      {dialogue.active && <Dialogue />}
       <Narration />
       {modal && <Modal />}
       {start && <StartGame />}

@@ -1,0 +1,17 @@
+#dialogue {
+  background-color: rgba(0, 0, 0, 0.5); /* Black color with 50% opacity */
+}
+
+.dialogue {
+  position: fixed;
+  z-index: 10; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Black color with 50% opacity */
+  pointer-events: none;
+}
