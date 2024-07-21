@@ -37,7 +37,7 @@ export default function AttributeModal({ levelUp }) {
             src={`${player.image}.png`}
             alt="Player Image"
           />
-          <div>
+          <div className={classes["outer-container"]}>
             <Attributes />
           </div>
           <div className={classes.icons}>

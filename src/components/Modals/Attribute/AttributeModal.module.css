@@ -14,6 +14,7 @@
 }
 
 .cubes {
+  flex: 1;
   color: var(--accent);
   display: flex;
   justify-content: center;
@@ -32,11 +33,18 @@
   align-items: center;
 }
 
+.attribute-modal .outer-container {
+  background-color: var(--primary);
+  width: 33%;
+  height: 100%;
+  border-radius: 10px;
+}
+
 .attribute-modal h1 {
   text-align: center;
   font-size: 2rem;
   padding: 0rem;
-  margin: 0;
+  margin-bottom: 1rem;
   border-bottom: 2px solid var(--secondary);
   width: 30%;
 }
@@ -57,8 +65,14 @@ width: 33%;
   gap: 0.5rem;
   padding: 1rem;
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
+  background-color: var(--primary);
   }
+
+.attributes-container .header {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
   
   .attributes-info-icon {
     position: absolute;
@@ -73,19 +87,20 @@ width: 33%;
   }
 
   .attributes-container .stats {
+    flex: 2;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0rem;
     width: 100%;
   }
 
   .attributes-container .stats h4 {
-    width: 200%;
+    width: 10rem;
     font-weight: 600;
     text-align: center;
-    border-bottom: 1px solid var(--text)
+    border-bottom: 1px solid var(--text);
+    margin-top: 1rem;
   }
 
    .attributes-container .stats .attribute {

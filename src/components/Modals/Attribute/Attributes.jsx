@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function Attributes() {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
-  const inDungeon = useSelector((state) => state.ui.gameWindowIsVisible);
+  const isInventoryOpen = useSelector((state) => state.ui.modal.inventoryModal);
 
   const handleChangeAttribute = (change, attribute) => {
     dispatch(playerActions.changeAttributes({ change, attribute }));
@@ -29,11 +29,14 @@ export default function Attributes() {
   };
   return (
     <div className={classes["attributes-container"]}>
-      {inDungeon && <h4>Stats</h4>}
-      {!inDungeon && (
-        <div className={classes.cubes} style={{
-          color: player.attributePoints > 0 ? "var(--accent)" : "var(--text)"
-        }}>
+      {isInventoryOpen && <h4 className={classes.header}>Stats</h4>}
+      {!isInventoryOpen && (
+        <div
+          className={classes.cubes}
+          style={{
+            color: player.attributePoints > 0 ? "var(--accent)" : "var(--text)",
+          }}
+        >
           <FontAwesomeIcon icon={faCubes} />
 
           <h4>{player.attributePoints}</h4>
@@ -44,7 +47,7 @@ export default function Attributes() {
         <div className={classes.attribute}>
           <h4>Strength</h4>
           <div>
-            {!inDungeon && (
+            {!isInventoryOpen && (
               <FontAwesomeIcon
                 icon={faCaretLeft}
                 className={classes["arrow-icon"]}
@@ -53,7 +56,7 @@ export default function Attributes() {
             )}
             <p className={classes["points"]}>{player.stats.baseStrength}</p>
 
-            {!inDungeon && (
+            {!isInventoryOpen && (
               <FontAwesomeIcon
                 icon={faCaretRight}
                 className={classes["arrow-icon"]}
@@ -78,7 +81,7 @@ export default function Attributes() {
         <div className={classes.attribute}>
           <h4>Agility</h4>
           <div>
-            {!inDungeon && (
+            {!isInventoryOpen && (
               <FontAwesomeIcon
                 icon={faCaretLeft}
                 className={classes["arrow-icon"]}
@@ -88,7 +91,7 @@ export default function Attributes() {
 
             <p className={classes["points"]}>{player.stats.baseAgility}</p>
 
-            {!inDungeon && (
+            {!isInventoryOpen && (
               <FontAwesomeIcon
                 icon={faCaretRight}
                 className={classes["arrow-icon"]}
@@ -110,7 +113,7 @@ export default function Attributes() {
         <div className={classes.attribute}>
           <h4>Arcana</h4>
           <div>
-            {!inDungeon && (
+            {!isInventoryOpen && (
               <FontAwesomeIcon
                 icon={faCaretLeft}
                 className={classes["arrow-icon"]}
@@ -118,7 +121,7 @@ export default function Attributes() {
               />
             )}
             <p className={classes["points"]}>{player.stats.baseArcana}</p>
-            {!inDungeon && (
+            {!isInventoryOpen && (
               <FontAwesomeIcon
                 icon={faCaretRight}
                 className={classes["arrow-icon"]}

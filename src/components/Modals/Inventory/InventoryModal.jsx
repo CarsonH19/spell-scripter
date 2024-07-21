@@ -59,45 +59,47 @@ export default function InventoryModal() {
         </div>
         {/* <div className={classes.vertical}></div> */}
         <div className={classes.right}>
-          <div className={classes.buttons}>
-            <button
-              className={active === 1 ? classes.active : ""}
-              onClick={() => handleButtonClick(1)}
-            >
-              Equipment
-            </button>
-            <button
-              className={active === 2 ? classes.active : ""}
-              onClick={() => handleButtonClick(2)}
-            >
-              Consumables
-            </button>
-            <button
-              className={active === 3 ? classes.active : ""}
-              onClick={() => handleButtonClick(3)}
-            >
-              Quest Items
-            </button>
-          </div>
-          <ul className={classes.items}>
-            {counters.map((item) => (
-              <Tooltip
-                key={item.id}
-                // container="item-container"
-                position="item"
-                title={item.name}
-                text={item.rarity}
-                detailOne={item.description}
-                detailTwo={item.effect.map((line, index) => (
-                  <span key={index} className={classes["item-effect"]}>
-                    {line}
-                  </span>
-                ))}
+          <div className={classes.top}>
+            <div className={classes.buttons}>
+              <button
+                className={active === 1 ? classes.active : ""}
+                onClick={() => handleButtonClick(1)}
               >
-                <Item key={item.id} item={item} count={item.counter} />
-              </Tooltip>
-            ))}
-          </ul>
+                Equipment
+              </button>
+              <button
+                className={active === 2 ? classes.active : ""}
+                onClick={() => handleButtonClick(2)}
+              >
+                Consumables
+              </button>
+              <button
+                className={active === 3 ? classes.active : ""}
+                onClick={() => handleButtonClick(3)}
+              >
+                Quest Items
+              </button>
+            </div>
+            <ul className={classes.items}>
+              {counters.map((item) => (
+                <Tooltip
+                  key={item.id}
+                  // container="item-container"
+                  position="item"
+                  title={item.name}
+                  text={item.rarity}
+                  detailOne={item.description}
+                  detailTwo={item.effect.map((line, index) => (
+                    <span key={index} className={classes["item-effect"]}>
+                      {line}
+                    </span>
+                  ))}
+                >
+                  <Item key={item.id} item={item} count={item.counter} />
+                </Tooltip>
+              ))}
+            </ul>
+          </div>
 
           <div className={classes.attuned}>
             <h3>Attuned</h3>

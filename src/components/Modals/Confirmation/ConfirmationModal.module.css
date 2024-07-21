@@ -2,9 +2,10 @@
   position: relative;
   background-color: var(--background);
   height: 100%;
+  min-height: max-content;
   width: 100%;
-  min-width: 50rem;
   display: flex;
+  min-width: max-content;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
