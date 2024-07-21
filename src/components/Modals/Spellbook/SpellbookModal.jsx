@@ -9,6 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { spellbookActions } from "../../../store/spellbook-slice";
 import { playerActions } from "../../../store/player-slice";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+
 export default function SpellbookModal() {
   const [school, setSchool] = useState("evocation");
   const dispatch = useDispatch();
@@ -99,7 +102,17 @@ export default function SpellbookModal() {
             )}
           </ol>
           <div className={classes.header}>
-            <h3>Mastery Points: {player.masteryPoints}</h3>
+            <h3>Mastery Points</h3>
+            <div
+              className={classes.points}
+              style={{
+                color:
+                  player.masteryPoints > 0 ? "var(--accent)" : "var(--text)",
+              }}
+            >
+              <FontAwesomeIcon className={classes.change} icon={faBookOpen} />
+              <p>{player.masteryPoints}</p>
+            </div>
             <button onClick={() => handleResetButton(school)}>
               Reset School Mastery
             </button>

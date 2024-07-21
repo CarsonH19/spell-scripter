@@ -97,6 +97,14 @@
   align-items: center;
 }
 
+.spellbook .container .schools .header .points {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2rem;
+}
+
 .spellbook .container .header h3 {
   margin: 0;
   font-size: 1.2rem;
@@ -126,7 +134,7 @@
   align-items: center;
   width: 90%;
   gap: 0.2rem;
-  border: 2px solid var(--primary);
+  /* border: 2px solid var(--primary); */
   border-radius: 10px;
   background-color: var(--background);
 }
