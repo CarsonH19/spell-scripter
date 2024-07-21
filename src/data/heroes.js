@@ -4,7 +4,7 @@ import { getCharacterImage } from "../util/misc-util";
 export let siggurd = {
   name: "Siggurd",
   id: "Siggurd",
-  unlocked: true,
+  unlocked: false,
   identifier: "HERO",
   get image() {
     const imageList = ["src/assets/images/heroes/siggurd"];

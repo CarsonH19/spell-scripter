@@ -62,7 +62,7 @@
   gap: 1rem;
 }
 
-.summary ul li {
+.container ul li {
   width: 4rem;
   height: 4rem;
   border: 2px solid var(--secondary);

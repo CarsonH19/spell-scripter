@@ -129,9 +129,9 @@ export default function RoomSummaryModal() {
                     title={item.name}
                   >
                     <li
-                    // style={{
-                    //   backgroundImage: `url(${item.icon})`,
-                    // }}
+                      style={{
+                        backgroundImage: `url(${item.image})`,
+                      }}
                     ></li>
                   </Tooltip>
                 );

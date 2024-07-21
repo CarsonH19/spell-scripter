@@ -16,7 +16,9 @@ export default function HeroesModal() {
   const dispatch = useDispatch();
   const party = useSelector((state) => state.hero.party);
   const hasHero = heroes.some((hero) => hero.unlocked);
-  const [hoveredElement, setHoveredElement] = useState(hasHero ? heroes[0] : "");
+  const [hoveredElement, setHoveredElement] = useState(
+    hasHero ? heroes[0] : ""
+  );
 
   const handleHoveredHero = (hero) => {
     const baseStats = constructStats(hero.stats);
@@ -49,78 +51,81 @@ export default function HeroesModal() {
   return (
     <div className={classes.hero}>
       <h1>Heroes</h1>
-      <div className={classes.container}>
-        <div className={classes.left}>
-          <ul className={classes.heroes}>
-            {heroes.map((hero) => {
-              if (hero.unlocked) {
-                const isInParty = party.find((char) => char.id === hero.id);
-                return (
-                  <Icon
-                    key={hero.name}
-                    style={{
-                      backgroundImage: `url(${hero.icon}.png)`,
-                      borderColor: isInParty
-                        ? "var(--primary)"
-                        : "var(--accent)",
-                    }}
-                    alt={hero.name}
-                    className={isInParty ? classes.selected : ""}
-                    onMouseEnter={() => handleHoveredHero(hero)}
-                    onClick={() => handleChangeParty(hero)}
-                  />
-                );
-              }
-            })}
-          </ul>
-          <img src={`${hoveredElement.image}.png`} alt={hoveredElement.name} />
-          <div className={classes.party}>
-            <p>Selected Party Members</p>
-            <ul>
-              {/* PARTY MEMBER 1 */}
-              {(party[0] && (
-                <Icon
-                  className={classes.chosen}
-                  style={{
-                    backgroundImage: `url(${party[0].icon}.png)`,
-                  }}
-                  onMouseEnter={() => handleHoveredHero(party[0])}
-                  onClick={() => handleChangeParty(party[0])}
-                ></Icon>
-              )) || <Icon className={classes.empty}></Icon>}
-              {/* PARTY MEMBER 2 */}
-              {(party[1] && (
-                <Icon
-                  className={classes.chosen}
-                  style={{
-                    backgroundImage: `url(${party[1].icon}.png)`,
-                  }}
-                  onMouseEnter={() => handleHoveredHero(party[1])}
-                  onClick={() => handleChangeParty(party[1])}
-                ></Icon>
-              )) || <Icon className={classes.empty}></Icon>}
-              {/* PARTY MEMBER 3 */}
-              {(party[2] && (
-                <Icon
-                  className={classes.chosen}
-                  style={{
-                    backgroundImage: `url(${party[2].icon}.png)`,
-                  }}
-                  onMouseEnter={() => handleHoveredHero(party[2])}
-                  onClick={() => handleChangeParty(party[2])}
-                ></Icon>
-              )) || <Icon className={classes.empty}></Icon>}
+      {hasHero ? (
+        <div className={classes.container}>
+          <div className={classes.left}>
+            <ul className={classes.heroes}>
+              {heroes.map((hero) => {
+                if (hero.unlocked) {
+                  const isInParty = party.find((char) => char.id === hero.id);
+                  return (
+                    <Icon
+                      key={hero.name}
+                      style={{
+                        backgroundImage: `url(${hero.icon}.png)`,
+                        borderColor: isInParty
+                          ? "var(--primary)"
+                          : "var(--accent)",
+                      }}
+                      alt={hero.name}
+                      className={isInParty ? classes.selected : ""}
+                      onMouseEnter={() => handleHoveredHero(hero)}
+                      onClick={() => handleChangeParty(hero)}
+                    />
+                  );
+                }
+              })}
             </ul>
+            <img
+              src={`${hoveredElement.image}.png`}
+              alt={hoveredElement.name}
+            />
+            <div className={classes.party}>
+              <p>Selected Party Members</p>
+              <ul>
+                {/* PARTY MEMBER 1 */}
+                {(party[0] && (
+                  <Icon
+                    className={classes.chosen}
+                    style={{
+                      backgroundImage: `url(${party[0].icon}.png)`,
+                    }}
+                    onMouseEnter={() => handleHoveredHero(party[0])}
+                    onClick={() => handleChangeParty(party[0])}
+                  ></Icon>
+                )) || <Icon className={classes.empty}></Icon>}
+                {/* PARTY MEMBER 2 */}
+                {(party[1] && (
+                  <Icon
+                    className={classes.chosen}
+                    style={{
+                      backgroundImage: `url(${party[1].icon}.png)`,
+                    }}
+                    onMouseEnter={() => handleHoveredHero(party[1])}
+                    onClick={() => handleChangeParty(party[1])}
+                  ></Icon>
+                )) || <Icon className={classes.empty}></Icon>}
+                {/* PARTY MEMBER 3 */}
+                {(party[2] && (
+                  <Icon
+                    className={classes.chosen}
+                    style={{
+                      backgroundImage: `url(${party[2].icon}.png)`,
+                    }}
+                    onMouseEnter={() => handleHoveredHero(party[2])}
+                    onClick={() => handleChangeParty(party[2])}
+                  ></Icon>
+                )) || <Icon className={classes.empty}></Icon>}
+              </ul>
+            </div>
+          </div>
+          <div className={classes.right}>
+            <HeroStats hero={hoveredElement} />
           </div>
         </div>
-        <div className={classes.right}>
-          {hoveredElement ? (
-            <HeroStats hero={hoveredElement} />
-          ) : (
-            <p>No heroes available.</p>
-          )}
-        </div>
-      </div>
+      ) : (
+        <p className={classes["no-heroes"]}>No heroes available.</p>
+      )}
     </div>
   );
 }

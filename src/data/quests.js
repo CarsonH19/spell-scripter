@@ -9,7 +9,7 @@ const quests = {
       text: `"The undead have defiled these sacred halls for too long. We must purge this place of their evil. Help me cleanse the catacombs."`,
       description: "Defeat 30 undead enemies.",
       progress: 0,
-      completion: 2,
+      completion: 30,
       finished: false,
       reward: "Siggurd Level 2",
     },
