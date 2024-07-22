@@ -213,8 +213,6 @@ export default async function castSpell(dispatch, spell) {
     default:
       return;
   }
-
-  console.log("CAST SPELL END");
 }
 
 // =============================================================
@@ -248,7 +246,6 @@ function castChainLightning(dispatch, target, damage) {
       if (remainingEnemies.length === 0) {
         chain = false;
       } else {
-        console.log("CHAIN");
         // Select a new target randomly from the remaining enemies
         const newTarget =
           remainingEnemies[Math.floor(Math.random() * remainingEnemies.length)];

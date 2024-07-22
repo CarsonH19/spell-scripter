@@ -64,7 +64,6 @@ export default async function combatLoop(dispatch) {
     const player = order[playerIndex];
 
     const enemies = [];
-    console.log(enemies);
     for (let i = 0; i < order.length; i++) {
       if (order[i].identifier === "ENEMY") {
         enemies.push(order[i]);

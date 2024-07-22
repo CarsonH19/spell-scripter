@@ -18,7 +18,6 @@ export default async function checkForDialogue(dispatch, beforeOrAfter) {
 
     case "AFTER":
       if (dialogue.after.length > 0) {
-        console.log("WAITING");
         await delay(2000);
         dispatch(dialogueActions.startDialogue("after"));
         await awaitDialogue();

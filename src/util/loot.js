@@ -36,7 +36,6 @@ export function getRandomLoot(dispatch) {
   const dungeon = store.getState().dungeon;
   let lootTable = [];
 
-  console.log("HELLO");
   // Check Threat
   if (dungeon.threat > 60) {
     // Add items
@@ -129,12 +128,12 @@ function calculateLoot(lootTable) {
 
   for (const lootEntry of shuffledLootTable) {
     totalProbability += lootEntry.probability;
-    console.log("NUMBER", randomNumber);
-    console.log("PROBABILITY", totalProbability);
+    // console.log("NUMBER", randomNumber);
+    // console.log("PROBABILITY", totalProbability);
     if (randomNumber < totalProbability) {
       if (lootEntry.item) {
-        console.log("LOOT TABLE", shuffledLootTable);
-        console.log("LOOT", lootEntry.item);
+        // console.log("LOOT TABLE", shuffledLootTable);
+        // console.log("LOOT", lootEntry.item);
 
         return { ...lootEntry.item, id: uuidv4() };
       }

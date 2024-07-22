@@ -6,5 +6,4 @@ export function openModal(dispatch, modal) {
   dispatch(uiActions.openModal({ modal, open: true }));
 
   const ui = store.getState().ui;
-  console.log(ui);
 }

@@ -13,12 +13,9 @@ export function checkForHeroUnlock() {
         break;
     }
 
-    console.log(heroName);
-
     for (let i = 0; i < heroes.length; i++) {
       if (heroes[i].name === heroName) {
         heroes[i].unlocked = true;
-        console.log("UNLOCKED");
       }
     }
   }

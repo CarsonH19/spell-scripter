@@ -24,8 +24,6 @@ export default function PlayerColumn() {
     openModal(dispatch, modal);
   };
 
-  console.log(prevLevel - player.totalMasteryPoints);
-
   return (
     <div className={classes.column}>
       <div className={classes.player}>

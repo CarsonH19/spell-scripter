@@ -21,7 +21,6 @@ export default function progressActiveQuests(dispatch, questType) {
         const activeQuest = quests.siggurd.find(
           (quest) => quest.unlocked && !quest.finished
         );
-        console.log("ACTIVE QUEST", activeQuest);
         siggurdQuests(dispatch, siggurd, activeQuest);
       }
     }
@@ -41,7 +40,6 @@ function siggurdQuests(dispatch, siggurdObject, activeQuest) {
           (enemy) => enemy.type === "UNDEAD" && enemy.currentHealth <= 0
         );
 
-        console.log(undead);
         if (undead) {
           activeQuest.progress++;
         }
@@ -78,7 +76,6 @@ function checkQuestCompletion(dispatch, giver, heroObject, activeQuest) {
     if (heroObject.level < 9) {
       const heroToLevel = HERO_LEVELING_MAP[giver];
       const levelUp = heroToLevel[heroObject.level + 1];
-      console.log("LEVEL", levelUp);
       levelUpHero(dispatch, heroObject.name, levelUp);
     }
 

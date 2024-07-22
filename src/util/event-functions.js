@@ -104,7 +104,6 @@ const eventFunctions = {
   PATH_ENTRANCE: async (dispatch, choice) => {
     const path = store.getState().dungeon.contents.event.name;
     if (choice === "Enter") {
-      console.log("ENTERED PATH", path);
       dispatch(dungeonActions.beginPath(path));
       dispatch(
         dungeonActions.eventOutcome({ outcome: `You entered the ${path}.` })
@@ -253,7 +252,6 @@ const eventFunctions = {
       for (let i = 0; i < order.length; i++) {
         const halfHealth = order[i].stats.strength.maxHealth;
         const value = Math.round(halfHealth / 2);
-        console.log(value);
         changeHealth(dispatch, order[i], "HEAL", value);
       }
 
@@ -302,7 +300,7 @@ const eventFunctions = {
         outcome: `You found Siggurd, the paladin, while exploring The Great Catacomb and aided him in defeating a hoard of undead. You decide to fight together as you continue on.`,
       })
     );
-
+    console.log("START COMBAT");
     startCombat(dispatch);
   },
 };

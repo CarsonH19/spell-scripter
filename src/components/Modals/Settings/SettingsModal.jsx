@@ -25,7 +25,6 @@ export default function SettingsModal() {
     // Clear any lingering narrations
     dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
     dispatch(logActions.updateLogs({ change: "CLEAR" }));
-    console.log("CLEAR")
 
     // Toggle off danger
     dispatch(dungeonActions.dangerToggle({ danger: false }));

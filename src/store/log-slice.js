@@ -23,24 +23,20 @@ const logSlice = createSlice({
 
         case "REMOVE":
           if (!state.paused) {
-            console.log("PAUSED?", state.paused);
             state.narration.shift();
           }
           break;
 
         case "PAUSE":
           state.paused = true;
-          console.log(state.paused);
 
           break;
 
         case "UNPAUSE":
-          console.log("UNPAUSE");
           state.paused = false;
           break;
 
         case "CLEAR":
-          console.log("CLEAR");
           state.narration = [];
       }
     },
