@@ -51,6 +51,41 @@ export default function StartGame() {
 
     dispatch(
       playerActions.changeInventory({
+        item: { ...CONSUMABLES.SOOTHING_CANDLE, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.CALMING_CANDLE, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.FLICKERING_CANDLE, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.BLAZING_CANDLE, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.INVOKING_CANDLE, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
         item: { ...EQUIPMENT.PLAGUEBORN_HANDWRAPS, id: uuidv4() },
         change: "ADD",
       })

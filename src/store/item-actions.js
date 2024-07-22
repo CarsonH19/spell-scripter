@@ -65,7 +65,10 @@ export default async function activateItem(dispatch, item) {
         // Add items that can only be used in specific situations
         if (
           item.name !== "Skeleton Key" &&
-          item.name !== "Laughing Coffin Coin"
+          item.name !== "Laughing Coffin Coin" &&
+          item.name !== "Magic Rope" &&
+          item.name !== "Trap Disarming Kit" &&
+          item.name !== "Smoke Bomb"
         ) {
           if (itemFunction) {
             itemFunction(dispatch, player);
