@@ -32,7 +32,26 @@ const quests = {
     {},
     {},
   ],
-  liheth: [],
+  liheth: [
+    {
+      questNumber: 0,
+      unlocked: true,
+      name: "Hidden Shrines",
+      text: `"I must fulfill my duties as one of the last Candlelight Priestesses, and restore the other Candlelight Shrines throughout the catacomb. Please, help me navigate through the darkness of the catacomb so I can find them."`,
+      description: "Discover 3 Candlelight Shrines.",
+      progress: 0,
+      completion: 3,
+      finished: false,
+      reward: "Liheth Level 2",
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+  ],
   riven: [],
 };
 

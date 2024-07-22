@@ -13,7 +13,6 @@ import { useEffect } from "react";
 import { changeHealth } from "../../../store/health-actions";
 import { checkStatusEffect } from "../../../store/status-effect-actions";
 import { checkSkillPoints } from "../../../util/spellbook-util";
-import { checkForHeroUnlock } from "../../../util/hero-leveling";
 import statusEffectFunctions from "../../../util/status-effect-functions";
 
 import progressActiveQuests from "../../../util/quest-util";
@@ -26,9 +25,6 @@ export default function RoomSummaryModal() {
   const order = useSelector((state) => state.combat.order);
 
   useEffect(() => {
-    // Check for hero unlock
-    checkForHeroUnlock();
-
     // Clear dialogue
     dispatch(dialogueActions.clearDialogue());
 

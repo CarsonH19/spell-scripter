@@ -39,7 +39,12 @@ let selectResolver;
 
 export default async function combatLoop(dispatch) {
   // Check for dialogue before starting combat
+  console.log("PASSED");
+
   await checkForDialogue(dispatch, "BEFORE");
+
+  console.log("GO");
+
   // Clear Narrative
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
@@ -398,7 +403,7 @@ async function endCombat(dispatch) {
   }
 
   if (enemies.length <= 0) {
-    console.log("CALLED!!!")
+    console.log("CALLED!!!");
     await checkForDialogue(dispatch, "AFTER");
     openModal(dispatch, "roomSummaryModal");
     return true;
@@ -417,6 +422,8 @@ export function startCombat(dispatch) {
   const currentOrder = store.getState().combat.order;
   const characters = [...room.contents.enemies, ...currentOrder];
   dispatch(combatActions.setInitiative({ characters }));
+
+  console.log("HELLO");
   for (let i = 0; i < characters.length; i++) {
     updateStatTotals(dispatch, characters[i].id);
 

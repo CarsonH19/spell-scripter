@@ -2,24 +2,24 @@ import store from "../store/index";
 import heroes from "../data/heroes";
 import { combatActions } from "../store/combat-slice";
 
-export function checkForHeroUnlock() {
-  const event = store.getState().dungeon.contents.event;
-  let heroName;
+export function unlockHero(name) {
+  // const event = store.getState().dungeon.contents.event;
+  // let heroName;
 
-  if (event) {
-    switch (event.name) {
-      case "Aiding Siggurd":
-        heroName = "Siggurd";
-        break;
-    }
+  // if (event) {
+  //   switch (event.name) {
+  //     case "Aiding Siggurd":
+  //       heroName = "Siggurd";
+  //       break;
+  //   }
 
-    for (let i = 0; i < heroes.length; i++) {
-      if (heroes[i].name === heroName) {
-        heroes[i].unlocked = true;
-      }
+  for (let i = 0; i < heroes.length; i++) {
+    if (heroes[i].name === name) {
+      heroes[i].unlocked = true;
     }
   }
 }
+// }
 
 export function levelUpHero(dispatch, name, map) {
   // Level up the hero in the combat order

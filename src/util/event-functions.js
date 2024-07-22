@@ -23,6 +23,7 @@ import updateStatTotals from "../store/stats-actions";
 import { combatActions } from "../store/combat-slice";
 import { dialogueActions } from "../store/dialogue-slice";
 import checkForDialogue from "./dialogue-util";
+import { unlockHero } from "./hero-leveling";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 
@@ -225,10 +226,10 @@ const eventFunctions = {
   },
   CANDLELIGHT_SHRINE: async (dispatch, choice) => {
     if (!heroes[1].unlocked) {
-      // Add Siggurd to party
+      // Add Liheth to party
       const baseStats = constructStats(heroes[1].stats);
       let liheth = {
-        ...heroes[0],
+        ...heroes[1],
         stats: baseStats,
         damageDisplay: "",
       };
@@ -242,7 +243,11 @@ const eventFunctions = {
           value: 999,
         })
       );
+
+      unlockHero("Liheth");
     }
+
+    // await checkForDialogue(dispatch, "BEFORE");
 
     if (choice === "Rest") {
       const order = store.getState().combat.order;
@@ -258,9 +263,16 @@ const eventFunctions = {
       // Get random candle
       getRandomLoot(dispatch);
 
+      // Add Event Outcome
+    dispatch(
+      dungeonActions.eventOutcome({
+        outcome: `You found Liheth, the Candlelight Priestess, while exploring The Great Catacomb. She spoke to you of her duties to restore the hidden Candlelight Shrines throughout the catacomb. You decided to lead her through the catacomb in search of these shrines.`,
+      })
+    );
+
       dispatch(dungeonActions.eventOutcome({ outcome: `You chose to rest.` }));
       await delay(4000);
-      await checkForDialogue(dispatch, "BEFORE");
+      await checkForDialogue(dispatch, "AFTER");
       await delay(2000);
       openModal(dispatch, "roomSummaryModal");
     }
@@ -284,6 +296,8 @@ const eventFunctions = {
       damageDisplay: "",
     };
 
+    unlockHero("Siggurd");
+
     dispatch(combatActions.addCharacter({ character: siggurd }));
     updateStatTotals(dispatch, siggurd.id);
     dispatch(
@@ -300,7 +314,7 @@ const eventFunctions = {
         outcome: `You found Siggurd, the paladin, while exploring The Great Catacomb and aided him in defeating a hoard of undead. You decide to fight together as you continue on.`,
       })
     );
-    console.log("START COMBAT");
+
     startCombat(dispatch);
   },
 };

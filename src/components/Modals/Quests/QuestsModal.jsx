@@ -11,9 +11,9 @@ import { useEffect, useState } from "react";
 export default function QuestsModal() {
   const [index, setIndex] = useState(0);
 
-  const hasHero = heroes.some((hero) => hero.unlocked);
+  const hasHero = heroes.find((hero) => hero.unlocked);
   const [hoveredElement, setHoveredElement] = useState(
-    hasHero ? heroes[0] : null
+    hasHero ? hasHero : null
   );
 
   let lowercaseName;

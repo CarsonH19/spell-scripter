@@ -119,7 +119,7 @@ function getRoomContent() {
       }
 
       // Event chance for dungeon is 20%
-      if (eventChance > 50) {
+      if (eventChance > 0) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
