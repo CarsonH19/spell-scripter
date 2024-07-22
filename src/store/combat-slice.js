@@ -278,6 +278,91 @@ const combatSlice = createSlice({
 
       hero.level = hero.level + 1;
     },
+    changePlayerInventory(state, action) {
+      const item = action.payload.item;
+      const change = action.payload.change;
+      const id = item.id;
+
+      const player = state.order.find((char) => char.id === "Player");
+
+      switch (change) {
+        case "ADD":
+          {
+            if (item.type === "EQUIPMENT") {
+              player.inventory.equipment.push(item);
+            } else if (item.type === "CONSUMABLE") {
+              player.inventory.consumables.push(item);
+            } else if (item.type === "QUEST ITEM") {
+              player.inventory.questItems.push(item);
+            }
+          }
+          break;
+
+        case "REMOVE":
+          {
+            let itemGroup;
+            if (item.type === "EQUIPMENT") {
+              itemGroup = player.inventory.equipment;
+            } else if (item.type === "CONSUMABLE") {
+              itemGroup = player.inventory.consumables;
+            } else if (item.type === "QUEST ITEM") {
+              itemGroup = player.inventory.questItems;
+            }
+
+            const itemIndex = itemGroup.findIndex((i) => i.id === id);
+            if (itemIndex !== -1) {
+              itemGroup.splice(itemIndex, 1);
+            }
+          }
+          break;
+      }
+    },
+    changePlayerAttunement(state, action) {
+      const item = action.payload.item;
+      const change = action.payload.change;
+      const id = item.id;
+
+      const player = state.order.find((char) => char.id === "Player");
+
+      switch (change) {
+        case "ADD": // Attune
+          {
+            if (
+              item.type === "EQUIPMENT" &&
+              player.inventory.attunedItems.length < 5
+            ) {
+              // Add to attunedItems
+              player.inventory.attunedItems.push(item);
+
+              // Remove from attuned items
+              const itemIndex = player.inventory.equipment.findIndex(
+                (i) => i.id === id
+              );
+
+              if (itemIndex !== -1) {
+                player.inventory.equipment.splice(itemIndex, 1);
+              }
+            }
+          }
+          break;
+
+        case "REMOVE": // Remove Attunement
+          {
+            // Remove from attuned items
+            const itemIndex = player.inventory.attunedItems.findIndex(
+              (i) => i.id === id
+            );
+
+            if (itemIndex !== -1) {
+              player.inventory.attunedItems.splice(itemIndex, 1);
+            }
+
+            // Add to equipment
+            player.inventory.equipment.push(item);
+          }
+          break;
+      }
+    },
   },
 });
 

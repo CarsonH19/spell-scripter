@@ -1,5 +1,7 @@
 import classes from "./AttributeModal.module.css";
 
+import store from "../../../store/index";
+
 import { uiActions } from "../../../store/ui-slice";
 import Tooltip from "../../UI/Tooltip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,8 +22,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function Attributes() {
   const dispatch = useDispatch();
-  const player = useSelector((state) => state.player);
+  let player;
   const isInventoryOpen = useSelector((state) => state.ui.modal.inventoryModal);
+  const dashboard = store.getState().ui.dashboardIsVisible;
+
+  if (!dashboard) {
+    const order = store.getState().combat.order;
+    player = order.find((char) => char.id === "Player");
+  } else {
+    player = useSelector((state) => state.player);
+  }
 
   const handleChangeAttribute = (change, attribute) => {
     dispatch(playerActions.changeAttributes({ change, attribute }));

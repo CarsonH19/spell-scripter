@@ -11,11 +11,10 @@ export default function progressActiveQuests(dispatch, questType) {
   const order = store.getState().combat.order;
 
   switch (questType) {
-    // checkForDeath to check which enemies were defeated
+    // called in checkForDeath to check which enemies were defeated
     case "SLAY": {
       // Siggurd
       const siggurd = order.find((character) => character.id === "Siggurd");
-
       if (siggurd) {
         // Find the current active quest
         const activeQuest = quests.siggurd.find(
@@ -24,11 +23,57 @@ export default function progressActiveQuests(dispatch, questType) {
         siggurdQuests(dispatch, siggurd, activeQuest);
       }
     }
+
+    case "EVENT":
+      {
+        // Liheth - called in Candlelight Shrine event function
+        const liheth = order.find((character) => character.id === "Liheth");
+        if (liheth) {
+          // Find the current active quest
+          const activeQuest = quests.liheth.find(
+            (quest) => quest.unlocked && !quest.finished
+          );
+          lihethQuests(dispatch, liheth, activeQuest);
+        }
+      }
+      break;
   }
 }
 
 // Call these separate functions for specific heroes so you can use another nested switch statement to check the logic for each quest individually in order.
+// ============================================================
+//                         LIHETH
+// ============================================================
 
+function lihethQuests(dispatch, lihethObject, activeQuest) {
+  const event = store.getState().dungeon.contents.event;
+
+  switch (activeQuest.questNumber) {
+    // Lvl 1 -> Lvl 2 : Defeat 30 undead enemies
+    case 0:
+      {
+        if (event.name === "Candlelight Shrine") {
+          activeQuest.progress++;
+        }
+      }
+      break;
+
+    // Lvl 2 -> Lvl 3 : Defeat the banshee
+    case 1:
+      {
+      }
+      break;
+
+    default:
+      return;
+  }
+
+  checkQuestCompletion(dispatch, "liheth", lihethObject, activeQuest);
+}
+
+// ============================================================
+//                         SIGGURD
+// ============================================================
 function siggurdQuests(dispatch, siggurdObject, activeQuest) {
   const order = store.getState().combat.order;
 

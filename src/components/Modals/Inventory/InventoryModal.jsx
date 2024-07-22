@@ -13,11 +13,16 @@ import updateStatTotals from "../../../store/stats-actions";
 export default function InventoryModal() {
   const [active, setActive] = useState(1);
   const dispatch = useDispatch();
-  const player = useSelector((state) => state.player);
+  const order = useSelector((state) => state.combat.order);
+  const inDungeon = useSelector((state) => state.ui.gameWindowIsVisible);
 
-  useEffect(() => {
-    updateStatTotals(dispatch, player.id);
-  }, [player.inventory]);
+  let player;
+  if (inDungeon) {
+    console.log("inDungeon");
+    player = order.find((char) => char.id === "Player");
+  } else {
+    player = useSelector((state) => state.player);
+  }
 
   const handleButtonClick = (index) => {
     setActive(index);
@@ -55,9 +60,7 @@ export default function InventoryModal() {
       <div className={classes.container}>
         <div className={classes.left}>
           <Attributes />
-          {/* <Stats /> */}
         </div>
-        {/* <div className={classes.vertical}></div> */}
         <div className={classes.right}>
           <div className={classes.top}>
             <div className={classes.buttons}>
@@ -84,7 +87,6 @@ export default function InventoryModal() {
               {counters.map((item) => (
                 <Tooltip
                   key={item.id}
-                  // container="item-container"
                   position="item"
                   title={item.name}
                   text={item.rarity}
