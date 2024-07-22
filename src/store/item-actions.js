@@ -4,24 +4,25 @@ import { playerActions } from "./player-slice";
 import { combatActions } from "./combat-slice";
 
 import changeStatusEffect from "./status-effect-actions";
-
 import { itemFunctions } from "../util/item-functions";
+import updateStatTotals from "./stats-actions";
 
 export default async function activateItem(dispatch, item) {
   const dashboard = store.getState().ui.dashboardIsVisible;
   let player;
 
+  if (!dashboard) {
+    const order = store.getState().combat.order;
+    player = order.find((char) => char.id === "Player");
+  } else {
+    player = store.getState().player;
+  }
+
   switch (item.type) {
     case "EQUIPMENT":
       {
-        // Select combat-slice or player-slice player object
-        const dashboard = store.getState().ui.dashboardIsVisible;
-
         // In Dungeon -> combat-slice
         if (!dashboard) {
-          const order = store.getState().combat.order;
-          player = order.find((char) => char.id === "Player");
-
           if (player.inventory.attunedItems.includes(item)) {
             // remove item from attunedItems
             dispatch(
@@ -39,8 +40,6 @@ export default async function activateItem(dispatch, item) {
         }
         // In Dashboard -> player-slice
         if (dashboard) {
-          player = store.getState().player;
-
           if (player.inventory.attunedItems.includes(item)) {
             // remove item from attunedItems
             dispatch(
@@ -60,13 +59,28 @@ export default async function activateItem(dispatch, item) {
       {
         // Can't use consumables on the dashboard
         if (dashboard) return;
-        player = store.getState().player;
         const snakeCaseItem = toSnakeCase(item.name);
         const itemFunction = itemFunctions[snakeCaseItem];
-        if (itemFunction) {
-          itemFunction(dispatch, player);
+
+        // Add items that can only be used in specific situations
+        if (
+          item.name !== "Skeleton Key" &&
+          item.name !== "Laughing Coffin Coin"
+        ) {
+          if (itemFunction) {
+            itemFunction(dispatch, player);
+          }
+
+          dispatch(
+            combatActions.changePlayerInventory({ item, change: "REMOVE" })
+          );
         }
-        dispatch(playerActions.changeInventory({ item, change: "REMOVE" }));
+      }
+      break;
+
+    case "QUEST":
+      {
+        //
       }
       break;
   }
