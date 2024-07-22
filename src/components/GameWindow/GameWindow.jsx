@@ -9,23 +9,21 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startCombat } from "../../store/combat-actions";
 import Buttons from "./Buttons/Buttons";
+import checkForDialogue from "../../util/dialogue-util";
 
 export default function GameWindow() {
   const dispatch = useDispatch();
-  const room = useSelector((state) => state.dungeon);
-  
+  const dungeon = useSelector((state) => state.dungeon);
+
   useEffect(() => {
-    // If there is no event in the dungeon-slice combat will begin
-    if (!room.contents.event) {
-      startCombat(dispatch);
-    } 
-  }, [room.roomCounter]);
+    handleGameFlow(dispatch, dungeon);
+  }, [dungeon.roomCounter]);
 
   return (
     <div
       className={classes.window}
       style={{
-        backgroundImage: `url(${room.image})`,
+        backgroundImage: `url(${dungeon.image})`,
       }}
     >
       <TopContent />
@@ -34,4 +32,13 @@ export default function GameWindow() {
       <Buttons />
     </div>
   );
+}
+
+async function handleGameFlow(dispatch, dungeon) {
+  // If there is no event in the dungeon-slice combat will begin
+  if (!dungeon.contents.event) {
+    startCombat(dispatch);
+  } else {
+    await checkForDialogue(dispatch, "BEFORE");
+  }
 }

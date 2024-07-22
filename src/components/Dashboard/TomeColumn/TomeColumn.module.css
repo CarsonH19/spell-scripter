@@ -31,7 +31,8 @@
   border: 3px solid var(--secondary);
   padding: 1rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
   gap: 0.5rem;
   overflow: auto;
 }

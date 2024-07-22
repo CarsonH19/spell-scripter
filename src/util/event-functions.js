@@ -22,6 +22,7 @@ import updateStatTotals from "../store/stats-actions";
 
 import { combatActions } from "../store/combat-slice";
 import { dialogueActions } from "../store/dialogue-slice";
+import checkForDialogue from "./dialogue-util";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 
@@ -224,6 +225,26 @@ const eventFunctions = {
     }
   },
   CANDLELIGHT_SHRINE: async (dispatch, choice) => {
+    if (!heroes[1].unlocked) {
+      // Add Siggurd to party
+      const baseStats = constructStats(heroes[1].stats);
+      let liheth = {
+        ...heroes[0],
+        stats: baseStats,
+        damageDisplay: "",
+      };
+
+      dispatch(combatActions.addCharacter({ character: liheth }));
+      updateStatTotals(dispatch, liheth.id);
+      dispatch(
+        combatActions.updateHealth({
+          id: liheth.id,
+          change: "HEAL",
+          value: 999,
+        })
+      );
+    }
+
     if (choice === "Rest") {
       const order = store.getState().combat.order;
       // Add fade transition
@@ -241,6 +262,8 @@ const eventFunctions = {
 
       dispatch(dungeonActions.eventOutcome({ outcome: `You chose to rest.` }));
       await delay(4000);
+      await checkForDialogue(dispatch, "BEFORE");
+      await delay(2000);
       openModal(dispatch, "roomSummaryModal");
     }
   },

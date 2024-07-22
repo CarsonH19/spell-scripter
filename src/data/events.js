@@ -227,7 +227,7 @@ export const WAILING_WARRENS_EXIT = {
   name: "Wailing Warrens Exit",
   type: "CHOICE",
   description: [
-    "You discover a whole in the wall leading back to The Great Catacomb.",
+    "You discover a hole in the wall leading out of the Wailing Warrens.",
   ],
   options: [
     {
@@ -245,4 +245,10 @@ export const UNLOCK_HERO = {
     description: [""],
     function: "UNLOCK_HERO_SIGGURD",
   },
+  // LIHETH: {
+  //   name: "Candlelight Priestess",
+  //   type: "AUTO",
+  //   description: [""],
+  //   function: "UNLOCK_HERO_SIGGURD",
+  // },
 };

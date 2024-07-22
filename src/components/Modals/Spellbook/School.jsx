@@ -1,6 +1,6 @@
 import classes from "./SpellbookModal.module.css";
 
-export default function School({ text, school, active, onChangeSchool }) {
+export default function School({ text, active, onChangeSchool }) {
   return (
     <li
       className={active ? classes["active-school"] : classes["inactive-school"]}

@@ -111,28 +111,23 @@ function getRoomContent() {
   const eventChance = Math.floor(Math.random() * 100);
   let content;
 
-  if (pathCounter <= 0 && pathCounter !== null) {
-    content = "EXIT PATH";
-  }
-
   switch (dungeon.name) {
     case "The Great Catacomb":
       if (dungeon.path === "Wailing Warrens") {
-        if (pathCounter <= 0) {
-          // End path if counter is 0
-          content = "EXIT PATH";
-        } else {
-          // NOTE - Currently set to always enemies
-          content = "ENEMIES";
-        }
+        // NOTE - Currently set to always enemies
+        content = "ENEMIES";
       }
 
-      // Event chance for dungeon is 50%
+      // Event chance for dungeon is 20%
       if (eventChance > 50) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
       }
+  }
+
+  if (dungeon.path && pathCounter <= 0 && pathCounter !== null) {
+    content = "EXIT PATH";
   }
 
   return content;
@@ -158,10 +153,10 @@ function getRoomEvent() {
         // events.push(COFFIN);
         // events.push(PATHS[0]);
         // events.push(BONEVAULT);
-        // events.push(CANDLELIGHT_SHRINE);
+        events.push(CANDLELIGHT_SHRINE);
 
+        // Check if Siggurd is unlocked
         if (!heroes[0].unlocked) {
-          console.log("HEROEASDFF")
           events.push(UNLOCK_HERO.SIGGURD);
         }
       }

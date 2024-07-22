@@ -60,7 +60,8 @@ export let riven = {
   get image() {
     const imageList = ["src/assets/images/heroes/grave-robber"];
     const index = Math.floor(Math.random() * imageList.length);
-    return imageList[index];  },
+    return imageList[index];
+  },
   get icon() {
     return `${this.image}-icon`;
   },
@@ -111,7 +112,8 @@ export let liheth = {
   get image() {
     const imageList = ["src/assets/images/heroes/liheth"];
     const index = Math.floor(Math.random() * imageList.length);
-    return imageList[index];  },
+    return imageList[index];
+  },
   get icon() {
     return `${this.image}-icon`;
   },
@@ -155,6 +157,6 @@ export let liheth = {
 // EVOKER
 // RISEN
 
-let heroes = [siggurd, riven, liheth];
+let heroes = [siggurd, liheth, riven];
 
 export default heroes;

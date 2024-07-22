@@ -1,12 +1,12 @@
 import { dialogueActions } from "../store/dialogue-slice";
-import { SIGGURD_DIALOGUE } from "../data/dialogue";
+import { SIGGURD_DIALOGUE, LIHETH_DIALOGUE } from "../data/dialogue";
 import store from "../store/index";
+import heroes from "../data/heroes";
 
 let dialogueResolver;
 
 export default async function checkForDialogue(dispatch, beforeOrAfter) {
   const dialogue = store.getState().dialogue;
-  console.log("DIALOGUE", dialogue);
   switch (beforeOrAfter) {
     case "BEFORE":
       if (dialogue.before.length > 0) {
@@ -81,6 +81,13 @@ export function getRoomDialogue(dispatch, dungeon) {
       case "Aiding Siggurd":
         dispatch(dialogueActions.updateDialogue(SIGGURD_DIALOGUE.UNLOCK_EVENT));
         break;
+
+      case "Candlelight Shrine":
+        if (!heroes[1].unlocked) {
+          dispatch(
+            dialogueActions.updateDialogue(LIHETH_DIALOGUE.UNLOCK_EVENT)
+          );
+        }
 
       default:
         break;

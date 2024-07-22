@@ -4,8 +4,13 @@ let hound = {
   unlocked: true,
   identifier: "HERO",
   summon: true,
-  image: "src/assets/images/heroes/hound.png",
-  icon: "src/assets/images/heroes/hound-icon.png",
+  get image() {
+    const imageList = ["src/assets/images/heroes/hound"];
+    const index = Math.floor(Math.random() * imageList.length);
+    return imageList[index];  },
+  get icon() {
+    return `${this.image}-icon`;
+  },
   // audio: {},
   level: 1,
   currentHealth: 0,
@@ -27,8 +32,13 @@ let knight = {
   unlocked: true,
   identifier: "HERO",
   summon: true,
-  image: "src/assets/images/heroes/knight.png",
-  icon: "src/assets/images/heroes/knight-icon.png",
+  get image() {
+    const imageList = ["src/assets/images/heroes/knight"];
+    const index = Math.floor(Math.random() * imageList.length);
+    return imageList[index];  },
+  get icon() {
+    return `${this.image}-icon`;
+  },
   // audio: {},
   level: 3,
   currentHealth: 0,
@@ -72,8 +82,13 @@ let drake = {
   unlocked: true,
   identifier: "HERO",
   summon: true,
-  image: "src/assets/images/heroes/drake.png",
-  icon: "src/assets/images/heroes/drake-icon.png",
+  get image() {
+    const imageList = ["src/assets/images/heroes/drake"];
+    const index = Math.floor(Math.random() * imageList.length);
+    return imageList[index];  },
+  get icon() {
+    return `${this.image}-icon`;
+  },
   // audio: {},
   level: 5,
   currentHealth: 0,
@@ -117,8 +132,13 @@ let golem = {
   unlocked: true,
   identifier: "HERO",
   summon: true,
-  image: "src/assets/images/heroes/golem.png",
-  icon: "src/assets/images/heroes/golem-icon.png",
+  get image() {
+    const imageList = ["src/assets/images/heroes/golem"];
+    const index = Math.floor(Math.random() * imageList.length);
+    return imageList[index];  },
+  get icon() {
+    return `${this.image}-icon`;
+  },
   // audio: {},
   level: 5,
   currentHealth: 0,

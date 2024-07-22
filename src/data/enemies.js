@@ -30,7 +30,7 @@ const UNDEAD = {
     name: "Decrepit Skeleton",
     identifier: "ENEMY",
     get image() {
-      return "src/assets/images/enemies/decrepit-skeleton";
+      return getCharacterImage("src/assets/images/enemies/decrepit-skeleton", 5);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -340,7 +340,7 @@ const UNDEAD = {
     name: "Shadow",
     identifier: "ENEMY",
     get image() {
-      return getCharacterImage("src/assets/images/enemies/shadow", 2);
+      return getCharacterImage("src/assets/images/enemies/shadow", 4);
     },
     get icon() {
       return `${this.image}-icon`;
