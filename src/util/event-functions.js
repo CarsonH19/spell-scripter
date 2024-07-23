@@ -380,7 +380,7 @@ async function trapSuccessChance(dispatch, player, difficulty, stat) {
   console.log("TRAP", playerChoice);
 
   // ITEM - Evertorch
-  checkIfAttuned("Evertorch") ? playerChoice += 3 : playerChoice;
+  playerChoice += checkIfAttuned(dispatch, "Evertorch");
   console.log("TRAP", playerChoice);
 
   const successChance = roll20(playerChoice);

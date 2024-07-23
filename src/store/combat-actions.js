@@ -32,6 +32,7 @@ import { openModal } from "./ui-actions.js";
 
 import updateStatTotals from "./stats-actions.js";
 import checkForDialogue from "../util/dialogue-util.js";
+import { checkIfAttuned } from "../util/item-functions.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -413,6 +414,9 @@ async function handleCallTiming(dispatch, timing, character) {
         // Clear Narrative
         dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
         dispatch(logActions.updateLogs({ change: "CLEAR" }));
+
+        // ITEM - Sunstone
+        checkIfAttuned(dispatch, "Sunstone"); 
       }
       break;
     case "START_OF_TURN":

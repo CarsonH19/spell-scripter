@@ -198,25 +198,41 @@ export const itemFunctions = {
   // ==================================================================
   //                            EQUIPMENT
   // ==================================================================
-  
+
+  // Equipment functions are called using checkIfAttuned(dispatch, itemName)
+
+  EVERTORCH: () => {
+    return 3;
+  },
+  SUNSTONE: (dispatch) => {
+    const order = store.getState().combat.order;
+    for (let i = 0; i < order.length; i++) {
+      if (order[i].identifier === "ENEMY" && order[i].type === "UNDEAD") {
+        changeHealth(dispatch, order[i], "DAMAGE", 1, "RADIANT");
+      }
+    }
+  },
 };
 
 // Returns true/false to determine if an item is attuned or not
 // Used for items that require additional logic throughout the code
-export function checkIfAttuned(itemName) {
+export function checkIfAttuned(dispatch, itemName) {
+  const snakeCaseItem = toSnakeCase(itemName);
+  const itemFunction = itemFunctions[snakeCaseItem];
+
   const order = store.getState().combat.order;
   const player = order.find((char) => char.id === "Player");
   const attunedItems = player.inventory.attunedItems;
-  console.log(player);
-  console.log(attunedItems);
+
   for (let i = 0; i < attunedItems.length; i++) {
     if (attunedItems[i].name === itemName) {
-      // Return true if item is attuned
-      console.log("ASFSF");
-      return true;
+      return itemFunction(dispatch);
     }
   }
 
-  // Return false if item is NOT attuned
   return false;
+}
+
+function toSnakeCase(str) {
+  return str.toUpperCase().replace(/\s+/g, "_");
 }
