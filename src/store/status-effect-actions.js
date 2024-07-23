@@ -115,6 +115,18 @@ export default function changeStatusEffect(
           };
           break;
         }
+
+        case "Diseased": {
+          updatedStatusEffect = {
+            ...statusEffect,
+            stack: currentEffect.stack + 1,
+            duration: statusEffect.reset,
+            get effect() {
+              return [`Max Health reduced by ${this.stack * 20}%`];
+            },
+          };
+          break;
+        }
       }
 
       // Add updated status effect

@@ -23,12 +23,17 @@ const CONDITIONS = {
     get effect() {
       return [
         `The target takes ${this.stack} damage at the end of each of its turns.`,
+        "HP Regeneration is reduced to 0",
       ];
     },
     durationType: "ROOM",
-    duration: 10,
-    reset: 10,
-    stats: {},
+    duration: 5,
+    reset: 5,
+    stats: {
+      strength: {
+        healthRegen: -999,
+      },
+    },
     function: "POISONED",
     when: "END TURN",
   },
@@ -61,6 +66,20 @@ const CONDITIONS = {
     durationType: "ROUND",
     duration: 1,
     reset: 1,
+    stats: {},
+  },
+  DISEASED: {
+    name: "Diseased",
+    display: true,
+    image: "",
+    type: "DEBUFF",
+    stack: 1,
+    get effect() {
+      return [`Max Health reduced by ${this.stack * 20}%`];
+    },
+    durationType: "ROUND",
+    duration: 5,
+    reset: 5,
     stats: {},
   },
   RESTRAINED: {

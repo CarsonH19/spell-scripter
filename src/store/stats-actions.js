@@ -134,6 +134,15 @@ export default function updateStatTotals(dispatch, id) {
     }
   }
 
+  // Check for diseased condition
+  if (checkCurrentStatusEffects(target, "Diseased")) {
+    const diseased = character.statusEffects.find(
+      (effect) => effect.name === "Diseased"
+    );
+    maxHealth = ((diseased.stack * 20) / 100) * target.stats.strength.maxHealth;
+    console.log("DISEASED", maxHealth);
+  }
+
   dispatch(
     sliceActions.updateStats({
       id: character.id,
