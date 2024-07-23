@@ -13,7 +13,6 @@ export default async function checkForDialogue(dispatch, beforeOrAfter) {
         // await delay(2000);
         dispatch(dialogueActions.startDialogue("before"));
         await awaitDialogue();
-        console.log("PASSED");
       }
       break;
 
@@ -26,7 +25,6 @@ export default async function checkForDialogue(dispatch, beforeOrAfter) {
       break;
   }
 
-  console.log("PASSED");
 }
 
 // =============================================================
@@ -35,8 +33,6 @@ export default async function checkForDialogue(dispatch, beforeOrAfter) {
 
 // // Used to await the end of a dialogue
 export async function awaitDialogue() {
-  console.log("PASSED");
-
   return new Promise((resolve) => {
     dialogueResolver = resolve;
   });
@@ -44,13 +40,10 @@ export async function awaitDialogue() {
 
 // // Function to end the dialogue
 export function endDialogue(dispatch) {
-  console.log("PASSED");
-
   if (dialogueResolver) {
     dispatch(dialogueActions.finishDialogue());
     dialogueResolver("CONTINUE");
     dialogueResolver = null;
-    console.log("PASSED");
   }
 }
 

@@ -1,6 +1,7 @@
 import CONSUMABLES from "./consumables";
 import EQUIPMENT from "./equipment";
 import { getCharacterImage } from "../util/misc-util";
+import CONDITIONS from "./conditions";
 
 const ENEMY_TYPES = {
   HOUND: "HOUND",
@@ -15,12 +16,12 @@ const DAMAGE_TYPES = {
   POISON: "POISON",
 };
 
-const CONDITIONS = {
-  DISEASED: "DISEASED",
-  POISONED: "POISONED",
-  HAUNTED: "HAUNTED",
-  WEBBED: "WEBBED",
-};
+// const CONDITIONS = {
+//   DISEASED: "DISEASED",
+//   POISONED: "POISONED",
+//   HAUNTED: "HAUNTED",
+//   WEBBED: "WEBBED",
+// };
 
 const UNDEAD = {
   // =====================================
@@ -30,7 +31,10 @@ const UNDEAD = {
     name: "Decrepit Skeleton",
     identifier: "ENEMY",
     get image() {
-      return getCharacterImage("src/assets/images/enemies/decrepit-skeleton", 5);
+      return getCharacterImage(
+        "src/assets/images/enemies/decrepit-skeleton",
+        5
+      );
     },
     get icon() {
       return `${this.image}-icon`;
@@ -359,7 +363,7 @@ const UNDEAD = {
     resistances: [],
     immunities: [],
     behavior: "ERRATIC",
-    statusEffects: [],
+    statusEffects: [CONDITIONS.INCORPOREAL],
     lootTable: [],
   },
   BANSHEE: {

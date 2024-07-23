@@ -142,8 +142,6 @@ export default function updateStatTotals(dispatch, id) {
     );
     const lostMaxHP = ((diseased.stack * 20) / 100) * maxHealth;
     maxHealth = maxHealth - lostMaxHP;
-    console.log("DISEASED", lostMaxHP);
-    console.log("DISEASED", maxHealth);
   }
 
   dispatch(

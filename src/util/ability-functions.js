@@ -143,8 +143,6 @@ export function useAbility(dispatch, character) {
     })
   );
 
-  console.log(`${character.name} uses ${character[ability].name}!`);
-
   // NOTE: If multiple characters use this focus can I add an if-statement to check for the correct name?
   switch (character[ability].focus) {
     // case "SELF":

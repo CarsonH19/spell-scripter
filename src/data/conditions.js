@@ -1,5 +1,5 @@
 // BURNING: {
-//   name: "Burning", 
+//   name: "Burning",
 //   display: true, ---> to show if the status effect is visible below the nameplate in combat
 //   image: "",
 //   type: "DEBUFF",
@@ -134,6 +134,16 @@ const CONDITIONS = {
     duration: 1,
     reset: 1,
     stats: {},
+  },
+  INCORPOREAL: {
+    name: "Incorporeal",
+    display: true,
+    image: "",
+    type: "BUFF",
+    description: "The undead lacks a physical body.",
+    effect: ["Attack damage dealt to the undead is reduced by 50%"],
+    stats: {},
+    function: false,
   },
 };
 

@@ -7,9 +7,9 @@ import { createArcaneShield } from "./skills";
 import { UNDEAD } from "../data/enemies";
 import { constructStats } from "./dungeon-util";
 import { dungeonActions } from "../store/dungeon-slice";
+import { v4 as uuidv4 } from "uuid";
 
 // These functions are called when a target has the status effect
-
 const statusEffectFunctions = {
   BURNING: (dispatch, target) => {
     let damage = 3;
@@ -31,13 +31,13 @@ const statusEffectFunctions = {
     const dungeon = store.getState().dungeon;
     if (dungeon.contents.enemies.length < 5) {
       const chance = Math.random() * 100;
-      console.log("CHANCE", chance);
       if (chance > 50) {
         // add enemy
         // Add Siggurd to party
         const baseStats = constructStats(UNDEAD.SHADOW.stats);
         let shadow = {
           ...UNDEAD.SHADOW,
+          id: uuidv4(),
           stats: baseStats,
           damageDisplay: "",
         };

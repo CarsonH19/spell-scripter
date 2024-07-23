@@ -143,6 +143,15 @@ export function changeHealth(
     return;
   }
 
+  // Check for the Incorporeal condition
+  if (
+    checkCurrentStatusEffects(target, "Incorporeal") &&
+    damageType === null &&
+    change === "DAMAGE"
+  ) {
+    value = value / 2;
+  }
+
   value = Math.round(value);
   dispatch(combatActions.updateDamageDisplay({ id, value }));
   dispatch(combatActions.updateHealth({ id, change, value }));

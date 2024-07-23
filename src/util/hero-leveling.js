@@ -33,7 +33,7 @@ export function levelUpHero(dispatch, name, map) {
       heroes[i].stats.baseAgility = map.agility;
       heroes[i].stats.baseArcana = map.arcana;
 
-      console.log("HERO LEVEL UP", heroes[i]);
+      // console.log("HERO LEVEL UP", heroes[i]);
     }
   }
 }

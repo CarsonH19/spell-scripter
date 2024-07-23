@@ -18,7 +18,6 @@ export default function InventoryModal() {
 
   let player;
   if (inDungeon) {
-    console.log("inDungeon");
     player = order.find((char) => char.id === "Player");
   } else {
     player = useSelector((state) => state.player);
