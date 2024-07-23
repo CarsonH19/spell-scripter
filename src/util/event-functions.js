@@ -24,6 +24,7 @@ import { combatActions } from "../store/combat-slice";
 import { dialogueActions } from "../store/dialogue-slice";
 import checkForDialogue from "./dialogue-util";
 import { unlockHero } from "./hero-leveling";
+import { checkIfAttuned } from "./item-functions";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 
@@ -264,11 +265,11 @@ const eventFunctions = {
       getRandomLoot(dispatch);
 
       // Add Event Outcome
-    dispatch(
-      dungeonActions.eventOutcome({
-        outcome: `You found Liheth, the Candlelight Priestess, while exploring The Great Catacomb. She spoke to you of her duties to restore the hidden Candlelight Shrines throughout the catacomb. You decided to lead her through the catacomb in search of these shrines.`,
-      })
-    );
+      dispatch(
+        dungeonActions.eventOutcome({
+          outcome: `You found Liheth, the Candlelight Priestess, while exploring The Great Catacomb. She spoke to you of her duties to restore the hidden Candlelight Shrines throughout the catacomb. You decided to lead her through the catacomb in search of these shrines.`,
+        })
+      );
 
       dispatch(dungeonActions.eventOutcome({ outcome: `You chose to rest.` }));
       await delay(4000);
@@ -375,6 +376,12 @@ async function trapSuccessChance(dispatch, player, difficulty, stat) {
   } else if (stat === "(Arcana)") {
     // Add logic if player has the Arcana option
   }
+
+  console.log("TRAP", playerChoice);
+
+  // ITEM - Evertorch
+  checkIfAttuned("Evertorch") ? playerChoice += 3 : playerChoice;
+  console.log("TRAP", playerChoice);
 
   const successChance = roll20(playerChoice);
 

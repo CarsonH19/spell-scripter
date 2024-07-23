@@ -3,6 +3,7 @@ import { changeHealth } from "../store/health-actions";
 import { combatActions } from "../store/combat-slice";
 import changeStatusEffect from "../store/status-effect-actions";
 import CONDITIONS from "../data/conditions";
+import EQUIPMENT from "../data/equipment";
 
 export const itemFunctions = {
   CRYPTBREAD: (dispatch, target) => {
@@ -194,4 +195,28 @@ export const itemFunctions = {
 
     changeStatusEffect(dispatch, target, "ADD", statusEffect);
   },
+  // ==================================================================
+  //                            EQUIPMENT
+  // ==================================================================
+  
 };
+
+// Returns true/false to determine if an item is attuned or not
+// Used for items that require additional logic throughout the code
+export function checkIfAttuned(itemName) {
+  const order = store.getState().combat.order;
+  const player = order.find((char) => char.id === "Player");
+  const attunedItems = player.inventory.attunedItems;
+  console.log(player);
+  console.log(attunedItems);
+  for (let i = 0; i < attunedItems.length; i++) {
+    if (attunedItems[i].name === itemName) {
+      // Return true if item is attuned
+      console.log("ASFSF");
+      return true;
+    }
+  }
+
+  // Return false if item is NOT attuned
+  return false;
+}

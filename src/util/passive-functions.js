@@ -100,10 +100,10 @@ export function checkForPassiveAbility(dispatch, character, when, target) {
       }
       break;
 
-    case "BEFORE_COMBAT":
+    case "START_OF_ROUND":
       if (
         "when" in character.passive &&
-        character.passive.when === "BEFORE_COMBAT"
+        character.passive.when === "START_OF_ROUND"
       ) {
         passiveFunction(dispatch, character);
       }

@@ -31,7 +31,6 @@ import statusEffectFunctions from "../util/status-effect-functions.js";
 import { openModal } from "./ui-actions.js";
 
 import updateStatTotals from "./stats-actions.js";
-import Character from "../components/GameWindow/BottomContent/Character.jsx";
 import checkForDialogue from "../util/dialogue-util.js";
 
 let playerActionResolver;
@@ -42,19 +41,16 @@ export default async function combatLoop(dispatch) {
   // Check for dialogue before starting combat
   await checkForDialogue(dispatch, "BEFORE");
 
-  // Clear Narrative
-  dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
-  dispatch(logActions.updateLogs({ change: "CLEAR" }));
-
   // Iterate through all characters and call passive abilities before combat
   // NOTE: Passives will be called on each round of combat.
   let order = store.getState().combat.order;
   const dungeon = store.getState().dungeon;
-  console.log(dungeon);
+  console.log("DUNGEON", dungeon);
 
-  for (let i = 0; i < order.length; i++) {
-    checkForPassiveAbility(dispatch, order[i], "BEFORE_COMBAT");
-  }
+  // START OF THE ROUND
+  // Passive Abilities
+  // Clear Narrative
+  handleCallTiming(dispatch, "START_OF_ROUND");
 
   // Iterate through the initiative order simulating a round of combat.
   for (let i = 0; i < order.length; i++) {
@@ -74,8 +70,7 @@ export default async function combatLoop(dispatch) {
 
     let characterCheck = order[i];
     if (!characterCheck) continue;
-    // Check status effects that call functions at the start of the character's turn
-    callStatusEffect(dispatch, order[i], "START TURN");
+
     order = store.getState().combat.order;
     let character = order.find((char) => char.id === characterCheck.id);
 
@@ -94,28 +89,24 @@ export default async function combatLoop(dispatch) {
 
       await delay(1000);
 
-      // COMPLETE TASKS AT BEGINNING OF ROUND
-      // STATUS EFFECT - Stunned - Target can't take actions
-      const isStunned = checkCurrentStatusEffects(character, "Stunned");
-      if (isStunned) {
-        continue;
-      }
-      // Check for status effects with duration 0 or and remove
-      checkStatusEffect(dispatch, character.id, "REMOVE");
-      // Decrement Status Effects
-      checkStatusEffect(dispatch, character.id, "DECREMENT", "ROUND");
+      // START OF THE TURN
+      // Check & call status effects with functions on the character's turn
+      // Check for status effect decrement or removal
+      handleCallTiming(dispatch, "START_OF_TURN", character);
+
+      // STATUS EFFECT - Stunned - Skip target's turn
+      if (checkCurrentStatusEffects(character, "Stunned")) continue;
 
       if (order[i].identifier === "PLAYER") {
         let action = false;
 
         while (!action) {
           let playerAction;
+
           // STATUS EFFECT - Restrained
-          if (checkCurrentStatusEffects(player, "Restrained")) {
-            playerAction = "GUARD";
-          } else {
-            playerAction = await getPlayerAction();
-          }
+          checkCurrentStatusEffects(player, "Restrained")
+            ? (playerAction = "GUARD")
+            : (playerAction = await getPlayerAction());
 
           switch (playerAction) {
             case "CAST SPELL":
@@ -129,8 +120,6 @@ export default async function combatLoop(dispatch) {
                   // Restart the while loop allowing players to change actions
                   await castSpell(dispatch, selectedSpell);
                 }
-
-                console.log("PASSED");
               }
               break;
             case "ATTACK":
@@ -143,20 +132,7 @@ export default async function combatLoop(dispatch) {
                 );
 
                 const target = await getTarget("ENEMIES");
-                const hit = rollToHit(dispatch, player, target);
-
-                if (hit) {
-                  const damage = calcDamage(player);
-                  changeHealth(dispatch, target, "DAMAGE", damage, null);
-                } else {
-                  // Attack Missed!
-                  dispatch(
-                    combatActions.updateDamageDisplay({
-                      id: target.id,
-                      value: "Miss!",
-                    })
-                  );
-                }
+                attack(dispatch, character, target);
               }
               break;
             case "GUARD":
@@ -196,11 +172,9 @@ export default async function combatLoop(dispatch) {
         let action;
 
         // STATUS EFFECT - Restrained
-        if (checkCurrentStatusEffects(character, "Restrained")) {
-          action = "GUARD";
-        } else {
-          action = checkBehaviorAction(character);
-        }
+        checkCurrentStatusEffects(character, "Restrained")
+          ? (action = "GUARD")
+          : (action = checkBehaviorAction(character));
 
         console.log("ACTION", action);
 
@@ -208,44 +182,11 @@ export default async function combatLoop(dispatch) {
           case "ATTACK":
             {
               const target = checkBehaviorAttackTarget(character);
-
-              dispatch(
-                logActions.updateLogs({
-                  change: "ADD",
-                  text: `${character.name} attacks ${target.name}!`,
-                })
-              );
-
-              const hit = rollToHit(dispatch, character, target);
-              console.log("HIT", hit);
-
-              if (hit) {
-                // PASSIVE - Liheth
-                checkForPassiveAbility(
-                  dispatch,
-                  order[i],
-                  "DURING_COMBAT",
-                  target
-                );
-
-                const damage = calcDamage(character);
-                console.log("DAMAGE", damage);
-
-                // Create a new slice property to show the attack outcome
-                changeHealth(dispatch, target, "DAMAGE", damage, null);
-              } else {
-                // Attack Missed!
-                dispatch(
-                  combatActions.updateDamageDisplay({
-                    id: target.id,
-                    value: "Miss!",
-                  })
-                );
-              }
+              attack(dispatch, character, target);
             }
             break;
           case "GUARD":
-            // Adds the Guarding condition to the characters active status effects
+            // Adds the Guarding condition to the character's active status effects
             changeStatusEffect(dispatch, character, "ADD", CONDITIONS.GUARD);
 
             dispatch(
@@ -264,14 +205,8 @@ export default async function combatLoop(dispatch) {
 
       await delay(1000);
 
-      // COMPLETE TASKS AT END OF ROUND
-      dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
-
-      // Check status effects that call functions at the end of the character's turn
-      callStatusEffect(dispatch, order[i], "END TURN");
-
-      // Reduce the characters cooldowns
-      decrementAbilityCooldowns(dispatch, character);
+      // END OF TURN
+      handleCallTiming(dispatch, "END_OF_TURN", character);
     }
   }
 
@@ -279,25 +214,19 @@ export default async function combatLoop(dispatch) {
 
   // Check if combat is over
   const combatEnded = await endCombat(dispatch);
-  console.log("Combat ended:", combatEnded);
 
   if (combatEnded) {
-    // COMPLETE TASKS AT THE END OF COMBAT
-    dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
+    // AFTER COMBAT
+    handleCallTiming(dispatch, "AFTER_COMBAT");
 
-    // Check if effect durations are rounds/actions and remove them from player & heroes
-    for (let i = 0; i < order.length; i++) {
-      if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER") {
-        checkStatusEffect(dispatch, order[i].id, "END");
-      }
-    }
-    console.log("HERE!");
-
-    return; // exit the loop
+    // exit the loop
+    return;
   } else {
     await delay(2000);
-    // COMPLETE TASKS AT THE END OF THE ROUND
-    combatLoop(dispatch); // continue the loop
+    handleCallTiming(dispatch, "END_OF_ROUND");
+
+    // continue the loop
+    combatLoop(dispatch);
   }
 }
 
@@ -421,14 +350,11 @@ async function endCombat(dispatch) {
   }
 
   if (enemies.length <= 0) {
-    console.log("CALLED!!!");
     await checkForDialogue(dispatch, "AFTER");
     openModal(dispatch, "roomSummaryModal");
-    console.log("TRUE");
     return true;
   }
 
-  console.log("FALSE");
   return false;
 }
 
@@ -436,7 +362,10 @@ async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// STARTING COMBAT
+// =============================================================
+//                       START COMBAT
+// =============================================================
+
 export function startCombat(dispatch) {
   const order = store.getState().combat.order;
   // Check status effects that call functions before combat
@@ -463,4 +392,94 @@ export function startCombat(dispatch) {
     }
   }
   combatLoop(dispatch);
+}
+
+// =============================================================
+//                      HANDLE TIMING
+// =============================================================
+
+async function handleCallTiming(dispatch, timing, character) {
+  const order = store.getState().combat.order;
+
+  switch (timing) {
+    case "START_OF_ROUND":
+      {
+        // Call all passive abilities that apply "START_OF_ROUND"
+        // Passives are called at the start of each round
+        for (let i = 0; i < order.length; i++) {
+          checkForPassiveAbility(dispatch, order[i], "START_OF_ROUND");
+        }
+
+        // Clear Narrative
+        dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+        dispatch(logActions.updateLogs({ change: "CLEAR" }));
+      }
+      break;
+    case "START_OF_TURN":
+      {
+        // Check status effects that call functions at the start of the character's turn
+        callStatusEffect(dispatch, character, "START TURN");
+
+        // Check for status effects with duration 0 or and remove
+        checkStatusEffect(dispatch, character.id, "REMOVE");
+
+        // Decrement Status Effects
+        checkStatusEffect(dispatch, character.id, "DECREMENT", "ROUND");
+      }
+      break;
+    case "END_OF_TURN":
+      // Check status effects that call functions at the end of the character's turn
+      callStatusEffect(dispatch, character, "END TURN");
+
+      // Reduce the characters cooldowns
+      decrementAbilityCooldowns(dispatch, character);
+      break;
+    case "END_OF_ROUND":
+      break;
+    case "AFTER_COMBAT":
+      // Set isCharacterTurn to null
+      dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
+
+      // Check if effect durations are rounds/actions and remove them from player & heroes
+      for (let i = 0; i < order.length; i++) {
+        if (
+          order[i].identifier === "HERO" ||
+          order[i].identifier === "PLAYER"
+        ) {
+          checkStatusEffect(dispatch, order[i].id, "END");
+        }
+      }
+      break;
+  }
+}
+
+function attack(dispatch, character, target) {
+  const hit = rollToHit(dispatch, character, target);
+  // console.log("HIT", hit);
+
+  dispatch(
+    logActions.updateLogs({
+      change: "ADD",
+      text: `${character.name} attacks ${target.name}!`,
+    })
+  );
+
+  if (hit) {
+    // PASSIVE - Liheth
+    checkForPassiveAbility(dispatch, character, "DURING_COMBAT", target);
+
+    const damage = calcDamage(character);
+    // console.log("DAMAGE", damage);
+
+    // Create a new slice property to show the attack outcome
+    changeHealth(dispatch, target, "DAMAGE", damage, null);
+  } else {
+    // Attack Missed!
+    dispatch(
+      combatActions.updateDamageDisplay({
+        id: target.id,
+        value: "Miss!",
+      })
+    );
+  }
 }

@@ -3,6 +3,7 @@ const EQUIPMENT = {
   //                          COMMON ITEMS
   // ====================================================================
   EVERTORCH: {
+    // ADDITIONAL LOGIC ---> event-functions.js trapSuccessChance()
     name: "Evertorch",
     description:
       "This torch emits an ethereal luminescent glow in the presence of danger.",
@@ -15,6 +16,7 @@ const EQUIPMENT = {
     stats: {},
   },
   SUNSTONE: {
+    // ADDITIONAL LOGIC ---> combat-actions.js combat-loop()
     name: "Sunstone",
     description: "",
     display: true,
@@ -58,7 +60,7 @@ const EQUIPMENT = {
     rarity: "Common",
     useInCombat: false,
     effect: ["+2 Speed"],
-    stats: {},
+    stats: { agility: { speed: +2 } },
   },
   RUNE_ETCHED_RING: {
     name: "Rune-etched Ring",
@@ -69,7 +71,7 @@ const EQUIPMENT = {
     rarity: "Common",
     useInCombat: false,
     effect: ["+2 Spell Power"],
-    stats: {},
+    stats: { arcana: { spellPower: +2 } },
   },
   WHISPERING_DAGGER: {
     name: "Whispering Dagger",
@@ -92,7 +94,31 @@ const EQUIPMENT = {
     rarity: "Common",
     useInCombat: false,
     effect: ["+10 Max HP"],
-    stats: {},
+    stats: { strength: { maxHealth: +10 } },
+  },
+  ANCIENT_SHORTBOW: {
+    name: "Ancient Shortbow",
+    description: "",
+    display: false,
+    image: "src/assets/images/items/equipment/skull-scepter.jpg",
+    type: "EQUIPMENT",
+    rarity: "Common",
+    useInCombat: false,
+    effect: ["+2 Attack"],
+    stats: {
+      strength: { attack: +2 },
+    },
+  },
+  SKULL_SCEPTER: {
+    name: "Skull Scepter",
+    description: "",
+    display: false,
+    image: "src/assets/images/items/equipment/skull-scepter.jpg",
+    type: "EQUIPMENT",
+    rarity: "Common",
+    useInCombat: false,
+    effect: ["+10 Max MP"],
+    stats: { arcana: { maxMana: +10 } },
   },
   // ====================================================================
   //                          RARE ITEMS
@@ -355,7 +381,9 @@ const EQUIPMENT = {
     type: "EQUIPMENT",
     rarity: "Epic",
     useInCombat: false,
-    effect: ["Humanoid and Beast type enemies start combat with the Chilled condition."],
+    effect: [
+      "Humanoid and Beast type enemies start combat with the Chilled condition.",
+    ],
     stats: {},
   },
   HELLFIRE_CHARM: {
@@ -366,7 +394,9 @@ const EQUIPMENT = {
     type: "EQUIPMENT",
     rarity: "Epic",
     useInCombat: false,
-    effect: ["Humanoid and Beast type enemies start combat with the Burning condition."],
+    effect: [
+      "Humanoid and Beast type enemies start combat with the Burning condition.",
+    ],
     stats: {},
   },
   // ====================================================================

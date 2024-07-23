@@ -3,7 +3,9 @@ import store from "./index";
 import { combatActions } from "./combat-slice";
 import { playerActions } from "./player-slice";
 import { checkSkillPoints } from "../util/spellbook-util";
-import { checkCurrentStatusEffects } from "./status-effect-actions";
+import changeStatusEffect, {
+  checkCurrentStatusEffects,
+} from "./status-effect-actions";
 
 export default function updateStatTotals(dispatch, id) {
   let character;
@@ -46,31 +48,36 @@ export default function updateStatTotals(dispatch, id) {
   if (character.statusEffects.length > 0) {
     for (let i = 0; i < character.statusEffects.length; i++) {
       const item = character.statusEffects[i];
-      // Strength
-      if (item.stats && item.stats.strength) {
-        totalStrength += item.stats.strength.strengthChange || 0;
-        maxHealth += item.stats.strength.maxHealth || 0;
-        healthRegen += item.stats.strength.healthRegen || 0;
-        attack += item.stats.strength.attack || 0;
+
+      // Update Stats
+      if ("stats" in item) {
+        // Strength
+        if (item.stats && item.stats.strength) {
+          totalStrength += item.stats.strength.strengthChange || 0;
+          maxHealth += item.stats.strength.maxHealth || 0;
+          healthRegen += item.stats.strength.healthRegen || 0;
+          attack += item.stats.strength.attack || 0;
+        }
+
+        // Agility
+        if (item.stats && item.stats.agility) {
+          totalAgility += item.stats.agility.agilityChange || 0;
+          defense += item.stats.agility.defense || 0;
+          speed += item.stats.agility.speed || 0;
+          hitChance += item.stats.agility.hitChance || 0;
+        }
+
+        // Arcana
+        if (item.stats && item.stats.arcana) {
+          totalArcana += item.stats.arcana.arcanaChange || 0;
+          maxMana += item.stats.arcana.maxMana || 0;
+          manaRegen += item.stats.arcana.manaRegen || 0;
+          spellPower += item.stats.arcana.spellPower || 0;
+        }
       }
 
-      // Agility
-      if (item.stats && item.stats.agility) {
-        totalAgility += item.stats.agility.agilityChange || 0;
-        defense += item.stats.agility.defense || 0;
-        speed += item.stats.agility.speed || 0;
-        hitChance += item.stats.agility.hitChance || 0;
-      }
-
-      // Arcana
-      if (item.stats && item.stats.arcana) {
-        totalArcana += item.stats.arcana.arcanaChange || 0;
-        maxMana += item.stats.arcana.maxMana || 0;
-        manaRegen += item.stats.arcana.manaRegen || 0;
-        spellPower += item.stats.arcana.spellPower || 0;
-      }
-
-      if (character.statusEffects[i].name === "Guarding") {
+      // Update Guarding
+      if (item.name === "Guarding") {
         guard = "GUARDING";
       }
     }

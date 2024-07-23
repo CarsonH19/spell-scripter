@@ -51,7 +51,7 @@ let knight = {
   // passive: {
   //   name: "Radiant Aura",
   //   description: `Undead enemies have their Defense reduced while in the presence of Siggurd.`,
-  //   when: "BEFORE_COMBAT",
+  //   when: "START_OF_ROUND",
   //   function: "RADIANT_AURA",
   // },
   // abilityA: {
@@ -101,7 +101,7 @@ let drake = {
   // passive: {
   //   name: "Radiant Aura",
   //   description: `Undead enemies have their Defense reduced while in the presence of Siggurd.`,
-  //   when: "BEFORE_COMBAT",
+  //   when: "START_OF_ROUND",
   //   function: "RADIANT_AURA",
   // },
   // abilityA: {
@@ -151,7 +151,7 @@ let golem = {
   // passive: {
   //   name: "Radiant Aura",
   //   description: `Undead enemies have their Defense reduced while in the presence of Siggurd.`,
-  //   when: "BEFORE_COMBAT",
+  //   when: "START_OF_ROUND",
   //   function: "RADIANT_AURA",
   // },
   // abilityA: {

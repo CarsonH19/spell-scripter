@@ -119,7 +119,7 @@ function getRoomContent() {
       }
 
       // Event chance for dungeon is 20%
-      if (eventChance > 100) {
+      if (eventChance > 50) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -146,19 +146,19 @@ function getRoomEvent() {
     case "The Great Catacomb":
       // Add general non-path events
       if (!dungeon.path) {
-        // Check threat to add events relative to threat
-        // for (let i = 0; i < TRAPS.length; i++) {
-        //   events.push(TRAPS[i]);
-        // }
+        // Traps
+        for (let i = 0; i < TRAPS.length; i++) {
+          events.push(TRAPS[i]);
+        }
         // events.push(COFFIN);
         // events.push(PATHS[0]);
         // events.push(BONEVAULT);
-        events.push(CANDLELIGHT_SHRINE);
+        // events.push(CANDLELIGHT_SHRINE);
 
-        // Check if Siggurd is unlocked
-        if (!heroes[0].unlocked) {
-          events.push(UNLOCK_HERO.SIGGURD);
-        }
+        // // Check if Siggurd is unlocked
+        // if (!heroes[0].unlocked) {
+        //   events.push(UNLOCK_HERO.SIGGURD);
+        // }
       }
 
       // Add path specific events

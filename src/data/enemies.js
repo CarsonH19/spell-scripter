@@ -86,7 +86,7 @@ const UNDEAD = {
     passive: {
       name: "Rattle of War",
       description: `Undead enemies have their Attack increased while in the presence of a skeletal warrior.`,
-      when: "BEFORE_COMBAT",
+      when: "START_OF_ROUND",
       function: "RATTLE_OF_WAR",
     },
     weaknesses: [],
@@ -337,7 +337,7 @@ const UNDEAD = {
     resistances: [],
     immunities: [],
     behavior: "DEFENSIVE",
-    statusEffects: [],
+    statusEffects: [CONDITIONS.INCORPOREAL],
     lootTable: [],
   },
   SHADOW: {
@@ -389,7 +389,7 @@ const UNDEAD = {
     resistances: [],
     immunities: [],
     behavior: "ERRATIC",
-    statusEffects: [],
+    statusEffects: [CONDITIONS.INCORPOREAL],
     lootTable: [],
   },
 };
