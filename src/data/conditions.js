@@ -1,33 +1,36 @@
-import store from "../store/index";
-
 const CONDITIONS = {
   BURNING: {
     name: "Burning",
     display: true,
     image: "",
     type: "DEBUFF",
-    description: "The target takes Fire damage at the start of each of its turns.",
+    description:
+      "The target takes Fire damage at the start of each of its turns.",
     effect: [""],
     durationType: "ROUND",
     duration: 3,
     reset: 3,
     stats: {},
     function: "BURNING",
+    when: "START TURN",
   },
   POISONED: {
     name: "Poisoned",
     display: true,
     image: "",
     type: "DEBUFF",
-    effect: ["Strength -1"],
-    durationType: "ROUND",
-    duration: 3,
-    reset: 3,
-    stats: {
-      strength: {
-        strengthChange: -1,
-      },
+    stack: 1,
+    get effect() {
+      return [
+        `The target takes ${this.stack} damage at the end of each of its turns.`,
+      ];
     },
+    durationType: "ROOM",
+    duration: 10,
+    reset: 10,
+    stats: {},
+    function: "POISONED",
+    when: "END TURN",
   },
   CHILLED: {
     name: "Chilled",

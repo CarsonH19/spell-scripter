@@ -81,21 +81,41 @@ export default function changeStatusEffect(
       );
 
       // Update stack manually in status effect
-      let updatedStatusEffect = {
-        ...statusEffect,
-        stack: currentEffect.stack + 1,
-        duration: statusEffect.reset,
-        get effect() {
-          return [`Agility -${this.stack}`];
-        },
-        get stats() {
-          return {
-            agility: {
-              agilityChange: -1 * this.stack,
+      let updatedStatusEffect;
+      switch (statusEffect.name) {
+        case "Chilled": {
+          updatedStatusEffect = {
+            ...statusEffect,
+            stack: currentEffect.stack + 1,
+            duration: statusEffect.reset,
+            get effect() {
+              return [`Agility -${this.stack}`];
+            },
+            get stats() {
+              return {
+                agility: {
+                  agilityChange: -1 * this.stack,
+                },
+              };
             },
           };
-        },
-      };
+          break;
+        }
+
+        case "Poisoned": {
+          updatedStatusEffect = {
+            ...statusEffect,
+            stack: currentEffect.stack + 1,
+            duration: statusEffect.reset,
+            get effect() {
+              return [
+                `Taking any action besides Guard will inflict ${this.stack} damage.`,
+              ];
+            },
+          };
+          break;
+        }
+      }
 
       // Add updated status effect
       dispatch(
@@ -150,7 +170,31 @@ export function checkCurrentStatusEffects(target, effectName) {
   return false;
 }
 
-// Called within combatLoop to handle status effect changes
+// Used to call status effect functions if when
+// START TURN / END TURN
+export function callStatusEffect(dispatch, target, when) {
+  const order = store.getState().combat.order;
+  const character = order.find((char) => char.id === target.id);
+
+  const statusEffects = character.statusEffects;
+  for (let i = 0; i < statusEffects.length; i++) {
+    if (statusEffects[i].function) {
+      const statusEffectFunction =
+        statusEffectFunctions[statusEffects[i].function];
+      if (statusEffectFunction && statusEffects[i].when === when) {
+        // Add status effect function specific arguments if needed
+        statusEffectFunction(dispatch, character);
+        console.log("Status Effect Function Called", statusEffects[i]);
+      }
+
+      // if (statusEffectFunction && !when) {
+      //   statusEffectFunction(dispatch, character);
+      // }
+    }
+  }
+}
+
+// Called within combatLoop & RoomSummaryModal to handle status effect changes
 export function checkStatusEffect(dispatch, id, check, type) {
   const order = store.getState().combat.order;
   const index = order.findIndex((char) => char.id === id);
@@ -214,17 +258,17 @@ export function checkStatusEffect(dispatch, id, check, type) {
       }
       break;
 
-    case "CALL": // Check for status effect function call
-      for (let i = 0; i < statusEffects.length; i++) {
-        if (statusEffects[i].function) {
-          const statusEffectFunction =
-            statusEffectFunctions[statusEffects[i].function];
-          if (statusEffectFunction) {
-            statusEffectFunction(dispatch, order[index]);
-          }
-        }
-      }
-      break;
+    // case "CALL": // Check for status effect function call
+    //   for (let i = 0; i < statusEffects.length; i++) {
+    //     if (statusEffects[i].function) {
+    //       const statusEffectFunction =
+    //         statusEffectFunctions[statusEffects[i].function];
+    //       if (statusEffectFunction) {
+    //         statusEffectFunction(dispatch, order[index]);
+    //       }
+    //     }
+    //   }
+    //   break;
   }
 }
 

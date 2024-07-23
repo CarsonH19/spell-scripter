@@ -58,6 +58,84 @@ export default function StartGame() {
 
     dispatch(
       playerActions.changeInventory({
+        item: { ...CONSUMABLES.ROTBANE_FERN, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.GHOSTLIGHT_LILY, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.WITCHFIRE_ORCHID, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.LICHROOT, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.SOOTHING_CANDLE, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.LAUGHING_COFFIN_COIN, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.TOMBSTONE_TRUFFLE, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.SPIDER_EGG_YOLK, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.SPIDER_EGG_YOLK, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.SPIDER_EGG_YOLK, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.BLACKHEART_BREW, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
         item: { ...CONSUMABLES.CALMING_CANDLE, id: uuidv4() },
         change: "ADD",
       })

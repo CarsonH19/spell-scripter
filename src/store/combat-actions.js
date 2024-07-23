@@ -6,6 +6,7 @@ import setTargetType from "../util/targeting";
 import CONDITIONS from "../data/conditions";
 import changeStatusEffect, {
   checkCurrentStatusEffects,
+  callStatusEffect,
   checkStatusEffect,
 } from "./status-effect-actions.js";
 
@@ -39,11 +40,7 @@ let selectResolver;
 
 export default async function combatLoop(dispatch) {
   // Check for dialogue before starting combat
-  console.log("PASSED");
-
   await checkForDialogue(dispatch, "BEFORE");
-
-  console.log("GO");
 
   // Clear Narrative
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
@@ -77,8 +74,8 @@ export default async function combatLoop(dispatch) {
 
     let characterCheck = order[i];
     if (!characterCheck) continue;
-    // Check status effect that call functions at the start of the character's turn
-    checkStatusEffect(dispatch, order[i].id, "CALL");
+    // Check status effects that call functions at the start of the character's turn
+    callStatusEffect(dispatch, order[i], "START TURN");
     order = store.getState().combat.order;
     let character = order.find((char) => char.id === characterCheck.id);
 
@@ -205,7 +202,7 @@ export default async function combatLoop(dispatch) {
           action = checkBehaviorAction(character);
         }
 
-        // console.log("ACTION", action);
+        console.log("ACTION", action);
 
         switch (action) {
           case "ATTACK":
@@ -220,6 +217,8 @@ export default async function combatLoop(dispatch) {
               );
 
               const hit = rollToHit(dispatch, character, target);
+              console.log("HIT", hit);
+
               if (hit) {
                 // PASSIVE - Liheth
                 checkForPassiveAbility(
@@ -230,6 +229,8 @@ export default async function combatLoop(dispatch) {
                 );
 
                 const damage = calcDamage(character);
+                console.log("DAMAGE", damage);
+
                 // Create a new slice property to show the attack outcome
                 changeHealth(dispatch, target, "DAMAGE", damage, null);
               } else {
@@ -246,6 +247,13 @@ export default async function combatLoop(dispatch) {
           case "GUARD":
             // Adds the Guarding condition to the characters active status effects
             changeStatusEffect(dispatch, character, "ADD", CONDITIONS.GUARD);
+
+            dispatch(
+              logActions.updateLogs({
+                change: "ADD",
+                text: `${character.name} guards!`,
+              })
+            );
             break;
           case "ABILITY":
             // Function: checks which ability (A or B), checks focus to find target, dispatches actions to perform ability
@@ -253,10 +261,14 @@ export default async function combatLoop(dispatch) {
             break;
         }
       }
+
       await delay(1000);
 
       // COMPLETE TASKS AT END OF ROUND
       dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
+
+      // Check status effects that call functions at the end of the character's turn
+      callStatusEffect(dispatch, order[i], "END TURN");
 
       // Reduce the characters cooldowns
       decrementAbilityCooldowns(dispatch, character);
@@ -266,15 +278,21 @@ export default async function combatLoop(dispatch) {
   await delay(1000);
 
   // Check if combat is over
-  if (endCombat(dispatch)) {
+  const combatEnded = await endCombat(dispatch);
+  console.log("Combat ended:", combatEnded);
+
+  if (combatEnded) {
     // COMPLETE TASKS AT THE END OF COMBAT
     dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
 
     // Check if effect durations are rounds/actions and remove them from player & heroes
     for (let i = 0; i < order.length; i++) {
-      if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER")
+      if (order[i].identifier === "HERO" || order[i].identifier === "PLAYER") {
         checkStatusEffect(dispatch, order[i].id, "END");
+      }
     }
+    console.log("HERE!");
+
     return; // exit the loop
   } else {
     await delay(2000);
@@ -406,9 +424,11 @@ async function endCombat(dispatch) {
     console.log("CALLED!!!");
     await checkForDialogue(dispatch, "AFTER");
     openModal(dispatch, "roomSummaryModal");
+    console.log("TRUE");
     return true;
   }
 
+  console.log("FALSE");
   return false;
 }
 

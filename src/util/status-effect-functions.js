@@ -17,6 +17,13 @@ const statusEffectFunctions = {
     }
     changeHealth(dispatch, target, "DAMAGE", damage);
   },
+  POISONED: (dispatch, target) => {
+    const statusEffect = target.statusEffects.find(
+      (effect) => effect.name === "Poisoned"
+    );
+    const damage = statusEffect.stack;
+    changeHealth(dispatch, target, "DAMAGE", damage);
+  },
   STORM_SPHERE: (dispatch, target) => {
     const spellPower = store.getState().player.stats.arcana.spellPower;
     const damage = Math.round(spellPower / 2);
