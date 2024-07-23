@@ -3,6 +3,7 @@ import store from "./index";
 import { combatActions } from "./combat-slice";
 import { playerActions } from "./player-slice";
 import { checkSkillPoints } from "../util/spellbook-util";
+import { checkCurrentStatusEffects } from "./status-effect-actions";
 
 export default function updateStatTotals(dispatch, id) {
   let character;
@@ -135,11 +136,13 @@ export default function updateStatTotals(dispatch, id) {
   }
 
   // Check for diseased condition
-  if (checkCurrentStatusEffects(target, "Diseased")) {
+  if (checkCurrentStatusEffects(character, "Diseased")) {
     const diseased = character.statusEffects.find(
       (effect) => effect.name === "Diseased"
     );
-    maxHealth = ((diseased.stack * 20) / 100) * target.stats.strength.maxHealth;
+    const lostMaxHP = ((diseased.stack * 20) / 100) * maxHealth;
+    maxHealth = maxHealth - lostMaxHP;
+    console.log("DISEASED", lostMaxHP);
     console.log("DISEASED", maxHealth);
   }
 

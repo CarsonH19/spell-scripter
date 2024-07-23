@@ -187,6 +187,7 @@ export function checkCurrentStatusEffects(target, effectName) {
 export function callStatusEffect(dispatch, target, when) {
   const order = store.getState().combat.order;
   const character = order.find((char) => char.id === target.id);
+  console.log("HELLO");
 
   const statusEffects = character.statusEffects;
   for (let i = 0; i < statusEffects.length; i++) {
@@ -195,6 +196,7 @@ export function callStatusEffect(dispatch, target, when) {
         statusEffectFunctions[statusEffects[i].function];
       if (statusEffectFunction && statusEffects[i].when === when) {
         // Add status effect function specific arguments if needed
+        console.log("HELLO");
         statusEffectFunction(dispatch, character);
         console.log("Status Effect Function Called", statusEffects[i]);
       }

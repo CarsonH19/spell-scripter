@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import SPELLS from "../data/spells";
+import CONDITIONS from "../data/conditions";
 
 const playerSlice = createSlice({
   name: "player",
@@ -50,7 +51,11 @@ const playerSlice = createSlice({
     resistances: [],
     immunities: [],
     spellList: [],
-    statusEffects: [],
+    statusEffects: [
+      CONDITIONS.HAUNTED,
+      CONDITIONS.DISEASED,
+      CONDITIONS.POISONED,
+    ],
     inventory: {
       attunedItems: [],
       equipment: [],

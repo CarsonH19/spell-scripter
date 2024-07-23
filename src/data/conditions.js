@@ -1,3 +1,19 @@
+// BURNING: {
+//   name: "Burning", 
+//   display: true, ---> to show if the status effect is visible below the nameplate in combat
+//   image: "",
+//   type: "DEBUFF",
+//   description:
+//     "The target takes Fire damage at the start of each of its turns.",
+//   effect: [""],
+//   durationType: "ROUND",
+//   duration: 3,
+//   reset: 3,
+//   stats: {},
+//   function: "BURNING", ---> must have if the status effect calls a separate function
+//   when: "START TURN", ---> must have if it calls a function to determine when it is called
+// },
+
 const CONDITIONS = {
   BURNING: {
     name: "Burning",
@@ -77,10 +93,23 @@ const CONDITIONS = {
     get effect() {
       return [`Max Health reduced by ${this.stack * 20}%`];
     },
-    durationType: "ROUND",
+    durationType: "ROOM",
     duration: 5,
     reset: 5,
     stats: {},
+  },
+  HAUNTED: {
+    name: "Haunted",
+    display: true,
+    image: "",
+    type: "DEBUFF",
+    effect: ["You are haunted."],
+    durationType: "ROOM",
+    duration: 10,
+    reset: 10,
+    stats: {},
+    function: "HAUNTED",
+    when: "BEFORE COMBAT",
   },
   RESTRAINED: {
     name: "Restrained",

@@ -438,12 +438,17 @@ async function delay(ms) {
 
 // STARTING COMBAT
 export function startCombat(dispatch) {
+  const order = store.getState().combat.order;
+  // Check status effects that call functions before combat
+  for (let i = 0; i < order.length; i++) {
+    callStatusEffect(dispatch, order[i], "BEFORE COMBAT");
+  }
+
   const room = store.getState().dungeon;
   const currentOrder = store.getState().combat.order;
   const characters = [...room.contents.enemies, ...currentOrder];
   dispatch(combatActions.setInitiative({ characters }));
 
-  console.log("HELLO");
   for (let i = 0; i < characters.length; i++) {
     updateStatTotals(dispatch, characters[i].id);
 

@@ -4,6 +4,9 @@ import { checkSkillPoints } from "./spellbook-util";
 import { combatActions } from "../store/combat-slice";
 import { checkForDeath } from "../store/health-actions";
 import { createArcaneShield } from "./skills";
+import { UNDEAD } from "../data/enemies";
+import { constructStats } from "./dungeon-util";
+import { dungeonActions } from "../store/dungeon-slice";
 
 // These functions are called when a target has the status effect
 
@@ -23,6 +26,25 @@ const statusEffectFunctions = {
     );
     const damage = statusEffect.stack;
     changeHealth(dispatch, target, "DAMAGE", damage);
+  },
+  HAUNTED: (dispatch) => {
+    const dungeon = store.getState().dungeon;
+    if (dungeon.contents.enemies.length < 5) {
+      const chance = Math.random() * 100;
+      console.log("CHANCE", chance);
+      if (chance > 50) {
+        // add enemy
+        // Add Siggurd to party
+        const baseStats = constructStats(UNDEAD.SHADOW.stats);
+        let shadow = {
+          ...UNDEAD.SHADOW,
+          stats: baseStats,
+          damageDisplay: "",
+        };
+        dispatch(dungeonActions.addEnemy({ enemy: shadow, change: "ADD" }));
+        // dispatch(combatActions.addCharacter({ character: shadow }));
+      }
+    }
   },
   STORM_SPHERE: (dispatch, target) => {
     const spellPower = store.getState().player.stats.arcana.spellPower;
