@@ -16,7 +16,7 @@ const EQUIPMENT = {
     stats: {},
   },
   SUNSTONE: {
-    // ADDITIONAL LOGIC ---> combat-actions.js combat-loop()
+    // ADDITIONAL LOGIC ---> combat-actions.js handleCallTiming()
     name: "Sunstone",
     description: "",
     display: true,
@@ -30,6 +30,7 @@ const EQUIPMENT = {
     stats: {},
   },
   RITUAL_BLADE: {
+    // ADDITIONAL LOGIC ---> combat-actions.js attack()
     name: "Ritual Blade",
     description: "",
     display: false,
@@ -41,6 +42,7 @@ const EQUIPMENT = {
     stats: {},
   },
   SPIRIT_VEIL_CLOAK: {
+    // ADDITIONAL LOGIC ---> combat-actions.js rollToHit()
     name: "Spirit Veil Cloak",
     description: "",
     display: true,
@@ -131,7 +133,7 @@ const EQUIPMENT = {
     type: "EQUIPMENT",
     rarity: "Rare",
     useInCombat: false,
-    effect: ["You recover a small amount of health after defeating an enemy."],
+    effect: ["You recover a small amount of HP after defeating an enemy."],
     stats: {},
   },
   WRAITHBANE: {

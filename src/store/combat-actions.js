@@ -295,7 +295,12 @@ export function rollToHit(dispatch, attacker, target) {
   let bonus = attacker.stats.agility.hitChance;
   let defense = target.stats.agility.defense;
 
-  const chanceToHit = roll20(bonus);
+  let chanceToHit = roll20(bonus);
+
+  // ITEM - Spirit Veil Cloak
+  if (target.id === "Player") {
+    chanceToHit -= checkIfAttuned(dispatch, "Spirit Veil Cloak");
+  }
 
   // STATUS EFFECT - Storm Shield
   if (checkCurrentStatusEffects(target, "Storm Sphere")) {
@@ -416,7 +421,7 @@ async function handleCallTiming(dispatch, timing, character) {
         dispatch(logActions.updateLogs({ change: "CLEAR" }));
 
         // ITEM - Sunstone
-        checkIfAttuned(dispatch, "Sunstone"); 
+        checkIfAttuned(dispatch, "Sunstone");
       }
       break;
     case "START_OF_TURN":
@@ -472,7 +477,11 @@ function attack(dispatch, character, target) {
     // PASSIVE - Liheth
     checkForPassiveAbility(dispatch, character, "DURING_COMBAT", target);
 
-    const damage = calcDamage(character);
+    let damage = calcDamage(character);
+
+    // ITEM - Ritual Blade - +3 Attack to humanoid & beasts
+    damage += checkIfAttuned(dispatch, "Ritual Blade", target);
+
     // console.log("DAMAGE", damage);
 
     // Create a new slice property to show the attack outcome

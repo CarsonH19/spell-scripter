@@ -212,11 +212,20 @@ export const itemFunctions = {
       }
     }
   },
+  RITUAL_BLADE: (dispatch, target) => {
+    if (target.type === "BEAST" || target.type === "HUMANOID") {
+      return 3;
+    }
+  },
+  SPIRIT_VEIL_CLOAK: () => {
+    const chance = Math.floor(Math.random() * 100) + 1;
+    return chance > 95 ? 999 : 0;
+  },
 };
 
 // Returns true/false to determine if an item is attuned or not
 // Used for items that require additional logic throughout the code
-export function checkIfAttuned(dispatch, itemName) {
+export function checkIfAttuned(dispatch, itemName, target) {
   const snakeCaseItem = toSnakeCase(itemName);
   const itemFunction = itemFunctions[snakeCaseItem];
 
@@ -226,7 +235,7 @@ export function checkIfAttuned(dispatch, itemName) {
 
   for (let i = 0; i < attunedItems.length; i++) {
     if (attunedItems[i].name === itemName) {
-      return itemFunction(dispatch);
+      return itemFunction(dispatch, target);
     }
   }
 
