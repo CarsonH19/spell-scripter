@@ -6,6 +6,7 @@ import { checkSkillPoints } from "../util/spellbook-util";
 import changeStatusEffect, {
   checkCurrentStatusEffects,
 } from "./status-effect-actions";
+import { checkIfAttuned } from "../util/item-functions";
 
 export default function updateStatTotals(dispatch, id) {
   let character;

@@ -12,6 +12,7 @@ import { checkSkillPoints } from "../util/spellbook-util";
 import statusEffectFunctions from "../util/status-effect-functions";
 import progressActiveQuests from "../util/quest-util";
 import { checkIfAttuned } from "../util/item-functions";
+import updateStatTotals from "./stats-actions";
 
 export function changeHealth(
   dispatch,
@@ -144,8 +145,6 @@ export function changeHealth(
     return;
   }
 
-
-
   // ITEM - Wraithbane
   // Check for the Incorporeal condition
   if (
@@ -160,6 +159,7 @@ export function changeHealth(
   value = Math.round(value);
   dispatch(combatActions.updateDamageDisplay({ id, value }));
   dispatch(combatActions.updateHealth({ id, change, value }));
+  updateStatTotals(dispatch, target.id);
   checkForDeath(dispatch, id);
 }
 

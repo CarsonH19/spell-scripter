@@ -479,13 +479,15 @@ function attack(dispatch, character, target) {
 
     let damage = calcDamage(character);
 
-    // ITEM - Ritual Blade - +3 Attack to humanoid & beasts
     if (character.id === "Player") {
+      // ITEM - Ritual Blade - +3 Attack to humanoid & beasts
       damage += checkIfAttuned(dispatch, "Ritual Blade", target);
+      // ITEM - Revenant's Rage
+      damage += checkIfAttuned(dispatch, "Revenants Rage");
     }
 
-    // ITEM - Cursed Mirror
     if (target.id === "Player") {
+      // ITEM - Cursed Mirror
       checkIfAttuned(dispatch, "Cursed Mirror", character, damage);
     }
 

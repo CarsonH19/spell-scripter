@@ -235,6 +235,13 @@ export const itemFunctions = {
     const reflectedDamage = Math.floor(Math.random() * range);
     changeHealth(dispatch, character, "DAMAGE", reflectedDamage);
   },
+  REVENANTS_RAGE: () => {
+    const order = store.getState().combat.order;
+    const player = order.find((char) => char.id === "Player");
+    if (player.currentHealth < 30) {
+      return 5;
+    }
+  },
 };
 
 // Returns true/false to determine if an item is attuned or not

@@ -126,6 +126,7 @@ const EQUIPMENT = {
   //                          RARE ITEMS
   // ====================================================================
   BLOODSTONE: {
+    // ADDITIONAL LOGIC ---> health-actions.js checkForDeath()
     name: "Bloodstone",
     description: "",
     display: false,
@@ -136,6 +137,7 @@ const EQUIPMENT = {
     effect: ["You recover a small amount of HP after defeating an enemy."],
     stats: {},
   },
+  // ADDITIONAL LOGIC ---> health-actions.js changeHealth()
   WRAITHBANE: {
     name: "Wraithbane",
     description: "",
@@ -147,6 +149,7 @@ const EQUIPMENT = {
     effect: ["Your attacks ignore the Incorporeal condition."],
     stats: {},
   },
+  // ADDITIONAL LOGIC ---> combat-actions.js attack()
   CURSED_MIRROR: {
     name: "Cursed Mirror",
     description: "",
@@ -160,15 +163,16 @@ const EQUIPMENT = {
     ],
     stats: {},
   },
+  // ADDITIONAL LOGIC ---> stat-actions.js updateStatTotals()
   REVENANTS_RAGE: {
-    name: "Revenant's Rage",
+    name: "Revenants Rage",
     description: "",
     display: false,
     image: "src/assets/images/items/equipment/revenants-rage.jpg",
     type: "EQUIPMENT",
     rarity: "Rare",
     useInCombat: false,
-    effect: ["+5 Attack while below 30HP."],
+    effect: ["Attacks deal an +5 damage while below 30HP."],
     stats: {},
   },
   PLAUGEWARD_PENDANT: {
