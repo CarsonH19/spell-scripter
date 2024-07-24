@@ -230,7 +230,7 @@ export default function StartGame() {
     );
     dispatch(
       playerActions.changeInventory({
-        item: { ...EQUIPMENT.WRAITHBANE, id: uuidv4() },
+        item: { ...EQUIPMENT.CURSED_MIRROR, id: uuidv4() },
         change: "ADD",
       })
     );

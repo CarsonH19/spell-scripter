@@ -230,11 +230,16 @@ export const itemFunctions = {
   WRAITHBANE: () => {
     return true;
   },
+  CURSED_MIRROR: (dispatch, character, damage) => {
+    const range = Math.floor(damage / 3);
+    const reflectedDamage = Math.floor(Math.random() * range);
+    changeHealth(dispatch, character, "DAMAGE", reflectedDamage);
+  },
 };
 
 // Returns true/false to determine if an item is attuned or not
 // Used for items that require additional logic throughout the code
-export function checkIfAttuned(dispatch, itemName, target) {
+export function checkIfAttuned(dispatch, itemName, target, arg) {
   const snakeCaseItem = toSnakeCase(itemName);
   const itemFunction = itemFunctions[snakeCaseItem];
 
@@ -244,7 +249,7 @@ export function checkIfAttuned(dispatch, itemName, target) {
 
   for (let i = 0; i < attunedItems.length; i++) {
     if (attunedItems[i].name === itemName) {
-      return itemFunction(dispatch, target);
+      return itemFunction(dispatch, target, arg);
     }
   }
 
