@@ -227,6 +227,9 @@ export const itemFunctions = {
     const health = enemy.level * 3;
     changeHealth(dispatch, player, "HEAL", health);
   },
+  WRAITHBANE: () => {
+    return true;
+  },
 };
 
 // Returns true/false to determine if an item is attuned or not

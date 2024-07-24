@@ -144,9 +144,11 @@ export function changeHealth(
     return;
   }
 
+  // ITEM - Wraithbane
   // Check for the Incorporeal condition
   if (
     checkCurrentStatusEffects(target, "Incorporeal") &&
+    !checkIfAttuned(dispatch, "Wraithbane") &&
     damageType === null &&
     change === "DAMAGE"
   ) {

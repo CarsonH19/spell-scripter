@@ -230,7 +230,7 @@ export default function StartGame() {
     );
     dispatch(
       playerActions.changeInventory({
-        item: { ...EQUIPMENT.SPINE_OF_THE_NECROMANCER, id: uuidv4() },
+        item: { ...EQUIPMENT.WRAITHBANE, id: uuidv4() },
         change: "ADD",
       })
     );
