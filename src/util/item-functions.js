@@ -221,6 +221,12 @@ export const itemFunctions = {
     const chance = Math.floor(Math.random() * 100) + 1;
     return chance > 95 ? 999 : 0;
   },
+  BLOODSTONE: (dispatch, enemy) => {
+    const order = store.getState().combat.order;
+    const player = order.find((char) => char.id === "Player");
+    const health = enemy.level * 3;
+    changeHealth(dispatch, player, "HEAL", health);
+  },
 };
 
 // Returns true/false to determine if an item is attuned or not

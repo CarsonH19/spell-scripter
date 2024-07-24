@@ -84,8 +84,8 @@ const EQUIPMENT = {
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
-    effect: ["+2 Spell Power"],
-    stats: {},
+    effect: ["+1 Speed", "+2 Mana Regeneration"],
+    stats: { agility: { speed: +1 }, arcana: { manaRegen: +2 } },
   },
   BONEMAIL: {
     name: "Bonemail",

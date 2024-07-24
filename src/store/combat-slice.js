@@ -15,7 +15,7 @@ const combatSlice = createSlice({
         character,
         initiative:
           Math.floor(Math.random() * 11) + character.stats.agility.speed,
-      })); // NOTE: May want to change agility for a specific speed stat
+      }));
 
       charactersWithInitiative.sort((a, b) => b.initiative - a.initiative);
 
@@ -59,8 +59,13 @@ const combatSlice = createSlice({
     addCharacter(state, action) {
       const character = action.payload.character;
 
-      // NOTE: add logic to check if character already exists
-      state.order.push(character);
+      const alreadyExists = state.order.some(
+        (char) => char.id === character.id
+      );
+
+      if (!alreadyExists) {
+        state.order.push(character);
+      }
     },
     updateStats(state, action) {
       // Locate character

@@ -11,6 +11,7 @@ import CONDITIONS from "../data/conditions";
 import { checkSkillPoints } from "../util/spellbook-util";
 import statusEffectFunctions from "../util/status-effect-functions";
 import progressActiveQuests from "../util/quest-util";
+import { checkIfAttuned } from "../util/item-functions";
 
 export function changeHealth(
   dispatch,
@@ -174,7 +175,6 @@ export function checkForDeath(dispatch, id) {
         value: 999,
       })
     );
-
     dispatch(
       uiActions.changeUi({ element: "continueIsVisible", visible: false })
     );
@@ -186,14 +186,19 @@ export function checkForDeath(dispatch, id) {
     );
   }
 
+  // Only Enemies
   if (character.currentHealth <= 0 && character.identifier === "ENEMY") {
     // Check for quest progression from defeating foes
     progressActiveQuests(dispatch, "SLAY");
 
     // Check defeated enemy for loot & add them to dungeon-slice
     loot(dispatch, character);
+
+    // ITEM - Bloodstone
+    checkIfAttuned(dispatch, "Bloodstone", character);
   }
 
+  // Enemies & Heroes
   if (character.currentHealth <= 0 && character.identifier !== "PLAYER") {
     // Removes defeated character
     setTimeout(() => {
