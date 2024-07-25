@@ -44,7 +44,9 @@ export default function Dialogue() {
         />
         <div className={classes["dialogue-box"]}>
           <div className={classes.speaker}>
-            <h3>{activeDialogue[index].speaker}</h3>
+            {activeDialogue[index].speaker && (
+              <h3>{activeDialogue[index].speaker}</h3>
+            )}
             <p>{activeDialogue[index].text}</p>
           </div>
           <div className={classes["box-buttons"]}>

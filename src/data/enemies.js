@@ -395,4 +395,54 @@ const UNDEAD = {
   },
 };
 
-export { UNDEAD };
+// =====================================
+//             THIEVES
+// =====================================
+
+const THIEVES = {
+  THIEF: {
+    name: "Thief",
+    identifier: "ENEMY",
+    get image() {
+      return getCharacterImage("src/assets/images/enemies/thief", 3);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
+    type: ENEMY_TYPES.HUMANOID,
+    // audio: {},
+    level: 2,
+    currentHealth: 20,
+    currentMana: 0,
+    stats: {
+      baseStrength: 0,
+      baseAgility: 2,
+      baseArcana: 0,
+    },
+    abilityA: {
+      name: "Venom Strike",
+      description: `The thief deals damage to an enemy equal to his Attack and inflicts the Poisoned condition.`,
+      cooldown: 3,
+      reset: 3,
+      focus: "LOWEST_HEALTH",
+      function: "VENOM_STRIKE",
+    },
+    weaknesses: [],
+    resistances: [],
+    immunities: [],
+    behavior: "RUTHLESS",
+    statusEffects: [],
+    lootTable: [
+      // NOTE: ADD LOOT
+      { item: CONSUMABLES.GRAVEBLOOM, probability: 0.03 },
+      { item: CONSUMABLES.ROTBANE_FERN, probability: 0.03 },
+      { item: CONSUMABLES.MARROWSTONE_CHEESE, probability: 0.03 },
+      { item: CONSUMABLES.CRYPTBREAD, probability: 0.03 },
+      { item: CONSUMABLES.SKELETON_KEY, probability: 0.01 },
+      { item: EQUIPMENT.BONEMAIL, probability: 0.01 },
+      { item: null, probability: 0.85 },
+    ],
+  },
+};
+
+export { UNDEAD, THIEVES };

@@ -245,10 +245,25 @@ export const UNLOCK_HERO = {
     description: [""],
     function: "UNLOCK_HERO_SIGGURD",
   },
-  // LIHETH: {
-  //   name: "Candlelight Priestess",
-  //   type: "AUTO",
-  //   description: [""],
-  //   function: "UNLOCK_HERO_SIGGURD",
-  // },
+};
+
+
+export const AMBUSH = {
+  name: "Ambush",
+  type: "CHOICE",
+  description: [
+    "You are ambushed by thieves.", "They demand you surrender your items or suffer the consequence."
+  ],
+  options: [
+    {
+      text: ["Surrender"],
+      function: "AMBUSH",
+      narration: "You surrender your inventory to the thieves.",
+    },
+    {
+      text: ["Refuse"],
+      function: "AMBUSH",
+      narration: "You refuse to surrender and fight back against the thieves.",
+    },
+  ],
 };

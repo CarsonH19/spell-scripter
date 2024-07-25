@@ -11,6 +11,7 @@ import {
   CANDLELIGHT_SHRINE,
   WAILING_WARRENS_EXIT,
   UNLOCK_HERO,
+  AMBUSH,
 } from "../data/events";
 
 import store from "../store/index";
@@ -119,7 +120,7 @@ function getRoomContent() {
       }
 
       // Event chance for dungeon is 20%
-      if (eventChance > 50) {
+      if (eventChance > 0) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -147,9 +148,10 @@ function getRoomEvent() {
       // Add general non-path events
       if (!dungeon.path) {
         // Traps
-        for (let i = 0; i < TRAPS.length; i++) {
-          events.push(TRAPS[i]);
-        }
+        // for (let i = 0; i < TRAPS.length; i++) {
+        //   events.push(TRAPS[i]);
+        // }
+        events.push(AMBUSH);
         // events.push(COFFIN);
         // events.push(PATHS[0]);
         // events.push(BONEVAULT);

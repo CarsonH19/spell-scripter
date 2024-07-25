@@ -6,6 +6,8 @@ import { dungeonActions } from "../store/dungeon-slice";
 
 import CONSUMABLES from "../data/consumables";
 import EQUIPMENT from "../data/equipment";
+import MISC_ITEMS from "../data/misc-items";
+import { propNames } from "@chakra-ui/react";
 
 export default function loot(dispatch, enemy) {
   const lootTable = enemy.lootTable;
@@ -100,11 +102,19 @@ export function getRandomLoot(dispatch) {
       ];
       break;
 
+    case "Ambush": {
+      lootTable = [
+        { item: MISC_ITEMS.THIEVES_RUIN_MAP, probability: 0.25 },
+        { item: null, probability: 0.75 },
+      ];
+    }
+    // add map
+
     default:
       break;
   }
 
-  // Determines the enemies loot
+  // Determines the events loot
   const loot = calculateLoot(lootTable);
   if (loot) {
     // Add loot to dungeon-slice items array

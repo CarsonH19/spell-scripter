@@ -37,11 +37,12 @@ const abilityFunctions = {
 
     changeStatusEffect(dispatch, target, "ADD", DIVINE_GUARDIAN);
   },
-  // Riven
+  // Riven & Thief
   VENOM_STRIKE: (dispatch, target) => {
-    const riven = findCharacterInOrder("Riven");
-
-    const damage = riven.stats.strength.attack;
+    const order = store.getState().combat.order;
+    const id = store.getState().combat.isCharacterTurn;
+    const character = order.find((char) => char.id === id);
+    const damage = character.stats.strength.attack;
     changeHealth(dispatch, target, "DAMAGE", damage);
     changeStatusEffect(dispatch, target, "ADD", CONDITIONS.POISONED);
   },
@@ -243,6 +244,11 @@ export function useAbility(dispatch, character) {
 
         // Liheth B - Undying Flame
         if (character.name === "Liheth") {
+          targetGroup = findTargetGroup("HEROES");
+        }
+
+        // Thief A - Venom Strike
+        if (character.name === "Thief") {
           targetGroup = findTargetGroup("HEROES");
         }
 

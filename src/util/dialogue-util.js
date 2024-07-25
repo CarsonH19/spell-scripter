@@ -1,5 +1,9 @@
 import { dialogueActions } from "../store/dialogue-slice";
-import { SIGGURD_DIALOGUE, LIHETH_DIALOGUE } from "../data/dialogue";
+import {
+  SIGGURD_DIALOGUE,
+  LIHETH_DIALOGUE,
+  AMBUSH_EVENT_DIALOGUE,
+} from "../data/dialogue";
 import store from "../store/index";
 import heroes from "../data/heroes";
 
@@ -24,7 +28,6 @@ export default async function checkForDialogue(dispatch, beforeOrAfter) {
       }
       break;
   }
-
 }
 
 // =============================================================
@@ -88,6 +91,11 @@ export function getRoomDialogue(dispatch, dungeon) {
             dialogueActions.updateDialogue(LIHETH_DIALOGUE.UNLOCK_EVENT)
           );
         }
+        break;
+
+      case "Ambush": {
+        dispatch(dialogueActions.updateDialogue(AMBUSH_EVENT_DIALOGUE));
+      }
 
       default:
         break;

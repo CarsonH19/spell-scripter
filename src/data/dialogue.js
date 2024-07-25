@@ -1,3 +1,24 @@
+// export const SIGGURD_DIALOGUE = {
+//   UNLOCK_EVENT: {
+//     before: [
+//       {
+//         position: "RIGHT",
+//         speaker: "Siggurd",
+//         image: "src/assets/images/dialogue/siggurd-dialogue.png",
+//         text: "Hyaaa!...",
+//       },
+//     ],
+//     after: [
+//       {
+//         position: "RIGHT",
+//         speaker: "Siggurd",
+//         image: "src/assets/images/dialogue/siggurd-dialogue.png",
+//         text: "Judgment has been delivered.",
+//       },
+//     ],
+//   },
+// };
+
 export const LIHETH_DIALOGUE = {
   UNLOCK_EVENT: {
     before: [
@@ -188,4 +209,52 @@ export const SIGGURD_DIALOGUE = {
       },
     ],
   },
+};
+
+export const AMBUSH_EVENT_DIALOGUE = {
+  before: [
+    {
+      position: "RIGHT",
+      speaker: null,
+      image: "",
+      text: "Scoundrels suddenly emerge from hiding and quickly surround you, their blades unsheathed and eyes gleaming with greed.",
+    },
+    {
+      position: "RIGHT",
+      speaker: "Thief",
+      image: "src/assets/images/dialogue/thief-dialogue.png",
+      text: "Hold it right there. Don't move.",
+    },
+    {
+      position: "RIGHT",
+      speaker: "Thief",
+      image: "src/assets/images/dialogue/thief-dialogue.png",
+      text: "Your coin, your valuables, and anything else of worth. Hand them over quietly, and we won't hurt you.",
+    },
+    {
+      position: "LEFT",
+      speaker: "Carson",
+      image: "src/assets/images/dialogue/player-1-dialogue.png",
+      text: "I don't have mu-",
+    },
+    {
+      position: "RIGHT",
+      speaker: "Thief",
+      image: "src/assets/images/dialogue/thief-dialogue.png",
+      text: "Don't test my patience! Empty your pockets, now.",
+    },
+    {
+      position: "RIGHT",
+      speaker: "Thief",
+      image: "src/assets/images/dialogue/thief-dialogue.png",
+      text: "I won't ask again.",
+    },
+    {
+      position: "LEFT",
+      speaker: "Carson",
+      image: "src/assets/images/dialogue/player-1-dialogue.png",
+      text: "...",
+    },
+  ],
+  after: [],
 };

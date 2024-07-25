@@ -8,7 +8,7 @@ import store from "../store/index";
 import { v4 as uuidv4 } from "uuid";
 
 import { openModal } from "../store/ui-actions";
-import { UNDEAD } from "../data/enemies";
+import { THIEVES, UNDEAD } from "../data/enemies";
 import CONSUMABLES from "../data/consumables";
 import EQUIPMENT from "../data/equipment";
 import { dungeonActions } from "../store/dungeon-slice";
@@ -318,6 +318,71 @@ const eventFunctions = {
 
     startCombat(dispatch);
   },
+  AMBUSH: async (dispatch, choice) => {
+    const order = store.getState().combat.order;
+    const player = order.find((char) => char.id === "Player");
+    if (choice === "Surrender") {
+      if (
+        player.inventory.consumables.length !== 0 &&
+        player.inventory.equipment.length !== 0
+      ) {
+        // Lose 2 random consumables
+        for (let i = 0; i < 2; i++) {
+          const index =
+            Math.floor(Math.random()) * player.inventory.consumables.length;
+          dispatch(
+            combatActions.changePlayerInventory({
+              item: player.inventory.consumables[index],
+              change: "REMOVE",
+            })
+          );
+        }
+        // Lose random equipment
+        const index =
+          Math.floor(Math.random()) * player.inventory.equipment.length;
+        dispatch(
+          combatActions.changePlayerInventory({
+            item: player.inventory.equipment[index],
+            change: "REMOVE",
+          })
+        );
+        // Outcome
+        dispatch(
+          dungeonActions.eventOutcome({
+            outcome: `The thieves took what they wanted from your inventory, but left you unharmed.`,
+          })
+        );
+        await delay(4000);
+      } else {
+        // Outcome
+        dispatch(
+          dungeonActions.eventOutcome({
+            outcome: `You had nothing of interest, so the thieves attacked you anyways.`,
+          })
+        );
+        getRandomLoot(dispatch);
+        addEnemyToOrder(dispatch, THIEVES.THIEF, 3);
+        await delay(4000);
+        startCombat(dispatch);
+      }
+      openModal(dispatch, "roomSummaryModal");
+    }
+
+    if (choice === "Refuse") {
+      getRandomLoot(dispatch);
+      addEnemyToOrder(dispatch, THIEVES.THIEF, 3);
+      await delay(4000);
+      startCombat(dispatch);
+      // Outcome
+      dispatch(
+        dungeonActions.eventOutcome({
+          outcome: `You refused to surrender your items to the thieves and faced them in combat.`,
+        })
+      );
+    }
+
+    dispatch(dialogueActions.clearDialogue());
+  },
 };
 
 export default eventFunctions;
@@ -412,4 +477,28 @@ function roll20(bonus = 0) {
 
 async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function addEnemyToOrder(dispatch, enemyObj, numberOfEnemies) {
+  for (let i = 0; i < numberOfEnemies; i++) {
+    const baseStats = constructStats(enemyObj.stats);
+    const enemy = {
+      ...enemyObj,
+      id: uuidv4(),
+      stats: baseStats,
+      damageDisplay: "",
+    };
+
+    console.log(enemy);
+
+    dispatch(combatActions.addCharacter({ character: enemy }));
+    updateStatTotals(dispatch, enemy.id);
+    dispatch(
+      combatActions.updateHealth({
+        id: enemy.id,
+        change: "HEAL",
+        value: 999,
+      })
+    );
+  }
 }
