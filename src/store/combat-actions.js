@@ -39,11 +39,6 @@ let targetResolver;
 let selectResolver;
 
 export default async function combatLoop(dispatch) {
-  // Check for dialogue before starting combat
-  console.log("COMBAT");
-
-  // await checkForDialogue(dispatch, "BEFORE");
-
   // Iterate through all characters and call passive abilities before combat
   // NOTE: Passives will be called on each round of combat.
   let order = store.getState().combat.order;

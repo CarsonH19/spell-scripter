@@ -22,9 +22,16 @@ const dialogueSlice = createSlice({
   },
   reducers: {
     updateDialogue(state, action) {
-      // const { before, after } = action.payload;
-      state.before = action.payload.before;
-      state.after = action.payload.after;
+      const { change, dialogue } = action.payload;
+
+      switch (change) {
+        case "BEFORE":
+          state.before = dialogue;
+          break;
+        case "AFTER":
+          state.after = dialogue;
+          break;
+      }
     },
     startDialogue(state, action) {
       state.active = action.payload;

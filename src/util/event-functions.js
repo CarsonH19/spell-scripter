@@ -1,16 +1,11 @@
 import { buildEnemy, createNewRoom } from "./dungeon-util";
 import { changeHealth } from "../store/health-actions";
 
-import { uiActions } from "../store/ui-slice";
-
 import store from "../store/index";
-
-import { v4 as uuidv4 } from "uuid";
 
 import { openModal } from "../store/ui-actions";
 import { THIEVES, UNDEAD } from "../data/enemies";
-import CONSUMABLES from "../data/consumables";
-import EQUIPMENT from "../data/equipment";
+
 import { dungeonActions } from "../store/dungeon-slice";
 import { startCombat } from "../store/combat-actions";
 import { logActions } from "../store/log-slice";
@@ -25,9 +20,9 @@ import { dialogueActions } from "../store/dialogue-slice";
 import checkForDialogue from "./dialogue-util";
 import { unlockHero } from "./hero-leveling";
 import { checkIfAttuned } from "./item-functions";
+import { addEnemyToOrder } from "./misc-util";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
-
 const eventFunctions = {
   DUNGEON_ENTRANCE_ENTER: (dispatch) => {
     createNewRoom(dispatch);
@@ -248,8 +243,6 @@ const eventFunctions = {
       unlockHero("Liheth");
     }
 
-    // await checkForDialogue(dispatch, "BEFORE");
-
     if (choice === "Rest") {
       const order = store.getState().combat.order;
       // Add fade transition
@@ -365,12 +358,13 @@ const eventFunctions = {
         await delay(4000);
         startCombat(dispatch);
       }
+      // Clear enemies from room
+      clearCharactersFromOrder(dispatch);
       openModal(dispatch, "roomSummaryModal");
     }
 
     if (choice === "Refuse") {
       getRandomLoot(dispatch);
-      addEnemyToOrder(dispatch, THIEVES.THIEF, 3);
       await delay(4000);
       startCombat(dispatch);
       // Outcome
@@ -479,26 +473,11 @@ async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function addEnemyToOrder(dispatch, enemyObj, numberOfEnemies) {
-  for (let i = 0; i < numberOfEnemies; i++) {
-    const baseStats = constructStats(enemyObj.stats);
-    const enemy = {
-      ...enemyObj,
-      id: uuidv4(),
-      stats: baseStats,
-      damageDisplay: "",
-    };
-
-    console.log(enemy);
-
-    dispatch(combatActions.addCharacter({ character: enemy }));
-    updateStatTotals(dispatch, enemy.id);
-    dispatch(
-      combatActions.updateHealth({
-        id: enemy.id,
-        change: "HEAL",
-        value: 999,
-      })
-    );
+function clearCharactersFromOrder(dispatch) {
+  const order = store.getState().combat.order;
+  for (let i = 0; i < order.length; i++) {
+    if (order[i].identifier !== "PLAYER" && order[i].identifier !== "HERO") {
+      dispatch(combatActions.removeCharacter({ character: order[i] }));
+    }
   }
 }

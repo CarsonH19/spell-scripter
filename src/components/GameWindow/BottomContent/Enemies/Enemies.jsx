@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 export default function Enemies() {
   const order = useSelector((state) => state.combat.order);
 
+  console.log(order);
   return (
     <div className={classes.enemies}>
       {order.map((enemy) => {

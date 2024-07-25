@@ -11,22 +11,9 @@ import { useEffect } from "react";
 
 export default function MiddleContent() {
   const dispatch = useDispatch();
-  const dungeon = useSelector((state) => state.dungeon);
-
-  // Event Logic
-  useEffect(() => {
-    if (dungeon.contents.event) {
-      dispatch(logActions.updateLogs({ change: "PAUSE" }));
-      for (let i = 0; i < dungeon.contents.event.description.length; i++) {
-        dispatch(
-          logActions.updateLogs({
-            change: "ADD",
-            text: dungeon.contents.event.description[i],
-          })
-        );
-      }
-    }
-  }, [dungeon.roomCounter]);
+  const eventOptionsAreVisible = useSelector(
+    (state) => state.ui.eventOptionsAreVisible
+  );
 
   // Continue Logic
   const continueIsVisible = useSelector((state) => state.ui.continueIsVisible);
@@ -45,7 +32,7 @@ export default function MiddleContent() {
           Continue
         </button>
       )}
-      {dungeon.contents.event && <EventOptions />}
+      {eventOptionsAreVisible && <EventOptions />}
     </div>
   );
 }

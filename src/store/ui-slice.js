@@ -10,6 +10,7 @@ const uiSlice = createSlice({
     itemListIsVisible: false,
     continueIsVisible: false,
     modalIsVisible: false,
+    eventOptionsAreVisible: false,
     modal: {
       heroesModal: false,
       inventoryModal: false,

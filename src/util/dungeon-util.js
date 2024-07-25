@@ -19,7 +19,6 @@ import store from "../store/index";
 import { v4 as uuidv4 } from "uuid";
 import { checkForActiveQuest } from "./quest-util";
 
-import { getRoomDialogue } from "./dialogue-util";
 import heroes from "../data/heroes";
 
 export function setDungeon(dispatch, dungeonName) {
@@ -93,10 +92,6 @@ export function createNewRoom(dispatch) {
       newRoom.contents.event = getPathExit();
   }
 
-  // check for dialogue
-  // TESTING DIALOGUE
-  getRoomDialogue(dispatch, newRoom);
-
   // Get background after room contents have been determined
   newRoom.image = getRoomImage(newRoom);
   dispatch(dungeonActions.updateRoom(newRoom));
@@ -158,9 +153,9 @@ function getRoomEvent() {
         // events.push(CANDLELIGHT_SHRINE);
 
         // // Check if Siggurd is unlocked
-        // if (!heroes[0].unlocked) {
-        //   events.push(UNLOCK_HERO.SIGGURD);
-        // }
+        if (!heroes[0].unlocked) {
+          events.push(UNLOCK_HERO.SIGGURD);
+        }
       }
 
       // Add path specific events

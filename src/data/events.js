@@ -1,3 +1,13 @@
+// Enemies
+import { UNDEAD, THIEVES } from "./enemies";
+
+// Dialogues
+import {
+  SIGGURD_DIALOGUE,
+  LIHETH_DIALOGUE,
+  AMBUSH_EVENT_DIALOGUE,
+} from "../data/dialogue";
+
 export const DUNGEON_ENTRANCE = {
   name: "Dungeon Entrance",
   type: "ENTRANCE",
@@ -243,27 +253,35 @@ export const UNLOCK_HERO = {
     name: "Aiding Siggurd",
     type: "AUTO",
     description: [""],
+    dialogue: {
+      before: SIGGURD_DIALOGUE.UNLOCK_EVENT.before,
+      after: SIGGURD_DIALOGUE.UNLOCK_EVENT.after,
+    },
     function: "UNLOCK_HERO_SIGGURD",
   },
 };
 
-
 export const AMBUSH = {
   name: "Ambush",
   type: "CHOICE",
+  characters: [THIEVES.THIEF, THIEVES.THIEF, THIEVES.THIEF],
+  dialogue: AMBUSH_EVENT_DIALOGUE.before,
   description: [
-    "You are ambushed by thieves.", "They demand you surrender your items or suffer the consequence."
+    "You are ambushed by thieves.",
+    "They demand you surrender your items or suffer the consequence.",
   ],
   options: [
     {
       text: ["Surrender"],
       function: "AMBUSH",
       narration: "You surrender your inventory to the thieves.",
+      dialogue: "",
     },
     {
       text: ["Refuse"],
       function: "AMBUSH",
       narration: "You refuse to surrender and fight back against the thieves.",
+      dialogue: "",
     },
   ],
 };

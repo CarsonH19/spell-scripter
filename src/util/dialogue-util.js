@@ -51,58 +51,38 @@ export function endDialogue(dispatch) {
 }
 
 // =============================================================
-//           Add dialogue when a new room is created
+//                           Setting Dialogues
 // =============================================================
 
-export function getRoomDialogue(dispatch, dungeon) {
-  // Use general dungeon dialogue
-  switch (dungeon.name) {
-    case "The Great Catacomb":
-      //
-      break;
+export function setDialogues(dispatch, event) {
+  // Auto Events - The player does not make a choice during the event
+  if (event.type === "AUTO") {
+    dispatch(
+      dialogueActions.updateDialogue({
+        change: "BEFORE",
+        dialogue: event.dialogue.before,
+      })
+    );
+    dispatch(
+      dialogueActions.updateDialogue({
+        change: "AFTER",
+        dialogue: event.dialogue.after,
+      })
+    );
   }
 
-  // Check for path specific dialogue
-  if (dungeon.path) {
-    switch (dungeon.path) {
-      case "Wailing Warrens":
-        //
-        break;
+  // Choice Events - The player chooses between two or more options during the event.
+  if (event.type === "CHOICE") {
+    dispatch(
+      dialogueActions.updateDialogue({
+        change: "BEFORE",
+        dialogue: event.dialogue,
+      })
+    );
 
-      default:
-        break;
-    }
+    // There choice determines the outcome & after dialogue
+    // The after dialogue is updated in the event function 
   }
-
-  // Check for event specific dialogue
-  if (dungeon.contents.event) {
-    switch (dungeon.contents.event.name) {
-      case "Bonevault":
-        //
-        break;
-
-      case "Aiding Siggurd":
-        dispatch(dialogueActions.updateDialogue(SIGGURD_DIALOGUE.UNLOCK_EVENT));
-        break;
-
-      case "Candlelight Shrine":
-        if (!heroes[1].unlocked) {
-          dispatch(
-            dialogueActions.updateDialogue(LIHETH_DIALOGUE.UNLOCK_EVENT)
-          );
-        }
-        break;
-
-      case "Ambush": {
-        dispatch(dialogueActions.updateDialogue(AMBUSH_EVENT_DIALOGUE));
-      }
-
-      default:
-        break;
-    }
-  }
-  // Misc.
-  // Check for misc. dialogue
 }
 
 async function delay(ms) {

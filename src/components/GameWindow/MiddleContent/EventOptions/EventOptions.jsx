@@ -3,13 +3,12 @@ import classes from "./EventOptions.module.css";
 
 import eventFunctions from "../../../../util/event-functions";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { logActions } from "../../../../store/log-slice";
+import { uiActions } from "../../../../store/ui-slice";
 import { dungeonActions } from "../../../../store/dungeon-slice";
 
 export default function EventOptions() {
-  const [open, setOpen] = useState(true);
-
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon);
   const isTrap = dungeon.contents.event.type === "TRAP";
@@ -18,18 +17,17 @@ export default function EventOptions() {
 
   useEffect(() => {
     if (!isAuto) {
-      setOpen(true);
     } else {
       // Call auto event function
       const eventFunction = eventFunctions[dungeon.contents.event.function];
       eventFunction(dispatch);
-      // eventOptions = [];
     }
   }, [dungeon.roomCounter]);
 
-  const narrative = useSelector((state) => state.log.narration);
   const handleClickEventOption = (dispatch, eventFunction, choice, option) => {
-    setOpen(false);
+    dispatch(
+      uiActions.changeUi({ element: "eventOptionsAreVisible", visible: false })
+    );
 
     // Add Outcome to event to display the outcome in the Room Summary Modal
     dispatch(dungeonActions.eventOutcome({ outcome: option.outcome }));
@@ -77,5 +75,5 @@ export default function EventOptions() {
     );
   }
 
-  return <div className={classes.events}>{open && content}</div>;
+  return <div className={classes.events}>{content}</div>;
 }
