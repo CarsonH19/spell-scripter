@@ -235,7 +235,7 @@ export const AMBUSH_EVENT_DIALOGUE = {
       position: "LEFT",
       speaker: "Carson",
       image: "src/assets/images/dialogue/player-1-dialogue.png",
-      text: "I don't have mu-",
+      text: "Hold on! Lets just-",
     },
     {
       position: "RIGHT",
@@ -256,5 +256,47 @@ export const AMBUSH_EVENT_DIALOGUE = {
       text: "...",
     },
   ],
-  after: [],
+  responseRefuse: [
+    {
+      position: "LEFT",
+      speaker: "Carson",
+      image: "src/assets/images/dialogue/player-1-dialogue.png",
+      text: "I won't give you anything.",
+    },
+    {
+      position: "RIGHT",
+      speaker: "Thief",
+      image: "src/assets/images/dialogue/thief-dialogue.png",
+      text: "We'll take it off your corpse!",
+    },
+  ],
+  // No surrender response
+  afterSurrender: [
+    {
+      position: "RIGHT",
+      speaker: "Thief",
+      image: "src/assets/images/dialogue/thief-dialogue.png",
+      text: "Good choice.",
+    },
+    {
+      position: "RIGHT",
+      speaker: null,
+      image: "",
+      text: "The thieves slip back into the shadows they emerged from and are gone.",
+    },
+    {
+      position: "LEFT",
+      speaker: "Carson",
+      image: "src/assets/images/dialogue/player-1-dialogue.png",
+      text: "I can't believe they stole from me. But at least they didn't attack me.",
+    },
+  ],
+  afterRefuse: [
+    {
+      position: "LEFT",
+      speaker: "Carson",
+      image: "src/assets/images/dialogue/player-1-dialogue.png",
+      text: "It seems no matter where you go, thieves will always be somewhere searching for their next victim.",
+    },
+  ],
 };

@@ -15,6 +15,8 @@ export default function Dialogue() {
   const activeDialogue = dialogue[dialogue.active];
   const dispatch = useDispatch();
 
+  console.log(dialogue);
+  
   const position =
     activeDialogue[index].position === "LEFT" ? classes.left : classes.right;
 

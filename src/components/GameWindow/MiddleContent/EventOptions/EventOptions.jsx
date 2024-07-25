@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { logActions } from "../../../../store/log-slice";
 import { uiActions } from "../../../../store/ui-slice";
 import { dungeonActions } from "../../../../store/dungeon-slice";
+import { setDialogues } from "../../../../util/dialogue-util";
 
 export default function EventOptions() {
   const dispatch = useDispatch();
@@ -29,6 +30,8 @@ export default function EventOptions() {
       uiActions.changeUi({ element: "eventOptionsAreVisible", visible: false })
     );
 
+    // Dialogue
+    setDialogues(dispatch, dungeon.contents.event, choice);
     // Add Outcome to event to display the outcome in the Room Summary Modal
     dispatch(dungeonActions.eventOutcome({ outcome: option.outcome }));
     dispatch(logActions.updateLogs({ change: "UNPAUSE" }));

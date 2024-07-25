@@ -21,6 +21,7 @@ import checkForDialogue from "./dialogue-util";
 import { unlockHero } from "./hero-leveling";
 import { checkIfAttuned } from "./item-functions";
 import { addEnemyToOrder } from "./misc-util";
+import { AMBUSH_EVENT_DIALOGUE } from "../data/dialogue";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {
@@ -346,24 +347,29 @@ const eventFunctions = {
           })
         );
         await delay(4000);
-      } else {
-        // Outcome
-        dispatch(
-          dungeonActions.eventOutcome({
-            outcome: `You had nothing of interest, so the thieves attacked you anyways.`,
-          })
-        );
-        getRandomLoot(dispatch);
-        addEnemyToOrder(dispatch, THIEVES.THIEF, 3);
-        await delay(4000);
-        startCombat(dispatch);
       }
-      // Clear enemies from room
+      //  else {
+
+      //   await checkForDialogue(dispatch, "RESPONSE");
+      //   // Outcome
+      //   dispatch(
+      //     dungeonActions.eventOutcome({
+      //       outcome: `You had nothing of interest, so the thieves attacked you anyways.`,
+      //     })
+      //   );
+      //   getRandomLoot(dispatch);
+      //   addEnemyToOrder(dispatch, THIEVES.THIEF, 3);
+      //   await delay(4000);
+      //   startCombat(dispatch);
+      // }
+      await checkForDialogue(dispatch, "AFTER");
       clearCharactersFromOrder(dispatch);
       openModal(dispatch, "roomSummaryModal");
     }
 
     if (choice === "Refuse") {
+      // Dialogue Response
+      await checkForDialogue(dispatch, "RESPONSE");
       getRandomLoot(dispatch);
       await delay(4000);
       startCombat(dispatch);
@@ -374,8 +380,6 @@ const eventFunctions = {
         })
       );
     }
-
-    dispatch(dialogueActions.clearDialogue());
   },
 };
 

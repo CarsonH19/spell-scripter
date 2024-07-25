@@ -275,13 +275,19 @@ export const AMBUSH = {
       text: ["Surrender"],
       function: "AMBUSH",
       narration: "You surrender your inventory to the thieves.",
-      dialogue: "",
+      dialogue: {
+        response: null,
+        after: AMBUSH_EVENT_DIALOGUE.afterSurrender,
+      },
     },
     {
       text: ["Refuse"],
       function: "AMBUSH",
       narration: "You refuse to surrender and fight back against the thieves.",
-      dialogue: "",
+      dialogue: {
+        response: AMBUSH_EVENT_DIALOGUE.responseRefuse,
+        after: AMBUSH_EVENT_DIALOGUE.afterRefuse,
+      },
     },
   ],
 };

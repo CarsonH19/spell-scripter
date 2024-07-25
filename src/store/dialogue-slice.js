@@ -18,6 +18,7 @@ const dialogueSlice = createSlice({
   initialState: {
     active: null,
     before: [],
+    response: [],
     after: [],
   },
   reducers: {
@@ -27,6 +28,9 @@ const dialogueSlice = createSlice({
       switch (change) {
         case "BEFORE":
           state.before = dialogue;
+          break;
+        case "RESPONSE":
+          state.response = dialogue;
           break;
         case "AFTER":
           state.after = dialogue;
@@ -42,6 +46,7 @@ const dialogueSlice = createSlice({
     clearDialogue(state) {
       state.active = null;
       state.before = [];
+      state.response = [];
       state.after = [];
     },
   },
