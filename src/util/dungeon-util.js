@@ -20,6 +20,7 @@ import { v4 as uuidv4 } from "uuid";
 import { checkForActiveQuest } from "./quest-util";
 
 import heroes from "../data/heroes";
+import { getImageFromList } from "./misc-util";
 
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
@@ -44,7 +45,7 @@ export function setDungeon(dispatch, dungeonName) {
       dungeon.pathCounter = null;
       dungeon.threat = 0;
       dungeon.image =
-        "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance.jpg";
+        "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance";
       // dungeon.music = '' // Dungeon entrance music
       dungeon.contents; // add Entrance event
       break;
@@ -146,20 +147,22 @@ function getRoomEvent() {
         // for (let i = 0; i < TRAPS.length; i++) {
         //   events.push(TRAPS[i]);
         // }
-        events.push(AMBUSH);
-        // events.push(COFFIN);
+        // events.push(AMBUSH);
+        events.push(COFFIN);
         // events.push(PATHS[0]);
         // events.push(BONEVAULT);
-        // events.push(CANDLELIGHT_SHRINE);
 
-        // Check if Siggurd is unlocked
-        if (!heroes[0].unlocked) {
-          events.push(UNLOCK_HERO.SIGGURD);
-        }
+        // // Check if Siggurd is unlocked
+        // if (!heroes[0].unlocked) {
+        //   events.push(UNLOCK_HERO.SIGGURD);
+        // }
 
-        // Check if Liheth is unlocked
+        // // Check if Liheth is unlocked
         if (!heroes[1].unlocked) {
+          console.log(heroes);
           events.push(UNLOCK_HERO.LIHETH);
+        } else {
+          events.push(CANDLELIGHT_SHRINE);
         }
       }
 
@@ -348,21 +351,15 @@ export function constructStats(stats) {
 // =====================================================================
 
 function getRoomImage(dungeon) {
-  let imageList = [];
+  let backgroundImage;
 
   // Use general dungeon images
   switch (dungeon.name) {
     case "The Great Catacomb":
-      {
-        // Number of images in the assets folder
-        const images = 27;
-        imageList = [];
-        for (let i = 1; i < images; i++)
-          [
-            imageList.push(`src/assets/images/backgrounds/the-great-catacomb/catacomb-${i}.jpg
-      `),
-          ];
-      }
+      backgroundImage = getImageFromList(
+        "src/assets/images/backgrounds/the-great-catacomb/catacomb",
+        27
+      );
       break;
   }
 
@@ -370,16 +367,10 @@ function getRoomImage(dungeon) {
   if (dungeon.path) {
     switch (dungeon.path) {
       case "Wailing Warrens":
-        {
-          // Number of images in the assets folder
-          const images = 10;
-          imageList = [];
-          for (let i = 1; i < images; i++)
-            [
-              imageList.push(`src/assets/images/backgrounds/wailing-warrens/wailing-warrens-${i}.jpg
-        `),
-            ];
-        }
+        backgroundImage = getImageFromList(
+          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens",
+          10
+        );
         break;
 
       default:
@@ -391,41 +382,32 @@ function getRoomImage(dungeon) {
   if (dungeon.contents.event) {
     switch (dungeon.contents.event.name) {
       case "Bonevault":
-        imageList = [
-          "src/assets/images/backgrounds/events/bonevault-1.jpg",
-          "src/assets/images/backgrounds/events/bonevault-2.jpg",
-          "src/assets/images/backgrounds/events/bonevault-3.jpg",
-          "src/assets/images/backgrounds/events/bonevault-4.jpg",
-        ];
+        backgroundImage = getImageFromList(
+          "src/assets/images/backgrounds/events/bonevault",
+          4
+        );
         break;
 
+      case "Unlocking Liheth":
       case "Candlelight Shrine":
-        {
-          // Number of images in the assets folder
-          const images = 10;
-          imageList = [];
-          for (let i = 1; i < images; i++)
-            [
-              imageList.push(`src/assets/images/backgrounds/events/candlelight-shrine-${i}.jpg
-        `),
-            ];
-        }
+        backgroundImage = getImageFromList(
+          "src/assets/images/backgrounds/events/candlelight-shrine",
+          10
+        );
         break;
 
       case "Wailing Warrens":
-        imageList = [
-          "src/assets/images/backgrounds/events/wailing-warrens-entrance-1.jpg",
-          "src/assets/images/backgrounds/events/wailing-warrens-entrance-2.jpg",
-          "src/assets/images/backgrounds/events/wailing-warrens-entrance-3.jpg",
-        ];
+        backgroundImage = getImageFromList(
+          "src/assets/images/backgrounds/events/wailing-warrens-entrance",
+          3
+        );
         break;
 
       case "Wailing Warrens Exit":
-        imageList = [
-          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-1.jpg",
-          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-2.jpg",
-          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit-3.jpg",
-        ];
+        backgroundImage = getImageFromList(
+          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit",
+          3
+        );
         break;
 
       default:
@@ -433,8 +415,7 @@ function getRoomImage(dungeon) {
     }
   }
 
-  const randomIndex = Math.floor(Math.random() * imageList.length);
-  return imageList[randomIndex];
+  return backgroundImage;
 }
 
 // =====================================================================

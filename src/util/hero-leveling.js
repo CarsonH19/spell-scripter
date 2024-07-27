@@ -2,14 +2,6 @@ import store from "../store/index";
 import heroes from "../data/heroes";
 import { combatActions } from "../store/combat-slice";
 
-export function unlockHero(name) {
-  for (let i = 0; i < heroes.length; i++) {
-    if (heroes[i].name === name) {
-      heroes[i].unlocked = true;
-    }
-  }
-}
-
 export function levelUpHero(dispatch, name, map) {
   // Level up the hero in the combat order
   dispatch(combatActions.levelUpHero(name));

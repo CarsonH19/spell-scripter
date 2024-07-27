@@ -11,7 +11,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startCombat } from "../../store/combat-actions";
 import Buttons from "./Buttons/Buttons";
-import checkForDialogue, { setDialogues } from "../../util/dialogue-util";
+import checkForDialogue, {
+  setDialogues,
+  getDialogue,
+} from "../../util/dialogue-util";
+
+import handleDialogue from "../../util/dialogue-util";
 import { logActions } from "../../store/log-slice";
 import { uiActions } from "../../store/ui-slice";
 import { addCharacterToOrder } from "../../util/misc-util";
@@ -29,7 +34,7 @@ export default function GameWindow() {
     <div
       className={classes.window}
       style={{
-        backgroundImage: `url(${dungeon.image})`,
+        backgroundImage: `url(${dungeon.image}.jpg)`,
       }}
     >
       <TopContent />
@@ -42,6 +47,7 @@ export default function GameWindow() {
 
 async function handleGameFlow(dispatch) {
   const event = store.getState().dungeon.contents.event;
+  const dialogue = store.getState().dialogue;
 
   // Handle Combat
   if (!event) {
@@ -54,9 +60,8 @@ async function handleGameFlow(dispatch) {
     setDialogues(dispatch, event);
     // Renders characters if the event BEGINS with characters
     if (event.characters) {
-      console.log(event);
+      // Add to combat-slice order
       for (let i = 0; i < event.characters.length; i++) {
-        console.log(event.characters[i]);
         addCharacterToOrder(dispatch, event.characters[i]);
       }
     }
@@ -67,7 +72,10 @@ async function handleGameFlow(dispatch) {
     }
 
     // Start Dialogue
-    await checkForDialogue(dispatch, "BEFORE");
+
+    // await getDialogue(dispatch, "BEFORE");
+    // await checkForDialogue(dispatch, "BEFORE");
+    await handleDialogue(dispatch, "BEFORE");
 
     // Narration
     dispatch(logActions.updateLogs({ change: "PAUSE" }));

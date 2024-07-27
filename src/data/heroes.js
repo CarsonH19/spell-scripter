@@ -1,4 +1,4 @@
-import { getCharacterImage } from "../util/misc-util";
+import { getImageFromList } from "../util/misc-util";
 
 // PALADIN
 export let siggurd = {
@@ -158,5 +158,13 @@ export let liheth = {
 // RISEN
 
 let heroes = [siggurd, liheth, riven];
+
+export function unlockHero(name) {
+  heroes = heroes.map((hero) =>
+    hero.name === name ? { ...hero, unlocked: true } : hero
+  );
+  // return heroes;
+  console.log(heroes);
+}
 
 export default heroes;

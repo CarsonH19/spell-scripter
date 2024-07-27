@@ -6,6 +6,7 @@ import {
   SIGGURD_DIALOGUE,
   LIHETH_DIALOGUE,
   AMBUSH_EVENT_DIALOGUE,
+  BONEVAULT_DIALOGUE,
 } from "../data/dialogue";
 import heroes from "./heroes";
 
@@ -25,6 +26,7 @@ export const DUNGEON_ENTRANCE = {
 export const COFFIN = {
   name: "Coffin",
   type: "CHOICE",
+  dialogue: "GET",
   description: [
     "An ornately decorated coffin is found",
     "Do you wish to open it?",
@@ -34,11 +36,15 @@ export const COFFIN = {
       text: ["Open"],
       function: "COFFIN",
       narration: "You decide to open the coffin.",
+      outcome:
+        "Disregarding the sanctity of a burial site, you opened the coffin to see what was inside.",
     },
     {
       text: ["Leave"],
       function: "COFFIN",
       narration: "You decide to leave the coffin.",
+      outcome:
+        "You decided to leave the coffin, and not disturb the dead resting within.",
     },
   ],
 };
@@ -183,17 +189,20 @@ export const TRAPS = [
 export const BONEVAULT = {
   name: "Bonevault",
   type: "CHOICE",
+  dialogue: BONEVAULT_DIALOGUE.before,
   description: ["You discover a locked door.", "Do you wish to unlock it?"],
   options: [
     {
       text: ["Unlock"],
       function: "BONEVAULT",
-      narration: "You decide to unlock it.",
+      narration: "You unlock the vault.",
+      outcome: "The vault remains sealed.",
     },
     {
       text: ["Leave"],
       function: "BONEVAULT",
-      narration: "You decide to leave.",
+      narration: "You decide to leave and the vault remains sealed.",
+      outcome: "The vault remains sealed.",
     },
   ],
 };
@@ -207,6 +216,8 @@ export const CANDLELIGHT_SHRINE = {
       text: ["Rest"],
       function: "CANDLELIGHT_SHRINE",
       narration: "You decide to rest.",
+      outcome:
+        "You discovered a Candlelight Shrine and rested for a short time in the flickering light. When it was time to leave you felt energized and ready to move onward.",
     },
   ],
 };
@@ -223,12 +234,13 @@ export const PATHS = [
       {
         text: ["Enter"],
         function: "PATH_ENTRANCE",
-        narration: "You decide to enter.",
+        narration: "You decide to enter the Wailing Warrens.",
       },
       {
         text: ["Leave"],
         function: "PATH_ENTRANCE",
         narration: "You decide to leave.",
+        outcome: "You chose not to enter.",
       },
     ],
   },
@@ -251,7 +263,7 @@ export const WAILING_WARRENS_EXIT = {
 
 export const UNLOCK_HERO = {
   SIGGURD: {
-    name: "Aiding Siggurd",
+    name: "Unlocking Siggurd",
     type: "AUTO",
     characters: [
       heroes[0],
@@ -270,7 +282,7 @@ export const UNLOCK_HERO = {
       "You found Siggurd, the paladin, while exploring The Great Catacomb and aided him in defeating a hoard of undead. You decide to fight together as you continue on.",
   },
   LIHETH: {
-    name: "Guiding Light",
+    name: "Unlocking Liheth",
     type: "CHOICE",
     characters: [heroes[1]],
     description: [""],

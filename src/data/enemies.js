@@ -1,6 +1,6 @@
 import CONSUMABLES from "./consumables";
 import EQUIPMENT from "./equipment";
-import { getCharacterImage } from "../util/misc-util";
+import { getImageFromList } from "../util/misc-util";
 import CONDITIONS from "./conditions";
 
 const ENEMY_TYPES = {
@@ -32,7 +32,7 @@ const UNDEAD = {
     name: "Decrepit Skeleton",
     identifier: "ENEMY",
     get image() {
-      return getCharacterImage(
+      return getImageFromList(
         "src/assets/images/enemies/decrepit-skeleton",
         5
       );
@@ -69,7 +69,7 @@ const UNDEAD = {
     name: "Skeletal Warrior",
     identifier: "ENEMY",
     get image() {
-      return getCharacterImage("src/assets/images/enemies/skeletal-warrior", 3);
+      return getImageFromList("src/assets/images/enemies/skeletal-warrior", 3);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -110,7 +110,7 @@ const UNDEAD = {
     name: "Skeletal Archer",
     identifier: "ENEMY",
     get image() {
-      return getCharacterImage("src/assets/images/enemies/skeletal-archer", 3);
+      return getImageFromList("src/assets/images/enemies/skeletal-archer", 3);
     },
     icon() {
       return `${this.image}-icon`;
@@ -153,7 +153,7 @@ const UNDEAD = {
     name: "Skeletal Mage",
     identifier: "ENEMY",
     get image() {
-      return getCharacterImage("src/assets/images/enemies/skeletal-mage", 3);
+      return getImageFromList("src/assets/images/enemies/skeletal-mage", 3);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -319,7 +319,7 @@ const UNDEAD = {
     name: "Wandering Wisp",
     identifier: "ENEMY",
     get image() {
-      return getCharacterImage("src/assets/images/enemies/wandering-wisp", 3);
+      return getImageFromList("src/assets/images/enemies/wandering-wisp", 3);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -345,7 +345,7 @@ const UNDEAD = {
     name: "Shadow",
     identifier: "ENEMY",
     get image() {
-      return getCharacterImage("src/assets/images/enemies/shadow", 4);
+      return getImageFromList("src/assets/images/enemies/shadow", 4);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -404,7 +404,7 @@ const THIEVES = {
     name: "Thief",
     identifier: "ENEMY",
     get image() {
-      return getCharacterImage("src/assets/images/enemies/thief", 3);
+      return getImageFromList("src/assets/images/enemies/thief", 3);
     },
     get icon() {
       return `${this.image}-icon`;

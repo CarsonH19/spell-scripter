@@ -11,17 +11,12 @@ import { startCombat } from "../store/combat-actions";
 import { logActions } from "../store/log-slice";
 import { getRandomLoot } from "./loot";
 import activateItem from "../store/item-actions";
-import heroes from "../data/heroes";
-import { constructStats } from "./dungeon-util";
-import updateStatTotals from "../store/stats-actions";
 
 import { combatActions } from "../store/combat-slice";
-import { dialogueActions } from "../store/dialogue-slice";
-import checkForDialogue from "./dialogue-util";
-import { unlockHero } from "./hero-leveling";
+import checkForDialogue, { getDialogue } from "./dialogue-util";
+import { unlockHero } from "../data/heroes";
 import { checkIfAttuned } from "./item-functions";
-import { addCharacterToOrder } from "./misc-util";
-import { AMBUSH_EVENT_DIALOGUE } from "../data/dialogue";
+import { addCharacterToOrder, getImageFromList } from "./misc-util";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {
@@ -68,19 +63,17 @@ const eventFunctions = {
     const chance = Math.random();
     let enemy;
 
-    if (dungeon.threat > 50) {
+    if (dungeon.threat > 40) {
       enemy = UNDEAD["DEATH_KNIGHT"];
-    } else if (dungeon.threat > 40) {
-      enemy = UNDEAD["GRAVE_WITCH"];
     } else if (dungeon.threat > 30) {
-      enemy = UNDEAD["BONE_TITAN"];
+      enemy = UNDEAD["GRAVE_WITCH"];
     } else if (dungeon.threat > 20) {
-      enemy = UNDEAD["CORPSE_ORACLE"];
+      enemy = UNDEAD["BONE_TITAN"];
     } else if (dungeon.threat > 10) {
-      enemy = UNDEAD["SKELETAL_WARRIOR"];
+      enemy = UNDEAD["CORPSE_ORACLE"];
     } else {
-      enemy = UNDEAD["DECREPIT_SKELETON"];
-    }
+      enemy = UNDEAD["SKELETAL_WARRIOR"];
+    } 
 
     // Get Random Loot
     getRandomLoot(dispatch);
@@ -111,9 +104,9 @@ const eventFunctions = {
       // Display "You've entered Wailing Warrens"
       // Start dialogue
     } else {
-      dispatch(
-        dungeonActions.eventOutcome({ outcome: `You chose not to enter.` })
-      );
+      // dispatch(
+      //   dungeonActions.eventOutcome({ outcome: `You chose not to enter.` })
+      // );
       // await delay(4000);
       // openModal(dispatch, "roomSummaryModal");
     }
@@ -155,8 +148,10 @@ const eventFunctions = {
         getRandomLoot(dispatch);
 
         // Transition Animation
-        // New Background - "ADD RANDOM BACKGROUND"
-        const newBackground = "src/assets/images/backgrounds/catacomb-6.jpg";
+        const newBackground = getImageFromList(
+          "src/assets/images/backgrounds/events/bonevault",
+          4
+        );
         dispatch(dungeonActions.changeBackground(newBackground));
 
         const difficulty = Math.floor(Math.random() * 4);
@@ -197,12 +192,7 @@ const eventFunctions = {
 
         // Add enemies to dungeon
         for (let i = 0; i < enemies.length; i++) {
-          dispatch(
-            dungeonActions.addEnemy({
-              enemy: buildEnemy(enemies[i]),
-              change: "ADD",
-            })
-          );
+          addCharacterToOrder(dispatch, enemies[i]);
         }
 
         dispatch(
@@ -239,7 +229,6 @@ const eventFunctions = {
     getRandomLoot(dispatch);
 
     await checkForDialogue(dispatch, "AFTER");
-    await delay(2000);
     openModal(dispatch, "roomSummaryModal");
   },
   CANDLELIGHT_SHRINE: async (dispatch, choice) => {
@@ -258,7 +247,6 @@ const eventFunctions = {
       getRandomLoot(dispatch);
 
       await checkForDialogue(dispatch, "AFTER");
-      await delay(2000);
       openModal(dispatch, "roomSummaryModal");
     }
   },
@@ -294,7 +282,7 @@ const eventFunctions = {
             change: "REMOVE",
           })
         );
-        await delay(4000);
+        await delay(2000);
       }
       await checkForDialogue(dispatch, "AFTER");
       clearCharactersFromOrder(dispatch);
@@ -304,7 +292,6 @@ const eventFunctions = {
     if (choice === "Refuse") {
       await checkForDialogue(dispatch, "RESPONSE");
       getRandomLoot(dispatch);
-      await delay(4000);
       startCombat(dispatch);
     }
   },
@@ -315,46 +302,6 @@ export default eventFunctions;
 // ==================================
 //          HELPER FUNCTIONS
 // ==================================
-
-// function createPathEvent() {
-//   const dungeon = store.getState().dungeon;
-
-//   let path = {
-//     name: "Path",
-//     type: "CHOICE",
-//     description: "The path splits in two. Which direction shall you go?",
-//     options: [
-//       {
-//         text: [],
-//         function: "PATH",
-//         get narration() {
-//           return `You choose to go to the ${this.options[0].text}.`;
-//         },
-//       },
-//       {
-//         text: [],
-//         function: "PATH",
-//         get narration() {
-//           return `You choose to go to the ${this.options[1].text}.`;
-//         },
-//       },
-//     ],
-//   };
-
-//   switch (dungeon.name) {
-//     case "The Great Catacomb":
-//       {
-//         if (dungeon.threat > 50) {
-//         } else if (dungeon.threat > 25) {
-//         } else {
-//           // Gnawers' Nest - Rats
-//           // Shadowed Crypts - Thieves
-//           // Rattling Halls - Undead
-//         }
-//       }
-//       break;
-//   }
-// }
 
 async function trapSuccessChance(dispatch, player, difficulty, stat) {
   let playerChoice;

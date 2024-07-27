@@ -14,9 +14,8 @@ export default function Dialogue() {
   const dialogue = useSelector((state) => state.dialogue);
   const activeDialogue = dialogue[dialogue.active];
   const dispatch = useDispatch();
+  const event = useSelector((state) => state.dungeon.contents.event);
 
-  console.log(dialogue);
-  
   const position =
     activeDialogue[index].position === "LEFT" ? classes.left : classes.right;
 
@@ -34,6 +33,13 @@ export default function Dialogue() {
 
   const handleEndDialogue = () => {
     endDialogue(dispatch);
+
+    // Render Event Options
+    // if (event.type !== "AUTO") {
+    //   dispatch(
+    //     uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true })
+    //   );
+    // }
   };
 
   return createPortal(

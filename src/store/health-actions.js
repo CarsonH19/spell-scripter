@@ -1,6 +1,7 @@
 import store from "./index";
 import { combatActions } from "./combat-slice";
 import { uiActions } from "./ui-slice";
+import { dungeonActions } from "./dungeon-slice";
 
 import loot from "../util/loot";
 import changeStatusEffect, {
@@ -204,6 +205,23 @@ export function checkForDeath(dispatch, id) {
 
   // Enemies & Heroes
   if (character.currentHealth <= 0 && character.identifier !== "PLAYER") {
+    // Check if enemy should be added to dungeon-slice for roomSummaryModal "Enemies Defeated"
+    if (character.identifier === "ENEMY") {
+      const dungeonEnemies = store.getState().dungeon.contents.enemies;
+      const isEnemyInDungeonSlice = dungeonEnemies.find(
+        (char) => char.id === character.id
+      );
+      if (!isEnemyInDungeonSlice) {
+        console.log("ENEMY ADDED TO DUNGEON SLICE", character);
+        dispatch(
+          dungeonActions.addEnemy({
+            change: "ADD",
+            enemy: character,
+          })
+        );
+      }
+    }
+
     // Removes defeated character
     setTimeout(() => {
       dispatch(combatActions.removeCharacter({ character }));

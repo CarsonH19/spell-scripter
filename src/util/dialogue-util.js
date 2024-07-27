@@ -3,41 +3,23 @@ import {
   SIGGURD_DIALOGUE,
   LIHETH_DIALOGUE,
   AMBUSH_EVENT_DIALOGUE,
+  COFFIN_DIALOGUE,
 } from "../data/dialogue";
 import store from "../store/index";
-import heroes from "../data/heroes";
 
 let dialogueResolver;
 
-export default async function checkForDialogue(dispatch, beforeOrAfter) {
+export async function checkForDialogue(dispatch, type) {
   const dialogue = store.getState().dialogue;
-
+  const typeLowerCase = type.toLowerCase();
   await delay(2000);
 
-  switch (beforeOrAfter) {
-    case "BEFORE":
-      if (dialogue.before.length > 0) {
-        // await delay(2000);
-        dispatch(dialogueActions.startDialogue("before"));
-        await awaitDialogue();
-      }
-      break;
-
-    case "RESPONSE":
-      if (dialogue.before.length > 0) {
-        // await delay(2000);
-        dispatch(dialogueActions.startDialogue("response"));
-        await awaitDialogue();
-      }
-      break;
-
-    case "AFTER":
-      if (dialogue.after.length > 0) {
-        dispatch(dialogueActions.startDialogue("after"));
-        await awaitDialogue();
-      }
-      break;
+  if (dialogue[typeLowerCase] && dialogue[typeLowerCase].length > 0) {
+    dispatch(dialogueActions.startDialogue(typeLowerCase));
+    await awaitDialogue();
   }
+
+  await delay(2000);
 }
 
 // =============================================================
@@ -83,13 +65,19 @@ export function setDialogues(dispatch, event, choice = null) {
 
   // Choice Events - The player chooses between two or more options during the event.
   if (event.type === "CHOICE") {
-    if (event.dialogue)
+    if (event.dialogue && event.dialogue !== "GET") {
       dispatch(
         dialogueActions.updateDialogue({
           change: "BEFORE",
           dialogue: event.dialogue,
         })
       );
+    }
+
+    // // Adds BEFORE dialogue for: Coffin
+    // if (event.dialogue && event.dialogue === "GET") {
+    //   getDialogue(dispatch, "BEFORE");
+    // }
 
     if (choice) {
       for (let i = 0; i < event.options.length; i++) {
@@ -119,6 +107,84 @@ export function setDialogues(dispatch, event, choice = null) {
   }
 }
 
+// Used to get a random dialogue for events with dialogue: "GET"
+// getDialogue() is also called within the event-function of events to get different dialogues based off of who is in the players party
+export async function getDialogue(dispatch, type) {
+  const event = store.getState().dungeon.contents.event;
+
+  if (event) {
+    const order = store.getState().combat.order;
+    const siggurd = order.find((char) => char.id === "Siggurd");
+    const liheth = order.find((char) => char.id === "Liheth");
+    const riven = order.find((char) => char.id === "Riven");
+    let dialogue;
+
+    // BEFORE
+    if (type === "BEFORE") {
+      switch (event.name) {
+        case "Coffin":
+          if (liheth) {
+            console.log("LIHETH");
+            dialogue = COFFIN_DIALOGUE.LIHETH.before;
+          } else {
+            console.log("PLAYER");
+            dialogue = COFFIN_DIALOGUE.PLAYER.before;
+          }
+          break;
+
+        default:
+          return;
+      }
+    }
+
+    // RESPONSE
+    if (type === "RESPONSE") {
+      switch (event.name) {
+        case "Coffin":
+          break;
+
+        default:
+          return;
+      }
+    }
+
+    // AFTER
+    if (type === "AFTER") {
+      switch (event.name) {
+        case "Coffin":
+          break;
+
+        default:
+          return;
+      }
+    }
+
+    dispatch(
+      dialogueActions.updateDialogue({
+        change: type,
+        dialogue: dialogue,
+      })
+    );
+
+    const dialogueSlice = store.getState().dialogue;
+    console.log(dialogueSlice);
+  }
+
+  // helper function
+  // function pushDialogues(array) {
+  //   console.log(array);
+  //   for (let i = 0; i < array.length; i++) {
+  //     console.log(array[i]);
+  //     dialogueOptions.push(array[i]);
+  //   }
+  // }
+}
+
 async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export default async function handleDialogue(dispatch, type) {
+  await getDialogue(dispatch, type);
+  await checkForDialogue(dispatch, type);
 }

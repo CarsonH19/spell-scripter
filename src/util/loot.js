@@ -91,6 +91,7 @@ export function getRandomLoot(dispatch) {
       ];
       break;
 
+    case "Unlocking Liheth":
     case "Candlelight Shrine":
       lootTable = [
         { item: CONSUMABLES.WARDING_CANDLE, probability: 0.167 },

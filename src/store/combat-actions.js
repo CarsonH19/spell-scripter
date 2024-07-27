@@ -31,7 +31,7 @@ import statusEffectFunctions from "../util/status-effect-functions.js";
 import { openModal } from "./ui-actions.js";
 
 import updateStatTotals from "./stats-actions.js";
-import checkForDialogue from "../util/dialogue-util.js";
+import checkForDialogue, { getDialogue } from "../util/dialogue-util.js";
 import { checkIfAttuned } from "../util/item-functions.js";
 
 let playerActionResolver;
