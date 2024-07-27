@@ -22,6 +22,8 @@ import { uiActions } from "../../store/ui-slice";
 import { addCharacterToOrder } from "../../util/misc-util";
 import { dungeonActions } from "../../store/dungeon-slice";
 
+import eventFunctions from "../../util/event-functions";
+
 export default function GameWindow() {
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon);
@@ -66,16 +68,19 @@ async function handleGameFlow(dispatch) {
       }
     }
 
-    // AUTO events must be set here. CHOICE events are set after choice is made
+    // Dialogue
+    await handleDialogue(dispatch, "before");
+
+    // AUTO Events
     if (event.type === "AUTO") {
+      // Call auto event function after dialogue
+      const eventFunction = eventFunctions[event.function];
+      console.log("Called");
+      eventFunction(dispatch);
+
       dispatch(dungeonActions.eventOutcome({ outcome: event.outcome }));
     }
 
-    // Start Dialogue
-
-    // await getDialogue(dispatch, "BEFORE");
-    // await checkForDialogue(dispatch, "BEFORE");
-    await handleDialogue(dispatch, "BEFORE");
 
     // Narration
     dispatch(logActions.updateLogs({ change: "PAUSE" }));
@@ -89,8 +94,8 @@ async function handleGameFlow(dispatch) {
     }
 
     // Render Event Options
-    dispatch(
-      uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true })
-    );
+    // dispatch(
+    //   uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true })
+    // );
   }
 }

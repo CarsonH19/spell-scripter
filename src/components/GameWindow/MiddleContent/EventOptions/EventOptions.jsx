@@ -16,14 +16,14 @@ export default function EventOptions() {
   const isAuto = dungeon.contents.event.type === "AUTO";
   let eventOptions;
 
-  useEffect(() => {
-    if (!isAuto) {
-    } else {
-      // Call auto event function
-      const eventFunction = eventFunctions[dungeon.contents.event.function];
-      eventFunction(dispatch);
-    }
-  }, [dungeon.roomCounter]);
+  // useEffect(() => {
+  //   if (isAuto) {
+  //     // Call auto event function
+  //     const eventFunction = eventFunctions[dungeon.contents.event.function];
+  //     console.log("Called");
+  //     eventFunction(dispatch);
+  //   }
+  // }, [dungeon.event]);
 
   const handleClickEventOption = (dispatch, eventFunction, choice, option) => {
     dispatch(

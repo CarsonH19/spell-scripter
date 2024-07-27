@@ -73,10 +73,12 @@ const eventFunctions = {
       enemy = UNDEAD["CORPSE_ORACLE"];
     } else {
       enemy = UNDEAD["SKELETAL_WARRIOR"];
-    } 
+    }
 
-    // Get Random Loot
-    getRandomLoot(dispatch);
+    if (choice === "Open") {
+      // Get Random Loot
+      getRandomLoot(dispatch);
+    }
 
     if (choice === "Open" && chance > 0.4) {
       // Add enemy to dungeon
@@ -228,7 +230,7 @@ const eventFunctions = {
     // Get random candle
     getRandomLoot(dispatch);
 
-    await checkForDialogue(dispatch, "AFTER");
+    await checkForDialogue(dispatch, "after");
     openModal(dispatch, "roomSummaryModal");
   },
   CANDLELIGHT_SHRINE: async (dispatch, choice) => {
@@ -246,11 +248,12 @@ const eventFunctions = {
       // Get random candle
       getRandomLoot(dispatch);
 
-      await checkForDialogue(dispatch, "AFTER");
+      await checkForDialogue(dispatch, "after");
       openModal(dispatch, "roomSummaryModal");
     }
   },
   UNLOCK_HERO_SIGGURD: async (dispatch) => {
+    console.log("HELLO");
     unlockHero("Siggurd");
     startCombat(dispatch);
   },
@@ -284,13 +287,13 @@ const eventFunctions = {
         );
         await delay(2000);
       }
-      await checkForDialogue(dispatch, "AFTER");
+      await checkForDialogue(dispatch, "after");
       clearCharactersFromOrder(dispatch);
       openModal(dispatch, "roomSummaryModal");
     }
 
     if (choice === "Refuse") {
-      await checkForDialogue(dispatch, "RESPONSE");
+      await checkForDialogue(dispatch, "response");
       getRandomLoot(dispatch);
       startCombat(dispatch);
     }

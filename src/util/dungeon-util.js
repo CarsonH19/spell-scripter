@@ -96,6 +96,7 @@ export function createNewRoom(dispatch) {
   // Get background after room contents have been determined
   newRoom.image = getRoomImage(newRoom);
   dispatch(dungeonActions.updateRoom(newRoom));
+  console.log(newRoom);
 }
 
 // =====================================================================
@@ -147,15 +148,15 @@ function getRoomEvent() {
         // for (let i = 0; i < TRAPS.length; i++) {
         //   events.push(TRAPS[i]);
         // }
-        // events.push(AMBUSH);
+        events.push(AMBUSH);
         events.push(COFFIN);
-        // events.push(PATHS[0]);
-        // events.push(BONEVAULT);
+        events.push(PATHS[0]);
+        events.push(BONEVAULT);
 
         // // Check if Siggurd is unlocked
-        // if (!heroes[0].unlocked) {
-        //   events.push(UNLOCK_HERO.SIGGURD);
-        // }
+        if (!heroes[0].unlocked) {
+          events.push(UNLOCK_HERO.SIGGURD);
+        }
 
         // // Check if Liheth is unlocked
         if (!heroes[1].unlocked) {

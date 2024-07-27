@@ -20,6 +20,20 @@
 // };
 
 // GET
+export const DUNGEON_ENTRANCE_DIALOGUE = {
+  PLAYER: {
+    before: [
+      {
+        position: `LEFT`,
+        speaker: `Carson`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `I've been to worse places. I think..."`,
+      },
+    ],
+  },
+};
+
+// GET
 export const COFFIN_DIALOGUE = {
   PLAYER: {
     before: [

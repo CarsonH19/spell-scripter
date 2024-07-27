@@ -1,5 +1,8 @@
 import { dialogueActions } from "../store/dialogue-slice";
+import { uiActions } from "../store/ui-slice";
+
 import {
+  DUNGEON_ENTRANCE_DIALOGUE,
   SIGGURD_DIALOGUE,
   LIHETH_DIALOGUE,
   AMBUSH_EVENT_DIALOGUE,
@@ -11,15 +14,15 @@ let dialogueResolver;
 
 export async function checkForDialogue(dispatch, type) {
   const dialogue = store.getState().dialogue;
-  const typeLowerCase = type.toLowerCase();
+  // const typeLowerCase = type.toLowerCase();
   await delay(2000);
 
-  if (dialogue[typeLowerCase] && dialogue[typeLowerCase].length > 0) {
-    dispatch(dialogueActions.startDialogue(typeLowerCase));
+  if (dialogue[type] && dialogue[type].length > 0) {
+    dispatch(dialogueActions.startDialogue(type));
     await awaitDialogue();
   }
 
-  await delay(2000);
+  // await delay(2000);
 }
 
 // =============================================================
@@ -51,13 +54,13 @@ export function setDialogues(dispatch, event, choice = null) {
   if (event.type === "AUTO") {
     dispatch(
       dialogueActions.updateDialogue({
-        change: "BEFORE",
+        change: "before",
         dialogue: event.dialogue.before,
       })
     );
     dispatch(
       dialogueActions.updateDialogue({
-        change: "AFTER",
+        change: "after",
         dialogue: event.dialogue.after,
       })
     );
@@ -68,7 +71,7 @@ export function setDialogues(dispatch, event, choice = null) {
     if (event.dialogue && event.dialogue !== "GET") {
       dispatch(
         dialogueActions.updateDialogue({
-          change: "BEFORE",
+          change: "before",
           dialogue: event.dialogue,
         })
       );
@@ -87,7 +90,7 @@ export function setDialogues(dispatch, event, choice = null) {
           if (dialogue.response) {
             dispatch(
               dialogueActions.updateDialogue({
-                change: "RESPONSE",
+                change: "response",
                 dialogue: dialogue.response,
               })
             );
@@ -96,7 +99,7 @@ export function setDialogues(dispatch, event, choice = null) {
           if (dialogue.after) {
             dispatch(
               dialogueActions.updateDialogue({
-                change: "AFTER",
+                change: "after",
                 dialogue: dialogue.after,
               })
             );
@@ -106,6 +109,10 @@ export function setDialogues(dispatch, event, choice = null) {
     }
   }
 }
+
+// ===============================================================
+//                    GET DIALOGUE
+// ===============================================================
 
 // Used to get a random dialogue for events with dialogue: "GET"
 // getDialogue() is also called within the event-function of events to get different dialogues based off of who is in the players party
@@ -119,9 +126,15 @@ export async function getDialogue(dispatch, type) {
     const riven = order.find((char) => char.id === "Riven");
     let dialogue;
 
-    // BEFORE
-    if (type === "BEFORE") {
+    // ===============================================================
+    //                        BEFORE
+    // ===============================================================
+    if (type === "before") {
       switch (event.name) {
+        case "Dungeon Entrance":
+          dialogue = DUNGEON_ENTRANCE_DIALOGUE.PLAYER.before;
+          break;
+
         case "Coffin":
           if (liheth) {
             console.log("LIHETH");
@@ -137,8 +150,10 @@ export async function getDialogue(dispatch, type) {
       }
     }
 
-    // RESPONSE
-    if (type === "RESPONSE") {
+    // ===============================================================
+    //                        RESPONSE
+    // ===============================================================
+    if (type === "response") {
       switch (event.name) {
         case "Coffin":
           break;
@@ -148,8 +163,10 @@ export async function getDialogue(dispatch, type) {
       }
     }
 
-    // AFTER
-    if (type === "AFTER") {
+    // ===============================================================
+    //                       AFTER
+    // ===============================================================
+    if (type === "after") {
       switch (event.name) {
         case "Coffin":
           break;
@@ -169,15 +186,6 @@ export async function getDialogue(dispatch, type) {
     const dialogueSlice = store.getState().dialogue;
     console.log(dialogueSlice);
   }
-
-  // helper function
-  // function pushDialogues(array) {
-  //   console.log(array);
-  //   for (let i = 0; i < array.length; i++) {
-  //     console.log(array[i]);
-  //     dialogueOptions.push(array[i]);
-  //   }
-  // }
 }
 
 async function delay(ms) {
@@ -185,6 +193,14 @@ async function delay(ms) {
 }
 
 export default async function handleDialogue(dispatch, type) {
+  const event = store.getState().dungeon.contents.event;
   await getDialogue(dispatch, type);
   await checkForDialogue(dispatch, type);
+
+  // Render event options after dialogue
+  if (type === "before" && event.options) {
+    dispatch(
+      uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true })
+    );
+  }
 }

@@ -33,13 +33,6 @@ export default function Dialogue() {
 
   const handleEndDialogue = () => {
     endDialogue(dispatch);
-
-    // Render Event Options
-    // if (event.type !== "AUTO") {
-    //   dispatch(
-    //     uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true })
-    //   );
-    // }
   };
 
   return createPortal(

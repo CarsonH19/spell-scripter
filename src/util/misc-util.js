@@ -12,7 +12,6 @@ export function getImageFromList(url, numberOfImages) {
     imageList.push(`${url}-${i}`);
   }
   const index = Math.floor(Math.random() * imageList.length);
-  console.log(imageList[index]);
   return imageList[index];
 }
 

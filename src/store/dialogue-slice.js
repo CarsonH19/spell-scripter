@@ -25,17 +25,18 @@ const dialogueSlice = createSlice({
     updateDialogue(state, action) {
       const { change, dialogue } = action.payload;
 
-      switch (change) {
-        case "BEFORE":
-          state.before = dialogue;
-          break;
-        case "RESPONSE":
-          state.response = dialogue;
-          break;
-        case "AFTER":
-          state.after = dialogue;
-          break;
-      }
+      state[change] = dialogue;
+      // switch (change) {
+      //   case "BEFORE":
+      //     state.before = dialogue;
+      //     break;
+      //   case "RESPONSE":
+      //     state.response = dialogue;
+      //     break;
+      //   case "AFTER":
+      //     state.after = dialogue;
+      //     break;
+      // }
     },
     startDialogue(state, action) {
       state.active = action.payload;

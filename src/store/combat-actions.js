@@ -353,7 +353,7 @@ async function endCombat(dispatch) {
   }
 
   if (enemies.length <= 0) {
-    await checkForDialogue(dispatch, "AFTER");
+    await checkForDialogue(dispatch, "after");
     openModal(dispatch, "roomSummaryModal");
     return true;
   }
