@@ -32,7 +32,8 @@ export default function EventOptions() {
 
     // Dialogue
     setDialogues(dispatch, dungeon.contents.event, choice);
-    // Add Outcome to event to display the outcome in the Room Summary Modal
+
+    // Event Outcome
     dispatch(dungeonActions.eventOutcome({ outcome: option.outcome }));
     dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
     dispatch(logActions.updateLogs({ change: "CLEAR" }));

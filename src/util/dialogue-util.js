@@ -11,6 +11,9 @@ let dialogueResolver;
 
 export default async function checkForDialogue(dispatch, beforeOrAfter) {
   const dialogue = store.getState().dialogue;
+
+  await delay(2000);
+
   switch (beforeOrAfter) {
     case "BEFORE":
       if (dialogue.before.length > 0) {
@@ -30,7 +33,6 @@ export default async function checkForDialogue(dispatch, beforeOrAfter) {
 
     case "AFTER":
       if (dialogue.after.length > 0) {
-        await delay(2000);
         dispatch(dialogueActions.startDialogue("after"));
         await awaitDialogue();
       }

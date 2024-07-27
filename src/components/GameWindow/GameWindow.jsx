@@ -14,7 +14,8 @@ import Buttons from "./Buttons/Buttons";
 import checkForDialogue, { setDialogues } from "../../util/dialogue-util";
 import { logActions } from "../../store/log-slice";
 import { uiActions } from "../../store/ui-slice";
-import { addEnemyToOrder } from "../../util/misc-util";
+import { addCharacterToOrder } from "../../util/misc-util";
+import { dungeonActions } from "../../store/dungeon-slice";
 
 export default function GameWindow() {
   const dispatch = useDispatch();
@@ -56,11 +57,18 @@ async function handleGameFlow(dispatch) {
       console.log(event);
       for (let i = 0; i < event.characters.length; i++) {
         console.log(event.characters[i]);
-        addEnemyToOrder(dispatch, event.characters[i]);
+        addCharacterToOrder(dispatch, event.characters[i]);
       }
     }
 
+    // AUTO events must be set here. CHOICE events are set after choice is made
+    if (event.type === "AUTO") {
+      dispatch(dungeonActions.eventOutcome({ outcome: event.outcome }));
+    }
+
+    // Start Dialogue
     await checkForDialogue(dispatch, "BEFORE");
+
     // Narration
     dispatch(logActions.updateLogs({ change: "PAUSE" }));
     for (let i = 0; i < event.description.length; i++) {
@@ -71,20 +79,10 @@ async function handleGameFlow(dispatch) {
         })
       );
     }
+
+    // Render Event Options
     dispatch(
       uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true })
     );
   }
 }
-
-//   if (dungeon.contents.event) {
-//     dispatch(logActions.updateLogs({ change: "PAUSE" }));
-//     for (let i = 0; i < dungeon.contents.event.description.length; i++) {
-//       dispatch(
-//         logActions.updateLogs({
-//           change: "ADD",
-//           text: dungeon.contents.event.description[i],
-//         })
-//       );
-//     }
-//   }

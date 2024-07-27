@@ -14,24 +14,36 @@ export function getCharacterImage(url, numberOfImages) {
   return imageList[index];
 }
 
-// Adds enemies to the combat order
-export function addEnemyToOrder(dispatch, enemyObj, numberOfEnemies = 1) {
-  for (let i = 0; i < numberOfEnemies; i++) {
-    const baseStats = constructStats(enemyObj.stats);
-    const enemy = {
-      ...enemyObj,
-      id: uuidv4(),
-      stats: baseStats,
-      damageDisplay: "",
-    };
+// Adds a character/s to the combat order
+export function addCharacterToOrder(
+  dispatch,
+  characterObj,
+  numberOfCharacters = 1
+) {
+  for (let i = 0; i < numberOfCharacters; i++) {
+    let character;
+    const baseStats = constructStats(characterObj.stats);
 
-    console.log(enemy);
+    if (characterObj.identifier === "HERO") {
+      character = {
+        ...characterObj,
+        stats: baseStats,
+        damageDisplay: "",
+      };
+    } else if (characterObj.identifier === "ENEMY") {
+      character = {
+        ...characterObj,
+        id: uuidv4(),
+        stats: baseStats,
+        damageDisplay: "",
+      };
+    }
 
-    dispatch(combatActions.addCharacter({ character: enemy }));
-    updateStatTotals(dispatch, enemy.id);
+    dispatch(combatActions.addCharacter({ character }));
+    updateStatTotals(dispatch, character.id);
     dispatch(
       combatActions.updateHealth({
-        id: enemy.id,
+        id: character.id,
         change: "HEAL",
         value: 999,
       })

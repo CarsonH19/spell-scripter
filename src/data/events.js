@@ -7,6 +7,7 @@ import {
   LIHETH_DIALOGUE,
   AMBUSH_EVENT_DIALOGUE,
 } from "../data/dialogue";
+import heroes from "./heroes";
 
 export const DUNGEON_ENTRANCE = {
   name: "Dungeon Entrance",
@@ -252,12 +253,42 @@ export const UNLOCK_HERO = {
   SIGGURD: {
     name: "Aiding Siggurd",
     type: "AUTO",
+    characters: [
+      heroes[0],
+      UNDEAD.DECREPIT_SKELETON,
+      UNDEAD.DECREPIT_SKELETON,
+      UNDEAD.DECREPIT_SKELETON,
+      UNDEAD.DECREPIT_SKELETON,
+    ],
     description: [""],
     dialogue: {
       before: SIGGURD_DIALOGUE.UNLOCK_EVENT.before,
       after: SIGGURD_DIALOGUE.UNLOCK_EVENT.after,
     },
     function: "UNLOCK_HERO_SIGGURD",
+    outcome:
+      "You found Siggurd, the paladin, while exploring The Great Catacomb and aided him in defeating a hoard of undead. You decide to fight together as you continue on.",
+  },
+  LIHETH: {
+    name: "Guiding Light",
+    type: "CHOICE",
+    characters: [heroes[1]],
+    description: [""],
+    dialogue: LIHETH_DIALOGUE.UNLOCK_EVENT.before,
+    function: "UNLOCK_HERO_LIHETH",
+    options: [
+      {
+        text: ["Rest"],
+        function: "UNLOCK_HERO_LIHETH",
+        narration: "You rest until Liheth is ready.",
+        dialogue: {
+          response: null,
+          after: LIHETH_DIALOGUE.UNLOCK_EVENT.after,
+        },
+        outcome:
+          "You found Liheth, the Candlelight Priestess, while exploring The Great Catacomb. She spoke to you of her duties to restore the hidden Candlelight Shrines throughout the catacomb. You decided to guide her through the catacomb in search of these shrines.",
+      },
+    ],
   },
 };
 
@@ -279,6 +310,8 @@ export const AMBUSH = {
         response: null,
         after: AMBUSH_EVENT_DIALOGUE.afterSurrender,
       },
+      outcome:
+        "The thieves took what they wanted from your inventory, but left you unharmed.",
     },
     {
       text: ["Refuse"],
@@ -288,6 +321,8 @@ export const AMBUSH = {
         response: AMBUSH_EVENT_DIALOGUE.responseRefuse,
         after: AMBUSH_EVENT_DIALOGUE.afterRefuse,
       },
+      outcome:
+        "You refused to surrender your items to the thieves and faced them in combat.",
     },
   ],
 };

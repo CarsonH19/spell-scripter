@@ -152,9 +152,14 @@ function getRoomEvent() {
         // events.push(BONEVAULT);
         // events.push(CANDLELIGHT_SHRINE);
 
-        // // Check if Siggurd is unlocked
+        // Check if Siggurd is unlocked
         if (!heroes[0].unlocked) {
           events.push(UNLOCK_HERO.SIGGURD);
+        }
+
+        // Check if Liheth is unlocked
+        if (!heroes[1].unlocked) {
+          events.push(UNLOCK_HERO.LIHETH);
         }
       }
 
@@ -395,9 +400,16 @@ function getRoomImage(dungeon) {
         break;
 
       case "Candlelight Shrine":
-        imageList = [
-          "src/assets/images/backgrounds/events/candlelight-shrine-1.jpg",
-        ];
+        {
+          // Number of images in the assets folder
+          const images = 10;
+          imageList = [];
+          for (let i = 1; i < images; i++)
+            [
+              imageList.push(`src/assets/images/backgrounds/events/candlelight-shrine-${i}.jpg
+        `),
+            ];
+        }
         break;
 
       case "Wailing Warrens":

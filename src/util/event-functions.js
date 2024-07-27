@@ -20,7 +20,7 @@ import { dialogueActions } from "../store/dialogue-slice";
 import checkForDialogue from "./dialogue-util";
 import { unlockHero } from "./hero-leveling";
 import { checkIfAttuned } from "./item-functions";
-import { addEnemyToOrder } from "./misc-util";
+import { addCharacterToOrder } from "./misc-util";
 import { AMBUSH_EVENT_DIALOGUE } from "../data/dialogue";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
@@ -221,29 +221,28 @@ const eventFunctions = {
       openModal(dispatch, "roomSummaryModal");
     }
   },
-  CANDLELIGHT_SHRINE: async (dispatch, choice) => {
-    if (!heroes[1].unlocked) {
-      // Add Liheth to party
-      const baseStats = constructStats(heroes[1].stats);
-      let liheth = {
-        ...heroes[1],
-        stats: baseStats,
-        damageDisplay: "",
-      };
+  UNLOCK_HERO_LIHETH: async (dispatch) => {
+    const order = store.getState().combat.order;
+    // Add fade transition
 
-      dispatch(combatActions.addCharacter({ character: liheth }));
-      updateStatTotals(dispatch, liheth.id);
-      dispatch(
-        combatActions.updateHealth({
-          id: liheth.id,
-          change: "HEAL",
-          value: 999,
-        })
-      );
-
-      unlockHero("Liheth");
+    // Heal all allies
+    for (let i = 0; i < order.length; i++) {
+      const halfHealth = order[i].stats.strength.maxHealth;
+      const value = Math.round(halfHealth / 2);
+      changeHealth(dispatch, order[i], "HEAL", value);
     }
 
+    // Unlock Hero Liheth
+    unlockHero("Liheth");
+
+    // Get random candle
+    getRandomLoot(dispatch);
+
+    await checkForDialogue(dispatch, "AFTER");
+    await delay(2000);
+    openModal(dispatch, "roomSummaryModal");
+  },
+  CANDLELIGHT_SHRINE: async (dispatch, choice) => {
     if (choice === "Rest") {
       const order = store.getState().combat.order;
       // Add fade transition
@@ -258,58 +257,13 @@ const eventFunctions = {
       // Get random candle
       getRandomLoot(dispatch);
 
-      // Add Event Outcome
-      dispatch(
-        dungeonActions.eventOutcome({
-          outcome: `You found Liheth, the Candlelight Priestess, while exploring The Great Catacomb. She spoke to you of her duties to restore the hidden Candlelight Shrines throughout the catacomb. You decided to lead her through the catacomb in search of these shrines.`,
-        })
-      );
-
-      dispatch(dungeonActions.eventOutcome({ outcome: `You chose to rest.` }));
-      await delay(4000);
       await checkForDialogue(dispatch, "AFTER");
       await delay(2000);
       openModal(dispatch, "roomSummaryModal");
     }
   },
   UNLOCK_HERO_SIGGURD: async (dispatch) => {
-    // Add enemies to dungeon
-    for (let i = 0; i < 4; i++) {
-      dispatch(
-        dungeonActions.addEnemy({
-          enemy: buildEnemy(UNDEAD.DECREPIT_SKELETON),
-          change: "ADD",
-        })
-      );
-    }
-
-    // Add Siggurd to party
-    const baseStats = constructStats(heroes[0].stats);
-    let siggurd = {
-      ...heroes[0],
-      stats: baseStats,
-      damageDisplay: "",
-    };
-
     unlockHero("Siggurd");
-
-    dispatch(combatActions.addCharacter({ character: siggurd }));
-    updateStatTotals(dispatch, siggurd.id);
-    dispatch(
-      combatActions.updateHealth({
-        id: siggurd.id,
-        change: "HEAL",
-        value: 999,
-      })
-    );
-
-    // Add Event Outcome
-    dispatch(
-      dungeonActions.eventOutcome({
-        outcome: `You found Siggurd, the paladin, while exploring The Great Catacomb and aided him in defeating a hoard of undead. You decide to fight together as you continue on.`,
-      })
-    );
-
     startCombat(dispatch);
   },
   AMBUSH: async (dispatch, choice) => {
@@ -340,45 +294,18 @@ const eventFunctions = {
             change: "REMOVE",
           })
         );
-        // Outcome
-        dispatch(
-          dungeonActions.eventOutcome({
-            outcome: `The thieves took what they wanted from your inventory, but left you unharmed.`,
-          })
-        );
         await delay(4000);
       }
-      //  else {
-
-      //   await checkForDialogue(dispatch, "RESPONSE");
-      //   // Outcome
-      //   dispatch(
-      //     dungeonActions.eventOutcome({
-      //       outcome: `You had nothing of interest, so the thieves attacked you anyways.`,
-      //     })
-      //   );
-      //   getRandomLoot(dispatch);
-      //   addEnemyToOrder(dispatch, THIEVES.THIEF, 3);
-      //   await delay(4000);
-      //   startCombat(dispatch);
-      // }
       await checkForDialogue(dispatch, "AFTER");
       clearCharactersFromOrder(dispatch);
       openModal(dispatch, "roomSummaryModal");
     }
 
     if (choice === "Refuse") {
-      // Dialogue Response
       await checkForDialogue(dispatch, "RESPONSE");
       getRandomLoot(dispatch);
       await delay(4000);
       startCombat(dispatch);
-      // Outcome
-      dispatch(
-        dungeonActions.eventOutcome({
-          outcome: `You refused to surrender your items to the thieves and faced them in combat.`,
-        })
-      );
     }
   },
 };
