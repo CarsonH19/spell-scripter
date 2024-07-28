@@ -19,7 +19,6 @@ import store from "../store/index";
 import { v4 as uuidv4 } from "uuid";
 import { checkForActiveQuest } from "./quest-util";
 
-import heroes from "../data/heroes";
 import { getImageFromList } from "./misc-util";
 
 export function setDungeon(dispatch, dungeonName) {
@@ -136,6 +135,10 @@ function getRoomContent() {
 // =====================================================================
 
 function getRoomEvent() {
+  const heroes = store.getState().hero.heroes;
+  const siggurd = heroes.find((hero) => hero.id === "Siggurd");
+  const liheth = heroes.find((hero) => hero.id === "Liheth");
+
   const dungeon = store.getState().dungeon;
   let events = [];
 
@@ -154,13 +157,12 @@ function getRoomEvent() {
         events.push(BONEVAULT);
 
         // // Check if Siggurd is unlocked
-        if (!heroes[0].unlocked) {
+        if (!siggurd.unlocked) {
           events.push(UNLOCK_HERO.SIGGURD);
         }
 
         // // Check if Liheth is unlocked
-        if (!heroes[1].unlocked) {
-          console.log(heroes);
+        if (!liheth.unlocked) {
           events.push(UNLOCK_HERO.LIHETH);
         } else {
           events.push(CANDLELIGHT_SHRINE);
@@ -182,17 +184,6 @@ function getRoomEvent() {
   // Randomly choose an event from the new array
   const randomIndex = Math.floor(Math.random() * events.length);
   return events[randomIndex];
-}
-
-function checkHero(heroName) {
-  const order = store.getState().combat.order;
-  const heroes = order.filter((hero) => hero.identifier === "HERO");
-  const isHero = heroes.find((hero) => hero.name === heroName);
-  if (isHero) {
-    return true;
-  } else {
-    return false;
-  }
 }
 
 // =====================================================================

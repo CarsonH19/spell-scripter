@@ -1,8 +1,7 @@
 import store from "../store/index";
 import quests from "../data/quests";
 
-import { HERO_LEVELING_MAP } from "./hero-leveling";
-import { levelUpHero } from "./hero-leveling";
+import { HERO_LEVELING_MAP, handleLevelUpHero } from "./hero-leveling";
 
 // When called this function filters through the quests object, checks to see which quests are active (which heroes are currently in the player's party), and if a quest's progress should be increased.
 
@@ -120,8 +119,8 @@ function checkQuestCompletion(dispatch, giver, heroObject, activeQuest) {
     // NOTE: must change if max level is raised
     if (heroObject.level < 9) {
       const heroToLevel = HERO_LEVELING_MAP[giver];
-      const levelUp = heroToLevel[heroObject.level + 1];
-      levelUpHero(dispatch, heroObject.name, levelUp);
+      const map = heroToLevel[heroObject.level + 1];
+      handleLevelUpHero(dispatch, heroObject.name, map);
     }
 
     // Unlock next quest in the series

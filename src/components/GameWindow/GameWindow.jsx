@@ -75,7 +75,6 @@ async function handleGameFlow(dispatch) {
     if (event.type === "AUTO") {
       // Call auto event function after dialogue
       const eventFunction = eventFunctions[event.function];
-      console.log("Called");
       eventFunction(dispatch);
 
       dispatch(dungeonActions.eventOutcome({ outcome: event.outcome }));
@@ -92,10 +91,5 @@ async function handleGameFlow(dispatch) {
         })
       );
     }
-
-    // Render Event Options
-    // dispatch(
-    //   uiActions.changeUi({ element: "eventOptionsAreVisible", visible: true })
-    // );
   }
 }

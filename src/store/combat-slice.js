@@ -58,7 +58,7 @@ const combatSlice = createSlice({
     },
     addCharacter(state, action) {
       const character = action.payload.character;
-
+      console.log(character);
       const alreadyExists = state.order.some(
         (char) => char.id === character.id
       );
@@ -277,11 +277,17 @@ const combatSlice = createSlice({
       }
     },
     levelUpHero(state, action) {
-      const hero = state.order.find(
-        (character) => character.name === action.payload
-      );
+      const { name, map } = action.payload;
 
-      hero.level = hero.level + 1;
+      // Level up the hero object in hero-slice
+      for (let i = 0; i < state.heroes.length; i++) {
+        if (state.heroes[i].name === name) {
+          state.heroes[i].level = map.level;
+          state.heroes[i].stats.baseStrength = map.strength;
+          state.heroes[i].stats.baseAgility = map.agility;
+          state.heroes[i].stats.baseArcana = map.arcana;
+        }
+      }
     },
     changePlayerInventory(state, action) {
       const item = action.payload.item;

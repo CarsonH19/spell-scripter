@@ -1,22 +1,9 @@
+import { heroActions } from "../store/hero-slice";
 import store from "../store/index";
-import heroes from "../data/heroes";
-import { combatActions } from "../store/combat-slice";
-
-export function levelUpHero(dispatch, name, map) {
-  // Level up the hero in the combat order
-  dispatch(combatActions.levelUpHero(name));
-
-  // Level up the hero template object
-  for (let i = 0; i < heroes.length; i++) {
-    if (heroes[i].name === name) {
-      heroes[i].level = map.level;
-      heroes[i].stats.baseStrength = map.strength;
-      heroes[i].stats.baseAgility = map.agility;
-      heroes[i].stats.baseArcana = map.arcana;
-
-      // console.log("HERO LEVEL UP", heroes[i]);
-    }
-  }
+export function handleLevelUpHero(dispatch, name, map) {
+  // Level up the hero in the combat & hero slice
+  dispatch(combatActions.levelUpHero({ name, map }));
+  dispatch(heroActions.levelUpHero({ name, map }));
 }
 
 export const HERO_LEVELING_MAP = {

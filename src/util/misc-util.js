@@ -1,3 +1,5 @@
+import store from "../store/index";
+
 import { constructStats } from "./dungeon-util";
 import { v4 as uuidv4 } from "uuid";
 import { combatActions } from "../store/combat-slice";
@@ -21,17 +23,23 @@ export function addCharacterToOrder(
   characterObj,
   numberOfCharacters = 1
 ) {
+  console.log(characterObj);
   for (let i = 0; i < numberOfCharacters; i++) {
     let character;
-    const baseStats = constructStats(characterObj.stats);
 
     if (characterObj.identifier === "HERO") {
+      const hero = getHeroObject(characterObj.name);
+      console.log(hero);
+      const baseStats = constructStats(hero.stats);
       character = {
-        ...characterObj,
+        ...hero,
         stats: baseStats,
         damageDisplay: "",
       };
-    } else if (characterObj.identifier === "ENEMY") {
+    }
+
+    if (characterObj.identifier === "ENEMY") {
+      const baseStats = constructStats(characterObj.stats);
       character = {
         ...characterObj,
         id: uuidv4(),
@@ -49,5 +57,15 @@ export function addCharacterToOrder(
         value: 999,
       })
     );
+  }
+
+  function getHeroObject(name) {
+    const heroes = store.getState().hero.heroes;
+    for (let i = 0; i < heroes.length; i++) {
+      if (heroes[i].name === name) {
+        console.log(heroes[i]);
+        return heroes[i];
+      }
+    }
   }
 }

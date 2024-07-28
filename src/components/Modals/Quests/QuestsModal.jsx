@@ -1,4 +1,3 @@
-import heroes from "../../../data/heroes";
 import quests from "../../../data/quests";
 
 import classes from "./QuestsModal.module.css";
@@ -7,9 +6,11 @@ import Icon from "../../UI/Icon";
 import HeroQuests from "./HeroQuests";
 
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function QuestsModal() {
   const [index, setIndex] = useState(0);
+  const heroes = useSelector((state) => state.hero.heroes);
 
   const hasHero = heroes.find((hero) => hero.unlocked);
   const [hoveredElement, setHoveredElement] = useState(

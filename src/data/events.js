@@ -1,3 +1,5 @@
+import store from "../store/index";
+
 // Enemies
 import { UNDEAD, THIEVES } from "./enemies";
 
@@ -8,7 +10,6 @@ import {
   AMBUSH_EVENT_DIALOGUE,
   BONEVAULT_DIALOGUE,
 } from "../data/dialogue";
-import heroes from "./heroes";
 
 export const DUNGEON_ENTRANCE = {
   name: "Dungeon Entrance",
@@ -266,7 +267,7 @@ export const UNLOCK_HERO = {
     name: "Unlocking Siggurd",
     type: "AUTO",
     characters: [
-      heroes[0],
+      { identifier: "HERO", name: "Siggurd" },
       UNDEAD.DECREPIT_SKELETON,
       UNDEAD.DECREPIT_SKELETON,
       UNDEAD.DECREPIT_SKELETON,
@@ -284,7 +285,7 @@ export const UNLOCK_HERO = {
   LIHETH: {
     name: "Unlocking Liheth",
     type: "CHOICE",
-    characters: [heroes[1]],
+    characters: [{ identifier: "HERO", name: "Liheth" }],
     description: [""],
     dialogue: LIHETH_DIALOGUE.UNLOCK_EVENT.before,
     function: "UNLOCK_HERO_LIHETH",

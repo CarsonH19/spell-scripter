@@ -13,8 +13,9 @@ import { getRandomLoot } from "./loot";
 import activateItem from "../store/item-actions";
 
 import { combatActions } from "../store/combat-slice";
+import { heroActions } from "../store/hero-slice";
+
 import checkForDialogue, { getDialogue } from "./dialogue-util";
-import { unlockHero } from "../data/heroes";
 import { checkIfAttuned } from "./item-functions";
 import { addCharacterToOrder, getImageFromList } from "./misc-util";
 
@@ -225,7 +226,7 @@ const eventFunctions = {
     }
 
     // Unlock Hero Liheth
-    unlockHero("Liheth");
+    dispatch(heroActions.unlockHero("Liheth"));
 
     // Get random candle
     getRandomLoot(dispatch);
@@ -253,8 +254,7 @@ const eventFunctions = {
     }
   },
   UNLOCK_HERO_SIGGURD: async (dispatch) => {
-    console.log("HELLO");
-    unlockHero("Siggurd");
+    dispatch(heroActions.unlockHero("Siggurd"));
     startCombat(dispatch);
   },
   AMBUSH: async (dispatch, choice) => {

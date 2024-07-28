@@ -1,7 +1,7 @@
 import { getImageFromList } from "../util/misc-util";
 
 // PALADIN
-export let siggurd = {
+let siggurd = {
   name: "Siggurd",
   id: "Siggurd",
   unlocked: false,
@@ -52,7 +52,7 @@ export let siggurd = {
 };
 
 // ROGUE
-export let riven = {
+let riven = {
   name: "Riven",
   id: "Riven",
   unlocked: false,
@@ -104,7 +104,7 @@ export let riven = {
 };
 
 // PRIESTESS
-export let liheth = {
+let liheth = {
   name: "Liheth",
   id: "Liheth",
   unlocked: false,
@@ -157,14 +157,4 @@ export let liheth = {
 // EVOKER
 // RISEN
 
-let heroes = [siggurd, liheth, riven];
 
-export function unlockHero(name) {
-  heroes = heroes.map((hero) =>
-    hero.name === name ? { ...hero, unlocked: true } : hero
-  );
-  // return heroes;
-  console.log(heroes);
-}
-
-export default heroes;

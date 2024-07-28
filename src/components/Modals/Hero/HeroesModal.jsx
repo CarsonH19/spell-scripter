@@ -1,7 +1,4 @@
 import classes from "./HeroesModal.module.css";
-
-import heroes from "../../../data/heroes";
-
 import HeroStats from "./HeroStats";
 
 import { useState } from "react";
@@ -14,6 +11,7 @@ import { constructStats } from "../../../util/dungeon-util";
 
 export default function HeroesModal() {
   const dispatch = useDispatch();
+  const heroes = useSelector((state) => state.hero.heroes);
   const party = useSelector((state) => state.hero.party);
   const hasHero = heroes.some((hero) => hero.unlocked);
   const [hoveredElement, setHoveredElement] = useState(
