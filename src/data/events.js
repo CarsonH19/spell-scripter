@@ -223,8 +223,8 @@ export const CANDLELIGHT_SHRINE = {
   ],
 };
 
-export const PATHS = [
-  {
+export const PATH_ENTRANCE = {
+  WAILING_WARRENS_ENTRANCE: {
     name: "Wailing Warrens",
     type: "CHOICE",
     description: [
@@ -245,21 +245,61 @@ export const PATHS = [
       },
     ],
   },
-];
+  THIEVES_RUIN_ENTRANCE: {
+    name: "Thieves' Ruin",
+    type: "CHOICE",
+    description: [
+      "You discover the entrance to Thieves' Ruin",
+      "Do you wish to enter?",
+    ],
+    options: [
+      {
+        text: ["Enter"],
+        function: "PATH_ENTRANCE",
+        narration: "You decide to enter the Thieves' Ruin.",
+      },
+      {
+        text: ["Leave"],
+        function: "PATH_ENTRANCE",
+        narration: "You decide to leave.",
+        outcome: "You chose not to enter.",
+      },
+    ],
+  },
+};
 
-export const WAILING_WARRENS_EXIT = {
-  name: "Wailing Warrens Exit",
-  type: "CHOICE",
-  description: [
-    "You discover a hole in the wall leading out of the Wailing Warrens.",
-  ],
-  options: [
-    {
-      text: ["Leave"],
-      function: "PATH_EXIT",
-      narration: "You decide to leave.",
-    },
-  ],
+export const PATH_EXIT = {
+  WAILING_WARRENS_EXIT: {
+    name: "Wailing Warrens Exit",
+    type: "CHOICE",
+    description: [
+      "You discover a hole in the wall leading out of the Wailing Warrens.",
+    ],
+    options: [
+      {
+        text: ["Leave"],
+        function: "PATH_EXIT",
+        narration: "You decide to leave.",
+        outcome: "You left the Wailing Warrens.",
+
+      },
+    ],
+  },
+  THIEVES_RUIN_EXIT: {
+    name: "Thieves' Ruin Exit",
+    type: "CHOICE",
+    description: [
+      "You discover an exit out of Thieves' Ruin.",
+    ],
+    options: [
+      {
+        text: ["Leave"],
+        function: "PATH_EXIT",
+        narration: "You decide to leave.",
+        outcome: "You left Thieves' Ruin.",
+      },
+    ],
+  },
 };
 
 export const UNLOCK_HERO = {

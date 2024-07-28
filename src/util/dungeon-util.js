@@ -1,15 +1,15 @@
 import { dungeonActions } from "../store/dungeon-slice";
 
-import { UNDEAD } from "../data/enemies";
+import { THIEVES, UNDEAD } from "../data/enemies";
 
 import {
   COFFIN,
   DUNGEON_ENTRANCE,
-  PATHS,
+  PATH_ENTRANCE,
+  PATH_EXIT,
   TRAPS,
   BONEVAULT,
   CANDLELIGHT_SHRINE,
-  WAILING_WARRENS_EXIT,
   UNLOCK_HERO,
   AMBUSH,
 } from "../data/events";
@@ -115,8 +115,14 @@ function getRoomContent() {
         content = "ENEMIES";
       }
 
+      if (dungeon.path === "Thieves' Ruin") {
+        // NOTE - Currently set to always enemies
+        console.log("CONTENT");
+        content = "ENEMIES";
+      }
+
       // Event chance for dungeon is 20%
-      if (eventChance > 0) {
+      if (eventChance > 50) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -151,22 +157,24 @@ function getRoomEvent() {
         // for (let i = 0; i < TRAPS.length; i++) {
         //   events.push(TRAPS[i]);
         // }
-        events.push(AMBUSH);
-        events.push(COFFIN);
-        events.push(PATHS[0]);
-        events.push(BONEVAULT);
+        // events.push(AMBUSH);
+        // events.push(COFFIN);
+        // events.push(PATH_ENTRANCE.WAILING_WARRENS_ENTRANCE);
+        events.push(PATH_ENTRANCE.THIEVES_RUIN_ENTRANCE);
+
+        // events.push(BONEVAULT);
 
         // // Check if Siggurd is unlocked
-        if (!siggurd.unlocked) {
-          events.push(UNLOCK_HERO.SIGGURD);
-        }
+        // if (!siggurd.unlocked) {
+        //   events.push(UNLOCK_HERO.SIGGURD);
+        // }
 
         // // Check if Liheth is unlocked
-        if (!liheth.unlocked) {
-          events.push(UNLOCK_HERO.LIHETH);
-        } else {
-          events.push(CANDLELIGHT_SHRINE);
-        }
+        // if (!liheth.unlocked) {
+        //   events.push(UNLOCK_HERO.LIHETH);
+        // } else {
+        //   events.push(CANDLELIGHT_SHRINE);
+        // }
       }
 
       // Add path specific events
@@ -174,6 +182,11 @@ function getRoomEvent() {
         // Ghostly Choir
         // Whispering Wall
         // Echoing Bells
+      } else if (dungeon.path === "Thieves' Ruin") {
+        // Traps
+        if (dungeon.pathCounter === 5) {
+          // Laughing Coffin Tavern
+        }
       }
       break;
   }
@@ -191,6 +204,8 @@ function getRoomEvent() {
 // =====================================================================
 
 export function getRoomEnemies() {
+  console.log("ENEMIES");
+
   const dungeon = store.getState().dungeon;
   const threat = store.getState().dungeon.threat;
   let enemiesArray = [];
@@ -212,8 +227,17 @@ export function getRoomEnemies() {
             { enemy: UNDEAD.WANDERING_WISP, probability: 0.1 },
             { enemy: UNDEAD.SHADOW, probability: 0.9 },
           ];
-          numberOfEnemies = 3;
+          numberOfEnemies = 2;
         }
+      }
+      break;
+
+    case "Thieves' Ruin":
+      {
+        enemyTypes = [{ enemy: THIEVES.THIEF, probability: 1 }];
+        console.log("ENEMIES");
+
+        numberOfEnemies = Math.ceil(Math.random() * 3);
       }
       break;
 
@@ -365,6 +389,13 @@ function getRoomImage(dungeon) {
         );
         break;
 
+      case "Thieves' Ruin":
+        backgroundImage = getImageFromList(
+          "src/assets/images/backgrounds/thieves-ruin/thieves-ruin",
+          15
+        );
+        break;
+
       default:
         break;
     }
@@ -388,6 +419,7 @@ function getRoomImage(dungeon) {
         );
         break;
 
+      // ENTRANCE
       case "Wailing Warrens":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/wailing-warrens-entrance",
@@ -419,7 +451,9 @@ function getPathExit() {
 
   switch (path) {
     case "Wailing Warrens":
-      return WAILING_WARRENS_EXIT;
-      break;
+      return PATH_EXIT.WAILING_WARRENS_EXIT;
+
+    case "Thieves' Ruin":
+      return PATH_EXIT.THIEVES_RUIN_EXIT;
   }
 }
