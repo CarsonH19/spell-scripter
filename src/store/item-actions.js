@@ -8,6 +8,8 @@ import { itemFunctions } from "../util/item-functions";
 import updateStatTotals from "./stats-actions";
 
 export default async function activateItem(dispatch, item) {
+  console.log("CALLED");
+
   const dashboard = store.getState().ui.dashboardIsVisible;
   let player;
 
@@ -81,9 +83,20 @@ export default async function activateItem(dispatch, item) {
       }
       break;
 
-    case "QUEST":
+    case "MISC":
+      console.log("CALLED");
+
       {
-        //
+        if (dashboard) return;
+        console.log("CALLED");
+        const snakeCaseItem = toSnakeCase(item.name);
+        console.log(snakeCaseItem);
+        const itemFunction = itemFunctions[snakeCaseItem];
+        if (itemFunction) {
+          console.log("CALLED");
+
+          itemFunction(dispatch, item);
+        }
       }
       break;
   }
@@ -92,5 +105,5 @@ export default async function activateItem(dispatch, item) {
 }
 
 function toSnakeCase(str) {
-  return str.toUpperCase().replace(/\s+/g, "_");
+  return str.replace(/'/g, "").toUpperCase().replace(/\s+/g, "_");
 }

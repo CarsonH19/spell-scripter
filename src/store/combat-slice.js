@@ -303,8 +303,8 @@ const combatSlice = createSlice({
               player.inventory.equipment.push(item);
             } else if (item.type === "CONSUMABLE") {
               player.inventory.consumables.push(item);
-            } else if (item.type === "QUEST ITEM") {
-              player.inventory.questItems.push(item);
+            } else if (item.type === "MISC") {
+              player.inventory.miscItems.push(item);
             }
           }
           break;
@@ -317,8 +317,8 @@ const combatSlice = createSlice({
             } else if (item.type === "CONSUMABLE") {
               console.log("TRIGGERED");
               itemGroup = player.inventory.consumables;
-            } else if (item.type === "QUEST ITEM") {
-              itemGroup = player.inventory.questItems;
+            } else if (item.type === "MISC") {
+              itemGroup = player.inventory.miscItems;
             }
 
             const itemIndex = itemGroup.findIndex((i) => i.id === id);

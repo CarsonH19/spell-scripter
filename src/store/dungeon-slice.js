@@ -4,6 +4,8 @@ const dungeonSlice = createSlice({
   name: "dungeon",
   initialState: {
     name: "The Great Catacomb",
+    following: null,
+    followCounter: null,
     path: null,
     pathCounter: null,
     roomCounter: 0,
@@ -29,13 +31,23 @@ const dungeonSlice = createSlice({
       const danger = action.payload.danger;
       state.danger = danger;
     },
+    beginFollowing(state, action) {
+      if (action.payload !== null) {
+        const { following, rooms } = action.payload;
+        state.following = following;
+        state.followCounter = rooms;
+      } else {
+        state.following = null;
+        state.followCounter = null;
+      }
+    },
     beginPath(state, action) {
       state.path = action.payload;
-
       if (action.payload !== null) {
         const rooms = Math.floor(Math.random() * 7) + 5;
         state.pathCounter = rooms;
       } else {
+        // state.following = null;
         state.pathCounter = null;
       }
     },
@@ -83,7 +95,9 @@ const dungeonSlice = createSlice({
     changeTradeItems(state, action) {
       const id = action.payload.id;
 
-      const itemIndex = state.contents.event.items.findIndex((i) => i.id === id);
+      const itemIndex = state.contents.event.items.findIndex(
+        (i) => i.id === id
+      );
       if (itemIndex !== -1) {
         state.contents.event.items.splice(itemIndex, 1);
       }

@@ -4,6 +4,7 @@ import { combatActions } from "../store/combat-slice";
 import changeStatusEffect from "../store/status-effect-actions";
 import CONDITIONS from "../data/conditions";
 import EQUIPMENT from "../data/equipment";
+import { dungeonActions } from "../store/dungeon-slice";
 
 export const itemFunctions = {
   CRYPTBREAD: (dispatch, target) => {
@@ -242,6 +243,21 @@ export const itemFunctions = {
       return 5;
     }
   },
+  // ==================================================================
+  //                            MISC. ITEMS
+  // ==================================================================
+  THIEVES_RUIN_MAP: (dispatch, item) => {
+    console.log(item);
+    const dungeon = store.getState().dungeon;
+    if ((dungeon.following === null) & (dungeon.followCounter === 0)) {
+      const map = { ...item, rooms: calculateRooms(item) };
+      console.log(map);
+      dispatch(
+        dungeonActions.beginFollowing({ following: map.name, rooms: map.rooms })
+      );
+    }
+    // NOTE: Narrate - Can't follow that now
+  },
 };
 
 // Returns true/false to determine if an item is attuned or not
@@ -265,4 +281,16 @@ export function checkIfAttuned(dispatch, itemName, target, arg) {
 
 function toSnakeCase(str) {
   return str.toUpperCase().replace(/\s+/g, "_");
+}
+
+// Calculate the number of rooms that must be cleared while following
+function calculateRooms(item) {
+  const dungeon = store.getState().dungeon;
+  let rooms = Math.abs(dungeon.roomCounter - item.destination);
+
+  if (rooms < 5) {
+    rooms = 5;
+  }
+
+  return rooms;
 }

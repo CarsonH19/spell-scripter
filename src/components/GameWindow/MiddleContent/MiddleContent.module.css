@@ -16,14 +16,14 @@
   height: auto;
   width: 8rem;
   padding: 0.5rem;
-  color: var(--accent);
+  color: var(--text);
 
   /* border: 1px solid var(--text); */
 }
 
 .middle .continue:hover {
   cursor: pointer;
-  color: var(--text);
+  color: var(--accent);
   transition: 0.3s;
   transform: scale(1.1);
 }

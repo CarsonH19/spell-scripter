@@ -26,6 +26,8 @@ import { getTraderItems } from "../components/Modals/Trade/TradeModal";
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
     name: "",
+    following: null,
+    followCounter: 0,
     path: null,
     pathCounter: null,
     roomCounter: 0,
@@ -42,6 +44,8 @@ export function setDungeon(dispatch, dungeonName) {
   switch (dungeonName) {
     case "The Great Catacomb":
       dungeon.name = "The Great Catacomb";
+      dungeon.following = null;
+      dungeon.followCounter = 0;
       dungeon.path = null;
       dungeon.pathCounter = null;
       dungeon.threat = 0;
@@ -63,6 +67,10 @@ export function createNewRoom(dispatch) {
 
   let newRoom = {
     ...dungeon,
+    followCounter:
+      dungeon.followCounter > 0
+        ? dungeon.followCounter - 1
+        : dungeon.followCounter,
     pathCounter:
       dungeon.pathCounter > 0 ? dungeon.pathCounter - 1 : dungeon.pathCounter,
     roomCounter: dungeon.roomCounter + 1,
@@ -77,6 +85,11 @@ export function createNewRoom(dispatch) {
       event: null,
     },
   };
+
+  // Check if following & followCounter end
+  if (dungeon.followCounter === 0) {
+    dispatch(dungeonActions.beginFollowing(null));
+  }
 
   const roomContent = getRoomContent();
   switch (roomContent) {
@@ -106,28 +119,43 @@ export function createNewRoom(dispatch) {
 
 function getRoomContent() {
   const dungeon = store.getState().dungeon;
-  const pathCounter = store.getState().dungeon.pathCounter;
-  const eventChance = Math.floor(Math.random() * 100);
+  const followCounter = dungeon.followCounter;
+  const pathCounter = dungeon.pathCounter;
+  let eventChance = Math.floor(Math.random() * 100);
   let content;
 
   switch (dungeon.name) {
     case "The Great Catacomb":
-      if (dungeon.path === "Wailing Warrens") {
-        // NOTE - Currently set to always enemies
-        content = "ENEMIES";
-      }
-
-      if (dungeon.path === "Thieves' Ruin") {
-        // NOTE - Currently set to always enemies
-        console.log("CONTENT");
-        content = "ENEMIES";
-      }
-
-      // Event chance for dungeon is 20%
-      if (eventChance > 0) {
+      // Event chance for general dungeon is 20%
+      if (eventChance > 80) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
+      }
+
+      // WAILING WARRENS
+      if (dungeon.path === "Wailing Warrens") {
+        // NOTE - Currently set to always enemies
+        content = "ENEMIES";
+        // NOTE: add logic to check for path specific event chance here
+      }
+
+      // THIEVES' RUIN
+      if (dungeon.path === "Thieves' Ruin") {
+        // NOTE - Currently set to always enemies
+        content = "ENEMIES";
+        // Laughing Coffin Event & 40% event chance
+        if (dungeon.pathCounter === 4 || eventChance > 60) {
+          content = "EVENT";
+        }
+      }
+
+      // FOLLOWING - check if following ends and an event must occur
+      if (
+        dungeon.following === "Thieves' Ruin Map" &&
+        dungeon.followCounter === 1
+      ) {
+        content = "EVENT";
       }
   }
 
@@ -153,8 +181,8 @@ function getRoomEvent() {
   // check dungeon
   switch (dungeon.name) {
     case "The Great Catacomb":
-      // Add general non-path events
-      if (!dungeon.path) {
+      // DUNGEON EVENTS
+      if (!dungeon.path && !dungeon.following) {
         // Traps
         // for (let i = 0; i < TRAPS.length; i++) {
         //   events.push(TRAPS[i]);
@@ -162,15 +190,11 @@ function getRoomEvent() {
         // events.push(AMBUSH);
         // events.push(COFFIN);
         // events.push(PATH_ENTRANCE.WAILING_WARRENS_ENTRANCE);
-        events.push(PATH_ENTRANCE.THIEVES_RUIN_ENTRANCE);
-
         // events.push(BONEVAULT);
-
         // // Check if Siggurd is unlocked
         // if (!siggurd.unlocked) {
         //   events.push(UNLOCK_HERO.SIGGURD);
         // }
-
         // // Check if Liheth is unlocked
         // if (!liheth.unlocked) {
         //   events.push(UNLOCK_HERO.LIHETH);
@@ -179,19 +203,33 @@ function getRoomEvent() {
         // }
       }
 
-      // Add path specific events
+      // FOLLOWING EVENTS
+      if (
+        dungeon.following === "Thieves' Ruin Map" &&
+        dungeon.followCounter === 1
+      ) {
+        events.push(PATH_ENTRANCE.THIEVES_RUIN_ENTRANCE);
+      }
+
+      // PATH EVENTS
       if (dungeon.path === "Wailing Warrens") {
         // Ghostly Choir
         // Whispering Wall
         // Echoing Bells
       } else if (dungeon.path === "Thieves' Ruin") {
-        // Traps
-        // if (dungeon.pathCounter === 5) {
-        events.push({
-          ...THIEVES_RUIN.LAUGHING_COFFIN,
-          items: getTraderItems("Laughing Coffin"),
-        });
-        // }
+        // Only push Laughing Coffin at pathCounter 4
+        if (dungeon.pathCounter === 4) {
+          events.push({
+            ...THIEVES_RUIN.LAUGHING_COFFIN,
+            items: getTraderItems("Laughing Coffin"),
+          });
+        } else {
+          events.push(
+            THIEVES_RUIN.FLOOR_SPIKES,
+            THIEVES_RUIN.POISONOUS_MIST,
+            THIEVES_RUIN.POISON_DARTS
+          );
+        }
       }
       break;
   }
@@ -209,8 +247,6 @@ function getRoomEvent() {
 // =====================================================================
 
 export function getRoomEnemies() {
-  console.log("ENEMIES");
-
   const dungeon = store.getState().dungeon;
   const threat = store.getState().dungeon.threat;
   let enemiesArray = [];
@@ -240,8 +276,6 @@ export function getRoomEnemies() {
     case "Thieves' Ruin":
       {
         enemyTypes = [{ enemy: THIEVES.THIEF, probability: 1 }];
-        console.log("ENEMIES");
-
         numberOfEnemies = Math.ceil(Math.random() * 3);
       }
       break;

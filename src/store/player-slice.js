@@ -60,7 +60,7 @@ const playerSlice = createSlice({
       attunedItems: [],
       equipment: [],
       consumables: [],
-      questItems: [],
+      miscItems: [],
     },
     favor: {
       laughingCoffin: 0,
@@ -194,8 +194,8 @@ const playerSlice = createSlice({
               state.inventory.equipment.push(item);
             } else if (item.type === "CONSUMABLE") {
               state.inventory.consumables.push(item);
-            } else if (item.type === "QUEST ITEM") {
-              state.inventory.questItems.push(item);
+            } else if (item.type === "MISC") {
+              state.inventory.miscItems.push(item);
             }
           }
           break;
@@ -207,8 +207,8 @@ const playerSlice = createSlice({
               itemGroup = state.inventory.equipment;
             } else if (item.type === "CONSUMABLE") {
               itemGroup = state.inventory.consumables;
-            } else if (item.type === "QUEST ITEM") {
-              itemGroup = state.inventory.questItems;
+            } else if (item.type === "MISC") {
+              itemGroup = state.inventory.miscItems;
             }
 
             const itemIndex = itemGroup.findIndex((i) => i.id === id);

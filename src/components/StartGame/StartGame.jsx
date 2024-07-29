@@ -6,6 +6,7 @@ import { playerActions } from "../../store/player-slice";
 
 import CONSUMABLES from "../../data/consumables";
 import EQUIPMENT from "../../data/equipment";
+import MISC_ITEMS from "../../data/misc-items";
 import { v4 as uuidv4 } from "uuid";
 
 export default function StartGame() {
@@ -122,13 +123,6 @@ export default function StartGame() {
 
     dispatch(
       playerActions.changeInventory({
-        item: { ...CONSUMABLES.LAUGHING_COFFIN_COIN, id: uuidv4() },
-        change: "ADD",
-      })
-    );
-
-    dispatch(
-      playerActions.changeInventory({
         item: { ...CONSUMABLES.TOMBSTONE_TRUFFLE, id: uuidv4() },
         change: "ADD",
       })
@@ -143,7 +137,7 @@ export default function StartGame() {
 
     dispatch(
       playerActions.changeInventory({
-        item: { ...CONSUMABLES.SPIDER_EGG_YOLK, id: uuidv4() },
+        item: { ...MISC_ITEMS.THIEVES_RUIN_MAP, id: uuidv4() },
         change: "ADD",
       })
     );

@@ -3,13 +3,17 @@ const MISC_ITEMS = {
   //                                MAPS
   // ====================================================================
   THIEVES_RUIN_MAP: {
-    name: "Thieve's Ruin Map",
+    name: "Thieves' Ruin Map",
     description: "",
     image: "src/assets/images/items/consumables/thieves-ruin-map.jpg",
-    type: "MAP",
+    type: "MISC",
     rarity: "Rare",
     useInCombat: false,
-    effect: ["A map that leads to Thieve's Ruin in The Great Catacomb."],
+    effect: [
+      "A map that leads to Thieve's Ruin.",
+      "Can only be used in The Great Catacomb.",
+    ],
+    destination: 3,
     // soundEffect: chewCrackersMouth,
   },
 };

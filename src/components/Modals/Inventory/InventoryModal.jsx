@@ -38,7 +38,7 @@ export default function InventoryModal() {
       itemGroup = player.inventory.consumables;
       break;
     case 3:
-      itemGroup = player.inventory.questItems;
+      itemGroup = player.inventory.miscItems;
       break;
   }
 
@@ -79,7 +79,7 @@ export default function InventoryModal() {
                 className={active === 3 ? classes.active : ""}
                 onClick={() => handleButtonClick(3)}
               >
-                Quest Items
+                Misc. Items
               </button>
             </div>
             <ul className={classes.items}>
