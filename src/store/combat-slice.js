@@ -293,7 +293,6 @@ const combatSlice = createSlice({
       const item = action.payload.item;
       const change = action.payload.change;
       const id = item.id;
-      console.log(item)
 
       const player = state.order.find((char) => char.id === "Player");
 

@@ -21,6 +21,7 @@ import { v4 as uuidv4 } from "uuid";
 import { checkForActiveQuest } from "./quest-util";
 
 import { getImageFromList } from "./misc-util";
+import { getTraderItems } from "../components/Modals/Trade/TradeModal";
 
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
@@ -186,7 +187,10 @@ function getRoomEvent() {
       } else if (dungeon.path === "Thieves' Ruin") {
         // Traps
         // if (dungeon.pathCounter === 5) {
-        events.push(THIEVES_RUIN.LAUGHING_COFFIN);
+        events.push({
+          ...THIEVES_RUIN.LAUGHING_COFFIN,
+          items: getTraderItems("Laughing Coffin"),
+        });
         // }
       }
       break;

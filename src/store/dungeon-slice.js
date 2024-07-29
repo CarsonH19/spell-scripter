@@ -80,6 +80,14 @@ const dungeonSlice = createSlice({
       const { outcome } = action.payload;
       state.contents.event.outcome = outcome;
     },
+    changeTradeItems(state, action) {
+      const id = action.payload.id;
+
+      const itemIndex = state.contents.event.items.findIndex((i) => i.id === id);
+      if (itemIndex !== -1) {
+        state.contents.event.items.splice(itemIndex, 1);
+      }
+    },
   },
 });
 

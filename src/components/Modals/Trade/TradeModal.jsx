@@ -7,33 +7,28 @@ import { useMemo } from "react";
 import Item from "./Item";
 import { combatActions } from "../../../store/combat-slice";
 import { useEffect, useState } from "react";
-import { useRef } from "react";
 import Tooltip from "../../UI/Tooltip";
+import { dungeonActions } from "../../../store/dungeon-slice";
 
 export default function TradeModal() {
   const dispatch = useDispatch();
-  const dungeon = useSelector((state) => state.dungeon);
-  const eventName = useSelector((state) => state.dungeon.contents.event.name);
+  const event = useSelector((state) => state.dungeon.contents.event);
   const player = useSelector((state) =>
     state.combat.order.find((char) => char.id === "Player")
   );
+  const traderItems = event.items;
 
   // Must have player & eventName before calling useState
   // const [favor, setFavor] = useState(player.favor[eventName]);
-  const [traderItems, setTraderItems] = useState([]);
+  // const [traderItems, setTraderItems] = useState([]);
 
   let traderName;
   let favorAvailable;
   // const traderItems = getTraderItems(eventName);
-  const playerItems = getPlayerItems(eventName, player);
-
-  useEffect(() => {
-    setTraderItems(getTraderItems(eventName));
-    console.log("RERENDER");
-  }, [dungeon.roomCounter]);
+  const playerItems = getPlayerItems(event.name, player);
 
   // find which trader
-  switch (eventName) {
+  switch (event.name) {
     case "Laughing Coffin":
       traderName = "Tavern Keeper";
       favorAvailable = player.favor.laughingCoffin;
@@ -72,7 +67,7 @@ export default function TradeModal() {
     dispatch(
       combatActions.changeFavor({
         change: "INCREASE",
-        trader: eventName,
+        trader: event.name,
         favor: calculateItemFavor(item),
       })
     );
@@ -89,9 +84,7 @@ export default function TradeModal() {
   const handleDecreaseFavor = (item) => {
     if (favorAvailable >= calculateItemFavor(item)) {
       // Removing item from trader
-      setTraderItems((prevItems) => {
-        return prevItems.filter((i) => i.id !== item.id);
-      });
+      dispatch(dungeonActions.changeTradeItems(item));
 
       // Add item to player
       dispatch(combatActions.changePlayerInventory({ item, change: "REMOVE" }));
@@ -100,7 +93,7 @@ export default function TradeModal() {
       dispatch(
         combatActions.changeFavor({
           change: "DECREASE",
-          trader: eventName,
+          trader: event.name,
           favor: calculateItemFavor(item),
         })
       );
@@ -109,7 +102,7 @@ export default function TradeModal() {
 
   return (
     <div className={classes["trade-modal"]}>
-      <h1>{eventName}</h1>
+      <h1>{event.name}</h1>
       <div className={classes.container}>
         <div className={classes.left}>
           <h2>{traderName}</h2>
@@ -175,7 +168,7 @@ export default function TradeModal() {
   );
 }
 
-function getTraderItems(eventName) {
+export function getTraderItems(eventName) {
   let items = [];
   switch (eventName) {
     case "Laughing Coffin":
