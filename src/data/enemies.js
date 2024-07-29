@@ -404,7 +404,7 @@ const THIEVES = {
     name: "Thief",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/thief", 3);
+      return getImageFromList("src/assets/images/enemies/thief", 4);
     },
     get icon() {
       return `${this.image}-icon`;

@@ -102,10 +102,6 @@ const eventFunctions = {
       dispatch(
         dungeonActions.eventOutcome({ outcome: `You entered the ${path}.` })
       );
-      // Room transition
-      // Change background
-      // Display "You've entered Wailing Warrens"
-      // Start dialogue
     } else {
       // dispatch(
       //   dungeonActions.eventOutcome({ outcome: `You chose not to enter.` })
@@ -296,6 +292,14 @@ const eventFunctions = {
       await checkForDialogue(dispatch, "response");
       getRandomLoot(dispatch);
       startCombat(dispatch);
+    }
+  },
+  LAUGHING_COFFIN: async (dispatch, choice) => {
+    if (choice === "Trade") {
+      openModal(dispatch, "tradeModal");
+    } else if (choice === "Leave") {
+      await delay(2000);
+      openModal(dispatch, "roomSummaryModal");
     }
   },
 };

@@ -67,7 +67,8 @@ export function setDialogues(dispatch, event, choice = null) {
   }
 
   // Choice Events - The player chooses between two or more options during the event.
-  if (event.type === "CHOICE") {
+  // Logic checks for pre-set dialogues to call. If no dialogue is pre-set getDialogue will search for one
+  if (event.type === "CHOICE" || event.type === "TRADE") {
     if (event.dialogue && event.dialogue !== "GET") {
       dispatch(
         dialogueActions.updateDialogue({

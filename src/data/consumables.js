@@ -270,7 +270,7 @@ const CONSUMABLES = {
     // soundEffect: gulpingWater24,
   },
   LAUGHING_COFFIN_COIN: {
-    name: "Skeleton Key",
+    name: "Laughing Coffin Coin",
     description: "",
     image: "src/assets/images/items/consumables/laughing-coffin-coin.jpg",
     type: "CONSUMABLE",

@@ -12,6 +12,7 @@ import {
   CANDLELIGHT_SHRINE,
   UNLOCK_HERO,
   AMBUSH,
+  THIEVES_RUIN,
 } from "../data/events";
 
 import store from "../store/index";
@@ -122,7 +123,7 @@ function getRoomContent() {
       }
 
       // Event chance for dungeon is 20%
-      if (eventChance > 50) {
+      if (eventChance > 0) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -184,9 +185,9 @@ function getRoomEvent() {
         // Echoing Bells
       } else if (dungeon.path === "Thieves' Ruin") {
         // Traps
-        if (dungeon.pathCounter === 5) {
-          // Laughing Coffin Tavern
-        }
+        // if (dungeon.pathCounter === 5) {
+        events.push(THIEVES_RUIN.LAUGHING_COFFIN);
+        // }
       }
       break;
   }
@@ -404,6 +405,7 @@ function getRoomImage(dungeon) {
   // Check for event specific backgrounds (replaces dungeon & path imageList)
   if (dungeon.contents.event) {
     switch (dungeon.contents.event.name) {
+      //THE GREAT CATACOMBS
       case "Bonevault":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/bonevault",
@@ -419,7 +421,7 @@ function getRoomImage(dungeon) {
         );
         break;
 
-      // ENTRANCE
+      // WAILING WARRENS
       case "Wailing Warrens":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/wailing-warrens-entrance",
@@ -431,6 +433,14 @@ function getRoomImage(dungeon) {
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit",
           3
+        );
+        break;
+
+      // THIEVES RUIN
+      case "Laughing Coffin":
+        backgroundImage = getImageFromList(
+          "src/assets/images/backgrounds/thieves-ruin/laughing-coffin-tavern",
+          1
         );
         break;
 

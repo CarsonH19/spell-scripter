@@ -15,7 +15,7 @@
 .character .image {
   position: relative;
   width: auto;
-  height: 30rem; 
+  height: 65vh; 
   margin-bottom: 0rem;
   display: flex;
   justify-content: flex-start;

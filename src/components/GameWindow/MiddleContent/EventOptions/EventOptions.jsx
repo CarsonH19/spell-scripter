@@ -26,9 +26,14 @@ export default function EventOptions() {
   // }, [dungeon.event]);
 
   const handleClickEventOption = (dispatch, eventFunction, choice, option) => {
-    dispatch(
-      uiActions.changeUi({ element: "eventOptionsAreVisible", visible: false })
-    );
+    if (dungeon.contents.event.type !== "TRADE") {
+      dispatch(
+        uiActions.changeUi({
+          element: "eventOptionsAreVisible",
+          visible: false,
+        })
+      );
+    }
 
     // Dialogue
     setDialogues(dispatch, dungeon.contents.event, choice);

@@ -8,6 +8,7 @@ import { logActions } from "../../../store/log-slice";
 import { playerActions } from "../../../store/player-slice";
 import { combatActions } from "../../../store/combat-slice";
 import { dialogueActions } from "../../../store/dialogue-slice";
+import { uiActions } from "../../../store/ui-slice";
 
 import { useEffect } from "react";
 import { changeHealth } from "../../../store/health-actions";
@@ -25,6 +26,14 @@ export default function RoomSummaryModal() {
   const order = useSelector((state) => state.combat.order);
 
   useEffect(() => {
+    // Ensure event options are not visible (needed for TRADE events)
+    dispatch(
+      uiActions.changeUi({
+        element: "eventOptionsAreVisible",
+        visible: false,
+      })
+    );
+
     // Clear dialogue
     dispatch(dialogueActions.clearDialogue());
 

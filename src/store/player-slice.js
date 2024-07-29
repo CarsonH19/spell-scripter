@@ -62,6 +62,9 @@ const playerSlice = createSlice({
       consumables: [],
       questItems: [],
     },
+    favor: {
+      laughingCoffin: 0,
+    },
   },
   reducers: {
     checkForLevelUp(state, action) {

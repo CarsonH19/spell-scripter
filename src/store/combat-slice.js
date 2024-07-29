@@ -293,6 +293,7 @@ const combatSlice = createSlice({
       const item = action.payload.item;
       const change = action.payload.change;
       const id = item.id;
+      console.log(item)
 
       const player = state.order.find((char) => char.id === "Player");
 
@@ -315,6 +316,7 @@ const combatSlice = createSlice({
             if (item.type === "EQUIPMENT") {
               itemGroup = player.inventory.equipment;
             } else if (item.type === "CONSUMABLE") {
+              console.log("TRIGGERED");
               itemGroup = player.inventory.consumables;
             } else if (item.type === "QUEST ITEM") {
               itemGroup = player.inventory.questItems;
@@ -371,6 +373,20 @@ const combatSlice = createSlice({
             // Add to equipment
             player.inventory.equipment.push(item);
           }
+          break;
+      }
+    },
+    changeFavor(state, action) {
+      const { change, trader, favor } = action.payload;
+      const player = state.order.find((char) => char.id === "Player");
+      switch (trader) {
+        case "Laughing Coffin":
+          change === "INCREASE"
+            ? (player.favor.laughingCoffin += favor)
+            : (player.favor.laughingCoffin -= favor);
+          break;
+
+        case "REMOVE":
           break;
       }
     },

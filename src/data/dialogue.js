@@ -351,7 +351,7 @@ export const BONEVAULT_DIALOGUE = {
       position: `RIGHT`,
       speaker: null,
       image: ``,
-      text: `"You come across a locked door standing as a silent repositories of forgotten horrors. Its entrance, locked and foreboding, guards secrets untold. Within, an unsettling stillness hints at the ominous events awaiting those who dare to unlock the mysteries concealed within."`,
+      text: `You come across a locked door standing as a silent repositories of forgotten horrors. Its entrance, locked and foreboding, guards secrets untold. Within, an unsettling stillness hints at the ominous events awaiting those who dare to unlock the mysteries concealed within.`,
     },
     {
       position: `LEFT`,
@@ -368,4 +368,37 @@ export const BONEVAULT_DIALOGUE = {
     //   text: `Judgment has been delivered."`,
     // },
   ],
+};
+
+export const LAUGHING_COFFIN_DIALOGUE = {
+  before: [
+    {
+      position: `RIGHT`,
+      speaker: null,
+      image: ``,
+      text: `Nestled within Thieves' Ruin, you find a hidden haven for thieves and scoundrels. Its dimly lit interior glows with flickering lanterns, casting shadows over patrons engaged in hushed conspiracies and raucous laughter. The air is thick with the scent of spiced ale and roasted meat, offering refuge amidst the cold, stone walls of the catacomb.`,
+    },
+    {
+      position: `RIGHT`,
+      speaker: "Barkeeper",
+      image: `src/assets/images/dialogue/tavernkeeper-dialogue.png`,
+      text: `"Welcome to the Laughing Coffin,"`,
+    },
+    {
+      position: `RIGHT`,
+      speaker: "Barkeeper",
+      image: `src/assets/images/dialogue/tavernkeeper-dialogue.png`,
+      text: `"Leave your grudges at the door and your coin on the counter, and you'll find a warm meal and a strong drink."`,
+    },
+  ],
+  responseTrade: [
+    {
+      position: `LEFT`,
+      speaker: "Carson",
+      image: `src/assets/images/dialogue/player-1-dialogue.png`,
+      text: `"Let's see whats on the menu."`,
+    },
+  ],
+  // after - used Laughing Coffin Coin 
+  // after - didn't use Laughing Coffin Coin
 };

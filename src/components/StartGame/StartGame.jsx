@@ -101,6 +101,34 @@ export default function StartGame() {
 
     dispatch(
       playerActions.changeInventory({
+        item: { ...CONSUMABLES.LAUGHING_COFFIN_COIN, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.LAUGHING_COFFIN_COIN, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.LAUGHING_COFFIN_COIN, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...CONSUMABLES.LAUGHING_COFFIN_COIN, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
         item: { ...CONSUMABLES.TOMBSTONE_TRUFFLE, id: uuidv4() },
         change: "ADD",
       })

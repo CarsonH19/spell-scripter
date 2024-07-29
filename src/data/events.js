@@ -9,6 +9,7 @@ import {
   LIHETH_DIALOGUE,
   AMBUSH_EVENT_DIALOGUE,
   BONEVAULT_DIALOGUE,
+  LAUGHING_COFFIN_DIALOGUE,
 } from "../data/dialogue";
 
 export const DUNGEON_ENTRANCE = {
@@ -52,25 +53,6 @@ export const COFFIN = {
 
 export const TRAPS = [
   {
-    name: "Poison Darts",
-    type: "TRAP",
-    description: [
-      "A hidden mechanism triggers a volley of poison darts from the walls.",
-    ],
-    options: [
-      {
-        text: ["Shield", "(Strength)"],
-        function: "TRAP",
-        narration: "You attempt to shield yourself using nearby debris.",
-      },
-      {
-        text: ["Dodge", "(Agility)"],
-        function: "TRAP",
-        narration: "You attempt to dodge the incoming darts.",
-      },
-    ],
-  },
-  {
     name: "Spike Walls",
     type: "TRAP",
     description: ["The walls start to close in, revealing deadly spikes."],
@@ -110,25 +92,6 @@ export const TRAPS = [
     ],
   },
   {
-    name: "Floor Spikes",
-    type: "TRAP",
-    description: ["Pressure plates on the floor trigger spikes to shoot up."],
-    options: [
-      {
-        text: ["Leap Over", "(Strength)"],
-        function: "TRAP",
-        narration:
-          "You attempt to leap over the pressure plates to avoid the spikes.",
-      },
-      {
-        text: ["Disarm", "(Agility)"],
-        function: "TRAP",
-        narration:
-          "You attempt to disarm the pressure plates to render the trap harmless.",
-      },
-    ],
-  },
-  {
     name: "Rotating Blade",
     type: "TRAP",
     description: [
@@ -146,24 +109,6 @@ export const TRAPS = [
         function: "TRAP",
         narration:
           "You attempt to duck under the blade and avoid its deadly arc.",
-      },
-    ],
-  },
-  {
-    name: "Poisonous Mist",
-    type: "TRAP",
-    description: ["The room fills with a noxious, magical mist."],
-    options: [
-      {
-        text: ["Hold Breath", "(Strength)"],
-        function: "TRAP",
-        narration: "You attempt to hold your breath and quickly find an exit.",
-      },
-      {
-        text: ["Find Vent", "(Agility)"],
-        function: "TRAP",
-        narration:
-          "You attempt to locate and open an opening to disperse the poisonous mist.",
       },
     ],
   },
@@ -221,85 +166,6 @@ export const CANDLELIGHT_SHRINE = {
         "You discovered a Candlelight Shrine and rested for a short time in the flickering light. When it was time to leave you felt energized and ready to move onward.",
     },
   ],
-};
-
-export const PATH_ENTRANCE = {
-  WAILING_WARRENS_ENTRANCE: {
-    name: "Wailing Warrens",
-    type: "CHOICE",
-    description: [
-      "You discover a hole in the wall leading into the abyss, spectral faces flicker in the darkness and a haunting wail echoes from deep within.",
-      "Do you wish to enter?",
-    ],
-    options: [
-      {
-        text: ["Enter"],
-        function: "PATH_ENTRANCE",
-        narration: "You decide to enter the Wailing Warrens.",
-      },
-      {
-        text: ["Leave"],
-        function: "PATH_ENTRANCE",
-        narration: "You decide to leave.",
-        outcome: "You chose not to enter.",
-      },
-    ],
-  },
-  THIEVES_RUIN_ENTRANCE: {
-    name: "Thieves' Ruin",
-    type: "CHOICE",
-    description: [
-      "You discover the entrance to Thieves' Ruin",
-      "Do you wish to enter?",
-    ],
-    options: [
-      {
-        text: ["Enter"],
-        function: "PATH_ENTRANCE",
-        narration: "You decide to enter the Thieves' Ruin.",
-      },
-      {
-        text: ["Leave"],
-        function: "PATH_ENTRANCE",
-        narration: "You decide to leave.",
-        outcome: "You chose not to enter.",
-      },
-    ],
-  },
-};
-
-export const PATH_EXIT = {
-  WAILING_WARRENS_EXIT: {
-    name: "Wailing Warrens Exit",
-    type: "CHOICE",
-    description: [
-      "You discover a hole in the wall leading out of the Wailing Warrens.",
-    ],
-    options: [
-      {
-        text: ["Leave"],
-        function: "PATH_EXIT",
-        narration: "You decide to leave.",
-        outcome: "You left the Wailing Warrens.",
-
-      },
-    ],
-  },
-  THIEVES_RUIN_EXIT: {
-    name: "Thieves' Ruin Exit",
-    type: "CHOICE",
-    description: [
-      "You discover an exit out of Thieves' Ruin.",
-    ],
-    options: [
-      {
-        text: ["Leave"],
-        function: "PATH_EXIT",
-        narration: "You decide to leave.",
-        outcome: "You left Thieves' Ruin.",
-      },
-    ],
-  },
 };
 
 export const UNLOCK_HERO = {
@@ -378,4 +244,173 @@ export const AMBUSH = {
         "You refused to surrender your items to the thieves and faced them in combat.",
     },
   ],
+};
+
+// =================================================================
+//                         PATHS
+// =================================================================
+
+export const PATH_ENTRANCE = {
+  WAILING_WARRENS_ENTRANCE: {
+    name: "Wailing Warrens",
+    type: "CHOICE",
+    description: [
+      "You discover a hole in the wall leading into the abyss, spectral faces flicker in the darkness and a haunting wail echoes from deep within.",
+      "Do you wish to enter?",
+    ],
+    options: [
+      {
+        text: ["Enter"],
+        function: "PATH_ENTRANCE",
+        narration: "You decide to enter the Wailing Warrens.",
+      },
+      {
+        text: ["Leave"],
+        function: "PATH_ENTRANCE",
+        narration: "You decide to leave.",
+        outcome: "You chose not to enter.",
+      },
+    ],
+  },
+  THIEVES_RUIN_ENTRANCE: {
+    name: "Thieves' Ruin",
+    type: "CHOICE",
+    description: [
+      "You discover the entrance to Thieves' Ruin",
+      "Do you wish to enter?",
+    ],
+    options: [
+      {
+        text: ["Enter"],
+        function: "PATH_ENTRANCE",
+        narration: "You decide to enter the Thieves' Ruin.",
+      },
+      {
+        text: ["Leave"],
+        function: "PATH_ENTRANCE",
+        narration: "You decide to leave.",
+        outcome: "You chose not to enter.",
+      },
+    ],
+  },
+};
+
+export const PATH_EXIT = {
+  WAILING_WARRENS_EXIT: {
+    name: "Wailing Warrens Exit",
+    type: "CHOICE",
+    description: [
+      "You discover a hole in the wall leading out of the Wailing Warrens.",
+    ],
+    options: [
+      {
+        text: ["Leave"],
+        function: "PATH_EXIT",
+        narration: "You decide to leave.",
+        outcome: "You left the Wailing Warrens.",
+      },
+    ],
+  },
+  THIEVES_RUIN_EXIT: {
+    name: "Thieves' Ruin Exit",
+    type: "CHOICE",
+    description: ["You discover an exit out of Thieves' Ruin."],
+    options: [
+      {
+        text: ["Leave"],
+        function: "PATH_EXIT",
+        narration: "You decide to leave.",
+        outcome: "You left Thieves' Ruin.",
+      },
+    ],
+  },
+};
+
+export const THIEVES_RUIN = {
+  POISON_DARTS: {
+    name: "Poison Darts",
+    type: "TRAP",
+    description: [
+      "A hidden mechanism triggers a volley of poison darts from the walls.",
+    ],
+    options: [
+      {
+        text: ["Shield", "(Strength)"],
+        function: "TRAP",
+        narration: "You attempt to shield yourself using nearby debris.",
+      },
+      {
+        text: ["Dodge", "(Agility)"],
+        function: "TRAP",
+        narration: "You attempt to dodge the incoming darts.",
+      },
+    ],
+  },
+  POISONOUS_MIST: {
+    name: "Poisonous Mist",
+    type: "TRAP",
+    description: ["The room fills with a noxious, magical mist."],
+    options: [
+      {
+        text: ["Hold Breath", "(Strength)"],
+        function: "TRAP",
+        narration: "You attempt to hold your breath and quickly find an exit.",
+      },
+      {
+        text: ["Find Vent", "(Agility)"],
+        function: "TRAP",
+        narration:
+          "You attempt to locate and open an opening to disperse the poisonous mist.",
+      },
+    ],
+  },
+  FLOOR_SPIKES: {
+    name: "Floor Spikes",
+    type: "TRAP",
+    description: ["Pressure plates on the floor trigger spikes to shoot up."],
+    options: [
+      {
+        text: ["Leap Over", "(Strength)"],
+        function: "TRAP",
+        narration:
+          "You attempt to leap over the pressure plates to avoid the spikes.",
+      },
+      {
+        text: ["Disarm", "(Agility)"],
+        function: "TRAP",
+        narration:
+          "You attempt to disarm the pressure plates to render the trap harmless.",
+      },
+    ],
+  },
+  LAUGHING_COFFIN: {
+    name: "Laughing Coffin",
+    type: "TRADE",
+    dialogue: LAUGHING_COFFIN_DIALOGUE.before,
+    description: ["Amid dim-lit haze, the dubious barkeeper eyes you."],
+    options: [
+      {
+        text: ["Trade"],
+        function: "LAUGHING_COFFIN",
+        narration: "",
+        dialogue: {
+          response: LAUGHING_COFFIN_DIALOGUE.responseTrade,
+          after: null,
+        },
+        outcome:
+          "The thieves took what they wanted from your inventory, but left you unharmed.",
+      },
+      {
+        text: ["Leave"],
+        function: "LAUGHING_COFFIN",
+        narration: "You leave the Laughing Coffin Tavern.",
+        dialogue: {
+          response: null,
+          after: null,
+        },
+        outcome:
+          "You refused to surrender your items to the thieves and faced them in combat.",
+      },
+    ],
+  },
 };
