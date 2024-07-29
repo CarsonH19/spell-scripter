@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { createNewRoom } from "../../../util/dungeon-util";
 import { uiActions } from "../../../store/ui-slice";
-import { logActions } from "../../../store/log-slice";
 
-import { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 
 export default function MiddleContent() {
   const dispatch = useDispatch();
@@ -28,9 +28,14 @@ export default function MiddleContent() {
   return (
     <div className={classes.middle}>
       {continueIsVisible && (
-        <button className={classes.continue} onClick={handleContinue}>
-          Continue
-        </button>
+        <FontAwesomeIcon
+        className={classes.continue}
+        icon={faArrowRightLong}
+        onClick={handleContinue}
+      />
+        // <button className={classes.continue} onClick={handleContinue}>
+        //   Continue
+        // </button>
       )}
       {eventOptionsAreVisible && <EventOptions />}
     </div>
