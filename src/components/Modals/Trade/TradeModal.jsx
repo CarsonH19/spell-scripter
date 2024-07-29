@@ -111,7 +111,7 @@ export default function TradeModal() {
               <Tooltip
                 className={classes.item}
                 key={item.id}
-                position="item"
+                position="right-middle"
                 title={item.name}
                 text={item.rarity}
                 detailOne={item.description}
@@ -120,6 +120,7 @@ export default function TradeModal() {
                     {line}
                   </span>
                 ))}
+                detailThree={`Favor: -${calculateItemFavor(item)}`}
               >
                 <Item
                   key={item.id}
@@ -128,22 +129,18 @@ export default function TradeModal() {
                   onTrade={handleDecreaseFavor}
                   favorAvailable={favorAvailable}
                 />
-                <p className={classes["item-cost"]}>
-                  Favor: {calculateItemFavor(item)}
-                </p>
               </Tooltip>
             ))}
           </ul>
         </div>
         <div className={classes.right}>
-          <p className={classes["player-favor"]}>Favor: {favorAvailable}</p>
           <h2>{player.name}</h2>
           <ul className={classes.items}>
             {playerCounters.map((item) => (
               <Tooltip
                 className={classes.item}
                 key={item.id}
-                position="item"
+                position="right-middle"
                 title={item.name}
                 text={item.rarity}
                 detailOne={item.description}
@@ -152,6 +149,7 @@ export default function TradeModal() {
                     {line}
                   </span>
                 ))}
+                detailThree={`Favor: +${calculateItemFavor(item)}`}
               >
                 <Item
                   key={item.id}
@@ -161,9 +159,13 @@ export default function TradeModal() {
                 />
               </Tooltip>
             ))}
+            {playerCounters.length === 0 && (
+              <p>You have nothing the {traderName} desires.</p>
+            )}
           </ul>
         </div>
       </div>
+      <p className={classes["player-favor"]}>Favor: {favorAvailable}</p>
     </div>
   );
 }
@@ -175,7 +177,8 @@ export function getTraderItems(eventName) {
       items.push(
         { ...CONSUMABLES.BLACKHEART_BREW, id: uuidv4() },
         { ...CONSUMABLES.BLACKHEART_BREW, id: uuidv4() },
-        { ...CONSUMABLES.BLACKHEART_BREW, id: uuidv4() }
+        { ...CONSUMABLES.BLACKHEART_BREW, id: uuidv4() },
+        { ...CONSUMABLES.CRYPTBREAD, id: uuidv4() }
       );
       break;
   }

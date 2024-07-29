@@ -7,6 +7,7 @@ export default function Tooltip({
   text,
   detailOne,
   detailTwo,
+  detailThree,
   children,
   position = "tooltip",
   container = "container"
@@ -34,6 +35,8 @@ export default function Tooltip({
           {text && <p className={classes.text}>{text}</p>}
           {detailOne && <p className={classes.detail}>{detailOne}</p>}
           {detailTwo && <p>{detailTwo}</p>}
+          {detailThree && <p>{detailThree}</p>}
+
         </div>
       )}
     </div>
