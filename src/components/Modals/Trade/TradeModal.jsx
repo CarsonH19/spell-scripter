@@ -87,7 +87,7 @@ export default function TradeModal() {
       dispatch(dungeonActions.changeTradeItems(item));
 
       // Add item to player
-      dispatch(combatActions.changePlayerInventory({ item, change: "REMOVE" }));
+      dispatch(combatActions.changePlayerInventory({ item, change: "ADD" }));
 
       // Decrease player favor
       dispatch(

@@ -387,7 +387,7 @@ export const THIEVES_RUIN = {
     name: "Laughing Coffin",
     type: "TRADE",
     dialogue: LAUGHING_COFFIN_DIALOGUE.before,
-    description: ["Amid dim-lit haze, the dubious barkeeper eyes you."],
+    description: ["You entered the Laughing Coffin Tavern"],
     options: [
       {
         text: ["Trade"],
