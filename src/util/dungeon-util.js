@@ -158,10 +158,7 @@ function getRoomContent() {
       }
 
       // FOLLOWING - check if following ends and an event must occur
-      if (
-        dungeon.following === "Thieves' Ruin Map" &&
-        dungeon.followCounter === 1
-      ) {
+      if (dungeon.followCounter === 1) {
         content = "EVENT";
       }
   }
@@ -194,14 +191,16 @@ function getRoomEvent() {
         // for (let i = 0; i < TRAPS.length; i++) {
         //   events.push(TRAPS[i]);
         // }
-        events.push(AMBUSH);
-        events.push(COFFIN);
-        events.push(BONEVAULT);
+
+        // events.push(AMBUSH);
+        // events.push(COFFIN);
+        // events.push(BONEVAULT);
+        // events.push(GRAVESTONE);
+
         // // Check if Siggurd is unlocked
         if (!siggurd.unlocked) {
           events.push(UNLOCK_HERO.SIGGURD);
         }
-        events.push(GRAVESTONE);
 
         // // Check if Liheth is unlocked
         if (!liheth.unlocked) {
@@ -253,6 +252,7 @@ function getRoomEvent() {
   // check threat
 
   // Randomly choose an event from the new array
+  console.log("EVENT_LIST", events);
   const randomIndex = Math.floor(Math.random() * events.length);
   return events[randomIndex];
 }

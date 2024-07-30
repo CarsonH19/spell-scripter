@@ -21,7 +21,6 @@ import { logActions } from "../../store/log-slice";
 import { uiActions } from "../../store/ui-slice";
 import { addCharacterToOrder } from "../../util/misc-util";
 import { dungeonActions } from "../../store/dungeon-slice";
-
 import eventFunctions from "../../util/event-functions";
 
 export default function GameWindow() {
@@ -48,8 +47,19 @@ export default function GameWindow() {
 }
 
 async function handleGameFlow(dispatch) {
+  const dungeon = store.getState().dungeon
   const event = store.getState().dungeon.contents.event;
-  const dialogue = store.getState().dialogue;
+
+
+  // Narrate dungeon name on entrance
+  if (dungeon.roomCounter === 0) {
+    await locationNarration(dispatch, dungeon.name);
+  }
+
+  // Narrate path name on entrance
+  if (dungeon.path && dungeon.pathCounter === 10) {
+    await locationNarration(dispatch, dungeon.path);
+  }
 
   // Handle Combat
   if (!event) {
@@ -80,7 +90,6 @@ async function handleGameFlow(dispatch) {
       dispatch(dungeonActions.eventOutcome({ outcome: event.outcome }));
     }
 
-
     // Narration
     dispatch(logActions.updateLogs({ change: "PAUSE" }));
     for (let i = 0; i < event.description.length; i++) {
@@ -92,4 +101,23 @@ async function handleGameFlow(dispatch) {
       );
     }
   }
+}
+
+async function locationNarration(dispatch, location) {
+  dispatch(logActions.updateLogs({ change: "CLEAR" }));
+  dispatch(logActions.updateLogs({ change: "PAUSE" }));
+  await delay(2000);
+  dispatch(
+    logActions.updateLogs({
+      change: "ADD",
+      text: `${location}`,
+    })
+  );
+  await delay(3000);
+  // Clear Narrative
+  dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+  dispatch(logActions.updateLogs({ change: "CLEAR" }));
+}
+async function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

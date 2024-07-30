@@ -6,18 +6,13 @@ import { useEffect } from "react";
 import { logActions } from "../../store/log-slice";
 import { v4 as uuidv4 } from "uuid";
 
+import store from "../../store/index";
+
 export default function Narration() {
   const narration = useSelector((state) => state.log.narration);
   const dispatch = useDispatch();
 
-  let style;
-  console.log(narration);
-  if (narration[0] === "Combat Started!") {
-    console.log("COMBAT STARTED");
-    style = classes.combat;
-  } else {
-    style = "";
-  }
+  let style = getNarrationStyle(narration[0]);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -42,4 +37,20 @@ export default function Narration() {
 }
 
 // Helper function
-function checkForNarrativeStyle() {}
+function getNarrationStyle(narration) {
+  const dungeon = store.getState().dungeon;
+  let style;
+
+  if (
+    (narration === "Encounter!" ||
+      narration === dungeon.name ||
+      narration === dungeon.path)
+  ) {
+    console.log("CALLED");
+    style = classes.announcement;
+  } else {
+    style = "";
+  }
+
+  return style;
+}

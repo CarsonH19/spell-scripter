@@ -37,7 +37,8 @@ const dialogueSlice = createSlice({
       state.active = null;
       console.log(action.payload);
 
-      if ((action.payload = "ALL")) {
+      if ((action.payload === "ALL")) {
+        console.log("ALL CLEARED");
         state.before = [];
         state.response = [];
         state.after = [];

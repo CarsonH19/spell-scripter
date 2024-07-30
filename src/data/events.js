@@ -365,7 +365,7 @@ export const THIEVES_RUIN = {
   POISONOUS_MIST: {
     name: "Poisonous Mist",
     type: "TRAP",
-    description: ["The room fills with a noxious, magical mist."],
+    description: ["The room fills with a noxious green mist."],
     options: [
       {
         text: ["Hold Breath", "(Strength)"],

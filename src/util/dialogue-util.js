@@ -17,13 +17,17 @@ export async function checkForDialogue(dispatch, type) {
   // const typeLowerCase = type.toLowerCase();
   await delay(2000);
 
-  console.log(dialogue);
+  console.log("DIALOGUE", dialogue);
+  console.log("type", type);
 
   if (dialogue[type] && dialogue[type].length > 0) {
     dispatch(dialogueActions.startDialogue(type));
     await awaitDialogue();
     await dispatch(dialogueActions.clearDialogue(type));
   }
+
+  const newDialogue = store.getState().dialogue;
+  console.log("DIALOGUE", newDialogue);
 
   // await delay(2000);
 }

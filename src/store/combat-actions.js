@@ -395,12 +395,15 @@ export async function startCombat(dispatch) {
     }
   }
 
-  await delay(1000);
+  await delay(2000);
+
+  dispatch(logActions.updateLogs({ change: "CLEAR" }));
+  dispatch(logActions.updateLogs({ change: "PAUSE" }));
 
   dispatch(
     logActions.updateLogs({
       change: "ADD",
-      text: `Combat Started!`,
+      text: `Encounter!`,
     })
   );
 
