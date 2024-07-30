@@ -26,17 +26,6 @@ const dialogueSlice = createSlice({
       const { change, dialogue } = action.payload;
 
       state[change] = dialogue;
-      // switch (change) {
-      //   case "BEFORE":
-      //     state.before = dialogue;
-      //     break;
-      //   case "RESPONSE":
-      //     state.response = dialogue;
-      //     break;
-      //   case "AFTER":
-      //     state.after = dialogue;
-      //     break;
-      // }
     },
     startDialogue(state, action) {
       state.active = action.payload;
@@ -44,11 +33,17 @@ const dialogueSlice = createSlice({
     finishDialogue(state) {
       state.active = null;
     },
-    clearDialogue(state) {
+    clearDialogue(state, action) {
       state.active = null;
-      state.before = [];
-      state.response = [];
-      state.after = [];
+      console.log(action.payload);
+
+      if ((action.payload = "ALL")) {
+        state.before = [];
+        state.response = [];
+        state.after = [];
+      } else {
+        state[action.payload] = [];
+      }
     },
   },
 });

@@ -284,9 +284,17 @@ function toSnakeCase(str) {
 }
 
 // Calculate the number of rooms that must be cleared while following
-function calculateRooms(item) {
+export function calculateRooms(following) {
   const dungeon = store.getState().dungeon;
-  let rooms = Math.abs(dungeon.roomCounter - item.destination);
+  let rooms;
+
+  if (following.destination) {
+    rooms = Math.abs(dungeon.roomCounter - following.destination);
+  }
+
+  if (following === "Wandering Wisp") {
+    rooms = Math.round(Math.random() * 9) + 1;
+  }
 
   if (rooms < 5) {
     rooms = 5;

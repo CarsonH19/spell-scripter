@@ -1,12 +1,13 @@
 .events {
   position: absolute;
-  top: 70%;
+  top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 70%;
   display: flex;
   justify-content: center;
   gap: 2rem;
+  z-index: 4;
 }
 
 .events button {

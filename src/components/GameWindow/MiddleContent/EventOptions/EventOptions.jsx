@@ -9,13 +9,24 @@ import { uiActions } from "../../../../store/ui-slice";
 import { dungeonActions } from "../../../../store/dungeon-slice";
 import { setDialogues } from "../../../../util/dialogue-util";
 
+import store from "../../../../store/index";
+
+import { GRAVESTONE_DIALOGUE } from "../../../../data/dialogue";
+
 export default function EventOptions() {
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon);
   const isTrap = dungeon.contents.event.type === "TRAP";
   const isAuto = dungeon.contents.event.type === "AUTO";
-  let eventOptions;
+  let eventOptions = [];
 
+  if (dungeon.contents.event) {
+    eventOptions = getEventOptions(dungeon.contents.event);
+    for (let i = 0; i < dungeon.contents.event.options.length; i++) {
+      eventOptions.push(dungeon.contents.event.options[i]);
+    }
+    console.log(eventOptions);
+  }
   // useEffect(() => {
   //   if (isAuto) {
   //     // Call auto event function
@@ -49,7 +60,6 @@ export default function EventOptions() {
   let content;
 
   if (!isAuto) {
-    eventOptions = dungeon.contents.event.options;
     content = (
       <>
         {eventOptions.map((option) => {
@@ -85,4 +95,44 @@ export default function EventOptions() {
   }
 
   return <div className={classes.events}>{content}</div>;
+}
+
+function getEventOptions(event) {
+  const player = store
+    .getState()
+    .combat.order.find((char) => char.id === "Player");
+  let eventOptions = [];
+  switch (event.name) {
+    case "Gravestone":
+      {
+        const specialItems = [
+          "Gravebloom",
+          "Gravelight Lily",
+          "Witchfire Orchid",
+          "Sunshade Blossom",
+        ];
+        const hasFlower = player.inventory.consumables.some((item) =>
+          specialItems.includes(item.name)
+        );
+
+        if (hasFlower) {
+          eventOptions.push({
+            text: ["Place a flower"],
+            function: "GRAVESTONE",
+            narration: "You place a flower on the gravestone.",
+            outcome:
+              "You placed a flower on the gravestone and a wisp emerged from its rest to guide you.",
+          });
+        }
+      }
+      break;
+  }
+
+  return eventOptions;
+}
+
+// Helper Functions
+function containsSpecialItem(items) {
+  const specialItems = ["Gravebloom", "Gravelight Lily", "Witchfire Orchid"];
+  return items.some((item) => specialItems.includes(item.name));
 }

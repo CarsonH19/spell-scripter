@@ -35,7 +35,7 @@ export default function RoomSummaryModal() {
     );
 
     // Clear dialogue
-    dispatch(dialogueActions.clearDialogue());
+    dispatch(dialogueActions.clearDialogue("ALL"));
 
     // Clear any lingering narrations
     dispatch(logActions.updateLogs({ change: "UNPAUSE" }));

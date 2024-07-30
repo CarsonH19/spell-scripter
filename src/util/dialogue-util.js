@@ -17,9 +17,12 @@ export async function checkForDialogue(dispatch, type) {
   // const typeLowerCase = type.toLowerCase();
   await delay(2000);
 
+  console.log(dialogue);
+
   if (dialogue[type] && dialogue[type].length > 0) {
     dispatch(dialogueActions.startDialogue(type));
     await awaitDialogue();
+    await dispatch(dialogueActions.clearDialogue(type));
   }
 
   // await delay(2000);
@@ -87,6 +90,7 @@ export function setDialogues(dispatch, event, choice = null) {
       for (let i = 0; i < event.options.length; i++) {
         if (event.options[i].text[0] === choice && event.options[i].dialogue) {
           const dialogue = event.options[i].dialogue;
+
           // If the option chosen has a response dialogue it will be added
           if (dialogue.response) {
             dispatch(
@@ -117,7 +121,7 @@ export function setDialogues(dispatch, event, choice = null) {
 
 // Used to get a random dialogue for events with dialogue: "GET"
 // getDialogue() is also called within the event-function of events to get different dialogues based off of who is in the players party
-export async function getDialogue(dispatch, type) {
+export async function getDialogue(dispatch, type, eventOption) {
   const event = store.getState().dungeon.contents.event;
 
   if (event) {
@@ -156,7 +160,12 @@ export async function getDialogue(dispatch, type) {
     // ===============================================================
     if (type === "response") {
       switch (event.name) {
-        case "Coffin":
+        case "Gravestone":
+          if (eventOption === "Place a flower") {
+            // check for liheth
+            // check for siggurd
+            // dialogue = dialogue
+          }
           break;
 
         default:

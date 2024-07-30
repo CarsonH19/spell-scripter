@@ -4,6 +4,7 @@ import { THIEVES, UNDEAD } from "../data/enemies";
 
 import {
   COFFIN,
+  GRAVESTONE,
   DUNGEON_ENTRANCE,
   PATH_ENTRANCE,
   PATH_EXIT,
@@ -119,7 +120,6 @@ export function createNewRoom(dispatch) {
 
 function getRoomContent() {
   const dungeon = store.getState().dungeon;
-  const followCounter = dungeon.followCounter;
   const pathCounter = dungeon.pathCounter;
   let eventChance = Math.floor(Math.random() * 100);
   let content;
@@ -127,7 +127,7 @@ function getRoomContent() {
   switch (dungeon.name) {
     case "The Great Catacomb":
       // Event chance for general dungeon is 20%
-      if (eventChance > 80) {
+      if (eventChance > 0) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -189,12 +189,13 @@ function getRoomEvent() {
         // }
         // events.push(AMBUSH);
         // events.push(COFFIN);
-        // events.push(PATH_ENTRANCE.WAILING_WARRENS_ENTRANCE);
         // events.push(BONEVAULT);
         // // Check if Siggurd is unlocked
         // if (!siggurd.unlocked) {
         //   events.push(UNLOCK_HERO.SIGGURD);
         // }
+        events.push(GRAVESTONE);
+
         // // Check if Liheth is unlocked
         // if (!liheth.unlocked) {
         //   events.push(UNLOCK_HERO.LIHETH);
@@ -209,6 +210,13 @@ function getRoomEvent() {
         dungeon.followCounter === 1
       ) {
         events.push(PATH_ENTRANCE.THIEVES_RUIN_ENTRANCE);
+      }
+
+      if (
+        dungeon.following === "Wandering Wisp" &&
+        dungeon.followCounter === 1
+      ) {
+        events.push(PATH_ENTRANCE.WAILING_WARRENS_ENTRANCE);
       }
 
       // PATH EVENTS

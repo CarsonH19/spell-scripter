@@ -10,6 +10,7 @@ import {
   AMBUSH_EVENT_DIALOGUE,
   BONEVAULT_DIALOGUE,
   LAUGHING_COFFIN_DIALOGUE,
+  GRAVESTONE_DIALOGUE,
 } from "../data/dialogue";
 
 export const DUNGEON_ENTRANCE = {
@@ -47,6 +48,21 @@ export const COFFIN = {
       narration: "You decide to leave the coffin.",
       outcome:
         "You decided to leave the coffin, and not disturb the dead resting within.",
+    },
+  ],
+};
+
+export const GRAVESTONE = {
+  name: "Gravestone",
+  type: "CHOICE",
+  dialogue: GRAVESTONE_DIALOGUE.before,
+  description: ["A worn and damaged gravestone is found"],
+  options: [
+    {
+      text: ["Leave"],
+      function: "GRAVESTONE",
+      narration: "You leave the gravestone.",
+      outcome: "You left the gravestone just at you discovered it.",
     },
   ],
 };

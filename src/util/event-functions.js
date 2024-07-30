@@ -16,8 +16,10 @@ import { combatActions } from "../store/combat-slice";
 import { heroActions } from "../store/hero-slice";
 
 import checkForDialogue, { getDialogue } from "./dialogue-util";
-import { checkIfAttuned } from "./item-functions";
+import { calculateRooms, checkIfAttuned } from "./item-functions";
 import { addCharacterToOrder, getImageFromList } from "./misc-util";
+import { dialogueActions } from "../store/dialogue-slice";
+import { GRAVESTONE_DIALOGUE } from "../data/dialogue";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {
@@ -92,6 +94,53 @@ const eventFunctions = {
       startCombat(dispatch);
     } else {
       await delay(4000);
+      openModal(dispatch, "roomSummaryModal");
+    }
+  },
+  GRAVESTONE: async (dispatch, choice) => {
+    const player = store
+      .getState()
+      .combat.order.find((char) => char.id === "Player");
+
+    if (choice === "Place a flower") {
+      // lose flower
+      const flowerList = [
+        "Gravebloom",
+        "Gravelight Lily",
+        "Witchfire Orchid",
+        "Sunshade Blossom",
+      ];
+      const flower = player.inventory.consumables.find((item) =>
+        flowerList.includes(item.name)
+      );
+      dispatch(
+        combatActions.changePlayerInventory({ change: "REMOVE", item: flower })
+      );
+
+      // Dialogue
+      dispatch(
+        dialogueActions.updateDialogue({
+          change: "after",
+          dialogue: GRAVESTONE_DIALOGUE.after,
+        })
+      );
+      await checkForDialogue(dispatch, "after");
+
+      // Start Following to Wailing Warrens
+      dispatch(
+        dungeonActions.beginFollowing({
+          following: "Wandering Wisp",
+          rooms: calculateRooms("Wandering Wisp"),
+        })
+      );
+
+      // End Event
+      await delay(2000);
+      openModal(dispatch, "roomSummaryModal");
+    }
+
+    if (choice === "Leave") {
+      await delay(2000);
       openModal(dispatch, "roomSummaryModal");
     }
   },

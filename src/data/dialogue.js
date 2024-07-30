@@ -345,6 +345,61 @@ export const AMBUSH_EVENT_DIALOGUE = {
   ],
 };
 
+export const GRAVESTONE_DIALOGUE = {
+  before: [
+    {
+      position: `RIGHT`,
+      speaker: null,
+      image: ``,
+      text: `You discover a worn and damaged gravestone.`,
+    },
+    {
+      position: `LEFT`,
+      speaker: `Carson`,
+      image: `src/assets/images/dialogue/player-1-dialogue.png`,
+      text: `"It's a shame this gravestone is in such bad condition."`,
+    },
+    {
+      position: `LEFT`,
+      speaker: `Carson`,
+      image: `src/assets/images/dialogue/player-1-dialogue.png`,
+      text: `"I wonder who it belongs to, and how long its been here?"`,
+    },
+  ],
+  after: [
+    {
+      position: `RIGHT`,
+      speaker: null,
+      image: ``,
+      text: `You place the flower on the gravestone.`,
+    },
+    {
+      position: `RIGHT`,
+      speaker: null,
+      image: `src/assets/images/dialogue/wandering-wisp-dialogue.png`,
+      text: `Suddenly, a wisp emerges from beneath the gravestone and hovers above the ground.`,
+    },
+    {
+      position: `LEFT`,
+      speaker: `Carson`,
+      image: `src/assets/images/dialogue/player-1-dialogue.png`,
+      text: `"Ahh! A ghost!"`,
+    },
+    {
+      position: `RIGHT`,
+      speaker: null,
+      image: `src/assets/images/dialogue/wandering-wisp-dialogue.png`,
+      text: `The wisp bobs playfully and then flies in circles, before gently leading away from the gravestone further into the catacomb.`,
+    },
+    {
+      position: `LEFT`,
+      speaker: `Carson`,
+      image: `src/assets/images/dialogue/player-1-dialogue.png`,
+      text: `"Hey! Where are you going? Alright, you lead the way then."`,
+    },
+  ],
+};
+
 export const BONEVAULT_DIALOGUE = {
   before: [
     {
@@ -399,6 +454,6 @@ export const LAUGHING_COFFIN_DIALOGUE = {
       text: `"Let's see whats on the menu."`,
     },
   ],
-  // after - used Laughing Coffin Coin 
+  // after - used Laughing Coffin Coin
   // after - didn't use Laughing Coffin Coin
 };

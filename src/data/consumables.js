@@ -44,6 +44,17 @@ const CONSUMABLES = {
     effect: ["Lose 3HP"],
     // soundEffect: chewCrackersMouth,
   },
+  SUNSHADE_BLOSSOM: {
+    name: "Sunshade Blossom",
+    description:
+      "A pale, ghostly flower resembling a sunflower, illuminates the dark corridors of the catacombs with its radiant glow.",
+    image: "src/assets/images/items/consumables/sunshade-blossom.jpg",
+    type: "CONSUMABLE",
+    rarity: "Common",
+    useInCombat: false,
+    effect: ["Gain 1HP"],
+    // soundEffect: chewCrackersMouth,
+  },
   GHOSTLIGHT_LILY: {
     name: "Gravelight Lily",
     description:
@@ -113,7 +124,8 @@ const CONSUMABLES = {
   },
   SPIDER_EGG_YOLK: {
     name: "Spider Egg Yolk",
-    description: "A rare and potent ingredient extracted from spider eggs. Its venomous properties are highly sought after.",
+    description:
+      "A rare and potent ingredient extracted from spider eggs. Its venomous properties are highly sought after.",
     image: "src/assets/images/items/consumables/spider-egg-yolk.jpg",
     type: "CONSUMABLE",
     rarity: "Rare",
