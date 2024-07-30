@@ -105,8 +105,8 @@ export function getRandomLoot(dispatch) {
 
     case "Ambush": {
       lootTable = [
-        { item: MISC_ITEMS.THIEVES_RUIN_MAP, probability: 0.25 },
-        { item: null, probability: 0.75 },
+        { item: MISC_ITEMS.THIEVES_RUIN_MAP, probability: 0.99 },
+        { item: null, probability: 0.01 },
       ];
     }
     // add map

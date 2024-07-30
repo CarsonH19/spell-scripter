@@ -96,6 +96,7 @@ const statusEffectFunctions = {
                 value,
               })
             );
+            // NOTE: Is this needed? Do I need to await checkForDeath()?
             checkForDeath(dispatch, "Player");
           }
         }

@@ -51,11 +51,7 @@ const playerSlice = createSlice({
     resistances: [],
     immunities: [],
     spellList: [],
-    statusEffects: [
-      CONDITIONS.HAUNTED,
-      CONDITIONS.DISEASED,
-      CONDITIONS.POISONED,
-    ],
+    statusEffects: [],
     inventory: {
       attunedItems: [],
       equipment: [],

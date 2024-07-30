@@ -23,6 +23,7 @@ import { checkForActiveQuest } from "./quest-util";
 
 import { getImageFromList } from "./misc-util";
 import { getTraderItems } from "../components/Modals/Trade/TradeModal";
+import { getRandomCooldown } from "./misc-util";
 
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
@@ -127,7 +128,7 @@ function getRoomContent() {
   switch (dungeon.name) {
     case "The Great Catacomb":
       // Event chance for general dungeon is 20%
-      if (eventChance > 0) {
+      if (eventChance > 50) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -148,6 +149,12 @@ function getRoomContent() {
         if (dungeon.pathCounter === 4 || eventChance > 60) {
           content = "EVENT";
         }
+      }
+
+      // NOTE:
+      // FOLLOWING - change event chance when following
+      if (dungeon.following) {
+        content = "ENEMIES";
       }
 
       // FOLLOWING - check if following ends and an event must occur
@@ -187,21 +194,21 @@ function getRoomEvent() {
         // for (let i = 0; i < TRAPS.length; i++) {
         //   events.push(TRAPS[i]);
         // }
-        // events.push(AMBUSH);
-        // events.push(COFFIN);
-        // events.push(BONEVAULT);
+        events.push(AMBUSH);
+        events.push(COFFIN);
+        events.push(BONEVAULT);
         // // Check if Siggurd is unlocked
-        // if (!siggurd.unlocked) {
-        //   events.push(UNLOCK_HERO.SIGGURD);
-        // }
+        if (!siggurd.unlocked) {
+          events.push(UNLOCK_HERO.SIGGURD);
+        }
         events.push(GRAVESTONE);
 
         // // Check if Liheth is unlocked
-        // if (!liheth.unlocked) {
-        //   events.push(UNLOCK_HERO.LIHETH);
-        // } else {
-        //   events.push(CANDLELIGHT_SHRINE);
-        // }
+        if (!liheth.unlocked) {
+          events.push(UNLOCK_HERO.LIHETH);
+        } else {
+          events.push(CANDLELIGHT_SHRINE);
+        }
       }
 
       // FOLLOWING EVENTS
@@ -372,10 +379,12 @@ function shuffle(array) {
   return array;
 }
 
+// Creates enemy objects from their template objects BEFORE the combat order is initiated. This cannot be used during combat to add enemies to the combat order
 export function buildEnemy(enemy) {
   const baseStats = constructStats(enemy.stats);
-  const image = enemy.image; // Call the image getter once and store the result
-  return {
+  const image = enemy.image;
+
+  const builtEnemy = {
     ...enemy,
     image: image,
     icon: `${image}-icon`,
@@ -383,6 +392,22 @@ export function buildEnemy(enemy) {
     id: uuidv4(),
     damageDisplay: "",
   };
+
+  if (enemy.abilityA) {
+    builtEnemy.abilityA = {
+      ...enemy.abilityA,
+      cooldown: getRandomCooldown(enemy.abilityA.reset),
+    };
+  }
+
+  if (enemy.abilityB) {
+    builtEnemy.abilityB = {
+      ...enemy.abilityB,
+      cooldown: getRandomCooldown(enemy.abilityB.reset),
+    };
+  }
+
+  return builtEnemy;
 }
 
 export function constructStats(stats) {

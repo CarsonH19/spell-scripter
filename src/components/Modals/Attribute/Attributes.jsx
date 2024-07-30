@@ -33,6 +33,8 @@ export default function Attributes() {
     player = useSelector((state) => state.player);
   }
 
+  console.log(player);
+
   const handleChangeAttribute = (change, attribute) => {
     dispatch(playerActions.changeAttributes({ change, attribute }));
     updateStatTotals(dispatch, "Player");
@@ -64,7 +66,7 @@ export default function Attributes() {
                 onClick={() => handleChangeAttribute("DECREASE", "STRENGTH")}
               />
             )}
-            <p className={classes["points"]}>{player.stats.baseStrength}</p>
+            <p className={classes["points"]}>{player.stats.strength.totalStrength}</p>
 
             {!isInventoryOpen && (
               <FontAwesomeIcon
@@ -99,7 +101,7 @@ export default function Attributes() {
               />
             )}
 
-            <p className={classes["points"]}>{player.stats.baseAgility}</p>
+            <p className={classes["points"]}>{player.stats.agility.totalAgility}</p>
 
             {!isInventoryOpen && (
               <FontAwesomeIcon
@@ -130,7 +132,7 @@ export default function Attributes() {
                 onClick={() => handleChangeAttribute("DECREASE", "ARCANA")}
               />
             )}
-            <p className={classes["points"]}>{player.stats.baseArcana}</p>
+            <p className={classes["points"]}>{player.stats.arcana.totalArcana}</p>
             {!isInventoryOpen && (
               <FontAwesomeIcon
                 icon={faCaretRight}

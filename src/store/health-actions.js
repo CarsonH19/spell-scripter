@@ -15,7 +15,7 @@ import progressActiveQuests from "../util/quest-util";
 import { checkIfAttuned } from "../util/item-functions";
 import updateStatTotals from "./stats-actions";
 
-export function changeHealth(
+export async function changeHealth(
   dispatch,
   target,
   change,
@@ -161,13 +161,13 @@ export function changeHealth(
   dispatch(combatActions.updateDamageDisplay({ id, value }));
   dispatch(combatActions.updateHealth({ id, change, value }));
   updateStatTotals(dispatch, target.id);
-  checkForDeath(dispatch, id);
+  await checkForDeath(dispatch, id);
 }
 
 // NOTE: Use this function to remove/end passive effects if a character is defeated
-export function checkForDeath(dispatch, id) {
+export async function checkForDeath(dispatch, id) {
   const order = store.getState().combat.order;
-  const ui = store.getState().ui;
+  // const ui = store.getState().ui;
 
   let character = order.find((char) => char.id === id);
 
@@ -228,3 +228,5 @@ export function checkForDeath(dispatch, id) {
     }, 2000);
   }
 }
+
+

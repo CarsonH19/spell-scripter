@@ -212,7 +212,6 @@ export default function updateStatTotals(dispatch, id) {
     if (healthRegen < 0) {
       healthRegen = 0;
     }
-
     return healthRegen;
   }
 

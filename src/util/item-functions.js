@@ -116,7 +116,6 @@ export const itemFunctions = {
     changeStatusEffect(dispatch, target, "ADD", statusEffect);
   },
   SOOTHING_CANDLE: (dispatch, target) => {
-    const order = store.getState().combat.order;
     let statusEffect = {
       name: "Soothing Candle",
       display: true,

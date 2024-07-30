@@ -32,10 +32,7 @@ const UNDEAD = {
     name: "Decrepit Skeleton",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList(
-        "src/assets/images/enemies/decrepit-skeleton",
-        5
-      );
+      return getImageFromList("src/assets/images/enemies/decrepit-skeleton", 5);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -422,7 +419,7 @@ const THIEVES = {
     abilityA: {
       name: "Venom Strike",
       description: `The thief deals damage to an enemy equal to his Attack and inflicts the Poisoned condition.`,
-      cooldown: 3,
+      cooldown: 0,
       reset: 3,
       focus: "LOWEST_HEALTH",
       function: "VENOM_STRIKE",

@@ -15,7 +15,7 @@ import activateItem from "../store/item-actions";
 import { combatActions } from "../store/combat-slice";
 import { heroActions } from "../store/hero-slice";
 
-import checkForDialogue, { getDialogue } from "./dialogue-util";
+import checkForDialogue from "./dialogue-util";
 import { calculateRooms, checkIfAttuned } from "./item-functions";
 import { addCharacterToOrder, getImageFromList } from "./misc-util";
 import { dialogueActions } from "../store/dialogue-slice";
@@ -24,6 +24,10 @@ import { GRAVESTONE_DIALOGUE } from "../data/dialogue";
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {
   DUNGEON_ENTRANCE_ENTER: (dispatch) => {
+    // Clear any lingering narrations
+    dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+    dispatch(logActions.updateLogs({ change: "CLEAR" }));
+
     createNewRoom(dispatch);
   },
   TRAP: async (dispatch, stat) => {

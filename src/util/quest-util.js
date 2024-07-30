@@ -51,7 +51,7 @@ function lihethQuests(dispatch, lihethObject, activeQuest) {
     // Lvl 1 -> Lvl 2 : Defeat 30 undead enemies
     case 0:
       {
-        if (event.name === "Candlelight Shrine") {
+        if (event && event.name === "Candlelight Shrine") {
           activeQuest.progress++;
         }
       }

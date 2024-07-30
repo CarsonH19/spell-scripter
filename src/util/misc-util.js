@@ -22,7 +22,6 @@ export function addCharacterToOrder(
   characterObj,
   numberOfCharacters = 1
 ) {
-  console.log(characterObj);
   for (let i = 0; i < numberOfCharacters; i++) {
     let character;
 
@@ -47,6 +46,21 @@ export function addCharacterToOrder(
       };
     }
 
+    // Ability cooldowns
+    if (characterObj.abilityA) {
+      character.abilityA = {
+        ...characterObj.abilityA,
+        cooldown: getRandomCooldown(characterObj.abilityA.reset),
+      };
+    }
+
+    if (characterObj.abilityB) {
+      character.abilityB = {
+        ...characterObj.abilityB,
+        cooldown: getRandomCooldown(characterObj.abilityB.reset),
+      };
+    }
+
     dispatch(combatActions.addCharacter({ character }));
     updateStatTotals(dispatch, character.id);
     dispatch(
@@ -62,9 +76,12 @@ export function addCharacterToOrder(
     const heroes = store.getState().hero.heroes;
     for (let i = 0; i < heroes.length; i++) {
       if (heroes[i].name === name) {
-        console.log(heroes[i]);
         return heroes[i];
       }
     }
   }
+}
+
+export function getRandomCooldown(max) {
+  return Math.floor(Math.random() * (max + 1));
 }
