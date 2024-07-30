@@ -369,7 +369,7 @@ async function delay(ms) {
 //                       START COMBAT
 // =============================================================
 
-export function startCombat(dispatch) {
+export async function startCombat(dispatch) {
   const order = store.getState().combat.order;
   // Check status effects that call functions before combat
   for (let i = 0; i < order.length; i++) {
@@ -394,6 +394,22 @@ export function startCombat(dispatch) {
       );
     }
   }
+
+  await delay(1000);
+
+  dispatch(
+    logActions.updateLogs({
+      change: "ADD",
+      text: `Combat Started!`,
+    })
+  );
+
+  await delay(2000);
+
+  // Clear Narrative
+  dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+  dispatch(logActions.updateLogs({ change: "CLEAR" }));
+
   combatLoop(dispatch);
 }
 
