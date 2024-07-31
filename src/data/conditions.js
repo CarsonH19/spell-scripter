@@ -18,7 +18,7 @@ const CONDITIONS = {
   BURNING: {
     name: "Burning",
     display: true,
-    image: "",
+    image: "src/assets/images/status-effect/burning.jpg",
     type: "DEBUFF",
     description:
       "The target takes Fire damage at the start of each of its turns.",
@@ -33,7 +33,7 @@ const CONDITIONS = {
   POISONED: {
     name: "Poisoned",
     display: true,
-    image: "",
+    image: "src/assets/images/status-effect/poisoned.jpg",
     type: "DEBUFF",
     stack: 1,
     get effect() {
@@ -56,7 +56,7 @@ const CONDITIONS = {
   CHILLED: {
     name: "Chilled",
     display: true,
-    image: "",
+    image: "src/assets/images/status-effect/chilled.jpg",
     type: "DEBUFF",
     stack: 1,
     get effect() {
@@ -76,7 +76,7 @@ const CONDITIONS = {
   STUNNED: {
     name: "Stunned",
     display: true,
-    image: "",
+    image: "src/assets/images/status-effect/stunned.jpg",
     type: "DEBUFF",
     effect: ["The target can't take an action on its turn."],
     durationType: "ROUND",
@@ -87,7 +87,35 @@ const CONDITIONS = {
   DISEASED: {
     name: "Diseased",
     display: true,
-    image: "",
+    image: "src/assets/images/status-effect/diseased.jpg",
+    type: "DEBUFF",
+    stack: 1,
+    get effect() {
+      return [`Max Health reduced by ${this.stack * 20}%`];
+    },
+    durationType: "ROOM",
+    duration: 5,
+    reset: 5,
+    stats: {},
+  },
+  WITHERED: { // NOTE: Unfinished
+    name: "Withered",
+    display: true,
+    image: "src/assets/images/status-effect/withered.jpg",
+    type: "DEBUFF",
+    stack: 1,
+    get effect() {
+      return [`Max Health reduced by ${this.stack * 20}%`];
+    },
+    durationType: "ROOM",
+    duration: 5,
+    reset: 5,
+    stats: {},
+  },
+  CURSED: { // NOTE: Unfinished
+    name: "Cursed",
+    display: true,
+    image: "src/assets/images/status-effect/cursed.jpg",
     type: "DEBUFF",
     stack: 1,
     get effect() {
@@ -101,7 +129,7 @@ const CONDITIONS = {
   HAUNTED: {
     name: "Haunted",
     display: true,
-    image: "",
+    image: "src/assets/images/status-effect/haunted.jpg",
     type: "DEBUFF",
     effect: ["You are haunted."],
     durationType: "ROOM",

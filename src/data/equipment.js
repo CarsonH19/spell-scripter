@@ -64,7 +64,7 @@ const EQUIPMENT = {
     effect: ["+2 Speed"],
     stats: { agility: { speed: +2 } },
   },
-  RUNE_ETCHED_RING: {
+  RUNE_ETCHED_RING: { //IMAGE
     name: "Rune-etched Ring",
     description: "",
     display: false,
@@ -75,7 +75,7 @@ const EQUIPMENT = {
     effect: ["+2 Spell Power"],
     stats: { arcana: { spellPower: +2 } },
   },
-  WHISPERING_DAGGER: {
+  WHISPERING_DAGGER: { //IMAGE
     name: "Whispering Dagger",
     description:
       "A dagger engraved with ancient runes that seem to whisper of the Great Catacomb's past.",
@@ -91,7 +91,7 @@ const EQUIPMENT = {
     name: "Bonemail",
     description: "",
     display: false,
-    image: "src/assets/images/items/equipment/whispering-dagger.jpg",
+    image: "src/assets/images/items/equipment/bonemail.jpg",
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
@@ -102,7 +102,7 @@ const EQUIPMENT = {
     name: "Ancient Shortbow",
     description: "",
     display: false,
-    image: "src/assets/images/items/equipment/skull-scepter.jpg",
+    image: "src/assets/images/items/equipment/ancient-shortbow.jpg",
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,

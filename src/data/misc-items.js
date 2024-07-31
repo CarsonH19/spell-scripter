@@ -5,7 +5,7 @@ const MISC_ITEMS = {
   THIEVES_RUIN_MAP: {
     name: "Thieves' Ruin Map",
     description: "",
-    image: "src/assets/images/items/consumables/thieves-ruin-map.jpg",
+    image: "src/assets/images/items/misc-item/map-1.jpg",
     type: "MISC",
     rarity: "Rare",
     useInCombat: false,

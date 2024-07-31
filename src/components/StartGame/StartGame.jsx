@@ -137,6 +137,41 @@ export default function StartGame() {
 
     dispatch(
       playerActions.changeInventory({
+        item: { ...CONSUMABLES.SUNSHADE_BLOSSOM, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...EQUIPMENT.ANCIENT_SHORTBOW, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...EQUIPMENT.RING_OF_AMBUSH, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...EQUIPMENT.THIEVES_RUIN_MAP, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
+        item: { ...EQUIPMENT.SKULL_SCEPTER, id: uuidv4() },
+        change: "ADD",
+      })
+    );
+
+    dispatch(
+      playerActions.changeInventory({
         item: { ...MISC_ITEMS.THIEVES_RUIN_MAP, id: uuidv4() },
         change: "ADD",
       })

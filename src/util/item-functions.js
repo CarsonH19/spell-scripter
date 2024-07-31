@@ -53,7 +53,7 @@ export const itemFunctions = {
     const statusEffect = {
       name: "Blackheart Brew",
       display: true,
-      image: "",
+      image: "src/assets/images/items/consumables/blackheart-brew.jpg",
       description: "",
       effect: ["+5 Attack", "-5 Spell Power"],
       durationType: "ROOM",
