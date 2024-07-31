@@ -36,6 +36,18 @@ export default function progressActiveQuests(dispatch, questType) {
         }
       }
       break;
+
+    case "USE": {
+      // Siggurd
+      const siggurd = order.find((character) => character.id === "Siggurd");
+      if (siggurd) {
+        // Find the current active quest
+        const activeQuest = quests.siggurd.find(
+          (quest) => quest.unlocked && !quest.finished
+        );
+        siggurdQuests(dispatch, siggurd, activeQuest);
+      }
+    }
   }
 }
 
@@ -46,9 +58,10 @@ export default function progressActiveQuests(dispatch, questType) {
 
 function lihethQuests(dispatch, lihethObject, activeQuest) {
   const event = store.getState().dungeon.contents.event;
+  const player = store.getState().player;
 
   switch (activeQuest.questNumber) {
-    // Lvl 1 -> Lvl 2 : Defeat 30 undead enemies
+    // Lvl 1 -> Lvl 2 : Find 5 Candlelight Shrines
     case 0:
       {
         if (event && event.name === "Candlelight Shrine") {
@@ -57,9 +70,67 @@ function lihethQuests(dispatch, lihethObject, activeQuest) {
       }
       break;
 
-    // Lvl 2 -> Lvl 3 : Defeat the banshee
+    // Lvl 2 -> Lvl 3 : Use Cleansing Flames 30 times
     case 1:
       {
+        if (lihethObject.abilityA.cooldown === 0) {
+          activeQuest.progress++;
+        }
+      }
+      break;
+
+    // Lvl 3 -> Lvl 4 : Help put to rest 12 Wandering Wisps
+    case 2:
+      // NOTE: Switch from defeating wisps to using an item to disperse them.
+      {
+        const wisp = order.find(
+          (enemy) => enemy.name === "Wandering Wisp" && enemy.currentHealth <= 0
+        );
+        if (banshee) {
+          activeQuest.progress++;
+        }
+      }
+      break;
+
+    // Lvl 4 -> Lvl 5 : Recover 10 stolen Shrine Candles
+    case 3:
+      {
+        const candles = player.inventory.miscItems.filter(
+          (item) => item.name === "Shrine Candle"
+        );
+        activeQuest.progress = candles.length;
+      }
+      break;
+
+    // Lvl 5 -> Lvl 6 : Cleanse 3 Desiccated Shrines
+    case 4:
+      {
+        if (event && event.name === "Desiccated Shrine") {
+          activeQuest.progress++;
+        }
+      }
+      break;
+
+    // Lvl 6 -> Lvl 7 : Cast Undying Flame 30 times
+    case 5:
+      {
+        if (lihethObject.abilityB.cooldown === 0) {
+          activeQuest.progress++;
+        }
+      }
+      break;
+
+    // Lvl 7 -> Lvl 8 : Find the other 2 remaining Candlelight Priestesses
+    case 6:
+      {
+        // NOTE: complete
+      }
+      break;
+
+    // Lvl 8 -> Lvl 9 : Defend the Candlelight Priestess until they can perform their ritual
+    case 7:
+      {
+        // NOTE: complete
       }
       break;
 
@@ -97,6 +168,72 @@ function siggurdQuests(dispatch, siggurdObject, activeQuest) {
           (enemy) => enemy.name === "Banshee" && enemy.currentHealth <= 0
         );
         if (banshee) {
+          activeQuest.progress++;
+        }
+      }
+      break;
+
+    // Lvl 3 -> Lvl 4 : Use Smite 50 times
+    case 2:
+      {
+        if (siggurdObject.abilityA.cooldown === 0) {
+          activeQuest.progress++;
+        }
+      }
+      break;
+
+    // Lvl 4 -> Lvl 5 : Defeat the Ghast
+    case 3:
+      {
+        const ghast = order.find(
+          (enemy) => enemy.name === "Ghast" && enemy.currentHealth <= 0
+        );
+        if (ghast) {
+          activeQuest.progress++;
+        }
+      }
+      break;
+
+    // Lvl 5 -> Lvl 6 : Defeat the Reaver
+    case 4:
+      {
+        const reaver = order.find(
+          (enemy) => enemy.name === "Reaver" && enemy.currentHealth <= 0
+        );
+        if (reaver) {
+          activeQuest.progress++;
+        }
+      }
+      break;
+
+    // Lvl 6 -> Lvl 7 : Use Divine Guardian 50 times
+    case 5:
+      {
+        if (siggurdObject.abilityB.cooldown === 0) {
+          activeQuest.progress++;
+        }
+      }
+      break;
+
+    // Lvl 7 -> Lvl 8 : Defeat 30 death knights
+    case 6:
+      {
+        const deathKnight = order.find(
+          (enemy) => enemy.name === "Death Knight" && enemy.currentHealth <= 0
+        );
+        if (deathKnight) {
+          activeQuest.progress++;
+        }
+      }
+      break;
+
+    // Lvl 8 -> Lvl 9 : Defeat the Baron of Bone
+    case 7:
+      {
+        const baronOfBone = order.find(
+          (enemy) => enemy.name === "Baron of Bone" && enemy.currentHealth <= 0
+        );
+        if (baronOfBone) {
           activeQuest.progress++;
         }
       }
