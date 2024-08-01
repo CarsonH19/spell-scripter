@@ -6,7 +6,7 @@ import CONDITIONS from "../data/conditions";
 const playerSlice = createSlice({
   name: "player",
   initialState: {
-    name: "Carson",
+    name: "Spell Scripter",
     id: "Player",
     identifier: "PLAYER",
     get image() {

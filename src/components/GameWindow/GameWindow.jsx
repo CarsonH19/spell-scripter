@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { startCombat } from "../../store/combat-actions";
 import Buttons from "./Buttons/Buttons";
 import checkForDialogue, {
-  setDialogues,
+  // setDialogues,
   getDialogue,
 } from "../../util/dialogue-util";
 
@@ -47,9 +47,8 @@ export default function GameWindow() {
 }
 
 async function handleGameFlow(dispatch) {
-  const dungeon = store.getState().dungeon
+  const dungeon = store.getState().dungeon;
   const event = store.getState().dungeon.contents.event;
-
 
   // Narrate dungeon name on entrance
   if (dungeon.roomCounter === 0) {
@@ -64,12 +63,13 @@ async function handleGameFlow(dispatch) {
   // Handle Combat
   if (!event) {
     // Sets initiative & adds enemies to combat order then begins the combatLoop
+    // Dialogue
+    await checkForDialogue(dispatch, "before");
     startCombat(dispatch);
   }
 
   // Handle Event
   if (event) {
-    setDialogues(dispatch, event);
     // Renders characters if the event BEGINS with characters
     if (event.characters) {
       // Add to combat-slice order
@@ -79,7 +79,7 @@ async function handleGameFlow(dispatch) {
     }
 
     // Dialogue
-    await handleDialogue(dispatch, "before");
+    await checkForDialogue(dispatch, "before");
 
     // AUTO Events
     if (event.type === "AUTO") {
@@ -89,6 +89,8 @@ async function handleGameFlow(dispatch) {
 
       dispatch(dungeonActions.eventOutcome({ outcome: event.outcome }));
     }
+
+    // Dialogue
 
     // Narration
     dispatch(logActions.updateLogs({ change: "PAUSE" }));

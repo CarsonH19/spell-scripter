@@ -7,11 +7,10 @@ import { useEffect } from "react";
 import { logActions } from "../../../../store/log-slice";
 import { uiActions } from "../../../../store/ui-slice";
 import { dungeonActions } from "../../../../store/dungeon-slice";
-import { setDialogues } from "../../../../util/dialogue-util";
+// import { setDialogues } from "../../../../util/dialogue-util";
 
 import store from "../../../../store/index";
-
-import { GRAVESTONE_DIALOGUE } from "../../../../data/dialogue";
+import { getDialogue } from "../../../../util/dialogue-util";
 
 export default function EventOptions() {
   const dispatch = useDispatch();
@@ -25,16 +24,7 @@ export default function EventOptions() {
     for (let i = 0; i < dungeon.contents.event.options.length; i++) {
       eventOptions.push(dungeon.contents.event.options[i]);
     }
-    console.log(eventOptions);
   }
-  // useEffect(() => {
-  //   if (isAuto) {
-  //     // Call auto event function
-  //     const eventFunction = eventFunctions[dungeon.contents.event.function];
-  //     console.log("Called");
-  //     eventFunction(dispatch);
-  //   }
-  // }, [dungeon.event]);
 
   const handleClickEventOption = (dispatch, eventFunction, choice, option) => {
     if (dungeon.contents.event.type !== "TRADE") {
@@ -46,15 +36,13 @@ export default function EventOptions() {
       );
     }
 
-    // Dialogue
-    setDialogues(dispatch, dungeon.contents.event, choice);
-
     // Event Outcome
     dispatch(dungeonActions.eventOutcome({ outcome: option.outcome }));
     dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
     dispatch(logActions.updateLogs({ change: "CLEAR" }));
     dispatch(logActions.updateLogs({ change: "ADD", text: option.narration }));
     eventFunction(dispatch, choice);
+    getDialogue(dispatch, "after", choice);
   };
 
   let content;
@@ -129,6 +117,10 @@ function getEventOptions(event) {
   }
 
   return eventOptions;
+}
+
+async function dialogueHandler(dispatch, type, choice) {
+  await checkForDialogue(dispatch, type, choice);
 }
 
 // Helper Functions

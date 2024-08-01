@@ -128,7 +128,7 @@ function getRoomContent() {
   switch (dungeon.name) {
     case "The Great Catacomb":
       // Event chance for general dungeon is 20%
-      if (eventChance > 50) {
+      if (eventChance > 0) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -192,8 +192,8 @@ function getRoomEvent() {
         //   events.push(TRAPS[i]);
         // }
 
-        // events.push(AMBUSH);
-        // events.push(COFFIN);
+        events.push(AMBUSH);
+        events.push(COFFIN);
         // events.push(BONEVAULT);
         // events.push(GRAVESTONE);
 

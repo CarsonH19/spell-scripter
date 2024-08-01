@@ -24,6 +24,8 @@ import {
 
 export default function Actions() {
   const dispatch = useDispatch();
+  // Dialogue - is dialogue.active the action are not rendered
+  const isDialogue = useSelector((state) => state.dialogue.active);
   // Player
   const player = findCharacterById();
   // Event
@@ -87,7 +89,7 @@ export default function Actions() {
         <div className={classes.mana}>
           {/* ICONS */}
           <span>
-            <FontAwesomeIcon icon={faHandSparkles}className={classes.icon} />
+            <FontAwesomeIcon icon={faHandSparkles} className={classes.icon} />
             {player.currentMana} / {player.stats.arcana.maxMana}
           </span>
           {/* MANA BAR */}
@@ -236,7 +238,7 @@ export default function Actions() {
   if (event) {
     return;
   } else {
-    return content;
+    return !isDialogue && content;
   }
 }
 

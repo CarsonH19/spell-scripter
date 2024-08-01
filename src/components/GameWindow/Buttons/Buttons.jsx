@@ -1,7 +1,6 @@
 import classes from "./Buttons.module.css";
 
 import { useDispatch } from "react-redux";
-import { uiActions } from "../../../store/ui-slice";
 
 import { useSelector } from "react-redux";
 import { openModal } from "../../../store/ui-actions";
@@ -17,6 +16,7 @@ import {
 
 export default function Buttons() {
   const dispatch = useDispatch();
+  const isDialogue = useSelector((state) => state.dialogue.active);
 
   // Unable to access inventory while in danger
   const danger = useSelector((state) => state.dungeon.danger);
@@ -26,33 +26,35 @@ export default function Buttons() {
   };
 
   return (
-    <div className={classes.buttons}>
-      <FontAwesomeIcon
-        className={classes.icon}
-        icon={faToolbox}
-        disabled={danger}
-        onClick={() => handleOpenModal("inventoryModal")}
-      />
-      <FontAwesomeIcon
-        className={classes.icon}
-        icon={faUsersLine}
-        onClick={() => handleOpenModal("partyModal")}
-      />
-      <FontAwesomeIcon
-        className={classes.icon}
-        icon={faPersonCircleExclamation}
-        onClick={() => handleOpenModal("questsModal")}
-      />{" "}
-      <FontAwesomeIcon
-        className={classes.icon}
-        icon={faScroll}
-        onClick={() => handleOpenModal("dungeonTomesModal")}
-      />
-      <FontAwesomeIcon
-        className={classes.icon}
-        icon={faGear}
-        onClick={() => handleOpenModal("settingsModal")}
-      />
-    </div>
+    !isDialogue && (
+      <div className={classes.buttons}>
+        <FontAwesomeIcon
+          className={classes.icon}
+          icon={faToolbox}
+          disabled={danger}
+          onClick={() => handleOpenModal("inventoryModal")}
+        />
+        <FontAwesomeIcon
+          className={classes.icon}
+          icon={faUsersLine}
+          onClick={() => handleOpenModal("partyModal")}
+        />
+        <FontAwesomeIcon
+          className={classes.icon}
+          icon={faPersonCircleExclamation}
+          onClick={() => handleOpenModal("questsModal")}
+        />{" "}
+        <FontAwesomeIcon
+          className={classes.icon}
+          icon={faScroll}
+          onClick={() => handleOpenModal("dungeonTomesModal")}
+        />
+        <FontAwesomeIcon
+          className={classes.icon}
+          icon={faGear}
+          onClick={() => handleOpenModal("settingsModal")}
+        />
+      </div>
+    )
   );
 }

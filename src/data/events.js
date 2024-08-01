@@ -5,9 +5,6 @@ import { UNDEAD, THIEVES } from "./enemies";
 
 // Dialogues
 import {
-  SIGGURD_DIALOGUE,
-  LIHETH_DIALOGUE,
-  AMBUSH_EVENT_DIALOGUE,
   BONEVAULT_DIALOGUE,
   LAUGHING_COFFIN_DIALOGUE,
   GRAVESTONE_DIALOGUE,
@@ -55,7 +52,6 @@ export const COFFIN = {
 export const GRAVESTONE = {
   name: "Gravestone",
   type: "CHOICE",
-  dialogue: GRAVESTONE_DIALOGUE.before,
   description: ["A worn and damaged gravestone is found"],
   options: [
     {
@@ -67,8 +63,8 @@ export const GRAVESTONE = {
   ],
 };
 
-export const TRAPS = [
-  {
+export const TRAPS = {
+  SPIKE_WALLS: {
     name: "Spike Walls",
     type: "TRAP",
     description: ["The walls start to close in, revealing deadly spikes."],
@@ -86,7 +82,7 @@ export const TRAPS = [
       },
     ],
   },
-  {
+  COLLAPSING_CEILING: {
     name: "Collapsing Ceiling",
     type: "TRAP",
     description: [
@@ -107,11 +103,11 @@ export const TRAPS = [
       },
     ],
   },
-  {
-    name: "Rotating Blade",
+  ROTATING_BLADES: {
+    name: "Rotating Blades",
     type: "TRAP",
     description: [
-      "A hidden blade starts spinning, threatening to cut anything in its path.",
+      "Hidden blades start spinning, threatening to cut anything in its path.",
     ],
     options: [
       {
@@ -128,7 +124,7 @@ export const TRAPS = [
       },
     ],
   },
-  {
+  MAGIC_RUNE: {
     name: "Magic Rune",
     type: "TRAP",
     description: ["Stepping on a rune triggers a magical explosion."],
@@ -146,7 +142,7 @@ export const TRAPS = [
       },
     ],
   },
-];
+};
 
 export const BONEVAULT = {
   name: "Bonevault",
@@ -196,10 +192,6 @@ export const UNLOCK_HERO = {
       UNDEAD.DECREPIT_SKELETON,
     ],
     description: [""],
-    dialogue: {
-      before: SIGGURD_DIALOGUE.UNLOCK_EVENT.before,
-      after: SIGGURD_DIALOGUE.UNLOCK_EVENT.after,
-    },
     function: "UNLOCK_HERO_SIGGURD",
     outcome:
       "You found Siggurd, the paladin, while exploring The Great Catacomb and aided him in defeating a hoard of undead. You decide to fight together as you continue on.",
@@ -209,17 +201,12 @@ export const UNLOCK_HERO = {
     type: "CHOICE",
     characters: [{ identifier: "HERO", name: "Liheth" }],
     description: [""],
-    dialogue: LIHETH_DIALOGUE.UNLOCK_EVENT.before,
     function: "UNLOCK_HERO_LIHETH",
     options: [
       {
         text: ["Rest"],
         function: "UNLOCK_HERO_LIHETH",
         narration: "You rest until Liheth is ready.",
-        dialogue: {
-          response: null,
-          after: LIHETH_DIALOGUE.UNLOCK_EVENT.after,
-        },
         outcome:
           "You found Liheth, the Candlelight Priestess, while exploring The Great Catacomb. She spoke to you of her duties to restore the hidden Candlelight Shrines throughout the catacomb. You decided to guide her through the catacomb in search of these shrines.",
       },
@@ -231,7 +218,6 @@ export const AMBUSH = {
   name: "Ambush",
   type: "CHOICE",
   characters: [THIEVES.THIEF, THIEVES.THIEF, THIEVES.THIEF],
-  dialogue: AMBUSH_EVENT_DIALOGUE.before,
   description: [
     "You are ambushed by thieves.",
     "They demand you surrender your items or suffer the consequence.",
@@ -241,10 +227,6 @@ export const AMBUSH = {
       text: ["Surrender"],
       function: "AMBUSH",
       narration: "You surrender your inventory to the thieves.",
-      dialogue: {
-        response: null,
-        after: AMBUSH_EVENT_DIALOGUE.afterSurrender,
-      },
       outcome:
         "The thieves took what they wanted from your inventory, but left you unharmed.",
     },
@@ -252,10 +234,6 @@ export const AMBUSH = {
       text: ["Refuse"],
       function: "AMBUSH",
       narration: "You refuse to surrender and fight back against the thieves.",
-      dialogue: {
-        response: AMBUSH_EVENT_DIALOGUE.responseRefuse,
-        after: AMBUSH_EVENT_DIALOGUE.afterRefuse,
-      },
       outcome:
         "You refused to surrender your items to the thieves and faced them in combat.",
     },
@@ -402,17 +380,12 @@ export const THIEVES_RUIN = {
   LAUGHING_COFFIN: {
     name: "Laughing Coffin",
     type: "TRADE",
-    dialogue: LAUGHING_COFFIN_DIALOGUE.before,
     description: ["You entered the Laughing Coffin Tavern"],
     options: [
       {
         text: ["Trade"],
         function: "LAUGHING_COFFIN",
         narration: "",
-        dialogue: {
-          response: LAUGHING_COFFIN_DIALOGUE.responseTrade,
-          after: null,
-        },
         outcome:
           "The thieves took what they wanted from your inventory, but left you unharmed.",
       },
@@ -420,10 +393,6 @@ export const THIEVES_RUIN = {
         text: ["Leave"],
         function: "LAUGHING_COFFIN",
         narration: "You leave the Laughing Coffin Tavern.",
-        dialogue: {
-          response: null,
-          after: null,
-        },
         outcome:
           "You refused to surrender your items to the thieves and faced them in combat.",
       },

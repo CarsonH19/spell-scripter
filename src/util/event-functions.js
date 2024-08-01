@@ -128,7 +128,7 @@ const eventFunctions = {
           dialogue: GRAVESTONE_DIALOGUE.after,
         })
       );
-      await checkForDialogue(dispatch, "after");
+      await checkForDialogue(dispatch, "after", choice);
 
       // Start Following to Wailing Warrens
       dispatch(
@@ -280,7 +280,7 @@ const eventFunctions = {
     // Get random candle
     getRandomLoot(dispatch);
 
-    await checkForDialogue(dispatch, "after");
+    await checkForDialogue(dispatch, "after", choice);
     openModal(dispatch, "roomSummaryModal");
   },
   CANDLELIGHT_SHRINE: async (dispatch, choice) => {
@@ -298,7 +298,7 @@ const eventFunctions = {
       // Get random candle
       getRandomLoot(dispatch);
 
-      await checkForDialogue(dispatch, "after");
+      await checkForDialogue(dispatch, "after", choice);
       openModal(dispatch, "roomSummaryModal");
     }
   },
@@ -336,13 +336,13 @@ const eventFunctions = {
         );
         await delay(2000);
       }
-      await checkForDialogue(dispatch, "after");
+      // await checkForDialogue(dispatch, "after", choice);
       clearCharactersFromOrder(dispatch);
       openModal(dispatch, "roomSummaryModal");
     }
 
     if (choice === "Refuse") {
-      await checkForDialogue(dispatch, "response");
+      await checkForDialogue(dispatch, "response", choice);
       getRandomLoot(dispatch);
       startCombat(dispatch);
     }
