@@ -189,38 +189,23 @@ const UNDEAD = {
       { item: null, probability: 0.85 },
     ],
   },
-  CORPSE_ORACLE: {
-    name: "Corpse Oracle",
-    identifier: "ENEMY",
-    image: "",
-    type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
-    level: 3,
-    currentHealth: 40,
-    currentMana: 0,
-    stats: {
-      baseStrength: 0,
-      baseAgility: 1,
-      baseArcana: 3,
-    },
-    weaknesses: [DAMAGE_TYPES.RADIANT],
-    resistances: [],
-    immunities: ["POISONED"],
-    behavior: "RANDOM",
-    statusEffects: [],
-  },
   BONE_TITAN: {
     name: "Bone Titan",
     identifier: "ENEMY",
     image: "",
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    get image() {
+      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     level: 5,
     currentHealth: 90,
     currentMana: 0,
     stats: {
-      baseStrength: 4,
-      baseAgility: 1,
+      baseStrength: 5,
+      baseAgility: 0,
       baseArcana: 0,
     },
     weaknesses: [DAMAGE_TYPES.RADIANT],
@@ -232,7 +217,12 @@ const UNDEAD = {
   REAPER: {
     name: "Reaper",
     identifier: "ENEMY",
-    image: "",
+    get image() {
+      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 5,
@@ -252,7 +242,12 @@ const UNDEAD = {
   GRAVE_WITCH: {
     name: "Grave Witch",
     identifier: "ENEMY",
-    image: "",
+    get image() {
+      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 6,
@@ -272,7 +267,12 @@ const UNDEAD = {
   DEATH_KNIGHT: {
     name: "Death Knight",
     identifier: "ENEMY",
-    image: "",
+    get image() {
+      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 7,
@@ -292,7 +292,12 @@ const UNDEAD = {
   FLOOD_OF_BONES: {
     name: "Flood of Bones",
     identifier: "ENEMY",
-    image: "",
+    get image() {
+      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
     type: ENEMY_TYPES.UNDEAD,
     // audio: {},
     level: 8,
@@ -309,6 +314,108 @@ const UNDEAD = {
     behavior: "ERRATIC",
     statusEffects: [],
   },
+  CORPSE_ORACLE: {
+    name: "Corpse Oracle",
+    identifier: "ENEMY",
+    get image() {
+      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
+    type: ENEMY_TYPES.HUMANOID,
+    // audio: {},
+    level: 3,
+    currentHealth: 0,
+    currentMana: 0,
+    stats: {
+      baseStrength: 0,
+      baseAgility: 2,
+      baseArcana: 1,
+    },
+    weaknesses: [DAMAGE_TYPES.RADIANT],
+    resistances: [],
+    immunities: [],
+    behavior: "ERRATIC",
+    statusEffects: [CONDITIONS.INCORPOREAL],
+    lootTable: [],
+  },
+  REAPER: {
+    name: "Reaper",
+    identifier: "ENEMY",
+    get image() {
+      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
+    type: ENEMY_TYPES.UNDEAD,
+    // audio: {},
+    level: 5,
+    currentHealth: 60,
+    currentMana: 0,
+    stats: {
+      baseStrength: 1,
+      baseAgility: 4,
+      baseArcana: 0,
+    },
+    weaknesses: [DAMAGE_TYPES.RADIANT],
+    resistances: [],
+    immunities: ["POISONED"],
+    behavior: "RANDOM",
+    statusEffects: [],
+  },
+  GHAST: {
+    name: "Ghast",
+    identifier: "ENEMY",
+    get image() {
+      return getImageFromList("src/assets/images/enemies/ghast", 1);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
+    type: ENEMY_TYPES.UNDEAD,
+    // audio: {},
+    level: 5,
+    currentHealth: 60,
+    currentMana: 0,
+    stats: {
+      baseStrength: 1,
+      baseAgility: 4,
+      baseArcana: 0,
+    },
+    weaknesses: [DAMAGE_TYPES.RADIANT],
+    resistances: [],
+    immunities: ["POISONED"],
+    behavior: "RANDOM",
+    statusEffects: [],
+  },
+  REAVER: {
+    name: "Reaver",
+    identifier: "ENEMY",
+    get image() {
+      return getImageFromList("src/assets/images/enemies/reaver", 1);
+    },
+    get icon() {
+      return `${this.image}-icon`;
+    },
+    type: ENEMY_TYPES.UNDEAD,
+    // audio: {},
+    level: 5,
+    currentHealth: 60,
+    currentMana: 0,
+    stats: {
+      baseStrength: 1,
+      baseAgility: 4,
+      baseArcana: 0,
+    },
+    weaknesses: [DAMAGE_TYPES.RADIANT],
+    resistances: [],
+    immunities: ["POISONED"],
+    behavior: "RANDOM",
+    statusEffects: [],
+  },
+
   // =====================================
   //             GHOSTS
   // =====================================

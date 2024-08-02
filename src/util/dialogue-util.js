@@ -134,7 +134,7 @@ export function endDialogue(dispatch) {
 // ===============================================================
 
 // getDialogue() is
-export async function getDialogue(dispatch, type, eventChoice) {
+export async function getDialogue(dispatch, type, choice = null) {
   const dungeon = store.getState().dungeon;
   const order = store.getState().combat.order;
   const siggurd = order.find((char) => char.id === "Siggurd");
@@ -214,21 +214,33 @@ export async function getDialogue(dispatch, type, eventChoice) {
           case "before":
             if (siggurd) dialogueOptions.push(COFFIN_DIALOGUE.SIGGURD.before);
             if (liheth) dialogueOptions.push(COFFIN_DIALOGUE.LIHETH.before);
+            dialogueOptions.push(COFFIN_DIALOGUE.PLAYER.before);
             break;
           case "response":
-            if (choice === "open") {
+            if (choice === "Open") {
               if (siggurd)
                 dialogueOptions.push(COFFIN_DIALOGUE.SIGGURD.responseEnemy);
               if (liheth)
                 dialogueOptions.push(COFFIN_DIALOGUE.LIHETH.responseEnemy);
+              dialogueOptions.push(COFFIN_DIALOGUE.PLAYER.responseEnemy);
             }
             break;
           case "after":
-            if (choice === "open") {
+            // If enemy is spawned from coffin
+            if (choice === "Open") {
               if (siggurd)
                 dialogueOptions.push(COFFIN_DIALOGUE.SIGGURD.afterEnemy);
               if (liheth)
                 dialogueOptions.push(COFFIN_DIALOGUE.LIHETH.afterEnemy);
+              dialogueOptions.push(COFFIN_DIALOGUE.PLAYER.afterEnemy);
+            }
+
+            if (choice === "Leave") {
+              if (siggurd)
+                dialogueOptions.push(COFFIN_DIALOGUE.SIGGURD.afterLeave);
+              if (liheth)
+                dialogueOptions.push(COFFIN_DIALOGUE.LIHETH.afterLeave);
+              dialogueOptions.push(COFFIN_DIALOGUE.PLAYER.afterLeave);
             }
             break;
         }
@@ -284,9 +296,7 @@ export async function getDialogue(dispatch, type, eventChoice) {
                 dialogueOptions.push(AMBUSH_DIALOGUE.SIGGURD.responseRefuse);
               if (liheth)
                 dialogueOptions.push(AMBUSH_DIALOGUE.LIHETH.responseRefuse);
-              dialogueOptions.push(
-                AMBUSH_DIALOGUE.PLAYER.PLAYER.responseRefuse
-              );
+              dialogueOptions.push(AMBUSH_DIALOGUE.PLAYER.responseRefuse);
             }
             break;
           case "after":
@@ -295,16 +305,14 @@ export async function getDialogue(dispatch, type, eventChoice) {
                 dialogueOptions.push(AMBUSH_DIALOGUE.SIGGURD.afterRefuse);
               if (liheth)
                 dialogueOptions.push(AMBUSH_DIALOGUE.LIHETH.afterRefuse);
-              dialogueOptions.push(AMBUSH_DIALOGUE.PLAYER.PLAYER.afterRefuse);
+              dialogueOptions.push(AMBUSH_DIALOGUE.PLAYER.afterRefuse);
             }
             if (choice === "Surrender") {
               if (siggurd)
                 dialogueOptions.push(AMBUSH_DIALOGUE.SIGGURD.afterSurrender);
               if (liheth)
                 dialogueOptions.push(AMBUSH_DIALOGUE.LIHETH.afterSurrender);
-              dialogueOptions.push(
-                AMBUSH_DIALOGUE.PLAYER.PLAYER.afterSurrender
-              );
+              dialogueOptions.push(AMBUSH_DIALOGUE.PLAYER.afterSurrender);
             }
             break;
         }

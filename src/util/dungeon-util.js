@@ -477,6 +477,20 @@ function getRoomImage(dungeon) {
   if (dungeon.contents.event) {
     switch (dungeon.contents.event.name) {
       //THE GREAT CATACOMBS
+      case "Gravestone":
+        backgroundImage = getImageFromList(
+          "src/assets/images/backgrounds/events/gravestone",
+          9
+        );
+        break;
+
+      case "Coffin":
+        backgroundImage = getImageFromList(
+          "src/assets/images/backgrounds/events/coffin",
+          9
+        );
+        break;
+
       case "Bonevault":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/bonevault",

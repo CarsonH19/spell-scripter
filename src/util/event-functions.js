@@ -15,7 +15,7 @@ import activateItem from "../store/item-actions";
 import { combatActions } from "../store/combat-slice";
 import { heroActions } from "../store/hero-slice";
 
-import checkForDialogue from "./dialogue-util";
+import checkForDialogue, { getDialogue } from "./dialogue-util";
 import { calculateRooms, checkIfAttuned } from "./item-functions";
 import { addCharacterToOrder, getImageFromList } from "./misc-util";
 import { dialogueActions } from "../store/dialogue-slice";
@@ -88,16 +88,22 @@ const eventFunctions = {
     }
 
     if (choice === "Open" && chance > 0.4) {
+      // Add Dialogue
+      await checkForDialogue(dispatch, "response", choice);
+      getDialogue(dispatch, "after", choice);
       // Add enemy to dungeon
       dispatch(
         dungeonActions.addEnemy({ enemy: buildEnemy(enemy), change: "ADD" })
       );
 
       // Start combat
-      await delay(4000);
+      await delay(2000);
       startCombat(dispatch);
-    } else {
-      await delay(4000);
+    }
+
+    if (choice === "Leave") {
+      await checkForDialogue(dispatch, "after", choice);
+      await delay(2000);
       openModal(dispatch, "roomSummaryModal");
     }
   },
@@ -263,7 +269,7 @@ const eventFunctions = {
       openModal(dispatch, "roomSummaryModal");
     }
   },
-  UNLOCK_HERO_LIHETH: async (dispatch) => {
+  UNLOCK_HERO_LIHETH: async (dispatch, choice) => {
     const order = store.getState().combat.order;
     // Add fade transition
 
@@ -334,6 +340,7 @@ const eventFunctions = {
             change: "REMOVE",
           })
         );
+        await checkForDialogue(dispatch, "after", choice);
         await delay(2000);
       }
       // await checkForDialogue(dispatch, "after", choice);

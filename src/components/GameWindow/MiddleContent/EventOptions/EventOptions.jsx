@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./EventOptions.module.css";
 
+import store from "../../../../store/index";
+
 import eventFunctions from "../../../../util/event-functions";
 
 import { useEffect } from "react";
@@ -9,7 +11,6 @@ import { uiActions } from "../../../../store/ui-slice";
 import { dungeonActions } from "../../../../store/dungeon-slice";
 // import { setDialogues } from "../../../../util/dialogue-util";
 
-import store from "../../../../store/index";
 import { getDialogue } from "../../../../util/dialogue-util";
 
 export default function EventOptions() {
