@@ -253,7 +253,7 @@ export const AMBUSH_DIALOGUE = {
         position: `LEFT`,
         speaker: `Spell Scripter`,
         image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"Hold on! Lets just-`,
+        text: `"Hold on! Lets just-"`,
       },
       {
         position: `RIGHT`,
@@ -748,4 +748,421 @@ export const UNLOCKING_LIHETH_DIALOGUE = {
       text: `“Understood. Let's get going. The sooner we restore the shrines, the safer the catacomb will be.”`,
     },
   ],
+};
+
+export const CANDLELIGHT_SHRINE_DIALOGUE = {
+  PLAYER: [
+    [
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"This Candlelight Shrine is a welcome sight. I feel safer already."`,
+      },
+    ],
+    [
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"Finally, a Candlelight Shrine. I can rest and recover here."`,
+      },
+    ],
+    [
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"I've reached a Candlelight Shrine. I should use this time to recover."`,
+      },
+    ],
+  ],
+  LIHETH: [
+    [
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"Finally, a Candlelight Shrine. We can rest and recover here."`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Liheth`,
+        image: `src/assets/images/dialogue/liheth-dialogue.png`,
+        text: `"The light of the shrine will protect us from the darkness outside. Let's take a moment to gather our strength."`,
+      },
+    ],
+    [
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"This Candlelight Shrine is a welcome sight. I feel safer already."`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Liheth`,
+        image: `src/assets/images/dialogue/liheth-dialogue.png`,
+        text: `"Indeed. The shrine's light will keep the evil at bay. Let's rest here for a while."`,
+      },
+    ],
+    [
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"We've reached a Candlelight Shrine. We should use this time to recover."`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Liheth`,
+        image: `src/assets/images/dialogue/liheth-dialogue.png`,
+        text: `"Yes, the shrine's light provides a haven from the darkness. Let's rest and prepare for the challenges ahead."`,
+      },
+    ],
+  ],
+  SIGGURD: [
+    [
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"Siggurd, we've found a Candlelight Shrine. We can rest here safely."`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Siggurd`,
+        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+        text: `"The light of this shrine is a beacon of hope. We should take this opportunity to regain our strength."`,
+      },
+    ],
+    [
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"A Candlelight Shrine! We can finally catch our breath here."`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Siggurd`,
+        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+        text: `"Indeed. The shrine's holy light will keep us safe. Let's rest and prepare for the battles ahead."`,
+      },
+    ],
+    [
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"We've reached a Candlelight Shrine, Siggurd. This is a good place to recover."`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Siggurd`,
+        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+        text: `"Yes, the light here will shield us from the catacomb's darkness. Let us rest and be ready for what lies ahead."`,
+      },
+    ],
+  ],
+};
+
+export const BONEVAULT_DIALOGUE = {
+  PLAYER: {
+    before: [
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: ``,
+        text: `You come across a locked door standing as a silent repository of forgotten horrors. Its entrance, locked and foreboding, guards secrets untold. Within, an unsettling stillness hints at the ominous events awaiting those who dare to unlock the mysteries concealed within.`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"What's the worst that could happen?"`,
+      },
+    ],
+    response: [],
+    after: [],
+  },
+  LIHETH: {
+    before: [
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: ``,
+        text: `The air grows colder as you approach the locked door, its surface etched with runes of protection and dark enchantments. The atmosphere is thick with a sense of ancient power and hidden danger.`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Liheth`,
+        image: `src/assets/images/dialogue/liheth-dialogue.png`,
+        text: `"This door guards something beyond our understanding. It is protected by ancient magic, and its presence is unsettling."`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Liheth`,
+        image: `src/assets/images/dialogue/liheth-dialogue.png`,
+        text: `"Proceed with caution. The forces contained within may be beyond our current strength."`,
+      },
+    ],
+    response: [],
+    after: [],
+  },
+  SIGGURD: {
+    before: [
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: ``,
+        text: `A heavy silence surrounds the locked door, its presence like a shadow cast over the area. The air seems to hum with a foreboding energy, warning of the dangers that lie behind it.`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Siggurd`,
+        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+        text: `"This door is a sentinel of dark secrets. It may stand as a barrier to whatever horrors lie beyond."`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Siggurd`,
+        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+        text: `"We must be prepared for the worst."`,
+      },
+    ],
+    response: [],
+    after: [],
+  },
+};
+
+export const GRAVESTONE_DIALOGUE = {
+  PLAYER: {
+    before: [
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: ``,
+        text: `You come across a worn and weathered gravestone, its surface etched with faded inscriptions.`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"It's unfortunate to see this gravestone in such disrepair."`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"I wonder who it once honored, and how long it's been left here?"`,
+      },
+    ],
+    afterPlaceAFlower: [
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: ``,
+        text: `You place a flower gently on the gravestone, offering a moment of respect.`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: `src/assets/images/dialogue/wandering-wisp-dialogue.png`,
+        text: `Suddenly, a glowing wisp emerges from beneath the gravestone and hovers above the ground.`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"Whoa! A ghostly apparition!"`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: `src/assets/images/dialogue/wandering-wisp-dialogue.png`,
+        text: `The wisp floats playfully, then begins to drift away from the gravestone, leading deeper into the catacombs.`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"Hey, wait up! If you're leading the way, I'll follow you."`,
+      },
+    ],
+    afterLeave: [
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"We should have paid our respects, but I suppose we'll have to move on."`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"I hope whoever rests here finds peace, even if we didn't honor them today."`,
+      },
+    ],
+  },
+  LIHETH: {
+    before: [
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: ``,
+        text: `You come across a worn and weathered gravestone, its surface etched with faded inscriptions.`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"This gravestone looks like it's been here for a long time."`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"I wonder who it was meant to honor, and why it's so neglected."`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Liheth`,
+        image: `src/assets/images/dialogue/liheth-dialogue.png`,
+        text: `"Gravestones like these are often overlooked, but they hold the memories of those who came before us."`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Liheth`,
+        image: `src/assets/images/dialogue/liheth-dialogue.png`,
+        text: `"It's a reminder of our duty to respect the past and ensure their light continues to guide us."`,
+      },
+    ],
+    afterPlaceAFlower: [
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: ``,
+        text: `You place a flower gently on the gravestone, offering a moment of respect.`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: `src/assets/images/dialogue/wandering-wisp-dialogue.png`,
+        text: `Suddenly, a glowing wisp emerges from beneath the gravestone and hovers above the ground.`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"Whoa! A ghostly apparition!"`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Liheth`,
+        image: `src/assets/images/dialogue/liheth-dialogue.png`,
+        text: `"A wisp... it seems our respect has awakened something. Follow it. It may lead us to something significant."`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"Alright, I'll follow. Let's see where this wisp leads us."`,
+      },
+    ],
+    afterLeave: [
+      {
+        position: `LEFT`,
+        speaker: `Liheth`,
+        image: `src/assets/images/dialogue/liheth-dialogue.png`,
+        text: `"It is disheartening to leave without offering our respects."`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Liheth`,
+        image: `src/assets/images/dialogue/liheth-dialogue.png`,
+        text: `"The spirit of this place remains unsettled, but perhaps another time we may show our reverence."`,
+      },
+    ],
+  },
+  SIGGURD: {
+    before: [
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: ``,
+        text: `You come across a worn and weathered gravestone, its surface etched with faded inscriptions.`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"This gravestone looks like it's been here for a long time."`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"I wonder who it was meant to honor, and why it's so neglected."`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Siggurd`,
+        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+        text: `"Gravestones such as these bear silent witness to the sacrifices of those who came before us."`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Siggurd`,
+        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+        text: `"It is our duty to remember and honor their legacy. Every soul deserves respect, even in these forsaken places."`,
+      },
+    ],
+    afterPlaceAFlower: [
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: ``,
+        text: `You place a flower gently on the gravestone, offering a moment of respect.`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: null,
+        image: `src/assets/images/dialogue/wandering-wisp-dialogue.png`,
+        text: `Suddenly, a glowing wisp emerges from beneath the gravestone and hovers above the ground.`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"Whoa! A ghostly apparition!"`,
+      },
+      {
+        position: `RIGHT`,
+        speaker: `Siggurd`,
+        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+        text: `"A wisp... it seems our act of reverence has drawn its attention. Follow it; it might lead us to something of importance."`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Spell Scripter`,
+        image: `src/assets/images/dialogue/player-1-dialogue.png`,
+        text: `"Alright, I'll follow. Let's see where this wisp leads us."`,
+      },
+    ],
+    afterLeave: [
+      {
+        position: `LEFT`,
+        speaker: `Siggurd`,
+        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+        text: `"We have neglected to honor the fallen. This is not how I wished to leave this place."`,
+      },
+      {
+        position: `LEFT`,
+        speaker: `Siggurd`,
+        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+        text: `"Let us hope that our absence of tribute does not weigh too heavily upon the spirit of this grave."`,
+      },
+    ],
+  },
 };

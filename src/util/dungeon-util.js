@@ -502,7 +502,7 @@ function getRoomImage(dungeon) {
       case "Candlelight Shrine":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/candlelight-shrine",
-          10
+          8
         );
         break;
 

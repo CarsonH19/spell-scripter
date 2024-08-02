@@ -19,7 +19,6 @@ import checkForDialogue, { getDialogue } from "./dialogue-util";
 import { calculateRooms, checkIfAttuned } from "./item-functions";
 import { addCharacterToOrder, getImageFromList } from "./misc-util";
 import { dialogueActions } from "../store/dialogue-slice";
-import { GRAVESTONE_DIALOGUE } from "../data/dialogue";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {
@@ -82,9 +81,12 @@ const eventFunctions = {
       enemy = UNDEAD["SKELETAL_WARRIOR"];
     }
 
-    if (choice === "Open") {
+    if (choice === "Open" && chance <= 0.4) {
       // Get Random Loot
       getRandomLoot(dispatch);
+      await checkForDialogue(dispatch, "after", choice);
+      await delay(2000);
+      openModal(dispatch, "roomSummaryModal");
     }
 
     if (choice === "Open" && chance > 0.4) {

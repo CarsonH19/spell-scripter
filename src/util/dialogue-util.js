@@ -1,16 +1,19 @@
 import { dialogueActions } from "../store/dialogue-slice";
 import { uiActions } from "../store/ui-slice";
 
-import { GRAVESTONE_DIALOGUE } from "../data/dialogue";
 import store from "../store/index";
 import { GRAVESTONE } from "../data/events";
 import {
   UNLOCKING_LIHETH_DIALOGUE,
   UNLOCKING_SIGGURD_DIALOGUE,
   DUNGEON_ENTRANCE_DIALOGUE,
+  GRAVESTONE_DIALOGUE,
   AMBUSH_DIALOGUE,
   COFFIN_DIALOGUE,
+  CANDLELIGHT_SHRINE_DIALOGUE,
+  BONEVAULT_DIALOGUE,
 } from "../data/dialogues/catacomb-event-dialogue";
+import { LAUGHING_COFFIN_DIALOGUE } from "../data/dialogues/thieves-ruin-dialogue";
 
 let dialogueResolver;
 
@@ -201,6 +204,11 @@ export async function getDialogue(dispatch, type, choice = null) {
       case "Candlelight Shrine":
         switch (type) {
           case "before":
+            if (siggurd)
+              dialogueOptions.push(CANDLELIGHT_SHRINE_DIALOGUE.SIGGURD.before);
+            if (liheth)
+              dialogueOptions.push(CANDLELIGHT_SHRINE_DIALOGUE.LIHETH.before);
+            dialogueOptions.push(CANDLELIGHT_SHRINE_DIALOGUE.PLAYER.before);
             break;
           case "response":
             break;
@@ -250,12 +258,12 @@ export async function getDialogue(dispatch, type, choice = null) {
         switch (type) {
           case "before":
             if (siggurd) {
-              // dialogueOptions.push(GRAVESTONE_DIALOGUE.SIGGURD.before);
+              dialogueOptions.push(GRAVESTONE_DIALOGUE.SIGGURD.before);
             }
             if (liheth) {
-              // dialogueOptions.push(GRAVESTONE_DIALOGUE.LIHETH.before);
+              dialogueOptions.push(GRAVESTONE_DIALOGUE.LIHETH.before);
             }
-            // dialogueOptions.push(GRAVESTONE_DIALOGUE.PLAYER.before);
+            dialogueOptions.push(GRAVESTONE_DIALOGUE.PLAYER.before);
 
             break;
           case "response":
@@ -263,9 +271,29 @@ export async function getDialogue(dispatch, type, choice = null) {
             break;
           case "after":
             if (eventChoice === "Place a flower") {
+              if (siggurd) {
+                dialogueOptions.push(
+                  GRAVESTONE_DIALOGUE.SIGGURD.afterPlaceAFlower
+                );
+              }
+              if (liheth) {
+                dialogueOptions.push(
+                  GRAVESTONE_DIALOGUE.LIHETH.afterPlaceAFlower
+                );
+              }
+              dialogueOptions.push(
+                GRAVESTONE_DIALOGUE.PLAYER.afterPlaceAFlower
+              );
             }
 
             if (eventChoice === "Leave") {
+              if (siggurd) {
+                dialogueOptions.push(GRAVESTONE_DIALOGUE.SIGGURD.afterLeave);
+              }
+              if (liheth) {
+                dialogueOptions.push(GRAVESTONE_DIALOGUE.LIHETH.afterLeave);
+              }
+              dialogueOptions.push(GRAVESTONE_DIALOGUE.PLAYER.afterLeave);
             }
             break;
         }
@@ -275,6 +303,10 @@ export async function getDialogue(dispatch, type, choice = null) {
       case "Bonevault":
         switch (type) {
           case "before":
+            if (siggurd)
+              dialogueOptions.push(BONEVAULT_DIALOGUE.SIGGURD.before);
+            if (liheth) dialogueOptions.push(BONEVAULT_DIALOGUE.LIHETH.before);
+            dialogueOptions.push(BONEVAULT_DIALOGUE.PLAYER.before);
             break;
           case "response":
             break;
@@ -390,22 +422,53 @@ export async function getDialogue(dispatch, type, choice = null) {
   }
 
   // Thieves' Ruin
-  // Traps
-  // Laughing Coffin
+  if (dungeon.path === "Thieves' Ruin" && dungeon.contents.event) {
+    switch (dungeon.contents.event.name) {
+      case "Laughing Coffin":
+        switch (type) {
+          case "before":
+            if (siggurd)
+              dialogueOptions.push(LAUGHING_COFFIN_DIALOGUE.SIGGURD.before);
 
-  // ===============================================================
-  //                        MISC. COMBAT
-  // ===============================================================
-  // Calculate chance to have a short dialogue before combat begins
+            if (liheth)
+              dialogueOptions.push(LAUGHING_COFFIN_DIALOGUE.LIHETH.before);
 
-  // ===============================================================
-  //                        INVENTORY
-  // ===============================================================
-  // Called when equipping or using certain items
-  // Called when no more attunement slots are open
+            dialogueOptions.push(LAUGHING_COFFIN_DIALOGUE.PLAYER.before);
+            break;
 
-  // If options exist get a random option and update the dialogue-slice
+          case "response":
+            // 4 player responses
+            for (let i = 0; i < 4; i++) {
+              dialogueOptions.push(LAUGHING_COFFIN_DIALOGUE.PLAYER.response[i]);
+            }
+            break;
+
+          case "after":
+            // 4 player responses
+            for (let i = 0; i < 4; i++) {
+              dialogueOptions.push(LAUGHING_COFFIN_DIALOGUE.PLAYER.response[i]);
+            }
+            break;
+        }
+        break;
+    }
+  }
   if (dialogueOptions.length > 0) {
+    // Traps
+    // Laughing Coffin
+
+    // ===============================================================
+    //                        MISC. COMBAT
+    // ===============================================================
+    // Calculate chance to have a short dialogue before combat begins
+
+    // ===============================================================
+    //                        INVENTORY
+    // ===============================================================
+    // Called when equipping or using certain items
+    // Called when no more attunement slots are open
+
+    // If options exist get a random option and update the dialogue-slice
     const index = Math.floor(Math.random() * dialogueOptions.length);
     dispatch(
       dialogueActions.updateDialogue({

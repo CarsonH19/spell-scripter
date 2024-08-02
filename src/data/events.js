@@ -3,13 +3,6 @@ import store from "../store/index";
 // Enemies
 import { UNDEAD, THIEVES } from "./enemies";
 
-// Dialogues
-import {
-  BONEVAULT_DIALOGUE,
-  LAUGHING_COFFIN_DIALOGUE,
-  GRAVESTONE_DIALOGUE,
-} from "../data/dialogue";
-
 export const DUNGEON_ENTRANCE = {
   name: "Dungeon Entrance",
   type: "ENTRANCE",
@@ -26,7 +19,6 @@ export const DUNGEON_ENTRANCE = {
 export const COFFIN = {
   name: "Coffin",
   type: "CHOICE",
-  dialogue: "GET",
   description: [
     "An ornately decorated coffin is found",
     "Do you wish to open it?",
@@ -147,7 +139,6 @@ export const TRAPS = {
 export const BONEVAULT = {
   name: "Bonevault",
   type: "CHOICE",
-  dialogue: BONEVAULT_DIALOGUE.before,
   description: ["You discover a locked door.", "Do you wish to unlock it?"],
   options: [
     {

@@ -48,13 +48,22 @@ export default function Dialogue() {
             {activeDialogue[index].speaker && (
               <h3>{activeDialogue[index].speaker}</h3>
             )}
-            <p>{activeDialogue[index].text}</p>
+            <p
+              style={
+                activeDialogue[index].speaker === null
+                  ? { fontStyle: "italic" }
+                  : {}
+              }
+            >
+              {activeDialogue[index].text}
+            </p>
           </div>
           <div className={classes["box-buttons"]}>
             <FontAwesomeIcon
               icon={faAnglesLeft}
               onClick={handlePrevPage}
               className={classes.arrow}
+              style={index === 0 ? { pointerEvents: "none", opacity: 0.6 } : {}}
             />
 
             <FontAwesomeIcon
@@ -64,6 +73,7 @@ export default function Dialogue() {
                   ? handleEndDialogue
                   : handleNextPage
               }
+              // style={index > 0}
               className={classes.arrow}
             />
           </div>

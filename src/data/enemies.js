@@ -195,7 +195,7 @@ const UNDEAD = {
     image: "",
     type: ENEMY_TYPES.UNDEAD,
     get image() {
-      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+      return getImageFromList("src/assets/images/enemies/bone-titan", 4);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -218,7 +218,7 @@ const UNDEAD = {
     name: "Reaper",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+      return getImageFromList("src/assets/images/enemies/reaper", 4);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -243,7 +243,7 @@ const UNDEAD = {
     name: "Grave Witch",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+      return getImageFromList("src/assets/images/enemies/grave-witch", 5);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -268,7 +268,7 @@ const UNDEAD = {
     name: "Death Knight",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+      return getImageFromList("src/assets/images/enemies/death-knight", 4);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -293,7 +293,7 @@ const UNDEAD = {
     name: "Flood of Bones",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+      return getImageFromList("src/assets/images/enemies/flood-of-bones", 4);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -344,7 +344,7 @@ const UNDEAD = {
     name: "Reaper",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+      return getImageFromList("src/assets/images/enemies/reaper", 3);
     },
     get icon() {
       return `${this.image}-icon`;
