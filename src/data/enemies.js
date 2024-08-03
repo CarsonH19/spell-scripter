@@ -516,7 +516,7 @@ const THIEVES = {
     type: ENEMY_TYPES.HUMANOID,
     audio: {
       spawn: "swordFromSheath3",
-      attack: "getLightWeaponSound",
+      attack: "lightWeapon",
       death: "getFightGruntSound",
     },
     level: 2,

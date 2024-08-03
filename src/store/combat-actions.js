@@ -33,6 +33,7 @@ import updateStatTotals from "./stats-actions.js";
 import checkForDialogue, { getDialogue } from "../util/dialogue-util.js";
 import { checkIfAttuned } from "../util/item-functions.js";
 import playAudio from "../util/audio-util.js";
+import playSoundEffect from "../util/audio-util.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -479,11 +480,11 @@ async function handleCallTiming(dispatch, timing, character) {
 }
 
 function attack(dispatch, character, target) {
-  // Attack audio
+  // Attack audio from category
   if (character.audio) {
-    playAudio("SOUND", character.audio.attack);
+    playSoundEffect(true, character.audio.attack);
   }
-  
+
   const hit = rollToHit(dispatch, character, target);
   // console.log("HIT", hit);
 

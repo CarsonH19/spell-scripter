@@ -192,22 +192,22 @@ function getRoomEvent() {
         //   events.push(TRAPS[i]);
         // }
 
-        // events.push(AMBUSH);
-        events.push(COFFIN);
-        events.push(BONEVAULT);
-        events.push(GRAVESTONE);
+        events.push(AMBUSH);
+        // events.push(COFFIN);
+        // events.push(BONEVAULT);
+        // events.push(GRAVESTONE);
 
         // // Check if Siggurd is unlocked
-        if (!siggurd.unlocked) {
-          events.push(UNLOCK_HERO.SIGGURD);
-        }
+        // if (!siggurd.unlocked) {
+        //   events.push(UNLOCK_HERO.SIGGURD);
+        // }
 
         // // Check if Liheth is unlocked
-        if (!liheth.unlocked) {
-          events.push(UNLOCK_HERO.LIHETH);
-        } else {
-          events.push(CANDLELIGHT_SHRINE);
-        }
+        // if (!liheth.unlocked) {
+        //   events.push(UNLOCK_HERO.LIHETH);
+        // } else {
+        //   events.push(CANDLELIGHT_SHRINE);
+        // }
       }
 
       // FOLLOWING EVENTS

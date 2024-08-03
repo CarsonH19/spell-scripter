@@ -13,6 +13,7 @@ import { setTarget } from "../../../store/combat-actions";
 import updateStatTotals from "../../../store/stats-actions";
 
 import { useEffect, useState } from "react";
+import playSoundEffect from "../../../util/audio-util";
 
 export default function Character({ character }) {
   const dispatch = useDispatch();
@@ -25,6 +26,13 @@ export default function Character({ character }) {
   const isCharacterTurn = useSelector((state) => state.combat.isCharacterTurn);
 
   const [showDamage, setShowDamage] = useState(false);
+
+  // Play spawn audio
+  useEffect(() => {
+    if (character.audio) {
+      playSoundEffect(false, "spawn", character.audio.spawn);
+    }
+  }, []);
 
   // Update damage display
   useEffect(() => {
