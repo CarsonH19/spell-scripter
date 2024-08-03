@@ -64,7 +64,7 @@ const heroSlice = createSlice({
       {
         name: "Liheth",
         id: "Liheth",
-        unlocked: false,
+        unlocked: true,
         identifier: "HERO",
         get image() {
           const imageList = ["src/assets/images/heroes/liheth"];

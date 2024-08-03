@@ -65,73 +65,6 @@ export function endDialogue(dispatch) {
   }
 }
 
-// =============================================================
-//                           Setting Dialogues
-// =============================================================
-
-// export function setDialogues(dispatch, event, choice = null) {
-//   // Auto Events - The player does not make a choice during the event
-//   if (event.type === "AUTO") {
-//     dispatch(
-//       dialogueActions.updateDialogue({
-//         change: "before",
-//         dialogue: event.dialogue.before,
-//       })
-//     );
-//     dispatch(
-//       dialogueActions.updateDialogue({
-//         change: "after",
-//         dialogue: event.dialogue.after,
-//       })
-//     );
-//   }
-
-//   // Choice Events - The player chooses between two or more options during the event.
-//   // Logic checks for pre-set dialogues to call. If no dialogue is pre-set getDialogue will search for one
-//   if (event.type === "CHOICE" || event.type === "TRADE") {
-//     if (event.dialogue && event.dialogue !== "GET") {
-//       dispatch(
-//         dialogueActions.updateDialogue({
-//           change: "before",
-//           dialogue: event.dialogue,
-//         })
-//       );
-//     }
-
-//     // // Adds BEFORE dialogue for: Coffin
-//     // if (event.dialogue && event.dialogue === "GET") {
-//     //   getDialogue(dispatch, "BEFORE");
-//     // }
-
-//     if (choice) {
-//       for (let i = 0; i < event.options.length; i++) {
-//         if (event.options[i].text[0] === choice && event.options[i].dialogue) {
-//           const dialogue = event.options[i].dialogue;
-
-//           // If the option chosen has a response dialogue it will be added
-//           if (dialogue.response) {
-//             dispatch(
-//               dialogueActions.updateDialogue({
-//                 change: "response",
-//                 dialogue: dialogue.response,
-//               })
-//             );
-//           }
-//           // If the option chosen has an after dialogue it will be added
-//           if (dialogue.after) {
-//             dispatch(
-//               dialogueActions.updateDialogue({
-//                 change: "after",
-//                 dialogue: dialogue.after,
-//               })
-//             );
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
 // ===============================================================
 //                    GET DIALOGUE
 // ===============================================================
@@ -204,11 +137,40 @@ export async function getDialogue(dispatch, type, choice = null) {
       case "Candlelight Shrine":
         switch (type) {
           case "before":
-            if (siggurd)
-              dialogueOptions.push(CANDLELIGHT_SHRINE_DIALOGUE.SIGGURD.before);
-            if (liheth)
-              dialogueOptions.push(CANDLELIGHT_SHRINE_DIALOGUE.LIHETH.before);
-            dialogueOptions.push(CANDLELIGHT_SHRINE_DIALOGUE.PLAYER.before);
+            if (siggurd) {
+              for (
+                let i = 0;
+                i < CANDLELIGHT_SHRINE_DIALOGUE.SIGGURD.length;
+                i++
+              ) {
+                dialogueOptions.push(
+                  CANDLELIGHT_SHRINE_DIALOGUE.SIGGURD.before[i]
+                );
+              }
+            }
+
+            if (liheth) {
+              for (
+                let i = 0;
+                i < CANDLELIGHT_SHRINE_DIALOGUE.LIHETH.length;
+                i++
+              ) {
+                dialogueOptions.push(
+                  CANDLELIGHT_SHRINE_DIALOGUE.LIHETH.before[i]
+                );
+              }
+            }
+
+            for (
+              let i = 0;
+              i < CANDLELIGHT_SHRINE_DIALOGUE.PLAYER.length;
+              i++
+            ) {
+              dialogueOptions.push(
+                CANDLELIGHT_SHRINE_DIALOGUE.PLAYER.before[i]
+              );
+            }
+
             break;
           case "response":
             break;
@@ -270,7 +232,7 @@ export async function getDialogue(dispatch, type, choice = null) {
             //
             break;
           case "after":
-            if (eventChoice === "Place a flower") {
+            if (choice === "Place a flower") {
               if (siggurd) {
                 dialogueOptions.push(
                   GRAVESTONE_DIALOGUE.SIGGURD.afterPlaceAFlower
@@ -286,7 +248,7 @@ export async function getDialogue(dispatch, type, choice = null) {
               );
             }
 
-            if (eventChoice === "Leave") {
+            if (choice === "Leave") {
               if (siggurd) {
                 dialogueOptions.push(GRAVESTONE_DIALOGUE.SIGGURD.afterLeave);
               }
@@ -446,13 +408,14 @@ export async function getDialogue(dispatch, type, choice = null) {
           case "after":
             // 4 player responses
             for (let i = 0; i < 4; i++) {
-              dialogueOptions.push(LAUGHING_COFFIN_DIALOGUE.PLAYER.response[i]);
+              dialogueOptions.push(LAUGHING_COFFIN_DIALOGUE.PLAYER.after[i]);
             }
             break;
         }
         break;
     }
   }
+
   if (dialogueOptions.length > 0) {
     // Traps
     // Laughing Coffin

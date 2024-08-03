@@ -192,10 +192,10 @@ function getRoomEvent() {
         //   events.push(TRAPS[i]);
         // }
 
-        events.push(AMBUSH);
+        // events.push(AMBUSH);
         events.push(COFFIN);
-        // events.push(BONEVAULT);
-        // events.push(GRAVESTONE);
+        events.push(BONEVAULT);
+        events.push(GRAVESTONE);
 
         // // Check if Siggurd is unlocked
         if (!siggurd.unlocked) {
@@ -464,7 +464,7 @@ function getRoomImage(dungeon) {
       case "Thieves' Ruin":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/thieves-ruin/thieves-ruin",
-          15
+          14
         );
         break;
 

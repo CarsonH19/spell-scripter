@@ -13,9 +13,9 @@ export default function HeroesModal() {
   const dispatch = useDispatch();
   const heroes = useSelector((state) => state.hero.heroes);
   const party = useSelector((state) => state.hero.party);
-  const hasHero = heroes.some((hero) => hero.unlocked);
+  const hasHero = heroes.find((hero) => hero.unlocked);
   const [hoveredElement, setHoveredElement] = useState(
-    hasHero ? heroes[0] : ""
+    hasHero ? hasHero : ""
   );
 
   const handleHoveredHero = (hero) => {

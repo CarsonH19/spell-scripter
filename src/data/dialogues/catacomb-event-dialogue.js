@@ -751,120 +751,126 @@ export const UNLOCKING_LIHETH_DIALOGUE = {
 };
 
 export const CANDLELIGHT_SHRINE_DIALOGUE = {
-  PLAYER: [
-    [
-      {
-        position: `LEFT`,
-        speaker: `Spell Scripter`,
-        image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"This Candlelight Shrine is a welcome sight. I feel safer already."`,
-      },
+  PLAYER: {
+    before: [
+      [
+        {
+          position: `LEFT`,
+          speaker: `Spell Scripter`,
+          image: `src/assets/images/dialogue/player-1-dialogue.png`,
+          text: `"This Candlelight Shrine is a welcome sight. I feel safer already."`,
+        },
+      ],
+      [
+        {
+          position: `LEFT`,
+          speaker: `Spell Scripter`,
+          image: `src/assets/images/dialogue/player-1-dialogue.png`,
+          text: `"Finally, a Candlelight Shrine. I can rest and recover here."`,
+        },
+      ],
+      [
+        {
+          position: `LEFT`,
+          speaker: `Spell Scripter`,
+          image: `src/assets/images/dialogue/player-1-dialogue.png`,
+          text: `"I've reached a Candlelight Shrine. I should use this time to recover."`,
+        },
+      ],
     ],
-    [
-      {
-        position: `LEFT`,
-        speaker: `Spell Scripter`,
-        image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"Finally, a Candlelight Shrine. I can rest and recover here."`,
-      },
+  },
+  LIHETH: {
+    before: [
+      [
+        {
+          position: `LEFT`,
+          speaker: `Spell Scripter`,
+          image: `src/assets/images/dialogue/player-1-dialogue.png`,
+          text: `"Finally, a Candlelight Shrine. We can rest and recover here."`,
+        },
+        {
+          position: `RIGHT`,
+          speaker: `Liheth`,
+          image: `src/assets/images/dialogue/liheth-dialogue.png`,
+          text: `"The light of the shrine will protect us from the darkness outside. Let's take a moment to gather our strength."`,
+        },
+      ],
+      [
+        {
+          position: `LEFT`,
+          speaker: `Spell Scripter`,
+          image: `src/assets/images/dialogue/player-1-dialogue.png`,
+          text: `"This Candlelight Shrine is a welcome sight. I feel safer already."`,
+        },
+        {
+          position: `RIGHT`,
+          speaker: `Liheth`,
+          image: `src/assets/images/dialogue/liheth-dialogue.png`,
+          text: `"Indeed. The shrine's light will keep the evil at bay. Let's rest here for a while."`,
+        },
+      ],
+      [
+        {
+          position: `LEFT`,
+          speaker: `Spell Scripter`,
+          image: `src/assets/images/dialogue/player-1-dialogue.png`,
+          text: `"We've reached a Candlelight Shrine. We should use this time to recover."`,
+        },
+        {
+          position: `RIGHT`,
+          speaker: `Liheth`,
+          image: `src/assets/images/dialogue/liheth-dialogue.png`,
+          text: `"Yes, the shrine's light provides a haven from the darkness. Let's rest and prepare for the challenges ahead."`,
+        },
+      ],
     ],
-    [
-      {
-        position: `LEFT`,
-        speaker: `Spell Scripter`,
-        image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"I've reached a Candlelight Shrine. I should use this time to recover."`,
-      },
+  },
+  SIGGURD: {
+    before: [
+      [
+        {
+          position: `LEFT`,
+          speaker: `Spell Scripter`,
+          image: `src/assets/images/dialogue/player-1-dialogue.png`,
+          text: `"Siggurd, we've found a Candlelight Shrine. We can rest here safely."`,
+        },
+        {
+          position: `RIGHT`,
+          speaker: `Siggurd`,
+          image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+          text: `"The light of this shrine is a beacon of hope. We should take this opportunity to regain our strength."`,
+        },
+      ],
+      [
+        {
+          position: `LEFT`,
+          speaker: `Spell Scripter`,
+          image: `src/assets/images/dialogue/player-1-dialogue.png`,
+          text: `"A Candlelight Shrine! We can finally catch our breath here."`,
+        },
+        {
+          position: `RIGHT`,
+          speaker: `Siggurd`,
+          image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+          text: `"Indeed. The shrine's holy light will keep us safe. Let's rest and prepare for the battles ahead."`,
+        },
+      ],
+      [
+        {
+          position: `LEFT`,
+          speaker: `Spell Scripter`,
+          image: `src/assets/images/dialogue/player-1-dialogue.png`,
+          text: `"We've reached a Candlelight Shrine, Siggurd. This is a good place to recover."`,
+        },
+        {
+          position: `RIGHT`,
+          speaker: `Siggurd`,
+          image: `src/assets/images/dialogue/siggurd-dialogue.png`,
+          text: `"Yes, the light here will shield us from the catacomb's darkness. Let us rest and be ready for what lies ahead."`,
+        },
+      ],
     ],
-  ],
-  LIHETH: [
-    [
-      {
-        position: `LEFT`,
-        speaker: `Spell Scripter`,
-        image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"Finally, a Candlelight Shrine. We can rest and recover here."`,
-      },
-      {
-        position: `RIGHT`,
-        speaker: `Liheth`,
-        image: `src/assets/images/dialogue/liheth-dialogue.png`,
-        text: `"The light of the shrine will protect us from the darkness outside. Let's take a moment to gather our strength."`,
-      },
-    ],
-    [
-      {
-        position: `LEFT`,
-        speaker: `Spell Scripter`,
-        image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"This Candlelight Shrine is a welcome sight. I feel safer already."`,
-      },
-      {
-        position: `RIGHT`,
-        speaker: `Liheth`,
-        image: `src/assets/images/dialogue/liheth-dialogue.png`,
-        text: `"Indeed. The shrine's light will keep the evil at bay. Let's rest here for a while."`,
-      },
-    ],
-    [
-      {
-        position: `LEFT`,
-        speaker: `Spell Scripter`,
-        image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"We've reached a Candlelight Shrine. We should use this time to recover."`,
-      },
-      {
-        position: `RIGHT`,
-        speaker: `Liheth`,
-        image: `src/assets/images/dialogue/liheth-dialogue.png`,
-        text: `"Yes, the shrine's light provides a haven from the darkness. Let's rest and prepare for the challenges ahead."`,
-      },
-    ],
-  ],
-  SIGGURD: [
-    [
-      {
-        position: `LEFT`,
-        speaker: `Spell Scripter`,
-        image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"Siggurd, we've found a Candlelight Shrine. We can rest here safely."`,
-      },
-      {
-        position: `RIGHT`,
-        speaker: `Siggurd`,
-        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
-        text: `"The light of this shrine is a beacon of hope. We should take this opportunity to regain our strength."`,
-      },
-    ],
-    [
-      {
-        position: `LEFT`,
-        speaker: `Spell Scripter`,
-        image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"A Candlelight Shrine! We can finally catch our breath here."`,
-      },
-      {
-        position: `RIGHT`,
-        speaker: `Siggurd`,
-        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
-        text: `"Indeed. The shrine's holy light will keep us safe. Let's rest and prepare for the battles ahead."`,
-      },
-    ],
-    [
-      {
-        position: `LEFT`,
-        speaker: `Spell Scripter`,
-        image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"We've reached a Candlelight Shrine, Siggurd. This is a good place to recover."`,
-      },
-      {
-        position: `RIGHT`,
-        speaker: `Siggurd`,
-        image: `src/assets/images/dialogue/siggurd-dialogue.png`,
-        text: `"Yes, the light here will shield us from the catacomb's darkness. Let us rest and be ready for what lies ahead."`,
-      },
-    ],
-  ],
+  },
 };
 
 export const BONEVAULT_DIALOGUE = {

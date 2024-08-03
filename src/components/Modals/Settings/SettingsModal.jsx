@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 
+import classes from "./SettingsModal.module.css";
+
 import { uiActions } from "../../../store/ui-slice";
 import { logActions } from "../../../store/log-slice";
 import { dungeonActions } from "../../../store/dungeon-slice";
-
+import { ClassNames } from "@emotion/react";
 
 export default function SettingsModal() {
   const dispatch = useDispatch();
@@ -12,7 +14,7 @@ export default function SettingsModal() {
     // Open dashboard
     dispatch(
       uiActions.changeUi({ element: "dashboardIsVisible", visible: true })
-    ); 
+    );
 
     // Close game window
     dispatch(
@@ -31,8 +33,8 @@ export default function SettingsModal() {
   };
 
   return (
-    <div>
-      <h1>This is the Settings Modal!</h1>
+    <div className={classes.settings}>
+      <h1>Settings</h1>
       <button onClick={handleExitDungeon}>Exit Dungeon</button>
     </div>
   );

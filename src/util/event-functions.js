@@ -19,6 +19,8 @@ import checkForDialogue, { getDialogue } from "./dialogue-util";
 import { calculateRooms, checkIfAttuned } from "./item-functions";
 import { addCharacterToOrder, getImageFromList } from "./misc-util";
 import { dialogueActions } from "../store/dialogue-slice";
+import changeStatusEffect from "../store/status-effect-actions";
+import CONDITIONS from "../data/conditions";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {
@@ -50,6 +52,7 @@ const eventFunctions = {
       damage = 15;
     } else if (dungeon.threat > 10) {
       difficulty = 12;
+      damage = 10;
     } else {
       difficulty = 10;
       damage = 10;
@@ -58,7 +61,12 @@ const eventFunctions = {
     const success = trapSuccessChance(dispatch, player, difficulty, stat);
 
     if (!success) {
+      const eventName = dungeon.contents.event.name;
       changeHealth(dispatch, player, "DAMAGE", damage);
+
+      if (eventName === "Poison Darts" || eventName === "Poisonous Mist") {
+        changeStatusEffect(dispatch, player, "ADD", CONDITIONS.POISONED);
+      }
     }
 
     await delay(4000);
@@ -129,13 +137,6 @@ const eventFunctions = {
         combatActions.changePlayerInventory({ change: "REMOVE", item: flower })
       );
 
-      // Dialogue
-      dispatch(
-        dialogueActions.updateDialogue({
-          change: "after",
-          dialogue: GRAVESTONE_DIALOGUE.after,
-        })
-      );
       await checkForDialogue(dispatch, "after", choice);
 
       // Start Following to Wailing Warrens
@@ -358,9 +359,12 @@ const eventFunctions = {
   },
   LAUGHING_COFFIN: async (dispatch, choice) => {
     if (choice === "Trade") {
+      await checkForDialogue(dispatch, "response", choice);
       openModal(dispatch, "tradeModal");
+
     } else if (choice === "Leave") {
-      await delay(2000);
+      // await delay(2000);
+      await checkForDialogue(dispatch, "after", choice);
       openModal(dispatch, "roomSummaryModal");
     }
   },

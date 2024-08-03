@@ -142,7 +142,7 @@ const CONDITIONS = {
   RESTRAINED: {
     name: "Restrained",
     display: true,
-    image: "",
+    image: "src/assets/images/status-effect/restrained.jpg",
     type: "DEBUFF",
     description: "The target is unable to move freely.",
     effect: ["The target can only take the Guard action."],
@@ -154,7 +154,7 @@ const CONDITIONS = {
   GUARD: {
     name: "Guarding",
     display: true,
-    image: "",
+    image: "src/assets/images/status-effect/guard.jpg",
     type: "BUFF",
     description: "Guarding from incoming attacks.",
     effect: ["Defense +50%"],

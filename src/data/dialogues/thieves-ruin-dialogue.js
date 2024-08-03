@@ -20,7 +20,7 @@ export const LAUGHING_COFFIN_DIALOGUE = {
         text: `"Leave your grudges at the door and your coin on the counter, and you'll find a warm meal and a strong drink."`,
       },
     ],
-    responseTrade: [
+    response: [
       [
         {
           position: `LEFT`,
