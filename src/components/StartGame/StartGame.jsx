@@ -8,6 +8,7 @@ import CONSUMABLES from "../../data/consumables";
 import EQUIPMENT from "../../data/equipment";
 import MISC_ITEMS from "../../data/misc-items";
 import { v4 as uuidv4 } from "uuid";
+import SoundManager from "../../util/audio-util";
 
 export default function StartGame() {
   const dispatch = useDispatch();
@@ -18,6 +19,9 @@ export default function StartGame() {
       uiActions.changeUi({ element: "dashboardIsVisible", visible: true })
     ); // true
 
+    // Start Dashboard Music
+    // SoundManager.playBackgroundMusic("mazeHeist");
+    
     // TEST CODE FOR INVENTORY
     let test = 9;
     for (let i = 0; i < test; i++) {
@@ -70,7 +74,6 @@ export default function StartGame() {
         change: "ADD",
       })
     );
-
 
     dispatch(
       playerActions.changeInventory({

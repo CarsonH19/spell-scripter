@@ -10,8 +10,7 @@ import changeStatusEffect, {
   checkStatusEffect,
 } from "./status-effect-actions.js";
 
-import { uiActions } from "./ui-slice.js";
-import combatSlice, { combatActions } from "./combat-slice.js";
+import { combatActions } from "./combat-slice.js";
 import { logActions } from "./log-slice.js";
 
 import activateItem from "./item-actions.js";
@@ -33,6 +32,7 @@ import { openModal } from "./ui-actions.js";
 import updateStatTotals from "./stats-actions.js";
 import checkForDialogue, { getDialogue } from "../util/dialogue-util.js";
 import { checkIfAttuned } from "../util/item-functions.js";
+import playAudio from "../util/audio-util.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -479,6 +479,11 @@ async function handleCallTiming(dispatch, timing, character) {
 }
 
 function attack(dispatch, character, target) {
+  // Attack audio
+  if (character.audio) {
+    playAudio("SOUND", character.audio.attack);
+  }
+  
   const hit = rollToHit(dispatch, character, target);
   // console.log("HIT", hit);
 

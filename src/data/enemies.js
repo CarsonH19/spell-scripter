@@ -514,7 +514,11 @@ const THIEVES = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.HUMANOID,
-    // audio: {},
+    audio: {
+      spawn: "swordFromSheath3",
+      attack: "getLightWeaponSound",
+      death: "getFightGruntSound",
+    },
     level: 2,
     currentHealth: 20,
     currentMana: 0,
