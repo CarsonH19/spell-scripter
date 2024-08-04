@@ -39,6 +39,7 @@ export default async function activateItem(dispatch, item) {
             );
             // NOTE - must update player state at the end of the dungeon gameplay
             changeStatusEffect(dispatch, player, "ADD", item);
+            playSoundEffect(false, "ui", "magicStone", 0.1);
           }
         }
         // In Dashboard -> player-slice
@@ -53,6 +54,7 @@ export default async function activateItem(dispatch, item) {
             // equip item to attunedItems
             dispatch(playerActions.changeAttunement({ item, change: "ADD" }));
             changeStatusEffect(dispatch, player, "ADD", item);
+            playSoundEffect(false, "ui", "magicStone", 0.1);
           }
         }
       }
@@ -77,18 +79,16 @@ export default async function activateItem(dispatch, item) {
             itemFunction(dispatch, player);
           }
 
+          if (item.audio) playSoundEffect(...item.audio);
+
           dispatch(
             combatActions.changePlayerInventory({ item, change: "REMOVE" })
           );
         }
-
-        if (item.audio) playSoundEffect(...item.audio);
       }
       break;
 
     case "MISC":
-      console.log("CALLED");
-
       {
         if (dashboard) return;
         console.log("CALLED");

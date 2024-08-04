@@ -15,8 +15,6 @@ export default function Item({ item, count }) {
   const handleItemClick = (item) => {
     const isItemListOpen = store.getState().ui.itemListIsVisible;
     setSelect(item);
-    console.log("CALLED")
-
     activateItem(dispatch, item);
 
     if (isItemListOpen) {

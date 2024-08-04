@@ -19,6 +19,7 @@ import { playerActions } from "../../../store/player-slice";
 import updateStatTotals from "../../../store/stats-actions";
 
 import { useDispatch, useSelector } from "react-redux";
+import playSoundEffect from "../../../util/audio-util";
 
 export default function Attributes() {
   const dispatch = useDispatch();
@@ -33,11 +34,12 @@ export default function Attributes() {
     player = useSelector((state) => state.player);
   }
 
-  console.log(player);
-
   const handleChangeAttribute = (change, attribute) => {
     dispatch(playerActions.changeAttributes({ change, attribute }));
     updateStatTotals(dispatch, "Player");
+
+    if (change === "INCREASE") playSoundEffect(false, "ui", "medievalGUI1");
+    if (change === "DECREASE") playSoundEffect(false, "ui", "medievalGUI2");
   };
   return (
     <div className={classes["attributes-container"]}>
@@ -66,7 +68,9 @@ export default function Attributes() {
                 onClick={() => handleChangeAttribute("DECREASE", "STRENGTH")}
               />
             )}
-            <p className={classes["points"]}>{player.stats.strength.totalStrength}</p>
+            <p className={classes["points"]}>
+              {player.stats.strength.totalStrength}
+            </p>
 
             {!isInventoryOpen && (
               <FontAwesomeIcon
@@ -101,7 +105,9 @@ export default function Attributes() {
               />
             )}
 
-            <p className={classes["points"]}>{player.stats.agility.totalAgility}</p>
+            <p className={classes["points"]}>
+              {player.stats.agility.totalAgility}
+            </p>
 
             {!isInventoryOpen && (
               <FontAwesomeIcon
@@ -132,7 +138,9 @@ export default function Attributes() {
                 onClick={() => handleChangeAttribute("DECREASE", "ARCANA")}
               />
             )}
-            <p className={classes["points"]}>{player.stats.arcana.totalArcana}</p>
+            <p className={classes["points"]}>
+              {player.stats.arcana.totalArcana}
+            </p>
             {!isInventoryOpen && (
               <FontAwesomeIcon
                 icon={faCaretRight}

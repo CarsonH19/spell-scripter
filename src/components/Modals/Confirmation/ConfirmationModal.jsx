@@ -20,6 +20,7 @@ import changeStatusEffect from "../../../store/status-effect-actions";
 import { checkSkillPoints } from "../../../util/spellbook-util";
 import { createArcaneShield } from "../../../util/skills";
 import { openModal } from "../../../store/ui-actions";
+import playSoundEffect from "../../../util/audio-util";
 
 export default function ConfirmationModal() {
   const dispatch = useDispatch();
@@ -85,6 +86,8 @@ export default function ConfirmationModal() {
     );
 
     dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
+
+    playSoundEffect(false, "ui", "GUIMenuButton");
   };
 
   const handleClickChange = (modal) => {

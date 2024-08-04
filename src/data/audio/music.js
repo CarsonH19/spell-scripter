@@ -109,5 +109,5 @@ export const playMusic = (musicFunc) => {
 
   currentMusic = musicFunc();
   currentMusic.play();
-  currentMusic.fade(0, 0.5, FADE_DURATION); // Fade in to volume 0.5
+  currentMusic.fade(0, 0.05, FADE_DURATION); // Fade in to volume 0.5
 };

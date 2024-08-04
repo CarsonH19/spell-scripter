@@ -41,6 +41,7 @@ export default function Modal() {
     }
 
     // Audio
+    playSoundEffect(false, "ui", "softs2", 0.2);
 
     dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
   };
@@ -65,12 +66,13 @@ function selectModal() {
   // Passed as a prop to the tomeModal
   const tome = store.getState().ui.tome;
 
+  playSoundEffect(false, "ui", "softs", 0.5);
+
   switch (activeModal) {
     case "heroesModal":
       return <HeroesModal />;
 
     case "inventoryModal":
-      playSoundEffect(false, "inventory", "cameraBag2");
       return <InventoryModal />;
 
     case "questsModal":

@@ -65,7 +65,7 @@ export default function Skill({ school, skill, activeExpertise }) {
         }
       }
 
-      playSoundEffect(false, "misc", "shimmerCrysta");
+      playSoundEffect(true, "skill");
     }
   };
 

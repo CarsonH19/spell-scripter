@@ -24,6 +24,7 @@ import { dungeonActions } from "../../store/dungeon-slice";
 import eventFunctions from "../../util/event-functions";
 import { playMusic } from "../../data/audio/music";
 import { backgroundMusic } from "../../data/audio/music";
+import playSoundEffect from "../../util/audio-util";
 
 export default function GameWindow() {
   const dispatch = useDispatch();
@@ -112,13 +113,14 @@ async function locationNarration(dispatch, location) {
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
   dispatch(logActions.updateLogs({ change: "PAUSE" }));
   await delay(2000);
+  playSoundEffect(false, "misc", "ambientLight01");
   dispatch(
     logActions.updateLogs({
       change: "ADD",
       text: `${location}`,
     })
   );
-  await delay(3000);
+  await delay(4000);
   // Clear Narrative
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
   dispatch(logActions.updateLogs({ change: "CLEAR" }));

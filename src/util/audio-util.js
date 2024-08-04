@@ -1,24 +1,25 @@
 import { soundPaths } from "../data/audio/sound-effects";
 
 //
-//  MUSIC
-//
-
-//
 //  SOUND EFFECTS
 //
 
-export default async function playSoundEffect(getSound, category, name = null) {
+export default async function playSoundEffect(
+  getSound,
+  category,
+  name = null,
+  volume = 0.5
+) {
   // Get a random sound from the category
   if (getSound) {
     const soundName = getRandomSound(soundPaths[category]);
-    const sound = await loadSound(category, soundName);
+    const sound = await loadSound(category, soundName, volume);
     sound.play();
   }
 
   // Play a specific sound in a category
   if (!getSound) {
-    const sound = await loadSound(category, name);
+    const sound = await loadSound(category, name, volume);
     sound.play();
   }
   return;
@@ -32,14 +33,13 @@ function getRandomSound(obj) {
 
 const soundCache = {};
 
-const loadSound = (category, soundName) => {
+const loadSound = (category, soundName, volume) => {
   const key = `${category}.${soundName}`;
   if (!soundCache[key]) {
     soundCache[key] = new Howl({
       src: [soundPaths[category][soundName]],
-      volume: 1.0,
+      volume: volume,
     });
-    console.log(soundPaths[category][soundName]);
   }
   return soundCache[key];
 };

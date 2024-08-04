@@ -24,7 +24,7 @@ const heroSlice = createSlice({
         },
         audio: {
           spawn: "",
-          attack: [true, "heavyWeapon"],
+          attack: [true, "heavyWeapon", null, 0.5],
           death: [true, "fightGrunt"],
         },
         level: 1,

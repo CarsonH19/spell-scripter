@@ -114,6 +114,7 @@ export const soundPaths = {
     gulpingWater24: "src/assets/audio/sound/Gulping Water 24.mp3",
     chewCrackersMouth: "src/assets/audio/sound/Chew Crackers Mouth.mp3",
     skeletonKeyIn2: "src/assets/audio/sound/Skeleton Key In 2.mp3",
+    flameLicks2: "src/assets/audio/sound/Flame Licks 2.mp3",
   },
   event: {
     // Poisonous Mist
@@ -132,6 +133,32 @@ export const soundPaths = {
     hitReverbDark4: "src/assets/audio/sound/misc/Hit Reverb Dark 4.mp3",
     // Choose a skill
     shimmerCrysta: "src/assets/audio/sound/misc/Shimmer Crysta.mp3",
+    // Dungeon & Path title
+    ambientLight01: "src/assets/audio/sound/ui/Ambient, Light 01.mp3",
+  },
+  ui: {
+    // Attunement
+    magicStone: "src/assets/audio/sound/ui/Magic Stone.mp3",
+    // Inc. Attribute
+    medievalGUI1:
+      "src/assets/audio/sound/ui/Medieval, GUI, Hover Over Menu Buttons 01.mp3",
+    // Dec. Attribute
+    medievalGUI2:
+      "src/assets/audio/sound/ui/Medieval, GUI, Hover Over Menu Buttons 02.mp3",
+    // Confirm enter
+    GUIMenuButton:
+      "src/assets/audio/sound/ui/GUI Menu Button, Select OK, Button, Start Game, Airy, Bright, Dark Reverb.mp3",
+    //Modal open
+    softs: "src/assets/audio/sound/ui/Softs.wav",
+    //Modal close
+    softs2: "src/assets/audio/sound/ui/Softs 2.wav",
+  },
+  skill: {
+    coldWhoosh3: "src/assets/audio/sound/ui/Cold, Whoosh 03.mp3",
+    coldWhoosh10: "src/assets/audio/sound/ui/Cold, Whoosh 10.mp3",
+    coldWhoosh14: "src/assets/audio/sound/ui/Cold, Whoosh 14.mp3",
+    coldWhoosh16: "src/assets/audio/sound/ui/Cold, Whoosh 16.mp3",
+    coldWhoosh19: "src/assets/audio/sound/ui/Cold, Whoosh 19.mp3",
   },
 };
 
@@ -235,9 +262,6 @@ export const soundPaths = {
 // // ===============================
 
 // const itemSounds = {
-//   flameLicks2: new Howl({
-//     src: ["src/assets/audio/sound/Flame Licks 2.mp3"],
-//   }),
 //   crystalWhoosh: new Howl({
 //     src: ["src/assets/audio/sound/Whoosh Crystal.mp3"],
 //   }),

@@ -78,7 +78,7 @@ const UNDEAD = {
     type: ENEMY_TYPES.UNDEAD,
     audio: {
       spawn: [false, "spawn", "boneCrunchCrack1"],
-      attack: [true, "heavyWeapon"],
+      attack: [true, "heavyWeapon", null, 0.5],
       death: [true, "boneBreak"],
     },
     level: 2,
