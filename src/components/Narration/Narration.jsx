@@ -46,7 +46,6 @@ function getNarrationStyle(narration) {
       narration === dungeon.name ||
       narration === dungeon.path)
   ) {
-    console.log("CALLED");
     style = classes.announcement;
   } else {
     style = "";

@@ -23,8 +23,7 @@ export default function MiddleContent() {
     dispatch(
       uiActions.changeUi({ element: "continueIsVisible", visible: false })
     );
-    createNewRoom(dispatch);
-    playSoundEffect(false, "misc", "whooshLowAir");
+    roomTransition(dispatch);
   };
 
   return (
@@ -35,11 +34,20 @@ export default function MiddleContent() {
           icon={faArrowRightLong}
           onClick={handleContinue}
         />
-        // <button className={classes.continue} onClick={handleContinue}>
-        //   Continue
-        // </button>
       )}
       {eventOptionsAreVisible && <EventOptions />}
     </div>
   );
+}
+
+async function roomTransition(dispatch) {
+  await dispatch(uiActions.updateFade({ change: "CALL" }));
+  playSoundEffect(false, "misc", "whooshLowAir");
+  await delay(3000);
+  createNewRoom(dispatch);
+  await dispatch(uiActions.updateFade({ change: "CLEAR" }));
+
+  async function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 }

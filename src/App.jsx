@@ -4,7 +4,10 @@ import GameWindow from "./components/GameWindow/GameWindow";
 import Modal from "./components/Modals/Modal";
 import Narration from "./components/Narration/Narration";
 import Dialogue from "./components/Dialogue/Dialogue";
+
 import { useSelector } from "react-redux";
+
+import FadeEffect from "./components/UI/FadeEffect";
 
 function App() {
   const start = useSelector((state) => state.ui.startIsVisible);
@@ -15,6 +18,7 @@ function App() {
 
   return (
     <>
+      <FadeEffect />
       {dialogue.active && <Dialogue />}
       <Narration />
       {modal && <Modal />}

@@ -28,6 +28,7 @@ const uiSlice = createSlice({
       attributeModal: false,
     },
     tome: null,
+    fade: false,
   },
   reducers: {
     updateActiveTome(state, action) {
@@ -35,7 +36,7 @@ const uiSlice = createSlice({
     },
     changeUi(state, action) {
       const { element, visible } = action.payload;
-      state[element] = visible;    
+      state[element] = visible;
     },
     openModal(state, action) {
       const modal = action.payload.modal;
@@ -47,6 +48,18 @@ const uiSlice = createSlice({
       if (action.payload.open) {
         // Set the target modal to true
         state.modal[modal] = true;
+      }
+    },
+    updateFade(state, action) {
+      const { change } = action.payload;
+      switch (change) {
+        case "CALL":
+          state.fade = true;
+          break;
+
+        case "CLEAR":
+          state.fade = false;
+          break;
       }
     },
   },

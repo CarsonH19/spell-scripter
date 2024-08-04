@@ -125,6 +125,7 @@ async function locationNarration(dispatch, location) {
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
 }
+
 async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }

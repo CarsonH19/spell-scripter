@@ -31,63 +31,12 @@ export default function ConfirmationModal() {
     (state) => state.player.inventory.attunedItems
   );
 
-  // Test
-  const ui = useSelector((state) => state.ui);
-
   const heroes = useSelector((state) => state.hero.party);
   const player = useSelector((state) => state.player);
   const characters = [...heroes, player];
 
   const handleConfirmation = () => {
-    dispatch(
-      uiActions.changeUi({ element: "dashboardIsVisible", visible: false })
-    ); // false
-    dispatch(
-      uiActions.changeUi({ element: "gameWindowIsVisible", visible: true })
-    ); // true
-
-    // Add the characters array to the combat-slice order
-    dispatch(combatActions.setInitiative({ characters }));
-
-    // Update all characters stats
-    for (let i = 0; i < characters.length; i++) {
-      updateStatTotals(dispatch, characters[i].id);
-    }
-
-    // Max Health
-    characters.forEach((character) => {
-      dispatch(
-        combatActions.updateHealth({
-          id: character.id,
-          change: "HEAL",
-          value: 999,
-        })
-      );
-    });
-
-    // Full Mana
-    dispatch(
-      combatActions.updateMana({
-        change: "ADD",
-        value: 999,
-      })
-    );
-
-    //  Shield - Add status effect to player
-    const arcaneShield = checkSkillPoints("Arcane Shield");
-    if (arcaneShield) {
-      const statusEffect = createArcaneShield();
-      const index = characters.findIndex((char) => char.id === "Player");
-      changeStatusEffect(dispatch, characters[index], "ADD", statusEffect);
-    }
-
-    dispatch(
-      uiActions.changeUi({ element: "continueIsVisible", visible: false })
-    );
-
-    dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
-
-    playSoundEffect(false, "ui", "GUIMenuButton");
+    enterDungeonTransition(dispatch, characters);
   };
 
   const handleClickChange = (modal) => {
@@ -299,4 +248,65 @@ export default function ConfirmationModal() {
 
 function toSnakeCase(str) {
   return str.toUpperCase().replace(/\s+/g, "_");
+}
+
+async function enterDungeonTransition(dispatch, characters) {
+  await dispatch(uiActions.updateFade({ change: "CALL" }));
+  playSoundEffect(false, "ui", "GUIMenuButton");
+
+  await delay(3000);
+  dispatch(
+    uiActions.changeUi({ element: "eventOptionsAreVisible", visible: false })
+  );
+  dispatch(
+    uiActions.changeUi({ element: "continueIsVisible", visible: false })
+  );
+  dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
+  dispatch(
+    uiActions.changeUi({ element: "dashboardIsVisible", visible: false })
+  );
+  dispatch(
+    uiActions.changeUi({ element: "gameWindowIsVisible", visible: true })
+  );
+
+  // Add the characters array to the combat-slice order
+  dispatch(combatActions.setInitiative({ characters }));
+
+  // Update all characters stats
+  for (let i = 0; i < characters.length; i++) {
+    updateStatTotals(dispatch, characters[i].id);
+  }
+
+  // Max Health
+  characters.forEach((character) => {
+    dispatch(
+      combatActions.updateHealth({
+        id: character.id,
+        change: "HEAL",
+        value: 999,
+      })
+    );
+  });
+
+  // Full Mana
+  dispatch(
+    combatActions.updateMana({
+      change: "ADD",
+      value: 999,
+    })
+  );
+
+  //  Shield - Add status effect to player
+  const arcaneShield = checkSkillPoints("Arcane Shield");
+  if (arcaneShield) {
+    const statusEffect = createArcaneShield();
+    const index = characters.findIndex((char) => char.id === "Player");
+    changeStatusEffect(dispatch, characters[index], "ADD", statusEffect);
+  }
+
+  await dispatch(uiActions.updateFade({ change: "CLEAR" }));
+
+  async function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 }

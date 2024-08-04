@@ -14,14 +14,11 @@ export default function StartGame() {
   const dispatch = useDispatch();
 
   const handleStart = () => {
-    dispatch(uiActions.changeUi({ element: "startIsVisible", visible: false })); // false
-    dispatch(
-      uiActions.changeUi({ element: "dashboardIsVisible", visible: true })
-    ); // true
+    startTransition(dispatch);
 
     // Start Dashboard Music
     // SoundManager.playBackgroundMusic("mazeHeist");
-    
+
     // TEST CODE FOR INVENTORY
     let test = 9;
     for (let i = 0; i < test; i++) {
@@ -326,4 +323,19 @@ export default function StartGame() {
       <button onClick={handleStart}>Start</button>
     </div>
   );
+}
+
+async function startTransition(dispatch) {
+  await dispatch(uiActions.updateFade({ change: "CALL" }));
+  await delay(2000);
+  dispatch(uiActions.changeUi({ element: "startIsVisible", visible: false })); // false
+  dispatch(
+    uiActions.changeUi({ element: "dashboardIsVisible", visible: true })
+  );
+
+  await dispatch(uiActions.updateFade({ change: "CLEAR" }));
+
+  async function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 }
