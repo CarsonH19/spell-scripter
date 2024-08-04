@@ -10,7 +10,7 @@ const CONSUMABLES = {
     rarity: "Common",
     useInCombat: false,
     effect: ["Restores 15HP."],
-    // soundEffect: chewCrackersMouth,
+    audio: [false, "item", "chewCrackersMouth"],
   },
   MARROWSTONE_CHEESE: {
     name: "Marrowstone Cheese",
@@ -20,7 +20,7 @@ const CONSUMABLES = {
     rarity: "Common",
     useInCombat: false,
     effect: ["Restores 15HP."],
-    // soundEffect: chewCrackersMouth,
+    audio: [false, "item", "chewCrackersMouth"],
   },
   ROTBANE_FERN: {
     name: "Rotbane Fern",
@@ -31,7 +31,7 @@ const CONSUMABLES = {
     rarity: "Common",
     useInCombat: false,
     effect: ["Lose 3HP", "Chance to remove the Diseased condition."],
-    // soundEffect: chewCrackersMouth,
+    audio: [false, "item", "chewCrackersMouth"],
   },
   GRAVEBLOOM: {
     name: "Gravebloom",
@@ -42,7 +42,7 @@ const CONSUMABLES = {
     rarity: "Common",
     useInCombat: false,
     effect: ["Lose 3HP"],
-    // soundEffect: chewCrackersMouth,
+    audio: [false, "item", "chewCrackersMouth"],
   },
   SUNSHADE_BLOSSOM: {
     name: "Sunshade Blossom",
@@ -53,7 +53,7 @@ const CONSUMABLES = {
     rarity: "Common",
     useInCombat: false,
     effect: ["Gain 1HP"],
-    // soundEffect: chewCrackersMouth,
+    audio: [false, "item", "chewCrackersMouth"],
   },
   GHOSTLIGHT_LILY: {
     name: "Gravelight Lily",
@@ -64,7 +64,7 @@ const CONSUMABLES = {
     rarity: "Common",
     useInCombat: false,
     effect: ["Chance to cause the Haunted condition."],
-    // soundEffect: chewCrackersMouth,
+    audio: [false, "item", "chewCrackersMouth"],
   },
   WITCHFIRE_ORCHID: {
     name: "Witchfire Orchid",
@@ -75,7 +75,7 @@ const CONSUMABLES = {
     rarity: "Common",
     useInCombat: false,
     effect: ["Lose 3HP"],
-    // soundEffect: chewCrackersMouth,
+    audio: [false, "item", "chewCrackersMouth"],
   },
   // ====================================================================
   //                           RARE CONSUMABLES
@@ -88,7 +88,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: true,
     effect: ["Restores 30% of your max HP.", "Can be used in combat."],
-    // soundEffect: gulpingWater24,
+    audio: [false, "item", "gulpingWater24"],
   },
   MANA_POTION: {
     name: "Mana Potion",
@@ -98,7 +98,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: true,
     effect: ["Restores 30% of your max MP.", "Can be used in combat."],
-    // soundEffect: gulpingWater24,
+    audio: [false, "item", "gulpingWater24"],
   },
   LICHROOT: {
     name: "Lichroot",
@@ -109,7 +109,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: ["Lose 5 HP"],
-    // soundEffect: chewCrackersMouth,
+    audio: [false, "item", "chewCrackersMouth"],
   },
   TOMBSTONE_TRUFFLE: {
     name: "Tombstone Truffle",
@@ -120,7 +120,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: ["Restores 3HP"],
-    // soundEffect: chewCrackersMouth,
+    audio: [false, "item", "chewCrackersMouth"],
   },
   SPIDER_EGG_YOLK: {
     name: "Spider Egg Yolk",
@@ -141,7 +141,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: true,
     effect: ["Duration: 5 Rooms", "+5 Attack", "-5 Spell Power"],
-    // soundEffect: gulpingWater24,
+    audio: [false, "item", "gulpingWater24"],
   },
   // ====================================================================
   //                           EPIC CONSUMABLES
@@ -157,7 +157,7 @@ const CONSUMABLES = {
       "Removes and grants immunity to the Poisoned, Diseased, Haunted, and Cursed conditions.",
       "Effects persist for 10 rooms.",
     ],
-    // soundEffect: gulpingWater24,
+    audio: [false, "item", "gulpingWater24"],
   },
   NECROTIC_NECTAR: {
     name: "Necrotic Nectar",
@@ -170,7 +170,7 @@ const CONSUMABLES = {
       "Restore all missing HP. However, your Arcana is reduced to 0.",
       "Effects persist for 10 rooms.",
     ],
-    // soundEffect: gulpingWater24,
+    audio: [false, "item", "gulpingWater24"],
   },
   // ====================================================================
   //                             CANDLES
@@ -183,7 +183,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: ["While lit undead enemies may flee from you."],
-    // soundEffect: flameLicks2,
+    audio: [false, "item", "flameLicks2"],
   },
   SOOTHING_CANDLE: {
     name: "Soothing Candle",
@@ -193,7 +193,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: ["While lit all allies gain +6 HP Regeneration."],
-    // soundEffect: flameLicks2,
+    audio: [false, "item", "flameLicks2"],
   },
   CALMING_CANDLE: {
     name: "Calming Candle",
@@ -203,7 +203,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: ["While lit all allies gain +6 MP Regeneration."],
-    // soundEffect: flameLicks2,
+    audio: [false, "item", "flameLicks2"],
   },
   FLICKERING_CANDLE: {
     name: "Flickering Candle",
@@ -214,7 +214,7 @@ const CONSUMABLES = {
     useInCombat: false,
     effect: ["While lit all allies gain +1 Agility"],
 
-    // soundEffect: flameLicks2,
+    audio: [false, "item", "flameLicks2"],
   },
   BLAZING_CANDLE: {
     name: "Blazing Candle",
@@ -224,7 +224,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: ["While lit all allies gain +6 Attack"],
-    // soundEffect: flameLicks2,
+    audio: [false, "item", "flameLicks2"],
   },
   INVOKING_CANDLE: {
     name: "Invoking Candle",
@@ -234,7 +234,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: ["While lit all allies gain +6 Spell Power"],
-    // soundEffect: flameLicks2,
+    audio: [false, "item", "flameLicks2"],
   },
   // ====================================================================
   //                              MISC.
@@ -247,7 +247,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: [""],
-    // soundEffect: gulpingWater24,
+    audio: [false, "item", "skeletonKeyIn2"],
   },
   MAGIC_ROPE: {
     name: "Magic Rope",
@@ -258,7 +258,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: [""],
-    // soundEffect: gulpingWater24,
+    audio: [false, "item", "gulpingWater24"],
   },
   TRAP_DISARMING_KIT: {
     name: "Trap Disarming Kit",
@@ -268,7 +268,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: ["Can be used to disarm traps."],
-    // soundEffect: gulpingWater24,
+    audio: [false, "item", "gulpingWater24"],
   },
   SMOKE_BOMB: {
     name: "Smoke Bomb",
@@ -279,7 +279,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: true,
     effect: ["-2 Hit Chance for all enemies."],
-    // soundEffect: gulpingWater24,
+    audio: [false, "item", "gulpingWater24"],
   },
   LAUGHING_COFFIN_COIN: {
     name: "Laughing Coffin Coin",
@@ -289,7 +289,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: [""],
-    // soundEffect: gulpingWater24,
+    audio: [false, "item", "gulpingWater24"],
   },
   // ====================================================================
   //                             WISPS

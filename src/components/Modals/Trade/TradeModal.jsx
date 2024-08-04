@@ -9,6 +9,7 @@ import { combatActions } from "../../../store/combat-slice";
 import { useEffect, useState } from "react";
 import Tooltip from "../../UI/Tooltip";
 import { dungeonActions } from "../../../store/dungeon-slice";
+import playSoundEffect from "../../../util/audio-util";
 
 export default function TradeModal() {
   const dispatch = useDispatch();
@@ -71,6 +72,7 @@ export default function TradeModal() {
         favor: calculateItemFavor(item),
       })
     );
+
     // Remove item from player
     dispatch(
       combatActions.changePlayerInventory({
@@ -78,6 +80,11 @@ export default function TradeModal() {
         change: "REMOVE",
       })
     );
+
+    // Audio
+    if (item.name === "Laughing Coffin Coin") {
+      playSoundEffect(false, "event", "coinFlipLand");
+    }
   };
 
   // buying items

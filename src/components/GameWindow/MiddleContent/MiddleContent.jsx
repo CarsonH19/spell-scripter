@@ -8,6 +8,7 @@ import { uiActions } from "../../../store/ui-slice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
+import playSoundEffect from "../../../util/audio-util";
 
 export default function MiddleContent() {
   const dispatch = useDispatch();
@@ -23,16 +24,17 @@ export default function MiddleContent() {
       uiActions.changeUi({ element: "continueIsVisible", visible: false })
     );
     createNewRoom(dispatch);
+    playSoundEffect(false, "misc", "whooshLowAir");
   };
 
   return (
     <div className={classes.middle}>
       {continueIsVisible && (
         <FontAwesomeIcon
-        className={classes.continue}
-        icon={faArrowRightLong}
-        onClick={handleContinue}
-      />
+          className={classes.continue}
+          icon={faArrowRightLong}
+          onClick={handleContinue}
+        />
         // <button className={classes.continue} onClick={handleContinue}>
         //   Continue
         // </button>

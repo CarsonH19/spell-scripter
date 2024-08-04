@@ -11,6 +11,7 @@ import { getSpell } from "../../../util/spell-util";
 
 import { useState } from "react";
 import { isAction } from "redux";
+import playSoundEffect from "../../../util/audio-util";
 
 export default function Skill({ school, skill, activeExpertise }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -63,6 +64,8 @@ export default function Skill({ school, skill, activeExpertise }) {
           );
         }
       }
+
+      playSoundEffect(false, "misc", "shimmerCrysta");
     }
   };
 
@@ -109,7 +112,9 @@ export default function Skill({ school, skill, activeExpertise }) {
                     ? "none"
                     : "auto"
                   : "none",
-                boxShadow: activeSkill ? " inset 0px 0px 0px rgba(0, 0, 0, 4.8)" : ""
+                boxShadow: activeSkill
+                  ? " inset 0px 0px 0px rgba(0, 0, 0, 4.8)"
+                  : "",
               }}
             />
           </div>

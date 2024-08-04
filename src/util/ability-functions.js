@@ -6,6 +6,7 @@ import { logActions } from "../store/log-slice";
 import changeStatusEffect from "../store/status-effect-actions";
 import CONDITIONS from "../data/conditions";
 import { calcDamage, rollToHit } from "../store/combat-actions";
+import playSoundEffect from "./audio-util";
 
 const abilityFunctions = {
   // ===========================================
@@ -75,6 +76,7 @@ const abilityFunctions = {
     if (statusEffect) {
       changeStatusEffect(dispatch, target, "REMOVE", statusEffect);
     }
+    playSoundEffect(false, "magic", "magicSpellWhoosh2");
     changeHealth(dispatch, target, "HEAL", liheth.stats.arcana.spellPower);
   },
   UNDYING_FLAME: (dispatch, target) => {
@@ -91,7 +93,7 @@ const abilityFunctions = {
       reset: 3,
       stats: {},
     };
-
+    playSoundEffect(false, "magic", "magicSpellWhoosh14");
     changeStatusEffect(dispatch, target, "ADD", UNDYING_FLAME);
   },
   // ===========================================
@@ -101,9 +103,11 @@ const abilityFunctions = {
   MULTI_SHOT: (dispatch, character, target) => {
     const hit = rollToHit(dispatch, character, target);
     if (hit) {
+      playSoundEffect(false, "bowAttack", "bulletsImpactFlesh26");
       const damage = calcDamage(character);
       changeHealth(dispatch, target, "DAMAGE", damage);
     } else {
+      playSoundEffect(false, "bowAttack", "bulletsPassBy4");
       dispatch(
         combatActions.updateDamageDisplay({
           id: target.id,
@@ -115,6 +119,7 @@ const abilityFunctions = {
   CHILL_OF_THE_GRAVE: (dispatch, character, target) => {
     const damage = 6 + character.stats.arcana.spellPower;
     changeHealth(dispatch, target, "DAMAGE", damage, "ICE");
+    playSoundEffect(false, "magic", "iceCrackFreeze")
     changeStatusEffect(dispatch, target, "ADD", CONDITIONS.CHILLED);
   },
 };

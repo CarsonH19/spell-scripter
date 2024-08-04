@@ -16,6 +16,7 @@ import { checkSkillPoints } from "./spellbook-util";
 import statusEffectFunctions from "./status-effect-functions";
 import { constructStats } from "./dungeon-util";
 import updateStatTotals from "../store/stats-actions";
+import playSoundEffect from "./audio-util";
 
 let quickTimeEventResolver;
 
@@ -84,6 +85,13 @@ export default async function castSpell(dispatch, spell) {
             castChainLightning(dispatch, target, damage);
           } else {
             // Firebolt - Frostbite - Shock
+            if (spell.name === "Firebolt") {
+              playSoundEffect(false, "magic", "magicSpellImpact");
+            } else if (spell.name === "Frostbite") {
+              playSoundEffect(false, "magic", "iceCrackFreeze");
+            } else if (spell.name === "Shock") {
+              // playSoundEffect(false, "magic", "magicSpellHit2") NOTE
+            }
             changeHealth(dispatch, target, "DAMAGE", damage, spell.damageType);
           }
         }
@@ -219,6 +227,7 @@ export default async function castSpell(dispatch, spell) {
 //                     SPELL FUNCTIONS
 // =============================================================
 function castFireball(dispatch, enemies, damage) {
+  playSoundEffect(false, "magic", "magicSpellHit2");
   for (let i = 0; i < enemies.length; i++) {
     changeHealth(dispatch, enemies[i], "DAMAGE", damage, "FIRE");
   }
@@ -259,6 +268,7 @@ function castChainLightning(dispatch, target, damage) {
 }
 
 function castBlizzard(dispatch, enemies) {
+  playSoundEffect(false, "magic", "iceCrackFreeze");
   for (let i = 0; i < enemies.length; i++) {
     changeStatusEffect(dispatch, enemies[i], "ADD", CONDITIONS.CHILLED);
   }

@@ -22,6 +22,8 @@ import { uiActions } from "../../store/ui-slice";
 import { addCharacterToOrder } from "../../util/misc-util";
 import { dungeonActions } from "../../store/dungeon-slice";
 import eventFunctions from "../../util/event-functions";
+import { playMusic } from "../../data/audio/music";
+import { backgroundMusic } from "../../data/audio/music";
 
 export default function GameWindow() {
   const dispatch = useDispatch();
@@ -29,6 +31,7 @@ export default function GameWindow() {
 
   useEffect(() => {
     handleGameFlow(dispatch);
+    // playMusic(backgroundMusic.returnOfTheFallen);
   }, [dungeon.roomCounter]);
 
   return (

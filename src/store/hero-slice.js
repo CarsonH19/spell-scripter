@@ -80,7 +80,7 @@ const heroSlice = createSlice({
         },
         audio: {
           spawn: "",
-          attack: [true, "fireMagicAttack"],
+          attack: [true, "magic", "magicSpellImpact"],
           death: [true, "fightGrunt"],
         },
         level: 7,

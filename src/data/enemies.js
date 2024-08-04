@@ -170,7 +170,7 @@ const UNDEAD = {
     type: ENEMY_TYPES.UNDEAD,
     audio: {
       spawn: [false, "spawn", "boneCrunchCrack1"],
-      attack: [true, "iceMagicAttack"],
+      attack: [false, "magic", "iceCrackFreeze"],
       death: [true, "boneBreak"],
     },
     level: 2,

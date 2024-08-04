@@ -1,29 +1,12 @@
 import { soundPaths } from "../data/audio/sound-effects";
 
-// const SoundManager = {
-//   playBackgroundMusic(name) {
-//     if (backgroundMusic[name]) {
-//       backgroundMusic[name].play();
-//     }
-//   },
-//   stopBackgroundMusic(name) {
-//     if (backgroundMusic[name]) {
-//       backgroundMusic[name].stop();
-//     }
-//   },
-//   playSoundEffect(category, soundName) {
-//     console.log(soundPaths);
-//     console.log(category);
-//     console.log(soundName);
+//
+//  MUSIC
+//
 
-//     console.log(soundPaths.category.soundName);
-
-//     if (soundPaths[category][soundName]) {
-//       console.log("YES");
-//       soundPaths[category][soundName].play();
-//     }
-//   },
-// };
+//
+//  SOUND EFFECTS
+//
 
 export default async function playSoundEffect(getSound, category, name = null) {
   // Get a random sound from the category

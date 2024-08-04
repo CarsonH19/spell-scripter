@@ -21,6 +21,7 @@ import { addCharacterToOrder, getImageFromList } from "./misc-util";
 import { dialogueActions } from "../store/dialogue-slice";
 import changeStatusEffect from "../store/status-effect-actions";
 import CONDITIONS from "../data/conditions";
+import playSoundEffect from "./audio-util";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {
@@ -30,6 +31,8 @@ const eventFunctions = {
     dispatch(logActions.updateLogs({ change: "CLEAR" }));
 
     createNewRoom(dispatch);
+
+    playSoundEffect(false, "misc", "whooshLowAir");
   },
   TRAP: async (dispatch, stat) => {
     const order = store.getState().combat.order;
@@ -67,6 +70,17 @@ const eventFunctions = {
       if (eventName === "Poison Darts" || eventName === "Poisonous Mist") {
         changeStatusEffect(dispatch, player, "ADD", CONDITIONS.POISONED);
       }
+    }
+
+    //Audio
+    if (eventName === "Poison Darts" && !success) {
+      playSoundEffect(false, "bowAttack", "bulletsImpactFlesh26");
+    }
+    if (eventName === "Poison Darts" && success) {
+      playSoundEffect(false, "bowAttack", "bulletsPassBy4");
+    }
+    if (eventName === "Poisonous Mist") {
+      playSoundEffect(false, "event", "gasLeakHose3");
     }
 
     await delay(4000);
@@ -361,7 +375,6 @@ const eventFunctions = {
     if (choice === "Trade") {
       await checkForDialogue(dispatch, "response", choice);
       openModal(dispatch, "tradeModal");
-
     } else if (choice === "Leave") {
       // await delay(2000);
       await checkForDialogue(dispatch, "after", choice);

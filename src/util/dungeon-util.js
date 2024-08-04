@@ -24,6 +24,9 @@ import { checkForActiveQuest } from "./quest-util";
 import { getImageFromList } from "./misc-util";
 import { getTraderItems } from "../components/Modals/Trade/TradeModal";
 import { getRandomCooldown } from "./misc-util";
+import { playMusic } from "../data/audio/music";
+import { backgroundMusic } from "../data/audio/music";
+import { currentMusic } from "../data/audio/music";
 
 export function setDungeon(dispatch, dungeonName) {
   let dungeon = {
@@ -53,7 +56,7 @@ export function setDungeon(dispatch, dungeonName) {
       dungeon.threat = 0;
       dungeon.image =
         "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance";
-      // dungeon.music = '' // Dungeon entrance music
+      // dungeon.music =
       dungeon.contents; // add Entrance event
       break;
   }
@@ -107,6 +110,10 @@ export function createNewRoom(dispatch) {
 
     case "EXIT PATH":
       newRoom.contents.event = getPathExit();
+  }
+
+  if (getRoomMusic(newRoom) !== currentMusic) {
+    playMusic(getRoomMusic(newRoom));
   }
 
   // Get background after room contents have been determined
@@ -551,4 +558,68 @@ function getPathExit() {
     case "Thieves' Ruin":
       return PATH_EXIT.THIEVES_RUIN_EXIT;
   }
+}
+
+// =====================================================================
+//                         BACKGROUND MUSIC
+// =====================================================================
+
+function getRoomMusic(dungeon) {
+  let music;
+
+  // Use general dungeon images
+  switch (dungeon.name) {
+    case "The Great Catacomb":
+      music = backgroundMusic.basementNightmare;
+      break;
+  }
+
+  // Check for path specific backgrounds (replaces dungeon imageList)
+  if (dungeon.path) {
+    switch (dungeon.path) {
+      case "Wailing Warrens":
+        break;
+
+      case "Thieves' Ruin":
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  // Check for event specific backgrounds (replaces dungeon & path imageList)
+  if (dungeon.contents.event) {
+    switch (dungeon.contents.event.name) {
+      //THE GREAT CATACOMBS
+      case "Gravestone":
+        break;
+
+      case "Coffin":
+        break;
+
+      case "Bonevault":
+        break;
+
+      case "Unlocking Liheth":
+      case "Candlelight Shrine":
+        break;
+
+      // WAILING WARRENS
+      case "Wailing Warrens":
+        break;
+
+      case "Wailing Warrens Exit":
+        break;
+
+      // THIEVES RUIN
+      case "Laughing Coffin":
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  return music;
 }

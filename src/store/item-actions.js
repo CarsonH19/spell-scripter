@@ -6,6 +6,7 @@ import { combatActions } from "./combat-slice";
 import changeStatusEffect from "./status-effect-actions";
 import { itemFunctions } from "../util/item-functions";
 import updateStatTotals from "./stats-actions";
+import playSoundEffect from "../util/audio-util";
 
 export default async function activateItem(dispatch, item) {
   console.log("CALLED");
@@ -80,6 +81,8 @@ export default async function activateItem(dispatch, item) {
             combatActions.changePlayerInventory({ item, change: "REMOVE" })
           );
         }
+
+        if (item.audio) playSoundEffect(...item.audio);
       }
       break;
 

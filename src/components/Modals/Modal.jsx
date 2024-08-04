@@ -24,20 +24,25 @@ import AttributeModal from "./Attribute/AttributeModal";
 
 import store from "../../store";
 import PartyModal from "./Party/PartyModal";
+import playSoundEffect from "../../util/audio-util";
 
 export default function Modal() {
   const dispatch = useDispatch();
   const activeModal = selectModal();
   const ui = useSelector((state) => state.ui);
   const continueCheck = findActiveModal(ui);
-  
+
   const handleClose = () => {
     // Render continue button when RoomSummaryModal is closed
     if (continueCheck === "roomSummaryModal") {
-      dispatch(uiActions.changeUi({ element: "continueIsVisible", visible: true }));
+      dispatch(
+        uiActions.changeUi({ element: "continueIsVisible", visible: true })
+      );
     }
 
-    dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false })); 
+    // Audio
+
+    dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
   };
 
   return createPortal(
@@ -64,22 +69,24 @@ function selectModal() {
     case "heroesModal":
       return <HeroesModal />;
 
-    case "inventoryModal": 
+    case "inventoryModal":
+      playSoundEffect(false, "inventory", "cameraBag2");
       return <InventoryModal />;
-    
+
     case "questsModal":
       return <QuestsModal />;
 
     case "spellbookModal":
       return <SpellbookModal />;
 
-    case "tomesModal": 
-      return <TomesModal tome={tome}/>;
+    case "tomesModal":
+      return <TomesModal tome={tome} />;
 
     case "dungeonTomesModal":
-      return <DungeonTomesModal />
+      return <DungeonTomesModal />;
 
     case "roomSummaryModal":
+      playSoundEffect(false, "misc", "hitReverbDark4");
       return <RoomSummaryModal />;
 
     case "tradeModal":
@@ -98,10 +105,10 @@ function selectModal() {
       return <QuickTimeEventModal />;
 
     case "partyModal":
-      return <PartyModal />
+      return <PartyModal />;
 
     case "attributeModal":
-      return <AttributeModal />
+      return <AttributeModal />;
   }
 }
 
