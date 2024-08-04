@@ -480,11 +480,6 @@ async function handleCallTiming(dispatch, timing, character) {
 }
 
 function attack(dispatch, character, target) {
-  // Attack audio from category
-  if (character.audio) {
-    playSoundEffect(true, character.audio.attack);
-  }
-
   const hit = rollToHit(dispatch, character, target);
   // console.log("HIT", hit);
 
@@ -496,6 +491,9 @@ function attack(dispatch, character, target) {
   );
 
   if (hit) {
+    // Attack audio
+    if (character.audio) playSoundEffect(...character.audio.attack);
+
     // PASSIVE - Liheth
     checkForPassiveAbility(dispatch, character, "DURING_COMBAT", target);
 
@@ -518,6 +516,9 @@ function attack(dispatch, character, target) {
     // Create a new slice property to show the attack outcome
     changeHealth(dispatch, target, "DAMAGE", damage, null);
   } else {
+    // Missed audio
+    if (character.audio) playSoundEffect(false, "miss", "swordSwingWhoosh");
+
     // Attack Missed!
     dispatch(
       combatActions.updateDamageDisplay({

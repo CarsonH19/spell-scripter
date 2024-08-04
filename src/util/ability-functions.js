@@ -43,6 +43,7 @@ const abilityFunctions = {
     const id = store.getState().combat.isCharacterTurn;
     const character = order.find((char) => char.id === id);
     const damage = character.stats.strength.attack;
+    playSoundEffect(...character.audio.attack);
     changeHealth(dispatch, target, "DAMAGE", damage);
     changeStatusEffect(dispatch, target, "ADD", CONDITIONS.POISONED);
   },

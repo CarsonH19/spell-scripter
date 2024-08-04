@@ -11,19 +11,19 @@ export const soundPaths = {
     swordSwingWhoosh: "src/assets/audio/sound/guard/Sword Swing Whoosh.mp3",
   },
   fleshHit: {
-    fleshHit1: "src/assets/audio/sound/enemy/Flesh Hit 1.mp3",
-    fleshHit3: "src/assets/audio/sound/enemy/Flesh Hit 3.mp3",
-    fleshHit4: "src/assets/audio/sound/enemy/Flesh Hit 4.mp3",
-    fleshHit5: "src/assets/audio/sound/enemy/Flesh Hit 5.mp3",
-    fleshHit11: "src/assets/audio/sound/enemy/Flesh Hit 11.mp3",
+    fleshHit1: "src/assets/audio/sound/Flesh Hit 1.mp3",
+    fleshHit3: "src/assets/audio/sound/Flesh Hit 3.mp3",
+    fleshHit4: "src/assets/audio/sound/Flesh Hit 4.mp3",
+    fleshHit5: "src/assets/audio/sound/Flesh Hit 5.mp3",
+    fleshHit11: "src/assets/audio/sound/Flesh Hit 11.mp3",
   },
   punch: {
-    impactPunchFace8: "src/assets/audio/sound/enemy/Impact Punch Face 8.mp3",
-    impactPunchHard: "src/assets/audio/sound/enemy/Impact Punch Hard.mp3",
-    punch1: "src/assets/audio/sound/enemy/Punch 1.mp3",
+    impactPunchFace8: "src/assets/audio/sound/Impact Punch Face 8.mp3",
+    impactPunchHard: "src/assets/audio/sound/Impact Punch Hard.mp3",
+    punch1: "src/assets/audio/sound/Punch 1.mp3",
     punchFaceMeatyFlesh:
-      "src/assets/audio/sound/enemy/Punch Face Meaty Flesh 3.mp3",
-    impactPunchBody2: "src/assets/audio/sound/enemy/Impact Punch Body 2.mp3",
+      "src/assets/audio/sound/Punch Face Meaty Flesh 3.mp3",
+    impactPunchBody2: "src/assets/audio/sound/Impact Punch Body 2.mp3",
   },
   lightWeapon: {
     knifeSliceFace: "src/assets/audio/sound/light/Knife Slice Face.mp3",
@@ -46,117 +46,66 @@ export const soundPaths = {
     axeThrowIntoBody2: "src/assets/audio/sound/heavy/Axe Throw Into Body 2.mp3",
     axeThrowIntoBody3: "src/assets/audio/sound/heavy/Axe Throw Into Body 3.mp3",
   },
-  magic: {
+  bowAttack: {
+    bulletsPassBy4: "src/assets/audio/sound/Bullets Pass By 4.mp3",
+    bulletsImpactFlesh26: "src/assets/audio/sound/Bullet Impact Flesh 26.mp3",
+  },
+  iceMagicAttack: {
+    iceCrackFreeze: "src/assets/audio/sound/Ice Crack Freeze.mp3",
+  },
+  fireMagicAttack: {
     magicSpellFire1: "src/assets/audio/sound/magic/Magic Spell Fire 1.mp3",
     magicSpellFire2: "src/assets/audio/sound/magic/Magic Spell Fire 2.mp3",
     magicSpellHit2: "src/assets/audio/sound/magic/Magic Spell Hit 2.mp3",
     magicSpellHit4: "src/assets/audio/sound/magic/Magic Spell Hit 4.mp3",
     magicSpellImpact: "src/assets/audio/sound/magic/Magic Spell Impact.mp3",
+  },
+  magic: {
     magicWandCast8: "src/assets/audio/sound/magic/Magic Wand Cast 8.mp3",
     magicWandCast14: "src/assets/audio/sound/magic/Magic Wand Cast 14.mp3",
-    magicSpellPassBy28: "src/assets/audio/sound/magic/Magic Spell Pass By 28.mp3",
+    magicSpellPassBy28:
+      "src/assets/audio/sound/magic/Magic Spell Pass By 28.mp3",
     magicSpellWhoosh2: "src/assets/audio/sound/magic/Magic Spell Whoosh 2.mp3",
     magicSpellWhoosh4: "src/assets/audio/sound/magic/Magic Spell Whoosh 4.mp3",
     magicSpellWhoosh9: "src/assets/audio/sound/magic/Magic Spell Whoosh 9.mp3",
-    magicSpellWhoosh14: "src/assets/audio/sound/magic/Magic Spell Whoosh 14.mp3",
-    magicSpellWhoosh22: "src/assets/audio/sound/magic/Magic Spell Whoosh 22.mp3",
+    magicSpellWhoosh22:
+      "src/assets/audio/sound/magic/Magic Spell Whoosh 22.mp3",
   },
-  armor: {
+  armorClankToTheGround: {
     armorMetalClanksToTheGround:
-      "src/assets/audio/sound/enemy/Armor Metal Clanks to Ground.mp3",
+      "src/assets/audio/sound/Armor Metal Clanks to Ground.mp3",
     armorMetalClanksToTheGround2:
-      "src/assets/audio/sound/enemy/Armor Metal Clanks to Ground 2.mp3",
+      "src/assets/audio/sound/Armor Metal Clanks to Ground 2.mp3",
     armorMetalClanksToTheGround3:
-      "src/assets/audio/sound/enemy/Armor Metal Clanks to Ground 3.mp3",
-    armorMetalClanksToTheGround:
-      "src/assets/audio/sound/enemy/Armor Metal Clanks to Ground.mp3",
-    armorMetalClanksToTheGround2:
-      "src/assets/audio/sound/enemy/Armor Metal Clanks to Ground 2.mp3",
-    armorMetalClanksToTheGround3:
-      "src/assets/audio/sound/enemy/Armor Metal Clanks to Ground 3.mp3",
+      "src/assets/audio/sound/Armor Metal Clanks to Ground 3.mp3",
   },
   spawn: {
+    boneCrunchCrack1: "src/assets/audio/sound/Bone Crunch Crack 1.mp3",
+    magicSpellWhoosh14:
+      "src/assets/audio/sound/magic/Magic Spell Whoosh 14.mp3",
     ratSqueak30: "src/assets/audio/sound/Rat Squeaks 30.mp3",
     ratSqueak9: "src/assets/audio/sound/Rat Squeaks 9.mp3",
     swordFromSheath3: "src/assets/audio/sound/Sword From Sheath 3.mp3",
     spiderDaddyLong1: "src/assets/audio/sound/Spider Daddy Long 1.mp3",
     spiderDaddyLong2: "src/assets/audio/sound/Spider Daddy Long 2.mp3",
     ghostAppearance1: "src/assets/audio/sound/Ghost Appearance 1.mp3",
-    enemySnarl4: "src/assets/audio/sound/enemy/Monster Snarl 41.mp3",
+    enemySnarl4: "src/assets/audio/sound/Monster Snarl 41.mp3",
+  },
+  fightGrunt: {
+    fightGrunt1: "src/assets/audio/sound/Fight Grunt 1.mp3",
+    fightGrunt2: "src/assets/audio/sound/Fight Grunt 2.mp3",
+    fightGrunt3: "src/assets/audio/sound/Fight Grunt 3.mp3",
+    fightGrunt6: "src/assets/audio/sound/Fight Grunt 6.mp3",
+  },
+  boneBreak: {
+    boneBreak: "src/assets/audio/sound/Bone Break.mp3",
+    boneBreak6: "src/assets/audio/sound/Bone Break 6.mp3",
+    boneBreak7: "src/assets/audio/sound/Bone Break 7.mp3",
+    boneBreak8: "src/assets/audio/sound/Bone Break 8.mp3",
+    spineBoneBreak1: "src/assets/audio/sound/Spine Bone Break 1.mp3",
+    spineBoneBreak2: "src/assets/audio/sound/Spine Bone Break 2.mp3",
   },
 };
-
-export function getPunchSound() {
-  let sounds = [
-    soundPaths.punch.impactPunchBody2,
-    soundPaths.punch.impactPunchFace8,
-    soundPaths.punch.impactPunchHard,
-    soundPaths.punch.punch1,
-    soundPaths.punch.punchFaceMeatyFlesh,
-  ];
-  let index = Math.floor(Math.random() * sounds.length);
-  return sounds[index];
-}
-
-export function getLightWeaponSound() {
-  let sounds = [
-    soundPaths.lightWeapon.knifeSliceFace,
-    soundPaths.lightWeapon.knifeStab,
-    soundPaths.lightWeapon.knifeStab1,
-    soundPaths.lightWeapon.knifeStabFleshWet,
-    soundPaths.lightWeapon.knifeThrowFlesh,
-    soundPaths.lightWeapon.swordDraw2,
-    soundPaths.lightWeapon.swordSlice,
-    soundPaths.lightWeapon.swordThrow,
-  ];
-  let index = Math.floor(Math.random() * sounds.length);
-  return sounds[index];
-}
-
-export function magicAttackSounds() {
-  let sounds = [
-    soundPaths.magic.magicSpellFire1,
-    soundPaths.magic.magicSpellFire2,
-    soundPaths.magic.magicSpellHit2,
-    soundPaths.magic.magicSpellHit4,
-    soundPaths.magic.magicSpellImpact,
-    soundPaths.magic.magicSpellPassBy28,
-    soundPaths.magic.magicSpellWhoosh14,
-    soundPaths.magic.magicSpellWhoosh2,
-    soundPaths.magic.magicSpellWhoosh22,
-    soundPaths.magic.magicSpellWhoosh4,
-    soundPaths.magic.magicSpellWhoosh9,
-  ];
-  let index = Math.floor(Math.random() * sounds.length);
-  return sounds[index];
-}
-
-export function magicGuardSounds() {
-  let sounds = [
-    soundPaths.magic.magicSpellPassBy28,
-    soundPaths.magic.magicSpellWhoosh14,
-    soundPaths.magic.magicSpellWhoosh2,
-    soundPaths.magic.magicSpellWhoosh22,
-    soundPaths.magic.magicSpellWhoosh4,
-    soundPaths.magic.magicSpellWhoosh9,
-  ];
-  let index = Math.floor(Math.random() * sounds.length);
-  return sounds[index];
-}
-
-// ===============================
-//        Armor Clanking
-// ===============================
-
-export function getArmorSound() {
-  let sounds = [
-    soundPaths.armor.armorMetalClanksToTheGround,
-    soundPaths.armor.armorMetalClanksToTheGround2,
-    soundPaths.armor.armorMetalClanksToTheGround3,
-  ];
-  let index = Math.floor(Math.random() * sounds.length);
-  return sounds[index];
-}
 
 // // ===============================
 // //       Player Abilities
@@ -174,61 +123,25 @@ export function getArmorSound() {
 
 // const enemySounds = {
 //   biteFleshCrunch1: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Bite Flesh Crunch 1.mp3"],
+//     src: ["src/assets/audio/sound/Bite Flesh Crunch 1.mp3"],
 //   }),
 //   biteFleshCrunch2: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Bite Flesh Crunch 2.mp3"],
+//     src: ["src/assets/audio/sound/Bite Flesh Crunch 2.mp3"],
 //   }),
 //   biteFleshCrunch4: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Bite Flesh Crunch 4.mp3"],
+//     src: ["src/assets/audio/sound/Bite Flesh Crunch 4.mp3"],
 //   }),
 //   spiderBiteFang3: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Spider Bite Fang 3.mp3"],
+//     src: ["src/assets/audio/sound/Spider Bite Fang 3.mp3"],
 //   }),
 //   spiderBiteFang4: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Spider Bite Fang 4.mp3"],
-//   }),
-//   boneBreak: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Bone Break.mp3"],
-//   }),
-//   boneBreak6: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Bone Break 6.mp3"],
-//   }),
-//   boneBreak7: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Bone Break 7.mp3"],
-//   }),
-//   boneBreak8: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Bone Break 8.mp3"],
-//   }),
-//   boneCrunchCrack1: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Bone Crunch Crack 1.mp3"],
-//   }),
-//   spineBoneBreak1: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Spine Bone Break 1.mp3"],
-//   }),
-//   spineBoneBreak2: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Spine Bone Break 2.mp3"],
-//   }),
-//   fightGrunt1: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Fight Grunt 1.mp3"],
-//   }),
-//   fightGrunt2: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Fight Grunt 2.mp3"],
-//   }),
-//   fightGrunt3: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Fight Grunt 3.mp3"],
-//   }),
-//   fightGrunt6: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Fight Grunt 6.mp3"],
+//     src: ["src/assets/audio/sound/Spider Bite Fang 4.mp3"],
 //   }),
 //   spiderWebShoot7: new Howl({
 //     src: ["src/assets/audio/sound/Spider Web Shoot 7.mp3"],
 //   }),
 //   larvaEggHatch4: new Howl({
 //     src: ["src/assets/audio/sound/Larva Egg Hatch 4.mp3"],
-//   }),
-//   iceCrackFreeze: new Howl({
-//     src: ["src/assets/audio/sound/Ice Crack Freeze.mp3"],
 //   }),
 //   fleshRip1: new Howl({
 //     src: ["src/assets/audio/sound/Flesh Rip 1.mp3"],
@@ -285,7 +198,7 @@ export function getArmorSound() {
 //     src: ["src/assets/audio/sound/Ghost Shriek Whoosh.mp3"],
 //   }),
 //   monsterSnarl3: new Howl({
-//     src: ["src/assets/audio/sound/enemy/Monster Snarl 38.mp3"],
+//     src: ["src/assets/audio/sound/Monster Snarl 38.mp3"],
 //   }),
 // };
 
@@ -338,12 +251,6 @@ export function getArmorSound() {
 //   }),
 //   ratsSqueak: new Howl({
 //     src: ["src/assets/audio/sound/Rats Squeak.mp3"],
-//   }),
-//   bulletsPassBy4: new Howl({
-//     src: ["src/assets/audio/sound/Bullets Pass By 4.mp3"],
-//   }),
-//   bulletsImpactFlesh26: new Howl({
-//     src: ["src/assets/audio/sound/Bullet Impact Flesh 26.mp3"],
 //   }),
 //   crashRockStone: new Howl({
 //     src: ["src/assets/audio/sound/Crash Rock Stone.mp3"],

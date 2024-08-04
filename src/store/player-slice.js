@@ -18,6 +18,11 @@ const playerSlice = createSlice({
       return `${this.image}-icon`;
     },
     damageDisplay: "",
+    audio: {
+      spawn: "",
+      attack: [true, "punch"],
+      death: [true, "fightGrunt"],
+    },
     level: 3,
     masteryPoints: 4,
     totalMasteryPoints: 4,

@@ -14,6 +14,7 @@ import statusEffectFunctions from "../util/status-effect-functions";
 import progressActiveQuests from "../util/quest-util";
 import { checkIfAttuned } from "../util/item-functions";
 import updateStatTotals from "./stats-actions";
+import playSoundEffect from "../util/audio-util";
 
 export async function changeHealth(
   dispatch,
@@ -205,6 +206,8 @@ export async function checkForDeath(dispatch, id) {
 
   // Enemies & Heroes
   if (character.currentHealth <= 0 && character.identifier !== "PLAYER") {
+    // Death Audio
+    if (character.audio) playSoundEffect(...character.audio.death);
     // Check if enemy should be added to dungeon-slice for roomSummaryModal "Enemies Defeated"
     if (character.identifier === "ENEMY") {
       const dungeonEnemies = store.getState().dungeon.contents.enemies;
@@ -228,5 +231,3 @@ export async function checkForDeath(dispatch, id) {
     }, 2000);
   }
 }
-
-

@@ -38,7 +38,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      spawn: [false, "spawn", "boneCrunchCrack1"],
+      attack: [true, "lightWeapon"],
+      death: [true, "boneBreak"],
+    },
     level: 1,
     currentHealth: 10,
     currentMana: 0,
@@ -72,7 +76,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      spawn: [false, "spawn", "boneCrunchCrack1"],
+      attack: [true, "heavyWeapon"],
+      death: [true, "boneBreak"],
+    },
     level: 2,
     currentHealth: 40,
     currentMana: 0,
@@ -113,7 +121,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      spawn: [false, "spawn", "boneCrunchCrack1"],
+      attack: [true, "bowAttack"],
+      death: [true, "boneBreak"],
+    },
     level: 2,
     currentHealth: 20,
     currentMana: 0,
@@ -156,7 +168,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      spawn: [false, "spawn", "boneCrunchCrack1"],
+      attack: [true, "iceMagicAttack"],
+      death: [true, "boneBreak"],
+    },
     level: 2,
     currentHealth: 30,
     currentMana: 0,
@@ -515,9 +531,9 @@ const THIEVES = {
     },
     type: ENEMY_TYPES.HUMANOID,
     audio: {
-      spawn: "swordFromSheath3",
-      attack: "lightWeapon",
-      death: "getFightGruntSound",
+      spawn: [false, "spawn", "swordFromSheath3"],
+      attack: [true, "lightWeapon"],
+      death: [true, "fightGrunt"],
     },
     level: 2,
     currentHealth: 20,

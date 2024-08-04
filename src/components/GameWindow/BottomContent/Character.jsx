@@ -29,8 +29,8 @@ export default function Character({ character }) {
 
   // Play spawn audio
   useEffect(() => {
-    if (character.audio) {
-      playSoundEffect(false, "spawn", character.audio.spawn);
+    if (character.identifier === "ENEMY" && character.audio) {
+      playSoundEffect(...character.audio.spawn);
     }
   }, []);
 

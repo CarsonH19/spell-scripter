@@ -35,7 +35,6 @@ export default async function playSoundEffect(getSound, category, name = null) {
 
   // Play a specific sound in a category
   if (!getSound) {
-    console.log("CALLING SOUND", name);
     const sound = await loadSound(category, name);
     sound.play();
   }
