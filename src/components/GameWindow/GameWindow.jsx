@@ -6,33 +6,26 @@ import BottomContent from "./BottomContent/BottomContent";
 import MiddleContent from "./MiddleContent/MiddleContent";
 import TopContent from "./TopContent/TopContent";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { startCombat } from "../../store/combat-actions";
 import Buttons from "./Buttons/Buttons";
-import checkForDialogue, {
-  // setDialogues,
-  getDialogue,
-} from "../../util/dialogue-util";
+import checkForDialogue from "../../util/dialogue-util";
 
-import handleDialogue from "../../util/dialogue-util";
 import { logActions } from "../../store/log-slice";
-import { uiActions } from "../../store/ui-slice";
 import { addCharacterToOrder } from "../../util/misc-util";
 import { dungeonActions } from "../../store/dungeon-slice";
 import eventFunctions from "../../util/event-functions";
-import { playMusic } from "../../data/audio/music";
-import { backgroundMusic } from "../../data/audio/music";
 import playSoundEffect from "../../util/audio-util";
 
 export default function GameWindow() {
+  const [showBottom, setShowBottom] = useState(true);
   const dispatch = useDispatch();
   const dungeon = useSelector((state) => state.dungeon);
 
   useEffect(() => {
-    handleGameFlow(dispatch);
-    // playMusic(backgroundMusic.returnOfTheFallen);
+    handleGameFlow(dispatch, setShowBottom);
   }, [dungeon.roomCounter]);
 
   return (
@@ -44,25 +37,29 @@ export default function GameWindow() {
     >
       <TopContent />
       <MiddleContent />
-      <BottomContent />
-      <Buttons />
+      {showBottom && <BottomContent />}
+      {showBottom && <Buttons />}
     </div>
   );
 }
 
-async function handleGameFlow(dispatch) {
+async function handleGameFlow(dispatch, setShowBottom) {
   const dungeon = store.getState().dungeon;
   const event = store.getState().dungeon.contents.event;
 
   // Narrate dungeon name on entrance
   if (dungeon.roomCounter === 0) {
+    setShowBottom(false);
     await locationNarration(dispatch, dungeon.name);
   }
 
   // Narrate path name on entrance
   if (dungeon.path && dungeon.pathCounter === 10) {
+    setShowBottom(false);
     await locationNarration(dispatch, dungeon.path);
   }
+
+  setShowBottom(true);
 
   // Handle Combat
   if (!event) {

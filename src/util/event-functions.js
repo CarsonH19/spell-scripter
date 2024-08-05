@@ -23,16 +23,15 @@ import changeStatusEffect from "../store/status-effect-actions";
 import CONDITIONS from "../data/conditions";
 import playSoundEffect from "./audio-util";
 
+import { roomTransition } from "../components/GameWindow/MiddleContent/MiddleContent";
+
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {
-  DUNGEON_ENTRANCE_ENTER: (dispatch) => {
+  DUNGEON_ENTRANCE_ENTER: async (dispatch) => {
+    await roomTransition(dispatch);
     // Clear any lingering narrations
     dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
     dispatch(logActions.updateLogs({ change: "CLEAR" }));
-
-    createNewRoom(dispatch);
-
-    playSoundEffect(false, "misc", "whooshLowAir");
   },
   TRAP: async (dispatch, stat) => {
     const order = store.getState().combat.order;

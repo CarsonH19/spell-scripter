@@ -603,6 +603,7 @@ function getRoomMusic(dungeon) {
 
       case "Unlocking Liheth":
       case "Candlelight Shrine":
+        music = backgroundMusic.mindReading;
         break;
 
       // WAILING WARRENS
@@ -614,6 +615,7 @@ function getRoomMusic(dungeon) {
 
       // THIEVES RUIN
       case "Laughing Coffin":
+        music = backgroundMusic.unfinishedBusiness;
         break;
 
       default:

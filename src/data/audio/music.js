@@ -32,6 +32,8 @@ export const musicPaths = {
   droneDarkHor1: "src/assets/audio/music/Drone Dark Hor 1.mp3",
   droneDarkMys24: "src/assets/audio/music/Drone Dark Mys 24.mp3",
   heartbeatFastLow: "src/assets/audio/sound-effects/Heartbeat Fast Low.mp3",
+  intangibleAscension:
+    "src/assets/audio/music/Intangible Ascension - Laura Platt.mp3",
 };
 
 const loadSound = (src, options = {}) => {
@@ -95,6 +97,8 @@ export const backgroundMusic = {
     loadSound(musicPaths.droneDarkMys24, { loop: true, volume: 0 }),
   heartbeatFastLow: () =>
     loadSound(musicPaths.heartbeatFastLow, { loop: true, volume: 0 }),
+  intangibleAscension: () =>
+    loadSound(musicPaths.intangibleAscension, { loop: true, volume: 0 }),
 };
 
 const FADE_DURATION = 2000; // Duration of the fade in milliseconds
@@ -104,10 +108,15 @@ export const playMusic = (musicFunc) => {
     currentMusic.fade(currentMusic.volume(), 0, FADE_DURATION);
     currentMusic.once("fade", () => {
       currentMusic.stop();
+      // Start the new music only after the current music has stopped
+      currentMusic = musicFunc();
+      currentMusic.play();
+      currentMusic.fade(0, 0.2, FADE_DURATION); // Fade in to volume 0.2
     });
+  } else {
+    // If there is no current music, just play the new music
+    currentMusic = musicFunc();
+    currentMusic.play();
+    currentMusic.fade(0, 0.2, FADE_DURATION); // Fade in to volume 0.2
   }
-
-  currentMusic = musicFunc();
-  currentMusic.play();
-  currentMusic.fade(0, 0.05, FADE_DURATION); // Fade in to volume 0.5
 };

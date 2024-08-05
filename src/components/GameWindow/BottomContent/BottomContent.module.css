@@ -5,6 +5,7 @@
   justify-content: space-between; 
   align-items: center;
   /* border: 9px solid red; */
+  transition: all 0.3s ease-in-out;
 }
 
 .bottom .test {

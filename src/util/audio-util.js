@@ -8,7 +8,7 @@ export default async function playSoundEffect(
   getSound,
   category,
   name = null,
-  volume = 0.5
+  volume = 1.0
 ) {
   // Get a random sound from the category
   if (getSound) {

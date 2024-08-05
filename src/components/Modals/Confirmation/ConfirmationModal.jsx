@@ -21,6 +21,7 @@ import { checkSkillPoints } from "../../../util/spellbook-util";
 import { createArcaneShield } from "../../../util/skills";
 import { openModal } from "../../../store/ui-actions";
 import playSoundEffect from "../../../util/audio-util";
+import { backgroundMusic, playMusic } from "../../../data/audio/music";
 
 export default function ConfirmationModal() {
   const dispatch = useDispatch();
@@ -249,11 +250,10 @@ export default function ConfirmationModal() {
 function toSnakeCase(str) {
   return str.toUpperCase().replace(/\s+/g, "_");
 }
-
 async function enterDungeonTransition(dispatch, characters) {
   await dispatch(uiActions.updateFade({ change: "CALL" }));
   playSoundEffect(false, "ui", "GUIMenuButton");
-
+  playMusic(backgroundMusic.mazeHeist);
   await delay(3000);
   dispatch(
     uiActions.changeUi({ element: "eventOptionsAreVisible", visible: false })
@@ -268,7 +268,6 @@ async function enterDungeonTransition(dispatch, characters) {
   dispatch(
     uiActions.changeUi({ element: "gameWindowIsVisible", visible: true })
   );
-
   // Add the characters array to the combat-slice order
   dispatch(combatActions.setInitiative({ characters }));
 

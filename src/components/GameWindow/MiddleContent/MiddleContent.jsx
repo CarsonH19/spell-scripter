@@ -40,7 +40,7 @@ export default function MiddleContent() {
   );
 }
 
-async function roomTransition(dispatch) {
+export async function roomTransition(dispatch) {
   await dispatch(uiActions.updateFade({ change: "CALL" }));
   playSoundEffect(false, "misc", "whooshLowAir");
   await delay(3000);

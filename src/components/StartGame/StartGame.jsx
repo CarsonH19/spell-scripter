@@ -8,16 +8,19 @@ import CONSUMABLES from "../../data/consumables";
 import EQUIPMENT from "../../data/equipment";
 import MISC_ITEMS from "../../data/misc-items";
 import { v4 as uuidv4 } from "uuid";
-import SoundManager from "../../util/audio-util";
+import { backgroundMusic, playMusic } from "../../data/audio/music";
 
 export default function StartGame() {
   const dispatch = useDispatch();
 
+  // Start Dashboard Music
+  playMusic(backgroundMusic.intangibleAscension);
+
   const handleStart = () => {
     startTransition(dispatch);
 
-    // Start Dashboard Music
-    // SoundManager.playBackgroundMusic("mazeHeist");
+    // // Start Dashboard Music
+    // playMusic(backgroundMusic.intangibleAscension);
 
     // TEST CODE FOR INVENTORY
     let test = 9;

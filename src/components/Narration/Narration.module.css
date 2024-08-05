@@ -38,9 +38,38 @@
 }
 
 .narration .announcement p {
-  font-size: 4rem;
+  font-size: 6rem;
   color: var(--text);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: 600;
   text-align: center;
+  animation: fadeInAndOut 4s ease-in-out;
+}
+
+@keyframes fadeInAndOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+
+.fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+.fade-in {
+  animation: fadeIn 1s forwards;
 }
