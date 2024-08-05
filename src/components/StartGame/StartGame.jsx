@@ -13,14 +13,11 @@ import { backgroundMusic, playMusic } from "../../data/audio/music";
 export default function StartGame() {
   const dispatch = useDispatch();
 
-  // Start Dashboard Music
-  // playMusic(backgroundMusic.intangibleAscension);
-
   const handleStart = () => {
     startTransition(dispatch);
 
     // // Start Dashboard Music
-    // playMusic(backgroundMusic.intangibleAscension);
+    playMusic(backgroundMusic.intangibleAscension);
 
     // TEST CODE FOR INVENTORY
     let test = 9;
@@ -98,28 +95,14 @@ export default function StartGame() {
 
     dispatch(
       playerActions.changeInventory({
-        item: { ...CONSUMABLES.LAUGHING_COFFIN_COIN, id: uuidv4() },
+        item: { ...MISC_ITEMS.LAUGHING_COFFIN_COIN, id: uuidv4() },
         change: "ADD",
       })
     );
 
     dispatch(
       playerActions.changeInventory({
-        item: { ...CONSUMABLES.LAUGHING_COFFIN_COIN, id: uuidv4() },
-        change: "ADD",
-      })
-    );
-
-    dispatch(
-      playerActions.changeInventory({
-        item: { ...CONSUMABLES.LAUGHING_COFFIN_COIN, id: uuidv4() },
-        change: "ADD",
-      })
-    );
-
-    dispatch(
-      playerActions.changeInventory({
-        item: { ...CONSUMABLES.LAUGHING_COFFIN_COIN, id: uuidv4() },
+        item: { ...MISC_ITEMS.LAUGHING_COFFIN_COIN, id: uuidv4() },
         change: "ADD",
       })
     );

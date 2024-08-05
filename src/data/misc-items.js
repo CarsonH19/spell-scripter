@@ -16,6 +16,16 @@ const MISC_ITEMS = {
     destination: 3,
     // soundEffect: chewCrackersMouth,
   },
+  LAUGHING_COFFIN_COIN: {
+    name: "Laughing Coffin Coin",
+    description: "",
+    image: "src/assets/images/items/consumables/laughing-coffin-coin.jpg",
+    type: "CONSUMABLE",
+    rarity: "Rare",
+    useInCombat: false,
+    effect: [""],
+    audio: [false, "item", "coinFlipLand"],
+  },
 };
 
 export default MISC_ITEMS;

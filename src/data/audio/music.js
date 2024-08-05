@@ -34,6 +34,8 @@ export const musicPaths = {
   heartbeatFastLow: "src/assets/audio/sound-effects/Heartbeat Fast Low.mp3",
   intangibleAscension:
     "src/assets/audio/music/Intangible Ascension - Laura Platt.mp3",
+  warningSignal: "src/assets/audio/music/Warning Signal - Max Anson.mp3",
+  migrano: "src/assets/audio/music/Migrano - Max Anson.mp3",
 };
 
 const loadSound = (src, options = {}) => {
@@ -99,6 +101,9 @@ export const backgroundMusic = {
     loadSound(musicPaths.heartbeatFastLow, { loop: true, volume: 0 }),
   intangibleAscension: () =>
     loadSound(musicPaths.intangibleAscension, { loop: true, volume: 0 }),
+  migrano: () => loadSound(musicPaths.migrano, { loop: true, volume: 0 }),
+  warningSignal: () =>
+    loadSound(musicPaths.warningSignal, { loop: true, volume: 0 }),
 };
 
 const FADE_DURATION = 2000; // Duration of the fade in milliseconds

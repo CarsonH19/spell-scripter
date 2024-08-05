@@ -281,16 +281,6 @@ const CONSUMABLES = {
     effect: ["-2 Hit Chance for all enemies."],
     audio: [false, "item", "gulpingWater24"],
   },
-  LAUGHING_COFFIN_COIN: {
-    name: "Laughing Coffin Coin",
-    description: "",
-    image: "src/assets/images/items/consumables/laughing-coffin-coin.jpg",
-    type: "CONSUMABLE",
-    rarity: "Rare",
-    useInCombat: false,
-    effect: [""],
-    audio: [false, "item", "gulpingWater24"],
-  },
   // ====================================================================
   //                             WISPS
   // ====================================================================

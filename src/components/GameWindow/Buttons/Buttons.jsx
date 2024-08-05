@@ -17,9 +17,8 @@ import {
 export default function Buttons() {
   const dispatch = useDispatch();
   const isDialogue = useSelector((state) => state.dialogue.active);
-
   // Unable to access inventory while in danger
-  const danger = useSelector((state) => state.dungeon.danger);
+  const isDanger = useSelector((state) => state.dungeon.danger);
 
   const handleOpenModal = (modal) => {
     openModal(dispatch, modal);
@@ -31,8 +30,8 @@ export default function Buttons() {
         <FontAwesomeIcon
           className={classes.icon}
           icon={faToolbox}
-          disabled={danger}
           onClick={() => handleOpenModal("inventoryModal")}
+          style={isDanger ? { pointerEvents: "none", opacity: 0.6 } : {}}
         />
         <FontAwesomeIcon
           className={classes.icon}

@@ -5,6 +5,9 @@ import classes from "./SettingsModal.module.css";
 import { uiActions } from "../../../store/ui-slice";
 import { logActions } from "../../../store/log-slice";
 import { dungeonActions } from "../../../store/dungeon-slice";
+import playSoundEffect from "../../../util/audio-util";
+import { playMusic } from "../../../data/audio/music";
+import { backgroundMusic } from "../../../data/audio/music";
 
 export default function SettingsModal() {
   const dispatch = useDispatch();
@@ -39,6 +42,8 @@ async function exitDungeonTransition(dispatch) {
     uiActions.changeUi({ element: "eventOptionsAreVisible", visible: false })
   );
   await delay(3000);
+
+  playMusic(backgroundMusic.intangibleAscension);
   // Open dashboard
   dispatch(
     uiActions.changeUi({ element: "dashboardIsVisible", visible: true })

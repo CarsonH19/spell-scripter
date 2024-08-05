@@ -61,9 +61,9 @@ const eventFunctions = {
     }
 
     const success = trapSuccessChance(dispatch, player, difficulty, stat);
+    const eventName = dungeon.contents.event.name;
 
     if (!success) {
-      const eventName = dungeon.contents.event.name;
       changeHealth(dispatch, player, "DAMAGE", damage);
 
       if (eventName === "Poison Darts" || eventName === "Poisonous Mist") {

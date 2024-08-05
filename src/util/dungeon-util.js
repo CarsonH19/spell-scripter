@@ -112,9 +112,11 @@ export function createNewRoom(dispatch) {
       newRoom.contents.event = getPathExit();
   }
 
-  // if (getRoomMusic(newRoom) !== currentMusic) {
-  //   playMusic(getRoomMusic(newRoom));
-  // }
+  if (getRoomMusic(newRoom)._src !== currentMusic._src) {
+    console.log("CURRENT MUSIC", currentMusic._src);
+    console.log("NEW MUSIC");
+    playMusic(getRoomMusic(newRoom));
+  }
 
   // Get background after room contents have been determined
   newRoom.image = getRoomImage(newRoom);
@@ -570,7 +572,18 @@ function getRoomMusic(dungeon) {
   // Use general dungeon images
   switch (dungeon.name) {
     case "The Great Catacomb":
-      music = backgroundMusic.basementNightmare;
+      {
+        const musicList = [
+          backgroundMusic.weCantStopThem,
+          backgroundMusic.passedDanger,
+          backgroundMusic.finalBrigade,
+          backgroundMusic.migrano,
+          backgroundMusic.warningSignal,
+        ];
+
+        const index = Math.floor(Math.random() * musicList.length);
+        music = musicList[index];
+      }
       break;
   }
 

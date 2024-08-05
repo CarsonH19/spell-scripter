@@ -253,7 +253,7 @@ function toSnakeCase(str) {
 async function enterDungeonTransition(dispatch, characters) {
   await dispatch(uiActions.updateFade({ change: "CALL" }));
   playSoundEffect(false, "ui", "GUIMenuButton");
-  // playMusic(backgroundMusic.mazeHeist);
+  playMusic(backgroundMusic.mazeHeist);
   await delay(3000);
   dispatch(
     uiActions.changeUi({ element: "eventOptionsAreVisible", visible: false })

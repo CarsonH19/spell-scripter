@@ -2,6 +2,7 @@ import CONSUMABLES from "./consumables";
 import EQUIPMENT from "./equipment";
 import { getImageFromList } from "../util/misc-util";
 import CONDITIONS from "./conditions";
+import MISC_ITEMS from "./misc-items";
 
 const ENEMY_TYPES = {
   HOUND: "HOUND",
@@ -39,7 +40,7 @@ const UNDEAD = {
     },
     type: ENEMY_TYPES.UNDEAD,
     audio: {
-      spawn: [true, "ghoulBeast", null, 0.7],
+      spawn: [true, "undeadSpawn", null, 0.5],
       attack: [true, "lightWeapon"],
       death: [true, "boneBreak"],
     },
@@ -77,7 +78,7 @@ const UNDEAD = {
     },
     type: ENEMY_TYPES.UNDEAD,
     audio: {
-      spawn: [true, "ghoulBeast", null, 0.7],
+      spawn: [true, "undeadSpawn", null, 0.5],
       attack: [true, "heavyWeapon", null, 0.5],
       death: [true, "boneBreak"],
     },
@@ -122,7 +123,7 @@ const UNDEAD = {
     },
     type: ENEMY_TYPES.UNDEAD,
     audio: {
-      spawn: [true, "ghoulBeast", null, 0.7],
+      spawn: [true, "undeadSpawn", null, 0.5],
       attack: [true, "bowAttack"],
       death: [true, "boneBreak"],
     },
@@ -169,7 +170,7 @@ const UNDEAD = {
     },
     type: ENEMY_TYPES.UNDEAD,
     audio: {
-       spawn: [true, "ghoulBeast", null, 0.7],
+      spawn: [true, "undeadSpawn", null, 0.5],
       attack: [false, "magic", "iceCrackFreeze"],
       death: [true, "boneBreak"],
     },
@@ -565,7 +566,9 @@ const THIEVES = {
       { item: EQUIPMENT.PLAGUEBORN_HANDWRAPS, probability: 0.01 },
       { item: EQUIPMENT.RING_OF_AMBUSH, probability: 0.02 },
       { item: EQUIPMENT.WHISPERING_DAGGER, probability: 0.02 },
-      { item: null, probability: 0.85 },
+      { item: MISC_ITEMS.LAUGHING_COFFIN_COIN, probability: 0.15 },
+
+      { item: null, probability: 0.70 },
     ],
   },
 };
