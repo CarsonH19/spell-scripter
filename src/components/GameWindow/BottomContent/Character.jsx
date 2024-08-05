@@ -181,7 +181,9 @@ export default function Character({ character }) {
       // }}
     >
       <img src={`${character.image}.png`} alt={character.name} />
-      {showDamage && <p>{character.damageDisplay}</p>}{" "}
+      {showDamage && (
+        <p className={classes["damage-display"]}>{character.damageDisplay}</p>
+      )}
     </div>
   );
 

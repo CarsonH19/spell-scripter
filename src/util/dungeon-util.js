@@ -112,9 +112,9 @@ export function createNewRoom(dispatch) {
       newRoom.contents.event = getPathExit();
   }
 
-  if (getRoomMusic(newRoom) !== currentMusic) {
-    playMusic(getRoomMusic(newRoom));
-  }
+  // if (getRoomMusic(newRoom) !== currentMusic) {
+  //   playMusic(getRoomMusic(newRoom));
+  // }
 
   // Get background after room contents have been determined
   newRoom.image = getRoomImage(newRoom);

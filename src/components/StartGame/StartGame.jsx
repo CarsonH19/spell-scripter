@@ -14,7 +14,7 @@ export default function StartGame() {
   const dispatch = useDispatch();
 
   // Start Dashboard Music
-  playMusic(backgroundMusic.intangibleAscension);
+  // playMusic(backgroundMusic.intangibleAscension);
 
   const handleStart = () => {
     startTransition(dispatch);

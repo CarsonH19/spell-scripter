@@ -408,7 +408,12 @@ export async function startCombat(dispatch) {
     })
   );
 
-  await delay(2000);
+  for (let i = 0; i < room.contents.enemies.length; i++) {
+    console.log(...room.contents.enemies[i].audio.spawn);
+    playSoundEffect(...room.contents.enemies[i].audio.spawn);
+  }
+
+  await delay(4000);
 
   // Clear Narrative
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));

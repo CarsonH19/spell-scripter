@@ -39,7 +39,7 @@ const UNDEAD = {
     },
     type: ENEMY_TYPES.UNDEAD,
     audio: {
-      spawn: [false, "spawn", "boneCrunchCrack1"],
+      spawn: [true, "ghoulBeast", null, 0.7],
       attack: [true, "lightWeapon"],
       death: [true, "boneBreak"],
     },
@@ -77,7 +77,7 @@ const UNDEAD = {
     },
     type: ENEMY_TYPES.UNDEAD,
     audio: {
-      spawn: [false, "spawn", "boneCrunchCrack1"],
+      spawn: [true, "ghoulBeast", null, 0.7],
       attack: [true, "heavyWeapon", null, 0.5],
       death: [true, "boneBreak"],
     },
@@ -122,7 +122,7 @@ const UNDEAD = {
     },
     type: ENEMY_TYPES.UNDEAD,
     audio: {
-      spawn: [false, "spawn", "boneCrunchCrack1"],
+      spawn: [true, "ghoulBeast", null, 0.7],
       attack: [true, "bowAttack"],
       death: [true, "boneBreak"],
     },
@@ -169,7 +169,7 @@ const UNDEAD = {
     },
     type: ENEMY_TYPES.UNDEAD,
     audio: {
-      spawn: [false, "spawn", "boneCrunchCrack1"],
+       spawn: [true, "ghoulBeast", null, 0.7],
       attack: [false, "magic", "iceCrackFreeze"],
       death: [true, "boneBreak"],
     },

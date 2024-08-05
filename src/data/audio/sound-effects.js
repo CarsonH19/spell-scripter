@@ -94,6 +94,21 @@ export const soundPaths = {
     ghostAppearance1: "src/assets/audio/sound/Ghost Appearance 1.mp3",
     enemySnarl4: "src/assets/audio/sound/Monster Snarl 41.mp3",
   },
+  // Undead Spawn
+  ghoulBeast: {
+    ghoulBeast1:
+      "src/assets/audio/sound/spawn/Ghoul Beast, Vocalization, Moan, Growl, Scary 01.wav",
+    ghoulBeast2:
+      "src/assets/audio/sound/spawn/Ghoul Beast, Vocalization, Moan, Growl, Scary 02.wav",
+    ghoulBeast3:
+      "src/assets/audio/sound/spawn/Ghoul Beast, Vocalization, Moan, Growl, Scary 03.wav",
+    ghoulBeast4:
+      "src/assets/audio/sound/spawn/Ghoul Beast, Vocalization, Moan, Growl, Scary 04.wav",
+    ghoulBeast5:
+      "src/assets/audio/sound/spawn/Ghoul Beast, Vocalization, Moan, Growl, Scary 05.wav",
+    ghoulBeast6:
+      "src/assets/audio/sound/spawn/Ghoul Beast, Vocalization, Moan, Growl, Scary 06.wav",
+  },
   // Humanoid death
   fightGrunt: {
     fightGrunt1: "src/assets/audio/sound/Fight Grunt 1.mp3",
