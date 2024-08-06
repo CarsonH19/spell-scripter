@@ -113,8 +113,6 @@ export function createNewRoom(dispatch) {
   }
 
   if (getRoomMusic(newRoom)._src !== currentMusic._src) {
-    console.log("CURRENT MUSIC", currentMusic._src);
-    console.log("NEW MUSIC");
     playMusic(getRoomMusic(newRoom));
   }
 
@@ -137,7 +135,7 @@ function getRoomContent() {
   switch (dungeon.name) {
     case "The Great Catacomb":
       // Event chance for general dungeon is 20%
-      if (eventChance > 100) {
+      if (eventChance > 79) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -197,26 +195,32 @@ function getRoomEvent() {
       // DUNGEON EVENTS
       if (!dungeon.path && !dungeon.following) {
         // Traps
-        // for (let i = 0; i < TRAPS.length; i++) {
-        //   events.push(TRAPS[i]);
-        // }
+        events.push(TRAPS.COLLAPSING_CEILING);
+        events.push(TRAPS.ROTATING_BLADES);
+        events.push(TRAPS.SPIKE_WALLS);
 
-        events.push(AMBUSH);
-        // events.push(COFFIN);
-        // events.push(BONEVAULT);
-        // events.push(GRAVESTONE);
+        if (dungeon.threat < 20) {
+          events.push(GRAVESTONE);
+        }
+
+        if (dungeon.threat < 20) {
+          events.push(AMBUSH);
+        }
+
+        events.push(COFFIN);
+        events.push(BONEVAULT);
 
         // // Check if Siggurd is unlocked
-        // if (!siggurd.unlocked) {
-        //   events.push(UNLOCK_HERO.SIGGURD);
-        // }
+        if (!siggurd.unlocked) {
+          events.push(UNLOCK_HERO.SIGGURD);
+        }
 
         // // Check if Liheth is unlocked
-        // if (!liheth.unlocked) {
-        //   events.push(UNLOCK_HERO.LIHETH);
-        // } else {
-        //   events.push(CANDLELIGHT_SHRINE);
-        // }
+        if (!liheth.unlocked) {
+          events.push(UNLOCK_HERO.LIHETH);
+        } else {
+          events.push(CANDLELIGHT_SHRINE);
+        }
       }
 
       // FOLLOWING EVENTS
@@ -257,11 +261,9 @@ function getRoomEvent() {
       break;
   }
 
-  // check heroes & quests
-  // check threat
+  console.log("EVENT LIST", events);
 
   // Randomly choose an event from the new array
-  console.log("EVENT_LIST", events);
   const randomIndex = Math.floor(Math.random() * events.length);
   return events[randomIndex];
 }
@@ -307,10 +309,10 @@ export function getRoomEnemies() {
     default:
       {
         enemyTypes = [
-          { enemy: UNDEAD.DECREPIT_SKELETON, probability: 0.4 },
-          { enemy: UNDEAD.SKELETAL_WARRIOR, probability: 0.2 },
-          { enemy: UNDEAD.SKELETAL_ARCHER, probability: 0.2 },
-          { enemy: UNDEAD.SKELETAL_MAGE, probability: 0.2 },
+          { enemy: UNDEAD.DECREPIT_SKELETON, probability: 0.7 },
+          { enemy: UNDEAD.SKELETAL_WARRIOR, probability: 0.1 },
+          { enemy: UNDEAD.SKELETAL_ARCHER, probability: 0.1 },
+          { enemy: UNDEAD.SKELETAL_MAGE, probability: 0.1 },
         ];
 
         // Adjust enemy types based on threat level
@@ -489,7 +491,7 @@ function getRoomImage(dungeon) {
       case "Gravestone":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/gravestone",
-          9
+          1
         );
         break;
 
@@ -591,9 +593,19 @@ function getRoomMusic(dungeon) {
   if (dungeon.path) {
     switch (dungeon.path) {
       case "Wailing Warrens":
+        {
+          const musicList = [
+            backgroundMusic.hauntedOutpost,
+            backgroundMusic.fightThrough,
+          ];
+
+          const index = Math.floor(Math.random() * musicList.length);
+          music = musicList[index];
+        }
         break;
 
       case "Thieves' Ruin":
+        music = backgroundMusic.hiddenCapacity;
         break;
 
       default:
@@ -605,13 +617,20 @@ function getRoomMusic(dungeon) {
   if (dungeon.contents.event) {
     switch (dungeon.contents.event.name) {
       //THE GREAT CATACOMBS
+      case "Ambush":
+        music = backgroundMusic.hiddenCapacity;
+        break;
+
       case "Gravestone":
+        music = backgroundMusic.pileOfBones;
         break;
 
       case "Coffin":
+        music = backgroundMusic.pileOfBones;
         break;
 
       case "Bonevault":
+        music = backgroundMusic.pileOfBones;
         break;
 
       case "Unlocking Liheth":
@@ -621,12 +640,21 @@ function getRoomMusic(dungeon) {
 
       // WAILING WARRENS
       case "Wailing Warrens":
+        music = backgroundMusic.basementNightmare;
         break;
 
       case "Wailing Warrens Exit":
+        music = backgroundMusic.basementNightmare;
         break;
 
       // THIEVES RUIN
+      case "Thieves' Ruin":
+        music = backgroundMusic.threeThousandYearsOld;
+        break;
+
+      case "Thieves' Ruin Exit":
+        music = backgroundMusic.threeThousandYearsOld;
+        break;
       case "Laughing Coffin":
         music = backgroundMusic.unfinishedBusiness;
         break;

@@ -44,8 +44,8 @@ const dungeonSlice = createSlice({
     beginPath(state, action) {
       state.path = action.payload;
       if (action.payload !== null) {
-        const rooms = Math.floor(Math.random() * 7) + 5;
-        state.pathCounter = rooms;
+        // Paths are hard set to 10 rooms 
+        state.pathCounter = 10;
       } else {
         // state.following = null;
         state.pathCounter = null;

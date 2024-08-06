@@ -53,8 +53,12 @@ async function handleGameFlow(dispatch, setShowBottom) {
     await locationNarration(dispatch, dungeon.name);
   }
 
+  console.log("NARRATION", dungeon);
+
+
   // Narrate path name on entrance
-  if (dungeon.path && dungeon.pathCounter === 10) {
+  if (dungeon.path && dungeon.pathCounter === 9) {
+    console.log("NARRATION", dungeon);
     setShowBottom(false);
     await locationNarration(dispatch, dungeon.path);
   }
@@ -91,8 +95,6 @@ async function handleGameFlow(dispatch, setShowBottom) {
       dispatch(dungeonActions.eventOutcome({ outcome: event.outcome }));
     }
 
-    // Dialogue
-
     // Narration
     dispatch(logActions.updateLogs({ change: "PAUSE" }));
     for (let i = 0; i < event.description.length; i++) {
@@ -107,6 +109,8 @@ async function handleGameFlow(dispatch, setShowBottom) {
 }
 
 async function locationNarration(dispatch, location) {
+  console.log("LOCATION NARRATION");
+  console.log(location);
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
   dispatch(logActions.updateLogs({ change: "PAUSE" }));
   await delay(2000);

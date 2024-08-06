@@ -43,7 +43,7 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: 600;
   text-align: center;
-  animation: fadeInAndOut 4s ease-in-out;
+  animation: fadeInAndOut 4.1s ease-in-out;
 }
 
 @keyframes fadeInAndOut {

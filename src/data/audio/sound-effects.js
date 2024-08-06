@@ -6,6 +6,7 @@ export const soundPaths = {
     swordImpactRock1: "src/assets/audio/sound/guard/Sword Impact Rock 1.mp3",
     swordHit4: "src/assets/audio/sound/guard/Sword Hit 4.mp3",
     swordHit7: "src/assets/audio/sound/guard/Sword Hit 7.mp3",
+    eventShield: "src/assets/audio/sound/guard/Event, Shield.mp3",
   },
   miss: {
     swordSwingWhoosh: "src/assets/audio/sound/guard/Sword Swing Whoosh.mp3",
@@ -53,6 +54,18 @@ export const soundPaths = {
     bulletsImpactFlesh26: "src/assets/audio/sound/Bullet Impact Flesh 26.mp3",
   },
   magic: {
+    barkskin: "src/assets/audio/sound/magic/barkskin.mp3",
+    barrier: "src/assets/audio/sound/magic/barrier.mp3",
+    blizzard: "src/assets/audio/sound/magic/blizzard.mp3",
+    chainLightning: "src/assets/audio/sound/magic/chain-lightning.mp3",
+    deathWard: "src/assets/audio/sound/magic/death-ward.mp3",
+    dispelMagic: "src/assets/audio/sound/magic/dispel-magic.mp3",
+    invulnerability: "src/assets/audio/sound/magic/invulnerability.mp3",
+    shell: "src/assets/audio/sound/magic/shell.mp3",
+    shock: "src/assets/audio/sound/magic/shock.mp3",
+    steelskin: "src/assets/audio/sound/magic/steelskin.mp3",
+    stoneskin: "src/assets/audio/sound/magic/stoneskin.mp3",
+    wardFromEvil: "src/assets/audio/sound/magic/ward-from-evil.mp3",
     // Skeletal Mage attack
     iceCrackFreeze: "src/assets/audio/sound/Ice Crack Freeze.mp3",
     magicSpellFire1: "src/assets/audio/sound/magic/Magic Spell Fire 1.mp3",

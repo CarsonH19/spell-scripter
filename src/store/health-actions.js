@@ -226,8 +226,8 @@ export async function checkForDeath(dispatch, id) {
     }
 
     // Removes defeated character
-    setTimeout(() => {
-      dispatch(combatActions.removeCharacter({ character }));
-    }, 2000);
+    // setTimeout(() => {
+    //   dispatch(combatActions.removeCharacter({ character }));
+    // }, 2000);
   }
 }

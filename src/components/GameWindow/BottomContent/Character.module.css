@@ -6,6 +6,7 @@
   align-items: center;
   overflow: visible;
   box-sizing: border-box; 
+  transition: opacity 1s ease-in;
 }
 
 .enemy {
@@ -38,6 +39,25 @@
     opacity: 1;
   }
 }
+
+.character-fading {
+  opacity: 0;
+  /* transition: opacity 1s ease-in; */
+}
+
+/* .character .fade-out{
+  animation: fadeOut 1s ease-in;
+  border: 1px solid red;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+} */
 
 .character img {
   width: 100%; 

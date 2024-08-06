@@ -58,7 +58,6 @@ const combatSlice = createSlice({
     },
     addCharacter(state, action) {
       const character = action.payload.character;
-      console.log(character);
       const alreadyExists = state.order.some(
         (char) => char.id === character.id
       );

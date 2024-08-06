@@ -26,13 +26,14 @@ export default function Character({ character }) {
   const isCharacterTurn = useSelector((state) => state.combat.isCharacterTurn);
 
   const [showDamage, setShowDamage] = useState(false);
+  const [isFadingOut, setIsFadingOut] = useState(false);
 
   // Play spawn audio
-  useEffect(() => {
-    if (character.identifier === "ENEMY" && character.audio) {
-      playSoundEffect(...character.audio.spawn);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (character.identifier === "ENEMY" && character.audio) {
+  //     playSoundEffect(...character.audio.spawn);
+  //   }
+  // }, []);
 
   // Update damage display
   useEffect(() => {
@@ -73,6 +74,17 @@ export default function Character({ character }) {
       setTarget(character);
     }
   };
+
+  // Trigger fade out and removal when health reaches 0
+  useEffect(() => {
+    if (character.currentHealth <= 0) {
+      console.log("CALLEDDDDDDD", character);
+      setIsFadingOut(true);
+      setTimeout(() => {
+        dispatch(combatActions.removeCharacter({ character }));
+      }, 2000); // Duration of the fade-out animation
+    }
+  }, [character.currentHealth, dispatch, character.id]);
 
   const container = (
     <div
@@ -208,7 +220,7 @@ export default function Character({ character }) {
     <div
       className={`${classes.character} ${
         character.identifier === "ENEMY" ? classes.enemy : ""
-      }`}
+      } ${isFadingOut ? classes["character-fading"] : ""}`}
       onClick={handleSetTarget}
     >
       {content}

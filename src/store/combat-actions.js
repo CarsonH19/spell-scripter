@@ -137,6 +137,8 @@ export default async function combatLoop(dispatch) {
             case "GUARD":
               changeStatusEffect(dispatch, player, "ADD", CONDITIONS.GUARD);
 
+              playSoundEffect(false, "guard", "eventShield", 0.6);
+
               dispatch(
                 logActions.updateLogs({
                   change: "ADD",
@@ -175,8 +177,6 @@ export default async function combatLoop(dispatch) {
           ? (action = "GUARD")
           : (action = checkBehaviorAction(character));
 
-        console.log("ACTION", action);
-
         switch (action) {
           case "ATTACK":
             {
@@ -187,6 +187,8 @@ export default async function combatLoop(dispatch) {
           case "GUARD":
             // Adds the Guarding condition to the character's active status effects
             changeStatusEffect(dispatch, character, "ADD", CONDITIONS.GUARD);
+
+            playSoundEffect(false, "guard", "eventShield", 0.6);
 
             dispatch(
               logActions.updateLogs({
