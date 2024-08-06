@@ -461,6 +461,9 @@ async function handleCallTiming(dispatch, timing, character) {
       }
       break;
     case "END_OF_TURN":
+      // Set isCharacterTurn to null
+      dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
+
       // Check status effects that call functions at the end of the character's turn
       callStatusEffect(dispatch, character, "END TURN");
 
@@ -470,8 +473,8 @@ async function handleCallTiming(dispatch, timing, character) {
     case "END_OF_ROUND":
       break;
     case "AFTER_COMBAT":
-      // Set isCharacterTurn to null
-      dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
+      // // Set isCharacterTurn to null
+      // dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
 
       // Check if effect durations are rounds/actions and remove them from player & heroes
       for (let i = 0; i < order.length; i++) {
@@ -524,7 +527,7 @@ function attack(dispatch, character, target) {
     changeHealth(dispatch, target, "DAMAGE", damage, null);
   } else {
     // Missed audio
-    if (character.audio) playSoundEffect(false, "miss", "swordSwingWhoosh");
+    if (character.audio) playSoundEffect(false, "miss", "swordSwingWhoosh", 0.7);
 
     // Attack Missed!
     dispatch(

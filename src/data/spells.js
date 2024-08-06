@@ -56,7 +56,7 @@ const SPELLS = {
       name: "Fireball",
       school: `Apprentice Evocation`,
       image: "src/assets/images/spellbook/evocation/fireball.png",
-      audio: [false, "magic", "fireball"],
+      audio: [false, "magic", "fireball", 0.6],
       castTime: "DURING COMBAT",
       spellTarget: "ENEMIES",
       spellType: "HIT",

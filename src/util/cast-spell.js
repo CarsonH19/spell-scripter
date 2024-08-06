@@ -218,6 +218,9 @@ export default async function castSpell(dispatch, spell) {
   if (spell.audio) {
     playSoundEffect(...spell.audio);
   }
+
+  // Set isCharacterTurn to null
+  dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
 }
 
 // =============================================================

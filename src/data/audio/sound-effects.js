@@ -54,6 +54,10 @@ export const soundPaths = {
     bulletsImpactFlesh26: "src/assets/audio/sound/Bullet Impact Flesh 26.mp3",
   },
   magic: {
+    shock: "src/assets/audio/sound/magic/shock.mp3",
+    frostbite: "src/assets/audio/sound/magic/frostbite.mp3",
+    fireball: "src/assets/audio/sound/magic/fireball.mp3",
+    firebolt: "src/assets/audio/sound/magic/meteor.mp3",
     meteor: "src/assets/audio/sound/magic/meteor.mp3",
     barkskin: "src/assets/audio/sound/magic/barkskin.mp3",
     barrier: "src/assets/audio/sound/magic/barrier.mp3",
