@@ -219,7 +219,7 @@ const spellbookSlice = createSlice({
           max: 3,
         },
         {
-          name: "Ward From Evil",
+          name: "Protect From Evil",
           image: "src/assets/images/spellbook/abjuration/ward-from-evil.png",
           type: "Spell",
           // description: spells-descriptions.js

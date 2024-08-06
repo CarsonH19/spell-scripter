@@ -135,7 +135,7 @@ const SPELLS = {
       statusEffect: {
         name: "Bark Skin",
         display: true,
-        image: "",
+        image: "src/assets/images/spellbook/abjuration/bark-skin.png",
         description: "The target's skin gains the durability of bark.",
         effect: ["Defense +1"],
         durationType: "ROOM",
@@ -159,7 +159,7 @@ const SPELLS = {
       statusEffect: {
         name: "Barrier",
         display: true,
-        image: "",
+        image: "src/assets/images/spellbook/abjuration/barrier.png",
         description:
           "The next instance of damage received by the target will be halved.",
         effect: ["Damage -50%"],
@@ -180,7 +180,7 @@ const SPELLS = {
       statusEffect: {
         name: "Boundless",
         display: true,
-        image: "",
+        image: "src/assets/images/spellbook/abjuration/boundless.png",
         description: "The target cannot be Restrained.",
         effect: ["Restrained Immunity"],
         durationType: "ROOM",
@@ -200,7 +200,7 @@ const SPELLS = {
       statusEffect: {
         name: "Death Ward",
         display: true,
-        image: "",
+        image: "src/assets/images/spellbook/abjuration/death-ward.png",
         description:
           "If the target takes damage and would fall to 0HP, it instead retains 1HP and the spell ends.",
         effect: [""],
@@ -221,7 +221,7 @@ const SPELLS = {
       manaCost: 10,
     },
     {
-      name: "Ward From Evil",
+      name: "Protect From Evil",
       school: "Apprentice Abjuration",
       image: "src/assets/images/spellbook/abjuration/ward-from-evil.png",
       audio: [false, "magic", "wardFromEvil", 1.2],
@@ -241,7 +241,7 @@ const SPELLS = {
       statusEffect: {
         name: "Stone Skin",
         display: true,
-        image: "",
+        image: "src/assets/images/spellbook/abjuration/stone-skin.png",
         description: "The target's skin gains the durability of stone.",
         effect: ["Defense +2"],
         durationType: "ROOM",
@@ -265,7 +265,7 @@ const SPELLS = {
       statusEffect: {
         name: "Shell",
         display: true,
-        image: "",
+        image: "src/assets/images/spellbook/abjuration/shell.png",
         description:
           "All instances of damage received by the target will be halved.",
         effect: ["Damage -50%"],
@@ -286,7 +286,7 @@ const SPELLS = {
       statusEffect: {
         name: "Steel Skin",
         display: true,
-        image: "",
+        image: "src/assets/images/spellbook/abjuration/steel-skin.png",
         description: "The target's skin gains the durability of steel.",
         effect: ["Defense +3"],
         durationType: "ROOM",
@@ -310,7 +310,7 @@ const SPELLS = {
       statusEffect: {
         name: "Invulnerability",
         display: true,
-        image: "",
+        image: "src/assets/images/spellbook/abjuration/invulnerability.png",
         description: "The target cannot be damaged.",
         effect: ["Damage -100%"],
         durationType: "ROUND",
@@ -328,14 +328,14 @@ const SPELLS = {
       name: "Conjure Weapon",
       school: `Novice Conjuration`,
       image: "src/assets/images/spellbook/conjuration/conjure-weapon.png",
-      audio: [false, "magic", "conjure"],
+      audio: [false, "magic", "conjure", 1.2],
       castTime: "ANYTIME",
       spellTarget: "ALLY",
       spellType: "BUFF",
       statusEffect: {
         name: "Conjure Weapon",
         display: true,
-        image: "",
+        image: "src/assets/images/spellbook/conjuration/conjure-weapon.png",
         description: "The target has equipped a conjured magical weapon.",
         effect: ["+2 Attack"],
         durationType: "ROOM",
@@ -363,14 +363,14 @@ const SPELLS = {
       name: "Conjure Feast",
       school: `Novice Conjuration`,
       image: "src/assets/images/spellbook/conjuration/conjure-feast.png",
-      audio: [false, "magic", "conjure"],
+      audio: [false, "magic", "conjure", 1.2],
       castTime: "BEFORE COMBAT",
       spellTarget: "ALLIES",
       spellType: "BUFF",
       statusEffect: {
         name: "Conjure Feast",
         display: true,
-        image: "",
+        image: "src/assets/images/spellbook/conjuration/conjure-feast.png",
         description: "The target is well fed.",
         effect: ["+4 HP Regeneration"],
         durationType: "ROOM",
@@ -387,7 +387,7 @@ const SPELLS = {
       name: "Conjure Key",
       school: `Apprentice Conjuration`,
       image: "src/assets/images/spellbook/conjuration/conjure-key.png",
-      audio: [false, "magic", "conjure"],
+      audio: [false, "magic", "conjure", 1.2],
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "ITEM",
@@ -419,7 +419,7 @@ const SPELLS = {
     {
       name: "Summon Golem",
       school: `Adept Conjuration`,
-      image: "src/assets/images/spellbook/conjuration/summon-golem.png",
+      image: "src/assets/images/spellbook/conjuration/summon-stone-golem.png",
       audio: [false, "magic", "summon"],
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
@@ -431,7 +431,7 @@ const SPELLS = {
       name: "Conjure Portal",
       school: `Adept Conjuration`,
       image: "src/assets/images/spellbook/conjuration/conjure-portal.png",
-      audio: [false, "magic", "conjure"],
+      audio: [false, "magic", "conjure", 1.2],
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "SUMMON",

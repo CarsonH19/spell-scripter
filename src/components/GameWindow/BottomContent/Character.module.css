@@ -113,8 +113,12 @@
   height: 100%; 
   overflow: visible;
   opacity: 1;
-
 }
+
+/* .character:has(.turn) .image { 
+  border-bottom: 0.4rem solid var(--accent);
+} */
+
 
 .character:has(.highlighted) .container {
   transition: 0.3s ease-in;

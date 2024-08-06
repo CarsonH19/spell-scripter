@@ -27,7 +27,8 @@ export default function Actions() {
   // Dialogue - is dialogue.active the action are not rendered
   const isDialogue = useSelector((state) => state.dialogue.active);
   // isQTE - is the player in a QTE
-  const isQTE = useSelector((state) => state.ui.modal.quickTimeEventModal);
+  const isModal = useSelector((state) => state.ui.modalIsVisible);
+
   // Player
   const player = findCharacterById();
   // Event
@@ -240,7 +241,7 @@ export default function Actions() {
   if (event) {
     return;
   } else {
-    return !isDialogue && !isQTE && content;
+    return !isDialogue && !isModal && content;
   }
 }
 

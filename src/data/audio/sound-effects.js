@@ -54,6 +54,7 @@ export const soundPaths = {
     bulletsImpactFlesh26: "src/assets/audio/sound/Bullet Impact Flesh 26.mp3",
   },
   magic: {
+    meteor: "src/assets/audio/sound/magic/meteor.mp3",
     barkskin: "src/assets/audio/sound/magic/barkskin.mp3",
     barrier: "src/assets/audio/sound/magic/barrier.mp3",
     blizzard: "src/assets/audio/sound/magic/blizzard.mp3",
@@ -87,6 +88,8 @@ export const soundPaths = {
     magicSpellWhoosh9: "src/assets/audio/sound/magic/Magic Spell Whoosh 9.mp3",
     magicSpellWhoosh22:
       "src/assets/audio/sound/magic/Magic Spell Whoosh 22.mp3",
+    conjure: "src/assets/audio/sound/magic/conjure.mp3",
+    summon: "src/assets/audio/sound/magic/summon.mp3",
   },
   armorClankToTheGround: {
     armorMetalClanksToTheGround:
