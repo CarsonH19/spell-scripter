@@ -33,15 +33,15 @@ export default function Modal() {
   const continueCheck = findActiveModal(ui);
 
   const handleClose = () => {
+
     // Render continue button when RoomSummaryModal is closed
     if (continueCheck === "roomSummaryModal") {
       dispatch(
         uiActions.changeUi({ element: "continueIsVisible", visible: true })
       );
+    } else {
+      playSoundEffect(false, "ui", "softs2", 0.7);
     }
-
-    // Audio
-    playSoundEffect(false, "ui", "softs2", 0.7);
 
     dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
   };
@@ -66,7 +66,12 @@ function selectModal() {
   // Passed as a prop to the tomeModal
   const tome = store.getState().ui.tome;
 
-  playSoundEffect(false, "ui", "softs", 0.7);
+  if (
+    activeModal !== "roomSummaryModal" &&
+    activeModal !== "quickTimeEventModal"
+  ) {
+    playSoundEffect(false, "ui", "softs", 0.7);
+  }
 
   switch (activeModal) {
     case "heroesModal":
@@ -104,6 +109,7 @@ function selectModal() {
       return <ConfirmationModal />;
 
     case "quickTimeEventModal":
+      playSoundEffect(false, "misc", "qteStart", 1);
       return <QuickTimeEventModal />;
 
     case "partyModal":

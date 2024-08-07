@@ -29,11 +29,11 @@ export default function Character({ character }) {
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   // Play spawn audio
-  // useEffect(() => {
-  //   if (character.identifier === "ENEMY" && character.audio) {
-  //     playSoundEffect(...character.audio.spawn);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (character.identifier === "ENEMY" && character.audio) {
+      playSoundEffect(...character.audio.spawn);
+    }
+  }, []);
 
   // Update damage display
   useEffect(() => {

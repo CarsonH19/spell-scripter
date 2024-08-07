@@ -17,6 +17,7 @@ import statusEffectFunctions from "./status-effect-functions";
 import { constructStats } from "./dungeon-util";
 import updateStatTotals from "../store/stats-actions";
 import playSoundEffect from "./audio-util";
+import { dungeonActions } from "../store/dungeon-slice";
 
 let quickTimeEventResolver;
 
@@ -178,6 +179,9 @@ export default async function castSpell(dispatch, spell) {
       }
       break;
     case "ALLIES": // all allies including the player targeted
+      if (spell.name === "Protect From Evil") {
+        castProtectFromEvil(dispatch, player, spell);
+      }
       break;
 
     case "SELF": // only the player is targeted
@@ -190,7 +194,7 @@ export default async function castSpell(dispatch, spell) {
 
     case "CONJURE":
       {
-        if (spell.spellType === "SUMMON") {
+        if (spell.spellType && spell.spellType === "SUMMON") {
           const baseStats = constructStats(spell.summon.stats);
           let summon = {
             ...spell.summon,
@@ -226,6 +230,11 @@ export default async function castSpell(dispatch, spell) {
 // =============================================================
 //                     SPELL FUNCTIONS
 // =============================================================
+
+// =============================================================
+//                     EVOCATION SPELLS
+// =============================================================
+
 function castFireball(dispatch, enemies, damage) {
   for (let i = 0; i < enemies.length; i++) {
     changeHealth(dispatch, enemies[i], "DAMAGE", damage, "FIRE");
@@ -301,6 +310,15 @@ function castMeteor(dispatch, enemies, damage) {
     changeHealth(dispatch, enemies[i], "DAMAGE", damage, "FIRE");
     changeStatusEffect(dispatch, enemies[i], "ADD", CONDITIONS.BURNING);
   }
+}
+
+// =============================================================
+//                     ABJURATION SPELLS
+// =============================================================
+
+function castProtectFromEvil(dispatch, player, spell) {
+  dispatch(dungeonActions.removeThreat(10));
+  changeStatusEffect(dispatch, player, "ADD", spell.statusEffect);
 }
 
 function calculateManaCost(spell) {

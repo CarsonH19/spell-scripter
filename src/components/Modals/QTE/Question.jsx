@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { QUESTIONS } from "../../../data/questions";
 import { tomeActions } from "../../../store/tome-slice.js";
 import { dungeonActions } from "../../../store/dungeon-slice.js";
+import playSoundEffect from "../../../util/audio-util.js";
 
 export default function Question({ questionIndex, tomeIndex }) {
   const [answer, setAnswer] = useState({
@@ -38,6 +39,8 @@ export default function Question({ questionIndex, tomeIndex }) {
       const isCorrect = question.answers[0] === selectedAnswer;
 
       if (isCorrect) {
+        // Audio
+        playSoundEffect(false, "misc", "correct");
         // Mark question as answered
         dispatch(tomeActions.answerQuestion({ tomeIndex, questionIndex }));
         // Check if a new tome should be unlocked (50%)
@@ -48,6 +51,9 @@ export default function Question({ questionIndex, tomeIndex }) {
 
       // Check if answer is wrong and increment threat
       if (!isCorrect) {
+        // Audio
+        playSoundEffect(false, "misc", "incorrect");
+
         dispatch(dungeonActions.addThreat(1));
       }
 

@@ -446,7 +446,9 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      death: [false, "death", "wispDeath"],
+    },
     level: 1,
     currentHealth: 0,
     currentMana: 0,
@@ -472,7 +474,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      spawn: [true, "shadowSpawn", null, 0.8],
+      attack: [true, "ghostAttack", null],
+      death: [false, "death", "shadowDeath"],
+    },
     level: 2,
     currentHealth: 10,
     currentMana: 0,
@@ -498,7 +504,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      spawn: [true, "shadowSpawn", null, 0.8],
+      attack: [true, "ghostAttack", null],
+      death: [false, "death", "bansheeDeath"],
+    },
     level: 3,
     currentHealth: 0,
     currentMana: 0,
@@ -568,7 +578,7 @@ const THIEVES = {
       { item: EQUIPMENT.WHISPERING_DAGGER, probability: 0.02 },
       { item: MISC_ITEMS.LAUGHING_COFFIN_COIN, probability: 0.15 },
 
-      { item: null, probability: 0.70 },
+      { item: null, probability: 0.7 },
     ],
   },
 };

@@ -44,7 +44,7 @@ const dungeonSlice = createSlice({
     beginPath(state, action) {
       state.path = action.payload;
       if (action.payload !== null) {
-        // Paths are hard set to 10 rooms 
+        // Paths are hard set to 10 rooms
         state.pathCounter = 10;
       } else {
         // state.following = null;
@@ -82,8 +82,14 @@ const dungeonSlice = createSlice({
       state.contents.items.push(action.payload);
     },
     addThreat(state, action) {
-      // action payload = value to increase
       state.threat += action.payload;
+    },
+    removeThreat(state, action) {
+      state.threat -= action.payload;
+
+      if (state.threat <= 0) {
+        state.threat = 0;
+      }
     },
     incrementRoomCounter(state) {
       state.roomCounter++;

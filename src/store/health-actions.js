@@ -87,18 +87,27 @@ export async function changeHealth(
     value = value * multiplier;
   }
 
-  // Weaknesses & Resistances
   if (change === "DAMAGE") {
+      // Weaknesses
     for (let i = 0; i < target.weaknesses.length; i++) {
       if (target.weaknesses[i] === damageType) {
         value = value * 1.5;
       }
     }
 
+    // Resistances
     for (let i = 0; i < target.resistances.length; i++) {
       if (target.resistances[i] === damageType) {
         value = value * 0.5;
       }
+    }
+
+    // SKILL - Arcane Shield - Remove temp. HP
+    const arcaneShield = checkSkillPoints("Arcane Shield");
+    if (arcaneShield && target.id === "Player") {
+      const arcaneShieldFunction = statusEffectFunctions["ARCANE_SHIELD"];
+      arcaneShieldFunction(dispatch, null, target, "REMOVE", value);
+      return;
     }
   }
 
@@ -137,14 +146,6 @@ export async function changeHealth(
   // SPELL - Invulnerability
   if (checkCurrentStatusEffects(target, "Invulnerability")) {
     value = value * 0;
-  }
-
-  // SKILL - Arcane Shield - Remove temp. HP
-  const arcaneShield = checkSkillPoints("Arcane Shield");
-  if (arcaneShield && target.id === "Player") {
-    const arcaneShieldFunction = statusEffectFunctions["ARCANE_SHIELD"];
-    arcaneShieldFunction(dispatch, null, target, "REMOVE", value);
-    return;
   }
 
   // ITEM - Wraithbane

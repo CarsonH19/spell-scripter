@@ -59,7 +59,7 @@ const spellDescriptions = {
     return `Dispel a random magical effect on an enemy that is making it more powerful.`;
   },
   PROTECT_FROM_EVIL: () => {
-    return `Place a ward on an ally protecting it from evil. Undead creatures that attack the target will have an increased chance to miss their attacks.`;
+    return `Place a ward the party that protects against evil. Your current threat is reduced by 10 for 3 rooms.`;
   },
   STONE_SKIN: () => {
     return `Give an ally the durability of stone, increasing the target's Defense +2 for 3 rounds.`;

@@ -251,47 +251,63 @@ const eventFunctions = {
 
         const difficulty = Math.floor(Math.random() * 4);
 
+        // Opened bonevault and enemies are present
         if (difficulty > 0) {
           playMusic(backgroundMusic.warningSignal);
-        }
 
-        if (dungeon.threat > 50) {
-          enemyGroup = [
-            UNDEAD.DEATH_KNIGHT,
-            UNDEAD.DEATH_KNIGHT,
-            UNDEAD.GRAVE_WITCH,
-          ];
-        } else if (dungeon.threat > 40) {
-          enemyGroup = [UNDEAD.GRAVE_WITCH, UNDEAD.BONE_TITAN, UNDEAD.REAPER];
-        } else if (dungeon.threat > 30) {
-          enemyGroup = [UNDEAD.BONE_TITAN, UNDEAD.REAPER, UNDEAD.CORPSE_ORACLE];
-        } else if (dungeon.threat > 20) {
-          enemyGroup = [UNDEAD.CORPSE_ORACLE, UNDEAD.SKELETAL_MAGE, BONE_TITAN];
-        } else if (dungeon.threat > 10) {
-          enemyGroup = [
-            UNDEAD.CORPSE_ORACLE,
-            UNDEAD.SKELETAL_MAGE,
-            UNDEAD.SKELETAL_ARCHER,
-            UNDEAD.SKELETAL_WARRIOR,
-          ];
+          if (dungeon.threat > 50) {
+            enemyGroup = [
+              UNDEAD.DEATH_KNIGHT,
+              UNDEAD.DEATH_KNIGHT,
+              UNDEAD.GRAVE_WITCH,
+            ];
+          } else if (dungeon.threat > 40) {
+            enemyGroup = [UNDEAD.GRAVE_WITCH, UNDEAD.BONE_TITAN, UNDEAD.REAPER];
+          } else if (dungeon.threat > 30) {
+            enemyGroup = [
+              UNDEAD.BONE_TITAN,
+              UNDEAD.REAPER,
+              UNDEAD.CORPSE_ORACLE,
+            ];
+          } else if (dungeon.threat > 20) {
+            enemyGroup = [
+              UNDEAD.CORPSE_ORACLE,
+              UNDEAD.SKELETAL_MAGE,
+              BONE_TITAN,
+            ];
+          } else if (dungeon.threat > 10) {
+            enemyGroup = [
+              UNDEAD.CORPSE_ORACLE,
+              UNDEAD.SKELETAL_MAGE,
+              UNDEAD.SKELETAL_ARCHER,
+              UNDEAD.SKELETAL_WARRIOR,
+            ];
+          } else {
+            enemyGroup = [
+              UNDEAD.DECREPIT_SKELETON,
+              UNDEAD.DECREPIT_SKELETON,
+              UNDEAD.SKELETAL_MAGE,
+              UNDEAD.SKELETAL_ARCHER,
+              UNDEAD.SKELETAL_WARRIOR,
+            ];
+          }
+
+          for (let i = 0; i < difficulty; i++) {
+            const index = Math.floor(Math.random() * enemyGroup.length);
+            enemies.push(enemyGroup[index]);
+          }
+
+          // Add enemies to dungeon
+          for (let i = 0; i < enemies.length; i++) {
+            addCharacterToOrder(dispatch, enemies[i]);
+          }
+
+          await delay(2000);
+          startCombat(dispatch);
+          // Opened bonevault but no enemies are present
         } else {
-          enemyGroup = [
-            UNDEAD.DECREPIT_SKELETON,
-            UNDEAD.DECREPIT_SKELETON,
-            UNDEAD.SKELETAL_MAGE,
-            UNDEAD.SKELETAL_ARCHER,
-            UNDEAD.SKELETAL_WARRIOR,
-          ];
-        }
-
-        for (let i = 0; i < difficulty; i++) {
-          const index = Math.floor(Math.random() * enemyGroup.length);
-          enemies.push(enemyGroup[index]);
-        }
-
-        // Add enemies to dungeon
-        for (let i = 0; i < enemies.length; i++) {
-          addCharacterToOrder(dispatch, enemies[i]);
+          await delay(2000);
+          openModal(dispatch, "roomSummaryModal");
         }
 
         dispatch(
@@ -302,9 +318,6 @@ const eventFunctions = {
 
         console.log("BONEVAULT DIFFICULTY", difficulty);
         console.log("BONEVAULT ENEMIES", enemies);
-
-        await delay(4000);
-        startCombat(dispatch);
       }
     } else if (choice === "Leave") {
       dispatch(

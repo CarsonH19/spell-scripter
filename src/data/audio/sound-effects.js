@@ -1,6 +1,9 @@
 import { Howl } from "howler";
 
 export const soundPaths = {
+  // ===============================
+  //           MISS
+  // ===============================
   guard: {
     severMetalHit2: "src/assets/audio/sound/guard/Sever Metal Hit 2.mp3",
     swordImpactRock1: "src/assets/audio/sound/guard/Sword Impact Rock 1.mp3",
@@ -11,48 +14,60 @@ export const soundPaths = {
   miss: {
     swordSwingWhoosh: "src/assets/audio/sound/guard/Sword Swing Whoosh.mp3",
   },
+  // ===============================
+  //         ATTACKS
+  // ===============================
   fleshHit: {
-    fleshHit1: "src/assets/audio/sound/Flesh Hit 1.mp3",
-    fleshHit3: "src/assets/audio/sound/Flesh Hit 3.mp3",
-    fleshHit4: "src/assets/audio/sound/Flesh Hit 4.mp3",
-    fleshHit5: "src/assets/audio/sound/Flesh Hit 5.mp3",
-    fleshHit11: "src/assets/audio/sound/Flesh Hit 11.mp3",
+    fleshHit1: "src/assets/audio/sound/attacks/flesh-hit/Flesh Hit 1.mp3",
+    fleshHit3: "src/assets/audio/sound/attacks/flesh-hit/Flesh Hit 3.mp3",
+    fleshHit4: "src/assets/audio/sound/attacks/flesh-hit/Flesh Hit 4.mp3",
+    fleshHit5: "src/assets/audio/sound/attacks/flesh-hit/Flesh Hit 5.mp3",
+    fleshHit11: "src/assets/audio/sound/attacks/flesh-hit/Flesh Hit 11.mp3",
   },
   punch: {
-    impactPunchFace8: "src/assets/audio/sound/Impact Punch Face 8.mp3",
-    impactPunchHard: "src/assets/audio/sound/Impact Punch Hard.mp3",
-    punch1: "src/assets/audio/sound/Punch 1.mp3",
-    punchFaceMeatyFlesh: "src/assets/audio/sound/Punch Face Meaty Flesh 3.mp3",
-    impactPunchBody2: "src/assets/audio/sound/Impact Punch Body 2.mp3",
+    impactPunchFace8: "src/assets/audio/sound/attacks/punch/Impact Punch Face 8.mp3",
+    impactPunchHard: "src/assets/audio/sound/attacks/punch/Impact Punch Hard.mp3",
+    punch1: "src/assets/audio/sound/attacks/punch/Punch 1.mp3",
+    punchFaceMeatyFlesh: "src/assets/audio/sound/attacks/punch/Punch Face Meaty Flesh 3.mp3",
+    impactPunchBody2: "src/assets/audio/sound/attacks/punch/Impact Punch Body 2.mp3",
   },
   // Decrepit Skeleton / Thief / Riven
   lightWeapon: {
-    knifeSliceFace: "src/assets/audio/sound/light/Knife Slice Face.mp3",
-    knifeStab1: "src/assets/audio/sound/light/Knife Stab 1.mp3",
-    knifeStab: "src/assets/audio/sound/light/Knife Stab.mp3",
-    knifeStabFleshWet: "src/assets/audio/sound/light/Knife Stab Flesh Wet.mp3",
-    knifeThrowFlesh: "src/assets/audio/sound/light/Knife Throw Flesh.mp3",
-    swordSlice: "src/assets/audio/sound/light/Sword Slice.mp3",
-    swordDraw2: "src/assets/audio/sound/light/Sword Draw 2.mp3",
-    swordThrow: "src/assets/audio/sound/light/Sword Throw.mp3",
+    knifeSliceFace: "src/assets/audio/sound/attacks/light/Knife Slice Face.mp3",
+    knifeStab1: "src/assets/audio/sound/attacks/light/Knife Stab 1.mp3",
+    knifeStab: "src/assets/audio/sound/attacks/light/Knife Stab.mp3",
+    knifeStabFleshWet: "src/assets/audio/sound/attacks/light/Knife Stab Flesh Wet.mp3",
+    knifeThrowFlesh: "src/assets/audio/sound/attacks/light/Knife Throw Flesh.mp3",
+    swordSlice: "src/assets/audio/sound/attacks/light/Sword Slice.mp3",
+    swordDraw2: "src/assets/audio/sound/attacks/light/Sword Draw 2.mp3",
+    swordThrow: "src/assets/audio/sound/attacks/light/Sword Throw.mp3",
   },
   // Siggurd / Skeletal Warrior / Death Knight
   heavyWeapon: {
-    axeChopFlesh1: "src/assets/audio/sound/heavy/Axe Chop Flesh 1.mp3",
-    axeChopFlesh2: "src/assets/audio/sound/heavy/Axe Chop Flesh 2.mp3",
-    axeChopFlesh8: "src/assets/audio/sound/heavy/Axe Chop Flesh 8.mp3",
-    axeChopFlesh10: "src/assets/audio/sound/heavy/Axe Chop Flesh 10.mp3",
-    battleAxeStrike2: "src/assets/audio/sound/heavy/Battle Axe Strike 2.mp3",
-    battleAxeStrike3: "src/assets/audio/sound/heavy/Battle Axe Strike 3.mp3",
-    battleAxeThrow: "src/assets/audio/sound/heavy/Battle Axe Throw.mp3",
-    axeThrowIntoBody2: "src/assets/audio/sound/heavy/Axe Throw Into Body 2.mp3",
-    axeThrowIntoBody3: "src/assets/audio/sound/heavy/Axe Throw Into Body 3.mp3",
+    axeChopFlesh1: "src/assets/audio/sound/attacks/heavy/Axe Chop Flesh 1.mp3",
+    axeChopFlesh2: "src/assets/audio/sound/attacks/heavy/Axe Chop Flesh 2.mp3",
+    axeChopFlesh8: "src/assets/audio/sound/attacks/heavy/Axe Chop Flesh 8.mp3",
+    axeChopFlesh10: "src/assets/audio/sound/attacks/heavy/Axe Chop Flesh 10.mp3",
+    battleAxeStrike2: "src/assets/audio/sound/attacks/heavy/Battle Axe Strike 2.mp3",
+    battleAxeStrike3: "src/assets/audio/sound/attacks/heavy/Battle Axe Strike 3.mp3",
+    battleAxeThrow: "src/assets/audio/sound/attacks/heavy/Battle Axe Throw.mp3",
+    axeThrowIntoBody2: "src/assets/audio/sound/attacks/heavy/Axe Throw Into Body 2.mp3",
+    axeThrowIntoBody3: "src/assets/audio/sound/attacks/heavy/Axe Throw Into Body 3.mp3",
   },
   // Skeletal Archer - Multi-shot
   bowAttack: {
-    bulletsPassBy4: "src/assets/audio/sound/Bullets Pass By 4.mp3",
-    bulletsImpactFlesh26: "src/assets/audio/sound/Bullet Impact Flesh 26.mp3",
+    bulletsPassBy4: "src/assets/audio/sound/attacks/Bullets Pass By 4.mp3",
+    bulletsImpactFlesh26: "src/assets/audio/sound/attacks/Bullet Impact Flesh 26.mp3",
   },
+  ghostAttack: {
+    ghostAttack1: "src/assets/audio/sound/attacks/ghost/ghost-attack-1.mp3",
+    ghostAttack2: "src/assets/audio/sound/attacks/ghost/ghost-attack-2.mp3",
+    ghostAttack3: "src/assets/audio/sound/attacks/ghost/ghost-attack-3.mp3",
+    ghostAttack4: "src/assets/audio/sound/attacks/ghost/ghost-attack-4.mp3",
+  },
+  // ===============================
+  //           MAGIC
+  // ===============================
   magic: {
     shock: "src/assets/audio/sound/magic/shock.mp3",
     frostbite: "src/assets/audio/sound/magic/frostbite.mp3",
@@ -67,10 +82,9 @@ export const soundPaths = {
     dispelMagic: "src/assets/audio/sound/magic/dispel-magic.mp3",
     invulnerability: "src/assets/audio/sound/magic/invulnerability.mp3",
     shell: "src/assets/audio/sound/magic/shell.mp3",
-    shock: "src/assets/audio/sound/magic/shock.mp3",
     steelskin: "src/assets/audio/sound/magic/steelskin.mp3",
     stoneskin: "src/assets/audio/sound/magic/stoneskin.mp3",
-    wardFromEvil: "src/assets/audio/sound/magic/ward-from-evil.mp3",
+    protectFromEvil: "src/assets/audio/sound/magic/protect-from-evil.mp3",
     // Skeletal Mage attack
     iceCrackFreeze: "src/assets/audio/sound/Ice Crack Freeze.mp3",
     magicSpellFire1: "src/assets/audio/sound/magic/Magic Spell Fire 1.mp3",
@@ -103,6 +117,9 @@ export const soundPaths = {
     armorMetalClanksToTheGround3:
       "src/assets/audio/sound/Armor Metal Clanks to Ground 3.mp3",
   },
+  // ===============================
+  //            SPAWN
+  // ===============================
   spawn: {
     // Skeletons
     boneCrunchCrack1: "src/assets/audio/sound/Bone Crunch Crack 1.mp3",
@@ -132,6 +149,12 @@ export const soundPaths = {
     undeadClassic2: "src/assets/audio/sound/spawn/Undead, Classic 2.wav",
     undeadClassic2: "src/assets/audio/sound/spawn/Undead, Classic 3.wav",
   },
+  shadowSpawn: {
+    shadowSpawn1: "src/assets/audio/sound/spawn/shadow-spawn-1.wav",
+    shadowSpawn2: "src/assets/audio/sound/spawn/shadow-spawn-2.wav",
+    shadowSpawn3: "src/assets/audio/sound/spawn/shadow-spawn-3.wav",
+    shadowSpawn4: "src/assets/audio/sound/spawn/shadow-spawn-4.wav",
+  },
   // Humanoid death
   fightGrunt: {
     fightGrunt1: "src/assets/audio/sound/Fight Grunt 1.mp3",
@@ -148,12 +171,33 @@ export const soundPaths = {
     spineBoneBreak1: "src/assets/audio/sound/Spine Bone Break 1.mp3",
     spineBoneBreak2: "src/assets/audio/sound/Spine Bone Break 2.mp3",
   },
-  item: {
-    gulpingWater24: "src/assets/audio/sound/Gulping Water 24.mp3",
-    chewCrackersMouth: "src/assets/audio/sound/Chew Crackers Mouth.mp3",
-    skeletonKeyIn2: "src/assets/audio/sound/Skeleton Key In 2.mp3",
-    flameLicks2: "src/assets/audio/sound/Flame Licks 2.mp3",
+  // ===============================
+  //          STATUS EFFECTS
+  // ===============================
+  statusEffects: {
+    burning: "src/assets/audio/sound/status-effects/burning.mp3",
+    stunned: "src/assets/audio/sound/magic/shock.mp3",
   },
+  // ===============================
+  //          DEATH
+  // ===============================
+  death: {
+    wispDeath: "src/assets/audio/sound/death/wisp-death.mp3",
+    shadowDeath: "src/assets/audio/sound/death/shadow-death.mp3",
+    bansheeDeath: "src/assets/audio/sound/death/banshee-death.mp3",
+  },
+  // ===============================
+  //            ITEM
+  // ===============================
+  item: {
+    gulpingWater24: "src/assets/audio/sound/items/Gulping Water 24.mp3",
+    chewCrackersMouth: "src/assets/audio/sound/items/Chew Crackers Mouth.mp3",
+    skeletonKeyIn2: "src/assets/audio/sound/items/Skeleton Key In 2.mp3",
+    flameLicks2: "src/assets/audio/sound/items/Flame Licks 2.mp3",
+  },
+  // ===============================
+  //           EVENT
+  // ===============================
   event: {
     // Poisonous Mist
     gasLeakHose3: "src/assets/audio/sound/Gas Leak Hose 3.mp3",
@@ -161,20 +205,39 @@ export const soundPaths = {
     // Laughin Coffin
     coinFlipLand: "src/assets/audio/sound/Coin Flip Land.mp3",
   },
-  inventory: {
-    cameraBag2: "src/assets/audio/sound/misc/Camera Bag 2.mp3",
-  },
+  // inventory: {
+  //   cameraBag2: "src/assets/audio/sound/misc/Camera Bag 2.mp3",
+  // },
+  // ===============================
+  //            MISC
+  // ===============================
   misc: {
     // Continue arrow
     whooshLowAir: "src/assets/audio/sound/Whoosh Low Air.mp3",
     // RoomSummaryModal
     hitReverbDark4: "src/assets/audio/sound/misc/Hit Reverb Dark 4.mp3",
     // Choose a skill
-    shimmerCrysta: "src/assets/audio/sound/misc/Shimmer Crysta.mp3",
+    // shimmerCrysta: "src/assets/audio/sound/misc/Shimmer Crysta.mp3",
     // Dungeon & Path title
     enterDungeon: "src/assets/audio/sound/misc/enter-dungeon.mp3",
-    openCoffin: "src/assets/audio/sound/misc/open-coffin.mp3"
+    // QTE
+    openCoffin: "src/assets/audio/sound/misc/open-coffin.mp3",
+    qteStart: "src/assets/audio/sound/misc/qte-start.mp3",
+    correct: "src/assets/audio/sound/misc/correct.mp3",
+    incorrect: "src/assets/audio/sound/misc/incorrect.mp3",
   },
+  // ===============================
+  //            DIALOGUE
+  // ===============================
+  dialogue: {
+    dialogue1: "src/assets/audio/sound/misc/dialogue-1.wav",
+    dialogue2: "src/assets/audio/sound/misc/dialogue-2.wav",
+    dialogue3: "src/assets/audio/sound/misc/dialogue-3.wav",
+    dialogue4: "src/assets/audio/sound/misc/dialogue-4.wav",
+  },
+  // ===============================
+  //             UI
+  // ===============================
   ui: {
     // Attunement
     magicStone: "src/assets/audio/sound/ui/Magic Stone.mp3",
@@ -211,9 +274,9 @@ export const soundPaths = {
 //   }),
 // };
 
-// // ===============================
-// //        Enemy Sounds
-// // ===============================
+// ===============================
+//        Enemy Sounds
+// ===============================
 
 // const enemySounds = {
 //   biteFleshCrunch1: new Howl({
@@ -256,15 +319,6 @@ export const soundPaths = {
 // const monsterAttackSounds = {
 //   skullHitShovel: new Howl({
 //     src: ["src/assets/audio/sound/Skull Hit Shovel.mp3"],
-//   }),
-//   whooshGhostBy1: new Howl({
-//     src: ["src/assets/audio/sound/Whoosh Ghost By 1.mp3"],
-//   }),
-//   whooshGhostBy2: new Howl({
-//     src: ["src/assets/audio/sound/Whoosh Ghost By 2.mp3"],
-//   }),
-//   whooshGhost: new Howl({
-//     src: ["src/assets/audio/sound/Whoosh Ghost.mp3"],
 //   }),
 //   torchPassBy1: new Howl({
 //     src: ["src/assets/audio/sound/Torch Pass By 1.mp3"],

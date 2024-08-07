@@ -19,7 +19,7 @@ const SPELLS = {
     {
       name: "Firebolt",
       school: `Novice Evocation`,
-      image: "src/assets/images/spellbook/evocation/firebolt.png",
+      image: "src/assets/images/spellbook/evocation/firebolt.jpg",
       audio: [false, "magic", "firebolt"],
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
@@ -31,7 +31,7 @@ const SPELLS = {
     {
       name: "Frostbite",
       school: `Novice Evocation`,
-      image: "src/assets/images/spellbook/evocation/frostbite.png",
+      image: "src/assets/images/spellbook/evocation/frostbite.jpg",
       audio: [false, "magic", "frostbite"],
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
@@ -43,7 +43,7 @@ const SPELLS = {
     {
       name: "Shock",
       school: `Novice Evocation`,
-      image: "src/assets/images/spellbook/evocation/shock.png",
+      image: "src/assets/images/spellbook/evocation/shock.jpg",
       audio: [false, "magic", "shock", 1.2],
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
@@ -55,7 +55,7 @@ const SPELLS = {
     {
       name: "Fireball",
       school: `Apprentice Evocation`,
-      image: "src/assets/images/spellbook/evocation/fireball.png",
+      image: "src/assets/images/spellbook/evocation/fireball.jpg",
       audio: [false, "magic", "fireball", 0.6],
       castTime: "DURING COMBAT",
       spellTarget: "ENEMIES",
@@ -67,7 +67,7 @@ const SPELLS = {
     {
       name: "Chain Lightning",
       school: `Apprentice Evocation`,
-      image: "src/assets/images/spellbook/evocation/chain-lightning.png",
+      image: "src/assets/images/spellbook/evocation/chain-lightning.jpg",
       audio: [false, "magic", "chainLightning"],
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
@@ -79,7 +79,7 @@ const SPELLS = {
     {
       name: "Blizzard",
       school: `Adept Evocation`,
-      image: "src/assets/images/spellbook/evocation/blizzard.png",
+      image: "src/assets/images/spellbook/evocation/blizzard.jpg",
       audio: [false, "magic", "blizzard"],
       castTime: "DURING COMBAT",
       spellTarget: "ENEMIES",
@@ -100,7 +100,7 @@ const SPELLS = {
     {
       name: "Storm Sphere",
       school: `Adept Evocation`,
-      image: "src/assets/images/spellbook/evocation/storm-sphere.png",
+      image: "src/assets/images/spellbook/evocation/storm-sphere.jpg",
       castTime: "ANYTIME",
       spellTarget: "SELF",
       spellType: "BUFF",
@@ -110,7 +110,7 @@ const SPELLS = {
     {
       name: "Meteor",
       school: `Expert Evocation`,
-      image: "src/assets/images/spellbook/evocation/meteor.png",
+      image: "src/assets/images/spellbook/evocation/meteor.jpg",
       audio: [false, "magic", "meteor"],
       castTime: "DURING COMBAT",
       spellTarget: "ENEMIES",
@@ -127,7 +127,7 @@ const SPELLS = {
     {
       name: "Bark Skin",
       school: "Novice Abjuration",
-      image: "src/assets/images/spellbook/abjuration/bark-skin.png",
+      image: "src/assets/images/spellbook/abjuration/bark-skin.jpg",
       audio: [false, "magic", "barkskin", 1.2],
       castTime: "ANYTIME",
       spellTarget: "ALLY",
@@ -135,7 +135,7 @@ const SPELLS = {
       statusEffect: {
         name: "Bark Skin",
         display: true,
-        image: "src/assets/images/spellbook/abjuration/bark-skin.png",
+        image: "src/assets/images/spellbook/abjuration/bark-skin.jpg",
         description: "The target's skin gains the durability of bark.",
         effect: ["Defense +1"],
         durationType: "ROOM",
@@ -151,7 +151,7 @@ const SPELLS = {
     {
       name: "Barrier",
       school: "Novice Abjuration",
-      image: "src/assets/images/spellbook/abjuration/barrier.png",
+      image: "src/assets/images/spellbook/abjuration/barrier.jpg",
       audio: [false, "magic", "barrier", 1.2],
       castTime: "ANYTIME",
       spellTarget: "ALLY",
@@ -159,7 +159,7 @@ const SPELLS = {
       statusEffect: {
         name: "Barrier",
         display: true,
-        image: "src/assets/images/spellbook/abjuration/barrier.png",
+        image: "src/assets/images/spellbook/abjuration/barrier.jpg",
         description:
           "The next instance of damage received by the target will be halved.",
         effect: ["Damage -50%"],
@@ -172,7 +172,7 @@ const SPELLS = {
     {
       name: "Boundless",
       school: "Novice Abjuration",
-      image: "src/assets/images/spellbook/abjuration/boundless.png",
+      image: "src/assets/images/spellbook/abjuration/boundless.jpg",
       audio: [false, "magic", "boundless", 1.2],
       castTime: "ANYTIME",
       spellTarget: "ALLY",
@@ -180,7 +180,7 @@ const SPELLS = {
       statusEffect: {
         name: "Boundless",
         display: true,
-        image: "src/assets/images/spellbook/abjuration/boundless.png",
+        image: "src/assets/images/spellbook/abjuration/boundless.jpg",
         description: "The target cannot be Restrained.",
         effect: ["Restrained Immunity"],
         durationType: "ROOM",
@@ -192,7 +192,7 @@ const SPELLS = {
     {
       name: "Death Ward",
       school: "Apprentice Abjuration",
-      image: "src/assets/images/spellbook/abjuration/death-ward.png",
+      image: "src/assets/images/spellbook/abjuration/death-ward.jpg",
       audio: [false, "magic", "deathWard", 1.2],
       castTime: "ANYTIME",
       spellTarget: "ALLY",
@@ -200,7 +200,7 @@ const SPELLS = {
       statusEffect: {
         name: "Death Ward",
         display: true,
-        image: "src/assets/images/spellbook/abjuration/death-ward.png",
+        image: "src/assets/images/spellbook/abjuration/death-ward.jpg",
         description:
           "If the target takes damage and would fall to 0HP, it instead retains 1HP and the spell ends.",
         effect: [""],
@@ -213,7 +213,7 @@ const SPELLS = {
     {
       name: "Dispel Magic",
       school: "Apprentice Abjuration",
-      image: "src/assets/images/spellbook/abjuration/dispel-magic.png",
+      image: "src/assets/images/spellbook/abjuration/dispel-magic.jpg",
       audio: [false, "magic", "dispelMagic", 1.2],
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
@@ -223,17 +223,27 @@ const SPELLS = {
     {
       name: "Protect From Evil",
       school: "Apprentice Abjuration",
-      image: "src/assets/images/spellbook/abjuration/ward-from-evil.png",
+      image: "src/assets/images/spellbook/abjuration/protect-from-evil.jpg",
       audio: [false, "magic", "wardFromEvil", 1.2],
       castTime: "ANYTIME",
-      spellTarget: "ALLY",
+      spellTarget: "ALLIES",
       spellType: "BUFF",
+      statusEffect: {
+        name: "Protect From Evil",
+        display: true,
+        image: "src/assets/images/spellbook/abjuration/protect-from-evil.jpg",
+        description: "A ward protecting the party from evil.",
+        effect: ["Threat is reduced by 10"],
+        durationType: "ROOM",
+        duration: 3,
+        stats: {},
+      },
       manaCost: 10,
     },
     {
       name: "Stone Skin",
       school: "Apprentice Abjuration",
-      image: "src/assets/images/spellbook/abjuration/stone-skin.png",
+      image: "src/assets/images/spellbook/abjuration/stone-skin.jpg",
       audio: [false, "magic", "stoneskin", 1.2],
       castTime: "ANYTIME",
       spellTarget: "ALLY",
@@ -241,7 +251,7 @@ const SPELLS = {
       statusEffect: {
         name: "Stone Skin",
         display: true,
-        image: "src/assets/images/spellbook/abjuration/stone-skin.png",
+        image: "src/assets/images/spellbook/abjuration/stone-skin.jpg",
         description: "The target's skin gains the durability of stone.",
         effect: ["Defense +2"],
         durationType: "ROOM",
@@ -257,7 +267,7 @@ const SPELLS = {
     {
       name: "Shell",
       school: "Adept Abjuration",
-      image: "src/assets/images/spellbook/abjuration/shell.png",
+      image: "src/assets/images/spellbook/abjuration/shell.jpg",
       audio: [false, "magic", "shell", 1.2],
       castTime: "DURING COMBAT",
       spellTarget: "ALLY",
@@ -265,7 +275,7 @@ const SPELLS = {
       statusEffect: {
         name: "Shell",
         display: true,
-        image: "src/assets/images/spellbook/abjuration/shell.png",
+        image: "src/assets/images/spellbook/abjuration/shell.jpg",
         description:
           "All instances of damage received by the target will be halved.",
         effect: ["Damage -50%"],
@@ -278,7 +288,7 @@ const SPELLS = {
     {
       name: "Steel Skin",
       school: "Adept Abjuration",
-      image: "src/assets/images/spellbook/abjuration/steel-skin.png",
+      image: "src/assets/images/spellbook/abjuration/steel-skin.jpg",
       audio: [false, "magic", "steelskin", 1.2],
       castTime: "ANYTIME",
       spellTarget: "ALLY",
@@ -286,7 +296,7 @@ const SPELLS = {
       statusEffect: {
         name: "Steel Skin",
         display: true,
-        image: "src/assets/images/spellbook/abjuration/steel-skin.png",
+        image: "src/assets/images/spellbook/abjuration/steel-skin.jpg",
         description: "The target's skin gains the durability of steel.",
         effect: ["Defense +3"],
         durationType: "ROOM",
@@ -302,7 +312,7 @@ const SPELLS = {
     {
       name: "Invulnerability",
       school: "Expert Abjuration",
-      image: "src/assets/images/spellbook/abjuration/invulnerability.png",
+      image: "src/assets/images/spellbook/abjuration/invulnerability.jpg",
       audio: [false, "magic", "invulnerability", 1.2],
       castTime: "DURING COMBAT",
       spellTarget: "ALLY",
@@ -310,7 +320,7 @@ const SPELLS = {
       statusEffect: {
         name: "Invulnerability",
         display: true,
-        image: "src/assets/images/spellbook/abjuration/invulnerability.png",
+        image: "src/assets/images/spellbook/abjuration/invulnerability.jpg",
         description: "The target cannot be damaged.",
         effect: ["Damage -100%"],
         durationType: "ROUND",
@@ -327,7 +337,7 @@ const SPELLS = {
     {
       name: "Conjure Weapon",
       school: `Novice Conjuration`,
-      image: "src/assets/images/spellbook/conjuration/conjure-weapon.png",
+      image: "src/assets/images/spellbook/conjuration/conjure-weapon.jpg",
       audio: [false, "magic", "conjure", 1.2],
       castTime: "ANYTIME",
       spellTarget: "ALLY",
@@ -335,7 +345,7 @@ const SPELLS = {
       statusEffect: {
         name: "Conjure Weapon",
         display: true,
-        image: "src/assets/images/spellbook/conjuration/conjure-weapon.png",
+        image: "src/assets/images/spellbook/conjuration/conjure-weapon.jpg",
         description: "The target has equipped a conjured magical weapon.",
         effect: ["+2 Attack"],
         durationType: "ROOM",
@@ -351,7 +361,7 @@ const SPELLS = {
     {
       name: "Summon Hound",
       school: `Novice Conjuration`,
-      image: "src/assets/images/spellbook/conjuration/summon-hound.png",
+      image: "src/assets/images/spellbook/conjuration/summon-hound.jpg",
       audio: [false, "magic", "summon"],
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
@@ -362,7 +372,7 @@ const SPELLS = {
     {
       name: "Conjure Feast",
       school: `Novice Conjuration`,
-      image: "src/assets/images/spellbook/conjuration/conjure-feast.png",
+      image: "src/assets/images/spellbook/conjuration/conjure-feast.jpg",
       audio: [false, "magic", "conjure", 1.2],
       castTime: "BEFORE COMBAT",
       spellTarget: "ALLIES",
@@ -370,7 +380,7 @@ const SPELLS = {
       statusEffect: {
         name: "Conjure Feast",
         display: true,
-        image: "src/assets/images/spellbook/conjuration/conjure-feast.png",
+        image: "src/assets/images/spellbook/conjuration/conjure-feast.jpg",
         description: "The target is well fed.",
         effect: ["+4 HP Regeneration"],
         durationType: "ROOM",
@@ -386,7 +396,7 @@ const SPELLS = {
     {
       name: "Conjure Key",
       school: `Apprentice Conjuration`,
-      image: "src/assets/images/spellbook/conjuration/conjure-key.png",
+      image: "src/assets/images/spellbook/conjuration/conjure-key.jpg",
       audio: [false, "magic", "conjure", 1.2],
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
@@ -397,7 +407,7 @@ const SPELLS = {
     {
       name: "Summon Knight",
       school: `Apprentice Conjuration`,
-      image: "src/assets/images/spellbook/conjuration/summon-knight.png",
+      image: "src/assets/images/spellbook/conjuration/summon-knight.jpg",
       audio: [false, "magic", "summon"],
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
@@ -408,7 +418,7 @@ const SPELLS = {
     {
       name: "Summon Drake",
       school: `Adept Conjuration`,
-      image: "src/assets/images/spellbook/conjuration/summon-drake.png",
+      image: "src/assets/images/spellbook/conjuration/summon-drake.jpg",
       audio: [false, "magic", "summon"],
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
@@ -419,7 +429,7 @@ const SPELLS = {
     {
       name: "Summon Golem",
       school: `Adept Conjuration`,
-      image: "src/assets/images/spellbook/conjuration/summon-stone-golem.png",
+      image: "src/assets/images/spellbook/conjuration/summon-stone-golem.jpg",
       audio: [false, "magic", "summon"],
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
@@ -430,7 +440,7 @@ const SPELLS = {
     {
       name: "Conjure Portal",
       school: `Adept Conjuration`,
-      image: "src/assets/images/spellbook/conjuration/conjure-portal.png",
+      image: "src/assets/images/spellbook/conjuration/conjure-portal.jpg",
       audio: [false, "magic", "conjure", 1.2],
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
@@ -440,7 +450,7 @@ const SPELLS = {
     {
       name: "Summon Hero",
       school: `Expert Conjuration`,
-      image: "src/assets/images/spellbook/conjuration/summon-hero.png",
+      image: "src/assets/images/spellbook/conjuration/summon-hero.jpg",
       audio: [false, "magic", "summon"],
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
