@@ -3,6 +3,8 @@ import { changeHealth } from "../store/health-actions";
 
 import store from "../store/index";
 
+import { uiActions } from "../store/ui-slice";
+
 import { openModal } from "../store/ui-actions";
 import { THIEVES, UNDEAD } from "../data/enemies";
 
@@ -105,7 +107,6 @@ const eventFunctions = {
       enemy = UNDEAD["SKELETAL_WARRIOR"];
     }
 
-    console.log(chance);
     if (choice === "Open") {
       playSoundEffect(false, "misc", "openCoffin");
       getRandomLoot(dispatch);
@@ -226,21 +227,26 @@ const eventFunctions = {
       } else if (key) {
         playSoundEffect(false, "misc", "openCoffin");
         // Remove Key
-        activateItem(dispatch, key);
+        dispatch(
+          combatActions.changePlayerInventory({
+            item: key,
+            change: "REMOVE",
+          })
+        );
         // Get Random Loot
         getRandomLoot(dispatch);
 
         // Fade transition
         await dispatch(uiActions.updateFade({ change: "CALL" }));
+        await delay(2000);
 
         const newBackground = getImageFromList(
-          "src/assets/images/backgrounds/events/bonevault",
-          4
+          "src/assets/images/backgrounds/events/bonevault-room",
+          8
         );
         dispatch(dungeonActions.changeBackground(newBackground));
 
         // Fade transition
-        await delay(2000);
         await dispatch(uiActions.updateFade({ change: "CLEAR" }));
 
         const difficulty = Math.floor(Math.random() * 4);
@@ -293,6 +299,10 @@ const eventFunctions = {
             outcome: `You chose to unlock the door and enter.`,
           })
         );
+
+        console.log("BONEVAULT DIFFICULTY", difficulty);
+        console.log("BONEVAULT ENEMIES", enemies);
+
         await delay(4000);
         startCombat(dispatch);
       }

@@ -457,7 +457,7 @@ function getRoomImage(dungeon) {
     case "The Great Catacomb":
       backgroundImage = getImageFromList(
         "src/assets/images/backgrounds/the-great-catacomb/catacomb",
-        27
+        24
       );
       break;
   }
@@ -468,14 +468,14 @@ function getRoomImage(dungeon) {
       case "Wailing Warrens":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/wailing-warrens/wailing-warrens",
-          10
+          9
         );
         break;
 
       case "Thieves' Ruin":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/thieves-ruin/thieves-ruin",
-          14
+          11
         );
         break;
 
@@ -504,7 +504,7 @@ function getRoomImage(dungeon) {
 
       case "Bonevault":
         backgroundImage = getImageFromList(
-          "src/assets/images/backgrounds/events/bonevault",
+          "src/assets/images/backgrounds/events/bonevault-door",
           4
         );
         break;
@@ -513,14 +513,14 @@ function getRoomImage(dungeon) {
       case "Candlelight Shrine":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/candlelight-shrine",
-          8
+          7
         );
         break;
 
       // WAILING WARRENS
       case "Wailing Warrens":
         backgroundImage = getImageFromList(
-          "src/assets/images/backgrounds/events/wailing-warrens-entrance",
+          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-entrance",
           3
         );
         break;
@@ -533,6 +533,20 @@ function getRoomImage(dungeon) {
         break;
 
       // THIEVES RUIN
+      case "Thieves' Ruin":
+        backgroundImage = getImageFromList(
+          "src/assets/images/backgrounds/thieves-ruin/thieves-ruin-entrance",
+          3
+        );
+        break;
+
+      case "Thieves' Ruin Exit":
+        backgroundImage = getImageFromList(
+          "src/assets/images/backgrounds/thieves-ruin/thieves-ruin-exit",
+          3
+        );
+        break;
+
       case "Laughing Coffin":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/thieves-ruin/laughing-coffin-tavern",
