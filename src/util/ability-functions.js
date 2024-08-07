@@ -119,7 +119,7 @@ const abilityFunctions = {
   CHILL_OF_THE_GRAVE: (dispatch, character, target) => {
     const damage = 6 + character.stats.arcana.spellPower;
     changeHealth(dispatch, target, "DAMAGE", damage, "ICE");
-    playSoundEffect(false, "magic", "iceCrackFreeze")
+    playSoundEffect(false, "magic", "frostbite")
     changeStatusEffect(dispatch, target, "ADD", CONDITIONS.CHILLED);
   },
 };

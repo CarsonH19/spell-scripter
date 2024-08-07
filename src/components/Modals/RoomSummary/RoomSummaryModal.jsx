@@ -44,10 +44,13 @@ export default function RoomSummaryModal() {
     // Toggle off danger
     dispatch(dungeonActions.dangerToggle({ danger: false }));
 
-    // Add items looted from room/enemies to player's inventory
+    // Add items looted from room/enemies to player's inventory in the combat-slice
     for (let i = 0; i < itemsLooted.length; i++) {
       dispatch(
-        playerActions.changeInventory({ item: itemsLooted[i], change: "ADD" })
+        combatActions.changePlayerInventory({
+          item: itemsLooted[i],
+          change: "ADD",
+        })
       );
     }
 
@@ -84,7 +87,7 @@ export default function RoomSummaryModal() {
       const arcaneShieldFunction = statusEffectFunctions["ARCANE_SHIELD"];
       arcaneShieldFunction(dispatch, null, player, "RESET", null);
     }
-  }, [dispatch, itemsLooted]);
+  }, [dispatch]);
 
   return (
     <div className={classes.summary}>

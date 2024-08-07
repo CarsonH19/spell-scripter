@@ -25,19 +25,25 @@ export const soundPaths = {
     fleshHit11: "src/assets/audio/sound/attacks/flesh-hit/Flesh Hit 11.mp3",
   },
   punch: {
-    impactPunchFace8: "src/assets/audio/sound/attacks/punch/Impact Punch Face 8.mp3",
-    impactPunchHard: "src/assets/audio/sound/attacks/punch/Impact Punch Hard.mp3",
+    impactPunchFace8:
+      "src/assets/audio/sound/attacks/punch/Impact Punch Face 8.mp3",
+    impactPunchHard:
+      "src/assets/audio/sound/attacks/punch/Impact Punch Hard.mp3",
     punch1: "src/assets/audio/sound/attacks/punch/Punch 1.mp3",
-    punchFaceMeatyFlesh: "src/assets/audio/sound/attacks/punch/Punch Face Meaty Flesh 3.mp3",
-    impactPunchBody2: "src/assets/audio/sound/attacks/punch/Impact Punch Body 2.mp3",
+    punchFaceMeatyFlesh:
+      "src/assets/audio/sound/attacks/punch/Punch Face Meaty Flesh 3.mp3",
+    impactPunchBody2:
+      "src/assets/audio/sound/attacks/punch/Impact Punch Body 2.mp3",
   },
   // Decrepit Skeleton / Thief / Riven
   lightWeapon: {
     knifeSliceFace: "src/assets/audio/sound/attacks/light/Knife Slice Face.mp3",
     knifeStab1: "src/assets/audio/sound/attacks/light/Knife Stab 1.mp3",
     knifeStab: "src/assets/audio/sound/attacks/light/Knife Stab.mp3",
-    knifeStabFleshWet: "src/assets/audio/sound/attacks/light/Knife Stab Flesh Wet.mp3",
-    knifeThrowFlesh: "src/assets/audio/sound/attacks/light/Knife Throw Flesh.mp3",
+    knifeStabFleshWet:
+      "src/assets/audio/sound/attacks/light/Knife Stab Flesh Wet.mp3",
+    knifeThrowFlesh:
+      "src/assets/audio/sound/attacks/light/Knife Throw Flesh.mp3",
     swordSlice: "src/assets/audio/sound/attacks/light/Sword Slice.mp3",
     swordDraw2: "src/assets/audio/sound/attacks/light/Sword Draw 2.mp3",
     swordThrow: "src/assets/audio/sound/attacks/light/Sword Throw.mp3",
@@ -47,17 +53,23 @@ export const soundPaths = {
     axeChopFlesh1: "src/assets/audio/sound/attacks/heavy/Axe Chop Flesh 1.mp3",
     axeChopFlesh2: "src/assets/audio/sound/attacks/heavy/Axe Chop Flesh 2.mp3",
     axeChopFlesh8: "src/assets/audio/sound/attacks/heavy/Axe Chop Flesh 8.mp3",
-    axeChopFlesh10: "src/assets/audio/sound/attacks/heavy/Axe Chop Flesh 10.mp3",
-    battleAxeStrike2: "src/assets/audio/sound/attacks/heavy/Battle Axe Strike 2.mp3",
-    battleAxeStrike3: "src/assets/audio/sound/attacks/heavy/Battle Axe Strike 3.mp3",
+    axeChopFlesh10:
+      "src/assets/audio/sound/attacks/heavy/Axe Chop Flesh 10.mp3",
+    battleAxeStrike2:
+      "src/assets/audio/sound/attacks/heavy/Battle Axe Strike 2.mp3",
+    battleAxeStrike3:
+      "src/assets/audio/sound/attacks/heavy/Battle Axe Strike 3.mp3",
     battleAxeThrow: "src/assets/audio/sound/attacks/heavy/Battle Axe Throw.mp3",
-    axeThrowIntoBody2: "src/assets/audio/sound/attacks/heavy/Axe Throw Into Body 2.mp3",
-    axeThrowIntoBody3: "src/assets/audio/sound/attacks/heavy/Axe Throw Into Body 3.mp3",
+    axeThrowIntoBody2:
+      "src/assets/audio/sound/attacks/heavy/Axe Throw Into Body 2.mp3",
+    axeThrowIntoBody3:
+      "src/assets/audio/sound/attacks/heavy/Axe Throw Into Body 3.mp3",
   },
   // Skeletal Archer - Multi-shot
   bowAttack: {
     bulletsPassBy4: "src/assets/audio/sound/attacks/Bullets Pass By 4.mp3",
-    bulletsImpactFlesh26: "src/assets/audio/sound/attacks/Bullet Impact Flesh 26.mp3",
+    bulletsImpactFlesh26:
+      "src/assets/audio/sound/attacks/Bullet Impact Flesh 26.mp3",
   },
   ghostAttack: {
     ghostAttack1: "src/assets/audio/sound/attacks/ghost/ghost-attack-1.mp3",
@@ -86,7 +98,7 @@ export const soundPaths = {
     stoneskin: "src/assets/audio/sound/magic/stoneskin.mp3",
     protectFromEvil: "src/assets/audio/sound/magic/protect-from-evil.mp3",
     // Skeletal Mage attack
-    iceCrackFreeze: "src/assets/audio/sound/Ice Crack Freeze.mp3",
+    iceWand: "src/assets/audio/sound/magic/ice-wand.mp3",
     magicSpellFire1: "src/assets/audio/sound/magic/Magic Spell Fire 1.mp3",
     magicSpellFire2: "src/assets/audio/sound/magic/Magic Spell Fire 2.mp3",
     magicSpellHit2: "src/assets/audio/sound/magic/Magic Spell Hit 2.mp3",
@@ -216,8 +228,8 @@ export const soundPaths = {
     whooshLowAir: "src/assets/audio/sound/Whoosh Low Air.mp3",
     // RoomSummaryModal
     hitReverbDark4: "src/assets/audio/sound/misc/Hit Reverb Dark 4.mp3",
-    // Choose a skill
-    // shimmerCrysta: "src/assets/audio/sound/misc/Shimmer Crysta.mp3",
+    // Reset School Mastery
+    shimmerCrysta: "src/assets/audio/sound/misc/Shimmer Crysta.mp3",
     // Dungeon & Path title
     enterDungeon: "src/assets/audio/sound/misc/enter-dungeon.mp3",
     // QTE
@@ -241,18 +253,18 @@ export const soundPaths = {
   ui: {
     // Attunement
     magicStone: "src/assets/audio/sound/ui/Magic Stone.mp3",
-    // Inc. Attribute
+    // Inc. Attribute & Next Dialogue
     medievalGUI1:
       "src/assets/audio/sound/ui/Medieval, GUI, Hover Over Menu Buttons 01.mp3",
-    // Dec. Attribute
+    // Dec. Attribute & Prev. Dialogue
     medievalGUI2:
       "src/assets/audio/sound/ui/Medieval, GUI, Hover Over Menu Buttons 02.mp3",
     // Confirm enter
     GUIMenuButton:
       "src/assets/audio/sound/ui/GUI Menu Button, Select OK, Button, Start Game, Airy, Bright, Dark Reverb.mp3",
-    //Modal open
+    //Modal open & Dialogue open
     softs: "src/assets/audio/sound/ui/Softs.wav",
-    //Modal close
+    //Modal close & Dialogue close
     softs2: "src/assets/audio/sound/ui/Softs 2.wav",
   },
   skill: {
@@ -325,28 +337,6 @@ export const soundPaths = {
 //   }),
 //   fleshStab3: new Howl({
 //     src: ["src/assets/audio/sound/Flesh Stab 3.mp3"],
-//   }),
-// };
-
-// // ===============================
-// //         MONSTER DEATH
-// // ===============================
-
-// const enemyDeathSounds = {
-//   alienSpiderWeb3: new Howl({
-//     src: ["src/assets/audio/sound/Alien Spider Web 3.mp3"],
-//   }),
-//   insectsSpider3: new Howl({
-//     src: ["src/assets/audio/sound/Insects Spider.mp3"],
-//   }),
-//   ghostHowl: new Howl({
-//     src: ["src/assets/audio/sound/Ghost Howl.mp3"],
-//   }),
-//   ghostShriekWhoosh: new Howl({
-//     src: ["src/assets/audio/sound/Ghost Shriek Whoosh.mp3"],
-//   }),
-//   monsterSnarl3: new Howl({
-//     src: ["src/assets/audio/sound/Monster Snarl 38.mp3"],
 //   }),
 // };
 

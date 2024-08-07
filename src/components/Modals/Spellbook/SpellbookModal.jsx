@@ -11,6 +11,7 @@ import { playerActions } from "../../../store/player-slice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import playSoundEffect from "../../../util/audio-util";
 
 export default function SpellbookModal() {
   const [school, setSchool] = useState("evocation");
@@ -25,6 +26,7 @@ export default function SpellbookModal() {
   };
 
   const handleResetButton = (school) => {
+    playSoundEffect(false, "misc", "shimmerCrysta");
     // Calculate total points expended in skill tree
     const totalPoints = calculateSchoolPoints(spellbook[school]);
     // Remove points from spellbook-slice

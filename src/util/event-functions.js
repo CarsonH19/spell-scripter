@@ -155,8 +155,12 @@ const eventFunctions = {
       const flower = player.inventory.consumables.find((item) =>
         flowerList.includes(item.name)
       );
+      playSoundEffect(false, "death", "wispDeath", 1.2);
       dispatch(
-        combatActions.changePlayerInventory({ change: "REMOVE", item: flower })
+        combatActions.changePlayerInventory({
+          change: "REMOVE",
+          item: flower,
+        })
       );
 
       await checkForDialogue(dispatch, "after", choice);
