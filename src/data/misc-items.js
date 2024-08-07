@@ -5,12 +5,12 @@ const MISC_ITEMS = {
   THIEVES_RUIN_MAP: {
     name: "Thieves' Ruin Map",
     description: "",
-    image: "src/assets/images/items/misc-item/map-1.jpg",
+    image: "src/assets/images/items/misc-items/map-1.jpg",
     type: "MISC",
     rarity: "Rare",
     useInCombat: false,
     effect: [
-      "A map that leads to Thieve's Ruin.",
+      "A map that leads to Thieves' Ruin.",
       "Can only be used in The Great Catacomb.",
     ],
     destination: 3,
