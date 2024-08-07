@@ -172,7 +172,8 @@ export const soundPaths = {
     // Choose a skill
     shimmerCrysta: "src/assets/audio/sound/misc/Shimmer Crysta.mp3",
     // Dungeon & Path title
-    ambientLight01: "src/assets/audio/sound/ui/Ambient, Light 01.mp3",
+    enterDungeon: "src/assets/audio/sound/misc/enter-dungeon.mp3",
+    openCoffin: "src/assets/audio/sound/misc/open-coffin.mp3"
   },
   ui: {
     // Attunement

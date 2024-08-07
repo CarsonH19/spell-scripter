@@ -114,7 +114,7 @@ async function locationNarration(dispatch, location) {
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
   dispatch(logActions.updateLogs({ change: "PAUSE" }));
   await delay(2000);
-  playSoundEffect(false, "misc", "ambientLight01");
+  playSoundEffect(false, "misc", "enterDungeon");
   dispatch(
     logActions.updateLogs({
       change: "ADD",

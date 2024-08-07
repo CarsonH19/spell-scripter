@@ -55,6 +55,7 @@ const statusEffectFunctions = {
     const statusEffect = player.statusEffects.find(
       (effect) => effect.name === "Arcane Shield"
     );
+    console.log("ARCANE SHIELD", statusEffect)
     let health = statusEffect.currentHealth;
     // Remove status effect
     dispatch(

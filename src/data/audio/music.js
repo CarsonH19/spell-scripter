@@ -80,7 +80,7 @@ export const backgroundMusic = {
 };
 
 const FADE_DURATION = 2000; // Duration of the fade in milliseconds
-const MAX_VOLUME = 0.1; // Maximum volume level
+const MAX_VOLUME = 0.2; // Maximum volume level
 
 export const playMusic = (musicFunc) => {
   if (currentMusic) {

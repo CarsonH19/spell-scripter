@@ -24,6 +24,9 @@ import CONDITIONS from "../data/conditions";
 import playSoundEffect from "./audio-util";
 
 import { roomTransition } from "../components/GameWindow/MiddleContent/MiddleContent";
+import { backgroundMusic, playMusic } from "../data/audio/music";
+
+import { callFadeTransition } from "../components/UI/FadeEffect";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {
@@ -87,7 +90,7 @@ const eventFunctions = {
   },
   COFFIN: async (dispatch, choice) => {
     const dungeon = store.getState().dungeon;
-    const chance = Math.random();
+    const chance = Math.random() * 100;
     let enemy;
 
     if (dungeon.threat > 40) {
@@ -102,26 +105,31 @@ const eventFunctions = {
       enemy = UNDEAD["SKELETAL_WARRIOR"];
     }
 
-    if (choice === "Open" && chance <= 0.4) {
-      // Get Random Loot
+    console.log(chance);
+    if (choice === "Open") {
+      playSoundEffect(false, "misc", "openCoffin");
       getRandomLoot(dispatch);
-      await checkForDialogue(dispatch, "after", choice);
-      await delay(2000);
-      openModal(dispatch, "roomSummaryModal");
-    }
-
-    if (choice === "Open" && chance > 0.4) {
-      // Add Dialogue
-      await checkForDialogue(dispatch, "response", choice);
-      getDialogue(dispatch, "after", choice);
-      // Add enemy to dungeon
-      dispatch(
-        dungeonActions.addEnemy({ enemy: buildEnemy(enemy), change: "ADD" })
-      );
-
-      // Start combat
-      await delay(2000);
-      startCombat(dispatch);
+      // No enemy spawned
+      if (chance <= 30) {
+        await checkForDialogue(dispatch, "after", choice);
+        await delay(2000);
+        openModal(dispatch, "roomSummaryModal");
+        // Enemy spawned
+      } else {
+        // Play encounter song
+        playMusic(backgroundMusic.warningSignal);
+        // Play dialogue
+        await checkForDialogue(dispatch, "response", choice);
+        // Set dialogue for after combat
+        getDialogue(dispatch, "after", choice);
+        // Add enemy to dungeon
+        dispatch(
+          dungeonActions.addEnemy({ enemy: buildEnemy(enemy), change: "ADD" })
+        );
+        // Start combat
+        await delay(2000);
+        startCombat(dispatch);
+      }
     }
 
     if (choice === "Leave") {
@@ -216,19 +224,30 @@ const eventFunctions = {
         await delay(4000);
         openModal(dispatch, "roomSummaryModal");
       } else if (key) {
+        playSoundEffect(false, "misc", "openCoffin");
         // Remove Key
         activateItem(dispatch, key);
         // Get Random Loot
         getRandomLoot(dispatch);
 
-        // Transition Animation
+        // Fade transition
+        await dispatch(uiActions.updateFade({ change: "CALL" }));
+
         const newBackground = getImageFromList(
           "src/assets/images/backgrounds/events/bonevault",
           4
         );
         dispatch(dungeonActions.changeBackground(newBackground));
 
+        // Fade transition
+        await delay(2000);
+        await dispatch(uiActions.updateFade({ change: "CLEAR" }));
+
         const difficulty = Math.floor(Math.random() * 4);
+
+        if (difficulty > 0) {
+          playMusic(backgroundMusic.warningSignal);
+        }
 
         if (dungeon.threat > 50) {
           enemyGroup = [
@@ -288,6 +307,7 @@ const eventFunctions = {
   UNLOCK_HERO_LIHETH: async (dispatch, choice) => {
     const order = store.getState().combat.order;
     // Add fade transition
+    callFadeTransition(dispatch, 2000);
 
     // Heal all allies
     for (let i = 0; i < order.length; i++) {
@@ -309,6 +329,7 @@ const eventFunctions = {
     if (choice === "Rest") {
       const order = store.getState().combat.order;
       // Add fade transition
+      callFadeTransition(dispatch, 2000);
 
       // Heal all allies
       for (let i = 0; i < order.length; i++) {

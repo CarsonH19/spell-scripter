@@ -44,7 +44,7 @@ const SPELLS = {
       name: "Shock",
       school: `Novice Evocation`,
       image: "src/assets/images/spellbook/evocation/shock.png",
-      audio: [false, "magic", "shock"],
+      audio: [false, "magic", "shock", 1.2],
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
       spellType: "HIT",
