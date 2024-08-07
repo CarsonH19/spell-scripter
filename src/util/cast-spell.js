@@ -29,6 +29,9 @@ export default async function castSpell(dispatch, spell) {
 
   const getQuickTimeEventResult = await getResult();
 
+  // Set isCharacterTurn to null
+  dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
+
   if (!getQuickTimeEventResult) {
     dispatch(
       logActions.updateLogs({
@@ -66,6 +69,9 @@ export default async function castSpell(dispatch, spell) {
   switch (spell.spellTarget) {
     case "ENEMY": // single enemy targeted
       {
+        dispatch(logActions.updateLogs({ change: "CLEAR" }));
+        dispatch(logActions.updateLogs({ change: "PAUSE" }));
+
         if (spell.spellType === "HIT") {
           dispatch(
             logActions.updateLogs({
@@ -111,6 +117,9 @@ export default async function castSpell(dispatch, spell) {
       break;
     case "ALLY": // single ally targeted
       {
+        dispatch(logActions.updateLogs({ change: "CLEAR" }));
+        dispatch(logActions.updateLogs({ change: "PAUSE" }));
+
         dispatch(
           logActions.updateLogs({
             change: "ADD",
@@ -223,8 +232,7 @@ export default async function castSpell(dispatch, spell) {
     playSoundEffect(...spell.audio);
   }
 
-  // Set isCharacterTurn to null
-  dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
+  dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
 }
 
 // =============================================================

@@ -241,7 +241,7 @@ export default function Actions() {
   if (event) {
     return;
   } else {
-    return !isDialogue && !isModal && content;
+    return !isDialogue && !isModal && isCharacterTurn && content;
   }
 }
 
