@@ -8,6 +8,7 @@ export default function Tooltip({
   detailOne,
   detailTwo,
   detailThree,
+  detailFour,
   children,
   position = "tooltip",
   container = "container"
@@ -36,6 +37,7 @@ export default function Tooltip({
           {detailOne && <p className={classes.detail}>{detailOne}</p>}
           {detailTwo && <p>{detailTwo}</p>}
           {detailThree && <p>{detailThree}</p>}
+          {detailFour && <p>{detailFour}</p>}
 
         </div>
       )}

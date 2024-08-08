@@ -266,6 +266,7 @@ export const soundPaths = {
     softs: "src/assets/audio/sound/ui/Softs.wav",
     //Modal close & Dialogue close
     softs2: "src/assets/audio/sound/ui/Softs 2.wav",
+    unattune: "src/assets/audio/sound/ui/unattune.mp3",
   },
   skill: {
     coldWhoosh3: "src/assets/audio/sound/ui/Cold, Whoosh 03.mp3",

@@ -9,8 +9,6 @@ import updateStatTotals from "./stats-actions";
 import playSoundEffect from "../util/audio-util";
 
 export default async function activateItem(dispatch, item) {
-  console.log("CALLED");
-
   const dashboard = store.getState().ui.dashboardIsVisible;
   let player;
 
@@ -32,7 +30,8 @@ export default async function activateItem(dispatch, item) {
               combatActions.changePlayerAttunement({ item, change: "REMOVE" })
             );
             changeStatusEffect(dispatch, player, "REMOVE", item);
-          } else {
+            playSoundEffect(false, "ui", "unattune");
+          } else if (player.inventory.attunedItems.length < 5) {
             // equip item to attunedItems
             dispatch(
               combatActions.changePlayerAttunement({ item, change: "ADD" })
@@ -50,7 +49,8 @@ export default async function activateItem(dispatch, item) {
               playerActions.changeAttunement({ item, change: "REMOVE" })
             );
             changeStatusEffect(dispatch, player, "REMOVE", item);
-          } else {
+            playSoundEffect(false, "ui", "unattune");
+          } else if (player.inventory.attunedItems.length < 5) {
             // equip item to attunedItems
             dispatch(playerActions.changeAttunement({ item, change: "ADD" }));
             changeStatusEffect(dispatch, player, "ADD", item);
@@ -67,7 +67,7 @@ export default async function activateItem(dispatch, item) {
         const snakeCaseItem = toSnakeCase(item.name);
         const itemFunction = itemFunctions[snakeCaseItem];
 
-        // Add items that can only be used in specific situations
+        // Don't include items that can only be used in specific situations
         if (
           item.name !== "Skeleton Key" &&
           item.name !== "Laughing Coffin Coin" &&
@@ -91,19 +91,16 @@ export default async function activateItem(dispatch, item) {
     case "MISC":
       {
         if (dashboard) return;
-        console.log("CALLED");
         const snakeCaseItem = toSnakeCase(item.name);
-        console.log(snakeCaseItem);
         const itemFunction = itemFunctions[snakeCaseItem];
         if (itemFunction) {
-          console.log("CALLED");
-
           itemFunction(dispatch, item);
         }
       }
       break;
   }
 
+  // Set pieces are checked for in updateStatTotals()
   updateStatTotals(dispatch, player.id);
 }
 

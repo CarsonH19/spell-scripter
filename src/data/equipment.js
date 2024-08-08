@@ -64,7 +64,8 @@ const EQUIPMENT = {
     effect: ["+2 Speed"],
     stats: { agility: { speed: +2 } },
   },
-  RUNE_ETCHED_RING: { //IMAGE
+  RUNE_ETCHED_RING: {
+    //IMAGE
     name: "Rune-etched Ring",
     description: "",
     display: false,
@@ -75,7 +76,8 @@ const EQUIPMENT = {
     effect: ["+2 Spell Power"],
     stats: { arcana: { spellPower: +2 } },
   },
-  WHISPERING_DAGGER: { //IMAGE
+  WHISPERING_DAGGER: {
+    //IMAGE
     name: "Whispering Dagger",
     description:
       "A dagger engraved with ancient runes that seem to whisper of the Great Catacomb's past.",
@@ -434,6 +436,8 @@ const EQUIPMENT = {
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
+    set: "Plagueborn Set",
+    setBonus: ["+10 Spell Power while Diseased"],
     effect: ["+10 Max HP"],
     stats: { strength: { maxHealth: +10 } },
   },
@@ -445,6 +449,8 @@ const EQUIPMENT = {
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
+    set: "Plagueborn Set",
+    setBonus: ["Immune to the Poisoned condition."],
     effect: ["+2 Attack"],
     stats: { strength: { attack: +2 } },
   },
@@ -456,6 +462,8 @@ const EQUIPMENT = {
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
+    set: "Plagueborn Set",
+    setBonus: ["Immune to the Poisoned condition."],
     effect: ["+1 Hit"],
     stats: { agility: { hitChance: +1 } },
   },
@@ -471,6 +479,8 @@ const EQUIPMENT = {
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
+    set: "Shadowbound Set",
+    setBonus: ["Immune to the Poisoned condition."],
     effect: ["+1 Defense"],
     stats: { agility: { defense: +1 } },
   },
@@ -482,6 +492,8 @@ const EQUIPMENT = {
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
+    set: "Shadowbound Set",
+    setBonus: ["Immune to the Poisoned condition."],
     effect: ["+10 Max MP"],
     stats: { arcana: { maxMana: +10 } },
   },
@@ -493,6 +505,8 @@ const EQUIPMENT = {
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
+    set: "Shadowbound Set",
+    setBonus: ["Immune to the Poisoned condition."],
     effect: ["+1 Hit"],
     stats: { agility: { hitChance: +1 } },
   },
@@ -810,6 +824,8 @@ const EQUIPMENT = {
     name: "Lich's Crown",
     description: "",
     display: false,
+    // set: "",
+    // setBonus: ["Resistance to Necrotic Damage.", "+10% Spell Power with Necromancy spells."],
     image: "",
     type: "EQUIPMENT",
     rarity: "Legendary",

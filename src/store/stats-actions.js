@@ -3,10 +3,7 @@ import store from "./index";
 import { combatActions } from "./combat-slice";
 import { playerActions } from "./player-slice";
 import { checkSkillPoints } from "../util/spellbook-util";
-import changeStatusEffect, {
-  checkCurrentStatusEffects,
-} from "./status-effect-actions";
-import { checkIfAttuned } from "../util/item-functions";
+import { checkCurrentStatusEffects } from "./status-effect-actions";
 
 export default function updateStatTotals(dispatch, id) {
   let character;
@@ -152,27 +149,127 @@ export default function updateStatTotals(dispatch, id) {
     maxHealth = maxHealth - lostMaxHP;
   }
 
+  // Check for set pieces & return value changes
+  const {
+    maxHealthBonus,
+    healthRegenBonus,
+    attackBonus,
+    defenseBonus,
+    speedBonus,
+    hitChanceBonus,
+    maxManaBonus,
+    manaRegenBonus,
+    spellPowerBonus,
+  } = checkForItemSetBonuses(character, sliceActions);
+
   dispatch(
     sliceActions.updateStats({
       id: character.id,
       totalStrength,
-      maxHealth,
-      healthRegen,
-      attack,
+      maxHealth: maxHealth + maxHealthBonus,
+      healthRegen: healthRegen + healthRegenBonus,
+      attack: attack + attackBonus,
       totalAgility,
-      defense,
-      speed,
-      hitChance,
+      defense: defense + defenseBonus,
+      speed: speed + speedBonus,
+      hitChance: hitChance + hitChanceBonus,
       totalArcana,
-      maxMana,
-      manaRegen,
-      spellPower,
+      maxMana: maxMana + maxManaBonus,
+      manaRegen: manaRegen + manaRegenBonus,
+      spellPower: spellPower + spellPowerBonus,
     })
   );
 
   // =============================================================
   //                     HELPER FUNCTIONS
   // =============================================================
+
+  function checkForItemSetBonuses(character) {
+    // Return if the stats being updated are not for the player
+    if (character.id !== "Player") {
+      return {
+        maxHealthBonus: 0,
+        healthRegenBonus: 0,
+        attackBonus: 0,
+        defenseBonus: 0,
+        speedBonus: 0,
+        hitChanceBonus: 0,
+        maxManaBonus: 0,
+        manaRegenBonus: 0,
+        spellPowerBonus: 0,
+      };
+    }
+
+    const setCounts = {};
+    let setBonuses = {
+      maxHealthBonus: 0,
+      healthRegenBonus: 0,
+      attackBonus: 0,
+      defenseBonus: 0,
+      speedBonus: 0,
+      hitChanceBonus: 0,
+      maxManaBonus: 0,
+      manaRegenBonus: 0,
+      spellPowerBonus: 0,
+    };
+
+    // Iterate over the attuned items and count the occurrences of each set
+    character.inventory.attunedItems.forEach((item) => {
+      if (item.set) {
+        if (setCounts[item.set]) {
+          setCounts[item.set]++;
+        } else {
+          setCounts[item.set] = 1;
+        }
+      }
+    });
+
+    // Check if any set appears 3 times
+    let completeSet;
+    for (const set in setCounts) {
+      if (setCounts[set] === 3) {
+        completeSet = set;
+        console.log(completeSet);
+        break;
+      }
+    }
+
+    switch (completeSet) {
+      case "Plagueborn Set":
+        setBonuses.maxHealthBonus += 1000;
+        break;
+
+      case "Shadowbound Set":
+        setBonuses.attackBonus += 1000;
+        break;
+
+      case "Ghoulbone Set":
+        break;
+
+      case "Arcanist Set":
+        break;
+
+      case "Darkmoon Set":
+        break;
+
+      case "Fangweave":
+        break;
+
+      case "Fiendsworn":
+        break;
+
+      case "Rattlebone":
+        break;
+
+      case "Dreadmourne":
+        break;
+
+      case "Soulshroud":
+        break;
+    }
+
+    return setBonuses;
+  }
 
   // ===============================
   //           STRENGTH => HP Bonus + 10 / Melee Attack +2
@@ -191,18 +288,6 @@ export default function updateStatTotals(dispatch, id) {
 
     strengthBonusHealth = totalStrength * 10;
     maxHealth = baseHealth + strengthBonusHealth;
-    // Checks for Diseased Condition
-    // if (DISEASED.duration !== null) {
-    //   playerMaxHealth = Math.round(playerMaxHealth * 0.8);
-    // }
-
-    // Sets Max Health at the Start
-    // if (currentRoom === dungeonEntrance) {
-    //   player.currentHealth = playerMaxHealth;
-    // }
-
-    // Determines health bar length based off max HP
-    // playerDisplay.style.width = `${Math.round(playerMaxHealth / 10) + 20}vw`;
     return maxHealth;
   }
 

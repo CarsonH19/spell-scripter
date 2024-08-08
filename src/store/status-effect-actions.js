@@ -17,9 +17,6 @@ export default function changeStatusEffect(
     return;
   }
 
-  console.log(target.statusEffects);
-  console.log(statusEffect);
-
   const dashboard = store.getState().ui.dashboardIsVisible;
 
   if (target.identifier === "PLAYER") {

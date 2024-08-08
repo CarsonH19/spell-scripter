@@ -9,6 +9,7 @@ import Attributes from "../Attribute/Attributes";
 import Tooltip from "../../UI/Tooltip";
 import Icon from "../../UI/Icon";
 import updateStatTotals from "../../../store/stats-actions";
+import AttunedItem from "./attunedItem";
 
 export default function InventoryModal() {
   const [active, setActive] = useState(1);
@@ -53,6 +54,19 @@ export default function InventoryModal() {
     }
   });
 
+  // Counting Set Pieces
+  let setCounts = {};
+  // Iterate over the attuned items and count the occurrences of each set
+  player.inventory.attunedItems.forEach((item) => {
+    if (item.set) {
+      if (setCounts[item.set]) {
+        setCounts[item.set]++;
+      } else {
+        setCounts[item.set] = 1;
+      }
+    }
+  });
+
   return (
     <div className={classes.inventory}>
       <h1>Inventory</h1>
@@ -83,22 +97,43 @@ export default function InventoryModal() {
               </button>
             </div>
             <ul className={classes.items}>
-              {counters.map((item) => (
-                <Tooltip
-                  key={item.id}
-                  position="item"
-                  title={item.name}
-                  text={item.rarity}
-                  detailOne={item.description}
-                  detailTwo={item.effect.map((line, index) => (
-                    <span key={index} className={classes["item-effect"]}>
-                      {line}
-                    </span>
-                  ))}
-                >
-                  <Item key={item.id} item={item} count={item.counter} />
-                </Tooltip>
-              ))}
+              {counters.map((item) => {
+                // Calculate set pieces for tooltip
+                let setPieces = 0;
+                if (item.set && setCounts[item.set]) {
+                  setPieces = setCounts[item.set];
+                }
+
+                return (
+                  <Tooltip
+                    key={item.id}
+                    position="right-middle"
+                    title={item.name}
+                    text={item.rarity}
+                    detailOne={item.description}
+                    detailTwo={item.effect.map((line, index) => (
+                      <span key={index} className={classes["item-effect"]}>
+                        {line}
+                      </span>
+                    ))}
+                    detailThree={item.set ? `${item.set} ${setPieces}/3` : null}
+                    detailFour={
+                      item.setBonus
+                        ? item.setBonus.map((line, index) => (
+                            <span
+                              key={index}
+                              className={classes["item-effect"]}
+                            >
+                              {line}
+                            </span>
+                          ))
+                        : null
+                    }
+                  >
+                    <Item key={item.id} item={item} count={item.counter} />
+                  </Tooltip>
+                );
+              })}
             </ul>
           </div>
 
@@ -107,111 +142,23 @@ export default function InventoryModal() {
             <ul>
               {/* ITEM 1 */}
               {(attunedItems[0] && (
-                <Tooltip
-                  key={attunedItems[0].id}
-                  position="item"
-                  title={attunedItems[0].name}
-                  text={attunedItems[0].rarity}
-                  detailOne={attunedItems[0].description}
-                  detailTwo={attunedItems[0].effect.map((line, index) => (
-                    <span key={index} className={classes["item-effect"]}>
-                      {line}
-                    </span>
-                  ))}
-                >
-                  <Item
-                    key={attunedItems[0].id}
-                    item={attunedItems[0]}
-                    count={attunedItems[0].counter}
-                  />
-                </Tooltip>
+                <AttunedItem item={attunedItems[0]} setCounts={setCounts} />
               )) || <Icon className={classes.empty}></Icon>}
               {/* ITEM 2 */}
               {(attunedItems[1] && (
-                <Tooltip
-                  key={attunedItems[1].id}
-                  position="item"
-                  title={attunedItems[1].name}
-                  text={attunedItems[1].rarity}
-                  detailOne={attunedItems[1].description}
-                  detailTwo={attunedItems[1].effect.map((line, index) => (
-                    <span key={index} className={classes["item-effect"]}>
-                      {line}
-                    </span>
-                  ))}
-                >
-                  <Item
-                    key={attunedItems[1].id}
-                    item={attunedItems[1]}
-                    count={attunedItems[1].counter}
-                  />
-                </Tooltip>
+                <AttunedItem item={attunedItems[1]} setCounts={setCounts} />
               )) || <Icon className={classes.empty}></Icon>}
-
               {/* ITEM 3 */}
               {(attunedItems[2] && (
-                <Tooltip
-                  key={attunedItems[2].id}
-                  position="item"
-                  title={attunedItems[2].name}
-                  text={attunedItems[2].rarity}
-                  detailOne={attunedItems[2].description}
-                  detailTwo={attunedItems[2].effect.map((line, index) => (
-                    <span key={index} className={classes["item-effect"]}>
-                      {line}
-                    </span>
-                  ))}
-                >
-                  <Item
-                    key={attunedItems[2].id}
-                    item={attunedItems[2]}
-                    count={attunedItems[2].counter}
-                  />
-                </Tooltip>
+                <AttunedItem item={attunedItems[2]} setCounts={setCounts} />
               )) || <Icon className={classes.empty}></Icon>}
-
               {/* ITEM 4 */}
               {(attunedItems[3] && (
-                <Tooltip
-                  key={attunedItems[3].id}
-                  position="item"
-                  title={attunedItems[3].name}
-                  text={attunedItems[3].rarity}
-                  detailOne={attunedItems[3].description}
-                  detailTwo={attunedItems[3].effect.map((line, index) => (
-                    <span key={index} className={classes["item-effect"]}>
-                      {line}
-                    </span>
-                  ))}
-                >
-                  <Item
-                    key={attunedItems[3].id}
-                    item={attunedItems[3]}
-                    count={attunedItems[3].counter}
-                  />
-                </Tooltip>
+                <AttunedItem item={attunedItems[3]} setCounts={setCounts} />
               )) || <Icon className={classes.empty}></Icon>}
-
               {/* ITEM 5 */}
               {(attunedItems[4] && (
-                <Tooltip
-                  key={attunedItems[4].id}
-                  position="item"
-                  title={attunedItems[4].name}
-                  text={attunedItems[4].rarity}
-                  detailOne={attunedItems[4].description}
-                  detailTwo={attunedItems[4].effect.map((line, index) => (
-                    <span key={index} className={classes["item-effect"]}>
-                      {line}
-                    </span>
-                  ))}
-                >
-                  <Item
-                    key={attunedItems[4].id}
-                    item={attunedItems[4]}
-                    count={attunedItems[4].counter}
-                  />
-                </Tooltip>
+                <AttunedItem item={attunedItems[4]} setCounts={setCounts} />
               )) || <Icon className={classes.empty}></Icon>}
             </ul>
           </div>
