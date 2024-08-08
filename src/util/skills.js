@@ -1,6 +1,7 @@
 import store from "../store/index";
 
 // Abjuration
+// Arcane Shield
 export const createArcaneShield = () => {
   const abjuration = store.getState().spellbook.abjuration;
   const arcaneShield = abjuration.apprentice.find(
@@ -13,7 +14,7 @@ export const createArcaneShield = () => {
   return {
     name: "Arcane Shield",
     display: true,
-    image: "src/assets/images/spellbook/abjuration/arcane-shield.png",
+    image: "src/assets/images/spellbook/abjuration/arcane-shield.jpg",
     type: "BUFF",
     description: "A magical shield empowered by Abjuration spells.",
     get currentHealth() {

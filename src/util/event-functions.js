@@ -319,9 +319,6 @@ const eventFunctions = {
             outcome: `You chose to unlock the door and enter.`,
           })
         );
-
-        console.log("BONEVAULT DIFFICULTY", difficulty);
-        console.log("BONEVAULT ENEMIES", enemies);
       }
     } else if (choice === "Leave") {
       dispatch(
@@ -447,11 +444,8 @@ async function trapSuccessChance(dispatch, player, difficulty, stat) {
     // Add logic if player has the Arcana option
   }
 
-  console.log("TRAP", playerChoice);
-
   // ITEM - Evertorch
   playerChoice += checkIfAttuned(dispatch, "Evertorch");
-  console.log("TRAP", playerChoice);
 
   const successChance = roll20(playerChoice);
 

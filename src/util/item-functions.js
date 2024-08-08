@@ -246,11 +246,9 @@ export const itemFunctions = {
   //                            MISC. ITEMS
   // ==================================================================
   THIEVES_RUIN_MAP: (dispatch, item) => {
-    console.log(item);
     const dungeon = store.getState().dungeon;
     if ((dungeon.following === null) & (dungeon.followCounter === 0)) {
       const map = { ...item, rooms: calculateRooms(item) };
-      console.log(map);
       dispatch(
         dungeonActions.beginFollowing({ following: map.name, rooms: map.rooms })
       );

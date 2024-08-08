@@ -1,44 +1,70 @@
 .narration {
   position: fixed;
   z-index: 2; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: none;
+  /* border: 1px solid red; */
 }
 
-.narration div {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.narration ul {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  /* width: 80%; */
+  min-height: 35rem;
   z-index: 3;
-  
+  list-style: none;
 }
 
-.narration div p {
+.narration ul li {
   font-size: 1.5rem;
   color: var(--text);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: 600;
   text-align: center;
+  transition: 0.3s;
 }
+
+.narration ul .fade-in {
+  animation: fadeIn 0.5s ease-in;
+
+}
+
+.narration ul .fade-in-out {
+  animation: fadeInAndOut 3.1s ease-in-out;
+}
+
+ 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+} 
 
 .narration .announcement {
-  position: absolute;
-  top: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute;
+  top: 100%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   z-index: 3;
-  
 }
 
-.narration .announcement p {
+.narration .announcement li {
   font-size: 6rem;
+  margin-bottom: 10rem;
   color: var(--text);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-weight: 600;

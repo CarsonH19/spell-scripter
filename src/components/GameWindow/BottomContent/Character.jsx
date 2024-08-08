@@ -78,7 +78,6 @@ export default function Character({ character }) {
   // Trigger fade out and removal when health reaches 0
   useEffect(() => {
     if (character.currentHealth <= 0) {
-      console.log("CALLEDDDDDDD", character);
       setIsFadingOut(true);
       setTimeout(() => {
         dispatch(combatActions.removeCharacter({ character }));

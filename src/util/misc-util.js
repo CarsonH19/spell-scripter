@@ -27,7 +27,6 @@ export function addCharacterToOrder(
 
     if (characterObj.identifier === "HERO") {
       const hero = getHeroObject(characterObj.name);
-      console.log(hero);
       const baseStats = constructStats(hero.stats);
       character = {
         ...hero,

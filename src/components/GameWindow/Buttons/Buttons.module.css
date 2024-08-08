@@ -16,6 +16,7 @@
   width: 2rem;
   padding: 0.5rem;
   border-radius: 10px;
+  color: var(--text);
   border-color: var(--text);
   background-color: var(--primary);
   border: 1px solid var(--text);

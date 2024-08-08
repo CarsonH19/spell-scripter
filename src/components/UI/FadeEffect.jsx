@@ -9,7 +9,6 @@ const FadeEffect = () => {
   const isFade = useSelector((state) => state.ui.fade);
 
   useEffect(() => {
-    console.log("USE EFFECT");
     handleFadeOut();
   }, [isFade]);
 
@@ -17,7 +16,6 @@ const FadeEffect = () => {
     // setFade(true);
     setTimeout(() => {
       // Perform any additional actions after fade-out completes
-      console.log("Fade-out completed");
     }, 1000); // Duration should match the CSS animation duration
   };
 

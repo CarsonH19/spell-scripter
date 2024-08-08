@@ -314,7 +314,6 @@ const combatSlice = createSlice({
             if (item.type === "EQUIPMENT") {
               itemGroup = player.inventory.equipment;
             } else if (item.type === "CONSUMABLE") {
-              console.log("TRIGGERED");
               itemGroup = player.inventory.consumables;
             } else if (item.type === "MISC") {
               itemGroup = player.inventory.miscItems;

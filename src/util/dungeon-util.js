@@ -119,7 +119,6 @@ export function createNewRoom(dispatch) {
   // Get background after room contents have been determined
   newRoom.image = getRoomImage(newRoom);
   dispatch(dungeonActions.updateRoom(newRoom));
-  console.log(newRoom);
 }
 
 // =====================================================================
@@ -261,7 +260,6 @@ function getRoomEvent() {
       break;
   }
 
-  console.log("EVENT LIST", events);
 
   // Randomly choose an event from the new array
   const randomIndex = Math.floor(Math.random() * events.length);

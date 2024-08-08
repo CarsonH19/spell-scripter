@@ -123,6 +123,9 @@ export default async function combatLoop(dispatch) {
               break;
             case "ATTACK":
               {
+                dispatch(logActions.updateLogs({ change: "CLEAR" }));
+                dispatch(logActions.updateLogs({ change: "PAUSE" }));
+
                 dispatch(
                   logActions.updateLogs({
                     change: "ADD",
@@ -130,7 +133,12 @@ export default async function combatLoop(dispatch) {
                   })
                 );
 
+                dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
+
                 const target = await getTarget("ENEMIES");
+
+                dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+
                 attack(dispatch, character, target);
               }
               break;
@@ -409,7 +417,7 @@ export async function startCombat(dispatch) {
       text: `Encounter!`,
     })
   );
-  
+
   await delay(4000);
 
   // Clear Narrative
@@ -522,7 +530,8 @@ function attack(dispatch, character, target) {
     changeHealth(dispatch, target, "DAMAGE", damage, null);
   } else {
     // Missed audio
-    if (character.audio) playSoundEffect(false, "miss", "swordSwingWhoosh", 0.7);
+    if (character.audio)
+      playSoundEffect(false, "miss", "swordSwingWhoosh", 0.7);
 
     // Attack Missed!
     dispatch(

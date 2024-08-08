@@ -46,13 +46,15 @@ export default function Actions() {
   const isCharacterTurn = useSelector(
     (state) => state.combat.isCharacterTurn === playerID
   );
-  const danger = useSelector((state) => state.dungeon.danger);
-  const isDisabled = (!isCharacterTurn && danger) || event;
+  const isDanger = useSelector((state) => state.dungeon.danger);
+  // Disable during combat & not player's turn and during events
+  const isDisabled =
+    (!isCharacterTurn && isDanger) || event;
   const [search, setSearch] = useState("BEFORE COMBAT");
 
   useEffect(() => {
-    setSearch(danger ? "DURING COMBAT" : "BEFORE COMBAT");
-  }, [danger]);
+    setSearch(isDanger ? "DURING COMBAT" : "BEFORE COMBAT");
+  }, [isDanger]);
 
   const handlePlayerChoice = (action) => {
     setPlayerAction(action);
@@ -241,7 +243,15 @@ export default function Actions() {
   if (event) {
     return;
   } else {
-    return !isDialogue && !isModal && isCharacterTurn && content;
+    // Don't show actions with dialogue or modals
+    // Show actions when there is no danger
+    // Show actions when there is danger & its the player's turn
+    return (
+      !isDialogue &&
+      !isModal &&
+      ((isDanger && isCharacterTurn) || !isDanger) &&
+      content
+    );
   }
 }
 

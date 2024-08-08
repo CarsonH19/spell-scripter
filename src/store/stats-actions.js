@@ -229,7 +229,6 @@ export default function updateStatTotals(dispatch, id) {
     for (const set in setCounts) {
       if (setCounts[set] === 3) {
         completeSet = set;
-        console.log(completeSet);
         break;
       }
     }

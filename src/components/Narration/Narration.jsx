@@ -1,36 +1,55 @@
 import { createPortal } from "react-dom";
-
 import classes from "./Narration.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import { logActions } from "../../store/log-slice";
-import { v4 as uuidv4 } from "uuid";
-
 import store from "../../store/index";
 
 export default function Narration() {
+  const isPaused = useSelector((state) => state.log.paused);
   const narration = useSelector((state) => state.log.narration);
   const dispatch = useDispatch();
+  const timeoutIdRef = useRef(null);
 
-  let style = getNarrationStyle(narration[0]);
+  const style = useMemo(
+    () => getNarrationStyle(narration[0]?.text),
+    [narration]
+  );
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
+    if (timeoutIdRef.current) {
+      clearTimeout(timeoutIdRef.current);
+    }
+
+    timeoutIdRef.current = setTimeout(() => {
       dispatch(logActions.updateLogs({ change: "REMOVE" }));
     }, 3000);
 
     return () => {
-      clearTimeout(timeoutId);
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current);
+      }
     };
-  }, [narration]);
+  }, [narration, dispatch]);
 
   return createPortal(
     <div className={classes.narration}>
-      <div className={style}>
-        {narration.map((text) => (
-          <p key={uuidv4()}>{text}</p>
+      <ul className={style}>
+        {narration.map((item) => (
+          <li
+            key={item.id}
+            className={
+              style
+                ? {}
+                : !style && isPaused
+                ? classes["fade-in"]
+                : classes["fade-in-out"]
+            }
+          >
+            {item.text}
+          </li>
         ))}
-      </div>
+      </ul>
     </div>,
     document.getElementById("narration")
   );
@@ -42,9 +61,9 @@ function getNarrationStyle(narration) {
   let style;
 
   if (
-    (narration === "Encounter!" ||
-      narration === dungeon.name ||
-      narration === dungeon.path)
+    narration === "Encounter!" ||
+    narration === dungeon.name ||
+    narration === dungeon.path
   ) {
     style = classes.announcement;
   } else {

@@ -26,11 +26,6 @@ export default function QuestsModal() {
     activeQuests = activeQuests.filter((quest) => quest.unlocked).reverse();
   }
 
-  // useEffect(() => {
-  //   console.log()
-  //   setIndex(activeQuests.length - 1);
-  // }, []);
-
   const handleHoveredHero = (hero) => {
     setHoveredElement(hero);
   };
