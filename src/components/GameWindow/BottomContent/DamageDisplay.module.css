@@ -43,17 +43,12 @@
   transition: opacity 500ms, transform 500ms;
 }
 
-
-
-
-
 .damage-display li {
   text-align: center;
   color: var(--text);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   /* animation: fadeOut 2.1s ease-in-out; */
 }
-
 
  
 .damage-display .damage {
@@ -106,7 +101,7 @@
 .damage-display .restrained {} 
 
 
-@keyframes fadeOut {
+/* @keyframes fadeOut {
   0% {
     opacity: 1;
   }
@@ -116,7 +111,7 @@
   100% {
     opacity: 0;
   }
-}
+} */
 
 /* @keyframes damage-shake {
   0% { transform: translateY(0) rotate(0.2deg); }
