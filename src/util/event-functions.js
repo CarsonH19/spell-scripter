@@ -205,9 +205,7 @@ const eventFunctions = {
     const path = store.getState().dungeon.path;
     if (choice === "Leave") {
       dispatch(dungeonActions.beginPath(null));
-      dispatch(
-        dungeonActions.eventOutcome({ outcome: `You left ${path}.` })
-      );
+      dispatch(dungeonActions.eventOutcome({ outcome: `You left ${path}.` }));
       await delay(4000);
       openModal(dispatch, "roomSummaryModal");
     }
@@ -411,6 +409,8 @@ const eventFunctions = {
 
     if (choice === "Refuse") {
       await checkForDialogue(dispatch, "response", choice);
+      // playMusic(backgroundMusic.warningSignal);
+      // Check if map drops during event
       getRandomLoot(dispatch);
       startCombat(dispatch);
     }

@@ -34,6 +34,8 @@ import checkForDialogue, { getDialogue } from "../util/dialogue-util.js";
 import { checkIfAttuned } from "../util/item-functions.js";
 import playAudio from "../util/audio-util.js";
 import playSoundEffect from "../util/audio-util.js";
+import { playMusic } from "../data/audio/music.js";
+import { getCatacombEncounterMusic } from "../util/dungeon-util.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -150,7 +152,7 @@ export default async function combatLoop(dispatch) {
               dispatch(
                 combatActions.updateDamageDisplay({
                   id: character.id,
-                  content: {item: "Guard", style: ""},
+                  content: { item: "Guard", style: "" },
                 })
               );
               break;
@@ -194,7 +196,7 @@ export default async function combatLoop(dispatch) {
               dispatch(
                 combatActions.updateDamageDisplay({
                   id: character.id,
-                  content: {item: "Attack", style: ""},
+                  content: { item: "Attack", style: "" },
                 })
               );
             }
@@ -208,7 +210,7 @@ export default async function combatLoop(dispatch) {
             dispatch(
               combatActions.updateDamageDisplay({
                 id: character.id,
-                content: {item: "Guard", style: ""},
+                content: { item: "Guard", style: "" },
               })
             );
             break;
@@ -418,12 +420,17 @@ export async function startCombat(dispatch) {
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
   dispatch(logActions.updateLogs({ change: "PAUSE" }));
 
+  playSoundEffect(false, "misc", "encounter");
+
   dispatch(
     logActions.updateLogs({
       change: "ADD",
       text: `Encounter!`,
     })
   );
+
+  // Randomly play combat music
+  playMusic(getCatacombEncounterMusic());
 
   await delay(4000);
 
@@ -530,14 +537,13 @@ function attack(dispatch, character, target) {
     changeHealth(dispatch, target, "DAMAGE", damage, null);
   } else {
     // Missed audio
-    if (character.audio)
-      playSoundEffect(false, "miss", "swordSwingWhoosh", 0.7);
+    playSoundEffect(true, "miss", null, 0.7);
 
     // Attack Missed!
     dispatch(
       combatActions.updateDamageDisplay({
         id: target.id,
-        content: {item: "Miss", style: ""},
+        content: { item: "Miss", style: "" },
       })
     );
   }

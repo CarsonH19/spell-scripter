@@ -104,6 +104,8 @@ export default function TradeModal() {
           favor: calculateItemFavor(item),
         })
       );
+
+      playSoundEffect(false, "ui", "trade");
     }
   };
 

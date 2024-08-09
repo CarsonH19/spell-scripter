@@ -8,6 +8,7 @@ import { UNDEAD } from "../data/enemies";
 import { constructStats } from "./dungeon-util";
 import { dungeonActions } from "../store/dungeon-slice";
 import { v4 as uuidv4 } from "uuid";
+import playSoundEffect from "./audio-util";
 
 // These functions are called when a target has the status effect
 const statusEffectFunctions = {
@@ -26,6 +27,7 @@ const statusEffectFunctions = {
     );
     const damage = statusEffect.stack;
     changeHealth(dispatch, target, "DAMAGE", damage, "POISON");
+    playSoundEffect(false, "punch", "punch1");
   },
   HAUNTED: (dispatch) => {
     const dungeon = store.getState().dungeon;
@@ -49,7 +51,8 @@ const statusEffectFunctions = {
   STORM_SPHERE: (dispatch, target) => {
     const spellPower = store.getState().player.stats.arcana.spellPower;
     const damage = Math.round(spellPower / 2);
-    changeHealth(dispatch, target, "DAMAGE", damage);
+    changeHealth(dispatch, target, "DAMAGE", damage, "LIGHTNING");
+    playSoundEffect(false, "magic", "stormSphereDamage");
   },
   ARCANE_SHIELD: (dispatch, spell, player, change, damage) => {
     const statusEffect = player.statusEffects.find(

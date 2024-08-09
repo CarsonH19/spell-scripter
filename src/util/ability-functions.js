@@ -44,7 +44,7 @@ const abilityFunctions = {
     const id = store.getState().combat.isCharacterTurn;
     const character = order.find((char) => char.id === id);
     const damage = character.stats.strength.attack;
-    playSoundEffect(...character.audio.attack);
+    playSoundEffect(false, "abilities", "venomStrike");
     changeHealth(dispatch, target, "DAMAGE", damage, "POISON");
     changeStatusEffect(dispatch, target, "ADD", CONDITIONS.POISONED);
   },
@@ -76,7 +76,7 @@ const abilityFunctions = {
     if (statusEffect) {
       changeStatusEffect(dispatch, target, "REMOVE", statusEffect);
     }
-    playSoundEffect(false, "magic", "magicSpellWhoosh2");
+    playSoundEffect(false, "abilities", "cleansingFlame");
     changeHealth(dispatch, target, "HEAL", liheth.stats.arcana.spellPower);
   },
   UNDYING_FLAME: (dispatch, target) => {
@@ -93,7 +93,7 @@ const abilityFunctions = {
       reset: 3,
       stats: {},
     };
-    playSoundEffect(false, "magic", "magicSpellWhoosh14");
+    playSoundEffect(false, "abilities", "undyingFlame");
     changeStatusEffect(dispatch, target, "ADD", UNDYING_FLAME);
   },
   // ===========================================

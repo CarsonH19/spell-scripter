@@ -295,7 +295,7 @@ function castStormSphere(dispatch, player) {
   const STORM_SPHERE = {
     name: "Storm Sphere",
     display: true,
-    image: "",
+    image: "src/assets/images/spellbook/evocation/storm-sphere.jpg",
     type: "BUFF",
     // description: "",
     effect: [
@@ -311,6 +311,7 @@ function castStormSphere(dispatch, player) {
   };
 
   changeStatusEffect(dispatch, player, "ADD", STORM_SPHERE);
+  playSoundEffect(false, "magic", "stormSphere");
 }
 
 function castMeteor(dispatch, enemies, damage) {

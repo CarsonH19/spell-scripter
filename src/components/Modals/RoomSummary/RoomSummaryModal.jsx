@@ -17,6 +17,7 @@ import { checkSkillPoints } from "../../../util/spellbook-util";
 import statusEffectFunctions from "../../../util/status-effect-functions";
 
 import progressActiveQuests from "../../../util/quest-util";
+import { backgroundMusic, playMusic } from "../../../data/audio/music";
 
 export default function RoomSummaryModal() {
   const dispatch = useDispatch();
@@ -26,6 +27,8 @@ export default function RoomSummaryModal() {
   const order = useSelector((state) => state.combat.order);
 
   useEffect(() => {
+    // Play music after clearing room
+    playMusic(backgroundMusic.threeThousandYearsOld);
     // Ensure event options are not visible (needed for TRADE events)
     dispatch(
       uiActions.changeUi({

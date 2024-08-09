@@ -260,7 +260,6 @@ function getRoomEvent() {
       break;
   }
 
-
   // Randomly choose an event from the new array
   const randomIndex = Math.floor(Math.random() * events.length);
   return events[randomIndex];
@@ -587,16 +586,7 @@ function getRoomMusic(dungeon) {
   switch (dungeon.name) {
     case "The Great Catacomb":
       {
-        const musicList = [
-          backgroundMusic.weCantStopThem,
-          backgroundMusic.passedDanger,
-          backgroundMusic.finalBrigade,
-          backgroundMusic.migrano,
-          backgroundMusic.warningSignal,
-        ];
-
-        const index = Math.floor(Math.random() * musicList.length);
-        music = musicList[index];
+        // music = getCatacombEncounterMusic();
       }
       break;
   }
@@ -630,7 +620,7 @@ function getRoomMusic(dungeon) {
     switch (dungeon.contents.event.name) {
       //THE GREAT CATACOMBS
       case "Ambush":
-        music = backgroundMusic.hiddenCapacity;
+        music = backgroundMusic.unfinishedBusiness;
         break;
 
       case "Gravestone":
@@ -677,4 +667,17 @@ function getRoomMusic(dungeon) {
   }
 
   return music;
+}
+
+export function getCatacombEncounterMusic() {
+  const musicList = [
+    backgroundMusic.weCantStopThem,
+    backgroundMusic.passedDanger,
+    backgroundMusic.finalBrigade,
+    backgroundMusic.migrano,
+    backgroundMusic.warningSignal,
+  ];
+
+  const index = Math.floor(Math.random() * musicList.length);
+  return musicList[index];
 }

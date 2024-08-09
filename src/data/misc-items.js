@@ -14,7 +14,7 @@ const MISC_ITEMS = {
       "Can only be used in The Great Catacomb.",
     ],
     destination: 3,
-    // soundEffect: chewCrackersMouth,
+    audio: [false, "item", "map", 0.7],
   },
   LAUGHING_COFFIN_COIN: {
     name: "Laughing Coffin Coin",

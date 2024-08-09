@@ -80,7 +80,7 @@ const UNDEAD = {
     audio: {
       spawn: [true, "undeadSpawn", null, 0.5],
       attack: [true, "heavyWeapon", null, 0.5],
-      death: [true, "boneBreak"],
+      death: [true, "armorClankToTheGround", 0.7],
     },
     level: 2,
     currentHealth: 40,

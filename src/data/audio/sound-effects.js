@@ -12,7 +12,9 @@ export const soundPaths = {
     eventShield: "src/assets/audio/sound/guard/Event, Shield.mp3",
   },
   miss: {
-    swordSwingWhoosh: "src/assets/audio/sound/guard/Sword Swing Whoosh.mp3",
+    miss1: "src/assets/audio/sound/guard/miss-1.mp3",
+    miss2: "src/assets/audio/sound/guard/miss-2.mp3",
+    miss3: "src/assets/audio/sound/guard/miss-3.mp3",
   },
   // ===============================
   //         ATTACKS
@@ -81,15 +83,19 @@ export const soundPaths = {
   //           MAGIC
   // ===============================
   magic: {
+    // EVOCATION
     shock: "src/assets/audio/sound/magic/shock.mp3",
     frostbite: "src/assets/audio/sound/magic/frostbite.mp3",
     fireball: "src/assets/audio/sound/magic/fireball.mp3",
     firebolt: "src/assets/audio/sound/magic/meteor.mp3",
-    meteor: "src/assets/audio/sound/magic/meteor.mp3",
-    barkskin: "src/assets/audio/sound/magic/barkskin.mp3",
-    barrier: "src/assets/audio/sound/magic/barrier.mp3",
     blizzard: "src/assets/audio/sound/magic/blizzard.mp3",
     chainLightning: "src/assets/audio/sound/magic/chain-lightning.mp3",
+    stormSphere: "src/assets/audio/sound/magic/storm-sphere.mp3",
+    stormSphereDamage: "src/assets/audio/sound/magic/storm-sphere-damage.mp3",
+    meteor: "src/assets/audio/sound/magic/meteor.mp3",
+    // ABJURATION
+    barkskin: "src/assets/audio/sound/magic/barkskin.mp3",
+    barrier: "src/assets/audio/sound/magic/barrier.mp3",
     deathWard: "src/assets/audio/sound/magic/death-ward.mp3",
     dispelMagic: "src/assets/audio/sound/magic/dispel-magic.mp3",
     invulnerability: "src/assets/audio/sound/magic/invulnerability.mp3",
@@ -97,6 +103,10 @@ export const soundPaths = {
     steelskin: "src/assets/audio/sound/magic/steelskin.mp3",
     stoneskin: "src/assets/audio/sound/magic/stoneskin.mp3",
     protectFromEvil: "src/assets/audio/sound/magic/protect-from-evil.mp3",
+    // CONJURATION
+    conjure: "src/assets/audio/sound/magic/conjure.mp3",
+    summon: "src/assets/audio/sound/magic/summon.mp3",
+    // RESTORATION
     // Skeletal Mage attack
     iceWand: "src/assets/audio/sound/magic/ice-wand.mp3",
     magicSpellFire1: "src/assets/audio/sound/magic/Magic Spell Fire 1.mp3",
@@ -118,17 +128,17 @@ export const soundPaths = {
     magicSpellWhoosh9: "src/assets/audio/sound/magic/Magic Spell Whoosh 9.mp3",
     magicSpellWhoosh22:
       "src/assets/audio/sound/magic/Magic Spell Whoosh 22.mp3",
-    conjure: "src/assets/audio/sound/magic/conjure.mp3",
-    summon: "src/assets/audio/sound/magic/summon.mp3",
   },
-  armorClankToTheGround: {
-    armorMetalClanksToTheGround:
-      "src/assets/audio/sound/Armor Metal Clanks to Ground.mp3",
-    armorMetalClanksToTheGround2:
-      "src/assets/audio/sound/Armor Metal Clanks to Ground 2.mp3",
-    armorMetalClanksToTheGround3:
-      "src/assets/audio/sound/Armor Metal Clanks to Ground 3.mp3",
+  // ===============================
+  //            ABILITIES
+  // ===============================
+  abilities: {
+    cleansingFlame: "src/assets/audio/sound/abilities/cleansing-flame.mp3",
+    undyingFlame: "src/assets/audio/sound/abilities/undying-flame.mp3",
+    divineGuardian: "src/assets/audio/sound/abilities/divine-guardian.mp3",
+    venomStrike: "src/assets/audio/sound/abilities/venom-strike.mp3",
   },
+
   // ===============================
   //            SPAWN
   // ===============================
@@ -183,6 +193,14 @@ export const soundPaths = {
     spineBoneBreak1: "src/assets/audio/sound/Spine Bone Break 1.mp3",
     spineBoneBreak2: "src/assets/audio/sound/Spine Bone Break 2.mp3",
   },
+  armorClankToTheGround: {
+    armorMetalClanksToTheGround:
+      "src/assets/audio/sound/Armor Metal Clanks to Ground.mp3",
+    armorMetalClanksToTheGround2:
+      "src/assets/audio/sound/Armor Metal Clanks to Ground 2.mp3",
+    armorMetalClanksToTheGround3:
+      "src/assets/audio/sound/Armor Metal Clanks to Ground 3.mp3",
+  },
   // ===============================
   //          STATUS EFFECTS
   // ===============================
@@ -206,6 +224,7 @@ export const soundPaths = {
     chewCrackersMouth: "src/assets/audio/sound/items/Chew Crackers Mouth.mp3",
     skeletonKeyIn2: "src/assets/audio/sound/items/Skeleton Key In 2.mp3",
     flameLicks2: "src/assets/audio/sound/items/Flame Licks 2.mp3",
+    map: "src/assets/audio/sound/items/map.wav",
   },
   // ===============================
   //           EVENT
@@ -237,6 +256,7 @@ export const soundPaths = {
     qteStart: "src/assets/audio/sound/misc/qte-start.mp3",
     correct: "src/assets/audio/sound/misc/correct.mp3",
     incorrect: "src/assets/audio/sound/misc/incorrect.mp3",
+    encounter: "src/assets/audio/sound/misc/encounter.mp3",
   },
   // ===============================
   //            DIALOGUE
@@ -267,6 +287,7 @@ export const soundPaths = {
     //Modal close & Dialogue close
     softs2: "src/assets/audio/sound/ui/Softs 2.wav",
     unattune: "src/assets/audio/sound/ui/unattune.mp3",
+    trade: "src/assets/audio/sound/ui/trade.mp3",
   },
   skill: {
     coldWhoosh3: "src/assets/audio/sound/ui/Cold, Whoosh 03.mp3",
