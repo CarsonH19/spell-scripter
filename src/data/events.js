@@ -27,14 +27,14 @@ export const COFFIN = {
     {
       text: ["Open"],
       function: "COFFIN",
-      narration: "You decide to open the coffin.",
+      // narration: "You decide to open the coffin.",
       outcome:
         "Disregarding the sanctity of a burial site, you opened the coffin to see what was inside.",
     },
     {
       text: ["Leave"],
       function: "COFFIN",
-      narration: "You decide to leave the coffin.",
+      // narration: "You decide to leave the coffin.",
       outcome:
         "You decided to leave the coffin, and not disturb the dead resting within.",
     },
@@ -49,7 +49,7 @@ export const GRAVESTONE = {
     {
       text: ["Leave"],
       function: "GRAVESTONE",
-      narration: "You leave the gravestone.",
+      // narration: "You leave the gravestone.",
       outcome: "You left the gravestone just at you discovered it.",
     },
   ],
@@ -139,13 +139,13 @@ export const TRAPS = {
 export const BONEVAULT = {
   name: "Bonevault",
   type: "CHOICE",
-  description: ["You discover a locked door.", "Do you wish to unlock it?"],
+  description: ["You discover a locked vault door.", "Do you wish to unlock it?"],
   options: [
     {
       text: ["Unlock"],
       function: "BONEVAULT",
       narration: "You unlock the vault.",
-      outcome: "The vault remains sealed.",
+      outcome: "You used a Skeleton Key to open the vault.",
     },
     {
       text: ["Leave"],
@@ -291,7 +291,7 @@ export const PATH_EXIT = {
       {
         text: ["Leave"],
         function: "PATH_EXIT",
-        narration: "You decide to leave.",
+        // narration: "You decide to leave.",
         outcome: "You left the Wailing Warrens.",
       },
     ],
@@ -304,7 +304,7 @@ export const PATH_EXIT = {
       {
         text: ["Leave"],
         function: "PATH_EXIT",
-        narration: "You decide to leave.",
+        // narration: "You decide to leave.",
         outcome: "You left Thieves' Ruin.",
       },
     ],
@@ -378,14 +378,14 @@ export const THIEVES_RUIN = {
         function: "LAUGHING_COFFIN",
         narration: "",
         outcome:
-          "The thieves took what they wanted from your inventory, but left you unharmed.",
+        "You discovered the Laughing Coffin Tavern hidden within Thieves' Ruin.",
       },
       {
         text: ["Leave"],
         function: "LAUGHING_COFFIN",
-        narration: "You leave the Laughing Coffin Tavern.",
+        // narration: "You leave the Laughing Coffin Tavern.",
         outcome:
-          "You refused to surrender your items to the thieves and faced them in combat.",
+          "You discovered the Laughing Coffin Tavern hidden within Thieves' Ruin.",
       },
     ],
   },

@@ -207,6 +207,7 @@ export const soundPaths = {
   statusEffects: {
     burning: "src/assets/audio/sound/status-effects/burning.mp3",
     stunned: "src/assets/audio/sound/magic/shock.mp3",
+    haunted: "src/assets/audio/sound/status-effects/haunted.mp3",
   },
   // ===============================
   //          DEATH

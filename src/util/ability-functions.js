@@ -111,16 +111,23 @@ const abilityFunctions = {
       dispatch(
         combatActions.updateDamageDisplay({
           id: target.id,
-          content: {item: "Miss", style: ""},
+          content: { item: "Miss", style: "" },
         })
       );
     }
   },
+  // Skeletal Mage
   CHILL_OF_THE_GRAVE: (dispatch, character, target) => {
     const damage = 6 + character.stats.arcana.spellPower;
     changeHealth(dispatch, target, "DAMAGE", damage, "ICE");
-    playSoundEffect(false, "magic", "frostbite")
+    playSoundEffect(false, "magic", "frostbite");
     changeStatusEffect(dispatch, target, "ADD", CONDITIONS.CHILLED);
+  },
+  // Shadow
+  HAUNT: (dispatch, character, target) => {
+    console.log("HAUNT");
+    playSoundEffect(false, "soundEffect", "haunted");
+    changeStatusEffect(dispatch, target, "ADD", CONDITIONS.HAUNTED);
   },
 };
 

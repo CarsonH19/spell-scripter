@@ -166,7 +166,7 @@ const CONDITIONS = {
   INCORPOREAL: {
     name: "Incorporeal",
     display: true,
-    image: "",
+    image: "src/assets/images/status-effect/incorporeal.jpg",
     type: "BUFF",
     description: "The undead lacks a physical body.",
     effect: ["Attack damage dealt to the undead is reduced by 50%"],

@@ -93,9 +93,12 @@ export default async function activateItem(dispatch, item) {
         if (dashboard) return;
         const snakeCaseItem = toSnakeCase(item.name);
         const itemFunction = itemFunctions[snakeCaseItem];
+
         if (itemFunction) {
           itemFunction(dispatch, item);
         }
+        
+        if (item.audio) playSoundEffect(...item.audio);
       }
       break;
   }

@@ -34,7 +34,7 @@ import checkForDialogue, { getDialogue } from "../util/dialogue-util.js";
 import { checkIfAttuned } from "../util/item-functions.js";
 import playAudio from "../util/audio-util.js";
 import playSoundEffect from "../util/audio-util.js";
-import { playMusic } from "../data/audio/music.js";
+import { backgroundMusic, playMusic } from "../data/audio/music.js";
 import { getCatacombEncounterMusic } from "../util/dungeon-util.js";
 
 let playerActionResolver;
@@ -420,7 +420,7 @@ export async function startCombat(dispatch) {
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
   dispatch(logActions.updateLogs({ change: "PAUSE" }));
 
-  playSoundEffect(false, "misc", "encounter");
+  playSoundEffect(false, "misc", "encounter", 0.4);
 
   dispatch(
     logActions.updateLogs({
@@ -502,6 +502,8 @@ async function handleCallTiming(dispatch, timing, character) {
           checkStatusEffect(dispatch, order[i].id, "END");
         }
       }
+
+      playMusic(backgroundMusic.threeThousandYearsOld);
       break;
   }
 }

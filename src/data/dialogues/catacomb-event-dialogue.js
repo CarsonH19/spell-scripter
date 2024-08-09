@@ -162,6 +162,12 @@ export const COFFIN_DIALOGUE = {
     responseEnemy: [
       {
         position: `LEFT`,
+        speaker: null,
+        image: ``,
+        text: `As the coffin creaks open, a cloud of stale air escapes, revealing a grim sight: a skeletal hand reaching out from the darkness.`,
+      },
+      {
+        position: `LEFT`,
         speaker: `Spell Scripter`,
         image: `src/assets/images/dialogue/player-1-dialogue.png`,
         text: `"Looks like our curiosity has awakened more than we bargained for.`,
@@ -210,6 +216,12 @@ export const COFFIN_DIALOGUE = {
       },
     ],
     responseEnemy: [
+      {
+        position: `LEFT`,
+        speaker: null,
+        image: ``,
+        text: `As the coffin creaks open, a cloud of stale air escapes, revealing a grim sight: a skeletal hand reaching out from the darkness.`,
+      },
       {
         position: `RIGHT`,
         speaker: `Liheth`,
@@ -665,7 +677,7 @@ export const UNLOCKING_LIHETH_DIALOGUE = {
       position: "LEFT",
       speaker: "Spell Scripter",
       image: "src/assets/images/dialogue/player-1-dialogue.png",
-      text: `“I'm just passing through. What's the significance of this place?”`,
+      text: `“I'm just passing through. What is this place?”`,
     },
     {
       position: "RIGHT",
@@ -683,19 +695,37 @@ export const UNLOCKING_LIHETH_DIALOGUE = {
       position: "LEFT",
       speaker: "Spell Scripter",
       image: "src/assets/images/dialogue/player-1-dialogue.png",
-      text: `“I understand now. But why are you alone? This place seems overrun.”`,
+      text: `“I see... But why are you here, in the catacomb?”`,
     },
     {
       position: "RIGHT",
       speaker: "Liheth",
       image: "src/assets/images/dialogue/liheth-dialogue.png",
-      text: `“I'm Liheth, one of the few remaining Candlelight Priestesses. My duty is to keep these shrines lit. But with the undead growing in number, I can't safely tend to the others.”`,
+      text: `“I'm Liheth, one of the few remaining Candlelight Priestesses. My duty is to keep these shrines lit.”`,
+    },
+    {
+      position: "RIGHT",
+      speaker: "Liheth",
+      image: "src/assets/images/dialogue/liheth-dialogue.png",
+      text: `“But with the undead growing in number, many of the other priestesses have fled, or worse. I'm unable to tend to the other shrines.”`,
+    },
+    {
+      position: "RIGHT",
+      speaker: "Liheth",
+      image: "src/assets/images/dialogue/liheth-dialogue.png",
+      text: `“I'm need to tend to the other shrines, but I don't know their locations and the undead make searching for them challenging.”`,
     },
     {
       position: "LEFT",
       speaker: "Spell Scripter",
       image: "src/assets/images/dialogue/player-1-dialogue.png",
-      text: `“I'm heading further into the catacomb. We could work together to find and restore the other shrines.”`,
+      text: `“I'll be heading further into the catacomb.”`,
+    },
+    {
+      position: "LEFT",
+      speaker: "Spell Scripter",
+      image: "src/assets/images/dialogue/player-1-dialogue.png",
+      text: `“Come with me and we can search for them together!”`,
     },
     {
       position: "RIGHT",
@@ -707,13 +737,13 @@ export const UNLOCKING_LIHETH_DIALOGUE = {
       position: "RIGHT",
       speaker: "Liheth",
       image: "src/assets/images/dialogue/liheth-dialogue.png",
-      text: `“I'm deeply grateful for your assistance. I didn't expect such kindness in these dark halls.”`,
+      text: `“I didn't expect such kindness in these dark halls.”`,
     },
     {
       position: "RIGHT",
       speaker: "Liheth",
       image: "src/assets/images/dialogue/liheth-dialogue.png",
-      text: `“Before we proceed, take a moment to rest. We both need our strength. I'll finish my duties here.”`,
+      text: `“Before we proceed, take a moment to rest. We'll both need our strength, and I need to finish my duties here before we depart.”`,
     },
   ],
   after: [
@@ -733,19 +763,19 @@ export const UNLOCKING_LIHETH_DIALOGUE = {
       position: "LEFT",
       speaker: "Spell Scripter",
       image: "src/assets/images/dialogue/player-1-dialogue.png",
-      text: `“Thanks for taking care of the shrine. I'm ready to move on. What's our next step?”`,
+      text: `“I'm ready to move on. What's our next step?”`,
     },
     {
       position: "RIGHT",
       speaker: "Liheth",
       image: "src/assets/images/dialogue/liheth-dialogue.png",
-      text: `“Now that we've restored this shrine, we need to focus on the others hidden throughout the catacomb. The undead won't wait for us to be prepared.”`,
+      text: `“Now that we've restored this shrine, we need to find the others hidden throughout the catacomb.”`,
     },
     {
       position: "LEFT",
       speaker: "Spell Scripter",
       image: "src/assets/images/dialogue/player-1-dialogue.png",
-      text: `“Understood. Let's get going. The sooner we restore the shrines, the safer the catacomb will be.”`,
+      text: `“Understood. Let's get going.”`,
     },
   ],
 };

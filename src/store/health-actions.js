@@ -252,32 +252,32 @@ export async function checkForDeath(dispatch, id) {
   }
 }
 
-// Check which status effects should be displayed when they are added
-function checkForDamageDisplay(dispatch, target, statusEffect) {
-  let updateDispatch;
-  let styledItem;
+// // Check which status effects should be displayed when they are added
+// function checkForDamageDisplay(dispatch, target, statusEffect) {
+//   let updateDispatch;
+//   let styledItem;
 
-  if (
-    statusEffect.name === "Burned" ||
-    statusEffect.name === "Chilled" ||
-    statusEffect.name === "Stunned" ||
-    statusEffect.name === "Poisoned" ||
-    statusEffect.name === "Diseased" ||
-    statusEffect.name === "Haunted" ||
-    statusEffect.name === "Cursed" ||
-    statusEffect.name === "Withered" ||
-    statusEffect.name === "Restrained"
-  ) {
-    updateDispatch = true;
-  }
+//   if (
+//     statusEffect.name === "Burned" ||
+//     statusEffect.name === "Chilled" ||
+//     statusEffect.name === "Stunned" ||
+//     statusEffect.name === "Poisoned" ||
+//     statusEffect.name === "Diseased" ||
+//     statusEffect.name === "Haunted" ||
+//     statusEffect.name === "Cursed" ||
+//     statusEffect.name === "Withered" ||
+//     statusEffect.name === "Restrained"
+//   ) {
+//     updateDispatch = true;
+//   }
 
-  if (updateDispatch) {
-    styledItem = statusEffect.name.toLowerCase();
-    dispatch(
-      combatActions.updateDamageDisplay({
-        id: target.id,
-        content: { item: statusEffect.name, style: styledItem },
-      })
-    );
-  }
-}
+//   if (updateDispatch) {
+//     styledItem = statusEffect.name.toLowerCase();
+//     dispatch(
+//       combatActions.updateDamageDisplay({
+//         id: target.id,
+//         content: { item: statusEffect.name, style: styledItem },
+//       })
+//     );
+//   }
+// }

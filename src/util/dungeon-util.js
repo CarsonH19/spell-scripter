@@ -198,13 +198,13 @@ function getRoomEvent() {
         // events.push(TRAPS.ROTATING_BLADES);
         // events.push(TRAPS.SPIKE_WALLS);
 
-        // if (dungeon.threat < 20) {
-        //   events.push(GRAVESTONE);
-        // }
-
         if (dungeon.threat < 20) {
-          events.push(AMBUSH);
+          events.push(GRAVESTONE);
         }
+
+        // if (dungeon.threat < 20) {
+        //   events.push(AMBUSH);
+        // }
 
         // events.push(COFFIN);
         // events.push(BONEVAULT);
@@ -495,7 +495,7 @@ function getRoomImage(dungeon) {
       case "Coffin":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/coffin",
-          9
+          7
         );
         break;
 
@@ -586,7 +586,7 @@ function getRoomMusic(dungeon) {
   switch (dungeon.name) {
     case "The Great Catacomb":
       {
-        // music = getCatacombEncounterMusic();
+        music = backgroundMusic.threeThousandYearsOld;
       }
       break;
   }

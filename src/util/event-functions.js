@@ -155,7 +155,6 @@ const eventFunctions = {
       const flower = player.inventory.consumables.find((item) =>
         flowerList.includes(item.name)
       );
-      playSoundEffect(false, "death", "wispDeath", 1.2);
       dispatch(
         combatActions.changePlayerInventory({
           change: "REMOVE",
@@ -164,6 +163,7 @@ const eventFunctions = {
       );
 
       await checkForDialogue(dispatch, "after", choice);
+      playSoundEffect(false, "death", "wispDeath", 1.2);
 
       // Start Following to Wailing Warrens
       dispatch(
@@ -223,7 +223,15 @@ const eventFunctions = {
     if (choice === "Unlock") {
       if (!key) {
         // You do not have a key to open the door
-        // dispatch to narrative
+        dispatch(
+          logActions.updateLogs({
+            change: "ADD",
+            text: `You have no way to unlock the vault door.`,
+          })
+        );
+        dispatch(
+          dungeonActions.eventOutcome({ outcome: `You were unable to unlock the vault door.` })
+        );
         await delay(4000);
         openModal(dispatch, "roomSummaryModal");
       } else if (key) {

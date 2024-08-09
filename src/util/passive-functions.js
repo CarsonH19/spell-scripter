@@ -12,7 +12,7 @@ const passiveFunctions = {
     const radiantAura = {
       name: "Radiant Aura",
       display: true,
-      image: "",
+      image: "src/assets/images/status-effect/radiant-aura.jpg",
       type: "DEBUFF",
       description: "The undead is weakened in the presence of Siggurd.",
       effect: ["Defense -1"],

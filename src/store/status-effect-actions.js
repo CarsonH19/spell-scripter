@@ -280,7 +280,7 @@ function checkForDamageDisplayDispatches(dispatch, target, statusEffect) {
   let styledItem;
 
   if (
-    statusEffect.name === "Burned" ||
+    statusEffect.name === "Burning" ||
     statusEffect.name === "Chilled" ||
     statusEffect.name === "Stunned" ||
     statusEffect.name === "Poisoned" ||

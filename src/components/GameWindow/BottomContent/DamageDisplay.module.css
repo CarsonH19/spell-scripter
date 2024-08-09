@@ -53,41 +53,46 @@
  
 .damage-display .damage {
   color: var(--text);
-  animation: damage-shake 1s ease-in;;
+  /* animation: damage-shake 1s ease-in;; */
 }
 .damage-display .heal {
   color: white
 }
 .damage-display .burning {
   color: orange;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .damage-display .fire-damage {
   color: orange;
-  animation: damage-shake 1s ease-in;
 }
 
 .damage-display .chilled {
   color: lightblue;
+  font-size: 2rem;
 }
 
 .damage-display .ice-damage {
   color: lightblue;
-  animation: damage-shake 1s ease-in;
 }
 
 .damage-display .poisoned {
   font-size: 2rem;
   color: lightgreen;
+  font-weight: 600;
+
 }
 
 .damage-display .poison-damage {
   color: lightgreen;
-  animation: damage-shake 1s ease-in;
 }
 
 .damage-display .stunned {
   color: lightyellow;
+  font-size: 2rem;
+  font-weight: 600;
+
 }
 
 .damage-display .lightning-damage {
@@ -95,7 +100,11 @@
   animation: damage-shake 1s ease-in;
 }
 .damage-display .diseased {}
-.damage-display .haunted {}
+.damage-display .haunted {
+  font-size: 2rem;
+  color: rgb(112, 45, 131);
+  font-weight: 600;
+}
 .damage-display .cursed {}
 .damage-display .withered {}
 .damage-display .restrained {} 
