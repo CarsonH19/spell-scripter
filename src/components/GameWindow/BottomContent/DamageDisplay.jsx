@@ -1,31 +1,41 @@
-// import { v4 as uuidv4 } from "uuid";
-import classes from "./DamageDisplay.module.css";
+import { memo } from "react";
 import { useDispatch } from "react-redux";
 import { combatActions } from "../../../store/combat-slice";
 import { useEffect } from "react";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import classes from "./DamageDisplay.module.css";
 
-export default function DamageDisplay({ character }) {
+const DamageDisplay = memo(({ character }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       dispatch(combatActions.removeDamageDisplayItem({ id: character.id }));
-    }, 2000);
+    }, 1000);
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [character.damageDisplay]);
+  }, [character.damageDisplay, dispatch, character.id]);
 
   return (
-    <ul className={classes["damage-display"]}>
-      {character.damageDisplay.map((item, index) => {
-        console.log(item);
-        return (
-          <li key={index} className={classes[item.style]}>
-            {item.item}
-          </li>
-        );
-      })}
-    </ul>
+    <TransitionGroup component="ul" className={classes["damage-display"]}>
+      {character.damageDisplay.slice().reverse().map((item) => (
+        <CSSTransition
+          key={item.id}
+          timeout={500}
+          classNames={{
+            enter: classes["damage-enter"],
+            enterActive: classes["damage-enter-active"],
+            exit: classes["damage-exit"],
+            exitActive: classes["damage-exit-active"],
+          }}
+        >
+          <li className={classes[item.style]}>{item.item}</li>
+        </CSSTransition>
+      ))}
+    </TransitionGroup>
   );
-}
+});
+
+
+export default DamageDisplay;

@@ -17,13 +17,13 @@ const logSlice = createSlice({
         case "ADD":
           {
             const text = action.payload.text;
-            state.narration.push({ id: uuidv4(), text });
+            state.narration.unshift({ id: uuidv4(), text });
           }
           break;
 
         case "REMOVE":
           if (!state.paused) {
-            state.narration.shift();
+            state.narration.pop();
           }
           break;
 

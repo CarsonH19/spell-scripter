@@ -5,19 +5,57 @@
   width: 80%;
   height: 100%;
   transform: translate(-50%, -50%);
-  /* border: 1px solid red; */
+  border: 1px solid red;
+  display: flex; 
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
   margin: 0;
   font-size: 3rem;
   list-style: none;
 }
 
+.damage-display {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.damage-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.damage-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.damage-exit {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.damage-exit-active {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms, transform 500ms;
+}
+
+
+
+
+
 .damage-display li {
   text-align: center;
   color: var(--text);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  animation: fadeOut 2.1s ease-in-out;
+  /* animation: fadeOut 2.1s ease-in-out; */
 }
 
+
+ 
 .damage-display .damage {
   color: var(--text);
   animation: damage-shake 1s ease-in;;
@@ -44,6 +82,7 @@
 }
 
 .damage-display .poisoned {
+  font-size: 2rem;
   color: lightgreen;
 }
 
@@ -64,10 +103,7 @@
 .damage-display .haunted {}
 .damage-display .cursed {}
 .damage-display .withered {}
-.damage-display .restrained {}
-
-
-
+.damage-display .restrained {} 
 
 
 @keyframes fadeOut {
@@ -82,7 +118,7 @@
   }
 }
 
-@keyframes damage-shake {
+/* @keyframes damage-shake {
   0% { transform: translateY(0) rotate(0.2deg); }
   10% { transform: translateY(-5px) rotate(0.1deg); }
   20% { transform: translateY(5px) rotate(-0.1deg); }
@@ -94,5 +130,4 @@
   80% { transform: translateY(0) rotate(0.2deg); }
   90% { transform: translateY(0) rotate(0.2deg); }
   100% { transform: translateY(0) rotate(0.2deg); }
-
-}
+} */

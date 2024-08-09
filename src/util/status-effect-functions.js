@@ -25,7 +25,7 @@ const statusEffectFunctions = {
       (effect) => effect.name === "Poisoned"
     );
     const damage = statusEffect.stack;
-    changeHealth(dispatch, target, "DAMAGE", damage);
+    changeHealth(dispatch, target, "DAMAGE", damage, "POISON");
   },
   HAUNTED: (dispatch) => {
     const dungeon = store.getState().dungeon;

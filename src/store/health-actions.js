@@ -165,6 +165,8 @@ export async function changeHealth(
   // Change damageType to lower case to style the damage/health
   if (damageType) {
     const lowercase = damageType.toLowerCase();
+    console.log(lowercase);
+
     dispatch(
       combatActions.updateDamageDisplay({
         id,

@@ -188,9 +188,6 @@ export default function Character({ character }) {
       className={`${classes.image} ${
         isHighlighted ? classes.highlighted : ""
       } ${isCharacterTurn === character.id ? classes.turn : ""}`}
-      // style={{
-      //   backgroundImage: `url(${character.icon})`,
-      // }}
     >
       <img src={`${character.image}.png`} alt={character.name} />
       <DamageDisplay  character={character}/>
