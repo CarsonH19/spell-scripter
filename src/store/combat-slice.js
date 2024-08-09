@@ -167,10 +167,7 @@ const combatSlice = createSlice({
       }
     },
     updateDamageDisplay(state, action) {
-      const value = action.payload.value;
-
-      // Locate character
-      const id = action.payload.id;
+      const { id, content } = action.payload;
 
       const findCharacterById = (id) => {
         const characters = state.order;
@@ -179,7 +176,18 @@ const combatSlice = createSlice({
 
       const character = findCharacterById(id);
 
-      character.damageDisplay = value;
+      character.damageDisplay.push(content);
+    },
+    removeDamageDisplayItem(state, action) {
+      const { id } = action.payload;
+
+      const findCharacterById = (id) => {
+        const characters = state.order;
+        return characters.find((char) => char.id === id);
+      };
+
+      const character = findCharacterById(id);
+      character.damageDisplay.shift();
     },
     updateStatusEffects(state, action) {
       const change = action.payload.change;

@@ -188,7 +188,7 @@ const eventFunctions = {
     if (choice === "Enter") {
       dispatch(dungeonActions.beginPath(path));
       dispatch(
-        dungeonActions.eventOutcome({ outcome: `You entered the ${path}.` })
+        dungeonActions.eventOutcome({ outcome: `You entered ${path}.` })
       );
     } else {
       // dispatch(
@@ -206,7 +206,7 @@ const eventFunctions = {
     if (choice === "Leave") {
       dispatch(dungeonActions.beginPath(null));
       dispatch(
-        dungeonActions.eventOutcome({ outcome: `You left the ${path}.` })
+        dungeonActions.eventOutcome({ outcome: `You left ${path}.` })
       );
       await delay(4000);
       openModal(dispatch, "roomSummaryModal");

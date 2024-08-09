@@ -39,7 +39,7 @@ const statusEffectFunctions = {
           ...UNDEAD.SHADOW,
           id: uuidv4(),
           stats: baseStats,
-          damageDisplay: "",
+          damageDisplay: [],
         };
         dispatch(dungeonActions.addEnemy({ enemy: shadow, change: "ADD" }));
         // dispatch(combatActions.addCharacter({ character: shadow }));
@@ -86,7 +86,7 @@ const statusEffectFunctions = {
             dispatch(
               combatActions.updateDamageDisplay({
                 id: "Player",
-                value,
+                content: { text: value, style: "" },
               })
             );
             dispatch(

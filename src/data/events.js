@@ -247,13 +247,13 @@ export const PATH_ENTRANCE = {
       {
         text: ["Enter"],
         function: "PATH_ENTRANCE",
-        narration: "You decide to enter the Wailing Warrens.",
+        narration: "You decided to enter Wailing Warrens.",
       },
       {
         text: ["Leave"],
         function: "PATH_ENTRANCE",
         narration: "You decide to leave.",
-        outcome: "You chose not to enter.",
+        outcome: "You chose not to enter Wailing Warrens.",
       },
     ],
   },
@@ -268,13 +268,13 @@ export const PATH_ENTRANCE = {
       {
         text: ["Enter"],
         function: "PATH_ENTRANCE",
-        narration: "You decide to enter the Thieves' Ruin.",
+        narration: "You decided to enter Thieves' Ruin.",
       },
       {
         text: ["Leave"],
         function: "PATH_ENTRANCE",
         narration: "You decide to leave.",
-        outcome: "You chose not to enter.",
+        outcome: "You chose not to enter Thieves' Ruin.",
       },
     ],
   },

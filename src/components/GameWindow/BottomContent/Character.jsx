@@ -14,6 +14,7 @@ import updateStatTotals from "../../../store/stats-actions";
 
 import { useEffect, useState } from "react";
 import playSoundEffect from "../../../util/audio-util";
+import DamageDisplay from "./DamageDisplay";
 
 export default function Character({ character }) {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function Character({ character }) {
   );
   const isCharacterTurn = useSelector((state) => state.combat.isCharacterTurn);
 
-  const [showDamage, setShowDamage] = useState(false);
+  // const [showDamage, setShowDamage] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   // Play spawn audio
@@ -38,24 +39,24 @@ export default function Character({ character }) {
   // Update damage display
   useEffect(() => {
     // Show the damage number
-    setShowDamage(true);
+    // setShowDamage(true);
     // Set timeout to hide the damage number after 2 seconds
-    const timeoutId = setTimeout(() => {
-      setShowDamage(false);
-      // Clear the damage display
-      dispatch(
-        combatActions.updateDamageDisplay({
-          id: character.id,
-          value: null,
-        })
-      );
-    }, 2000);
+    // const timeoutId = setTimeout(() => {
+    //   // setShowDamage(false);
+    //   // Clear the damage display
+    //   dispatch(
+    //     combatActions.updateDamageDisplay({
+    //       id: character.id,
+    //       content: null,
+    //     })
+    //   );
+    // }, 2000);
 
     updateStatTotals(dispatch, character.id);
 
     // Clear timeout to prevent memory leaks
-    return () => clearTimeout(timeoutId);
-  }, [character.damageDisplay]);
+    // return () => clearTimeout(timeoutId);
+  }, [character]);
 
   // Handle level up
   useEffect(() => {
@@ -192,9 +193,7 @@ export default function Character({ character }) {
       // }}
     >
       <img src={`${character.image}.png`} alt={character.name} />
-      {showDamage && (
-        <p className={classes["damage-display"]}>{character.damageDisplay}</p>
-      )}
+      <DamageDisplay  character={character}/>
     </div>
   );
 

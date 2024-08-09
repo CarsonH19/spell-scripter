@@ -164,6 +164,8 @@ export default function changeStatusEffect(
     }
   }
 
+  // NOTE: Check for immunity first then call function to check if displayed
+  checkForDamageDisplayDispatches(dispatch, target, statusEffect);
   updateStatTotals(dispatch, target.id);
   return false;
 }
@@ -269,21 +271,35 @@ export function checkStatusEffect(dispatch, id, check, type) {
         }
       }
       break;
-
-    // case "CALL": // Check for status effect function call
-    //   for (let i = 0; i < statusEffects.length; i++) {
-    //     if (statusEffects[i].function) {
-    //       const statusEffectFunction =
-    //         statusEffectFunctions[statusEffects[i].function];
-    //       if (statusEffectFunction) {
-    //         statusEffectFunction(dispatch, order[index]);
-    //       }
-    //     }
-    //   }
-    //   break;
   }
 }
 
-// function toSnakeCase(str) {
-//   return str.toUpperCase().replace(/\s+/g, "_");
-// }
+// Check which status effects should be displayed when they are added
+function checkForDamageDisplayDispatches(dispatch, target, statusEffect) {
+  let updateDispatch;
+  let styledItem;
+
+  if (
+    statusEffect.name === "Burned" ||
+    statusEffect.name === "Chilled" ||
+    statusEffect.name === "Stunned" ||
+    statusEffect.name === "Poisoned" ||
+    statusEffect.name === "Diseased" ||
+    statusEffect.name === "Haunted" ||
+    statusEffect.name === "Cursed" ||
+    statusEffect.name === "Withered" ||
+    statusEffect.name === "Restrained"
+  ) {
+    updateDispatch = true;
+  }
+
+  if (updateDispatch) {
+    styledItem = statusEffect.name.toLowerCase();
+    dispatch(
+      combatActions.updateDamageDisplay({
+        id: target.id,
+        content: { item: statusEffect.name, style: styledItem },
+      })
+    );
+  }
+}

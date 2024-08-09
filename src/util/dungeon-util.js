@@ -399,7 +399,7 @@ export function buildEnemy(enemy) {
     icon: `${image}-icon`,
     stats: baseStats,
     id: uuidv4(),
-    damageDisplay: "",
+    damageDisplay: [],
   };
 
   if (enemy.abilityA) {

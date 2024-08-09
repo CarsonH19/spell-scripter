@@ -40,13 +40,13 @@ export default function Player() {
     const timeoutId = setTimeout(() => {
       setShowDamage(false);
 
-      // Clear the damage display
-      dispatch(
-        combatActions.updateDamageDisplay({
-          id: player.id,
-          value: null,
-        })
-      );
+      // // Clear the damage display
+      // dispatch(
+      //   combatActions.updateDamageDisplay({
+      //     id: player.id,
+      //     content: null,
+      //   })
+      // );
     }, 2000);
 
     // Clear timeout to prevent memory leaks

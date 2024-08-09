@@ -148,9 +148,9 @@ export default async function combatLoop(dispatch) {
               playSoundEffect(false, "guard", "eventShield", 0.6);
 
               dispatch(
-                logActions.updateLogs({
-                  change: "ADD",
-                  text: `Guarding!`,
+                combatActions.updateDamageDisplay({
+                  id: character.id,
+                  content: {item: "Guard", style: ""},
                 })
               );
               break;
@@ -190,6 +190,13 @@ export default async function combatLoop(dispatch) {
             {
               const target = checkBehaviorAttackTarget(character);
               attack(dispatch, character, target);
+
+              dispatch(
+                combatActions.updateDamageDisplay({
+                  id: character.id,
+                  content: {item: "Attack", style: ""},
+                })
+              );
             }
             break;
           case "GUARD":
@@ -199,9 +206,9 @@ export default async function combatLoop(dispatch) {
             playSoundEffect(false, "guard", "eventShield", 0.6);
 
             dispatch(
-              logActions.updateLogs({
-                change: "ADD",
-                text: `${character.name} guards!`,
+              combatActions.updateDamageDisplay({
+                id: character.id,
+                content: {item: "Guard", style: ""},
               })
             );
             break;
@@ -496,13 +503,6 @@ function attack(dispatch, character, target) {
   const hit = rollToHit(dispatch, character, target);
   // console.log("HIT", hit);
 
-  dispatch(
-    logActions.updateLogs({
-      change: "ADD",
-      text: `${character.name} attacks ${target.name}!`,
-    })
-  );
-
   if (hit) {
     // Attack audio
     if (character.audio) playSoundEffect(...character.audio.attack);
@@ -537,7 +537,7 @@ function attack(dispatch, character, target) {
     dispatch(
       combatActions.updateDamageDisplay({
         id: target.id,
-        value: "Miss!",
+        content: {item: "Miss", style: ""},
       })
     );
   }

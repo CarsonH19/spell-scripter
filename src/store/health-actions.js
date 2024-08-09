@@ -21,7 +21,8 @@ export async function changeHealth(
   target,
   change,
   value = 0,
-  damageType = null
+  damageType = null,
+  display
 ) {
   let id = target.id;
 
@@ -88,7 +89,7 @@ export async function changeHealth(
   }
 
   if (change === "DAMAGE") {
-      // Weaknesses
+    // Weaknesses
     for (let i = 0; i < target.weaknesses.length; i++) {
       if (target.weaknesses[i] === damageType) {
         value = value * 1.5;
@@ -160,7 +161,28 @@ export async function changeHealth(
   }
 
   value = Math.round(value);
-  dispatch(combatActions.updateDamageDisplay({ id, value }));
+
+  // Change damageType to lower case to style the damage/health
+  if (damageType) {
+    const lowercase = damageType.toLowerCase();
+    dispatch(
+      combatActions.updateDamageDisplay({
+        id,
+        content: { item: value, style: `${lowercase}-damage` },
+      })
+    );
+  }
+
+  // Standard damage number style
+  if (!damageType) {
+    dispatch(
+      combatActions.updateDamageDisplay({
+        id,
+        content: { item: value, style: "damage" },
+      })
+    );
+  }
+
   dispatch(combatActions.updateHealth({ id, change, value }));
   updateStatTotals(dispatch, target.id);
   await checkForDeath(dispatch, id);
@@ -225,10 +247,35 @@ export async function checkForDeath(dispatch, id) {
         );
       }
     }
+  }
+}
 
-    // Removes defeated character
-    // setTimeout(() => {
-    //   dispatch(combatActions.removeCharacter({ character }));
-    // }, 2000);
+// Check which status effects should be displayed when they are added
+function checkForDamageDisplay(dispatch, target, statusEffect) {
+  let updateDispatch;
+  let styledItem;
+
+  if (
+    statusEffect.name === "Burned" ||
+    statusEffect.name === "Chilled" ||
+    statusEffect.name === "Stunned" ||
+    statusEffect.name === "Poisoned" ||
+    statusEffect.name === "Diseased" ||
+    statusEffect.name === "Haunted" ||
+    statusEffect.name === "Cursed" ||
+    statusEffect.name === "Withered" ||
+    statusEffect.name === "Restrained"
+  ) {
+    updateDispatch = true;
+  }
+
+  if (updateDispatch) {
+    styledItem = statusEffect.name.toLowerCase();
+    dispatch(
+      combatActions.updateDamageDisplay({
+        id: target.id,
+        content: { item: statusEffect.name, style: styledItem },
+      })
+    );
   }
 }

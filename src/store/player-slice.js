@@ -17,7 +17,7 @@ const playerSlice = createSlice({
     get icon() {
       return `${this.image}-icon`;
     },
-    damageDisplay: "",
+    damageDisplay: [],
     audio: {
       spawn: "",
       attack: [true, "punch"],

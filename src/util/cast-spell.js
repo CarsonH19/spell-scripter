@@ -208,7 +208,7 @@ export default async function castSpell(dispatch, spell) {
           let summon = {
             ...spell.summon,
             stats: baseStats,
-            damageDisplay: "",
+            damageDisplay: [],
           };
 
           dispatch(combatActions.addCharacter({ character: summon }));

@@ -23,7 +23,7 @@ export default function HeroesModal() {
     const updatedHero = {
       ...hero,
       stats: baseStats,
-      damageDisplay: "",
+      damageDisplay: [],
     };
 
     setHoveredElement(updatedHero);
@@ -39,7 +39,7 @@ export default function HeroesModal() {
       const updatedHero = {
         ...hero,
         stats: baseStats,
-        damageDisplay: "",
+        damageDisplay: [],
       };
 
       dispatch(heroActions.changeParty({ change: "ADD", hero: updatedHero }));

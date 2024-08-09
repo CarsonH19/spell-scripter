@@ -111,7 +111,7 @@ const abilityFunctions = {
       dispatch(
         combatActions.updateDamageDisplay({
           id: target.id,
-          value: "Miss!",
+          content: {item: "Miss", style: ""},
         })
       );
     }
@@ -144,6 +144,12 @@ export function useAbility(dispatch, character) {
   const abilityFunction = abilityFunctions[character[ability].function];
 
   // Narrative
+  // dispatch(
+  //   combatActions.updateDamageDisplay({
+  //     id: character.id,
+  //     content: "Miss!",
+  //   })
+  // );
   dispatch(
     logActions.updateLogs({
       change: "ADD",

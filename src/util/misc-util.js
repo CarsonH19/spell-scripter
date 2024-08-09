@@ -31,7 +31,7 @@ export function addCharacterToOrder(
       character = {
         ...hero,
         stats: baseStats,
-        damageDisplay: "",
+        damageDisplay: [],
       };
     }
 
@@ -41,7 +41,7 @@ export function addCharacterToOrder(
         ...characterObj,
         id: uuidv4(),
         stats: baseStats,
-        damageDisplay: "",
+        damageDisplay: [],
       };
     }
 
