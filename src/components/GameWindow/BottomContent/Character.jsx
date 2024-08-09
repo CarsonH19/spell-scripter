@@ -80,9 +80,7 @@ export default function Character({ character }) {
   useEffect(() => {
     if (character.currentHealth <= 0) {
       setIsFadingOut(true);
-      setTimeout(() => {
-        dispatch(combatActions.removeCharacter({ character }));
-      }, 2000); // Duration of the fade-out animation
+      removeCharacterHandler(dispatch, character);
     }
   }, [character.currentHealth, dispatch, character.id]);
 
@@ -190,7 +188,7 @@ export default function Character({ character }) {
       } ${isCharacterTurn === character.id ? classes.turn : ""}`}
     >
       <img src={`${character.image}.png`} alt={character.name} />
-      <DamageDisplay  character={character}/>
+      <DamageDisplay character={character} />
     </div>
   );
 
@@ -221,4 +219,18 @@ export default function Character({ character }) {
       {content}
     </div>
   );
+}
+
+async function removeCharacterHandler(dispatch, character) {
+  // Death Audio
+  if (character.audio) playSoundEffect(...character.audio.death);
+  await delay(1000);
+
+  setTimeout(() => {
+    dispatch(combatActions.removeCharacter({ character }));
+  }, 2000); // Duration of the fade-out animation
+
+  async function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 }

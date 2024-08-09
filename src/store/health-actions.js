@@ -231,8 +231,6 @@ export async function checkForDeath(dispatch, id) {
 
   // Enemies & Heroes
   if (character.currentHealth <= 0 && character.identifier !== "PLAYER") {
-    // Death Audio
-    if (character.audio) playSoundEffect(...character.audio.death);
     // Check if enemy should be added to dungeon-slice for roomSummaryModal "Enemies Defeated"
     if (character.identifier === "ENEMY") {
       const dungeonEnemies = store.getState().dungeon.contents.enemies;
