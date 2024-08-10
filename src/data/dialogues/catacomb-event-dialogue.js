@@ -1011,7 +1011,7 @@ export const GRAVESTONE_DIALOGUE = {
         position: `LEFT`,
         speaker: `Spell Scripter`,
         image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"Whoa! A ghostly apparition!"`,
+        text: `"Ahh! Its a... ghost?"`,
       },
       {
         position: `RIGHT`,
@@ -1091,7 +1091,7 @@ export const GRAVESTONE_DIALOGUE = {
         position: `LEFT`,
         speaker: `Spell Scripter`,
         image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"Whoa! A ghostly apparition!"`,
+        text: `"Whoa! A ghost!"`,
       },
       {
         position: `RIGHT`,
@@ -1171,7 +1171,7 @@ export const GRAVESTONE_DIALOGUE = {
         position: `LEFT`,
         speaker: `Spell Scripter`,
         image: `src/assets/images/dialogue/player-1-dialogue.png`,
-        text: `"Whoa! A ghostly apparition!"`,
+        text: `"Whoa! A ghost!"`,
       },
       {
         position: `RIGHT`,

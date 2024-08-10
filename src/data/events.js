@@ -240,19 +240,19 @@ export const PATH_ENTRANCE = {
     name: "Wailing Warrens",
     type: "CHOICE",
     description: [
-      "You discover a hole in the wall leading into the abyss, spectral faces flicker in the darkness and a haunting wail echoes from deep within.",
+      "You discover a path leading into an abyss,  haunting wails echo from deep within.",
       "Do you wish to enter?",
     ],
     options: [
       {
         text: ["Enter"],
         function: "PATH_ENTRANCE",
-        narration: "You decided to enter Wailing Warrens.",
+        // narration: "You decided to enter Wailing Warrens.",
       },
       {
         text: ["Leave"],
         function: "PATH_ENTRANCE",
-        narration: "You decide to leave.",
+        // narration: "You decide to leave.",
         outcome: "You chose not to enter Wailing Warrens.",
       },
     ],

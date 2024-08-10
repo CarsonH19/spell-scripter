@@ -126,7 +126,7 @@ const abilityFunctions = {
   // Shadow
   HAUNT: (dispatch, character, target) => {
     console.log("HAUNT");
-    playSoundEffect(false, "soundEffect", "haunted");
+    playSoundEffect(false, "statusEffects", "haunted");
     changeStatusEffect(dispatch, target, "ADD", CONDITIONS.HAUNTED);
   },
 };
@@ -225,6 +225,13 @@ export function useAbility(dispatch, character) {
 
         // Skeletal Mage - Chill of the Grave
         if (character.name === "Skeletal Mage") {
+          const targetGroup = findTargetGroup("HEROES");
+          const index = Math.floor(Math.random() * targetGroup.length);
+          abilityFunction(dispatch, character, targetGroup[index]);
+        }
+
+        // Shadow - Haunt
+        if (character.name === "Shadow") {
           const targetGroup = findTargetGroup("HEROES");
           const index = Math.floor(Math.random() * targetGroup.length);
           abilityFunction(dispatch, character, targetGroup[index]);

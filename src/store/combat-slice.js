@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 const combatSlice = createSlice({
   name: "combat",
@@ -176,7 +177,8 @@ const combatSlice = createSlice({
 
       const character = findCharacterById(id);
 
-      character.damageDisplay.push(content);
+      const updatedContent = { ...content, id: uuidv4() };
+      character.damageDisplay.push(updatedContent);
     },
     removeDamageDisplayItem(state, action) {
       const { id } = action.payload;

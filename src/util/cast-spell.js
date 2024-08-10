@@ -82,6 +82,9 @@ export default async function castSpell(dispatch, spell) {
 
           target = await getTarget("ENEMIES");
 
+          dispatch(logActions.updateLogs({ change: "CLEAR" }));
+          dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+
           const damage = calcDamage(
             player,
             spell,

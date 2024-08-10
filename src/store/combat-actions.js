@@ -139,6 +139,7 @@ export default async function combatLoop(dispatch) {
 
                 const target = await getTarget("ENEMIES");
 
+                dispatch(logActions.updateLogs({ change: "CLEAR" }));
                 dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
 
                 attack(dispatch, character, target);
@@ -420,19 +421,19 @@ export async function startCombat(dispatch) {
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
   dispatch(logActions.updateLogs({ change: "PAUSE" }));
 
-  playSoundEffect(false, "misc", "encounter", 0.4);
+  // playSoundEffect(false, "misc", "encounter", 0.4);
 
-  dispatch(
-    logActions.updateLogs({
-      change: "ADD",
-      text: `Encounter!`,
-    })
-  );
+  // dispatch(
+  //   logActions.updateLogs({
+  //     change: "ADD",
+  //     text: `Encounter!`,
+  //   })
+  // );
 
   // Randomly play combat music
   playMusic(getCatacombEncounterMusic());
 
-  await delay(4000);
+  await delay(2000);
 
   // Clear Narrative
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));

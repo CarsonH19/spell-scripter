@@ -99,7 +99,7 @@ const UNDEAD = {
     weaknesses: [DAMAGE_TYPES.RADIANT],
     resistances: [],
     immunities: [],
-    behavior: "ERRATIC",
+    behavior: "DOMINANT",
     statusEffects: [],
     lootTable: [
       { item: CONSUMABLES.GRAVEBLOOM, probability: 0.03 },
@@ -146,7 +146,7 @@ const UNDEAD = {
     weaknesses: [DAMAGE_TYPES.RADIANT],
     resistances: [],
     immunities: [],
-    behavior: "ERRATIC",
+    behavior: "RUTHLESS",
     statusEffects: [],
     lootTable: [
       { item: CONSUMABLES.GRAVEBLOOM, probability: 0.03 },
@@ -193,7 +193,7 @@ const UNDEAD = {
     weaknesses: [DAMAGE_TYPES.RADIANT],
     resistances: [],
     immunities: [],
-    behavior: "ERRATIC",
+    behavior: "ASTUTE",
     statusEffects: [],
     lootTable: [
       { item: CONSUMABLES.GRAVEBLOOM, probability: 0.03 },
@@ -498,7 +498,7 @@ const UNDEAD = {
     weaknesses: [DAMAGE_TYPES.RADIANT],
     resistances: [],
     immunities: [],
-    behavior: "ERRATIC",
+    behavior: "AGGRESSIVE",
     statusEffects: [CONDITIONS.INCORPOREAL],
     lootTable: [],
   },
