@@ -285,6 +285,7 @@ export function calculateRooms(following) {
   const dungeon = store.getState().dungeon;
   let rooms;
 
+  // Find the difference it where the player is to the distance number on the item object
   if (following.destination) {
     rooms = Math.abs(dungeon.roomCounter - following.destination);
   }
@@ -296,9 +297,6 @@ export function calculateRooms(following) {
   if (rooms < 5) {
     rooms = 5;
   }
-
-  // TESTING
-  rooms = 1;
 
   return rooms;
 }

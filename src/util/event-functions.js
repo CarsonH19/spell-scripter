@@ -187,12 +187,18 @@ const eventFunctions = {
   PATH_ENTRANCE: async (dispatch, choice) => {
     const path = store.getState().dungeon.contents.event.name;
     if (choice === "Enter") {
-      dispatch(dungeonActions.eventOutcome({ outcome: `You entered ${path}.` }));
+      dispatch(
+        dungeonActions.eventOutcome({ outcome: `You entered ${path}.` })
+      );
       dispatch(dungeonActions.beginPath(path));
       // Start Fade transition
       await dispatch(uiActions.updateFade({ change: "CALL" }));
       await delay(2000);
-      const pathURLFormat = path.toLowerCase().replace(" ", "-");
+      const pathURLFormat = path
+        .toLowerCase()
+        .replace(/ /g, "-") 
+        .replace(/`/g, "");
+
       const newBackground = getImageFromList(
         `src/assets/images/backgrounds/${pathURLFormat}/${pathURLFormat}`,
         8

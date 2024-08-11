@@ -13,7 +13,7 @@ const MISC_ITEMS = {
       "A map that leads to Thieves' Ruin.",
       "Can only be used in The Great Catacomb.",
     ],
-    destination: 3,
+    destination: 10,
     audio: [false, "item", "map", 0.7],
   },
   LAUGHING_COFFIN_COIN: {

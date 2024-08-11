@@ -488,21 +488,21 @@ function getRoomImage(dungeon) {
       case "Gravestone":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/gravestone",
-          1
+          7
         );
         break;
 
       case "Coffin":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/coffin",
-          7
+          5
         );
         break;
 
       case "Bonevault":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/bonevault-door",
-          4
+          5
         );
         break;
 
