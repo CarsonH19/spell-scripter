@@ -40,14 +40,21 @@ let playerActionResolver;
 let targetResolver;
 let selectResolver;
 
-export default async function combatLoop(dispatch) {
+// additionalEnemies is an array of enemies passed to the combatLoop when the enemies in combat are greater than 3
+// This allows for any number of enemies, but limits the combat to a max of 3 enemies at a time
+export default async function combatLoop(dispatch, additionalEnemies = 0) {
   // Iterate through all characters and call passive abilities before combat
   // NOTE: Passives will be called on each round of combat.
   let order = store.getState().combat.order;
   const dungeon = store.getState().dungeon;
-  console.log("DUNGEON", dungeon);
+  console.log("DUNGEON");
 
   // START OF THE ROUND
+  // Adds enemies if needed & returns new array of enemies
+  const updatedAdditionalEnemies = checkForNewEnemies(
+    dispatch,
+    additionalEnemies
+  );
   // Passive Abilities
   // Clear Narrative
   handleCallTiming(dispatch, "START_OF_ROUND");
@@ -192,13 +199,6 @@ export default async function combatLoop(dispatch) {
             {
               const target = checkBehaviorAttackTarget(character);
               attack(dispatch, character, target);
-
-              dispatch(
-                combatActions.updateDamageDisplay({
-                  id: character.id,
-                  content: { item: "Attack", style: "" },
-                })
-              );
             }
             break;
           case "GUARD":
@@ -221,7 +221,7 @@ export default async function combatLoop(dispatch) {
         }
       }
 
-      await delay(1000);
+      // await delay(1000);
 
       // END OF TURN
       handleCallTiming(dispatch, "END_OF_TURN", character);
@@ -244,7 +244,7 @@ export default async function combatLoop(dispatch) {
     handleCallTiming(dispatch, "END_OF_ROUND");
 
     // continue the loop
-    combatLoop(dispatch);
+    combatLoop(dispatch, updatedAdditionalEnemies);
   }
 }
 
@@ -389,16 +389,38 @@ async function delay(ms) {
 //                       START COMBAT
 // =============================================================
 
-export async function startCombat(dispatch) {
+// Must pass the dungeon-slice.contents.enemies array as an arg.
+export async function startCombat(dispatch, enemies) {
   const order = store.getState().combat.order;
+  let enemiesInCombat = [...enemies];
+  let additionalEnemies = [];
+  console.log(enemiesInCombat);
+  if (enemiesInCombat.length > 3) {
+    // Calculate the number of enemies to move
+    const excessCount = enemiesInCombat.length - 3;
+    console.log("EXCESS", excessCount);
+
+    // Ensure excessCount is valid
+    if (excessCount > 0) {
+      // Move the excess enemies to the additionalEnemies array
+      additionalEnemies = enemiesInCombat.splice(3, excessCount);
+
+      // Log the results for debugging
+      console.log("ENEMIES", enemiesInCombat);
+      console.log("ADDITIONAL", additionalEnemies);
+    }
+  }
+
   // Check status effects that call functions before combat
+  // NOTE: currently only calls Heroes status effects I think....
   for (let i = 0; i < order.length; i++) {
     callStatusEffect(dispatch, order[i], "BEFORE COMBAT");
   }
 
-  const room = store.getState().dungeon;
+  // const room = store.getState().dungeon;
   const currentOrder = store.getState().combat.order;
-  const characters = [...room.contents.enemies, ...currentOrder];
+
+  const characters = [...enemiesInCombat, ...currentOrder];
   dispatch(combatActions.setInitiative({ characters }));
 
   for (let i = 0; i < characters.length; i++) {
@@ -438,7 +460,9 @@ export async function startCombat(dispatch) {
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
 
-  combatLoop(dispatch);
+  // Additional enemies are passed to the combatLoop to be added later
+  // In the combatLoop if an "additional enemy" is defeated remove it from the array before calling the combatLoop again
+  combatLoop(dispatch, additionalEnemies);
 }
 
 // =============================================================
@@ -508,7 +532,7 @@ async function handleCallTiming(dispatch, timing, character) {
   }
 }
 
-function attack(dispatch, character, target) {
+export function attack(dispatch, character, target) {
   const hit = rollToHit(dispatch, character, target);
   // console.log("HIT", hit);
 
@@ -533,7 +557,19 @@ function attack(dispatch, character, target) {
       checkIfAttuned(dispatch, "Cursed Mirror", character, damage);
     }
 
-    // console.log("DAMAGE", damage);
+    dispatch(
+      logActions.updateLogs({
+        change: "ADD",
+        text: `${character.name} Attacks ${target.name}!`,
+      })
+    );
+
+    // dispatch(
+    //   combatActions.updateDamageDisplay({
+    //     id: character.id,
+    //     content: { item: "Attack", style: "" },
+    //   })
+    // );
 
     // Create a new slice property to show the attack outcome
     changeHealth(dispatch, target, "DAMAGE", damage, null);
@@ -549,4 +585,31 @@ function attack(dispatch, character, target) {
       })
     );
   }
+}
+
+// Adds enemies to the combat order if additional enemies exist and there are fewer than 3 enemies in the combat order at the end of the round
+// If an enemy has an ability that summons an enemy. The abilityFunction must first check the combat order for an "open slot" or else the ability won't be called
+// So checkForNewEnemies must be called at the end of the round after all enemies have taken their turns
+function checkForNewEnemies(dispatch, additionalEnemies) {
+  const order = store.getState().combat.order; // Get the current combat order from the store
+  const numberOfEnemies = order.filter((char) => char.identifier === "ENEMY"); // Filter to get current enemies in combat
+  let enemiesToAdd = [...additionalEnemies]; // Clone the additionalEnemies array to avoid mutation
+  let updatedAdditionalEnemies = []; // Initialize an array to hold the updated additional enemies list
+
+  // Add enemies until there are at least 3 in the combat order
+  while (numberOfEnemies.length < 3 && enemiesToAdd.length > 0) {
+    dispatch(
+      logActions.updateLogs({
+        change: "ADD",
+        text: `${enemiesToAdd[0].name} joined combat!`,
+      })
+    );
+    dispatch(combatActions.addCharacter({ character: enemiesToAdd[0] }));
+    enemiesToAdd.shift(); // Remove the first enemy from the list after dispatching
+    numberOfEnemies.push(enemiesToAdd[0]); // Update the local numberOfEnemies array to reflect the newly added enemy
+  }
+
+  updatedAdditionalEnemies = enemiesToAdd; // Set the remaining enemies to the updated list
+
+  return updatedAdditionalEnemies; // Return the remaining enemies
 }

@@ -223,7 +223,7 @@ export const soundPaths = {
   item: {
     gulpingWater24: "src/assets/audio/sound/items/Gulping Water 24.mp3",
     chewCrackersMouth: "src/assets/audio/sound/items/Chew Crackers Mouth.mp3",
-    skeletonKeyIn2: "src/assets/audio/sound/items/Skeleton Key In 2.mp3",
+    skeletonKey: "src/assets/audio/sound/items/Skeleton Key In 2.mp3",
     flameLicks2: "src/assets/audio/sound/items/Flame Licks 2.mp3",
     map: "src/assets/audio/sound/items/map.wav",
     // Laughin Coffin
@@ -257,6 +257,11 @@ export const soundPaths = {
     correct: "src/assets/audio/sound/misc/correct.mp3",
     incorrect: "src/assets/audio/sound/misc/incorrect.mp3",
     encounter: "src/assets/audio/sound/misc/encounter.mp3",
+  },
+  openDoor: {
+    openDoor1: "src/assets/audio/sound/misc/open-door-1.wav",
+    openDoor2: "src/assets/audio/sound/misc/open-door-2.wav"
+
   },
   // ===============================
   //            DIALOGUE

@@ -53,8 +53,6 @@ async function handleGameFlow(dispatch, setShowBottom) {
     await locationNarration(dispatch, dungeon.name);
   }
 
-
-
   // Narrate path name on entrance / LOGIC MOVED TO PATH_ENTRANCE event-function
   // if (dungeon.path && dungeon.pathCounter === 9) {
   //   setShowBottom(false);
@@ -68,7 +66,7 @@ async function handleGameFlow(dispatch, setShowBottom) {
     // Sets initiative & adds enemies to combat order then begins the combatLoop
     // Dialogue
     await checkForDialogue(dispatch, "before");
-    startCombat(dispatch);
+    startCombat(dispatch, dungeon.contents.enemies);
   }
 
   // Handle Event
@@ -83,7 +81,6 @@ async function handleGameFlow(dispatch, setShowBottom) {
 
     // Dialogue
     await checkForDialogue(dispatch, "before");
-    console.log("CHECKED")
 
     // AUTO Events
     if (event.type === "AUTO") {

@@ -300,6 +300,8 @@ export function getRoomEnemies() {
       {
         enemyTypes = [{ enemy: THIEVES.THIEF, probability: 1 }];
         numberOfEnemies = Math.ceil(Math.random() * 3);
+        // TEST
+        numberOfEnemies = 6;
       }
       break;
 
@@ -672,7 +674,7 @@ function getRoomMusic(dungeon) {
 export function playEncounterMusic() {
   const dungeon = store.getState().dungeon;
 
-  let musicList;
+  let musicList = [];
 
   switch (dungeon.name) {
     case "The Great Catacomb":
@@ -689,10 +691,7 @@ export function playEncounterMusic() {
   if (dungeon.path) {
     switch (dungeon.path) {
       case "Wailing Warrens":
-        musicList = [
-          backgroundMusic.hauntedOutpost,
-          backgroundMusic.fightThrough,
-        ];
+        musicList = [backgroundMusic.edgeOfFear, backgroundMusic.fightThrough];
         break;
       case "Thieves' Ruin":
         musicList = [backgroundMusic.hiddenCapacity];
@@ -701,5 +700,6 @@ export function playEncounterMusic() {
   }
 
   const index = Math.floor(Math.random() * musicList.length);
+  console.log(musicList[index]);
   playMusic(musicList[index]);
 }

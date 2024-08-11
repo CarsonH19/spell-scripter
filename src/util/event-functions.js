@@ -130,7 +130,7 @@ const eventFunctions = {
         );
         // Start combat
         await delay(2000);
-        startCombat(dispatch);
+        startCombat(dispatch, dungeon.contents.enemies);
       }
     }
 
@@ -191,6 +191,7 @@ const eventFunctions = {
         dungeonActions.eventOutcome({ outcome: `You entered ${path}.` })
       );
       dispatch(dungeonActions.beginPath(path));
+      playSoundEffect(true, "openDoor");
       // Start Fade transition
       await dispatch(uiActions.updateFade({ change: "CALL" }));
       await delay(2000);
@@ -221,6 +222,7 @@ const eventFunctions = {
   PATH_EXIT: async (dispatch, choice) => {
     const path = store.getState().dungeon.path;
     if (choice === "Leave") {
+      playSoundEffect(true, "openDoor");
       dispatch(dungeonActions.eventOutcome({ outcome: `You left ${path}.` }));
       await delay(4000);
       dispatch(dungeonActions.endPath());
@@ -254,7 +256,8 @@ const eventFunctions = {
         await delay(4000);
         openModal(dispatch, "roomSummaryModal");
       } else if (key) {
-        playSoundEffect(false, "misc", "openCoffin");
+        playSoundEffect(false, "item", "skeltonKey");
+        playSoundEffect(true, "openDoor");
         // Remove Key
         dispatch(
           combatActions.changePlayerInventory({
@@ -332,7 +335,7 @@ const eventFunctions = {
           }
 
           await delay(2000);
-          startCombat(dispatch);
+          startCombat(dispatch, dungeon.contents.enemies);
           // Opened bonevault but no enemies are present
         } else {
           await delay(2000);
@@ -395,10 +398,12 @@ const eventFunctions = {
     }
   },
   UNLOCK_HERO_SIGGURD: async (dispatch) => {
+    const dungeon = store.getState().dungeon;
     dispatch(heroActions.unlockHero("Siggurd"));
-    startCombat(dispatch);
+    startCombat(dispatch, dungeon.contents.enemies);
   },
   AMBUSH: async (dispatch, choice) => {
+    const dungeon = store.getState().dungeon;
     const order = store.getState().combat.order;
     const player = order.find((char) => char.id === "Player");
     if (choice === "Surrender") {
@@ -436,10 +441,9 @@ const eventFunctions = {
 
     if (choice === "Refuse") {
       await checkForDialogue(dispatch, "response", choice);
-      // playMusic(backgroundMusic.warningSignal);
       // Check if map drops during event
       getRandomLoot(dispatch);
-      startCombat(dispatch);
+      startCombat(dispatch, dungeon.contents.enemies);
     }
   },
   LAUGHING_COFFIN: async (dispatch, choice) => {

@@ -274,7 +274,7 @@ export function checkStatusEffect(dispatch, id, check, type) {
   }
 }
 
-// Check which status effects should be displayed when they are added
+// Check which status effects should be displayed when they are added to a character
 function checkForDamageDisplayDispatches(dispatch, target, statusEffect) {
   let updateDispatch;
   let styledItem;

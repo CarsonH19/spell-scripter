@@ -7,6 +7,7 @@ import changeStatusEffect from "../store/status-effect-actions";
 import CONDITIONS from "../data/conditions";
 import { calcDamage, rollToHit } from "../store/combat-actions";
 import playSoundEffect from "./audio-util";
+import { attack } from "../store/combat-actions";
 
 const abilityFunctions = {
   // ===========================================
@@ -124,8 +125,7 @@ const abilityFunctions = {
     changeStatusEffect(dispatch, target, "ADD", CONDITIONS.CHILLED);
   },
   // Shadow
-  HAUNT: (dispatch, character, target) => {
-    console.log("HAUNT");
+  HAUNT: (dispatch, target) => {
     playSoundEffect(false, "statusEffects", "haunted");
     changeStatusEffect(dispatch, target, "ADD", CONDITIONS.HAUNTED);
   },
@@ -150,21 +150,6 @@ export function useAbility(dispatch, character) {
   let ability = abilityA ? "abilityA" : "abilityB";
   const abilityFunction = abilityFunctions[character[ability].function];
 
-  // Narrative
-  // dispatch(
-  //   combatActions.updateDamageDisplay({
-  //     id: character.id,
-  //     content: "Miss!",
-  //   })
-  // );
-  dispatch(
-    logActions.updateLogs({
-      change: "ADD",
-      text: `${character.name} uses ${character[ability].name}!`,
-    })
-  );
-
-  // NOTE: If multiple characters use this focus can I add an if-statement to check for the correct name?
   switch (character[ability].focus) {
     // case "SELF":
     // break;
@@ -234,7 +219,16 @@ export function useAbility(dispatch, character) {
         if (character.name === "Shadow") {
           const targetGroup = findTargetGroup("HEROES");
           const index = Math.floor(Math.random() * targetGroup.length);
-          abilityFunction(dispatch, character, targetGroup[index]);
+          // Check if target is already haunted. If so make the Attack action instead
+          if (
+            targetGroup[index].statusEffects.some(
+              (effect) => effect.name === "Haunted"
+            )
+          ) {
+            attack(dispatch, character, targetGroup[index]);
+            return // end the function early to prevent cooldown reset
+          }
+          abilityFunction(dispatch, targetGroup[index]);
         }
       }
       break;
@@ -314,6 +308,14 @@ export function useAbility(dispatch, character) {
       }
       break;
   }
+
+  // If the character is unable to use their ability return in the logic above so that the cooldown is not reset & the narrative is not displayed
+  dispatch(
+    logActions.updateLogs({
+      change: "ADD",
+      text: `${character.name} uses ${character[ability].name}!`,
+    })
+  );
 
   dispatch(
     combatActions.updateCooldown({

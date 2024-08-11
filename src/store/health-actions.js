@@ -238,7 +238,6 @@ export async function checkForDeath(dispatch, id) {
         (char) => char.id === character.id
       );
       if (!isEnemyInDungeonSlice) {
-        console.log("ENEMY ADDED TO DUNGEON SLICE", character);
         dispatch(
           dungeonActions.addEnemy({
             change: "ADD",
