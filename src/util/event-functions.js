@@ -29,6 +29,7 @@ import { roomTransition } from "../components/GameWindow/MiddleContent/MiddleCon
 import { backgroundMusic, playMusic } from "../data/audio/music";
 
 import { callFadeTransition } from "../components/UI/FadeEffect";
+import { locationNarration } from "../components/GameWindow/GameWindow";
 
 // Each event will determine what dispatches & narrations to call, as well as when the event is over and the room summary modal should be called
 const eventFunctions = {
@@ -186,16 +187,23 @@ const eventFunctions = {
   PATH_ENTRANCE: async (dispatch, choice) => {
     const path = store.getState().dungeon.contents.event.name;
     if (choice === "Enter") {
+      dispatch(dungeonActions.eventOutcome({ outcome: `You entered ${path}.` }));
       dispatch(dungeonActions.beginPath(path));
-      dispatch(
-        dungeonActions.eventOutcome({ outcome: `You entered ${path}.` })
+      // Start Fade transition
+      await dispatch(uiActions.updateFade({ change: "CALL" }));
+      await delay(2000);
+      const pathURLFormat = path.toLowerCase().replace(" ", "-");
+      const newBackground = getImageFromList(
+        `src/assets/images/backgrounds/${pathURLFormat}/${pathURLFormat}`,
+        8
       );
+      dispatch(dungeonActions.changeBackground(newBackground));
+      // End Fade transition
+      await dispatch(uiActions.updateFade({ change: "CLEAR" }));
+      await locationNarration(dispatch, path);
     } else {
-      // dispatch(
-      //   dungeonActions.eventOutcome({ outcome: `You chose not to enter.` })
-      // );
-      // await delay(4000);
-      // openModal(dispatch, "roomSummaryModal");
+      await delay(4000);
+      openModal(dispatch, "roomSummaryModal");
     }
 
     await delay(4000);
@@ -230,7 +238,9 @@ const eventFunctions = {
           })
         );
         dispatch(
-          dungeonActions.eventOutcome({ outcome: `You were unable to unlock the vault door.` })
+          dungeonActions.eventOutcome({
+            outcome: `You were unable to unlock the vault door.`,
+          })
         );
         await delay(4000);
         openModal(dispatch, "roomSummaryModal");

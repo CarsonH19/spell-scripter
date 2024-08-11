@@ -12,7 +12,7 @@ const dungeonSlice = createSlice({
     threat: -1,
     danger: false,
     image:
-      "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance.jpg",
+      "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance-3.jpg",
     music: null,
     contents: {
       enemies: [],
@@ -45,7 +45,7 @@ const dungeonSlice = createSlice({
       state.path = action.payload;
       if (action.payload !== null) {
         // Paths are hard set to 10 rooms
-        state.pathCounter = 2;
+        state.pathCounter = 10;
       } else {
         // state.following = null;
         state.pathCounter = null;

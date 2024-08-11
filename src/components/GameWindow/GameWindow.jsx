@@ -55,11 +55,11 @@ async function handleGameFlow(dispatch, setShowBottom) {
 
 
 
-  // Narrate path name on entrance
-  if (dungeon.path && dungeon.pathCounter === 9) {
-    setShowBottom(false);
-    await locationNarration(dispatch, dungeon.path);
-  }
+  // Narrate path name on entrance / LOGIC MOVED TO PATH_ENTRANCE event-function
+  // if (dungeon.path && dungeon.pathCounter === 9) {
+  //   setShowBottom(false);
+  //   await locationNarration(dispatch, dungeon.path);
+  // }
 
   setShowBottom(true);
 
@@ -106,7 +106,7 @@ async function handleGameFlow(dispatch, setShowBottom) {
   }
 }
 
-async function locationNarration(dispatch, location) {
+export async function locationNarration(dispatch, location) {
   dispatch(logActions.updateLogs({ change: "CLEAR" }));
   dispatch(logActions.updateLogs({ change: "PAUSE" }));
   await delay(2000);

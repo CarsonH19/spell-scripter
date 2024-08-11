@@ -93,7 +93,7 @@ function selectModal() {
       return <DungeonTomesModal />;
 
     case "roomSummaryModal":
-      playSoundEffect(false, "misc", "hitReverbDark4");
+      playSoundEffect(false, "misc", "hitReverbDark4", 0.8);
       return <RoomSummaryModal />;
 
     case "tradeModal":

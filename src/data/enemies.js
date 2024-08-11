@@ -448,6 +448,8 @@ const UNDEAD = {
     type: ENEMY_TYPES.UNDEAD,
     audio: {
       death: [false, "death", "wispDeath", 1.2],
+      spawn: [false, "death", "wispDeath", 1.2],
+      attack: [true, "ghostAttack", null],
     },
     level: 1,
     currentHealth: 0,
@@ -475,9 +477,9 @@ const UNDEAD = {
     },
     type: ENEMY_TYPES.UNDEAD,
     audio: {
-      spawn: [true, "shadowSpawn", null, 0.8],
-      attack: [true, "ghostAttack", null],
-      death: [false, "death", "shadowDeath"],
+      spawn: [true, "shadowSpawn", null, 0.6],
+      attack: [true, "ghostAttack", null, 0.8],
+      death: [false, "death", "shadowDeath", 0.8],
     },
     level: 2,
     currentHealth: 10,

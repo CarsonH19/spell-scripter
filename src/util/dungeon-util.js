@@ -55,7 +55,7 @@ export function setDungeon(dispatch, dungeonName) {
       dungeon.pathCounter = null;
       dungeon.threat = 0;
       dungeon.image =
-        "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance";
+        "src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance-3";
       // dungeon.music =
       dungeon.contents; // add Entrance event
       break;
@@ -454,7 +454,7 @@ function getRoomImage(dungeon) {
     case "The Great Catacomb":
       backgroundImage = getImageFromList(
         "src/assets/images/backgrounds/the-great-catacomb/catacomb",
-        24
+        28
       );
       break;
   }
@@ -465,7 +465,7 @@ function getRoomImage(dungeon) {
       case "Wailing Warrens":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/wailing-warrens/wailing-warrens",
-          9
+          14
         );
         break;
 
@@ -518,14 +518,14 @@ function getRoomImage(dungeon) {
       case "Wailing Warrens":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-entrance",
-          3
+          1
         );
         break;
 
       case "Wailing Warrens Exit":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit",
-          3
+          1
         );
         break;
 
@@ -533,14 +533,14 @@ function getRoomImage(dungeon) {
       case "Thieves' Ruin":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/thieves-ruin/thieves-ruin-entrance",
-          3
+          1
         );
         break;
 
       case "Thieves' Ruin Exit":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/thieves-ruin/thieves-ruin-exit",
-          3
+          1
         );
         break;
 
