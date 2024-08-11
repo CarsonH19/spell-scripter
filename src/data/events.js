@@ -240,19 +240,18 @@ export const PATH_ENTRANCE = {
     name: "Wailing Warrens",
     type: "CHOICE",
     description: [
-      "You discover a path leading into an abyss,  haunting wails echo from deep within.",
+      "Haunting wails echo from behind the looming door.",
       "Do you wish to enter?",
     ],
     options: [
       {
         text: ["Enter"],
         function: "PATH_ENTRANCE",
-        // narration: "You decided to enter Wailing Warrens.",
+        outcome: "You entered Wailing Warrens.",
       },
       {
         text: ["Leave"],
         function: "PATH_ENTRANCE",
-        // narration: "You decide to leave.",
         outcome: "You chose not to enter Wailing Warrens.",
       },
     ],
@@ -261,14 +260,14 @@ export const PATH_ENTRANCE = {
     name: "Thieves' Ruin",
     type: "CHOICE",
     description: [
-      "You discover the entrance to Thieves' Ruin",
+      "The entrance to Thieves' Ruin lies before you.",
       "Do you wish to enter?",
     ],
     options: [
       {
         text: ["Enter"],
         function: "PATH_ENTRANCE",
-        narration: "You decided to enter Thieves' Ruin.",
+        narration: "You entered Thieves' Ruin.",
       },
       {
         text: ["Leave"],
@@ -285,14 +284,13 @@ export const PATH_EXIT = {
     name: "Wailing Warrens Exit",
     type: "CHOICE",
     description: [
-      "You discover a hole in the wall leading out of the Wailing Warrens.",
+      "You discover an exit out of Wailing Warrens.",
     ],
     options: [
       {
         text: ["Leave"],
         function: "PATH_EXIT",
-        // narration: "You decide to leave.",
-        outcome: "You left the Wailing Warrens.",
+        outcome: "You left Wailing Warrens.",
       },
     ],
   },
@@ -304,7 +302,6 @@ export const PATH_EXIT = {
       {
         text: ["Leave"],
         function: "PATH_EXIT",
-        // narration: "You decide to leave.",
         outcome: "You left Thieves' Ruin.",
       },
     ],

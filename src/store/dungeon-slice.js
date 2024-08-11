@@ -32,25 +32,24 @@ const dungeonSlice = createSlice({
       state.danger = danger;
     },
     beginFollowing(state, action) {
-      if (action.payload !== null) {
+      if (state.following === null) {
         const { following, rooms } = action.payload;
         state.following = following;
         state.followCounter = rooms;
-      } else {
-        state.following = null;
-        state.followCounter = null;
       }
+    },
+    endFollowing(state) {
+      state.followCounter = null;
+      state.following = null;
     },
     beginPath(state, action) {
-      state.path = action.payload;
-      if (action.payload !== null) {
+      if (state.path === null) {
         // Paths are hard set to 10 rooms
+        state.path = action.payload;
         state.pathCounter = 10;
-      } else {
-        // state.following = null;
-        state.pathCounter = null;
       }
     },
+    endPath(state) {},
     changeBackground(state, action) {
       state.image = action.payload;
     },

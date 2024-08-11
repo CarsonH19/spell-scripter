@@ -1,3 +1,54 @@
+export const THIEVES_RUIN_ENTRANCE_DIALOGUE = {
+  PLAYER: {
+    before: [
+      {
+        position: "LEFT",
+        speaker: null,
+        image: "",
+        text: "Following the map, you arrive at a concealed door within the catacomb. The ground before it is covered in numerous footprints, some fresh, others faded with time, all leading in and out of the entrance.",
+      },
+      {
+        position: "LEFT",
+        speaker: "Spell Scripter",
+        image: "src/assets/images/dialogue/player-1-dialogue.png",
+        text: '"Well... this should be it. The map marks this door."',
+      },
+      {
+        position: "LEFT",
+        speaker: "Spell Scripter",
+        image: "src/assets/images/dialogue/player-1-dialogue.png",
+        text: `"I'm sure those inside will greet us with open arms."`,
+      },
+      {
+        position: "LEFT",
+        speaker: null,
+        image: "",
+        text: "The door creaks open, revealing a dark passage leading into the unknown. A faint, musty odor wafts out, mingled with the scent of old wood and damp stone.",
+      },
+    ],
+    responseEnter: [
+      {
+        position: "LEFT",
+        speaker: "Spell Scripter",
+        image: "src/assets/images/dialogue/player-1-dialogue.png",
+        text: '"What is all this junk?"',
+      },
+      {
+        position: "LEFT",
+        speaker: null,
+        image: "",
+        text: "The room beyond is cluttered with broken crates, rusted tools, and discarded belongings. It's clear this place has been used as a hideout, though it's far from welcoming.",
+      },
+    ],
+  },
+  SIGGURD: {
+    before: [],
+  },
+  LIHETH: {
+    before: [],
+  },
+};
+
 export const LAUGHING_COFFIN_DIALOGUE = {
   PLAYER: {
     before: [

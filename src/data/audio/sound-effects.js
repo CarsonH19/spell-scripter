@@ -226,16 +226,15 @@ export const soundPaths = {
     skeletonKeyIn2: "src/assets/audio/sound/items/Skeleton Key In 2.mp3",
     flameLicks2: "src/assets/audio/sound/items/Flame Licks 2.mp3",
     map: "src/assets/audio/sound/items/map.wav",
+    // Laughin Coffin
+    coinFlipLand: "src/assets/audio/sound/items/Coin Flip Land.mp3",
+
   },
   // ===============================
   //           EVENT
   // ===============================
   event: {
-    // Poisonous Mist
-    gasLeakHose3: "src/assets/audio/sound/Gas Leak Hose 3.mp3",
     metalSqueak21: "src/assets/audio/sound/Metal Squeak 21.mp3",
-    // Laughin Coffin
-    coinFlipLand: "src/assets/audio/sound/Coin Flip Land.mp3",
   },
   // inventory: {
   //   cameraBag2: "src/assets/audio/sound/misc/Camera Bag 2.mp3",

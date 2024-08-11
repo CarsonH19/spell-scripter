@@ -84,9 +84,9 @@ const eventFunctions = {
     if (eventName === "Poison Darts" && success) {
       playSoundEffect(false, "bowAttack", "bulletsPassBy4");
     }
-    if (eventName === "Poisonous Mist") {
-      playSoundEffect(false, "event", "gasLeakHose3");
-    }
+    // if (eventName === "Poisonous Mist") {
+    //   playSoundEffect(false, "event", "gasLeakHose3");
+    // }
 
     await delay(4000);
     openModal(dispatch, "roomSummaryModal");
@@ -194,10 +194,11 @@ const eventFunctions = {
       // Start Fade transition
       await dispatch(uiActions.updateFade({ change: "CALL" }));
       await delay(2000);
+      // Open Door Sound Effect
       const pathURLFormat = path
         .toLowerCase()
-        .replace(/ /g, "-") 
-        .replace(/`/g, "");
+        .replace(/ /g, "-")
+        .replace(/'/g, "");
 
       const newBackground = getImageFromList(
         `src/assets/images/backgrounds/${pathURLFormat}/${pathURLFormat}`,
@@ -207,20 +208,22 @@ const eventFunctions = {
       // End Fade transition
       await dispatch(uiActions.updateFade({ change: "CLEAR" }));
       await locationNarration(dispatch, path);
+      await checkForDialogue(dispatch, "response", choice);
     } else {
       await delay(4000);
       openModal(dispatch, "roomSummaryModal");
     }
 
     await delay(4000);
+    dispatch(dungeonActions.endFollowing());
     openModal(dispatch, "roomSummaryModal");
   },
   PATH_EXIT: async (dispatch, choice) => {
     const path = store.getState().dungeon.path;
     if (choice === "Leave") {
-      dispatch(dungeonActions.beginPath(null));
       dispatch(dungeonActions.eventOutcome({ outcome: `You left ${path}.` }));
       await delay(4000);
+      dispatch(dungeonActions.endPath());
       openModal(dispatch, "roomSummaryModal");
     }
   },

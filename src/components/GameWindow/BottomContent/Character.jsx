@@ -224,7 +224,7 @@ export default function Character({ character }) {
 async function removeCharacterHandler(dispatch, character) {
   // Death Audio
   if (character.audio) playSoundEffect(...character.audio.death);
-  await delay(1000);
+  await delay(2000);
 
   setTimeout(() => {
     dispatch(combatActions.removeCharacter({ character }));

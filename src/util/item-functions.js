@@ -298,5 +298,7 @@ export function calculateRooms(following) {
     rooms = 5;
   }
 
+  //TEST
+  rooms = 1;
   return rooms;
 }

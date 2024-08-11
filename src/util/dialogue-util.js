@@ -13,7 +13,11 @@ import {
   CANDLELIGHT_SHRINE_DIALOGUE,
   BONEVAULT_DIALOGUE,
 } from "../data/dialogues/catacomb-event-dialogue";
-import { LAUGHING_COFFIN_DIALOGUE } from "../data/dialogues/thieves-ruin-dialogue";
+import {
+  LAUGHING_COFFIN_DIALOGUE,
+  THIEVES_RUIN_ENTRANCE_DIALOGUE,
+} from "../data/dialogues/thieves-ruin-dialogue";
+import { WAILING_WARRENS_ENTRANCE_DIALOGUE } from "../data/dialogues/wailing-warrens-dialogue";
 
 let dialogueResolver;
 
@@ -378,12 +382,50 @@ export async function getDialogue(dispatch, type, choice = null) {
         }
         break;
 
+      // Wailing Warrens - Entrance
+      case "Wailing Warrens":
+        switch (type) {
+          case "before":
+            // Siguurd
+            // Liheth
+            dialogueOptions.push(
+              WAILING_WARRENS_ENTRANCE_DIALOGUE.PLAYER.before
+            );
+            break;
+          case "response":
+            dialogueOptions.push(
+              WAILING_WARRENS_ENTRANCE_DIALOGUE.PLAYER.responseEnter
+            );
+            break;
+        }
+        break;
+
+      // Thieves' Ruin - Entrance
+      case "Thieves' Ruin":
+        switch (type) {
+          case "before":
+            // Siguurd
+            // Liheth
+            dialogueOptions.push(THIEVES_RUIN_ENTRANCE_DIALOGUE.PLAYER.before);
+            break;
+          case "response":
+            dialogueOptions.push(
+              THIEVES_RUIN_ENTRANCE_DIALOGUE.PLAYER.responseEnter
+            );
+            break;
+        }
+
+        break;
+
       default:
         break;
     }
   }
 
-  // Thieves' Ruin
+  // Wailing Warrens - Path Events 
+  // NOTE: Add event dialogues
+  
+  // Thieves' Ruin - Path Events
   if (dungeon.path === "Thieves' Ruin" && dungeon.contents.event) {
     switch (dungeon.contents.event.name) {
       case "Laughing Coffin":

@@ -83,6 +83,7 @@ async function handleGameFlow(dispatch, setShowBottom) {
 
     // Dialogue
     await checkForDialogue(dispatch, "before");
+    console.log("CHECKED")
 
     // AUTO Events
     if (event.type === "AUTO") {

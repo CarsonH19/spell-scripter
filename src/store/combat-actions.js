@@ -30,12 +30,11 @@ import statusEffectFunctions from "../util/status-effect-functions.js";
 import { openModal } from "./ui-actions.js";
 
 import updateStatTotals from "./stats-actions.js";
-import checkForDialogue, { getDialogue } from "../util/dialogue-util.js";
+import checkForDialogue from "../util/dialogue-util.js";
 import { checkIfAttuned } from "../util/item-functions.js";
-import playAudio from "../util/audio-util.js";
 import playSoundEffect from "../util/audio-util.js";
 import { backgroundMusic, playMusic } from "../data/audio/music.js";
-import { getCatacombEncounterMusic } from "../util/dungeon-util.js";
+import { playEncounterMusic } from "../util/dungeon-util.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -431,7 +430,7 @@ export async function startCombat(dispatch) {
   // );
 
   // Randomly play combat music
-  playMusic(getCatacombEncounterMusic());
+  playEncounterMusic();
 
   await delay(2000);
 
