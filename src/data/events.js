@@ -180,7 +180,6 @@ export const UNLOCK_HERO = {
       UNDEAD.DECREPIT_SKELETON,
       UNDEAD.DECREPIT_SKELETON,
       UNDEAD.DECREPIT_SKELETON,
-      UNDEAD.DECREPIT_SKELETON,
     ],
     description: [""],
     function: "UNLOCK_HERO_SIGGURD",

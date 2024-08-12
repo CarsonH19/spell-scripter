@@ -202,24 +202,24 @@ function getRoomEvent() {
           events.push(GRAVESTONE);
         }
 
-        // if (dungeon.threat < 20) {
-        //   events.push(AMBUSH);
-        // }
+        if (dungeon.threat < 20) {
+          events.push(AMBUSH);
+        }
 
-        // events.push(COFFIN);
-        // events.push(BONEVAULT);
+        events.push(COFFIN);
+        events.push(BONEVAULT);
 
         // // Check if Siggurd is unlocked
-        // if (!siggurd.unlocked) {
-        //   events.push(UNLOCK_HERO.SIGGURD);
-        // }
+        if (!siggurd.unlocked) {
+          events.push(UNLOCK_HERO.SIGGURD);
+        }
 
         // // Check if Liheth is unlocked
-        // if (!liheth.unlocked) {
-        //   events.push(UNLOCK_HERO.LIHETH);
-        // } else {
-        //   events.push(CANDLELIGHT_SHRINE);
-        // }
+        if (!liheth.unlocked) {
+          events.push(UNLOCK_HERO.LIHETH);
+        } else {
+          events.push(CANDLELIGHT_SHRINE);
+        }
       }
 
       // FOLLOWING EVENTS
@@ -250,11 +250,11 @@ function getRoomEvent() {
             items: getTraderItems("Laughing Coffin"),
           });
         } else {
-          events.push(
-            THIEVES_RUIN.FLOOR_SPIKES,
-            THIEVES_RUIN.POISONOUS_MIST,
-            THIEVES_RUIN.POISON_DARTS
-          );
+          // events.push(
+          //   THIEVES_RUIN.FLOOR_SPIKES,
+          //   THIEVES_RUIN.POISONOUS_MIST,
+          //   THIEVES_RUIN.POISON_DARTS
+          // );
         }
       }
       break;
@@ -490,7 +490,7 @@ function getRoomImage(dungeon) {
       case "Gravestone":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/gravestone",
-          7
+          5
         );
         break;
 

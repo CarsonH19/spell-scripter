@@ -1,4 +1,4 @@
-import { buildEnemy, createNewRoom } from "./dungeon-util";
+import { buildEnemy } from "./dungeon-util";
 import { changeHealth } from "../store/health-actions";
 
 import store from "../store/index";
@@ -12,7 +12,6 @@ import { dungeonActions } from "../store/dungeon-slice";
 import { startCombat } from "../store/combat-actions";
 import { logActions } from "../store/log-slice";
 import { getRandomLoot } from "./loot";
-import activateItem from "../store/item-actions";
 
 import { combatActions } from "../store/combat-slice";
 import { heroActions } from "../store/hero-slice";
@@ -399,8 +398,13 @@ const eventFunctions = {
   },
   UNLOCK_HERO_SIGGURD: async (dispatch) => {
     const dungeon = store.getState().dungeon;
+    let enemies = [
+      ...dungeon.contents.enemies,
+      buildEnemy(UNDEAD.DECREPIT_SKELETON),
+      buildEnemy(UNDEAD.DECREPIT_SKELETON),
+    ];
     dispatch(heroActions.unlockHero("Siggurd"));
-    startCombat(dispatch, dungeon.contents.enemies);
+    startCombat(dispatch, enemies);
   },
   AMBUSH: async (dispatch, choice) => {
     const dungeon = store.getState().dungeon;

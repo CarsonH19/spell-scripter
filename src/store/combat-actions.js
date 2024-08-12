@@ -47,7 +47,7 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
   // NOTE: Passives will be called on each round of combat.
   let order = store.getState().combat.order;
   const dungeon = store.getState().dungeon;
-  console.log("DUNGEON");
+  console.log("DUNGEON", dungeon);
 
   // START OF THE ROUND
   // Adds enemies if needed & returns new array of enemies
