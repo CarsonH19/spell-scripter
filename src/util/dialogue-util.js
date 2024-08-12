@@ -144,7 +144,7 @@ export async function getDialogue(dispatch, type, choice = null) {
             if (siggurd) {
               for (
                 let i = 0;
-                i < CANDLELIGHT_SHRINE_DIALOGUE.SIGGURD.length;
+                i < CANDLELIGHT_SHRINE_DIALOGUE.SIGGURD.before.length;
                 i++
               ) {
                 dialogueOptions.push(
@@ -156,7 +156,7 @@ export async function getDialogue(dispatch, type, choice = null) {
             if (liheth) {
               for (
                 let i = 0;
-                i < CANDLELIGHT_SHRINE_DIALOGUE.LIHETH.length;
+                i < CANDLELIGHT_SHRINE_DIALOGUE.LIHETH.before.length;
                 i++
               ) {
                 dialogueOptions.push(
@@ -167,7 +167,7 @@ export async function getDialogue(dispatch, type, choice = null) {
 
             for (
               let i = 0;
-              i < CANDLELIGHT_SHRINE_DIALOGUE.PLAYER.length;
+              i < CANDLELIGHT_SHRINE_DIALOGUE.PLAYER.before.length;
               i++
             ) {
               dialogueOptions.push(
@@ -422,9 +422,9 @@ export async function getDialogue(dispatch, type, choice = null) {
     }
   }
 
-  // Wailing Warrens - Path Events 
+  // Wailing Warrens - Path Events
   // NOTE: Add event dialogues
-  
+
   // Thieves' Ruin - Path Events
   if (dungeon.path === "Thieves' Ruin" && dungeon.contents.event) {
     switch (dungeon.contents.event.name) {

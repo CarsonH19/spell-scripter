@@ -50,17 +50,25 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
   console.log("DUNGEON", dungeon);
 
   // START OF THE ROUND
-  // Adds enemies if needed & returns new array of enemies
-  const updatedAdditionalEnemies = checkForNewEnemies(
-    dispatch,
-    additionalEnemies
-  );
   // Passive Abilities
   // Clear Narrative
   handleCallTiming(dispatch, "START_OF_ROUND");
 
   // Iterate through the initiative order simulating a round of combat.
   for (let i = 0; i < order.length; i++) {
+    // Check if combat is over after a characters turn
+    const isNoEnemy = await endCombat(dispatch);
+    if (isNoEnemy) {
+      console.log("isNoEnemy", isNoEnemy);
+      // Adds enemies to the order if enemies exist
+      await checkForNewEnemies(dispatch, additionalEnemies);
+      const combatEnded = await endCombat(dispatch);
+      if (combatEnded) {
+        // AFTER COMBAT
+        handleCallTiming(dispatch, "AFTER_COMBAT");
+        return;
+      }
+    }
     // get the updated values for player and enemies on each iteration
     let order = store.getState().combat.order;
 
@@ -126,6 +134,7 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
                 if (selectedSpell) {
                   // Restart the while loop allowing players to change actions
                   await castSpell(dispatch, selectedSpell);
+                  console.log("SPELL WAS CAST");
                 }
               }
               break;
@@ -229,6 +238,12 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
   }
 
   await delay(1000);
+
+  // Adds enemies if needed after round finishes & returns new array of enemies
+  const updatedAdditionalEnemies = checkForNewEnemies(
+    dispatch,
+    additionalEnemies
+  );
 
   // Check if combat is over
   const combatEnded = await endCombat(dispatch);
@@ -564,13 +579,6 @@ export function attack(dispatch, character, target) {
       })
     );
 
-    // dispatch(
-    //   combatActions.updateDamageDisplay({
-    //     id: character.id,
-    //     content: { item: "Attack", style: "" },
-    //   })
-    // );
-
     // Create a new slice property to show the attack outcome
     changeHealth(dispatch, target, "DAMAGE", damage, null);
   } else {
@@ -590,7 +598,14 @@ export function attack(dispatch, character, target) {
 // Adds enemies to the combat order if additional enemies exist and there are fewer than 3 enemies in the combat order at the end of the round
 // If an enemy has an ability that summons an enemy. The abilityFunction must first check the combat order for an "open slot" or else the ability won't be called
 // So checkForNewEnemies must be called at the end of the round after all enemies have taken their turns
-function checkForNewEnemies(dispatch, additionalEnemies) {
+async function checkForNewEnemies(dispatch, additionalEnemies) {
+  // Return early and do not update if there are no additionalEnemies or the array is not iterable
+  if (
+    additionalEnemies.length === 0 ||
+    typeof additionalEnemies[Symbol.iterator] !== "function"
+  ) {
+    return [];
+  }
   const order = store.getState().combat.order; // Get the current combat order from the store
   const numberOfEnemies = order.filter((char) => char.identifier === "ENEMY"); // Filter to get current enemies in combat
   let enemiesToAdd = [...additionalEnemies]; // Clone the additionalEnemies array to avoid mutation
@@ -598,6 +613,7 @@ function checkForNewEnemies(dispatch, additionalEnemies) {
 
   // Add enemies until there are at least 3 in the combat order
   while (numberOfEnemies.length < 3 && enemiesToAdd.length > 0) {
+    console.log(`${enemiesToAdd[0].name} joined combat!`);
     dispatch(
       logActions.updateLogs({
         change: "ADD",

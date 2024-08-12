@@ -124,12 +124,11 @@ const eventFunctions = {
         // Set dialogue for after combat
         getDialogue(dispatch, "after", choice);
         // Add enemy to dungeon
-        dispatch(
-          dungeonActions.addEnemy({ enemy: buildEnemy(enemy), change: "ADD" })
-        );
+        const builtEnemy = buildEnemy(enemy);
+        dispatch(dungeonActions.addEnemy({ enemy: builtEnemy, change: "ADD" }));
         // Start combat
         await delay(2000);
-        startCombat(dispatch, dungeon.contents.enemies);
+        startCombat(dispatch, [builtEnemy]);
       }
     }
 

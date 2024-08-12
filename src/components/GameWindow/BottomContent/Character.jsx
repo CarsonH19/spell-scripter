@@ -26,7 +26,6 @@ export default function Character({ character }) {
   );
   const isCharacterTurn = useSelector((state) => state.combat.isCharacterTurn);
 
-  // const [showDamage, setShowDamage] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   // Play spawn audio
@@ -36,26 +35,8 @@ export default function Character({ character }) {
     }
   }, []);
 
-  // Update damage display
   useEffect(() => {
-    // Show the damage number
-    // setShowDamage(true);
-    // Set timeout to hide the damage number after 2 seconds
-    // const timeoutId = setTimeout(() => {
-    //   // setShowDamage(false);
-    //   // Clear the damage display
-    //   dispatch(
-    //     combatActions.updateDamageDisplay({
-    //       id: character.id,
-    //       content: null,
-    //     })
-    //   );
-    // }, 2000);
-
     updateStatTotals(dispatch, character.id);
-
-    // Clear timeout to prevent memory leaks
-    // return () => clearTimeout(timeoutId);
   }, [character]);
 
   // Handle level up
@@ -79,8 +60,13 @@ export default function Character({ character }) {
   // Trigger fade out and removal when health reaches 0
   useEffect(() => {
     if (character.currentHealth <= 0) {
-      setIsFadingOut(true);
       removeCharacterHandler(dispatch, character);
+
+      setTimeout(() => {
+        // Death Audio
+        if (character.audio) playSoundEffect(...character.audio.death);
+        setIsFadingOut(true);
+      }, 1000);
     }
   }, [character.currentHealth, dispatch, character.id]);
 
@@ -222,15 +208,7 @@ export default function Character({ character }) {
 }
 
 async function removeCharacterHandler(dispatch, character) {
-  // Death Audio
-  if (character.audio) playSoundEffect(...character.audio.death);
-  await delay(2000);
-
   setTimeout(() => {
     dispatch(combatActions.removeCharacter({ character }));
   }, 2000); // Duration of the fade-out animation
-
-  async function delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
 }

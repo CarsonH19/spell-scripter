@@ -19,12 +19,6 @@ export const THIEVES_RUIN_ENTRANCE_DIALOGUE = {
         image: "src/assets/images/dialogue/player-1-dialogue.png",
         text: `"I'm sure those inside will greet us with open arms."`,
       },
-      {
-        position: "LEFT",
-        speaker: null,
-        image: "",
-        text: "The door creaks open, revealing a dark passage leading into the unknown. A faint, musty odor wafts out, mingled with the scent of old wood and damp stone.",
-      },
     ],
     responseEnter: [
       {

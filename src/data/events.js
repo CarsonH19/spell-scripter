@@ -144,7 +144,7 @@ export const BONEVAULT = {
     {
       text: ["Unlock"],
       function: "BONEVAULT",
-      narration: "You unlock the vault.",
+      // narration: "You unlock the vault.",
       outcome: "You used a Skeleton Key to open the vault.",
     },
     {
@@ -164,7 +164,7 @@ export const CANDLELIGHT_SHRINE = {
     {
       text: ["Rest"],
       function: "CANDLELIGHT_SHRINE",
-      narration: "You decide to rest.",
+      // narration: "You decide to rest.",
       outcome:
         "You discovered a Candlelight Shrine and rested for a short time in the flickering light. When it was time to leave you felt energized and ready to move onward.",
     },
@@ -196,7 +196,7 @@ export const UNLOCK_HERO = {
       {
         text: ["Rest"],
         function: "UNLOCK_HERO_LIHETH",
-        narration: "You rest until Liheth is ready.",
+        // narration: "You rest until Liheth is ready.",
         outcome:
           "You found Liheth, the Candlelight Priestess, while exploring The Great Catacomb. She spoke to you of her duties to restore the hidden Candlelight Shrines throughout the catacomb. You decided to guide her through the catacomb in search of these shrines.",
       },
@@ -216,14 +216,14 @@ export const AMBUSH = {
     {
       text: ["Surrender"],
       function: "AMBUSH",
-      narration: "You surrender your inventory to the thieves.",
+      // narration: "You surrender your inventory to the thieves.",
       outcome:
         "The thieves took what they wanted from your inventory, but left you unharmed.",
     },
     {
       text: ["Refuse"],
       function: "AMBUSH",
-      narration: "You refuse to surrender and fight back against the thieves.",
+      // narration: "You refuse to surrender and fight back against the thieves.",
       outcome:
         "You refused to surrender your items to the thieves and faced them in combat.",
     },
@@ -266,12 +266,12 @@ export const PATH_ENTRANCE = {
       {
         text: ["Enter"],
         function: "PATH_ENTRANCE",
-        narration: "You entered Thieves' Ruin.",
+        // narration: "You entered Thieves' Ruin.",
       },
       {
         text: ["Leave"],
         function: "PATH_ENTRANCE",
-        narration: "You decide to leave.",
+        // narration: "You decide to leave.",
         outcome: "You chose not to enter Thieves' Ruin.",
       },
     ],
@@ -372,7 +372,7 @@ export const THIEVES_RUIN = {
       {
         text: ["Trade"],
         function: "LAUGHING_COFFIN",
-        narration: "",
+        // narration: "",
         outcome:
         "You discovered the Laughing Coffin Tavern hidden within Thieves' Ruin.",
       },

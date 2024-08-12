@@ -134,7 +134,7 @@ function getRoomContent() {
   switch (dungeon.name) {
     case "The Great Catacomb":
       // Event chance for general dungeon is 20%
-      if (eventChance > 0) {
+      if (eventChance > 50) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -152,7 +152,7 @@ function getRoomContent() {
         // NOTE - Currently set to always enemies
         content = "ENEMIES";
         // Laughing Coffin Event & 40% event chance
-        if (dungeon.pathCounter === 4 || eventChance > 60) {
+        if (dungeon.pathCounter === 4 || eventChance > 999) {
           content = "EVENT";
         }
       }
@@ -497,14 +497,14 @@ function getRoomImage(dungeon) {
       case "Coffin":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/coffin",
-          5
+          7
         );
         break;
 
       case "Bonevault":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/bonevault-door",
-          5
+          6
         );
         break;
 
@@ -518,31 +518,19 @@ function getRoomImage(dungeon) {
 
       // WAILING WARRENS
       case "Wailing Warrens":
-        backgroundImage = getImageFromList(
-          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-entrance",
-          1
-        );
-        break;
-
       case "Wailing Warrens Exit":
         backgroundImage = getImageFromList(
-          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-exit",
-          1
+          "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-door",
+          2
         );
         break;
 
       // THIEVES RUIN
       case "Thieves' Ruin":
-        backgroundImage = getImageFromList(
-          "src/assets/images/backgrounds/thieves-ruin/thieves-ruin-entrance",
-          1
-        );
-        break;
-
       case "Thieves' Ruin Exit":
         backgroundImage = getImageFromList(
-          "src/assets/images/backgrounds/thieves-ruin/thieves-ruin-exit",
-          1
+          "src/assets/images/backgrounds/thieves-ruin/thieves-ruin-door",
+          3
         );
         break;
 

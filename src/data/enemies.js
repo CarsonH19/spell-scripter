@@ -118,7 +118,7 @@ const UNDEAD = {
     get image() {
       return getImageFromList("src/assets/images/enemies/skeletal-archer", 3);
     },
-    icon() {
+    get icon() {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,

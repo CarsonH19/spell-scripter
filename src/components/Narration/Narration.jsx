@@ -23,7 +23,7 @@ export default function Narration() {
 
     timeoutIdRef.current = setTimeout(() => {
       dispatch(logActions.updateLogs({ change: "REMOVE" }));
-    }, 3000);
+    }, 2000);
 
     return () => {
       if (timeoutIdRef.current) {
