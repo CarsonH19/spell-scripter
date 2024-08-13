@@ -50,6 +50,7 @@ h1, h2, h3, h4, h5 {
   padding: 0;
   color: var(--text);
   pointer-events: none;
+  user-select: none;
 }
 
 h1 {
@@ -65,6 +66,7 @@ p {
   padding: 0;
   color: var(--text);
   pointer-events: none;
+  user-select: none;
 }
 
 button {

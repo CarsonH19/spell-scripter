@@ -134,7 +134,7 @@ function getRoomContent() {
   switch (dungeon.name) {
     case "The Great Catacomb":
       // Event chance for general dungeon is 20%
-      if (eventChance > 50) {
+      if (eventChance > 550) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -569,7 +569,7 @@ function getPathExit() {
 //                         BACKGROUND MUSIC
 // =====================================================================
 
-function getRoomMusic(dungeon) {
+export function getRoomMusic(dungeon) {
   let music;
 
   // Use general dungeon images
@@ -656,38 +656,81 @@ function getRoomMusic(dungeon) {
     }
   }
 
-  return music;
-}
-
-export function playEncounterMusic() {
-  const dungeon = store.getState().dungeon;
-
-  let musicList = [];
-
-  switch (dungeon.name) {
-    case "The Great Catacomb":
-      musicList = [
-        backgroundMusic.weCantStopThem,
-        backgroundMusic.passedDanger,
-        backgroundMusic.finalBrigade,
-        backgroundMusic.migrano,
-        backgroundMusic.warningSignal,
-      ];
-      break;
-  }
-
-  if (dungeon.path) {
-    switch (dungeon.path) {
-      case "Wailing Warrens":
-        musicList = [backgroundMusic.edgeOfFear, backgroundMusic.fightThrough];
+  // Encounter Music
+  if (dungeon.contents.enemies.length > 0) {
+    switch (dungeon.name) {
+      case "The Great Catacomb":
+        {
+         const musicList = [
+            backgroundMusic.weCantStopThem,
+            backgroundMusic.passedDanger,
+            backgroundMusic.finalBrigade,
+            backgroundMusic.migrano,
+            backgroundMusic.warningSignal,
+          ];
+          const index = Math.floor(Math.random() * musicList.length);
+          music = musicList[index];
+        }
         break;
-      case "Thieves' Ruin":
-        musicList = [backgroundMusic.hiddenCapacity];
-        break;
+    }
+
+    if (dungeon.path) {
+      switch (dungeon.path) {
+        case "Wailing Warrens":
+          {
+            const musicList = [
+              backgroundMusic.hauntedOutpost,
+              backgroundMusic.fightThrough,
+            ];
+
+            const index = Math.floor(Math.random() * musicList.length);
+            music = musicList[index];
+          }
+          break;
+        case "Thieves' Ruin":
+          music = backgroundMusic.hiddenCapacity;
+          break;
+      }
     }
   }
 
-  const index = Math.floor(Math.random() * musicList.length);
-  console.log(musicList[index]);
-  playMusic(musicList[index]);
+  return music;
 }
+
+// export function playEncounterMusic() {
+//   currentMusic;
+//   const dungeon = store.getState().dungeon;
+
+//   let musicList = [];
+
+//   switch (dungeon.name) {
+//     case "The Great Catacomb":
+//       musicList = [
+//         backgroundMusic.weCantStopThem,
+//         backgroundMusic.passedDanger,
+//         backgroundMusic.finalBrigade,
+//         backgroundMusic.migrano,
+//         backgroundMusic.warningSignal,
+//       ];
+//       break;
+//   }
+
+//   if (dungeon.path) {
+//     switch (dungeon.path) {
+//       case "Wailing Warrens":
+//         musicList = [backgroundMusic.edgeOfFear, backgroundMusic.fightThrough];
+//         break;
+//       case "Thieves' Ruin":
+//         musicList = [backgroundMusic.hiddenCapacity];
+//         break;
+//     }
+//   }
+
+//   const index = Math.floor(Math.random() * musicList.length);
+
+//   if (getRoomMusic(newRoom)._src !== currentMusic._src) {
+//     playMusic(getRoomMusic(newRoom));
+//   }
+
+//   playMusic(musicList[index]);
+// }

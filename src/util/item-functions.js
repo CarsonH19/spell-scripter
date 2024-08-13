@@ -265,6 +265,7 @@ export function checkIfAttuned(dispatch, itemName, target, arg) {
 
   const order = store.getState().combat.order;
   const player = order.find((char) => char.id === "Player");
+  if (!player) return false;
   const attunedItems = player.inventory.attunedItems;
 
   for (let i = 0; i < attunedItems.length; i++) {

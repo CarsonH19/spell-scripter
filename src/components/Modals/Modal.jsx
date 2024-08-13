@@ -25,6 +25,7 @@ import AttributeModal from "./Attribute/AttributeModal";
 import store from "../../store";
 import PartyModal from "./Party/PartyModal";
 import playSoundEffect from "../../util/audio-util";
+import DefeatedModal from "./Defeated/DefeatedModal";
 
 export default function Modal() {
   const dispatch = useDispatch();
@@ -33,7 +34,6 @@ export default function Modal() {
   const continueCheck = findActiveModal(ui);
 
   const handleClose = () => {
-
     // Render continue button when RoomSummaryModal is closed
     if (continueCheck === "roomSummaryModal") {
       dispatch(
@@ -117,6 +117,9 @@ function selectModal() {
 
     case "attributeModal":
       return <AttributeModal />;
+
+    case "defeatedModal":
+      return <DefeatedModal />;
   }
 }
 

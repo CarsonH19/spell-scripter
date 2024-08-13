@@ -34,7 +34,9 @@ import checkForDialogue from "../util/dialogue-util.js";
 import { checkIfAttuned } from "../util/item-functions.js";
 import playSoundEffect from "../util/audio-util.js";
 import { backgroundMusic, playMusic } from "../data/audio/music.js";
-import { playEncounterMusic } from "../util/dungeon-util.js";
+
+import { getRoomMusic } from "../util/dungeon-util.js";
+import { currentMusic } from "../data/audio/music.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -56,19 +58,18 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
 
   // Iterate through the initiative order simulating a round of combat.
   for (let i = 0; i < order.length; i++) {
-    // Check if combat is over after a characters turn
-    const isNoEnemy = await endCombat(dispatch);
-    if (isNoEnemy) {
-      console.log("isNoEnemy", isNoEnemy);
-      // Adds enemies to the order if enemies exist
-      await checkForNewEnemies(dispatch, additionalEnemies);
-      const combatEnded = await endCombat(dispatch);
-      if (combatEnded) {
-        // AFTER COMBAT
-        handleCallTiming(dispatch, "AFTER_COMBAT");
-        return;
-      }
+    // End game if player is defeated
+    const isPlayerDefeated = await isCombatOver(
+      dispatch,
+      additionalEnemies,
+      true
+    );
+    console.log(isPlayerDefeated);
+    if (isPlayerDefeated === "END COMBAT") {
+      console.log(isPlayerDefeated);
+      return;
     }
+
     // get the updated values for player and enemies on each iteration
     let order = store.getState().combat.order;
 
@@ -128,9 +129,7 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
               {
                 // choose a spell from spell list
                 const selectedSpell = await select();
-
                 if (selectedSpell === null) continue;
-
                 if (selectedSpell) {
                   // Restart the while loop allowing players to change actions
                   await castSpell(dispatch, selectedSpell);
@@ -142,29 +141,22 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
               {
                 dispatch(logActions.updateLogs({ change: "CLEAR" }));
                 dispatch(logActions.updateLogs({ change: "PAUSE" }));
-
                 dispatch(
                   logActions.updateLogs({
                     change: "ADD",
                     text: `Choose a target!`,
                   })
                 );
-
                 dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
-
                 const target = await getTarget("ENEMIES");
-
                 dispatch(logActions.updateLogs({ change: "CLEAR" }));
                 dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
-
                 attack(dispatch, character, target);
               }
               break;
             case "GUARD":
               changeStatusEffect(dispatch, player, "ADD", CONDITIONS.GUARD);
-
               playSoundEffect(false, "guard", "eventShield", 0.6);
-
               dispatch(
                 combatActions.updateDamageDisplay({
                   id: character.id,
@@ -213,9 +205,7 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
           case "GUARD":
             // Adds the Guarding condition to the character's active status effects
             changeStatusEffect(dispatch, character, "ADD", CONDITIONS.GUARD);
-
             playSoundEffect(false, "guard", "eventShield", 0.6);
-
             dispatch(
               combatActions.updateDamageDisplay({
                 id: character.id,
@@ -234,33 +224,26 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
 
       // END OF TURN
       handleCallTiming(dispatch, "END_OF_TURN", character);
+      // End game if player is defeated
+      const isPlayerDefeated = await isCombatOver(
+        dispatch,
+        additionalEnemies,
+        true
+      );
+      console.log(isPlayerDefeated);
+      if (isPlayerDefeated === "END COMBAT") {
+        console.log(isPlayerDefeated);
+        return;
+      }
     }
-  }
+  } // COMBAT LOOP / ROUND FINISHES
+  handleCallTiming(dispatch, "END_OF_ROUND");
 
-  await delay(1000);
+  // await delay(1000);
 
-  // Adds enemies if needed after round finishes & returns new array of enemies
-  const updatedAdditionalEnemies = checkForNewEnemies(
-    dispatch,
-    additionalEnemies
-  );
-
-  // Check if combat is over
-  const combatEnded = await endCombat(dispatch);
-
-  if (combatEnded) {
-    // AFTER COMBAT
-    handleCallTiming(dispatch, "AFTER_COMBAT");
-
-    // exit the loop
-    return;
-  } else {
-    await delay(2000);
-    handleCallTiming(dispatch, "END_OF_ROUND");
-
-    // continue the loop
-    combatLoop(dispatch, updatedAdditionalEnemies);
-  }
+  // Check if combat is over & end combat
+  // Starts another loop if combat is not over
+  await isCombatOver(dispatch, additionalEnemies, false);
 }
 
 // =============================================================
@@ -377,23 +360,47 @@ function roll20(bonus = 0) {
 //                       END COMBAT
 // =============================================================
 
-async function endCombat(dispatch) {
-  const order = store.getState().combat.order;
+async function isCombatOver(dispatch, additionalEnemies, onlyCheckPlayer) {
+  let order = store.getState().combat.order;
+  const player = order.find((char) => char.identifier === "PLAYER");
+  // End combat if player is defeated
+  if (!player.currentHealth > 0 || !player) {
+    console.log(player);
+    openModal(dispatch, "defeatedModal");
+    return "END COMBAT";
+  }
 
-  const enemies = [];
-  for (let i = 0; i < order.length; i++) {
-    if (order[i].identifier === "ENEMY") {
-      enemies.push(order[i]);
+  if (!onlyCheckPlayer) {
+    // Check for additional enemies
+    const updatedAdditionalEnemies = await checkForNewEnemies(
+      dispatch,
+      additionalEnemies
+    );
+
+    await delay(1000);
+
+    // Check if there are enemies in the combat order
+    order = store.getState().combat.order;
+    const isEnemy = order.some((char) => char.identifier === "ENEMY");
+
+    // combat continues
+    if (isEnemy) {
+      // await delay(2000);
+      combatLoop(dispatch, updatedAdditionalEnemies);
+      return;
+    }
+
+    // combat ends
+    if (!isEnemy) {
+      // playMusic(backgroundMusic.threeThousandYearsOld);
+      await checkForDialogue(dispatch, "after");
+      await delay(2000);
+      openModal(dispatch, "roomSummaryModal");
     }
   }
 
-  if (enemies.length <= 0) {
-    await checkForDialogue(dispatch, "after");
-    openModal(dispatch, "roomSummaryModal");
-    return true;
-  }
-
-  return false;
+  // Player is not defeated - combat continues
+  return "CONTINUE COMBAT";
 }
 
 async function delay(ms) {
@@ -406,10 +413,10 @@ async function delay(ms) {
 
 // Must pass the dungeon-slice.contents.enemies array as an arg.
 export async function startCombat(dispatch, enemies) {
+  const dungeon = store.getState().dungeon;
   const order = store.getState().combat.order;
   let enemiesInCombat = [...enemies];
   let additionalEnemies = [];
-  console.log(enemiesInCombat);
   if (enemiesInCombat.length > 3) {
     // Calculate the number of enemies to move
     const excessCount = enemiesInCombat.length - 3;
@@ -420,9 +427,8 @@ export async function startCombat(dispatch, enemies) {
       // Move the excess enemies to the additionalEnemies array
       additionalEnemies = enemiesInCombat.splice(3, excessCount);
 
-      // Log the results for debugging
-      console.log("ENEMIES", enemiesInCombat);
-      console.log("ADDITIONAL", additionalEnemies);
+      // console.log("ENEMIES", enemiesInCombat);
+      // console.log("ADDITIONAL", additionalEnemies);
     }
   }
 
@@ -432,7 +438,6 @@ export async function startCombat(dispatch, enemies) {
     callStatusEffect(dispatch, order[i], "BEFORE COMBAT");
   }
 
-  // const room = store.getState().dungeon;
   const currentOrder = store.getState().combat.order;
 
   const characters = [...enemiesInCombat, ...currentOrder];
@@ -466,8 +471,15 @@ export async function startCombat(dispatch, enemies) {
   //   })
   // );
 
-  // Randomly play combat music
-  playEncounterMusic();
+  // Play encounter music
+  // Check if music playing is different
+  const newMusic = getRoomMusic(dungeon);
+  console.log(newMusic);
+  if (newMusic !== currentMusic._src) {
+    console.log(getRoomMusic(dungeon));
+    console.log(currentMusic._src);
+    playMusic(newMusic);
+  }
 
   await delay(2000);
 
@@ -495,11 +507,9 @@ async function handleCallTiming(dispatch, timing, character) {
         for (let i = 0; i < order.length; i++) {
           checkForPassiveAbility(dispatch, order[i], "START_OF_ROUND");
         }
-
         // Clear Narrative
         dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
         dispatch(logActions.updateLogs({ change: "CLEAR" }));
-
         // ITEM - Sunstone
         checkIfAttuned(dispatch, "Sunstone");
       }
@@ -508,41 +518,37 @@ async function handleCallTiming(dispatch, timing, character) {
       {
         // Check status effects that call functions at the start of the character's turn
         callStatusEffect(dispatch, character, "START TURN");
-
         // Check for status effects with duration 0 or and remove
         checkStatusEffect(dispatch, character.id, "REMOVE");
-
         // Decrement Status Effects
         checkStatusEffect(dispatch, character.id, "DECREMENT", "ROUND");
       }
       break;
     case "END_OF_TURN":
-      // Set isCharacterTurn to null
-      dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
-
-      // Check status effects that call functions at the end of the character's turn
-      callStatusEffect(dispatch, character, "END TURN");
-
-      // Reduce the characters cooldowns
-      decrementAbilityCooldowns(dispatch, character);
+      {
+        // Set isCharacterTurn to null
+        dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
+        // Check status effects that call functions at the end of the character's turn
+        callStatusEffect(dispatch, character, "END TURN");
+        // Reduce the characters cooldowns
+        decrementAbilityCooldowns(dispatch, character);
+      }
       break;
     case "END_OF_ROUND":
-      break;
-    case "AFTER_COMBAT":
-      // // Set isCharacterTurn to null
-      // dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
-
-      // Check if effect durations are rounds/actions and remove them from player & heroes
-      for (let i = 0; i < order.length; i++) {
-        if (
-          order[i].identifier === "HERO" ||
-          order[i].identifier === "PLAYER"
-        ) {
-          checkStatusEffect(dispatch, order[i].id, "END");
+      {
+        // Check if effect durations are rounds/actions and remove them from player & heroes
+        for (let i = 0; i < order.length; i++) {
+          if (
+            order[i].identifier === "HERO" ||
+            order[i].identifier === "PLAYER"
+          ) {
+            checkStatusEffect(dispatch, order[i].id, "END");
+          }
         }
       }
-
-      playMusic(backgroundMusic.threeThousandYearsOld);
+      break;
+    case "AFTER_COMBAT": // Logic added to isCombatOver() function
+      //
       break;
   }
 }

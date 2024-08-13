@@ -46,37 +46,64 @@ const loadSound = (src, options = {}) => {
 };
 
 export const backgroundMusic = {
-  returnOfTheFallen: () => loadSound(musicPaths.returnOfTheFallen, { loop: true, volume: 0 }),
-  timeToFaceThem: () => loadSound(musicPaths.timeToFaceThem, { loop: true, volume: 0 }),
-  finalBrigade: () => loadSound(musicPaths.finalBrigade, { loop: true, volume: 0 }),
-  basementNightmare: () => loadSound(musicPaths.basementNightmare, { loop: true, volume: 0 }),
-  birthOfaKnight: () => loadSound(musicPaths.birthOfaKnight, { loop: true, volume: 0 }),
-  theEternalWar: () => loadSound(musicPaths.theEternalWar, { loop: true, volume: 0 }),
-  deepTunnels: () => loadSound(musicPaths.deepTunnels, { loop: true, volume: 0 }),
+  returnOfTheFallen: () =>
+    loadSound(musicPaths.returnOfTheFallen, { loop: true, volume: 0 }),
+  timeToFaceThem: () =>
+    loadSound(musicPaths.timeToFaceThem, { loop: true, volume: 0 }),
+  finalBrigade: () =>
+    loadSound(musicPaths.finalBrigade, { loop: true, volume: 0 }),
+  basementNightmare: () =>
+    loadSound(musicPaths.basementNightmare, { loop: true, volume: 0 }),
+  birthOfaKnight: () =>
+    loadSound(musicPaths.birthOfaKnight, { loop: true, volume: 0 }),
+  theEternalWar: () =>
+    loadSound(musicPaths.theEternalWar, { loop: true, volume: 0 }),
+  deepTunnels: () =>
+    loadSound(musicPaths.deepTunnels, { loop: true, volume: 0 }),
   edgeOfFear: () => loadSound(musicPaths.edgeOfFear, { loop: true, volume: 0 }),
-  pileOfBones: () => loadSound(musicPaths.pileOfBones, { loop: true, volume: 0 }),
-  passedDanger: () => loadSound(musicPaths.passedDanger, { loop: true, volume: 0 }),
-  spiderInvasion: () => loadSound(musicPaths.spiderInvasion, { loop: true, volume: 0 }),
-  fightThrough: () => loadSound(musicPaths.fightThrough, { loop: true, volume: 0 }),
-  imminentDarkness: () => loadSound(musicPaths.imminentDarkness, { loop: true, volume: 0 }),
-  hauntedOutpost: () => loadSound(musicPaths.hauntedOutpost, { loop: true, volume: 0 }),
-  hiddenCapacity: () => loadSound(musicPaths.hiddenCapacity, { loop: true, volume: 0 }),
-  mindReading: () => loadSound(musicPaths.mindReading, { loop: true, volume: 0 }),
-  unfinishedBusiness: () => loadSound(musicPaths.unfinishedBusiness, { loop: true, volume: 0 }),
-  weCantStopThem: () => loadSound(musicPaths.weCantStopThem, { loop: true, volume: 0 }),
-  threeThousandYearsOld: () => loadSound(musicPaths.threeThousandYearsOld, { loop: true, volume: 0 }),
+  pileOfBones: () =>
+    loadSound(musicPaths.pileOfBones, { loop: true, volume: 0 }),
+  passedDanger: () =>
+    loadSound(musicPaths.passedDanger, { loop: true, volume: 0 }),
+  spiderInvasion: () =>
+    loadSound(musicPaths.spiderInvasion, { loop: true, volume: 0 }),
+  fightThrough: () =>
+    loadSound(musicPaths.fightThrough, { loop: true, volume: 0 }),
+  imminentDarkness: () =>
+    loadSound(musicPaths.imminentDarkness, { loop: true, volume: 0 }),
+  hauntedOutpost: () =>
+    loadSound(musicPaths.hauntedOutpost, { loop: true, volume: 0 }),
+  hiddenCapacity: () =>
+    loadSound(musicPaths.hiddenCapacity, { loop: true, volume: 0 }),
+  mindReading: () =>
+    loadSound(musicPaths.mindReading, { loop: true, volume: 0 }),
+  unfinishedBusiness: () =>
+    loadSound(musicPaths.unfinishedBusiness, { loop: true, volume: 0 }),
+  weCantStopThem: () =>
+    loadSound(musicPaths.weCantStopThem, { loop: true, volume: 0 }),
+  threeThousandYearsOld: () =>
+    loadSound(musicPaths.threeThousandYearsOld, { loop: true, volume: 0 }),
   crypta: () => loadSound(musicPaths.crypta, { loop: true, volume: 0 }),
-  claustrofobia: () => loadSound(musicPaths.claustrofobia, { loop: true, volume: 0 }),
-  creepyThoughts: () => loadSound(musicPaths.creepyThoughts, { loop: true, volume: 0 }),
+  claustrofobia: () =>
+    loadSound(musicPaths.claustrofobia, { loop: true, volume: 0 }),
+  creepyThoughts: () =>
+    loadSound(musicPaths.creepyThoughts, { loop: true, volume: 0 }),
   mazeHeist: () => loadSound(musicPaths.mazeHeist, { loop: true, volume: 0 }),
-  theEndOfTheWorld: () => loadSound(musicPaths.theEndOfTheWorld, { loop: true, volume: 0 }),
-  droneDungeon: () => loadSound(musicPaths.droneDungeon, { loop: true, volume: 0 }),
-  droneDarkHor1: () => loadSound(musicPaths.droneDarkHor1, { loop: true, volume: 0 }),
-  droneDarkMys24: () => loadSound(musicPaths.droneDarkMys24, { loop: true, volume: 0 }),
-  heartbeatFastLow: () => loadSound(musicPaths.heartbeatFastLow, { loop: true, volume: 0 }),
-  intangibleAscension: () => loadSound(musicPaths.intangibleAscension, { loop: true, volume: 0 }),
+  theEndOfTheWorld: () =>
+    loadSound(musicPaths.theEndOfTheWorld, { loop: true, volume: 0 }),
+  droneDungeon: () =>
+    loadSound(musicPaths.droneDungeon, { loop: true, volume: 0 }),
+  droneDarkHor1: () =>
+    loadSound(musicPaths.droneDarkHor1, { loop: true, volume: 0 }),
+  droneDarkMys24: () =>
+    loadSound(musicPaths.droneDarkMys24, { loop: true, volume: 0 }),
+  heartbeatFastLow: () =>
+    loadSound(musicPaths.heartbeatFastLow, { loop: true, volume: 0 }),
+  intangibleAscension: () =>
+    loadSound(musicPaths.intangibleAscension, { loop: true, volume: 0 }),
   migrano: () => loadSound(musicPaths.migrano, { loop: true, volume: 0 }),
-  warningSignal: () => loadSound(musicPaths.warningSignal, { loop: true, volume: 0 }),
+  warningSignal: () =>
+    loadSound(musicPaths.warningSignal, { loop: true, volume: 0 }),
 };
 
 const FADE_DURATION = 2000; // Duration of the fade in milliseconds

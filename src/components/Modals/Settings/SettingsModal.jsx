@@ -31,7 +31,7 @@ export default function SettingsModal() {
   );
 }
 
-async function exitDungeonTransition(dispatch) {
+export async function exitDungeonTransition(dispatch) {
   await dispatch(uiActions.updateFade({ change: "CALL" }));
   playSoundEffect(false, "ui", "GUIMenuButton");
   dispatch(

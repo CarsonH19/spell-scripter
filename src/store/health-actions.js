@@ -15,6 +15,7 @@ import progressActiveQuests from "../util/quest-util";
 import { checkIfAttuned } from "../util/item-functions";
 import updateStatTotals from "./stats-actions";
 import playSoundEffect from "../util/audio-util";
+import { openModal } from "./ui-actions";
 
 export async function changeHealth(
   dispatch,
@@ -197,25 +198,10 @@ export async function checkForDeath(dispatch, id) {
 
   let character = order.find((char) => char.id === id);
 
-  // Check for player death
-  if (character.currentHealth <= 0 && character.id === "Player") {
-    dispatch(
-      combatActions.updateHealth({
-        id: character.id,
-        change: "HEAL",
-        value: 999,
-      })
-    );
-    dispatch(
-      uiActions.changeUi({ element: "continueIsVisible", visible: false })
-    );
-    dispatch(
-      uiActions.changeUi({ element: "dashboardIsVisible", visible: true })
-    );
-    dispatch(
-      uiActions.changeUi({ element: "gameWindowIsVisible", visible: true })
-    );
-  }
+  // NOTE: Note needed? - Check for player death
+  // if (character.currentHealth <= 0 && character.id === "Player") {
+  //   openModal(dispatch, "defeatedModal");
+  // }
 
   // Only Enemies
   if (character.currentHealth <= 0 && character.identifier === "ENEMY") {
@@ -248,4 +234,3 @@ export async function checkForDeath(dispatch, id) {
     }
   }
 }
-
