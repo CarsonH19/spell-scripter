@@ -236,6 +236,7 @@ export default async function castSpell(dispatch, spell) {
   }
 
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+  console.log("CAST SPELL FINISHED");
 }
 
 // =============================================================

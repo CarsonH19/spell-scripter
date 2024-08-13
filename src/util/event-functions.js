@@ -118,7 +118,7 @@ const eventFunctions = {
         // Enemy spawned
       } else {
         // Play encounter song
-        playMusic(backgroundMusic.warningSignal);
+        // playMusic(backgroundMusic.warningSignal);
         // Play dialogue
         await checkForDialogue(dispatch, "response", choice);
         // Set dialogue for after combat
@@ -178,6 +178,8 @@ const eventFunctions = {
     }
 
     if (choice === "Leave") {
+      await delay(1000);
+      await checkForDialogue(dispatch, "after", choice);
       await delay(2000);
       openModal(dispatch, "roomSummaryModal");
     }

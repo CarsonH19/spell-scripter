@@ -134,7 +134,7 @@ function getRoomContent() {
   switch (dungeon.name) {
     case "The Great Catacomb":
       // Event chance for general dungeon is 20%
-      if (eventChance > 550) {
+      if (eventChance > 20) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -697,9 +697,14 @@ export function playEncounterMusic() {
       }
     }
 
+    console.log(music)
     if (music) {
       const musicURL = `src/assets/audio/music/${music}.mp3`;
+      console.log(musicURL)
+      console.log(currentMusic._src)
+
       if (musicURL !== currentMusic._src) {
+        console.log("PLAYING NEW MUSIC")
         playMusic(backgroundMusic[music]);
       }
     }

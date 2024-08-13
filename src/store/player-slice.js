@@ -55,7 +55,7 @@ const playerSlice = createSlice({
     weaknesses: [],
     resistances: [],
     immunities: [],
-    spellList: [],
+    spellList: ['Fireball', "Firebolt"],
     statusEffects: [],
     inventory: {
       attunedItems: [],

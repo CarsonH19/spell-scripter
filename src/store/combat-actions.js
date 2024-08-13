@@ -57,16 +57,10 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
   // Iterate through the initiative order simulating a round of combat.
   for (let i = 0; i < order.length; i++) {
     // End game if player is defeated
-    const isPlayerDefeated = await isCombatOver(
-      dispatch,
-      additionalEnemies,
-      true
-    );
-    console.log(isPlayerDefeated);
-    if (isPlayerDefeated === "END COMBAT") {
-      console.log(isPlayerDefeated);
-      return;
-    }
+    // const stopCombatLoop = await isCombatOver(dispatch, additionalEnemies, false);
+    // if (stopCombatLoop) {
+    //   return;
+    // }
 
     // get the updated values for player and enemies on each iteration
     let order = store.getState().combat.order;
@@ -223,14 +217,8 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
       // END OF TURN
       handleCallTiming(dispatch, "END_OF_TURN", character);
       // End game if player is defeated
-      const isPlayerDefeated = await isCombatOver(
-        dispatch,
-        additionalEnemies,
-        true
-      );
-      console.log(isPlayerDefeated);
-      if (isPlayerDefeated === "END COMBAT") {
-        console.log(isPlayerDefeated);
+      const stopCombatLoop = await isCombatOver(dispatch, additionalEnemies, false);
+      if (stopCombatLoop) {
         return;
       }
     }
@@ -241,7 +229,7 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
 
   // Check if combat is over & end combat
   // Starts another loop if combat is not over
-  await isCombatOver(dispatch, additionalEnemies, false);
+  await isCombatOver(dispatch, additionalEnemies, true);
 }
 
 // =============================================================
@@ -358,47 +346,45 @@ function roll20(bonus = 0) {
 //                       END COMBAT
 // =============================================================
 
-async function isCombatOver(dispatch, additionalEnemies, onlyCheckPlayer) {
+async function isCombatOver(dispatch, additionalEnemies, loop) {
   let order = store.getState().combat.order;
   const player = order.find((char) => char.identifier === "PLAYER");
   // End combat if player is defeated
   if (!player.currentHealth > 0 || !player) {
-    console.log(player);
     openModal(dispatch, "defeatedModal");
-    return "END COMBAT";
+    return true;
   }
 
-  if (!onlyCheckPlayer) {
-    // Check for additional enemies
-    const updatedAdditionalEnemies = await checkForNewEnemies(
-      dispatch,
-      additionalEnemies
-    );
+  // Check for additional enemies
+  const updatedAdditionalEnemies = await checkForNewEnemies(
+    dispatch,
+    additionalEnemies
+  );
 
-    await delay(1000);
+  await delay(1000);
 
-    // Check if there are enemies in the combat order
-    order = store.getState().combat.order;
-    const isEnemy = order.some((char) => char.identifier === "ENEMY");
+  // Check if there are enemies in the combat order
+  order = store.getState().combat.order;
+  const isEnemy = order.some((char) => char.identifier === "ENEMY");
 
-    // combat continues
-    if (isEnemy) {
-      // await delay(2000);
-      combatLoop(dispatch, updatedAdditionalEnemies);
-      return;
-    }
-
-    // combat ends
-    if (!isEnemy) {
-      // playMusic(backgroundMusic.threeThousandYearsOld);
-      await checkForDialogue(dispatch, "after");
-      await delay(2000);
-      openModal(dispatch, "roomSummaryModal");
-    }
+  // combat continues after a completed round
+  if (isEnemy && loop) {
+    // await delay(2000);
+    combatLoop(dispatch, updatedAdditionalEnemies);
+    return;
   }
 
-  // Player is not defeated - combat continues
-  return "CONTINUE COMBAT";
+  // combat ends after all enemies are defeated
+  if (!isEnemy) {
+    // playMusic(backgroundMusic.threeThousandYearsOld);
+    await checkForDialogue(dispatch, "after");
+    await delay(2000);
+    console.log("COMBAT ENDED")
+    openModal(dispatch, "roomSummaryModal");
+  }
+
+  // Player is not defeated - combat continues and another character takes its turn
+  return false;
 }
 
 async function delay(ms) {
@@ -470,7 +456,7 @@ export async function startCombat(dispatch, enemies) {
   // );
 
   // Play encounter music
-  playEncounterMusic()
+  playEncounterMusic();
 
   await delay(2000);
 
@@ -538,7 +524,7 @@ async function handleCallTiming(dispatch, timing, character) {
         }
       }
       break;
-    case "AFTER_COMBAT": // Logic added to isCombatOver() function
+    case "AFTER_COMBAT":
       //
       break;
   }

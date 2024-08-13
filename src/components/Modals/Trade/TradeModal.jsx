@@ -83,7 +83,7 @@ export default function TradeModal() {
 
     // Audio
     if (item.name === "Laughing Coffin Coin") {
-      playSoundEffect(false, "event", "coinFlipLand");
+      playSoundEffect(false, "item", "coinFlipLand");
     }
   };
 
