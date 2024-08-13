@@ -124,7 +124,7 @@ const UNDEAD = {
     type: ENEMY_TYPES.UNDEAD,
     audio: {
       spawn: [true, "undeadSpawn", null, 0.5],
-      attack: [true, "bowAttack"],
+      attack: [true, "shootArrow"],
       death: [true, "boneBreak"],
     },
     level: 2,

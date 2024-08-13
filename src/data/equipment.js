@@ -76,18 +76,18 @@ const EQUIPMENT = {
     effect: ["+2 Spell Power"],
     stats: { arcana: { spellPower: +2 } },
   },
-  WHISPERING_DAGGER: {
+  SCOUNDRELS_EDGE: {
     //IMAGE
-    name: "Whispering Dagger",
+    name: "Scoundrel's Edge",
     description:
-      "A dagger engraved with ancient runes that seem to whisper of the Great Catacomb's past.",
+      "A dagger often carried by the wicked.",
     display: false,
-    image: "src/assets/images/items/equipment/whispering-dagger.jpg",
+    image: "src/assets/images/items/equipment/scoundrels-edge.jpg",
     type: "EQUIPMENT",
     rarity: "Common",
     useInCombat: false,
     effect: ["+1 Speed", "+2 Mana Regeneration"],
-    stats: { agility: { speed: +1 }, arcana: { manaRegen: +2 } },
+    stats: { agility: { speed: +1 }, strength: { attack: +2 } },
   },
   BONEMAIL: {
     name: "Bonemail",

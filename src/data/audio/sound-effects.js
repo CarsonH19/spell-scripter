@@ -73,6 +73,12 @@ export const soundPaths = {
     bulletsImpactFlesh26:
       "src/assets/audio/sound/attacks/Bullet Impact Flesh 26.mp3",
   },
+  shootArrow: {
+    shootArrow1: "src/assets/audio/sound/attacks/shoot-arrow-1.wav",
+    shootArrow2: "src/assets/audio/sound/attacks/shoot-arrow-2.wav",
+    shootArrow3: "src/assets/audio/sound/attacks/shoot-arrow-3.wav",
+    shootArrow4: "src/assets/audio/sound/attacks/shoot-arrow-4.wav",
+  },
   ghostAttack: {
     ghostAttack1: "src/assets/audio/sound/attacks/ghost/ghost-attack-1.mp3",
     ghostAttack2: "src/assets/audio/sound/attacks/ghost/ghost-attack-2.mp3",
@@ -228,7 +234,6 @@ export const soundPaths = {
     map: "src/assets/audio/sound/items/map.wav",
     // Laughin Coffin
     coinFlipLand: "src/assets/audio/sound/items/Coin Flip Land.mp3",
-
   },
   // ===============================
   //           EVENT
@@ -260,8 +265,7 @@ export const soundPaths = {
   },
   openDoor: {
     openDoor1: "src/assets/audio/sound/misc/open-door-1.wav",
-    openDoor2: "src/assets/audio/sound/misc/open-door-2.wav"
-
+    openDoor2: "src/assets/audio/sound/misc/open-door-2.wav",
   },
   // ===============================
   //            DIALOGUE
@@ -293,6 +297,7 @@ export const soundPaths = {
     softs2: "src/assets/audio/sound/ui/Softs 2.wav",
     unattune: "src/assets/audio/sound/ui/unattune.mp3",
     trade: "src/assets/audio/sound/ui/trade.mp3",
+    selectHero: "src/assets/audio/sound/ui/select-hero.mp3",
   },
   skill: {
     coldWhoosh3: "src/assets/audio/sound/ui/Cold, Whoosh 03.mp3",

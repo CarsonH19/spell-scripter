@@ -456,7 +456,7 @@ function getRoomImage(dungeon) {
     case "The Great Catacomb":
       backgroundImage = getImageFromList(
         "src/assets/images/backgrounds/the-great-catacomb/catacomb",
-        28
+        27
       );
       break;
   }
@@ -474,7 +474,7 @@ function getRoomImage(dungeon) {
       case "Thieves' Ruin":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/thieves-ruin/thieves-ruin",
-          11
+          9
         );
         break;
 
@@ -497,7 +497,7 @@ function getRoomImage(dungeon) {
       case "Coffin":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/coffin",
-          7
+          6
         );
         break;
 
@@ -512,7 +512,7 @@ function getRoomImage(dungeon) {
       case "Candlelight Shrine":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/candlelight-shrine",
-          7
+          10
         );
         break;
 

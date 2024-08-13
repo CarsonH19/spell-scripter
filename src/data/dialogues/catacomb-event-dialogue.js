@@ -931,13 +931,13 @@ export const BONEVAULT_DIALOGUE = {
         text: `The air grows colder as you approach the locked door, its surface etched with runes of protection and dark enchantments. The atmosphere is thick with a sense of ancient power and hidden danger.`,
       },
       {
-        position: `LEFT`,
+        position: `RIGHT`,
         speaker: `Liheth`,
         image: `src/assets/images/dialogue/liheth-dialogue.png`,
         text: `"This door guards something beyond our understanding. It is protected by ancient magic, and its presence is unsettling."`,
       },
       {
-        position: `LEFT`,
+        position: `RIGHT`,
         speaker: `Liheth`,
         image: `src/assets/images/dialogue/liheth-dialogue.png`,
         text: `"Proceed with caution. The forces contained within may be beyond our current strength."`,
@@ -955,13 +955,13 @@ export const BONEVAULT_DIALOGUE = {
         text: `A heavy silence surrounds the locked door, its presence like a shadow cast over the area. The air seems to hum with a foreboding energy, warning of the dangers that lie behind it.`,
       },
       {
-        position: `LEFT`,
+        position: `RIGHT`,
         speaker: `Siggurd`,
         image: `src/assets/images/dialogue/siggurd-dialogue.png`,
         text: `"This door is a sentinel of dark secrets. It may stand as a barrier to whatever horrors lie beyond."`,
       },
       {
-        position: `LEFT`,
+        position: `RIGHT`,
         speaker: `Siggurd`,
         image: `src/assets/images/dialogue/siggurd-dialogue.png`,
         text: `"We must be prepared for the worst."`,

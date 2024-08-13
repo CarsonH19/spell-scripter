@@ -449,6 +449,7 @@ const eventFunctions = {
       // Check if map drops during event
       getRandomLoot(dispatch);
       startCombat(dispatch, dungeon.contents.enemies);
+      playMusic(backgroundMusic.hiddenCapacity);
     }
   },
   LAUGHING_COFFIN: async (dispatch, choice) => {

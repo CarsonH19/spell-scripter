@@ -443,8 +443,8 @@ export async function startCombat(dispatch, enemies) {
 
   await delay(1000);
 
-  dispatch(logActions.updateLogs({ change: "CLEAR" }));
-  dispatch(logActions.updateLogs({ change: "PAUSE" }));
+  // dispatch(logActions.updateLogs({ change: "CLEAR" }));
+  // dispatch(logActions.updateLogs({ change: "PAUSE" }));
 
   // playSoundEffect(false, "misc", "encounter", 0.4);
 
@@ -458,7 +458,7 @@ export async function startCombat(dispatch, enemies) {
   // Play encounter music
   playEncounterMusic();
 
-  await delay(2000);
+  // await delay(2000);
 
   // Clear Narrative
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
