@@ -24,7 +24,7 @@ import { checkForActiveQuest } from "./quest-util";
 import { getImageFromList } from "./misc-util";
 import { getTraderItems } from "../components/Modals/Trade/TradeModal";
 import { getRandomCooldown } from "./misc-util";
-import { playMusic } from "../data/audio/music";
+import { musicPaths, playMusic } from "../data/audio/music";
 import { backgroundMusic } from "../data/audio/music";
 import { currentMusic } from "../data/audio/music";
 
@@ -656,17 +656,24 @@ export function getRoomMusic(dungeon) {
     }
   }
 
+  return music;
+}
+
+export function playEncounterMusic() {
+  const dungeon = store.getState().dungeon;
+  let music
+
   // Encounter Music
   if (dungeon.contents.enemies.length > 0) {
     switch (dungeon.name) {
       case "The Great Catacomb":
         {
-         const musicList = [
-            backgroundMusic.weCantStopThem,
-            backgroundMusic.passedDanger,
-            backgroundMusic.finalBrigade,
-            backgroundMusic.migrano,
-            backgroundMusic.warningSignal,
+          const musicList = [
+            "weCantStopThem",
+            "passedDanger",
+            "finalBrigade",
+            "migrano",
+            "warningSignal",
           ];
           const index = Math.floor(Math.random() * musicList.length);
           music = musicList[index];
@@ -678,59 +685,23 @@ export function getRoomMusic(dungeon) {
       switch (dungeon.path) {
         case "Wailing Warrens":
           {
-            const musicList = [
-              backgroundMusic.hauntedOutpost,
-              backgroundMusic.fightThrough,
-            ];
+            const musicList = ["hauntedOutpost", "fightThrough"];
 
             const index = Math.floor(Math.random() * musicList.length);
             music = musicList[index];
           }
           break;
         case "Thieves' Ruin":
-          music = backgroundMusic.hiddenCapacity;
+          music = "hiddenCapacity";
           break;
       }
     }
+
+    if (music) {
+      const musicURL = `src/assets/audio/music/${music}.mp3`;
+      if (musicURL !== currentMusic._src) {
+        playMusic(backgroundMusic[music]);
+      }
+    }
   }
-
-  return music;
 }
-
-// export function playEncounterMusic() {
-//   currentMusic;
-//   const dungeon = store.getState().dungeon;
-
-//   let musicList = [];
-
-//   switch (dungeon.name) {
-//     case "The Great Catacomb":
-//       musicList = [
-//         backgroundMusic.weCantStopThem,
-//         backgroundMusic.passedDanger,
-//         backgroundMusic.finalBrigade,
-//         backgroundMusic.migrano,
-//         backgroundMusic.warningSignal,
-//       ];
-//       break;
-//   }
-
-//   if (dungeon.path) {
-//     switch (dungeon.path) {
-//       case "Wailing Warrens":
-//         musicList = [backgroundMusic.edgeOfFear, backgroundMusic.fightThrough];
-//         break;
-//       case "Thieves' Ruin":
-//         musicList = [backgroundMusic.hiddenCapacity];
-//         break;
-//     }
-//   }
-
-//   const index = Math.floor(Math.random() * musicList.length);
-
-//   if (getRoomMusic(newRoom)._src !== currentMusic._src) {
-//     playMusic(getRoomMusic(newRoom));
-//   }
-
-//   playMusic(musicList[index]);
-// }

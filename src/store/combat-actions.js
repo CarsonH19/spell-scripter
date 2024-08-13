@@ -33,10 +33,8 @@ import updateStatTotals from "./stats-actions.js";
 import checkForDialogue from "../util/dialogue-util.js";
 import { checkIfAttuned } from "../util/item-functions.js";
 import playSoundEffect from "../util/audio-util.js";
-import { backgroundMusic, playMusic } from "../data/audio/music.js";
 
-import { getRoomMusic } from "../util/dungeon-util.js";
-import { currentMusic } from "../data/audio/music.js";
+import { playEncounterMusic } from "../util/dungeon-util.js";
 
 let playerActionResolver;
 let targetResolver;
@@ -472,14 +470,7 @@ export async function startCombat(dispatch, enemies) {
   // );
 
   // Play encounter music
-  // Check if music playing is different
-  const newMusic = getRoomMusic(dungeon);
-  console.log(newMusic);
-  if (newMusic !== currentMusic._src) {
-    console.log(getRoomMusic(dungeon));
-    console.log(currentMusic._src);
-    playMusic(newMusic);
-  }
+  playEncounterMusic()
 
   await delay(2000);
 
