@@ -22,8 +22,7 @@ export async function changeHealth(
   target,
   change,
   value = 0,
-  damageType = null,
-  display
+  damageType = null
 ) {
   let id = target.id;
 
@@ -89,6 +88,7 @@ export async function changeHealth(
     value = value * multiplier;
   }
 
+  // DAMAGE CALCULATIONS
   if (change === "DAMAGE") {
     // Weaknesses
     for (let i = 0; i < target.weaknesses.length; i++) {
@@ -111,77 +111,88 @@ export async function changeHealth(
       arcaneShieldFunction(dispatch, null, target, "REMOVE", value);
       return;
     }
+
+    // ABILITY - Liheth B - Undying Flames
+    if (
+      checkCurrentStatusEffects(target, "Undying Flame") &&
+      value > target.currentHealth
+    ) {
+      const halfMax = target.stats.strength.maxHealth / 2;
+      dispatch(
+        combatActions.updateHealth({ id, change: "REPLACE", value: halfMax })
+      );
+      changeStatusEffect(dispatch, target, "REMOVE", { name: "Undying Flame" });
+      return;
+    }
+
+    // SPELL - Death Ward
+    if (
+      checkCurrentStatusEffects(target, "Death Ward") &&
+      value > target.currentHealth
+    ) {
+      dispatch(combatActions.updateHealth({ id, change: "REPLACE", value: 1 }));
+      changeStatusEffect(dispatch, target, "REMOVE", { name: "Death Ward" });
+      return;
+    }
+
+    // SPELL - Barrier & Shell
+    if (
+      checkCurrentStatusEffects(target, "Barrier") ||
+      checkCurrentStatusEffects(target, "Shell")
+    ) {
+      value = value * 0.5;
+      changeStatusEffect(dispatch, target, "REMOVE", { name: "Barrier" });
+    }
+
+    // SPELL - Invulnerability
+    if (checkCurrentStatusEffects(target, "Invulnerability")) {
+      value = value * 0;
+    }
+
+    // ITEM - Wraithbane
+    // Check for the Incorporeal condition
+    if (
+      checkCurrentStatusEffects(target, "Incorporeal") &&
+      !checkIfAttuned(dispatch, "Wraithbane") &&
+      damageType === null &&
+      change === "DAMAGE"
+    ) {
+      value = value / 2;
+    }
+
+    // FINAL VALUE
+    value = Math.round(value);
+
+    // DAMAGE DISPLAY
+    // Change damageType to lower case to style the damage/health
+    if (damageType) {
+      const lowercase = damageType.toLowerCase();
+      dispatch(
+        combatActions.updateDamageDisplay({
+          id,
+          content: { item: value, style: `${lowercase}-damage` },
+        })
+      );
+    } else {
+      dispatch(
+        combatActions.updateDamageDisplay({
+          id,
+          content: { item: value, style: "damage" },
+        })
+      );
+    }
   }
 
-  // ABILITY - Liheth B - Undying Flames
-  if (
-    checkCurrentStatusEffects(target, "Undying Flame") &&
-    value > target.currentHealth
-  ) {
-    const halfMax = target.stats.strength.maxHealth / 2;
-    dispatch(
-      combatActions.updateHealth({ id, change: "REPLACE", value: halfMax })
-    );
-    changeStatusEffect(dispatch, target, "REMOVE", { name: "Undying Flame" });
-    return;
-  }
+  // HEAL CALCULATIONS
+  if (change === "HEAL") {
+    // FINAL VALUE
+    value = Math.round(value);
 
-  // SPELL - Death Ward
-  if (
-    checkCurrentStatusEffects(target, "Death Ward") &&
-    value > target.currentHealth
-  ) {
-    dispatch(combatActions.updateHealth({ id, change: "REPLACE", value: 1 }));
-    changeStatusEffect(dispatch, target, "REMOVE", { name: "Death Ward" });
-    return;
-  }
-
-  // SPELL - Barrier & Shell
-  if (
-    checkCurrentStatusEffects(target, "Barrier") ||
-    checkCurrentStatusEffects(target, "Shell")
-  ) {
-    value = value * 0.5;
-    changeStatusEffect(dispatch, target, "REMOVE", { name: "Barrier" });
-  }
-
-  // SPELL - Invulnerability
-  if (checkCurrentStatusEffects(target, "Invulnerability")) {
-    value = value * 0;
-  }
-
-  // ITEM - Wraithbane
-  // Check for the Incorporeal condition
-  if (
-    checkCurrentStatusEffects(target, "Incorporeal") &&
-    !checkIfAttuned(dispatch, "Wraithbane") &&
-    damageType === null &&
-    change === "DAMAGE"
-  ) {
-    value = value / 2;
-  }
-
-  value = Math.round(value);
-
-  // Change damageType to lower case to style the damage/health
-  if (damageType) {
-    const lowercase = damageType.toLowerCase();
-    console.log(lowercase);
-
+    // DAMAGE DISPLAY
     dispatch(
       combatActions.updateDamageDisplay({
         id,
-        content: { item: value, style: `${lowercase}-damage` },
-      })
-    );
-  }
-
-  // Standard damage number style
-  if (!damageType) {
-    dispatch(
-      combatActions.updateDamageDisplay({
-        id,
-        content: { item: value, style: "damage" },
+        content: { item: value, style: "heal" },
       })
     );
   }

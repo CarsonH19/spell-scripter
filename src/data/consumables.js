@@ -56,7 +56,7 @@ const CONSUMABLES = {
     audio: [false, "item", "chewCrackersMouth"],
   },
   GHOSTLIGHT_LILY: {
-    name: "Gravelight Lily",
+    name: "Ghostlight Lily",
     description:
       "A pale lily that glows faintly in the dark. It is prized for its use in creating ethereal elixirs.",
     image: "src/assets/images/items/consumables/ghostlight-lily.jpg",
@@ -95,6 +95,7 @@ const CONSUMABLES = {
     description: "A small bottle of glowing blue liquid.",
     image: "src/assets/images/items/consumables/mana-potion.jpg",
     type: "CONSUMABLE",
+    target: "PLAYER",
     rarity: "Rare",
     useInCombat: true,
     effect: ["Restores 30% of your max MP.", "Can be used in combat."],

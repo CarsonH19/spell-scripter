@@ -2,11 +2,14 @@ import store from "./index";
 
 import { playerActions } from "./player-slice";
 import { combatActions } from "./combat-slice";
+import { logActions } from "./log-slice";
+import { uiActions } from "./ui-slice";
 
 import changeStatusEffect from "./status-effect-actions";
 import { itemFunctions } from "../util/item-functions";
 import updateStatTotals from "./stats-actions";
 import playSoundEffect from "../util/audio-util";
+import { getTarget } from "./combat-actions";
 
 export default async function activateItem(dispatch, item) {
   const dashboard = store.getState().ui.dashboardIsVisible;
@@ -15,6 +18,8 @@ export default async function activateItem(dispatch, item) {
   if (!dashboard) {
     const order = store.getState().combat.order;
     player = order.find((char) => char.id === "Player");
+    // Set isCharacterTurn to null to remove itemList
+    dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
   } else {
     player = store.getState().player;
   }
@@ -62,7 +67,6 @@ export default async function activateItem(dispatch, item) {
 
     case "CONSUMABLE":
       {
-        console.log("Consumables")
         // Can't use consumables on the dashboard
         if (dashboard) return;
         const snakeCaseItem = toSnakeCase(item.name);
@@ -76,14 +80,47 @@ export default async function activateItem(dispatch, item) {
           item.name !== "Trap Disarming Kit" &&
           item.name !== "Smoke Bomb"
         ) {
+          // Call consumable function
           if (itemFunction) {
-            console.log("itemFunction called")
-            itemFunction(dispatch, player);
+            // Consumable only targets the player
+            if (item.target && item.target === "PLAYER") {
+              itemFunction(dispatch, player);
+              dispatch(
+                uiActions.changeUi({
+                  element: "modalIsVisible",
+                  visible: false,
+                })
+              );
+            }
+
+            // Consumable can target any ally
+            if (!item.target) {
+              dispatch(logActions.updateLogs({ change: "CLEAR" }));
+              dispatch(logActions.updateLogs({ change: "PAUSE" }));
+              // If consumable is selected in the modal, close the modal to select a target
+              dispatch(
+                uiActions.changeUi({
+                  element: "modalIsVisible",
+                  visible: false,
+                })
+              );
+              dispatch(
+                logActions.updateLogs({
+                  change: "ADD",
+                  text: `Choose an ally!`,
+                })
+              );
+              const target = await getTarget("ALLIES");
+              dispatch(logActions.updateLogs({ change: "CLEAR" }));
+              dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
+              itemFunction(dispatch, target);
+            }
+          } else {
+            console.log("NO ITEM FUNCTION FOUND", item);
           }
 
           if (item.audio) playSoundEffect(...item.audio);
 
-          console.log("Removed from inventory")
           dispatch(
             combatActions.changePlayerInventory({ item, change: "REMOVE" })
           );
@@ -100,7 +137,7 @@ export default async function activateItem(dispatch, item) {
         if (itemFunction) {
           itemFunction(dispatch, item);
         }
-        
+
         if (item.audio) playSoundEffect(...item.audio);
       }
       break;

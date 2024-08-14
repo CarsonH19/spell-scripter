@@ -29,7 +29,7 @@ export default async function castSpell(dispatch, spell) {
 
   const getQuickTimeEventResult = await getResult();
 
-  // Set isCharacterTurn to null
+  // Set isCharacterTurn to null to remove spell list
   dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
 
   if (!getQuickTimeEventResult) {

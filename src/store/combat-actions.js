@@ -131,6 +131,7 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
               break;
             case "ATTACK":
               {
+                dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
                 dispatch(logActions.updateLogs({ change: "CLEAR" }));
                 dispatch(logActions.updateLogs({ change: "PAUSE" }));
                 dispatch(
@@ -139,7 +140,6 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
                     text: `Choose a target!`,
                   })
                 );
-                dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
                 const target = await getTarget("ENEMIES");
                 dispatch(logActions.updateLogs({ change: "CLEAR" }));
                 dispatch(logActions.updateLogs({ change: "UNPAUSE" }));

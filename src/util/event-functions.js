@@ -398,15 +398,17 @@ const eventFunctions = {
     }
   },
   UNLOCK_HERO_SIGGURD: async (dispatch) => {
+    clearCharactersFromOrder(dispatch);
     const dungeon = store.getState().dungeon;
     let enemies = [
-      ...dungeon.contents.enemies,
+      buildEnemy(UNDEAD.DECREPIT_SKELETON),
+      buildEnemy(UNDEAD.DECREPIT_SKELETON),
+      buildEnemy(UNDEAD.DECREPIT_SKELETON),
       buildEnemy(UNDEAD.DECREPIT_SKELETON),
       buildEnemy(UNDEAD.DECREPIT_SKELETON),
     ];
     dispatch(heroActions.unlockHero("Siggurd"));
     // Clear enemies so combatLoop is initiated correctly
-    clearCharactersFromOrder(dispatch);
     startCombat(dispatch, enemies);
   },
   AMBUSH: async (dispatch, choice) => {

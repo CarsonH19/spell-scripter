@@ -17,6 +17,12 @@ export const itemFunctions = {
   MANA_POTION: (dispatch, target) => {
     const value = Math.round(target.stats.arcana.maxMana * 0.3);
     dispatch(combatActions.updateMana({ change: "ADD", value }));
+    dispatch(
+      combatActions.updateDamageDisplay({
+        id: target.id,
+        content: { item: value, style: "gain-mana" },
+      })
+    );
   },
   MARROWSTONE_CHEESE: (dispatch, target) => {
     changeHealth(dispatch, target, "HEAL", 15);
@@ -36,6 +42,9 @@ export const itemFunctions = {
     if (chance > 50) {
       changeStatusEffect(dispatch, target, "ADD", CONDITIONS.HAUNTED);
     }
+  },
+  SUNSHADE_BLOSSOM: (dispatch, target) => {
+    changeHealth(dispatch, target, "HEAL", 1);
   },
   WITCHFIRE_ORCHID: (dispatch, target) => {
     changeHealth(dispatch, target, "DAMAGE", 3);
@@ -179,7 +188,7 @@ export const itemFunctions = {
 
     changeStatusEffect(dispatch, target, "ADD", statusEffect);
   },
-  INVOKING_CHEESE: (dispatch, target) => {
+  INVOKING_CANDLE: (dispatch, target) => {
     const statusEffect = {
       name: "Invoking Candle",
       display: true,
