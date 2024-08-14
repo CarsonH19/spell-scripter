@@ -47,16 +47,40 @@
   text-align: center;
   color: var(--text);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  /* animation: fadeOut 2.1s ease-in-out; */
 }
 
  
 .damage-display .damage {
   color: var(--text);
-  /* animation: damage-shake 1s ease-in;; */
 }
 .damage-display .heal {
-  color: white
+  color: #e90000;
+  font-weight: bold;
+  font-size: 3.5rem; 
+  text-shadow: 0px 0px 2px #e90000;
+  animation: heal-effect 1.5s ease-out forwards;
+}
+.damage-display .gain-mana {
+  color: #549ced;
+  font-weight: bold;
+  font-size: 3.5rem; 
+  text-shadow: 0px 0px 2px #549ced;
+  animation: heal-effect 1.5s ease-out forwards;
+}
+
+@keyframes heal-effect {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) scale(1);
+  }
 }
 .damage-display .burning {
   color: orange;

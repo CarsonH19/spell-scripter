@@ -12,6 +12,7 @@
   border: 2px solid var(--secondary);
   padding: 1rem;
   gap: 1rem;
+  border-radius: 10px;
   /* margin-bottom: 2rem; */
   overflow: visible;
 }

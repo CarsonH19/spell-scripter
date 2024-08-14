@@ -16,14 +16,14 @@ export default function DungeonColumn() {
     <div className={classes.column}>
       <h1>Dungeons</h1>
       <div className={classes.dungeons}>
+        <h2> The Great Catacombs</h2>
         <div
           className={classes.selection}
           style={{
-            backgroundImage: `url(${dungeon.image})`,
+            backgroundImage: `url(src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance-3.jpg)`,
           }}
         >
-          <h2> The Great Catacombs</h2>
-          <p> Mastery Points Required: 0</p>
+          {/* <p> Mastery Points Required: 0</p> */}
         </div>
         <p>Description</p>
         <p className={classes.description}>

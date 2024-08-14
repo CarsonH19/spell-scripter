@@ -35,7 +35,7 @@
 .column .tomes {
   height: 100%;
   width: 100%;
-  border: 3px solid var(--secondary);
+  /* border: 3px solid var(--secondary); */
   padding: 1rem;
   display: flex;
   flex-direction: column-reverse;
@@ -50,6 +50,7 @@
   width: 100%;
   height: 6rem;
   border: 2px solid var(--accent);
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
