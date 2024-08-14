@@ -207,6 +207,14 @@ export default async function castSpell(dispatch, spell) {
     case "CONJURE":
       {
         if (spell.spellType && spell.spellType === "SUMMON") {
+          // Check if summon already exists in order and remove it before adding a new copy
+          if (checkForSummonInOrder(spell)) {
+            const summonId = spell.name.replace(/summon/i, "").trim();
+            dispatch(
+              combatActions.removeCharacter({ character: { id: summonId } })
+            );
+          }
+
           const baseStats = constructStats(spell.summon.stats);
           let summon = {
             ...spell.summon,
@@ -362,6 +370,18 @@ function calculateManaCost(spell) {
   }
 
   return manaCost;
+}
+
+// =============================================================
+//                     CONJURATION SPELLS
+// =============================================================
+
+export function checkForSummonInOrder(spellObject) {
+  const order = store.getState().combat.order;
+  const spellName = spellObject.name;
+  const summonName = spellName.replace(/summon/i, "").trim();
+  const isSummoned = order.some((char) => char.name === summonName);
+  return isSummoned;
 }
 
 // =============================================================
