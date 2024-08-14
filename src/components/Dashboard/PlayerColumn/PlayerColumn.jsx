@@ -14,11 +14,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Tooltip from "../../UI/Tooltip";
+import updateStatTotals from "../../../store/stats-actions";
+import { useEffect } from "react";
 
 export default function PlayerColumn() {
   const dispatch = useDispatch();
   const player = useSelector((state) => state.player);
   const { prevLevel, nextLevel } = setNextLevel(player.totalMasteryPoints);
+
+  useEffect(() => {
+    // Update player stats on render
+    updateStatTotals(dispatch, "Player");
+  }, []);
 
   const handleOpenModal = (modal) => {
     openModal(dispatch, modal);

@@ -251,17 +251,23 @@ function toSnakeCase(str) {
   return str.toUpperCase().replace(/\s+/g, "_");
 }
 async function enterDungeonTransition(dispatch, characters) {
+  // Fade transition
   await dispatch(uiActions.updateFade({ change: "CALL" }));
   playSoundEffect(false, "ui", "GUIMenuButton");
   playMusic(backgroundMusic.mazeHeist);
   await delay(3000);
+
+  // Ensure event options are not visible
   dispatch(
     uiActions.changeUi({ element: "eventOptionsAreVisible", visible: false })
   );
+  // Ensure continue arrow is not visible
   dispatch(
     uiActions.changeUi({ element: "continueIsVisible", visible: false })
   );
+  // Ensure modals are not visible
   dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
+  // Change from dashboard to game window
   dispatch(
     uiActions.changeUi({ element: "dashboardIsVisible", visible: false })
   );

@@ -34,7 +34,6 @@ export default function Actions() {
   const party = useSelector((state) => state.combat.order).filter(
     (char) => char.identifier !== "ENEMY"
   );
-  console.log("PARTY", party);
   // Event
   const event = useSelector((state) => state.dungeon.event);
   const entrance = event && event.type === "ENTRANCE";
@@ -43,7 +42,7 @@ export default function Actions() {
   const spellList = useSelector((state) => state.player.spellList);
   // Items
   const itemUI = useSelector((state) => state.ui.itemListIsVisible);
-  const itemList = useSelector((state) => state.player.inventory.consumables);
+  const itemList = player.inventory.consumables;
 
   // Used to determine if buttons should be disabled or not
   const playerID = useSelector((state) => state.player.id);
@@ -78,8 +77,15 @@ export default function Actions() {
 
   const handleSelectChoice = (choice, modal) => {
     setSelect(choice);
-    castSpell(dispatch, choice);
 
+    // Call castSpell here when not in combat
+    if (modal === "spellListIsVisible" && !isDanger) {
+      castSpell(dispatch, choice);
+    } 
+
+    // NOTE: item logic is handled in Item component
+
+    // Close spell/item select window
     dispatch(uiActions.changeUi({ element: modal, visible: false }));
   };
 
@@ -197,26 +203,28 @@ export default function Actions() {
     });
 
     content = (
-      <div className={classes.spells}>
+      <div className={classes.items}>
         <h3>Item List</h3>
-        {counters.map((item) => {
-          if (item.useInCombat) {
-            return (
-              <Item
-                key={item.id}
-                item={item}
-                count={item.counter}
-                // onClick={() => handleSelectChoice(item, "itemListIsVisible")}
-              />
-            );
-          }
-        })}
-        <p
+        <ul>
+          {counters.map((item) => {
+            if (item.useInCombat) {
+              console.log(item);
+              return (
+                <Item
+                  key={item.id}
+                  item={item}
+                  count={item.counter}
+                  onClick={() => handleSelectChoice(item, "itemListIsVisible")}
+                />
+              );
+            }
+          })}
+        </ul>
+        <FontAwesomeIcon
+          icon={faCircleXmark}
           onClick={() => handleCloseList("itemListIsVisible")}
           className={classes.close}
-        >
-          x
-        </p>
+        />
       </div>
     );
   } else {

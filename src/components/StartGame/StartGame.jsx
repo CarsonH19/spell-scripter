@@ -9,12 +9,17 @@ import EQUIPMENT from "../../data/equipment";
 import MISC_ITEMS from "../../data/misc-items";
 import { v4 as uuidv4 } from "uuid";
 import { backgroundMusic, playMusic } from "../../data/audio/music";
+import updateStatTotals from "../../store/stats-actions";
+import store from "../../store/index";
+import { useState } from "react";
 
 export default function StartGame() {
   const dispatch = useDispatch();
+  const [off, setOff] = useState(false);
 
   const handleStart = () => {
     startTransition(dispatch);
+    setOff(true);
 
     // // Start Dashboard Music
     playMusic(backgroundMusic.intangibleAscension);
@@ -306,7 +311,13 @@ export default function StartGame() {
   return (
     <div className={classes.start}>
       <h1>Spell Scripter</h1>
-      <button onClick={handleStart}>Start</button>
+      <button
+        disabled={off}
+        onClick={handleStart}
+        style={off ? { pointerEvents: "none" } : {}}
+      >
+        Start
+      </button>
     </div>
   );
 }

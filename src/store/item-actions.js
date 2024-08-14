@@ -62,6 +62,7 @@ export default async function activateItem(dispatch, item) {
 
     case "CONSUMABLE":
       {
+        console.log("Consumables")
         // Can't use consumables on the dashboard
         if (dashboard) return;
         const snakeCaseItem = toSnakeCase(item.name);
@@ -76,11 +77,13 @@ export default async function activateItem(dispatch, item) {
           item.name !== "Smoke Bomb"
         ) {
           if (itemFunction) {
+            console.log("itemFunction called")
             itemFunction(dispatch, player);
           }
 
           if (item.audio) playSoundEffect(...item.audio);
 
+          console.log("Removed from inventory")
           dispatch(
             combatActions.changePlayerInventory({ item, change: "REMOVE" })
           );

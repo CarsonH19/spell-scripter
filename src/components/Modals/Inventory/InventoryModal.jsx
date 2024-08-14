@@ -99,10 +99,12 @@ export default function InventoryModal() {
             <ul className={classes.items}>
               {counters.map((item) => {
                 // Calculate set pieces for tooltip
+                let completeSet;
                 let setPieces = 0;
                 if (item.set && setCounts[item.set]) {
                   setPieces = setCounts[item.set];
                 }
+                if (setPieces === 3) completeSet = true;
 
                 return (
                   <Tooltip
@@ -116,13 +118,15 @@ export default function InventoryModal() {
                         {line}
                       </span>
                     ))}
-                    detailThree={item.set ? `${item.set} ${setPieces}/3` : null}
+                    detailThree={item.set ? `${item.set} Bonus (${setPieces}/3)` : null}
                     detailFour={
                       item.setBonus
                         ? item.setBonus.map((line, index) => (
                             <span
                               key={index}
                               className={classes["item-effect"]}
+                              style={completeSet ? {} : { color: "rgb(97, 97, 97)" }}
+
                             >
                               {line}
                             </span>

@@ -11,11 +11,16 @@ import { setSelect } from "../../../store/combat-actions";
 
 export default function Item({ item, count }) {
   const dispatch = useDispatch();
+  const isDanger = useSelector((state) => state.dungeon.danger);
 
   const handleItemClick = (item) => {
     const isItemListOpen = store.getState().ui.itemListIsVisible;
     setSelect(item);
-    activateItem(dispatch, item);
+
+    // Call activateItem here when not in combat
+    if (!isDanger) {
+      activateItem(dispatch, item);
+    }
 
     if (isItemListOpen) {
       dispatch(

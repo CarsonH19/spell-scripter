@@ -19,7 +19,7 @@ export const COFFIN = {
   name: "Coffin",
   type: "CHOICE",
   description: [
-    "An ornately decorated coffin is found",
+    "An ornately decorated coffin is found.",
     "Do you wish to open it?",
   ],
   options: [

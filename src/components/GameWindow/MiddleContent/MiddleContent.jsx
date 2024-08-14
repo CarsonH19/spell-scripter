@@ -44,6 +44,8 @@ export async function roomTransition(dispatch) {
   await dispatch(uiActions.updateFade({ change: "CALL" }));
   playSoundEffect(false, "misc", "whooshLowAir");
   await delay(3000);
+  // Ensure modals are not visible
+  dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
   createNewRoom(dispatch);
   await dispatch(uiActions.updateFade({ change: "CLEAR" }));
 
