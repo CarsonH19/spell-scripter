@@ -9,8 +9,6 @@ import EQUIPMENT from "../../data/equipment";
 import MISC_ITEMS from "../../data/misc-items";
 import { v4 as uuidv4 } from "uuid";
 import { backgroundMusic, playMusic } from "../../data/audio/music";
-import updateStatTotals from "../../store/stats-actions";
-import store from "../../store/index";
 import { useState } from "react";
 
 export default function StartGame() {

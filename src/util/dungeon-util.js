@@ -128,13 +128,13 @@ export function createNewRoom(dispatch) {
 function getRoomContent() {
   const dungeon = store.getState().dungeon;
   const pathCounter = dungeon.pathCounter;
-  let eventChance = Math.floor(Math.random() * 100);
+  let eventChance = Math.floor(Math.random() * 101);
   let content;
 
   switch (dungeon.name) {
     case "The Great Catacomb":
       // Event chance for general dungeon is 20%
-      if (eventChance > 50) {
+      if (eventChance > 80) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -201,11 +201,9 @@ function getRoomEvent() {
         if (dungeon.threat < 20) {
           events.push(GRAVESTONE);
         }
-
         if (dungeon.threat < 20) {
           events.push(AMBUSH);
         }
-
         events.push(COFFIN);
         events.push(BONEVAULT);
 
