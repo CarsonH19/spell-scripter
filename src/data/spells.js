@@ -367,6 +367,20 @@ const SPELLS = {
       spellTarget: "CONJURE",
       spellType: "SUMMON",
       summon: hound,
+      statusEffect: {
+        name: "Summon",
+        display: true,
+        image: "src/assets/images/spellbook/conjuration/summon-hound.jpg",
+        description: "",
+        effect: [""],
+        durationType: "ROOM",
+        duration: 3,
+        stats: {
+          agility: {
+            defense: +1,
+          },
+        },
+      },
       manaCost: 10,
     },
     {
@@ -413,6 +427,20 @@ const SPELLS = {
       spellTarget: "CONJURE",
       spellType: "SUMMON",
       summon: knight,
+      statusEffect: {
+        name: "Summon",
+        display: true,
+        image: "src/assets/images/spellbook/conjuration/summon-knight.jpg",
+        description: "",
+        effect: [""],
+        durationType: "ROOM",
+        duration: 3,
+        stats: {
+          agility: {
+            defense: +1,
+          },
+        },
+      },
       manaCost: 10,
     },
     {
@@ -424,6 +452,20 @@ const SPELLS = {
       spellTarget: "CONJURE",
       spellType: "SUMMON",
       summon: drake,
+      statusEffect: {
+        name: "Summon",
+        display: true,
+        image: "src/assets/images/spellbook/conjuration/summon-drake.jpg",
+        description: "",
+        effect: [""],
+        durationType: "ROOM",
+        duration: 3,
+        stats: {
+          agility: {
+            defense: +1,
+          },
+        },
+      },
       manaCost: 10,
     },
     {
@@ -435,6 +477,20 @@ const SPELLS = {
       spellTarget: "CONJURE",
       spellType: "SUMMON",
       summon: golem,
+      statusEffect: {
+        name: "Summon",
+        display: true,
+        image: "src/assets/images/spellbook/conjuration/summon-stone-golem.jpg",
+        description: "",
+        effect: [""],
+        durationType: "ROOM",
+        duration: 3,
+        stats: {
+          agility: {
+            defense: +1,
+          },
+        },
+      },
       manaCost: 10,
     },
     {

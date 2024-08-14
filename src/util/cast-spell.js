@@ -223,6 +223,8 @@ export default async function castSpell(dispatch, spell) {
           };
 
           dispatch(combatActions.addCharacter({ character: summon }));
+          changeStatusEffect(dispatch, summon, "ADD", spell.statusEffect);
+          console.log(spell.statusEffect);
           updateStatTotals(dispatch, summon.id);
           dispatch(
             combatActions.updateHealth({
