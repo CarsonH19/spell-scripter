@@ -8,6 +8,7 @@ import { dungeonActions } from "../../../store/dungeon-slice";
 import playSoundEffect from "../../../util/audio-util";
 import { playMusic } from "../../../data/audio/music";
 import { backgroundMusic } from "../../../data/audio/music";
+import { combatActions } from "../../../store/combat-slice";
 
 export default function SettingsModal() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ export default function SettingsModal() {
 }
 
 export async function exitDungeonTransition(dispatch) {
+  // Clear initiative tracker
+  dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
+
   await dispatch(uiActions.updateFade({ change: "CALL" }));
   playSoundEffect(false, "ui", "GUIMenuButton");
   dispatch(

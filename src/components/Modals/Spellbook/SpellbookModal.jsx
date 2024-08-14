@@ -41,7 +41,6 @@ export default function SpellbookModal() {
     // Remove all spells from player-slice spellList that are from the school reset
     dispatch(playerActions.changeSpellList({ change: "RESET", school }));
   };
-
   return (
     <div className={classes.spellbook}>
       <h1>Spellbook</h1>
@@ -115,7 +114,14 @@ export default function SpellbookModal() {
               <FontAwesomeIcon className={classes.change} icon={faBookOpen} />
               <p>{player.masteryPoints}</p>
             </div>
-            <button onClick={() => handleResetButton(school)}>
+            <button
+              onClick={() => handleResetButton(school)}
+              style={
+                pointsExpended === 0
+                  ? { opacity: 0.6, pointerEvents: "none" }
+                  : {}
+              }
+            >
               Reset School Mastery
             </button>
           </div>

@@ -31,11 +31,11 @@ export default function Modal() {
   const dispatch = useDispatch();
   const activeModal = selectModal();
   const ui = useSelector((state) => state.ui);
-  const continueCheck = findActiveModal(ui);
+  const openModal = findActiveModal(ui);
 
   const handleClose = () => {
     // Render continue button when RoomSummaryModal is closed
-    if (continueCheck === "roomSummaryModal") {
+    if (openModal === "roomSummaryModal") {
       dispatch(
         uiActions.changeUi({ element: "continueIsVisible", visible: true })
       );
@@ -46,14 +46,20 @@ export default function Modal() {
     dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
   };
 
+  console.log(openModal);
+
   return createPortal(
     <div className={classes.modal}>
       {activeModal}
-      <FontAwesomeIcon
-        icon={faCircleXmark}
-        onClick={handleClose}
-        className={classes.close}
-      />
+      {/* Don't render close button on certain modals */}
+      {openModal !== "quickTimeEventModal" &&
+        (openModal !== "defeatedModal" && (
+          <FontAwesomeIcon
+            icon={faCircleXmark}
+            onClick={handleClose}
+            className={classes.close}
+          />
+        ))}
     </div>,
     document.getElementById("modal")
   );

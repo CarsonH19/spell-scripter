@@ -37,7 +37,6 @@ export const musicPaths = {
   migrano: "src/assets/audio/music/migrano.mp3",
 };
 
-
 const loadSound = (src, options = {}) => {
   return new Howl({
     src: [src],
@@ -109,7 +108,7 @@ export const backgroundMusic = {
 const FADE_DURATION = 2000; // Duration of the fade in milliseconds
 const MAX_VOLUME = 0.15; // Maximum volume level
 
-export const playMusic = (musicFunc) => {
+export const playMusic = (musicFunc, volume = MAX_VOLUME) => {
   if (currentMusic) {
     currentMusic.fade(currentMusic.volume(), 0, FADE_DURATION);
     currentMusic.once("fade", () => {
@@ -117,12 +116,12 @@ export const playMusic = (musicFunc) => {
       // Start the new music only after the current music has stopped
       currentMusic = musicFunc();
       currentMusic.play();
-      currentMusic.fade(0, MAX_VOLUME, FADE_DURATION); // Fade in to MAX_VOLUME
+      currentMusic.fade(0, volume, FADE_DURATION); // Fade in to MAX_VOLUME
     });
   } else {
     // If there is no current music, just play the new music
     currentMusic = musicFunc();
     currentMusic.play();
-    currentMusic.fade(0, MAX_VOLUME, FADE_DURATION); // Fade in to MAX_VOLUME
+    currentMusic.fade(0, volume, FADE_DURATION); // Fade in to MAX_VOLUME
   }
 };

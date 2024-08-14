@@ -5,6 +5,7 @@
   min-width: 310px;
   padding: 1rem;
   overflow: hidden;
+  border-radius: 10px;
 }
 
 .column h1 {

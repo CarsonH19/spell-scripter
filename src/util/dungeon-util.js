@@ -668,51 +668,43 @@ export function playEncounterMusic() {
   let music;
 
   // Encounter Music
-  if (dungeon.contents.enemies.length > 0) {
-    switch (dungeon.name) {
-      case "The Great Catacomb":
+  switch (dungeon.name) {
+    case "The Great Catacomb":
+      {
+        const musicList = [
+          "weCantStopThem",
+          "passedDanger",
+          "finalBrigade",
+          "migrano",
+          "warningSignal",
+        ];
+        const index = Math.floor(Math.random() * musicList.length);
+        music = musicList[index];
+      }
+      break;
+  }
+
+  if (dungeon.path) {
+    switch (dungeon.path) {
+      case "Wailing Warrens":
         {
-          const musicList = [
-            "weCantStopThem",
-            "passedDanger",
-            "finalBrigade",
-            "migrano",
-            "warningSignal",
-          ];
+          const musicList = ["hauntedOutpost", "fightThrough"];
           const index = Math.floor(Math.random() * musicList.length);
           music = musicList[index];
         }
         break;
+      case "Thieves' Ruin":
+        music = "hiddenCapacity";
+        break;
     }
+  }
 
-    if (dungeon.path) {
-      switch (dungeon.path) {
-        case "Wailing Warrens":
-          {
-            const musicList = ["hauntedOutpost", "fightThrough"];
-
-            const index = Math.floor(Math.random() * musicList.length);
-            music = musicList[index];
-          }
-          break;
-        case "Thieves' Ruin":
-          music = "hiddenCapacity";
-          break;
-      }
-    }
-
-    console.log(music);
-    if (music) {
-      const musicURL = `src/assets/audio/music/${music}.mp3`;
-      console.log(musicURL);
-      console.log(currentMusic._src);
-
-      if (musicURL !== currentMusic._src) {
-        console.log("PLAYING NEW MUSIC");
-        console.log(backgroundMusic[music]);
-
-        playMusic(backgroundMusic[music]);
-      }
+  if (music) {
+    const musicURL = `src/assets/audio/music/${music}.mp3`;
+    if (musicURL !== currentMusic._src) {
+      console.log("PLAYING NEW MUSIC");
+      playMusic(backgroundMusic[music]);
+      playMusic(backgroundMusic[music]);
     }
   }
 }

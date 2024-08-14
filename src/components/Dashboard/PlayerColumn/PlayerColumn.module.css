@@ -7,10 +7,10 @@
   min-width: 310px;
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
   /* background-position: center;
   background-size: contain;
   background-repeat: no-repeat; */
-
 }
 
 .player {
