@@ -29,6 +29,10 @@ export default function RoomSummaryModal() {
   useEffect(() => {
     // Play music after clearing room
     playMusic(backgroundMusic.threeThousandYearsOld);
+
+    // Check for quest progression
+    progressActiveQuests(dispatch, "EVENT");
+
     // Ensure event options are not visible (needed for TRADE events)
     dispatch(
       uiActions.changeUi({
@@ -101,8 +105,6 @@ export default function RoomSummaryModal() {
         {event && (
           <div className={classes.event}>
             <h2>Event</h2>
-            <p>{event.description[0]}</p>
-            <h4>Outcome</h4>
             <p>{event.outcome}</p>
           </div>
         )}

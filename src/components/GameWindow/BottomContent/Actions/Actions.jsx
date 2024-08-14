@@ -7,7 +7,7 @@ import { uiActions } from "../../../../store/ui-slice";
 import { setSelect } from "../../../../store/combat-actions";
 
 import Item from "../../../Modals/Inventory/Item";
-import castSpell from "../../../../util/cast-spell";
+import castSpell, { checkForSummonInOrder } from "../../../../util/cast-spell";
 import { getSpell } from "../../../../util/spell-util";
 
 import Tooltip from "../../../UI/Tooltip";
@@ -31,6 +31,10 @@ export default function Actions() {
 
   // Player
   const player = findCharacterById();
+  const party = useSelector((state) => state.combat.order).filter(
+    (char) => char.identifier !== "ENEMY"
+  );
+  console.log("PARTY", party);
   // Event
   const event = useSelector((state) => state.dungeon.event);
   const entrance = event && event.type === "ENTRANCE";
@@ -48,8 +52,8 @@ export default function Actions() {
   );
   const isDanger = useSelector((state) => state.dungeon.danger);
   // Disable during combat & not player's turn and during events
-  const isDisabled =
-    (!isCharacterTurn && isDanger) || event;
+  const isDisabled = (!isCharacterTurn && isDanger) || event;
+
   const [search, setSearch] = useState("BEFORE COMBAT");
 
   useEffect(() => {
@@ -106,20 +110,21 @@ export default function Actions() {
         </div>
         <h3>Spell List</h3>
         <ul>
-          {spellList.map((spell) => {
-            // SPELLS Object
-            const spellObject = getSpell(spell);
-            // spell-descriptions.js
-            const snakeCaseSpellName = toSnakeCase(spell);
-            const descriptionFunction = spellDescriptions[snakeCaseSpellName];
-            const spellDescription = descriptionFunction(
-              player.stats.arcana.spellPower
-            );
+          {spellList.map(
+            (spell) => {
+              // SPELLS Object
+              const spellObject = getSpell(spell);
+              // spell-descriptions.js
+              const snakeCaseSpellName = toSnakeCase(spell);
+              const descriptionFunction = spellDescriptions[snakeCaseSpellName];
+              const spellDescription = descriptionFunction(
+                player.stats.arcana.spellPower
+              );
 
-            if (
-              spellObject.castTime === search ||
-              spellObject.castTime === "ANYTIME"
-            ) {
+              // if (
+              //   spellObject.castTime === search ||
+              //   spellObject.castTime === "ANYTIME"
+              // ) {
               return (
                 <Tooltip
                   key={spellObject.name}
@@ -140,6 +145,28 @@ export default function Actions() {
                     }
                     style={{
                       backgroundImage: `url(${spellObject.image})`,
+                      opacity:
+                        spellObject.spellType !== "SUMMON" &&
+                        (spellObject.castTime === search ||
+                          spellObject.castTime === "ANYTIME")
+                          ? "1"
+                          : (spellObject.spellType === "SUMMON" &&
+                              checkForSummonInOrder(spellObject)) ||
+                            (spellObject.spellType === "SUMMON" &&
+                              party.length < 3)
+                          ? "1"
+                          : "0.6",
+                      pointerEvents:
+                        spellObject.spellType !== "SUMMON" &&
+                        (spellObject.castTime === search ||
+                          spellObject.castTime === "ANYTIME")
+                          ? "auto"
+                          : (spellObject.spellType === "SUMMON" &&
+                              checkForSummonInOrder(spellObject)) ||
+                            (spellObject.spellType === "SUMMON" &&
+                              party.length < 3)
+                          ? "auto"
+                          : "none",
                     }}
                   >
                     {/* {spellObject.name} */}
@@ -147,7 +174,8 @@ export default function Actions() {
                 </Tooltip>
               );
             }
-          })}
+            // }
+          )}
         </ul>
         <FontAwesomeIcon
           icon={faCircleXmark}

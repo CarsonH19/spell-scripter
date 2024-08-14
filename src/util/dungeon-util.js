@@ -134,7 +134,7 @@ function getRoomContent() {
   switch (dungeon.name) {
     case "The Great Catacomb":
       // Event chance for general dungeon is 20%
-      if (eventChance > 20) {
+      if (eventChance > 50) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -456,7 +456,7 @@ function getRoomImage(dungeon) {
     case "The Great Catacomb":
       backgroundImage = getImageFromList(
         "src/assets/images/backgrounds/the-great-catacomb/catacomb",
-        27
+        26
       );
       break;
   }
@@ -497,7 +497,7 @@ function getRoomImage(dungeon) {
       case "Coffin":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/coffin",
-          6
+          7
         );
         break;
 
@@ -512,7 +512,7 @@ function getRoomImage(dungeon) {
       case "Candlelight Shrine":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/events/candlelight-shrine",
-          10
+          7
         );
         break;
 
@@ -521,7 +521,7 @@ function getRoomImage(dungeon) {
       case "Wailing Warrens Exit":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/wailing-warrens/wailing-warrens-door",
-          2
+          1
         );
         break;
 
@@ -530,7 +530,7 @@ function getRoomImage(dungeon) {
       case "Thieves' Ruin Exit":
         backgroundImage = getImageFromList(
           "src/assets/images/backgrounds/thieves-ruin/thieves-ruin-door",
-          3
+          2
         );
         break;
 
@@ -625,6 +625,10 @@ export function getRoomMusic(dungeon) {
         music = backgroundMusic.pileOfBones;
         break;
 
+      case "Unlocking Siggurd":
+        music = backgroundMusic.warningSignal;
+        break;
+
       case "Unlocking Liheth":
       case "Candlelight Shrine":
         music = backgroundMusic.mindReading;
@@ -661,7 +665,7 @@ export function getRoomMusic(dungeon) {
 
 export function playEncounterMusic() {
   const dungeon = store.getState().dungeon;
-  let music
+  let music;
 
   // Encounter Music
   if (dungeon.contents.enemies.length > 0) {
@@ -697,14 +701,16 @@ export function playEncounterMusic() {
       }
     }
 
-    console.log(music)
+    console.log(music);
     if (music) {
       const musicURL = `src/assets/audio/music/${music}.mp3`;
-      console.log(musicURL)
-      console.log(currentMusic._src)
+      console.log(musicURL);
+      console.log(currentMusic._src);
 
       if (musicURL !== currentMusic._src) {
-        console.log("PLAYING NEW MUSIC")
+        console.log("PLAYING NEW MUSIC");
+        console.log(backgroundMusic[music]);
+
         playMusic(backgroundMusic[music]);
       }
     }

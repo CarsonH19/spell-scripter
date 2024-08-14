@@ -274,7 +274,7 @@ const eventFunctions = {
 
         const newBackground = getImageFromList(
           "src/assets/images/backgrounds/events/bonevault-room",
-          8
+          4
         );
         dispatch(dungeonActions.changeBackground(newBackground));
 
@@ -405,6 +405,8 @@ const eventFunctions = {
       buildEnemy(UNDEAD.DECREPIT_SKELETON),
     ];
     dispatch(heroActions.unlockHero("Siggurd"));
+    // Clear enemies so combatLoop is initiated correctly
+    clearCharactersFromOrder(dispatch);
     startCombat(dispatch, enemies);
   },
   AMBUSH: async (dispatch, choice) => {

@@ -8,15 +8,14 @@ import { heroActions } from "../../../store/hero-slice";
 import Icon from "../../UI/Icon";
 
 import { constructStats } from "../../../util/dungeon-util";
+import playSoundEffect from "../../../util/audio-util";
 
 export default function HeroesModal() {
   const dispatch = useDispatch();
   const heroes = useSelector((state) => state.hero.heroes);
   const party = useSelector((state) => state.hero.party);
   const hasHero = heroes.find((hero) => hero.unlocked);
-  const [hoveredElement, setHoveredElement] = useState(
-    hasHero ? hasHero : ""
-  );
+  const [hoveredElement, setHoveredElement] = useState(hasHero ? hasHero : "");
 
   const handleHoveredHero = (hero) => {
     const baseStats = constructStats(hero.stats);
@@ -34,6 +33,7 @@ export default function HeroesModal() {
 
     if (isInParty) {
       dispatch(heroActions.changeParty({ change: "REMOVE", hero }));
+      playSoundEffect(false, "ui", "unattune");
     } else {
       const baseStats = constructStats(hero.stats);
       const updatedHero = {
@@ -43,6 +43,7 @@ export default function HeroesModal() {
       };
 
       dispatch(heroActions.changeParty({ change: "ADD", hero: updatedHero }));
+      playSoundEffect(false, "ui", "selectHero");
     }
   };
 

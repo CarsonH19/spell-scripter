@@ -217,7 +217,11 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
       // END OF TURN
       handleCallTiming(dispatch, "END_OF_TURN", character);
       // End game if player is defeated
-      const stopCombatLoop = await isCombatOver(dispatch, additionalEnemies, false);
+      const stopCombatLoop = await isCombatOver(
+        dispatch,
+        additionalEnemies,
+        false
+      );
       if (stopCombatLoop) {
         return;
       }
@@ -319,7 +323,7 @@ export function rollToHit(dispatch, attacker, target) {
 export function calcDamage(character, spell, spellPower) {
   if (spell) {
     const damage =
-      Math.floor(Math.random() * spell.baseDamage) + spellPower + 1;
+      Math.floor(Math.random() * spellPower) + spell.baseDamage + 1;
 
     if (damage < spell.baseDamage) {
       return spell.baseDamage;
@@ -379,7 +383,7 @@ async function isCombatOver(dispatch, additionalEnemies, loop) {
     // playMusic(backgroundMusic.threeThousandYearsOld);
     await checkForDialogue(dispatch, "after");
     await delay(2000);
-    console.log("COMBAT ENDED")
+    console.log("COMBAT ENDED");
     openModal(dispatch, "roomSummaryModal");
   }
 
@@ -397,7 +401,6 @@ async function delay(ms) {
 
 // Must pass the dungeon-slice.contents.enemies array as an arg.
 export async function startCombat(dispatch, enemies) {
-  const dungeon = store.getState().dungeon;
   const order = store.getState().combat.order;
   let enemiesInCombat = [...enemies];
   let additionalEnemies = [];

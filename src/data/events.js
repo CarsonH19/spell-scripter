@@ -11,7 +11,6 @@ export const DUNGEON_ENTRANCE = {
     {
       text: ["Enter"],
       function: "DUNGEON_ENTRANCE_ENTER",
-      narration: "",
     },
   ],
 };
@@ -27,14 +26,12 @@ export const COFFIN = {
     {
       text: ["Open"],
       function: "COFFIN",
-      // narration: "You decide to open the coffin.",
       outcome:
         "Disregarding the sanctity of a burial site, you opened the coffin to see what was inside.",
     },
     {
       text: ["Leave"],
       function: "COFFIN",
-      // narration: "You decide to leave the coffin.",
       outcome:
         "You decided to leave the coffin, and not disturb the dead resting within.",
     },
@@ -49,8 +46,8 @@ export const GRAVESTONE = {
     {
       text: ["Leave"],
       function: "GRAVESTONE",
-      // narration: "You leave the gravestone.",
-      outcome: "You left the gravestone just at you discovered it.",
+      outcome:
+        "You came across a gravestone in the catacomb. You decided to leave the gravestone just as you discovered it.",
     },
   ],
 };
@@ -139,19 +136,19 @@ export const TRAPS = {
 export const BONEVAULT = {
   name: "Bonevault",
   type: "CHOICE",
-  description: ["You discover a locked vault door.", "Do you wish to unlock it?"],
+  description: ["You discover a locked door.", "Do you wish to unlock it?"],
   options: [
     {
       text: ["Unlock"],
       function: "BONEVAULT",
-      // narration: "You unlock the vault.",
-      outcome: "You used a Skeleton Key to open the vault.",
+      outcome:
+        "You discovered a locked door in the catacomb. You used a Skeleton Key to open the door.",
     },
     {
       text: ["Leave"],
       function: "BONEVAULT",
-      narration: "You decide to leave and the vault remains sealed.",
-      outcome: "The vault remains sealed.",
+      outcome:
+        "You discovered a locked door in the catacomb. You decided not to open it.",
     },
   ],
 };
@@ -164,7 +161,6 @@ export const CANDLELIGHT_SHRINE = {
     {
       text: ["Rest"],
       function: "CANDLELIGHT_SHRINE",
-      // narration: "You decide to rest.",
       outcome:
         "You discovered a Candlelight Shrine and rested for a short time in the flickering light. When it was time to leave you felt energized and ready to move onward.",
     },
@@ -196,7 +192,6 @@ export const UNLOCK_HERO = {
       {
         text: ["Rest"],
         function: "UNLOCK_HERO_LIHETH",
-        // narration: "You rest until Liheth is ready.",
         outcome:
           "You found Liheth, the Candlelight Priestess, while exploring The Great Catacomb. She spoke to you of her duties to restore the hidden Candlelight Shrines throughout the catacomb. You decided to guide her through the catacomb in search of these shrines.",
       },
@@ -216,16 +211,14 @@ export const AMBUSH = {
     {
       text: ["Surrender"],
       function: "AMBUSH",
-      // narration: "You surrender your inventory to the thieves.",
       outcome:
-        "The thieves took what they wanted from your inventory, but left you unharmed.",
+        "You were ambushed by thieves. The thieves took what they wanted from your inventory, but left you unharmed.",
     },
     {
       text: ["Refuse"],
       function: "AMBUSH",
-      // narration: "You refuse to surrender and fight back against the thieves.",
       outcome:
-        "You refused to surrender your items to the thieves and faced them in combat.",
+        "You were ambushed by thieves. You refused to surrender your items to the thieves and defended yourself against their assault.",
     },
   ],
 };
@@ -246,12 +239,14 @@ export const PATH_ENTRANCE = {
       {
         text: ["Enter"],
         function: "PATH_ENTRANCE",
-        outcome: "You entered Wailing Warrens.",
+        outcome:
+          "The wisp lead you to the Wailing Warrens and you decided to enter.",
       },
       {
         text: ["Leave"],
         function: "PATH_ENTRANCE",
-        outcome: "You chose not to enter Wailing Warrens.",
+        outcome:
+          "The wisp lead you to the Wailing Warrens and you decided not to enter.",
       },
     ],
   },
@@ -266,13 +261,13 @@ export const PATH_ENTRANCE = {
       {
         text: ["Enter"],
         function: "PATH_ENTRANCE",
-        // narration: "You entered Thieves' Ruin.",
+        outcome:
+          "The map lead you to Thieves' Ruin and you decided to enter.",
       },
       {
         text: ["Leave"],
         function: "PATH_ENTRANCE",
-        // narration: "You decide to leave.",
-        outcome: "You chose not to enter Thieves' Ruin.",
+        outcome: "The wisp lead you to Thieves' Ruin and you decided to enter.",
       },
     ],
   },
@@ -282,9 +277,7 @@ export const PATH_EXIT = {
   WAILING_WARRENS_EXIT: {
     name: "Wailing Warrens Exit",
     type: "CHOICE",
-    description: [
-      "You discover an exit out of Wailing Warrens.",
-    ],
+    description: ["You discovered an exit out of Wailing Warrens."],
     options: [
       {
         text: ["Leave"],
@@ -296,7 +289,7 @@ export const PATH_EXIT = {
   THIEVES_RUIN_EXIT: {
     name: "Thieves' Ruin Exit",
     type: "CHOICE",
-    description: ["You discover an exit out of Thieves' Ruin."],
+    description: ["You discovered an exit out of Thieves' Ruin."],
     options: [
       {
         text: ["Leave"],
@@ -372,14 +365,12 @@ export const THIEVES_RUIN = {
       {
         text: ["Trade"],
         function: "LAUGHING_COFFIN",
-        // narration: "",
         outcome:
-        "You discovered the Laughing Coffin Tavern hidden within Thieves' Ruin.",
+          "You discovered the Laughing Coffin Tavern hidden within Thieves' Ruin.",
       },
       {
         text: ["Leave"],
         function: "LAUGHING_COFFIN",
-        // narration: "You leave the Laughing Coffin Tavern.",
         outcome:
           "You discovered the Laughing Coffin Tavern hidden within Thieves' Ruin.",
       },

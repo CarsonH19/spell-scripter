@@ -66,7 +66,6 @@ async function handleGameFlow(dispatch, setShowBottom) {
     // Sets initiative & adds enemies to combat order then begins the combatLoop
     // Dialogue
     await checkForDialogue(dispatch, "before");
-    console.log("startCombat Called!")
     startCombat(dispatch, dungeon.contents.enemies);
   }
 
