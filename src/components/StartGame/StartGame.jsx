@@ -10,7 +10,6 @@ import MISC_ITEMS from "../../data/misc-items";
 import { v4 as uuidv4 } from "uuid";
 import { backgroundMusic, playMusic } from "../../data/audio/music";
 import { useState } from "react";
-import backgroundImage from "../../assets/images/start.jpg";
 
 export default function StartGame() {
   const dispatch = useDispatch();

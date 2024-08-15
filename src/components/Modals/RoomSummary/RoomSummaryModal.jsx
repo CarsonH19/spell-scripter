@@ -19,11 +19,17 @@ import statusEffectFunctions from "../../../util/status-effect-functions";
 import progressActiveQuests from "../../../util/quest-util";
 import { backgroundMusic, playMusic } from "../../../data/audio/music";
 
+import store from "../../../store/index";
+
 export default function RoomSummaryModal() {
   const dispatch = useDispatch();
   const event = useSelector((state) => state.dungeon.contents.event);
   const enemies = useSelector((state) => state.dungeon.contents.enemies);
   const itemsLooted = useSelector((state) => state.dungeon.contents.items);
+
+  // Check for summon removal
+  checkForSummonEnd(dispatch);
+
   const order = useSelector((state) => state.combat.order);
 
   useEffect(() => {
@@ -155,4 +161,21 @@ export default function RoomSummaryModal() {
       </div>
     </div>
   );
+}
+
+// Remove Summons
+function checkForSummonEnd(dispatch) {
+  const order = store.getState().combat.order;
+
+  for (let i = 0; i < order.length; i++) {
+    for (let j = 0; j < order[i].statusEffects.length; j++) {
+      if (order[i].statusEffects[j].name === "Summon") {
+        console.log(order[i].statusEffects[j].duration);
+
+        if (order[i].statusEffects[j].duration <= 1) {
+          dispatch(combatActions.removeCharacter({ character: order[i] }));
+        }
+      }
+    }
+  }
 }

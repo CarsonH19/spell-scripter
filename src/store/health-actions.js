@@ -228,6 +228,8 @@ export async function checkForDeath(dispatch, id) {
 
   // Enemies & Heroes
   if (character.currentHealth <= 0 && character.identifier !== "PLAYER") {
+    // Check if statusEffect should be removed on death
+    checkForRemoveStatusEffect(dispatch, character);
     // Check if enemy should be added to dungeon-slice for roomSummaryModal "Enemies Defeated"
     if (character.identifier === "ENEMY") {
       const dungeonEnemies = store.getState().dungeon.contents.enemies;
@@ -241,6 +243,42 @@ export async function checkForDeath(dispatch, id) {
             enemy: character,
           })
         );
+      }
+    }
+  }
+}
+
+function checkForRemoveStatusEffect(dispatch, character) {
+  const order = store.getState().combat.order;
+  if (character.name === "Siggurd") {
+    removeEffect(order, "Radiant Aura");
+  }
+
+  if (character.name === "Skeletal Warrior") {
+    const numberOfWarriors = order.filter(
+      (char) => char.name === "Skeletal Warrior"
+    );
+    console.log("NUMBER OF WARRIORS", numberOfWarriors);
+
+    if (numberOfWarriors <= 1) {
+      removeEffect(order, "Rattle of War");
+    }
+  }
+
+  // Helper function
+  function removeEffect(order, statusEffectName) {
+    for (let i = 0; i < order.length; i++) {
+      for (let i = 0; i < order.length; i++) {
+        for (let j = 0; j < order[i].statusEffects.length; j++) {
+          if (order[i].statusEffects[j].name === statusEffectName) {
+            changeStatusEffect(
+              dispatch,
+              order[i],
+              "REMOVE",
+              order[i].statusEffects[j]
+            );
+          }
+        }
       }
     }
   }

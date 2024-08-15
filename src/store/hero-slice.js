@@ -12,7 +12,8 @@ const heroSlice = createSlice({
       {
         name: "Siggurd",
         id: "Siggurd",
-        unlocked: false,
+        unlocked: true
+        ,
         identifier: "HERO",
         get image() {
           const imageList = ["src/assets/images/heroes/siggurd"];

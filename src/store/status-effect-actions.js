@@ -13,7 +13,7 @@ export default function changeStatusEffect(
   statusEffect
 ) {
   // CHECK IF target is valid
-  if (!target) {
+  if (!target || !statusEffect) {
     return;
   }
 
@@ -109,7 +109,8 @@ export default function changeStatusEffect(
             duration: statusEffect.reset,
             get effect() {
               return [
-                `Taking any action besides Guard will inflict ${this.stack} damage.`,
+                `The target takes ${this.stack} damage at the end of each of its turns.`,
+                "HP Regeneration is reduced to 0",
               ];
             },
           };
@@ -212,6 +213,7 @@ export function callStatusEffect(dispatch, target, when) {
 export function checkStatusEffect(dispatch, id, check, type) {
   const order = store.getState().combat.order;
   const index = order.findIndex((char) => char.id === id);
+  if (!index) return;
   const statusEffects = order[index].statusEffects;
 
   if (!statusEffects) {
