@@ -6,7 +6,6 @@ import Narration from "./components/Narration/Narration";
 import Dialogue from "./components/Dialogue/Dialogue";
 import FadeEffect from "./components/UI/FadeEffect";
 import startScreenVideo from "./assets/start-screen.mp4";
-
 import { useSelector } from "react-redux";
 
 function App() {
@@ -24,7 +23,13 @@ function App() {
       {modal && <Modal />}
       {start && <StartGame />}
       {start && (
-        <video autoPlay loop muted playsInline className="background-video">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="background-video"
+        >
           <source src={startScreenVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>

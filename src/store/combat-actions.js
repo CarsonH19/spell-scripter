@@ -323,7 +323,7 @@ export function rollToHit(dispatch, attacker, target) {
 export function calcDamage(character, spell, spellPower) {
   if (spell) {
     const damage =
-      Math.floor(Math.random() * spellPower) + spell.baseDamage + 1;
+      Math.floor(Math.random() * spell.baseDamage) + spellPower + 1;
 
     if (damage < spell.baseDamage) {
       return spell.baseDamage;

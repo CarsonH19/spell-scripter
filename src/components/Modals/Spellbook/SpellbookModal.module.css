@@ -170,7 +170,7 @@
 
 .spellbook .container .skill-tree .expertise p {
   text-align: center;
-  font-size: 0.7rem;
+  /* font-size: 0.7rem; */
 }
 
 .skill-tree .expertise ul {

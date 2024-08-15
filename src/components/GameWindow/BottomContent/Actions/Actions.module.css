@@ -50,7 +50,7 @@
   border-bottom: 1px solid var(--text);
   text-align: center;
   width: 100%;
-  font-weight: 600;
+  /* font-weight: 600; */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -60,7 +60,7 @@ right: 2%;
 top: 2%;
 cursor: pointer;
 color: var(--text);
-font-weight: 600;
+/* font-weight: 600; */
 font-size: 1.2rem;
 z-index: 3;
 }

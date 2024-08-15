@@ -187,7 +187,7 @@
 
 .character .container .name {
   font-size: 0.8rem;
-  font-weight: 600;
+  /* font-weight: 600; */
 }
 
 .enemyName {
@@ -255,7 +255,7 @@
   bottom: 0%;
   right: 0%;
   font-size: 0.8rem;
-  font-weight: 600;
+  /* font-weight: 600; */
 }
 
 .character p {

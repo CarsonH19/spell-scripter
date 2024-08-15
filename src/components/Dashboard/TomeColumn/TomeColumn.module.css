@@ -46,7 +46,7 @@
 
 .tome {
   position: relative;
-  padding: 1rem;
+  /* padding: 1rem; */
   width: 100%;
   height: 6rem;
   border: 2px solid var(--accent);
@@ -101,7 +101,7 @@
 .tome p {
   text-align: center;
   font-size: 1.0rem;
-  font-weight: 800;
+  /* font-weight: 800; */
 }
 
 .tome:hover {
@@ -111,7 +111,9 @@
 }
 
 .tome h3 {
-  font-weight: 600;
+  /* font-weight: 600; */
+  font-family: 'CrimsonText', sans-serif;
+  font-size: 1.5rem;
 }
 
 .tome:hover h3 {

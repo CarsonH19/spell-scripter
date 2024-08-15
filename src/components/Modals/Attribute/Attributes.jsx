@@ -43,7 +43,7 @@ export default function Attributes() {
   };
   return (
     <div className={classes["attributes-container"]}>
-      {isInventoryOpen && <h4 className={classes.header}>Stats</h4>}
+      {/* {isInventoryOpen && <h4 className={classes.header}>Stats</h4>} */}
       {!isInventoryOpen && (
         <div
           className={classes.cubes}

@@ -61,7 +61,7 @@ const SPELLS = {
       spellTarget: "ENEMIES",
       spellType: "HIT",
       damageType: DAMAGE_TYPES.FIRE,
-      baseDamage: 8,
+      baseDamage: 4,
       manaCost: 30,
     },
     {

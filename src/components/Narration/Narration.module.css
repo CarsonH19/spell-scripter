@@ -27,7 +27,7 @@
   font-size: 2rem;
   color: var(--text);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-weight: 600;
+  /* font-weight: 600; */
   text-align: center;
   transition: 0.3s;
 }
@@ -64,11 +64,12 @@
 }
 
 .narration .announcement li {
-  font-size: 6rem;
+  font-family: 'CinzelDecorative', sans-serif;
+  font-size: 7rem;
   margin-bottom: 10rem;
   color: var(--text);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-weight: 600;
+  /* font-weight: 600; */
   text-align: center;
   animation: fadeInAndOut 4.1s ease-in-out;
 }

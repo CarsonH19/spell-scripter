@@ -3,27 +3,27 @@ const spellDescriptions = {
   //                EVOCATION
   // =======================================
   FIREBOLT: (spellPower) => {
-    return `Shoot a bolt of flame at an enemy, dealing 6 - ${
+    return `Shoot a bolt of flame at an enemy, dealing ${spellPower} - ${
       spellPower + 6
     } Fire damage.`;
   },
   FROSTBITE: (spellPower) => {
-    return `Envelope an enemy in frost, dealing 8 - ${
+    return `Envelope an enemy in frost, dealing ${spellPower} - ${
       spellPower + 8
     } Ice damage.`;
   },
   SHOCK: (spellPower) => {
-    return `Shock an enemy with electricity, dealing 10 - ${
+    return `Shock an enemy with electricity, dealing ${spellPower} - ${
       spellPower + 10
     } Lightning damage.`;
   },
   FIREBALL: (spellPower) => {
-    return `Shoot a ball of fire that explodes, dealing 8 to ${
-      spellPower + 8
+    return `Shoot a ball of fire that explodes, dealing ${spellPower} to ${
+      spellPower + 4
     } Fire damage to all enemies.`;
   },
   CHAIN_LIGHTNING: (spellPower) => {
-    return `Shoot a bolt of lighting which has a chance to leap to additional targets, dealing 14 to ${
+    return `Shoot a bolt of lighting which has a chance to leap to additional targets, dealing ${spellPower} to ${
       spellPower + 14
     } Lightning damage to each target it hits.`;
   },
@@ -36,7 +36,7 @@ const spellDescriptions = {
     )} Lightning damage to all enemies who Attack you for 1 room.`;
   },
   METEOR: (spellPower) => {
-    return `Rain down cataclysmic fire, inflicting the Burning condition and dealing 18 to ${
+    return `Rain down cataclysmic fire, inflicting the Burning condition and dealing ${spellPower} to ${
       spellPower + 18
     } Fire damage to all enemies.`;
   },

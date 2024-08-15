@@ -17,7 +17,7 @@
   height: auto;
   min-width: 5rem;
   max-width: 20rem; 
-  font-size:  0.8rem;
+  font-size: 0.9rem;
   pointer-events: none;
 }
 
@@ -66,7 +66,7 @@
   height: auto;
   min-width: 10rem;
   max-width: 10rem; 
-  font-size:  0.8rem;
+  font-size:  1rem;
   pointer-events: none;
 }
 
@@ -98,7 +98,7 @@
   height: auto;
   min-width: 10rem;
   max-width: 10rem; 
-  font-size:  0.8rem;
+  font-size: 0.9rem;
   pointer-events: none;
 }
 
@@ -137,7 +137,7 @@
   height: auto;
   min-width: 12rem;
   max-width: 12rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   pointer-events: none;
   text-align: center; /* Optional: Center text inside tooltip */
   display: flex;
@@ -182,16 +182,12 @@
   height: auto;
   min-width: 12rem;
   max-width: 12rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   pointer-events: none;
   text-align: center; /* Optional: Center text inside tooltip */
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-}
-
-.skill p {
-  
+  /* gap: 0.2rem; */
 }
 
 /* Additional CSS to style the tooltip's arrow */
@@ -228,12 +224,12 @@
   height: auto;
   min-width: 12rem;
   max-width: 12rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   pointer-events: none;
   text-align: center; /* Optional: Center text inside tooltip */
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  /* gap: 0.2rem; */
 }
 
 /* Additional CSS to style the tooltip's arrow */
@@ -271,12 +267,12 @@
   height: auto;
   min-width: 12rem;
   max-width: 12rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   pointer-events: none;
   text-align: left; /* Optional: Center text inside tooltip */
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  /* gap: 0.2rem; */
 }
 
 /* Additional CSS to style the tooltip's arrow */
@@ -316,12 +312,12 @@
   height: auto;
   min-width: 12rem;
   max-width: 12rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   pointer-events: none;
   text-align: center; /* Optional: Center text inside tooltip */
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  /* gap: 0.2rem; */
 }
 
 /* Additional CSS to style the tooltip's arrow */
@@ -355,12 +351,12 @@
   height: auto;
   min-width: 12rem;
   max-width: 12rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   pointer-events: none;
   text-align: center; /* Optional: Center text inside tooltip */
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  /* gap: 0.2rem; */
 }
   
   /* Additional CSS to style the tooltip's arrow */
@@ -398,12 +394,12 @@
   height: auto;
   min-width: 12rem;
   max-width: 12rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   pointer-events: none;
   text-align: left; /* Optional: Center text inside tooltip */
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  /* gap: 0.2rem; */
 }
 
 /* Additional CSS to style the tooltip's arrow */

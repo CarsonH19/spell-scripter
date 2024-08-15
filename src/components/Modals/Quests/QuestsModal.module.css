@@ -71,7 +71,7 @@
   border-bottom: 1px solid var(--text);
   margin: 1rem;
   font-size: 1.2rem;
-  font-weight: 600;
+  /* font-weight: 600; */
 }
 
 .quest-modal .content .hero img {
@@ -152,7 +152,7 @@
 
 .quest-list .quest h3 {
   font-size: 1.2rem;
-  font-weight: 600;
+  /* font-weight: 600; */
   padding-left: 1rem;
   padding-right: 1rem;
 }

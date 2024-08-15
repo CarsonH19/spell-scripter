@@ -10,6 +10,7 @@ import MISC_ITEMS from "../../data/misc-items";
 import { v4 as uuidv4 } from "uuid";
 import { backgroundMusic, playMusic } from "../../data/audio/music";
 import { useState } from "react";
+import backgroundImage from "../../assets/images/start.jpg";
 
 export default function StartGame() {
   const dispatch = useDispatch();
@@ -307,8 +308,14 @@ export default function StartGame() {
   };
 
   return (
-    <div className={classes.start}>
-      <h1>Spell Scripter</h1>
+    <div
+      className={classes.start}
+      // style={{ backgroundImage: `url("${backgroundImage}")` }}
+    >
+      <div className={classes.title}>
+        <h1>Spell</h1>
+        <h1>Scripter</h1>
+      </div>
       <button
         disabled={off}
         onClick={handleStart}

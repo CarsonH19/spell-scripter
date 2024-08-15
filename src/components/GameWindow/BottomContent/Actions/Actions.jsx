@@ -42,7 +42,6 @@ export default function Actions() {
   const spellList = useSelector((state) => state.player.spellList);
   // Items
   const itemUI = useSelector((state) => state.ui.itemListIsVisible);
-  const itemList = player.inventory.consumables;
 
   // Used to determine if buttons should be disabled or not
   const playerID = useSelector((state) => state.player.id);
@@ -81,7 +80,7 @@ export default function Actions() {
     // Call castSpell here when not in combat
     if (modal === "spellListIsVisible" && !isDanger) {
       castSpell(dispatch, choice);
-    } 
+    }
 
     // NOTE: item logic is handled in Item component
 
@@ -193,6 +192,8 @@ export default function Actions() {
   } else if (itemUI) {
     // Counter logic
     let counters = [];
+    const itemList = player.inventory.consumables;
+
     itemList.map((item) => {
       let existingItem = counters.find((obj) => obj.name === item.name);
       if (existingItem) {

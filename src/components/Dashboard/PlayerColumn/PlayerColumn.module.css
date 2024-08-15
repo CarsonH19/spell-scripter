@@ -93,6 +93,7 @@
 }
 
 .player h1 {
+  /* font-family: 'CrimsonText', sans-serif; */
   text-align: center;
 }
 
@@ -120,7 +121,7 @@
   text-align: center;
   color: var(--text);
   font-size: 0.8rem;
-  font-weight: 600;
+  /* font-weight: 600; */
 }
 
 .column .menu div .icon {

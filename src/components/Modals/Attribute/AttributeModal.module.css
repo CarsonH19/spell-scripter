@@ -42,7 +42,7 @@
 
 .attribute-modal h1 {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 0rem;
   margin-bottom: 1rem;
   border-bottom: 2px solid var(--secondary);
@@ -62,7 +62,7 @@ width: 33%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
   padding: 1rem;
   width: 100%;
   height: 100%;
@@ -71,7 +71,7 @@ width: 33%;
 
 .attributes-container .header {
   font-size: 1.5rem;
-  font-weight: 600;
+  /* font-weight: 600; */
 }
   
   .attributes-info-icon {
@@ -97,7 +97,8 @@ width: 33%;
 
   .attributes-container .stats h4 {
     width: 10rem;
-    font-weight: 600;
+    /* font-weight: 600; */
+    font-size: 1.5rem;
     text-align: center;
     border-bottom: 1px solid var(--text);
     margin-top: 1rem;
@@ -144,7 +145,7 @@ width: 33%;
   }
 
   .stats .stat {
-    /* font-size: 0.9rem; */
+    font-size: 1.1rem;
     z-index: 1;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }

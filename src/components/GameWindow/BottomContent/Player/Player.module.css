@@ -68,7 +68,7 @@
  .health .name {
   position: relative;
   font-size: 2rem;
-  font-weight: 600;
+  /* font-weight: 600; */
   margin-bottom: 0.5rem;
   border-bottom: 3px solid var(--text);
 }

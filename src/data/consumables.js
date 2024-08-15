@@ -132,7 +132,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: false,
     effect: ["Causes the Poisoned condition"],
-    //   soundEffect: gulpingWater24,
+    audio: [false, "item", "chewCrackersMouth"],
   },
   BLACKHEART_BREW: {
     name: "Blackheart Brew",

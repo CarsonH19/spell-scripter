@@ -10,19 +10,19 @@ background-color: var(--background);
 }
 
 @font-face {
-  font-family: 'Ringbearer';
-  src: url('src/assets/fonts/ringbearer/RINGM___.TTF') format('truetype');
+  font-family: 'CrimsonText';
+  src: url('src/assets/fonts/crimson-text/CrimsonText-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Vecna';
-  src: url('src/assets/fonts/vecna/Vecna-oppx.ttf') format('truetype');
+  font-family: 'CinzelDecorative';
+  src: url('src/assets/fonts/cinzel-decorative/CinzelDecorative-Regular.ttf') format('truetype');
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Vecna Bold';
   src: url('src/assets/fonts/vecna/VecnaBold-4YY4.ttf') format('truetype');
-}
+} */
 
 #root {
   height: 100vh;
@@ -39,18 +39,20 @@ background-color: var(--background);
 }
 
 /* h1, h2, h3 {
-  font-family: 'Ringbearer', sans-serif;
+  font-family: '', sans-serif;
   font-weight: 500;
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 } */
 
 h1, h2, h3, h4, h5 {
+  font-family: 'CinzelDecorative', sans-serif;
   margin: 0;
   padding: 0;
   color: var(--text);
   pointer-events: none;
   user-select: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 h1 {
@@ -67,6 +69,7 @@ p {
   color: var(--text);
   pointer-events: none;
   user-select: none;
+  font-family: 'CrimsonText', sans-serif;
 }
 
 button {
@@ -74,6 +77,11 @@ button {
   border: 2px solid var(--accent); */
   color: var(--dark);
   border-radius: 10px;
+  font-family: 'CrimsonText', sans-serif;
+}
+
+li {
+  font-family: 'CrimsonText', sans-serif;
 }
 
 div {
@@ -109,13 +117,12 @@ body {
   pointer-events: all;
 }
 
-/* START SCREEN VIDEO */
 .background-video {
   position: absolute;
   top: 50%;
   left: 50%;
   min-width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   width: auto;
   height: auto;
   z-index: 0;
