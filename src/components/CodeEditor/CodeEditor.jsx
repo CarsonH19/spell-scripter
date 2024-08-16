@@ -12,6 +12,7 @@ import { Button } from "@chakra-ui/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightAndDownLeftFromCenter } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 export default function CodeEditor({ code }) {
   const editorRef = useRef();
@@ -20,6 +21,7 @@ export default function CodeEditor({ code }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const isQTE = useSelector((state) => state.ui.modal.quickTimeEventModal);
 
   const toast = useToast();
 
@@ -58,24 +60,31 @@ export default function CodeEditor({ code }) {
         isExpanded ? classes["expanded-editor"] : classes["editor-container"]
       }
     >
-      <FontAwesomeIcon
-        icon={faUpRightAndDownLeftFromCenter}
-        className={classes.expand}
-        onClick={handleExpand}
-      />
-      <h3>Code Editor</h3>
-      <div className={classes["editor-header"]}>
-        <p>JS</p>
-        <div>
-          <Button isLoading={isLoading} onClick={runCode}>
-            Run Code
-          </Button>
+      {!isQTE && (
+        <FontAwesomeIcon
+          icon={faUpRightAndDownLeftFromCenter}
+          className={classes.expand}
+          onClick={handleExpand}
+        />
+      )}
+      {!isQTE && <h3>Code Editor</h3>}
+      {!isQTE && (
+        <div className={classes["editor-header"]}>
+          <p>JS</p>
+          <div>
+            <Button isLoading={isLoading} onClick={runCode}>
+              Run Code
+            </Button>
+          </div>
         </div>
-      </div>
-      <div className={classes["editor-columns"]}>
+      )}
+      <div
+        className={classes["editor-columns"]}
+        style={isQTE ? { pointerEvents: "none", readOnly: true } : {}}
+      >
         <Editor
           height="100%"
-          width="65%"
+          width={!isQTE ? "65%" : "100%"}
           cursor="pointer"
           theme="vs-dark"
           defaultLanguage="javascript"
@@ -83,8 +92,11 @@ export default function CodeEditor({ code }) {
           onMount={onMount}
           value={value}
           onChange={(value) => setValue(value)}
+          options={{
+            readOnly: true, // Makes the editor content non-editable
+          }}
         />
-        <Output output={output} isError={isError} />
+        {!isQTE && <Output output={output} isError={isError} />}
       </div>
     </div>
   );

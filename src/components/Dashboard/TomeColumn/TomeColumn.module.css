@@ -12,36 +12,17 @@
   border-radius: 10px;
 }
 
-.column:hover {
-  /* background-color:#2a2f50; */
-  /* transition: 0.3s ease-in-out;
-  transform: scale(1.01); */
-}
-
 .column h1 {
   text-align: center;
   border-bottom: 2px solid var(--primary);
   margin: 1rem;
-
 }
 
-/* .column .filter {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin: 1rem;
-} */
-
 .column .tomes {
-  height: 100%;
   width: 100%;
-  /* border: 3px solid var(--secondary); */
   padding: 1rem;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  overflow: auto;
+  gap: 1rem;
+  overflow-y: scroll;
 }
 
 .tome {
@@ -58,9 +39,9 @@
   gap: 0rem;
   transition: 0.3s ease;
   background-color: var(--primary);
+  margin-bottom: 0.5rem;
 }
 
-/*  */
 
 .tome progress {
   -webkit-appearance: none;

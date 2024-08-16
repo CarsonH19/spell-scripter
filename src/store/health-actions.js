@@ -259,7 +259,6 @@ function checkForRemoveStatusEffect(dispatch, character) {
       (char) => char.name === "Skeletal Warrior"
     );
     console.log("NUMBER OF WARRIORS", numberOfWarriors);
-
     if (numberOfWarriors <= 1) {
       removeEffect(order, "Rattle of War");
     }
@@ -268,16 +267,15 @@ function checkForRemoveStatusEffect(dispatch, character) {
   // Helper function
   function removeEffect(order, statusEffectName) {
     for (let i = 0; i < order.length; i++) {
-      for (let i = 0; i < order.length; i++) {
-        for (let j = 0; j < order[i].statusEffects.length; j++) {
-          if (order[i].statusEffects[j].name === statusEffectName) {
-            changeStatusEffect(
-              dispatch,
-              order[i],
-              "REMOVE",
-              order[i].statusEffects[j]
-            );
-          }
+      for (let j = 0; j < order[i].statusEffects.length; j++) {
+        if (order[i].statusEffects[j].name === statusEffectName) {
+          console.log("EFFECT REMOVED", order[i].statusEffects[j]);
+          changeStatusEffect(
+            dispatch,
+            order[i],
+            "REMOVE",
+            order[i].statusEffects[j]
+          );
         }
       }
     }

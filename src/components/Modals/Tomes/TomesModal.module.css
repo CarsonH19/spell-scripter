@@ -17,6 +17,16 @@
   overflow: visible;
 }
 
+.tomesModal h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 0rem;
+  margin: 0;
+  border-bottom: 2px solid var(--secondary);
+  width: 30%;
+
+}
+
 .tomesModal h3 {
   font-family: 'CrimsonText', sans-serif;
   font-size: 1.2rem;
@@ -38,7 +48,7 @@
 .content h2 {
   font-family: 'CrimsonText', sans-serif;
   font-size: 2rem;
-  border-bottom: 1px solid var(--text);
+  /* border-bottom: 1px solid var(--text); */
   /* width: 70%; */
   padding-left: 3rem;
   padding-right: 3rem;

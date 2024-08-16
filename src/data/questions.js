@@ -5,16 +5,19 @@ export const QUESTIONS = [
       {
         id: "q1",
         text: "Test Question #1",
+        code: `let level = 7;\nlevel = 8\n\nconsole.log(level);`,
         answers: ["A", "B", "C", "D"],
       },
       {
         id: "q2",
         text: "Test Question #2",
+        code: `let level = 7;\nlevel = 8\n\nconsole.log(level);`,
         answers: ["A", "B", "C", "D"],
       },
       {
         id: "q3",
         text: "Test Question #3",
+        code: `let level = 7;\nlevel = 8\n\nconsole.log(level);`,
         answers: ["A", "B", "C", "D"],
       },
     ],

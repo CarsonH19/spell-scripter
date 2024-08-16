@@ -1,10 +1,11 @@
 import { useState } from "react";
 import classes from "./QTE.module.css";
 import QuestionTimer from "./QuestionTimer.jsx";
+import { Code } from "@chakra-ui/react";
 import Answers from "./Answers.jsx";
 import { setResult } from "../../../util/cast-spell.js";
 import { useDispatch } from "react-redux";
-
+import CodeEditor from "../../../components/CodeEditor/CodeEditor.jsx";
 import { QUESTIONS } from "../../../data/questions";
 import { tomeActions } from "../../../store/tome-slice.js";
 import { dungeonActions } from "../../../store/dungeon-slice.js";
@@ -19,7 +20,7 @@ export default function Question({ questionIndex, tomeIndex }) {
   const dispatch = useDispatch();
 
   const question = QUESTIONS[tomeIndex].questions[questionIndex];
-  let timer = 30000;
+  let timer = 9990000;
 
   if (answer.selectedAnswer) {
     timer = 1000;
@@ -89,21 +90,53 @@ export default function Question({ questionIndex, tomeIndex }) {
 
   return (
     <div className={classes.question}>
-      <>
-        <QuestionTimer
-          key={timer}
-          timeout={timer}
-          onTimeout={answer.selectedAnswer === "" ? handleNoAnswer : null}
-          mode={answerState}
-        />
-        <h2>{question.text}</h2>
-        <Answers
-          answers={question.answers}
-          selectedAnswer={answer.selectedAnswer}
-          answerState={answerState}
-          onSelect={handleSelectAnswer}
-        />
-      </>
+      <QuestionTimer
+        key={timer}
+        timeout={timer}
+        onTimeout={answer.selectedAnswer === "" ? handleNoAnswer : null}
+        mode={answerState}
+      />
+      <div className={classes.container}>
+        <div className={classes.left}>
+          <h1>{QUESTIONS[tomeIndex].name}</h1>
+          <p>{question.text}</p>
+          {question.code && (
+            <CodeEditor key={question.text} code={question.code} />
+          )}
+          {/* {question.code && (
+            <div className={classes["code-block"]}>
+              {question.code.map((code, index) => (
+                <Code className={classes.code} key={index}>
+                  {code}
+                </Code>
+              ))}
+            </div>
+          )} */}
+        </div>
+        <div className={classes.right}>
+          <Answers
+            answers={question.answers}
+            selectedAnswer={answer.selectedAnswer}
+            answerState={answerState}
+            onSelect={handleSelectAnswer}
+          />
+        </div>
+      </div>
     </div>
   );
 }
+
+// pageContent = (
+//   <div className={classes.content}>
+//     <h2>Question</h2>
+//     <h3>{tome.lesson[index].question}</h3>
+//     {tome.lesson[index].js && (
+//       <div className={classes["code-block"]}>
+//         {tome.lesson[index].js.map((code, index) => (
+//           <Code className={classes.code} key={index}>{code}</Code>
+//         ))}
+//       </div>
+//     )}
+//     <TomeQuestion answers={tome.lesson[index].answers} />
+//   </div>
+// );
