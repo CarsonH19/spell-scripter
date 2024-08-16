@@ -67,7 +67,7 @@
 }
 
 .question progress {
-  width: 90%;
+  width: 60%;
   height: 0.5rem;
   border-radius: 24px;
   background: var(--primary);
