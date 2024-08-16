@@ -19,6 +19,9 @@ export const soundPaths = {
   // ===============================
   //         ATTACKS
   // ===============================
+  attack: {
+    lihethAttack: "src/assets/audio/sound/magic/Magic Spell Whoosh 14.mp3",
+  },
   fleshHit: {
     fleshHit1: "src/assets/audio/sound/attacks/flesh-hit/Flesh Hit 1.mp3",
     fleshHit3: "src/assets/audio/sound/attacks/flesh-hit/Flesh Hit 3.mp3",
@@ -85,6 +88,7 @@ export const soundPaths = {
     ghostAttack3: "src/assets/audio/sound/attacks/ghost/ghost-attack-3.mp3",
     ghostAttack4: "src/assets/audio/sound/attacks/ghost/ghost-attack-4.mp3",
   },
+
   // ===============================
   //           MAGIC
   // ===============================
@@ -119,16 +123,12 @@ export const soundPaths = {
     magicSpellFire2: "src/assets/audio/sound/magic/Magic Spell Fire 2.mp3",
     magicSpellHit2: "src/assets/audio/sound/magic/Magic Spell Hit 2.mp3",
     magicSpellHit4: "src/assets/audio/sound/magic/Magic Spell Hit 4.mp3",
-    // Liheth attack
+
     magicSpellImpact: "src/assets/audio/sound/magic/Magic Spell Impact.mp3",
     magicWandCast8: "src/assets/audio/sound/magic/Magic Wand Cast 8.mp3",
     magicWandCast14: "src/assets/audio/sound/magic/Magic Wand Cast 14.mp3",
-    // Liheth - Undying Flame
-    magicSpellWhoosh14:
-      "src/assets/audio/sound/magic/Magic Spell Whoosh 14.mp3",
     magicSpellPassBy28:
       "src/assets/audio/sound/magic/Magic Spell Pass By 28.mp3",
-    // Liheth - Cleansing Flame
     magicSpellWhoosh2: "src/assets/audio/sound/magic/Magic Spell Whoosh 2.mp3",
     magicSpellWhoosh4: "src/assets/audio/sound/magic/Magic Spell Whoosh 4.mp3",
     magicSpellWhoosh9: "src/assets/audio/sound/magic/Magic Spell Whoosh 9.mp3",

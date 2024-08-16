@@ -280,7 +280,7 @@ export default function updateStatTotals(dispatch, id) {
     let maxHealth;
 
     if (character.identifier === "PLAYER") {
-      baseHealth = 10 * character.level + 30;
+      baseHealth = 10 * character.level + 20;
     } else {
       baseHealth = 10 * character.level;
     }
@@ -355,9 +355,9 @@ export default function updateStatTotals(dispatch, id) {
     let maxMana;
 
     if (character.identifier === "PLAYER") {
-      baseMana = 5 * character.level + 20;
+      baseMana = 10 * character.level + 30;
     } else if (totalArcana > 0) {
-      baseMana = 5 * character.level;
+      baseMana = 10 * character.level;
     } else {
       baseMana = 0;
     }

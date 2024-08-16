@@ -12,8 +12,7 @@ const heroSlice = createSlice({
       {
         name: "Siggurd",
         id: "Siggurd",
-        unlocked: true
-        ,
+        unlocked: true,
         identifier: "HERO",
         get image() {
           const imageList = ["src/assets/images/heroes/siggurd"];
@@ -26,7 +25,7 @@ const heroSlice = createSlice({
         audio: {
           spawn: "",
           attack: [true, "heavyWeapon", null, 0.5],
-          death: [true, "fightGrunt"],
+          death: [true, "armorClankToTheGround", 0.7],
         },
         level: 1,
         currentHealth: 0,
@@ -81,8 +80,8 @@ const heroSlice = createSlice({
         },
         audio: {
           spawn: "",
-          attack: [true, "magic", "magicSpellImpact"],
-          death: [true, "fightGrunt"],
+          attack: [false, "attack", "lihethAttack"],
+          death: [true, "fightGrunt"], // NOTE: add defeated sound
         },
         level: 7,
         currentHealth: 0,

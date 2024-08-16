@@ -13,7 +13,7 @@ const spellbookSlice = createSlice({
           image: "src/assets/images/spellbook/evocation/firebolt.jpg",
           type: "Spell",
           // description: spells-descriptions.js
-          points: 0,
+          points: 1,
           max: 1,
         },
         {

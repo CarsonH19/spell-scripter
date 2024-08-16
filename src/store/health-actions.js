@@ -258,7 +258,6 @@ function checkForRemoveStatusEffect(dispatch, character) {
     const numberOfWarriors = order.filter(
       (char) => char.name === "Skeletal Warrior"
     );
-    console.log("NUMBER OF WARRIORS", numberOfWarriors);
     if (numberOfWarriors.length <= 1) {
       removeEffect(order, "Rattle of War");
     }

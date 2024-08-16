@@ -11,7 +11,7 @@
   justify-content: flex-start; 
   align-items: center;
   margin: 0;
-  font-size: 3rem;
+  font-size: 3.5rem;
   list-style: none;
 }
 
@@ -52,6 +52,7 @@
  
 .damage-display .damage {
   color: var(--text);
+  font-weight: 400;
 }
 .damage-display .heal {
   color: #e90000;

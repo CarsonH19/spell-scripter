@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import classes from "./SettingsModal.module.css";
 
@@ -12,6 +12,7 @@ import { combatActions } from "../../../store/combat-slice";
 
 export default function SettingsModal() {
   const dispatch = useDispatch();
+  const dashboard = useSelector((state) => state.ui.dashboardIsVisible);
 
   const handleExitDungeon = () => {
     exitDungeonTransition(dispatch);
@@ -27,7 +28,7 @@ export default function SettingsModal() {
   return (
     <div className={classes.settings}>
       <h1>Settings</h1>
-      <button onClick={handleExitDungeon}>Exit Dungeon</button>
+      {!dashboard && <button onClick={handleExitDungeon}>Exit Dungeon</button>}
     </div>
   );
 }

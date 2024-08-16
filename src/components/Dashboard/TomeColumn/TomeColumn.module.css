@@ -20,9 +20,10 @@
 
 .column .tomes {
   width: 100%;
+  width: 100%;
   padding: 1rem;
   gap: 1rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .tome {
