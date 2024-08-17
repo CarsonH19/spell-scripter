@@ -10,6 +10,7 @@ import MISC_ITEMS from "../../data/misc-items";
 import { v4 as uuidv4 } from "uuid";
 import { backgroundMusic, playMusic } from "../../data/audio/music";
 import { useState } from "react";
+import playSoundEffect from "../../util/audio-util";
 
 export default function StartGame() {
   const dispatch = useDispatch();
@@ -309,7 +310,9 @@ export default function StartGame() {
   return (
     <div
       className={classes.start}
-      // style={{ backgroundImage: `url("${backgroundImage}")` }}
+      style={{
+        backgroundImage: `url("src/assets/start-screen-background.jpg")`,
+      }}
     >
       <div className={classes.title}>
         <h1>Spell</h1>
@@ -327,6 +330,8 @@ export default function StartGame() {
 }
 
 async function startTransition(dispatch) {
+  playSoundEffect(false, "ui", "GUIMenuButton", 0.9);
+
   await dispatch(uiActions.updateFade({ change: "CALL" }));
   await delay(2000);
   dispatch(uiActions.changeUi({ element: "startIsVisible", visible: false })); // false

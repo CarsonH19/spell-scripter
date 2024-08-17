@@ -1,14 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 
+import store from "../../../store/index";
+
 import classes from "./SettingsModal.module.css";
 
 import { uiActions } from "../../../store/ui-slice";
 import { logActions } from "../../../store/log-slice";
 import { dungeonActions } from "../../../store/dungeon-slice";
+import { dialogueActions } from "../../../store/dialogue-slice";
 import playSoundEffect from "../../../util/audio-util";
 import { playMusic } from "../../../data/audio/music";
 import { backgroundMusic } from "../../../data/audio/music";
 import { combatActions } from "../../../store/combat-slice";
+import { playerActions } from "../../../store/player-slice";
 
 export default function SettingsModal() {
   const dispatch = useDispatch();
@@ -16,6 +20,9 @@ export default function SettingsModal() {
 
   const handleExitDungeon = () => {
     exitDungeonTransition(dispatch);
+
+    // Clear dialogues
+    dispatch(dialogueActions.clearDialogue("ALL"));
 
     // Clear any lingering narrations
     dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
@@ -34,6 +41,28 @@ export default function SettingsModal() {
 }
 
 export async function exitDungeonTransition(dispatch) {
+  let player = store
+    .getState()
+    .combat.order.find((char) => char.id === "Player");
+
+  // Clear all status effects with a duration
+  for (let i = 0; i < player.statusEffects.length; i++) {
+    if (player.statusEffects[i].duration) {
+      console.log(player.statusEffects[i]);
+      dispatch(
+        combatActions.updateStatusEffects({
+          id: "Player",
+          statusEffect: player.statusEffects[i],
+          change: "REMOVE",
+        })
+      );
+    }
+  }
+
+  // Update player-slice with combat-slice player object
+  player = store.getState().combat.order.find((char) => char.id === "Player");
+  dispatch(playerActions.updatePlayer(player));
+
   // Clear initiative tracker
   dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
 
@@ -47,6 +76,8 @@ export async function exitDungeonTransition(dispatch) {
     uiActions.changeUi({ element: "eventOptionsAreVisible", visible: false })
   );
   await delay(3000);
+  const newPlayer = store.getState().player;
+  console.log("PLAYER", newPlayer);
 
   playMusic(backgroundMusic.intangibleAscension);
   // Open dashboard

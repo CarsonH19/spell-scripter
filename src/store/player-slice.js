@@ -55,7 +55,7 @@ const playerSlice = createSlice({
     weaknesses: [],
     resistances: [],
     immunities: [],
-    spellList: ['Fireball', "Firebolt"],
+    spellList: ["Fireball", "Firebolt"],
     statusEffects: [],
     inventory: {
       attunedItems: [],
@@ -68,6 +68,12 @@ const playerSlice = createSlice({
     },
   },
   reducers: {
+    updatePlayer(state, action) {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    },
     checkForLevelUp(state, action) {
       // Increases mastery & attribute points
       const { tomeSlice } = action.payload;

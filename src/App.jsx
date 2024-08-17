@@ -5,7 +5,7 @@ import Modal from "./components/Modals/Modal";
 import Narration from "./components/Narration/Narration";
 import Dialogue from "./components/Dialogue/Dialogue";
 import FadeEffect from "./components/UI/FadeEffect";
-import startScreenVideo from "./assets/start-screen.mp4";
+// import startScreenVideo from "./assets/title-screen.mp4";
 import { useSelector } from "react-redux";
 
 function App() {
