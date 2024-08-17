@@ -27,7 +27,11 @@ export default async function castSpell(dispatch, spell) {
 
   openModal(dispatch, "quickTimeEventModal");
 
+  console.log("AWAITING QTE");
+
   const getQuickTimeEventResult = await getResult();
+
+  console.log("QTE RESULT");
 
   // Set isCharacterTurn to null to remove spell list
   dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));

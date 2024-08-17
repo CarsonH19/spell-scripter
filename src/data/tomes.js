@@ -2,7 +2,10 @@
 // tomes.js & tome-slice must contain the same number of indices
 
 export const TOMES = [
-  // INTRODUCTION
+  // =================================================
+  //                     INTRODUCTION
+  // =================================================
+
   {
     name: "Introduction",
     lesson: [
@@ -103,45 +106,12 @@ export const TOMES = [
       },
     ],
   },
+  // =================================================
+  //                     COMMENTS
+  // =================================================
   {
     name: "Comments",
     lesson: [
-      // {
-      //   page: 1,
-      //   type: "INFO",
-      //   title: "The <script> Tag",
-      //   text: [
-      //     `You can add JavaScript code in an HTML document using the <script> tag.`,
-      //   ],
-      // },
-      // {
-      //   page: 2,
-      //   type: "QUESTION",
-      //   question: "Which HTML tag is used for JavaScript code?",
-      //   answers: ["<script>", "<p>", "<img>", "<JavaScript>"],
-      // },
-      // {
-      //   page: 3,
-      //   type: "INFO",
-      //   title: "Alert Box",
-      //   text: [
-      //     `Another way to display messages is an alert box.`,
-      //     `You can generate them by using the alert() function`,
-      //     `Just like with the console.log(), here the text should be enclosed in quotes.`,
-      //   ],
-      //   code: `alert("I'm an alert box!")`,
-      // },
-      // {
-      //   page: 4,
-      //   type: "QUESTION",
-      //   question: `How would you generate an alert box with the text "Wizard"?`,
-      //   answers: [
-      //     `alert("Wizard");`,
-      //     `Alert("wizard");`,
-      //     `alert.box("Wizard");`,
-      //     `<alert>("Wizard");`,
-      //   ],
-      // },
       {
         page: 1,
         type: "INFO",
@@ -197,6 +167,9 @@ export const TOMES = [
       },
     ],
   },
+  // =================================================
+  //                SIMPLE OPERATIONS
+  // =================================================
   {
     name: "Simple Operations",
     lesson: [
@@ -295,6 +268,9 @@ export const TOMES = [
       },
     ],
   },
+  // =================================================
+  //                  VARIABLES
+  // =================================================
   {
     name: "Variables",
     lesson: [
@@ -428,6 +404,9 @@ export const TOMES = [
       },
     ],
   },
+  // =================================================
+  //                     DATA TYPES
+  // =================================================
   {
     name: "Data Types",
     lesson: [
@@ -516,22 +495,37 @@ export const TOMES = [
       },
     ],
   },
+  // =================================================
+  //                     COMMENTS
+  // =================================================
   {
     name: "Operators",
     lesson: [],
   },
+  // =================================================
+  //              ASSIGNMENT OPERATORS
+  // =================================================
   {
     name: "Assignment Operators",
     lesson: [],
   },
+  // =================================================
+  //                 STRINGS
+  // =================================================
   {
     name: "Strings",
     lesson: [],
   },
+  // =================================================
+  //              TEMPLATE LITERALS
+  // =================================================
   {
     name: "Template Literals",
     lesson: [],
   },
+  // =================================================
+  //             STRING CONCANTENATION
+  // =================================================
   {
     name: "String Concatenation",
     lesson: [],

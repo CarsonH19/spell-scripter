@@ -15,6 +15,13 @@ const tomeSlice = createSlice({
         { id: "q1", answered: false },
         { id: "q2", answered: false },
         { id: "q3", answered: false },
+        { id: "q4", answered: false },
+        { id: "q5", answered: false },
+        { id: "q6", answered: false },
+        { id: "q7", answered: false },
+        { id: "q8", answered: false },
+        { id: "q9", answered: false },
+        { id: "q10", answered: false },
       ],
     },
     {
@@ -25,6 +32,9 @@ const tomeSlice = createSlice({
         { id: "q1", answered: false },
         { id: "q2", answered: false },
         { id: "q3", answered: false },
+        { id: "q4", answered: false },
+        { id: "q5", answered: false },
+        { id: "q6", answered: false },
       ],
     },
     {
@@ -35,6 +45,13 @@ const tomeSlice = createSlice({
         { id: "q1", answered: false },
         { id: "q2", answered: false },
         { id: "q3", answered: false },
+        { id: "q4", answered: false },
+        { id: "q5", answered: false },
+        { id: "q6", answered: false },
+        { id: "q7", answered: false },
+        { id: "q8", answered: false },
+        { id: "q9", answered: false },
+        { id: "q10", answered: false },
       ],
     },
     {
@@ -45,6 +62,13 @@ const tomeSlice = createSlice({
         { id: "q1", answered: false },
         { id: "q2", answered: false },
         { id: "q3", answered: false },
+        { id: "q4", answered: false },
+        { id: "q5", answered: false },
+        { id: "q6", answered: false },
+        { id: "q7", answered: false },
+        { id: "q8", answered: false },
+        { id: "q9", answered: false },
+        { id: "q10", answered: false },
       ],
     },
     {
@@ -55,6 +79,13 @@ const tomeSlice = createSlice({
         { id: "q1", answered: false },
         { id: "q2", answered: false },
         { id: "q3", answered: false },
+        { id: "q4", answered: false },
+        { id: "q5", answered: false },
+        { id: "q6", answered: false },
+        { id: "q7", answered: false },
+        { id: "q8", answered: false },
+        { id: "q9", answered: false },
+        { id: "q10", answered: false },
       ],
     },
     {
@@ -103,20 +134,20 @@ const tomeSlice = createSlice({
       // action.payload is the index of the tome in the state array
       state[action.payload].complete = true;
     },
-    unlock(state, action) {
-      // action.payload is the index of the tome in the state array
-      const { tomeIndex } = action.payload;
+    // unlock(state, action) {
+    //   // action.payload is the index of the tome in the state array
+    //   const { tomeIndex } = action.payload;
 
-      // Check if >50% have been answered
-      const isHalfAnswered = (questions) => {
-        const answeredCount = questions.filter((q) => q.answered).length;
-        return answeredCount > questions.length / 2;
-      };
+    //   // Check if >50% have been answered
+    //   const isHalfAnswered = (questions) => {
+    //     const answeredCount = questions.filter((q) => q.answered).length;
+    //     return answeredCount > questions.length / 2;
+    //   };
 
-      if (isHalfAnswered(state[tomeIndex].questions)) {
-        state[tomeIndex + 1].unlocked = true;
-      }
-    },
+    //   if (isHalfAnswered(state[tomeIndex].questions)) {
+    //     state[tomeIndex + 1].unlocked = true;
+    //   }
+    // },
     answerQuestion(state, action) {
       // action.payload is an object containing tomeIndex and questionIndex
       const { tomeIndex, questionIndex } = action.payload;
@@ -130,6 +161,7 @@ const tomeSlice = createSlice({
 
       if (allAnswered) {
         state[tomeIndex].mastered = true;
+        state[tomeIndex + 1].unlocked = true;
       }
     },
   },

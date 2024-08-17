@@ -52,14 +52,13 @@ export default function Modal() {
     <div className={classes.modal}>
       {activeModal}
       {/* Don't render close button on certain modals */}
-      {openModal !== "quickTimeEventModal" &&
-        (openModal !== "defeatedModal" && (
-          <FontAwesomeIcon
-            icon={faCircleXmark}
-            onClick={handleClose}
-            className={classes.close}
-          />
-        ))}
+      {openModal !== "quickTimeEventModal" && openModal !== "defeatedModal" && (
+        <FontAwesomeIcon
+          icon={faCircleXmark}
+          onClick={handleClose}
+          className={classes.close}
+        />
+      )}
     </div>,
     document.getElementById("modal")
   );
@@ -68,6 +67,8 @@ export default function Modal() {
 function selectModal() {
   const state = store.getState().ui;
   let activeModal = findActiveModal(state);
+
+  console.log("selectModal");
 
   // Passed as a prop to the tomeModal
   const tome = store.getState().ui.tome;
@@ -115,6 +116,7 @@ function selectModal() {
       return <ConfirmationModal />;
 
     case "quickTimeEventModal":
+      console.log("openModal QTE");
       playSoundEffect(false, "misc", "qteStart", 1);
       return <QuickTimeEventModal />;
 

@@ -1,8 +1,9 @@
 
 .quiz {
   position: relative;
-  /* width: ; */
-  min-width: 75rem;
+  width: 80%;
+  min-height: 20rem;
+  min-width: 70rem;
   background-color: var(--background);
   display: flex;
   flex-direction: column;
@@ -44,6 +45,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 50%;
+text-align: center;
 }
 
 .question .container .right {

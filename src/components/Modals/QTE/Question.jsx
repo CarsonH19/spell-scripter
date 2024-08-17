@@ -20,7 +20,7 @@ export default function Question({ questionIndex, tomeIndex }) {
   const dispatch = useDispatch();
 
   const question = QUESTIONS[tomeIndex].questions[questionIndex];
-  let timer = 9990000;
+  let timer = 30000;
 
   if (answer.selectedAnswer) {
     timer = 1000;
@@ -44,8 +44,11 @@ export default function Question({ questionIndex, tomeIndex }) {
         playSoundEffect(false, "misc", "correct");
         // Mark question as answered
         dispatch(tomeActions.answerQuestion({ tomeIndex, questionIndex }));
-        // Check if a new tome should be unlocked (50%)
-        dispatch(tomeActions.unlock({ tomeIndex }));
+
+        // // Check if a new tome should be unlocked (50%)
+        // dispatch(tomeActions.unlock({ tomeIndex }));
+
+        // Unlock next tome and master current tome at the same time
         // Check if the tome has been mastered (100%)
         dispatch(tomeActions.master({ tomeIndex }));
       }

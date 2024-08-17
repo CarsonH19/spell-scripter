@@ -3,10 +3,11 @@ import store from "../../../store/index";
 import classes from "./QTE.module.css";
 
 import Question from "./Question";
+import { QUESTIONS } from "../../../data/questions";
 
 export default function QuickTimeEventModal() {
+  console.log("QTE Called");
   const { questionIndex, tomeIndex } = getRandomQuestionIndices();
-
   return (
     <div className={classes.quiz}>
       <Question questionIndex={questionIndex} tomeIndex={tomeIndex} />
@@ -16,24 +17,22 @@ export default function QuickTimeEventModal() {
 
 function getRandomQuestionIndices() {
   const tomes = store.getState().tome;
+  console.log(tomes);
 
+  let tomeIndex;
   let tomeIndices = [];
   let questionIndices = [];
   let isReviewQuestion;
-  let randomTomeIndex;
   let questions;
-
-  let tomeIndex;
   let questionIndex;
-
   let loop;
 
   while (!loop) {
-    tomeIndices = [];
     questionIndices = [];
-    isReviewQuestion = Math.random() < 0.2;
+    isReviewQuestion = tomes[0].mastered ? Math.random() < 0.4 : null;
 
-    // Finding the tomeIndices
+
+    // Finding the tomeIndex
     if (isReviewQuestion) {
       // Collect indices of all unlocked tomes
       for (let i = 0; i < tomes.length; i++) {
@@ -41,25 +40,25 @@ function getRandomQuestionIndices() {
           tomeIndices.push(i);
         }
       }
+
+      // Find random tome for review question
+      tomeIndex = tomeIndices[Math.floor(Math.random() * tomeIndices.length)];
     } else {
-      // Collect indices of unlocked & unmastered tomes
+      // Find indices of unlocked & unmastered tome
       for (let i = 0; i < tomes.length; i++) {
         if (!tomes[i].mastered && tomes[i].unlocked) {
-          tomeIndices.push(i);
+          tomeIndex = i;
         }
       }
     }
 
-    if (tomeIndices.length === 0) {
-      continue; // No tomes available, retry
+    // No tomes available, retry
+    if (!tomeIndex && tomeIndex !== 0) {
+      continue;
     }
 
-    // Generate a random tomeIndex from the tomeIndices array
-    randomTomeIndex =
-      tomeIndices[Math.floor(Math.random() * tomeIndices.length)];
-
-    // Select the questions array from the random tomeIndex
-    questions = tomes[randomTomeIndex].questions;
+    // Select the questions array from the tomeIndex
+    questions = tomes[tomeIndex].questions;
 
     // Finding the questionIndices
     if (isReviewQuestion) {
@@ -87,11 +86,14 @@ function getRandomQuestionIndices() {
       questionIndices[Math.floor(Math.random() * questionIndices.length)];
 
     questionIndex = randomQuestionIndex;
-    tomeIndex = randomTomeIndex;
 
     // Exit the while loop
     loop = true;
   }
+
+  console.log(QUESTIONS[tomeIndex].questions[questionIndex]);
+  console.log(tomes[tomeIndex].questions[questionIndex]);
+
 
   // Return tomeIndex & questionIndex
   return {

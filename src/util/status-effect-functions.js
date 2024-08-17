@@ -19,6 +19,7 @@ const statusEffectFunctions = {
     for (let i = 0; i < skillPoints; i++) {
       damage += 2;
     }
+    playSoundEffect(false, "statusEffects", "burning")
     changeHealth(dispatch, target, "DAMAGE", damage);
   },
   POISONED: (dispatch, target) => {

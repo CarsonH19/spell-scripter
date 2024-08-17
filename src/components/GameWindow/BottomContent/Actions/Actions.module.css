@@ -157,6 +157,7 @@ z-index: 3;
   transition: 0.3s;
   border-color: var(--text);
   scale: 1.1;
+  cursor: pointer;
 }
 
 .spells .disabled, .items .disabled {

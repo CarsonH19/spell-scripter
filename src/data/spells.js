@@ -20,7 +20,7 @@ const SPELLS = {
       name: "Firebolt",
       school: `Novice Evocation`,
       image: "src/assets/images/spellbook/evocation/firebolt.jpg",
-      audio: [false, "magic", "firebolt"],
+      audio: [false, "magic", "firebolt", 0.8],
       castTime: "DURING COMBAT",
       spellTarget: "ENEMY",
       spellType: "HIT",

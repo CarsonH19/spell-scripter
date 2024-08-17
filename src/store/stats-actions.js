@@ -235,7 +235,8 @@ export default function updateStatTotals(dispatch, id) {
 
     switch (completeSet) {
       case "Plagueborn Set":
-        setBonuses.maxHealthBonus += 1000;
+        setBonuses.maxManaBonus += 500;
+        setBonuses.maxHealthBonus += 500;
         break;
 
       case "Shadowbound Set":
@@ -328,7 +329,7 @@ export default function updateStatTotals(dispatch, id) {
 
   function calculateDefense(guard, totalAgility) {
     // Base defense of 8
-    let defense = 8 + totalAgility;
+    let defense = 6 + totalAgility;
 
     // Guarding (+50% defense)
     if (guard) {

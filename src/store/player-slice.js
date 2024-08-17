@@ -26,7 +26,7 @@ const playerSlice = createSlice({
     level: 1,
     masteryPoints: 0,
     totalMasteryPoints: 1,
-    attributePoints: 3,
+    attributePoints: 0,
     currentHealth: 0,
     currentMana: 0,
     stats: {

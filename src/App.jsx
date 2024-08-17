@@ -22,7 +22,7 @@ function App() {
       <Narration />
       {modal && <Modal />}
       {start && <StartGame />}
-      {start && (
+      {/* {start && (
         <video
           autoPlay
           loop
@@ -33,7 +33,7 @@ function App() {
           <source src={startScreenVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-      )}
+      )} */}
       {!start && !game && dashboard && <Dashboard />}
       {!start && game && !dashboard && <GameWindow />}
     </>
