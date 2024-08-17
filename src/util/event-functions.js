@@ -326,7 +326,7 @@ const eventFunctions = {
         // }
 
         await delay(2000);
-        startCombat(dispatch, dungeon.contents.enemies);
+        startCombat(dispatch, enemies);
 
         dispatch(
           dungeonActions.eventOutcome({

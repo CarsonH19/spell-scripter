@@ -241,7 +241,8 @@ export function checkStatusEffect(dispatch, id, check, type) {
     case "END": // End effects with round/action durations after combat
       for (let i = 0; i < statusEffects.length; i++) {
         if (
-          statusEffects[i].durationType === "ROUND" ||
+          (statusEffects[i].durationType &&
+            statusEffects[i].durationType === "ROUND") ||
           statusEffects[i].durationType === "ACTION"
         ) {
           dispatch(

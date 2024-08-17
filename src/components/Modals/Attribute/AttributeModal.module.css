@@ -163,3 +163,12 @@ width: 33%;
     color: var(--secondary);
     height: 25%;
   }
+
+  .stat {
+    color: var(--text);
+    transition: color 0.3s ease;
+  }
+  
+  .stat-changed {
+    color: var(--green); /* or var(--red) depending on increase/decrease */
+  }

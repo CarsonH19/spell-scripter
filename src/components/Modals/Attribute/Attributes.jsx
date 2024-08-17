@@ -2,16 +2,10 @@ import classes from "./AttributeModal.module.css";
 
 import store from "../../../store/index";
 
-import { uiActions } from "../../../store/ui-slice";
-import Tooltip from "../../UI/Tooltip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHandFist,
-  faPersonRunning,
-  faHatWizard,
   faCaretLeft,
   faCaretRight,
-  faCircleInfo,
   faCubes,
 } from "@fortawesome/free-solid-svg-icons";
 

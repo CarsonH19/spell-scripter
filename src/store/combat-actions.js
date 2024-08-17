@@ -50,17 +50,19 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
   console.log("DUNGEON", dungeon);
 
   // START OF THE ROUND
-  // Passive Abilities
-  // Clear Narrative
   handleCallTiming(dispatch, "START_OF_ROUND");
 
   // Iterate through the initiative order simulating a round of combat.
   for (let i = 0; i < order.length; i++) {
-    // End game if player is defeated
-    // const stopCombatLoop = await isCombatOver(dispatch, additionalEnemies, false);
-    // if (stopCombatLoop) {
-    //   return;
-    // }
+    // Check if combat is over
+    const stopCombatLoop = await isCombatOver(
+      dispatch,
+      additionalEnemies,
+      false
+    );
+    if (stopCombatLoop) {
+      return;
+    }
 
     // get the updated values for player and enemies on each iteration
     let order = store.getState().combat.order;
@@ -233,6 +235,7 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
 
   // Check if combat is over & end combat
   // Starts another loop if combat is not over
+
   await isCombatOver(dispatch, additionalEnemies, true);
 }
 
@@ -351,6 +354,11 @@ function roll20(bonus = 0) {
 // =============================================================
 
 async function isCombatOver(dispatch, additionalEnemies, loop) {
+  const danger = store.getState().dungeon.danger;
+  const roomSummaryModal = store.getState().ui.modalIsVisible.roomSummaryModal;
+  // If roomSummaryModal has been called and danger is removed this will block additional calls of isCombatOver
+  if (!danger || roomSummaryModal) return;
+
   let order = store.getState().combat.order;
   const player = order.find((char) => char.identifier === "PLAYER");
   // End combat if player is defeated
@@ -373,16 +381,17 @@ async function isCombatOver(dispatch, additionalEnemies, loop) {
 
   // combat continues after a completed round
   if (isEnemy && loop) {
-    // await delay(2000);
     combatLoop(dispatch, updatedAdditionalEnemies);
     return;
   }
 
+  console.log("isCombatOver", isEnemy);
+
   // combat ends after all enemies are defeated
   if (!isEnemy) {
-    // playMusic(backgroundMusic.threeThousandYearsOld);
+    dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
     await checkForDialogue(dispatch, "after");
-    await delay(2000);
+    await delay(1000);
     console.log("COMBAT ENDED");
     openModal(dispatch, "roomSummaryModal");
   }
@@ -498,10 +507,10 @@ async function handleCallTiming(dispatch, timing, character) {
       {
         // Check status effects that call functions at the start of the character's turn
         callStatusEffect(dispatch, character, "START TURN");
+        // Decrement Status Effects - decrement first then remove
+        checkStatusEffect(dispatch, character.id, "DECREMENT", "ROUND");
         // Check for status effects with duration 0 or and remove
         checkStatusEffect(dispatch, character.id, "REMOVE");
-        // Decrement Status Effects
-        checkStatusEffect(dispatch, character.id, "DECREMENT", "ROUND");
       }
       break;
     case "END_OF_TURN":
@@ -599,7 +608,6 @@ async function checkForNewEnemies(dispatch, additionalEnemies) {
 
   // Add enemies until there are at least 3 in the combat order
   while (numberOfEnemies.length < 3 && enemiesToAdd.length > 0) {
-    console.log(`${enemiesToAdd[0].name} joined combat!`);
     dispatch(
       logActions.updateLogs({
         change: "ADD",
