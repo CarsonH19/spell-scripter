@@ -13,6 +13,11 @@
   background-repeat: no-repeat; */
 }
 
+.column:hover {
+  transition: 0.3s;
+  background-color: #33395b;
+}
+
 .player {
   position: relative;
   width: 100%;

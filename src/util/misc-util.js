@@ -16,7 +16,7 @@ export function getImageFromList(url, numberOfImages) {
   return imageList[index];
 }
 
-// Adds a character/s to the combat order
+// Adds a character/s to the order on events
 export function addCharacterToOrder(
   dispatch,
   characterObj,

@@ -26,7 +26,7 @@ export default function SpellbookModal() {
   };
 
   const handleResetButton = (school) => {
-    playSoundEffect(false, "misc", "shimmerCrysta");
+    playSoundEffect(false, "misc", "shimmerCrysta", 0.4);
     // Calculate total points expended in skill tree
     const totalPoints = calculateSchoolPoints(spellbook[school]);
     // Remove points from spellbook-slice

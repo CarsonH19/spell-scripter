@@ -60,7 +60,7 @@ const CONDITIONS = {
     type: "DEBUFF",
     stack: 1,
     get effect() {
-      return [`Agility -${this.stack}`];
+      return [`-${this.stack} Agility`];
     },
     durationType: "ROUND",
     duration: 3,

@@ -52,7 +52,7 @@ const passiveFunctions = {
     const RATTLE_OF_WAR = {
       name: "Rattle of War",
       display: true,
-      image: "",
+      image: "src/assets/images/status-effect/rattle-of-war.jpg",
       type: "BUFF",
       description:
         "The undead's strength grows in the presence of a skeletal warrior.",

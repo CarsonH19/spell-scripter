@@ -6,7 +6,6 @@ import Question from "./Question";
 import { QUESTIONS } from "../../../data/questions";
 
 export default function QuickTimeEventModal() {
-  console.log("QTE Called");
   const { questionIndex, tomeIndex } = getRandomQuestionIndices();
   return (
     <div className={classes.quiz}>
@@ -91,8 +90,8 @@ function getRandomQuestionIndices() {
     loop = true;
   }
 
-  console.log(QUESTIONS[tomeIndex].questions[questionIndex]);
-  console.log(tomes[tomeIndex].questions[questionIndex]);
+  // console.log(QUESTIONS[tomeIndex].questions[questionIndex]);
+  // console.log(tomes[tomeIndex].questions[questionIndex]);
 
 
   // Return tomeIndex & questionIndex

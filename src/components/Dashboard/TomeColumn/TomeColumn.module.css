@@ -12,6 +12,11 @@
   border-radius: 10px;
 }
 
+.column:hover {
+  transition: 0.3s;
+  background-color: #33395b;
+}
+
 .column h1 {
   text-align: center;
   border-bottom: 2px solid var(--primary);

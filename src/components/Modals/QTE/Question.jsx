@@ -22,9 +22,9 @@ export default function Question({ questionIndex, tomeIndex }) {
   const question = QUESTIONS[tomeIndex].questions[questionIndex];
   let timer = 30000;
 
-  if (answer.selectedAnswer) {
-    timer = 1000;
-  }
+  // if (answer.selectedAnswer) {
+  //   timer = 1000;
+  // }
 
   if (answer.isCorrect !== null) {
     timer = 2000;
@@ -36,41 +36,40 @@ export default function Question({ questionIndex, tomeIndex }) {
       isCorrect: null,
     });
 
+    // setTimeout(() => {
+    const isCorrect = question.answers[0] === selectedAnswer;
+
+    if (isCorrect) {
+      // Audio
+      playSoundEffect(false, "misc", "correct");
+      // Mark question as answered
+      dispatch(tomeActions.answerQuestion({ tomeIndex, questionIndex }));
+
+      // // Check if a new tome should be unlocked (50%)
+      // dispatch(tomeActions.unlock({ tomeIndex }));
+
+      // Unlock next tome and master current tome at the same time
+      // Check if the tome has been mastered (100%)
+      dispatch(tomeActions.master({ tomeIndex }));
+    }
+
+    // Check if answer is wrong and increment threat
+    if (!isCorrect) {
+      // Audio
+      playSoundEffect(false, "misc", "incorrect");
+
+      dispatch(dungeonActions.addThreat(1));
+    }
+
+    setAnswer({
+      selectedAnswer,
+      isCorrect,
+    });
+
     setTimeout(() => {
-      const isCorrect = question.answers[0] === selectedAnswer;
-
-      if (isCorrect) {
-        // Audio
-        playSoundEffect(false, "misc", "correct");
-        // Mark question as answered
-        dispatch(tomeActions.answerQuestion({ tomeIndex, questionIndex }));
-
-        // // Check if a new tome should be unlocked (50%)
-        // dispatch(tomeActions.unlock({ tomeIndex }));
-
-        // Unlock next tome and master current tome at the same time
-        // Check if the tome has been mastered (100%)
-        dispatch(tomeActions.master({ tomeIndex }));
-      }
-
-      // Check if answer is wrong and increment threat
-      if (!isCorrect) {
-        // Audio
-        playSoundEffect(false, "misc", "incorrect");
-
-        dispatch(dungeonActions.addThreat(1));
-      }
-
-      setAnswer({
-        selectedAnswer,
-        isCorrect,
-      });
-
-      setTimeout(() => {
-        setResult(dispatch, isCorrect);
-        // FIX: If question is correct set question.complete to true.
-      }, 2000);
-    }, 1000);
+      setResult(dispatch, isCorrect);
+    }, 2000);
+    // }, 1000);
   }
 
   function handleNoAnswer() {
@@ -79,6 +78,7 @@ export default function Question({ questionIndex, tomeIndex }) {
       isCorrect: false,
     });
 
+    playSoundEffect(false, "misc", "incorrect");
     dispatch(dungeonActions.addThreat(1));
     setResult(dispatch, false);
   }
@@ -101,7 +101,7 @@ export default function Question({ questionIndex, tomeIndex }) {
       />
       <div className={classes.container}>
         <div className={classes.left}>
-          <h1>{QUESTIONS[tomeIndex].name}</h1>
+          {/* <h1>{QUESTIONS[tomeIndex].name}</h1> */}
           <p>{question.text}</p>
           {question.code && (
             <CodeEditor key={question.text} code={question.code} />

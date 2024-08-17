@@ -49,7 +49,7 @@ const SPELLS = {
       spellTarget: "ENEMY",
       spellType: "HIT",
       damageType: DAMAGE_TYPES.LIGHTNING,
-      baseDamage: 10,
+      baseDamage: 8,
       manaCost: 10,
     },
     {
@@ -62,7 +62,7 @@ const SPELLS = {
       spellType: "HIT",
       damageType: DAMAGE_TYPES.FIRE,
       baseDamage: 4,
-      manaCost: 30,
+      manaCost: 15,
     },
     {
       name: "Chain Lightning",
@@ -73,8 +73,8 @@ const SPELLS = {
       spellTarget: "ENEMY",
       spellType: "HIT",
       damageType: DAMAGE_TYPES.LIGHTNING,
-      baseDamage: 16,
-      manaCost: 10,
+      baseDamage: 12,
+      manaCost: 20,
     },
     {
       name: "Blizzard",
@@ -85,18 +85,8 @@ const SPELLS = {
       spellTarget: "ENEMIES",
       spellType: "DEBUFF",
       damageType: DAMAGE_TYPES.ICE,
-      manaCost: 30,
+      manaCost: 20,
     },
-    // {
-    //   name: "Immolate",
-    //   school: `Adept Evocation`,
-    //   image: "",
-    //   spellTarget: "ENEMY",
-    //   spellType: "HIT",
-    //   damageType: DAMAGE_TYPES.FIRE,
-    //   baseDamage: 30,
-    //   manaCost: 10,
-    // },
     {
       name: "Storm Sphere",
       school: `Adept Evocation`,
@@ -117,7 +107,7 @@ const SPELLS = {
       spellType: "HIT",
       damageType: DAMAGE_TYPES.FIRE,
       baseDamage: 16,
-      manaCost: 10,
+      manaCost: 40,
     },
   ],
   // =======================================
@@ -146,7 +136,7 @@ const SPELLS = {
           },
         },
       },
-      manaCost: 10,
+      manaCost: 8,
     },
     {
       name: "Barrier",
@@ -163,11 +153,9 @@ const SPELLS = {
         description:
           "The next instance of damage received by the target will be halved.",
         effect: ["Damage -50%"],
-        // durationType: "ROOM",
-        // duration: 3,
         stats: {},
       },
-      manaCost: 10,
+      manaCost: 8,
     },
     {
       name: "Boundless",
@@ -187,7 +175,7 @@ const SPELLS = {
         duration: 3,
         stats: {},
       },
-      manaCost: 10,
+      manaCost: 8,
     },
     {
       name: "Death Ward",
@@ -204,11 +192,9 @@ const SPELLS = {
         description:
           "If the target takes damage and would fall to 0HP, it instead retains 1HP and the spell ends.",
         effect: [""],
-        // durationType: "INDEFINITE",
-        // duration: 3,
         stats: {},
       },
-      manaCost: 10,
+      manaCost: 12,
     },
     {
       name: "Dispel Magic",
@@ -238,7 +224,7 @@ const SPELLS = {
         duration: 3,
         stats: {},
       },
-      manaCost: 10,
+      manaCost: 15,
     },
     {
       name: "Stone Skin",
@@ -262,7 +248,7 @@ const SPELLS = {
           },
         },
       },
-      manaCost: 10,
+      manaCost: 16,
     },
     {
       name: "Shell",
@@ -283,7 +269,7 @@ const SPELLS = {
         duration: 3,
         stats: {},
       },
-      manaCost: 10,
+      manaCost: 24,
     },
     {
       name: "Steel Skin",
@@ -307,7 +293,7 @@ const SPELLS = {
           },
         },
       },
-      manaCost: 10,
+      manaCost: 24,
     },
     {
       name: "Invulnerability",
@@ -327,7 +313,7 @@ const SPELLS = {
         duration: 3,
         stats: {},
       },
-      manaCost: 10,
+      manaCost: 36,
     },
   ],
   // =======================================
@@ -347,12 +333,12 @@ const SPELLS = {
         display: true,
         image: "src/assets/images/spellbook/conjuration/conjure-weapon.jpg",
         description: "The target has equipped a conjured magical weapon.",
-        effect: ["+2 Attack"],
+        effect: ["+4 Attack"],
         durationType: "ROOM",
         duration: 3,
         stats: {
           strength: {
-            attack: +2,
+            attack: +4,
           },
         },
       },
@@ -381,7 +367,7 @@ const SPELLS = {
           },
         },
       },
-      manaCost: 10,
+      manaCost: 12,
     },
     {
       name: "Conjure Feast",
@@ -405,7 +391,7 @@ const SPELLS = {
           },
         },
       },
-      manaCost: 10,
+      manaCost: 12,
     },
     {
       name: "Conjure Key",
@@ -415,7 +401,7 @@ const SPELLS = {
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "ITEM",
-      manaCost: 10,
+      manaCost: 15,
     },
 
     {
@@ -441,7 +427,7 @@ const SPELLS = {
           },
         },
       },
-      manaCost: 10,
+      manaCost: 24,
     },
     {
       name: "Summon Drake",
@@ -466,7 +452,7 @@ const SPELLS = {
           },
         },
       },
-      manaCost: 10,
+      manaCost: 36,
     },
     {
       name: "Summon Golem",
@@ -491,7 +477,7 @@ const SPELLS = {
           },
         },
       },
-      manaCost: 10,
+      manaCost: 36,
     },
     {
       name: "Conjure Portal",
@@ -501,7 +487,7 @@ const SPELLS = {
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "SUMMON",
-      manaCost: 10,
+      manaCost: 36,
     },
     {
       name: "Summon Hero",
@@ -511,7 +497,7 @@ const SPELLS = {
       castTime: "BEFORE COMBAT",
       spellTarget: "CONJURE",
       spellType: "SUMMON",
-      manaCost: 10,
+      manaCost: 50,
     },
   ],
   // =======================================
@@ -524,7 +510,7 @@ const SPELLS = {
       spellTarget: "ALLY",
       spellType: "HEAL",
       healValue: 10,
-      manaCost: 10,
+      manaCost: 12,
     },
   ],
 };
