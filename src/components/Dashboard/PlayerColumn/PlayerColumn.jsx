@@ -116,21 +116,23 @@ export default function PlayerColumn() {
 }
 
 function setNextLevel(totalMasteryPoints) {
-  if (totalMasteryPoints <= 1) {
-    return { prevLevel: 1, nextLevel: 2 };
-  } else if (totalMasteryPoints <= 3) {
-    return { prevLevel: 2, nextLevel: 3 };
-  } else if (totalMasteryPoints <= 6) {
-    return { prevLevel: 3, nextLevel: 6 };
-  } else if (totalMasteryPoints <= 11) {
-    return { prevLevel: 6, nextLevel: 11 };
-  } else if (totalMasteryPoints <= 17) {
-    return { prevLevel: 11, nextLevel: 17 };
-  } else if (totalMasteryPoints <= 24) {
-    return { prevLevel: 17, nextLevel: 24 };
-  } else if (totalMasteryPoints <= 32) {
-    return { prevLevel: 24, nextLevel: 32 };
-  } else if (totalMasteryPoints <= 48) {
+  if (totalMasteryPoints >= 48) {
+    return { prevLevel: 48, nextLevel: 48 };
+  } else if (totalMasteryPoints >= 32) {
     return { prevLevel: 32, nextLevel: 48 };
+  } else if (totalMasteryPoints >= 24) {
+    return { prevLevel: 24, nextLevel: 32 };
+  } else if (totalMasteryPoints >= 17) {
+    return { prevLevel: 17, nextLevel: 24 };
+  } else if (totalMasteryPoints >= 11) {
+    return { prevLevel: 11, nextLevel: 17 };
+  } else if (totalMasteryPoints >= 6) {
+    return { prevLevel: 6, nextLevel: 11 };
+  } else if (totalMasteryPoints >= 3) {
+    return { prevLevel: 3, nextLevel: 6 };
+  } else if (totalMasteryPoints >= 2) {
+    return { prevLevel: 2, nextLevel: 3 };
+  } else if (totalMasteryPoints > 1) {
+    return { prevLevel: 1, nextLevel: 2 };
   }
 }

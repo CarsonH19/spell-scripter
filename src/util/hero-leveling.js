@@ -1,6 +1,5 @@
 import { heroActions } from "../store/hero-slice";
 import { combatActions } from "../store/combat-slice";
-import store from "../store/index";
 export function handleLevelUpHero(dispatch, name, map) {
   // Level up the hero in the combat & hero slice
   dispatch(combatActions.levelUpHero({ name, map }));

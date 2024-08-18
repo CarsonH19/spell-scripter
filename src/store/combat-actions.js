@@ -50,7 +50,7 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
   console.log("DUNGEON", dungeon);
 
   // START OF THE ROUND
-  handleCallTiming(dispatch, "START_OF_ROUND");
+  await handleCallTiming(dispatch, "START_OF_ROUND");
 
   // Iterate through the initiative order simulating a round of combat.
   for (let i = 0; i < order.length; i++) {

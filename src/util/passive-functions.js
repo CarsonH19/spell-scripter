@@ -15,7 +15,7 @@ const passiveFunctions = {
       image: "src/assets/images/status-effect/radiant-aura.jpg",
       type: "DEBUFF",
       description: "The undead is weakened in the presence of Siggurd.",
-      effect: ["Defense -1"],
+      effect: ["-1 Defense"],
       // durationType: "INDEFINITE",
       // duration: 3,
       stats: { agility: { maxHealth: -1 } },
