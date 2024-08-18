@@ -92,9 +92,10 @@ export default function CodeEditor({ code }) {
           onMount={onMount}
           value={value}
           onChange={(value) => setValue(value)}
-          options={{
-            readOnly: true, // Makes the editor content non-editable
-          }}
+          // options={{
+          //   readOnly: true,
+           // Makes the editor content non-editable
+          // }}
         />
         {!isQTE && <Output output={output} isError={isError} />}
       </div>

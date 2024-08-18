@@ -56,7 +56,7 @@ const tomeSlice = createSlice({
     },
     {
       name: "Variables",
-      unlocked: false,
+      unlocked: true,
       mastered: false,
       questions: [
         { id: "q1", answered: false },
@@ -73,7 +73,7 @@ const tomeSlice = createSlice({
     },
     {
       name: "Data Types",
-      unlocked: false,
+      unlocked: true,
       mastered: false,
       questions: [
         { id: "q1", answered: false },
@@ -89,8 +89,18 @@ const tomeSlice = createSlice({
       ],
     },
     {
+      name: "Arithmetic Operators",
+      unlocked: true,
+      mastered: false,
+      questions: [
+        { id: "q1", answered: false },
+        { id: "q2", answered: false },
+        { id: "q3", answered: false },
+      ],
+    },
+    {
       name: "Assignment Operators",
-      unlocked: false,
+      unlocked: true,
       mastered: false,
       questions: [
         { id: "q1", answered: false },
@@ -100,7 +110,7 @@ const tomeSlice = createSlice({
     },
     {
       name: "Strings",
-      unlocked: false,
+      unlocked: true,
       mastered: false,
       questions: [
         { id: "q1", answered: false },
@@ -110,7 +120,7 @@ const tomeSlice = createSlice({
     },
     {
       name: "Template Literals",
-      unlocked: false,
+      unlocked: true,
       mastered: false,
       questions: [
         { id: "q1", answered: false },
@@ -120,7 +130,7 @@ const tomeSlice = createSlice({
     },
     {
       name: "String Concatenation",
-      unlocked: false,
+      unlocked: true,
       mastered: false,
       questions: [
         { id: "q1", answered: false },

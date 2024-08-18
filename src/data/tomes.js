@@ -98,7 +98,7 @@ export const TOMES = [
       {
         page: 10,
         type: "SUMMARY",
-        title: `Let's review what you've just learned:`,
+        title: `Let's review this tome:`,
         listItems: [
           `the console is part of the web browser and allows you to log messages, run JavaScript code, and see errors and warnings`,
           `console.log() is used to display a text to the console`,
@@ -158,7 +158,7 @@ export const TOMES = [
       {
         page: 5,
         type: "SUMMARY",
-        title: `Let's review what you've just learned:`,
+        title: `Let's review this tome:`,
         listItems: [
           `comments are used to explain the code to other developers.`,
           `single-line comments start with //`,
@@ -259,7 +259,7 @@ export const TOMES = [
       {
         page: 11,
         type: "SUMMARY",
-        title: `Let's review what you've just learned:`,
+        title: `Let's review this tome:`,
         listItems: [
           `Calculations can be done directly in the console.log() function`,
           `Multiplication and division have higher precedence than addition and subtraction have`,
@@ -395,7 +395,7 @@ export const TOMES = [
       {
         page: 13,
         type: "SUMMARY",
-        title: `Let's review what you've just learned:`,
+        title: `Let's review this tome:`,
         listItems: [
           `variables are containers for storing values`,
           `variables can be created with the let keyword and can change their values`,
@@ -485,9 +485,9 @@ export const TOMES = [
       {
         page: 10,
         type: "SUMMARY",
-        title: `Let's review what you've just learned:`,
+        title: `Let's review this tome:`,
         listItems: [
-          `the term data type refers to the types of values a program can work with.`,
+          `the term data type refers to the types of values a program can work with`,
           `everything in quotes is a string, even numbers`,
           `both whole numbers and decimals in JavaScript belong to the one number data type`,
           `boolean data type is used to only have one of two values: true or false`,
@@ -496,38 +496,489 @@ export const TOMES = [
     ],
   },
   // =================================================
-  //                     COMMENTS
+  //                ARITHMETIC OPERATORS
   // =================================================
   {
-    name: "Operators",
-    lesson: [],
+    name: "Arithmetic Operators",
+    lesson: [
+      {
+        page: 1,
+        type: "INFO",
+        title: "Arithmetic Operations",
+        text: [
+          `Let's review some simple mathematical operations from previous tomes.`,
+        ],
+        code: `let x = 8;\nlet y = 3;\nconsole.log(x+y); //addition\nconsole.log(x-y); //subtraction\nconsole.log(x*y); //multiplication\nconsole.log(x/y); //division`,
+      },
+      {
+        page: 2,
+        type: "QUESTION",
+        question: `What is the output of the following code?`,
+        js: [`let x = 5`, `let y = 3`, `console.log(x + y)`],
+        answers: [`8`, `12`, `4`, `10`],
+      },
+      {
+        page: 3,
+        type: "INFO",
+        title: "Exponentiation",
+        text: [
+          `Two asterisks ** are used to raise a number to the power of another, which is called exponentiation.`,
+        ],
+        code: `let x = 2;\nlet y = 5\nconsole.log(x**y);`,
+      },
+      {
+        page: 4,
+        type: "QUESTION",
+        question: `How would you raise 5 to the 3rd power?`,
+        answers: [`console.log(5**3)`, `console.log(5*3)`, `console.log(5(3))`],
+      },
+      {
+        page: 5,
+        type: "INFO",
+        title: "Exponentiation",
+        text: [
+          `You can also use decimals in exponentiation.`,
+          `The following code will result in the square root (√) of 9:`,
+        ],
+        code: `let x = 9;\nlet y = 0.5;\nconsole.log(x**y);`,
+      },
+      {
+        page: 6,
+        type: "INFO",
+        title: "Remainder",
+        text: [
+          `Let's imagine you want to equally distribute 100 balls in boxes. Each box contains only 3 balls. How many balls will be left over?`,
+          `In other words, we need to calculate the remainder of 100 divided by 3, which is done using the modulo operator %.`,
+        ],
+        code: `let balls = 100;\nlet boxes = 3;\nconsole.log(balls % boxes);`,
+      },
+      {
+        page: 7,
+        type: "INFO",
+        title: "Increment",
+        text: [
+          `Sometimes we need to repeatedly add 1 to a variable. For example, when counting attempts in a game, or the number of clicks on a web page.`,
+          `This can be done using the increment operator ++.`,
+        ],
+        code: `let count = 0;\ncount++;\nconsole.log(count);`,
+      },
+      {
+        page: 8,
+        type: "QUESTION",
+        question: `What does incrementing a value using the ++ operator do?`,
+        answers: [
+          `It adds 1 to the value.`,
+          `It does not change the value.`,
+          `It subtracts 1 from the value.`,
+          `It assigns 1 to the value.`,
+        ],
+      },
+      {
+        page: 9,
+        type: "INFO",
+        title: "Decrement",
+        text: [
+          `Similarly, the decrement operator -- can be used to subtract 1 from a variable.`,
+          `Remember that these operations can only be applied to variables, and applying this operation to numerical values will return an error.`,
+        ],
+        code: `let score = 100;\nscore--;\nscore--;\nconsole.log(score);\n\n50-- // This will result in an error because it is not a variable.;`,
+      },
+      {
+        page: 10,
+        type: "QUESTION",
+        question: `What is the output of this code?`,
+        js: [
+          `let attempts = 10;`,
+          `attempts--;`,
+          `attempts++;`,
+          `console.log(attempts);`,
+        ],
+        answers: [`10`, `9`, `11`],
+      },
+      {
+        page: 11,
+        type: "INFO",
+        title: "Postfix & Prefix",
+        text: [
+          `The ++ or -- can be applied both before and after the variable. However, they are not the same.`,
+          `The postfix form returns the original value of the variable, and only then increments/decrements it.`,
+        ],
+        code: `let x = 5;\nconsole.log(x++);\nconsole.log(x);\n`,
+      },
+      {
+        page: 12,
+        type: "QUESTION",
+        question: `What is the output of this code?`,
+        js: [`let x = 10;`, `console.log(x--);`],
+        answers: [`10`, `9`, `8`],
+      },
+      {
+        page: 13,
+        type: "INFO",
+        title: "Postfix & Prefix",
+        text: [
+          `The prefix form increments/decrements the value, and only then returns it.`,
+          `So, the incremented value will be outputted.`,
+        ],
+        code: `let x = 5;\nconsole.log(++x);`,
+      },
+      {
+        page: 14,
+        type: "QUESTION",
+        question: `What is the output of this code?`,
+        js: [`let x = 10;`, `console.log(--x);`],
+        answers: [`9`, `10`, `8`],
+      },
+      {
+        page: 15,
+        type: "SUMMARY",
+        title: `Let's review this tome:`,
+        listItems: [
+          `two asterisks ** are used for exponentiation`,
+          `modulo operator % is used to calculate the remainder of a division`,
+          `you can use ++/-- operators to increment/decrement the value of a variable`,
+          `increment and decrement operators can be used only with variables`,
+        ],
+      },
+    ],
   },
   // =================================================
   //              ASSIGNMENT OPERATORS
   // =================================================
   {
     name: "Assignment Operators",
-    lesson: [],
+    lesson: [
+      {
+        page: 1,
+        type: "INFO",
+        title: "Assigning Values",
+        text: [
+          `Assignment operators assign values to variables.`,
+          `You already know one of them: when initializing a variable we use the = assignment operator to assign a value to it.`,
+        ],
+        code: `let health = 5;`,
+      },
+      {
+        page: 2,
+        type: "QUESTION",
+        question: `Which one is an assignment operator?`,
+        answers: [`=`, `-`, `*`, `@`],
+      },
+      {
+        page: 3,
+        type: "INFO",
+        title: "Commas & Variables",
+        text: [
+          `You can create different variables on the same line, separating them with commas.`,
+        ],
+        code: `let x = 5, y = 6, z = 8;\nconsole.log(x);\nconsole.log(y);\nconsole.log(z);`,
+      },
+      {
+        page: 4,
+        type: "INFO",
+        title: "Example",
+        text: [
+          `Let's imagine you are creating a coin collector game. The game starts with a score of 100, and when the player collects a coin the score increases by 10.`,
+          `In this case, you will write the following code.`,
+        ],
+        code: `let score = 100;\nscore = score + 10;`,
+      },
+      {
+        page: 5,
+        type: "INFO",
+        title: "Addition Assignment",
+        text: [
+          `But there is an easier way.`,
+          `JavaScript lets you write the code score = score + 10 more concisely, using the += operator.`,
+          `This operator is called addition assignment operator.`,
+        ],
+        code: `let score = 100;\nscore+=10;\nconsole.log(score);`,
+      },
+      {
+        page: 6,
+        type: "QUESTION",
+        question: `Fill in the blank to increase the value of variable "damage" by using the addition assignment operator.`,
+        js: [`let damage = 5;`, `damage __ 3;`],
+        answers: [`+=`, `-=`, `++`, `=`],
+      },
+      {
+        page: 7,
+        type: "INFO",
+        title: "Assignment Operators",
+        text: [`This pattern can be followed for other arithmetic operators.`],
+        code: `let x = 15;\n\nx+=5; // x = x+5;\nconsole.log(x);\nx-=5; // x = x-5;\nconsole.log(x);\n\nx*=5; // x = x*5;\nconsole.log(x);\n\nx/=5; // x = x/5;\nconsole.log(x);\n\nx%=5; // x = x%5;\nconsole.log(x);`,
+      },
+      {
+        page: 8,
+        type: "QUESTION",
+        question: `What is the output of the following code?`,
+        js: [`let x = 8;`, `x++;`, `x /= 3;`, `console.log(x);`],
+        answers: [`3`, `2`, `6`, `12`],
+      },
+      {
+        page: 9,
+        type: "INFO",
+        title: "Assignment Operators & Variables",
+        text: [`You can perform the same operations with two variables.`],
+        code: `let price = 50;\nlet rate = 1.2;\nprice*=rate; // price = price*rate;\n\nconsole.log(price);`,
+      },
+      {
+        page: 10,
+        type: "QUESTION",
+        question: `What is the shorthand for the following code?`,
+        js: [`x = x*y;`],
+        answers: [`x *= y;`, `x =* y;`, `x * y;`],
+      },
+      {
+        page: 11,
+        type: "SUMMARY",
+        title: `Let's review this tome:`,
+        listItems: [
+          `we use the assignment operator = to assign a value to a variable`,
+          `you can shorthand codes like x=x+5 with x+=5, and similar logic for all the other mathematical operations`,
+        ],
+      },
+    ],
   },
   // =================================================
   //                 STRINGS
   // =================================================
   {
     name: "Strings",
-    lesson: [],
+    lesson: [
+      {
+        page: 1,
+        type: "INFO",
+        title: "Strings Review",
+        text: [
+          `Strings were briefly covered in the previous tomes, but now it's time to dig deeper.`,
+          `Remember, we can create a string by entering text between two single or double quotation marks.`,
+        ],
+        code: `let spell = "Chain Lightning";\nlet spell2 = 'Fireball';\n\nconsole.log(spell);\nconsole.log(spell2);`,
+      },
+      {
+        page: 2,
+        type: "QUESTION",
+        question: `Which of the following represents a string?`,
+        answers: [
+          `"Health Potion"`,
+          `"Mana Potion'`,
+          `'Cryptbread"`,
+          `*Marrowstone Cheese*`,
+        ],
+      },
+      {
+        page: 3,
+        type: "INFO",
+        title: "Quotes Inside Strings",
+        text: [
+          `You can use quotes inside the strings, just make sure that they are different from the enclosing ones.`,
+        ],
+        code: `console.log("I'm Casting Blizzard");\nconsole.log('"Take that!"');`,
+      },
+      {
+        page: 4,
+        type: "QUESTION",
+        question: `Fill in the blank to output text with quotations surrounding it.`,
+        js: [`"That's easy!_`],
+        answers: [`"`, `'`, `*`],
+      },
+      {
+        page: 5,
+        type: "INFO",
+        title: "Escape Character",
+        text: [
+          `In JavaScript, the backslash \ is a special character, called the escape character.`,
+          `It is used to represent certain things in a string, such as new lines, tabs, and other useful things.`,
+          `But, don't confuse it with the division operator /.`,
+        ],
+        code: `\\ //I'm a backslash!`,
+      },
+      {
+        page: 6,
+        type: "QUESTION",
+        question: `Which of the following is the escape character?`,
+        answers: [`\\`, `/`, `{`, `%`],
+      },
+      {
+        page: 7,
+        type: "INFO",
+        title: "Escape Character",
+        text: [
+          `If you want to include a quote in a string, you need to escape it using a backslash. In this case, you don't need to use different enclosing quotes.`,
+        ],
+        code: `console.log('I\\'m happy');\nconsole.log("She said \\"Yes!\\"");\n`,
+      },
+      {
+        page: 8,
+        type: "QUESTION",
+        question: `Fill in the blank to output a string containing a single quote.`,
+        js: [`console.log('Dont_t give up!')`],
+        answers: [`\\'`, `/'`, `|'`],
+      },
+      {
+        page: 9,
+        type: "INFO",
+        title: "Newlines",
+        text: [
+          `The backslash is also used to create new lines in text.`,
+          `To create a new line we use '\\n'.`,
+        ],
+        code: `console.log("One \\nTwo \\nThree");`,
+      },
+      {
+        page: 10,
+        type: "QUESTION",
+        question: `Which of the following results in exactly 2 lines?`,
+        js: [`console.log('Dont_t give up!')`],
+        answers: [`Title \\nDescription'`, `1 2 3`, `One \\n Two \\n Three`],
+      },
+      {
+        page: 11,
+        type: "SUMMARY",
+        title: `Let's review this tome:`,
+        listItems: [
+          `you can include a quote in a string if it's different from the ones that enclose it`,
+          `as an alternative, you can escape it using the backslash \\`,
+        ],
+      },
+    ],
   },
   // =================================================
   //              TEMPLATE LITERALS
   // =================================================
   {
     name: "Template Literals",
-    lesson: [],
+    lesson: [
+      {
+        page: 1,
+        type: "INFO",
+        title: "Creating Strings",
+        text: [
+          `Template literals are another way to create strings and work with them more flexibly.`,
+          `They use back-ticks \`\` rather than quotes \"\" to define a string `,
+        ],
+        code: `let string = \`Hello, hero!\`;\nconsole.log(string);`,
+      },
+      {
+        page: 2,
+        type: "QUESTION",
+        question: `Which of the following is a template literal?`,
+        answers: [`\`Evocation\``, `"Abjuration"`, `'Conjuration'`],
+      },
+      {
+        page: 3,
+        type: "INFO",
+        title: "No Escaping",
+        text: [
+          `With template literals, you can use both single and double quotes inside a string.`,
+          `You don't need to escape the quotes inside template literals.`,
+        ],
+        code: `console.log(\`I'm happy, she said "Yes"!\`);`,
+      },
+      {
+        page: 4,
+        type: "INFO",
+        title: "Multiline Strings",
+        text: [`Template literals allow multiline strings, without using \\n:`],
+        code: `let msg = \`Hey! Are you going to a dungeon?\nIsn't it spooky?\`;\n\nconsole.log(msg);`,
+      },
+      {
+        page: 5,
+        type: "INFO",
+        title: "Variables Inside Strings",
+        text: [
+          `Further, template literals allow you to use variables inside the strings. You just need to add a dollar sign $ and enclose the variable name in braces {}.`,
+        ],
+        code: `let hero = "Siggurd";\nlet text = \`Welcome, \$\{name}\`;\nconsole.log(text);`,
+      },
+      {
+        page: 6,
+        type: "SUMMARY",
+        title: `Let's review this tome:`,
+        listItems: [
+          `template literals are created using back-ticks \`\``,
+          `quotes don't need to be escaped (\\) in template literals`,
+          `template literals allow multiline strings, without using \\n`,
+          `you can use variables inside the string by adding a dollar sign $ and enclosing the variable name in braces {}`,
+        ],
+      },
+    ],
   },
   // =================================================
   //             STRING CONCANTENATION
   // =================================================
   {
     name: "String Concatenation",
-    lesson: [],
+    lesson: [
+      {
+        page: 1,
+        type: "INFO",
+        title: "Concatenation",
+        text: [
+          `Not only can we add numbers, but we can also add strings, using something called concatenation, to combine two or more strings together.`,
+          `Below, you can see the addition operator + is used for concatenation.`,
+        ],
+        code: `console.log("Java" + 'Script');`,
+      },
+      {
+        page: 2,
+        type: "QUESTION",
+        question: `What is the output of the following code?`,
+        js: ['console.log("Fire" + "ball")'],
+        answers: [`Fireball`, `Fire+ball`, `error`],
+      },
+      {
+        page: 3,
+        type: "INFO",
+        title: "Concatenation",
+        text: [
+          `Strings containing numbers are still added as strings rather than numbers.`,
+        ],
+        code: `console.log("2" + "2");`,
+      },
+      {
+        page: 3,
+        type: "QUESTION",
+        question: `What is the output of the following code?`,
+        js: ['console.log("2" + "5"'],
+        answers: [`25`, `2+5`, `7`, `error`],
+      },
+      {
+        page: 4,
+        type: "INFO",
+        title: "Concatenation",
+        text: [`You can perform concatenation with variables as well.`],
+        code: `let x = "Java";\nlet y = "Script";\nlet z = x +y; //"Java" + "Script"\nconsole.log(z);`,
+      },
+      {
+        page: 5,
+        type: "QUESTION",
+        question: `What is the output of the following code?`,
+        js: [
+          `let damage = "8"`,
+          `let mana = "10"`,
+          `console.log(damage + mana)`,
+        ],
+        answers: [`810`, `18`, `2`, `damagemana`],
+      },
+      {
+        page: 6,
+        type: "INFO",
+        title: "Concatenation",
+        text: [`If you are making a sentence, don't forget about the spaces.`],
+        code: `console.log("Spell " + "Scripter");`,
+      },
+      {
+        page: 4,
+        type: "SUMMARY",
+        title: `Let's review this tome:`,
+        listItems: [
+          `you can join two or more strings into another using the + operator, that's called concatenation`,
+          `you can perform concatenation using variables with string data`,
+          `don't forget about the spaces when making a sentence using concatenation`,
+        ],
+      },
+    ],
   },
 ];
