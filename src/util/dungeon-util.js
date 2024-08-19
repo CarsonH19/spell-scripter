@@ -134,7 +134,7 @@ function getRoomContent() {
   switch (dungeon.name) {
     case "The Great Catacomb":
       // Event chance for general dungeon is 20%
-      if (eventChance > 0) {
+      if (eventChance > 80) {
         content = "EVENT";
       } else {
         content = "ENEMIES";
@@ -198,14 +198,14 @@ function getRoomEvent() {
         // events.push(TRAPS.ROTATING_BLADES);
         // events.push(TRAPS.SPIKE_WALLS);
 
-        // if (dungeon.threat < 20) {
-        //   events.push(GRAVESTONE);
-        // }
-        // if (dungeon.threat < 20) {
-        //   events.push(AMBUSH);
-        // }
-        // events.push(COFFIN);
-        // events.push(BONEVAULT);
+        if (dungeon.threat < 20) {
+          events.push(GRAVESTONE);
+        }
+        if (dungeon.threat < 20) {
+          events.push(AMBUSH);
+        }
+        events.push(COFFIN);
+        events.push(BONEVAULT);
 
         // // Check if Siggurd is unlocked
         if (!siggurd.unlocked) {
