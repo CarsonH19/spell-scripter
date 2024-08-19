@@ -27,11 +27,7 @@ export default async function castSpell(dispatch, spell) {
 
   openModal(dispatch, "quickTimeEventModal");
 
-  console.log("AWAITING QTE");
-
   const getQuickTimeEventResult = await getResult();
-
-  console.log("QTE RESULT");
 
   // Set isCharacterTurn to null to remove spell list
   dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
@@ -228,7 +224,6 @@ export default async function castSpell(dispatch, spell) {
 
           dispatch(combatActions.addCharacter({ character: summon }));
           changeStatusEffect(dispatch, summon, "ADD", spell.statusEffect);
-          console.log(spell.statusEffect);
           updateStatTotals(dispatch, summon.id);
           dispatch(
             combatActions.updateHealth({
@@ -250,7 +245,6 @@ export default async function castSpell(dispatch, spell) {
   }
 
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
-  console.log("CAST SPELL FINISHED");
 }
 
 // =============================================================

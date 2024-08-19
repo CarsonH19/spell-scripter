@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import classes from "./Dashboard.module.css";
@@ -9,25 +9,24 @@ import DungeonColumn from "./DungeonColumn/DungeonColumn";
 import PlayerColumn from "./PlayerColumn/PlayerColumn";
 import TomeColumn from "./TomeColumn/TomeColumn";
 import { playerActions } from "../../store/player-slice";
-import { uiActions } from "../../store/ui-slice";
 import { openModal } from "../../store/ui-actions";
 
-export default function Dashboard() {
+const Dashboard = memo(() => {
   const dispatch = useDispatch();
-  const tomeSlice = useSelector((state) => state.tome);
-  const playerLevel = useSelector((state) => state.player.level);
-  const isModalOpen = useSelector((state) => state.ui.modalIsVisible);
+  const tome = useSelector((state) => state.tome);
+  const level = useSelector((state) => state.player.level);
 
+  console.log("DASHBOARD RENDERED");
   useEffect(() => {
-    dispatch(playerActions.checkForLevelUp({ tomeSlice }));
-  }, [dispatch, tomeSlice]);
+    dispatch(playerActions.checkForLevelUp({ tome }));
+  }, [dispatch, tome]);
 
   useEffect(() => {
     const currentLevel = store.getState().player.level;
-    if (playerLevel !== currentLevel && !isModalOpen) {
+    if (level !== currentLevel && !store.getState().ui.modalIsVisible) {
       openModal(dispatch, "attributeModal");
     }
-  }, [dispatch, playerLevel]);
+  }, [dispatch, level]);
 
   return (
     <div className={classes.dashboard}>
@@ -36,4 +35,6 @@ export default function Dashboard() {
       <DungeonColumn />
     </div>
   );
-}
+});
+
+export default Dashboard;

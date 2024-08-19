@@ -6,7 +6,7 @@ import BottomContent from "./BottomContent/BottomContent";
 import MiddleContent from "./MiddleContent/MiddleContent";
 import TopContent from "./TopContent/TopContent";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { startCombat } from "../../store/combat-actions";
@@ -19,20 +19,22 @@ import { dungeonActions } from "../../store/dungeon-slice";
 import eventFunctions from "../../util/event-functions";
 import playSoundEffect from "../../util/audio-util";
 
-export default function GameWindow() {
+const GameWindow = memo(() => {
   const [showBottom, setShowBottom] = useState(true);
   const dispatch = useDispatch();
-  const dungeon = useSelector((state) => state.dungeon);
+  const { roomCounter, image } = useSelector((state) => state.dungeon);
+
+  console.log("GAMEWINDOW RENDERED");
 
   useEffect(() => {
     handleGameFlow(dispatch, setShowBottom);
-  }, [dungeon.roomCounter]);
+  }, [roomCounter]);
 
   return (
     <div
       className={classes.window}
       style={{
-        backgroundImage: `url(${dungeon.image}.jpg)`,
+        backgroundImage: `url(${image}.jpg)`,
       }}
     >
       <TopContent />
@@ -41,7 +43,9 @@ export default function GameWindow() {
       {showBottom && <Buttons />}
     </div>
   );
-}
+});
+
+export default GameWindow;
 
 async function handleGameFlow(dispatch, setShowBottom) {
   const dungeon = store.getState().dungeon;
@@ -52,12 +56,6 @@ async function handleGameFlow(dispatch, setShowBottom) {
     setShowBottom(false);
     await locationNarration(dispatch, dungeon.name);
   }
-
-  // Narrate path name on entrance / LOGIC MOVED TO PATH_ENTRANCE event-function
-  // if (dungeon.path && dungeon.pathCounter === 9) {
-  //   setShowBottom(false);
-  //   await locationNarration(dispatch, dungeon.path);
-  // }
 
   setShowBottom(true);
 

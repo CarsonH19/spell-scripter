@@ -12,7 +12,6 @@ export default function TopContent() {
         <InitiativeTracker />
         <Threat />
       </div>
-      {/*  TOP-FULL-BOTTOM CONTENT - Boss HP Bar  */}
     </div>
   );
 }

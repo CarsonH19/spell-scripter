@@ -1,46 +1,71 @@
-import { useState } from "react";
-import classes from "./SpellbookModal.module.css";
-
-import Skill from "./Skill";
-import School from "./School";
-
+import { useState, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { spellbookActions } from "../../../store/spellbook-slice";
-import { playerActions } from "../../../store/player-slice";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import classes from "./SpellbookModal.module.css";
+import Skill from "./Skill";
+import School from "./School";
+import { spellbookActions } from "../../../store/spellbook-slice";
+import { playerActions } from "../../../store/player-slice";
 import playSoundEffect from "../../../util/audio-util";
 
 export default function SpellbookModal() {
   const [school, setSchool] = useState("evocation");
   const dispatch = useDispatch();
 
-  const spellbook = useSelector((state) => state.spellbook);
-  const pointsExpended = calculateSchoolPoints(spellbook[school]);
+  // Retrieve state
   const player = useSelector((state) => state.player);
+  const spellbook = useSelector((state) => state.spellbook);
 
-  const handleSchoolChange = (name) => {
+  // Calculate pointsExpended using useMemo for performance
+  const pointsExpended = useMemo(
+    () => calculateSchoolPoints(spellbook[school]),
+    [school, spellbook]
+  );
+
+  // Callback to handle school change
+  const handleSchoolChange = useCallback((name) => {
     setSchool(name);
-  };
+  }, []);
 
-  const handleResetButton = (school) => {
+  // Callback to handle reset button
+  const handleResetButton = useCallback(() => {
     playSoundEffect(false, "misc", "shimmerCrysta", 0.3);
-    // Calculate total points expended in skill tree
     const totalPoints = calculateSchoolPoints(spellbook[school]);
-    // Remove points from spellbook-slice
     dispatch(spellbookActions.resetSkillTree({ school, totalPoints }));
-    // Return points to player-slice masteryPoints
     dispatch(
       playerActions.changeMasteryPoints({
         change: "INCREASE",
         quantity: totalPoints,
       })
     );
-    // Remove all spells from player-slice spellList that are from the school reset
     dispatch(playerActions.changeSpellList({ change: "RESET", school }));
-  };
+  }, [dispatch, spellbook, school]);
+
+  // School data
+  const schools = useMemo(
+    () => [
+      { name: "Evocation", levelRequired: 1 },
+      { name: "Abjuration", levelRequired: 2 },
+      { name: "Conjuration", levelRequired: 3 },
+      { name: "Restoration", levelRequired: 4 },
+      { name: "Enchantment", levelRequired: 5 },
+      { name: "Necromancy", levelRequired: 6 },
+    ],
+    []
+  );
+
+  // Expertise levels
+  const expertiseLevels = useMemo(
+    () => [
+      { name: "Expert", threshold: 15, maxPoints: 16 },
+      { name: "Adept", threshold: 8, maxPoints: 15 },
+      { name: "Apprentice", threshold: 3, maxPoints: 8 },
+      { name: "Novice", threshold: 0, maxPoints: 3 },
+    ],
+    []
+  );
+
   return (
     <div className={classes.spellbook}>
       <h1>Spellbook</h1>
@@ -48,58 +73,19 @@ export default function SpellbookModal() {
         <div className={classes.schools}>
           <h3>Schools of Magic</h3>
           <ol>
-            <School
-              text={"Evocation"}
-              active={school === "evocation"}
-              onChangeSchool={() => handleSchoolChange("evocation")}
-            />
-            {player.level >= 2 ? (
-              <School
-                text={"Abjuration"}
-                active={school === "abjuration"}
-                onChangeSchool={() => handleSchoolChange("abjuration")}
-              />
-            ) : (
-              <School text={"?"} />
-            )}
-
-            {player.level >= 3 ? (
-              <School
-                text={"Conjuration"}
-                active={school === "conjuration"}
-                onChangeSchool={() => handleSchoolChange("conjuration")}
-              />
-            ) : (
-              <School text={"?"} />
-            )}
-            {player.level >= 4 ? (
-              <School
-                text={"Restoration"}
-                active={school === "restoration"}
-                onChangeSchool={() => handleSchoolChange("restoration")}
-              />
-            ) : (
-              <School text={"?"} />
-            )}
-            {player.level >= 5 ? (
-              <School
-                text={"Enchantment"}
-                active={school === "enchantment"}
-                onChangeSchool={() => handleSchoolChange("enchantment")}
-              />
-            ) : (
-              <School text={"?"} />
-            )}
-
-            {/* Unlock Necromancy through beating the final boss of The great Catacombs?*/}
-            {player.level >= 6 ? (
-              <School
-                text={"Necromancy"}
-                active={school === "necromancy"}
-                onChangeSchool={() => handleSchoolChange("necromancy")}
-              />
-            ) : (
-              <School text={"?"} />
+            {schools.map((schoolData) =>
+              player.level >= schoolData.levelRequired ? (
+                <School
+                  key={schoolData.name}
+                  text={schoolData.name}
+                  active={school === schoolData.name.toLowerCase()}
+                  onChangeSchool={() =>
+                    handleSchoolChange(schoolData.name.toLowerCase())
+                  }
+                />
+              ) : (
+                <School key={schoolData.name} text={"?"} />
+              )
             )}
           </ol>
           <div className={classes.header}>
@@ -115,7 +101,7 @@ export default function SpellbookModal() {
               <p>{player.masteryPoints}</p>
             </div>
             <button
-              onClick={() => handleResetButton(school)}
+              onClick={handleResetButton}
               style={
                 pointsExpended === 0
                   ? { opacity: 0.6, pointerEvents: "none" }
@@ -128,105 +114,38 @@ export default function SpellbookModal() {
         </div>
 
         <div className={classes["skill-tree"]}>
-          <div
-            className={`${classes.expertise} ${
-              pointsExpended >= 15 ? "" : classes.closed
-            }`}
-          >
-            {pointsExpended >= 15 && <h3>Expert</h3>}
-            {pointsExpended >= 15 && <h4>{pointsExpended} / 16</h4>}
-            <ul>
-              {spellbook[school].expert.map((skill) => {
-                const activeExpertise =
-                  skill.points < skill.max && pointsExpended >= 15;
+          {expertiseLevels.map((level) => (
+            <div
+              key={level.name}
+              className={`${classes.expertise} ${
+                pointsExpended >= level.threshold ? "" : classes.closed
+              }`}
+            >
+              {pointsExpended >= level.threshold && <h3>{level.name}</h3>}
+              {pointsExpended >= level.threshold && (
+                <h4>
+                  {pointsExpended} / {level.maxPoints}
+                </h4>
+              )}
+              <ul>
+                {spellbook[school][level.name.toLowerCase()].map((skill) => {
+                  const activeExpertise =
+                    skill.points < skill.max &&
+                    pointsExpended >= level.threshold &&
+                    pointsExpended < level.maxPoints;
 
-                return (
-                  <Skill
-                    key={skill.name}
-                    skill={skill}
-                    school={school}
-                    activeExpertise={activeExpertise}
-                  />
-                );
-              })}
-            </ul>
-          </div>
-
-          <div
-            className={`${classes.expertise} ${
-              pointsExpended >= 8 ? "" : classes.closed
-            }`}
-          >
-            {pointsExpended >= 8 && pointsExpended < 15 && <h3>Adept</h3>}
-            {pointsExpended >= 8 && pointsExpended < 15 && (
-              <h4>{pointsExpended} / 15</h4>
-            )}
-            <ul>
-              {spellbook[school].adept.map((skill) => {
-                const activeExpertise =
-                  skill.points < skill.max &&
-                  pointsExpended >= 8 &&
-                  pointsExpended < 15;
-
-                return (
-                  <Skill
-                    key={skill.name}
-                    skill={skill}
-                    school={school}
-                    activeExpertise={activeExpertise}
-                  />
-                );
-              })}
-            </ul>
-          </div>
-
-          <div
-            className={`${classes.expertise} ${
-              pointsExpended >= 3 ? "" : classes.closed
-            }`}
-          >
-            {pointsExpended >= 3 && pointsExpended < 8 && <h3>Apprentice</h3>}
-            {pointsExpended >= 3 && pointsExpended < 8 && (
-              <h4>{pointsExpended} / 8</h4>
-            )}
-            <ul>
-              {spellbook[school].apprentice.map((skill) => {
-                const activeExpertise =
-                  skill.points < skill.max &&
-                  pointsExpended >= 3 &&
-                  pointsExpended < 8;
-
-                return (
-                  <Skill
-                    key={skill.name}
-                    skill={skill}
-                    school={school}
-                    activeExpertise={activeExpertise}
-                  />
-                );
-              })}
-            </ul>
-          </div>
-
-          <div className={`${classes.expertise}`}>
-            {pointsExpended < 3 && <h3>Novice</h3>}
-            {pointsExpended < 3 && <h4>{pointsExpended} / 3</h4>}
-            <ul>
-              {spellbook[school].novice.map((skill) => {
-                const activeExpertise =
-                  skill.points < skill.max && pointsExpended < 3;
-
-                return (
-                  <Skill
-                    key={skill.name}
-                    skill={skill}
-                    school={school}
-                    activeExpertise={activeExpertise}
-                  />
-                );
-              })}
-            </ul>
-          </div>
+                  return (
+                    <Skill
+                      key={skill.name}
+                      skill={skill}
+                      school={school}
+                      activeExpertise={activeExpertise}
+                    />
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </div>

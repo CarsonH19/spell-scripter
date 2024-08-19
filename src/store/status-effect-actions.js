@@ -213,7 +213,7 @@ export function callStatusEffect(dispatch, target, when) {
 export function checkStatusEffect(dispatch, id, check, type) {
   const order = store.getState().combat.order;
   const index = order.findIndex((char) => char.id === id);
-  if (!index) return;
+  if (index === undefined) return;
   const statusEffects = order[index].statusEffects;
 
   if (!statusEffects) {
@@ -259,12 +259,8 @@ export function checkStatusEffect(dispatch, id, check, type) {
       break;
 
     case "DECREMENT": // Check for duration decrement
-      console.log("DECREMENT");
       for (let i = 0; i < statusEffects.length; i++) {
-        if (
-          statusEffects[i].durationType === type
-        ) {
-          console.log("DECREMENT CALLED");
+        if (statusEffects[i].durationType === type) {
           dispatch(
             combatActions.updateStatusEffectDuration({
               id,

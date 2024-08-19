@@ -325,6 +325,8 @@ const eventFunctions = {
         //   addCharacterToOrder(dispatch, enemies[i]);
         // }
 
+        console.log(enemies);
+
         await delay(2000);
         startCombat(dispatch, enemies);
 

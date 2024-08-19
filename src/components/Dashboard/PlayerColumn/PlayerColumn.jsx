@@ -126,13 +126,13 @@ function setNextLevel(totalMasteryPoints) {
     return { prevLevel: 17, nextLevel: 24 };
   } else if (totalMasteryPoints >= 11) {
     return { prevLevel: 11, nextLevel: 17 };
-  } else if (totalMasteryPoints >= 6) {
+  } else if (totalMasteryPoints >= 7) {
     return { prevLevel: 7, nextLevel: 11 };
-  } else if (totalMasteryPoints >= 3) {
+  } else if (totalMasteryPoints >= 4) {
     return { prevLevel: 4, nextLevel: 7 };
   } else if (totalMasteryPoints >= 2) {
     return { prevLevel: 2, nextLevel: 4 };
-  } else if (totalMasteryPoints >= 1) {
+  } else if (totalMasteryPoints === 1) {
     return { prevLevel: 1, nextLevel: 2 };
   }
 }

@@ -141,9 +141,6 @@ export default function Actions() {
                   container="spell-list-container"
                 >
                   <Icon
-                    className={
-                      playerMana < spellObject.manaCost ? classes.disabled : ""
-                    }
                     key={spellObject.name}
                     onClick={() =>
                       handleSelectChoice(spellObject, "spellListIsVisible")
@@ -151,6 +148,7 @@ export default function Actions() {
                     style={{
                       backgroundImage: `url(${spellObject.image})`,
                       opacity:
+                        playerMana > spellObject.manaCost &&
                         spellObject.spellType !== "SUMMON" &&
                         (spellObject.castTime === search ||
                           spellObject.castTime === "ANYTIME")
@@ -162,6 +160,7 @@ export default function Actions() {
                           ? "1"
                           : "0.6",
                       pointerEvents:
+                        playerMana > spellObject.manaCost &&
                         spellObject.spellType !== "SUMMON" &&
                         (spellObject.castTime === search ||
                           spellObject.castTime === "ANYTIME")

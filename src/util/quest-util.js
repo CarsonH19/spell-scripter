@@ -32,7 +32,6 @@ export default function progressActiveQuests(dispatch, questType) {
           const activeQuest = quests.liheth.find(
             (quest) => quest.unlocked && !quest.finished
           );
-          console.log("LIHETH", activeQuest);
           lihethQuests(dispatch, liheth, activeQuest);
         }
       }
@@ -66,7 +65,6 @@ function lihethQuests(dispatch, lihethObject, activeQuest) {
     case 0:
       {
         if (event && event.name === "Candlelight Shrine") {
-          console.log("LIHETH QUEST PROGRESS");
           activeQuest.progress++;
         }
       }

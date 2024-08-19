@@ -700,7 +700,6 @@ export function playEncounterMusic() {
   if (music) {
     const musicURL = `src/assets/audio/music/${music}.mp3`;
     if (musicURL !== currentMusic._src) {
-      console.log("PLAYING NEW MUSIC");
       playMusic(backgroundMusic[music]);
       playMusic(backgroundMusic[music]);
     }

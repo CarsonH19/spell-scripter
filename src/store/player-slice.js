@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import SPELLS from "../data/spells";
-import CONDITIONS from "../data/conditions";
+import { openModal } from "./ui-actions";
 
 const playerSlice = createSlice({
   name: "player",
@@ -24,7 +24,7 @@ const playerSlice = createSlice({
       death: [true, "fightGrunt"],
     },
     level: 1,
-    masteryPoints: 0,
+    masteryPoints: 18,
     totalMasteryPoints: 1,
     attributePoints: 0,
     currentHealth: 0,
@@ -76,10 +76,10 @@ const playerSlice = createSlice({
     },
     checkForLevelUp(state, action) {
       // Increases mastery & attribute points
-      const { tomeSlice } = action.payload;
+      const { tome } = action.payload;
       let totalMasteryPoints = 1;
-      for (let i = 0; i < tomeSlice.length; i++) {
-        if (tomeSlice[i].mastered) {
+      for (let i = 0; i < tome.length; i++) {
+        if (tome[i].mastered) {
           totalMasteryPoints++;
         }
       }
