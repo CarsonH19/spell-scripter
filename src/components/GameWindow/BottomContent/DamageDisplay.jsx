@@ -23,7 +23,6 @@ const DamageDisplay = memo(({ character }) => {
         .slice()
         .reverse()
         .map((item) => {
-          console.log("Rendering item with id:", item.id); // Debugging line
           return (
             <CSSTransition
               key={item.id}

@@ -92,7 +92,6 @@ export default function RoomSummaryModal() {
         checkStatusEffect(dispatch, order[i].id, "REMOVE");
         // Remove Round & Action durationType status effects
         checkStatusEffect(dispatch, order[i].id, "END");
-
       }
     }
 
@@ -173,8 +172,6 @@ function checkForSummonEnd(dispatch) {
   for (let i = 0; i < order.length; i++) {
     for (let j = 0; j < order[i].statusEffects.length; j++) {
       if (order[i].statusEffects[j].name === "Summon") {
-        console.log(order[i].statusEffects[j].duration);
-
         if (order[i].statusEffects[j].duration <= 1) {
           dispatch(combatActions.removeCharacter({ character: order[i] }));
         }

@@ -46,8 +46,6 @@ export default function Modal() {
     dispatch(uiActions.changeUi({ element: "modalIsVisible", visible: false }));
   };
 
-  console.log(openModal);
-
   return createPortal(
     <div className={classes.modal}>
       {activeModal}
@@ -67,8 +65,6 @@ export default function Modal() {
 function selectModal() {
   const state = store.getState().ui;
   let activeModal = findActiveModal(state);
-
-  console.log("selectModal");
 
   // Passed as a prop to the tomeModal
   const tome = store.getState().ui.tome;
@@ -116,7 +112,6 @@ function selectModal() {
       return <ConfirmationModal />;
 
     case "quickTimeEventModal":
-      console.log("openModal QTE");
       playSoundEffect(false, "misc", "qteStart", 1);
       return <QuickTimeEventModal />;
 

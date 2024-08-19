@@ -48,7 +48,6 @@ export async function exitDungeonTransition(dispatch) {
   // Clear all status effects with a duration
   for (let i = 0; i < player.statusEffects.length; i++) {
     if (player.statusEffects[i].duration) {
-      console.log(player.statusEffects[i]);
       dispatch(
         combatActions.updateStatusEffects({
           id: "Player",
@@ -77,7 +76,6 @@ export async function exitDungeonTransition(dispatch) {
   );
   await delay(3000);
   const newPlayer = store.getState().player;
-  console.log("PLAYER", newPlayer);
 
   playMusic(backgroundMusic.intangibleAscension);
   // Open dashboard

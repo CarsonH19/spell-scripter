@@ -19,7 +19,7 @@ const statusEffectFunctions = {
     for (let i = 0; i < skillPoints; i++) {
       damage += 2;
     }
-    playSoundEffect(false, "statusEffects", "burning")
+    playSoundEffect(false, "statusEffects", "burning");
     changeHealth(dispatch, target, "DAMAGE", damage);
   },
   POISONED: (dispatch, target) => {
@@ -32,21 +32,21 @@ const statusEffectFunctions = {
   },
   HAUNTED: (dispatch) => {
     const dungeon = store.getState().dungeon;
-    if (dungeon.contents.enemies.length < 5) {
-      const chance = Math.random() * 100;
-      if (chance > 50) {
-        // add enemy
-        // Add Siggurd to party
-        const baseStats = constructStats(UNDEAD.SHADOW.stats);
-        let shadow = {
-          ...UNDEAD.SHADOW,
-          id: uuidv4(),
-          stats: baseStats,
-          damageDisplay: [],
-        };
-        dispatch(dungeonActions.addEnemy({ enemy: shadow, change: "ADD" }));
-        // dispatch(combatActions.addCharacter({ character: shadow }));
-      }
+    const chance = Math.random() * 100;
+    if (chance > 50) {
+      // add enemy
+      // Add Siggurd to party
+      const baseStats = constructStats(UNDEAD.SHADOW.stats);
+      let shadow = {
+        ...UNDEAD.SHADOW,
+        id: uuidv4(),
+        stats: baseStats,
+        damageDisplay: [],
+      };
+
+      console.log("SHADOW ADDED");
+      dispatch(dungeonActions.addEnemy({ enemy: shadow, change: "ADD" }));
+      // dispatch(combatActions.addCharacter({ character: shadow }));
     }
   },
   STORM_SPHERE: (dispatch, target) => {

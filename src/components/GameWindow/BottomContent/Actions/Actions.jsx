@@ -209,7 +209,6 @@ export default function Actions() {
         <ul>
           {counters.map((item) => {
             if (item.useInCombat) {
-              console.log(item);
               return (
                 <Item
                   key={item.id}

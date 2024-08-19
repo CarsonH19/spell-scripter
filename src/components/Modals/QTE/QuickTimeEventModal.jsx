@@ -16,8 +16,6 @@ export default function QuickTimeEventModal() {
 
 function getRandomQuestionIndices() {
   const tomes = store.getState().tome;
-  console.log(tomes);
-
   let tomeIndex;
   let tomeIndices = [];
   let questionIndices = [];

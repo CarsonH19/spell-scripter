@@ -7,6 +7,7 @@ import Tooltip from "../../UI/Tooltip";
 import { useDispatch, useSelector } from "react-redux";
 
 import { combatActions } from "../../../store/combat-slice";
+import { logActions } from "../../../store/log-slice";
 
 import { targetType } from "../../../util/targeting";
 import { setTarget } from "../../../store/combat-actions";
@@ -32,6 +33,13 @@ export default function Character({ character }) {
   useEffect(() => {
     if (character.identifier === "ENEMY" && character.audio) {
       playSoundEffect(...character.audio.spawn);
+
+      // dispatch(
+      //   logActions.updateLogs({
+      //     change: "ADD",
+      //     text: `${character.name} joins combat!`,
+      //   })
+      // );
     }
   }, []);
 

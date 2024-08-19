@@ -385,10 +385,8 @@ async function isCombatOver(dispatch, additionalEnemies, loop) {
     return;
   }
 
-  console.log("isCombatOver", isEnemy);
-
   // combat ends after all enemies are defeated
-  if (!isEnemy) {
+  if (!isEnemy && updatedAdditionalEnemies.length === 0) {
     dispatch(combatActions.initiativeTracker({ change: "REMOVE" }));
     await checkForDialogue(dispatch, "after");
     await delay(1000);
@@ -455,22 +453,8 @@ export async function startCombat(dispatch, enemies) {
 
   await delay(1000);
 
-  // dispatch(logActions.updateLogs({ change: "CLEAR" }));
-  // dispatch(logActions.updateLogs({ change: "PAUSE" }));
-
-  // playSoundEffect(false, "misc", "encounter", 0.4);
-
-  // dispatch(
-  //   logActions.updateLogs({
-  //     change: "ADD",
-  //     text: `Encounter!`,
-  //   })
-  // );
-
   // Play encounter music
   playEncounterMusic();
-
-  // await delay(2000);
 
   // Clear Narrative
   dispatch(logActions.updateLogs({ change: "UNPAUSE" }));
@@ -608,12 +592,6 @@ async function checkForNewEnemies(dispatch, additionalEnemies) {
 
   // Add enemies until there are at least 3 in the combat order
   while (numberOfEnemies.length < 3 && enemiesToAdd.length > 0) {
-    dispatch(
-      logActions.updateLogs({
-        change: "ADD",
-        text: `${enemiesToAdd[0].name} joined combat!`,
-      })
-    );
     dispatch(combatActions.addCharacter({ character: enemiesToAdd[0] }));
     enemiesToAdd.shift(); // Remove the first enemy from the list after dispatching
     numberOfEnemies.push(enemiesToAdd[0]); // Update the local numberOfEnemies array to reflect the newly added enemy

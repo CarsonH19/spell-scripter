@@ -259,11 +259,12 @@ export function checkStatusEffect(dispatch, id, check, type) {
       break;
 
     case "DECREMENT": // Check for duration decrement
+      console.log("DECREMENT");
       for (let i = 0; i < statusEffects.length; i++) {
         if (
-          statusEffects[i].duration &&
           statusEffects[i].durationType === type
         ) {
+          console.log("DECREMENT CALLED");
           dispatch(
             combatActions.updateStatusEffectDuration({
               id,

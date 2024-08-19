@@ -24,8 +24,8 @@ const playerSlice = createSlice({
       death: [true, "fightGrunt"],
     },
     level: 1,
-    masteryPoints: 1,
-    totalMasteryPoints: 2,
+    masteryPoints: 0,
+    totalMasteryPoints: 1,
     attributePoints: 0,
     currentHealth: 0,
     currentMana: 0,
@@ -115,17 +115,17 @@ const playerSlice = createSlice({
           state.level = 5;
           state.attributePoints++;
         }
-      } else if (totalMasteryPoints >= 6) {
+      } else if (totalMasteryPoints >= 7) {
         if (state.level !== 4) {
           state.level = 4;
           state.attributePoints++;
         }
-      } else if (totalMasteryPoints >= 3) {
+      } else if (totalMasteryPoints >= 4) {
         if (state.level !== 3) {
           state.level = 3;
           state.attributePoints++;
         }
-      } else if (totalMasteryPoints > 1) {
+      } else if (totalMasteryPoints >= 2) {
         if (state.level !== 2) {
           state.level = 2;
           state.attributePoints++;
