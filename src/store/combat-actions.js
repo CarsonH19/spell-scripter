@@ -431,6 +431,8 @@ export async function startCombat(dispatch, enemies) {
   const currentOrder = store.getState().combat.order;
 
   const characters = [...enemiesInCombat, ...currentOrder];
+
+  console.log(characters);
   dispatch(combatActions.setInitiative({ characters }));
 
   for (let i = 0; i < characters.length; i++) {

@@ -32,24 +32,13 @@
   transition: 0.3s;
 }
 
-.narration ul .fade-in {
-  animation: fadeIn 0.5s ease-in;
-
-}
+/* .narration ul .fade-in {
+  animation: fadeInAndOut 2s ease-in;
+} */
 
 .narration ul .fade-in-out {
   animation: fadeInAndOut 3.1s ease-in-out;
 }
-
- 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-} 
 
 .narration .announcement {
   display: flex;

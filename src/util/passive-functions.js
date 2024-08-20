@@ -56,8 +56,8 @@ const passiveFunctions = {
       type: "BUFF",
       description:
         "The undead's strength grows in the presence of a skeletal warrior.",
-      effect: ["+2 Attack"],
-      stats: { strength: { attack: +2 } },
+      effect: ["+4 Attack"],
+      stats: { strength: { attack: +4 } },
       function: false,
     };
 

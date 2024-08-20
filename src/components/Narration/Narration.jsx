@@ -39,11 +39,7 @@ export default function Narration() {
           <li
             key={item.id}
             className={
-              style
-                ? {}
-                : !style && isPaused
-                ? classes["fade-in"]
-                : classes["fade-in-out"]
+              style ? {} : !style && isPaused ? "" : classes["fade-in-out"]
             }
           >
             {item.text}

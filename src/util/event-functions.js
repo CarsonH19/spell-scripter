@@ -245,12 +245,12 @@ const eventFunctions = {
         dispatch(
           logActions.updateLogs({
             change: "ADD",
-            text: `You have no way to unlock the vault door.`,
+            text: `You don't have a key to this door.`,
           })
         );
         dispatch(
           dungeonActions.eventOutcome({
-            outcome: `You were unable to unlock the vault door.`,
+            outcome: `You were unable to unlock the door.`,
           })
         );
         await delay(4000);
@@ -316,13 +316,16 @@ const eventFunctions = {
         }
 
         for (let i = 0; i < difficulty; i++) {
-          const index = Math.floor(Math.random() * enemyGroup.length);
-          enemies.push(enemyGroup[index]);
+          const randomEnemy = Math.floor(Math.random() * enemyGroup.length);
+          enemies.push(buildEnemy(enemyGroup[randomEnemy]));
         }
 
-        // Add enemies to dungeon
-        // for (let i = 0; i < enemies.length; i++) {
-        //   addCharacterToOrder(dispatch, enemies[i]);
+        // const builtEnemies = enemies.map((enemy) => buildEnemy(enemy));
+        // console.log(builtEnemies);
+
+        // // Build enemies
+        // for (let i = 0; i < builtEnemies.length; i++) {
+        //   console.log(builtEnemies[i]);
         // }
 
         await delay(2000);
@@ -385,7 +388,6 @@ const eventFunctions = {
   },
   UNLOCK_HERO_SIGGURD: async (dispatch) => {
     clearCharactersFromOrder(dispatch);
-    const dungeon = store.getState().dungeon;
     let enemies = [
       buildEnemy(UNDEAD.DECREPIT_SKELETON),
       buildEnemy(UNDEAD.DECREPIT_SKELETON),

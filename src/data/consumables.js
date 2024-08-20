@@ -247,7 +247,7 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Rare",
     useInCombat: false,
-    effect: [""],
+    effect: ["Unlocks certain doors within The Great Catacomb"],
     audio: [false, "item", "skeletonKeyIn2"],
   },
   MAGIC_ROPE: {
