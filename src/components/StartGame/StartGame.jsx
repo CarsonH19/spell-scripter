@@ -5,8 +5,7 @@ import { useDispatch } from "react-redux";
 import { playerActions } from "../../store/player-slice";
 
 import CONSUMABLES from "../../data/consumables";
-import EQUIPMENT from "../../data/equipment";
-import MISC_ITEMS from "../../data/misc-items";
+
 import { v4 as uuidv4 } from "uuid";
 import { backgroundMusic, playMusic } from "../../data/audio/music";
 import { useState } from "react";
