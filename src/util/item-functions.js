@@ -62,7 +62,7 @@ export const itemFunctions = {
     const statusEffect = {
       name: "Blackheart Brew",
       display: true,
-      image: "src/assets/images/items/consumables/blackheart-brew.jpg",
+      image: "public/assets/images/items/consumables/blackheart-brew.jpg",
       description: "",
       effect: ["+5 Attack", "-5 Spell Power"],
       durationType: "ROOM",
@@ -128,7 +128,7 @@ export const itemFunctions = {
     let statusEffect = {
       name: "Soothing Candle",
       display: true,
-      image: "src/assets/images/items/consumables/soothing-candle.jpg",
+      image: "public/assets/images/items/consumables/soothing-candle.jpg",
       description: "",
       effect: ["+6 HP Regeneration."],
       durationType: "ROOM",
@@ -144,7 +144,7 @@ export const itemFunctions = {
     const statusEffect = {
       name: "Calming Candle",
       display: true,
-      image: "src/assets/images/items/consumables/calming-candle.jpg",
+      image: "public/assets/images/items/consumables/calming-candle.jpg",
       description: "",
       effect: ["+6 MP Regeneration."],
       durationType: "ROOM",
@@ -160,7 +160,7 @@ export const itemFunctions = {
     const statusEffect = {
       name: "Flickering Candle",
       display: true,
-      image: "src/assets/images/items/consumables/flickering-candle.jpg",
+      image: "public/assets/images/items/consumables/flickering-candle.jpg",
       description: "",
       effect: ["+1 Agility."],
       durationType: "ROOM",
@@ -176,7 +176,7 @@ export const itemFunctions = {
     const statusEffect = {
       name: "Blazing Candle",
       display: true,
-      image: "src/assets/images/items/consumables/blazing-candle.jpg",
+      image: "public/assets/images/items/consumables/blazing-candle.jpg",
       description: "",
       effect: ["+6 Attack."],
       durationType: "ROOM",
@@ -192,7 +192,7 @@ export const itemFunctions = {
     const statusEffect = {
       name: "Invoking Candle",
       display: true,
-      image: "src/assets/images/items/consumables/invoking-candle.jpg",
+      image: "public/assets/images/items/consumables/invoking-candle.jpg",
       description: "",
       effect: ["+6 Spell Power."],
       durationType: "ROOM",

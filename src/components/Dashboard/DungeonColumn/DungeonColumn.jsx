@@ -20,7 +20,7 @@ export default function DungeonColumn() {
         <div
           className={classes.selection}
           style={{
-            backgroundImage: `url(src/assets/images/backgrounds/the-great-catacomb/catacomb-entrance-3.jpg)`,
+            backgroundImage: `url(public/assets/images/backgrounds/the-great-catacomb/catacomb-entrance-3.jpg)`,
           }}
         >
           {/* <p> Mastery Points Required: 0</p> */}

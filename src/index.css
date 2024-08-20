@@ -11,12 +11,12 @@ background-color: var(--background);
 
 @font-face {
   font-family: 'CrimsonText';
-  src: url('src/assets/fonts/crimson-text/CrimsonText-Regular.ttf') format('truetype');
+  src: url('public/assets/fonts/crimson-text/CrimsonText-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'CinzelDecorative';
-  src: url('src/assets/fonts/cinzel-decorative/CinzelDecorative-Regular.ttf') format('truetype');
+  src: url('public/assets/fonts/cinzel-decorative/CinzelDecorative-Regular.ttf') format('truetype');
 }
 
 /* @font-face {

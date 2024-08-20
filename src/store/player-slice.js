@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import SPELLS from "../data/spells";
-import { openModal } from "./ui-actions";
-import { calculateAttributePoints } from "../components/Modals/Attribute/Attributes";
 
 const playerSlice = createSlice({
   name: "player",
@@ -10,7 +8,7 @@ const playerSlice = createSlice({
     id: "Player",
     identifier: "PLAYER",
     get image() {
-      const imageList = ["src/assets/images/player/player-1"];
+      const imageList = ["public/assets/images/player/player-1"];
       const index = Math.floor(Math.random() * imageList.length);
       return imageList[index];
     },

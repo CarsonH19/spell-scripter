@@ -18,7 +18,7 @@ const CONDITIONS = {
   BURNING: {
     name: "Burning",
     display: true,
-    image: "src/assets/images/status-effect/burning.jpg",
+    image: "public/assets/images/status-effect/burning.jpg",
     type: "DEBUFF",
     description:
       "The target takes Fire damage at the start of each of its turns.",
@@ -33,7 +33,7 @@ const CONDITIONS = {
   POISONED: {
     name: "Poisoned",
     display: true,
-    image: "src/assets/images/status-effect/poisoned.jpg",
+    image: "public/assets/images/status-effect/poisoned.jpg",
     type: "DEBUFF",
     stack: 1,
     get effect() {
@@ -56,7 +56,7 @@ const CONDITIONS = {
   CHILLED: {
     name: "Chilled",
     display: true,
-    image: "src/assets/images/status-effect/chilled.jpg",
+    image: "public/assets/images/status-effect/chilled.jpg",
     type: "DEBUFF",
     stack: 1,
     get effect() {
@@ -76,7 +76,7 @@ const CONDITIONS = {
   STUNNED: {
     name: "Stunned",
     display: true,
-    image: "src/assets/images/status-effect/stunned.jpg",
+    image: "public/assets/images/status-effect/stunned.jpg",
     type: "DEBUFF",
     effect: ["The target can't take an action on its turn."],
     durationType: "ROUND",
@@ -87,7 +87,7 @@ const CONDITIONS = {
   DISEASED: {
     name: "Diseased",
     display: true,
-    image: "src/assets/images/status-effect/diseased.jpg",
+    image: "public/assets/images/status-effect/diseased.jpg",
     type: "DEBUFF",
     stack: 1,
     get effect() {
@@ -101,7 +101,7 @@ const CONDITIONS = {
   WITHERED: { // NOTE: Unfinished
     name: "Withered",
     display: true,
-    image: "src/assets/images/status-effect/withered.jpg",
+    image: "public/assets/images/status-effect/withered.jpg",
     type: "DEBUFF",
     stack: 1,
     get effect() {
@@ -115,7 +115,7 @@ const CONDITIONS = {
   CURSED: { // NOTE: Unfinished
     name: "Cursed",
     display: true,
-    image: "src/assets/images/status-effect/cursed.jpg",
+    image: "public/assets/images/status-effect/cursed.jpg",
     type: "DEBUFF",
     stack: 1,
     get effect() {
@@ -129,7 +129,7 @@ const CONDITIONS = {
   HAUNTED: {
     name: "Haunted",
     display: true,
-    image: "src/assets/images/status-effect/haunted.jpg",
+    image: "public/assets/images/status-effect/haunted.jpg",
     type: "DEBUFF",
     effect: ["You are haunted."],
     durationType: "ROOM",
@@ -142,7 +142,7 @@ const CONDITIONS = {
   RESTRAINED: {
     name: "Restrained",
     display: true,
-    image: "src/assets/images/status-effect/restrained.jpg",
+    image: "public/assets/images/status-effect/restrained.jpg",
     type: "DEBUFF",
     description: "The target is unable to move freely.",
     effect: ["The target can only take the Guard action."],
@@ -154,7 +154,7 @@ const CONDITIONS = {
   GUARD: {
     name: "Guarding",
     display: true,
-    image: "src/assets/images/status-effect/guard.jpg",
+    image: "public/assets/images/status-effect/guard.jpg",
     type: "BUFF",
     description: "Guarding from incoming attacks.",
     effect: ["Defense +50%"],
@@ -166,7 +166,7 @@ const CONDITIONS = {
   INCORPOREAL: {
     name: "Incorporeal",
     display: true,
-    image: "src/assets/images/status-effect/incorporeal.jpg",
+    image: "public/assets/images/status-effect/incorporeal.jpg",
     type: "BUFF",
     description: "The undead lacks a physical body.",
     effect: ["Attack damage dealt to the undead is reduced by 50%"],

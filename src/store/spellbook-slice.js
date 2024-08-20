@@ -10,7 +10,7 @@ const spellbookSlice = createSlice({
       novice: [
         {
           name: "Firebolt",
-          image: "src/assets/images/spellbook/evocation/firebolt.jpg",
+          image: "public/assets/images/spellbook/evocation/firebolt.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 1,
@@ -18,7 +18,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Frostbite",
-          image: "src/assets/images/spellbook/evocation/frostbite.jpg",
+          image: "public/assets/images/spellbook/evocation/frostbite.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -26,7 +26,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Shock",
-          image: "src/assets/images/spellbook/evocation/shock.jpg",
+          image: "public/assets/images/spellbook/evocation/shock.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -36,7 +36,7 @@ const spellbookSlice = createSlice({
       apprentice: [
         {
           name: "Smoldering Heart",
-          image: "src/assets/images/spellbook/evocation/smoldering-heart.jpg",
+          image: "public/assets/images/spellbook/evocation/smoldering-heart.jpg",
           type: "Buff",
           description: [
             "When casting spells that deal Fire damage, you have a 10% chance to inflict the Burning condition.",
@@ -48,7 +48,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Fireball",
-          image: "src/assets/images/spellbook/evocation/fireball.jpg",
+          image: "public/assets/images/spellbook/evocation/fireball.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -56,7 +56,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Frigid Gaze",
-          image: "src/assets/images/spellbook/evocation/frigid-gaze.jpg",
+          image: "public/assets/images/spellbook/evocation/frigid-gaze.jpg",
           type: "Buff",
           description: [
             "When casting spells that deal Ice damage, you have a 8% chance to inflict the Chilled condition.",
@@ -68,7 +68,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Chain Lightning",
-          image: "src/assets/images/spellbook/evocation/chain-lightning.jpg",
+          image: "public/assets/images/spellbook/evocation/chain-lightning.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -76,7 +76,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Charged Touch",
-          image: "src/assets/images/spellbook/evocation/charged-touch.jpg",
+          image: "public/assets/images/spellbook/evocation/charged-touch.jpg",
           type: "Buff",
           description: [
             "When casting spells that deal Lightning damage, you have a 6% chance to inflict the Stunned condition.",
@@ -90,7 +90,7 @@ const spellbookSlice = createSlice({
       adept: [
         {
           name: "Consuming Flames",
-          image: "src/assets/images/spellbook/evocation/consuming-flames.jpg",
+          image: "public/assets/images/spellbook/evocation/consuming-flames.jpg",
           type: "Buff",
           description: [
             "Enemies Burning from your spells are dealt 5 Fire damage each round.",
@@ -102,7 +102,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Blizzard",
-          image: "src/assets/images/spellbook/evocation/blizzard.jpg",
+          image: "public/assets/images/spellbook/evocation/blizzard.jpg",
           type: "Spell",
           // description: "",
           points: 0,
@@ -110,7 +110,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Evoker",
-          image: "src/assets/images/spellbook/evocation/evoker.jpg",
+          image: "public/assets/images/spellbook/evocation/evoker.jpg",
           type: "Buff",
           description: [
             "The mana cost of all Evocation spells is reduced by 2MP",
@@ -122,7 +122,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Frozen Solid",
-          image: "src/assets/images/spellbook/evocation/frozen-solid.jpg",
+          image: "public/assets/images/spellbook/evocation/frozen-solid.jpg",
           type: "Buff",
           description: [
             "Enemies Chilled by your spells take 3% more damage from Attacks for each stack of Chilled they possess.",
@@ -134,7 +134,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Storm Sphere",
-          image: "src/assets/images/spellbook/evocation/storm-sphere.jpg",
+          image: "public/assets/images/spellbook/evocation/storm-sphere.jpg",
           type: "Spell",
           // description: "",
           points: 0,
@@ -144,7 +144,7 @@ const spellbookSlice = createSlice({
       expert: [
         {
           name: "Meteor",
-          image: "src/assets/images/spellbook/evocation/meteor.jpg",
+          image: "public/assets/images/spellbook/evocation/meteor.jpg",
           type: "Spell",
           // description: "",
           points: 0,
@@ -166,7 +166,7 @@ const spellbookSlice = createSlice({
       novice: [
         {
           name: "Bark Skin",
-          image: "src/assets/images/spellbook/abjuration/bark-skin.jpg",
+          image: "public/assets/images/spellbook/abjuration/bark-skin.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -174,7 +174,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Barrier",
-          image: "src/assets/images/spellbook/abjuration/barrier.jpg",
+          image: "public/assets/images/spellbook/abjuration/barrier.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -182,7 +182,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Boundless",
-          image: "src/assets/images/spellbook/abjuration/boundless.jpg",
+          image: "public/assets/images/spellbook/abjuration/boundless.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -192,7 +192,7 @@ const spellbookSlice = createSlice({
       apprentice: [
         {
           name: "Death Ward",
-          image: "src/assets/images/spellbook/abjuration/death-ward.jpg",
+          image: "public/assets/images/spellbook/abjuration/death-ward.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -200,7 +200,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Dispel Magic",
-          image: "src/assets/images/spellbook/abjuration/dispel-magic.jpg",
+          image: "public/assets/images/spellbook/abjuration/dispel-magic.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -208,7 +208,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Arcane Shield",
-          image: "src/assets/images/spellbook/abjuration/arcane-shield.jpg",
+          image: "public/assets/images/spellbook/abjuration/arcane-shield.jpg",
           type: "Ability",
           description: [
             "Gain an Arcane Shield that absorbs damage. The shield gains temporary HP after each Alteration spell is cast up to a max of 18HP.",
@@ -220,7 +220,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Protect From Evil",
-          image: "src/assets/images/spellbook/abjuration/protect-from-evil.jpg",
+          image: "public/assets/images/spellbook/abjuration/protect-from-evil.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -228,7 +228,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Stone Skin",
-          image: "src/assets/images/spellbook/abjuration/stone-skin.jpg",
+          image: "public/assets/images/spellbook/abjuration/stone-skin.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -238,7 +238,7 @@ const spellbookSlice = createSlice({
       adept: [
         {
           name: "Shell",
-          image: "src/assets/images/spellbook/abjuration/shell.jpg",
+          image: "public/assets/images/spellbook/abjuration/shell.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -246,7 +246,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Improved Arcane Shield",
-          image: "src/assets/images/spellbook/abjuration/improved-arcane-shield.jpg",
+          image: "public/assets/images/spellbook/abjuration/improved-arcane-shield.jpg",
           type: "Ability",
           description: [
             "You enter each room with a minimum of 6HP in your Arcane Shield",
@@ -258,7 +258,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Abjurer",
-          image: "src/assets/images/spellbook/abjuration/abjurer.jpg",
+          image: "public/assets/images/spellbook/abjuration/abjurer.jpg",
           type: "Buff",
           description: [
             "The mana cost of all Abjuration spells is reduced by 2MP",
@@ -270,7 +270,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Dual Casting",
-          image: "src/assets/images/spellbook/abjuration/dual-casting.jpg",
+          image: "public/assets/images/spellbook/abjuration/dual-casting.jpg",
           type: "Buff",
           description: [
             "When targeting an ally with a Novice or Apprentice Abjuration spell there is a 33% chance to target an additional random ally.",
@@ -282,7 +282,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Steel Skin",
-          image: "src/assets/images/spellbook/abjuration/steel-skin.jpg",
+          image: "public/assets/images/spellbook/abjuration/steel-skin.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -292,7 +292,7 @@ const spellbookSlice = createSlice({
       expert: [
         {
           name: "Invulnerability",
-          image: "src/assets/images/spellbook/abjuration/invulnerability.jpg",
+          image: "public/assets/images/spellbook/abjuration/invulnerability.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -304,7 +304,7 @@ const spellbookSlice = createSlice({
       novice: [
         {
           name: "Conjure Weapon",
-          image: "src/assets/images/spellbook/conjuration/conjure-weapon.jpg",
+          image: "public/assets/images/spellbook/conjuration/conjure-weapon.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -312,7 +312,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Summon Hound",
-          image: "src/assets/images/spellbook/conjuration/summon-hound.jpg",
+          image: "public/assets/images/spellbook/conjuration/summon-hound.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -320,7 +320,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Conjure Feast",
-          image: "src/assets/images/spellbook/conjuration/conjure-feast.jpg",
+          image: "public/assets/images/spellbook/conjuration/conjure-feast.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -330,7 +330,7 @@ const spellbookSlice = createSlice({
       apprentice: [
         {
           name: "Conjure Key",
-          image: "src/assets/images/spellbook/conjuration/conjure-key.jpg",
+          image: "public/assets/images/spellbook/conjuration/conjure-key.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -338,7 +338,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Summoned Resilience",
-          image: "src/assets/images/spellbook/conjuration/summoned-resilience.jpg",
+          image: "public/assets/images/spellbook/conjuration/summoned-resilience.jpg",
           type: "Buff",
           description: [
             "Increase the max HP of your summons by +10.",
@@ -350,7 +350,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Summoned Dexterity",
-          image: "src/assets/images/spellbook/conjuration/summoned-dexterity.jpg",
+          image: "public/assets/images/spellbook/conjuration/summoned-dexterity.jpg",
           type: "Buff",
           description: [
             "Increase the Speed & Hit Chance of your summons by +1.",
@@ -362,7 +362,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Summon Knight",
-          image: "src/assets/images/spellbook/conjuration/summon-knight.jpg",
+          image: "public/assets/images/spellbook/conjuration/summon-knight.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -372,7 +372,7 @@ const spellbookSlice = createSlice({
       adept: [
         {
           name: "Summon Drake",
-          image: "src/assets/images/spellbook/conjuration/summon-drake.jpg",
+          image: "public/assets/images/spellbook/conjuration/summon-drake.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -380,7 +380,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Conjure Portal",
-          image: "src/assets/images/spellbook/conjuration/conjure-portal.jpg",
+          image: "public/assets/images/spellbook/conjuration/conjure-portal.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -388,7 +388,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Conjurer",
-          image: "src/assets/images/spellbook/conjuration/conjurer.jpg",
+          image: "public/assets/images/spellbook/conjuration/conjurer.jpg",
           type: "Buff",
           description: [
             "The mana cost of all Conjuration spells is reduced by 2MP",
@@ -400,7 +400,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Summoned Might",
-          image: "src/assets/images/spellbook/conjuration/summoned-might.jpg",
+          image: "public/assets/images/spellbook/conjuration/summoned-might.jpg",
           type: "Buff",
           description: [
             "Increase the Attack of your summons by +2.",
@@ -414,7 +414,7 @@ const spellbookSlice = createSlice({
         },
         {
           name: "Summon Golem",
-          image: "src/assets/images/spellbook/conjuration/summon-stone-golem.jpg",
+          image: "public/assets/images/spellbook/conjuration/summon-stone-golem.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,
@@ -424,7 +424,7 @@ const spellbookSlice = createSlice({
       expert: [
         {
           name: "Summon Hero",
-          image: "src/assets/images/spellbook/conjuration/summon-hero.jpg",
+          image: "public/assets/images/spellbook/conjuration/summon-hero.jpg",
           type: "Spell",
           // description: spells-descriptions.js
           points: 0,

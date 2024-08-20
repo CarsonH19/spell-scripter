@@ -12,7 +12,7 @@ const passiveFunctions = {
     const radiantAura = {
       name: "Radiant Aura",
       display: true,
-      image: "src/assets/images/status-effect/radiant-aura.jpg",
+      image: "public/assets/images/status-effect/radiant-aura.jpg",
       type: "DEBUFF",
       description: "The undead is weakened in the presence of Siggurd.",
       effect: ["-1 Defense"],
@@ -52,7 +52,7 @@ const passiveFunctions = {
     const RATTLE_OF_WAR = {
       name: "Rattle of War",
       display: true,
-      image: "src/assets/images/status-effect/rattle-of-war.jpg",
+      image: "public/assets/images/status-effect/rattle-of-war.jpg",
       type: "BUFF",
       description:
         "The undead's strength grows in the presence of a skeletal warrior.",

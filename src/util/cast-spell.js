@@ -307,7 +307,7 @@ function castStormSphere(dispatch, player) {
   const STORM_SPHERE = {
     name: "Storm Sphere",
     display: true,
-    image: "src/assets/images/spellbook/evocation/storm-sphere.jpg",
+    image: "public/assets/images/spellbook/evocation/storm-sphere.jpg",
     type: "BUFF",
     // description: "",
     effect: [
