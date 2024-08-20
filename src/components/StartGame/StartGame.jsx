@@ -35,27 +35,6 @@ export default function StartGame() {
         change: "ADD",
       })
     );
-
-    dispatch(
-      playerActions.changeInventory({
-        item: { ...CONSUMABLES.SKELETON_KEY, id: uuidv4() },
-        change: "ADD",
-      })
-    );
-
-    dispatch(
-      playerActions.changeInventory({
-        item: { ...CONSUMABLES.SKELETON_KEY, id: uuidv4() },
-        change: "ADD",
-      })
-    );
-
-    dispatch(
-      playerActions.changeInventory({
-        item: { ...CONSUMABLES.SKELETON_KEY, id: uuidv4() },
-        change: "ADD",
-      })
-    );
   };
 
   return (
