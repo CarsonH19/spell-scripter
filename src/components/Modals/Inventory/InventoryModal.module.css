@@ -199,9 +199,15 @@ right: 5%;
 
 .item-effect {
   display: list-item;
-  list-style-type: circle;
-  list-style-position: inside;
-  margin-left: 0.1rem; 
+  list-style-type:none; 
+  /* list-style-position: inside; */
+  /* margin-left: 0;  */
+  /* padding-left: 0;   */
+}
+
+.item-effect::before {
+  content: "-";
+  margin-right: 2px;
 }
 
 .attuned .empty {

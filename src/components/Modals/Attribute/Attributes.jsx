@@ -37,7 +37,6 @@ export default function Attributes() {
   };
   return (
     <div className={classes["attributes-container"]}>
-      {/* {isInventoryOpen && <h4 className={classes.header}>Stats</h4>} */}
       {!isInventoryOpen && (
         <div
           className={classes.cubes}
@@ -153,5 +152,17 @@ export default function Attributes() {
         </p>
       </div>
     </div>
+  );
+}
+
+export function calculateAttributePoints() {
+  const player = store.getState().player;
+  console.log(player);
+  return (
+    player.level +
+    2 -
+    player.stats.baseStrength -
+    player.stats.baseAgility -
+    player.stats.baseArcana
   );
 }

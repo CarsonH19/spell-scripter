@@ -44,8 +44,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 50%;
-text-align: center;
+  width: 50%; 
+  text-align: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .question .container .right {
@@ -69,7 +71,7 @@ text-align: center;
 }
 
 .question progress {
-  width: 60%;
+  width: 50%;
   height: 0.5rem;
   border-radius: 24px;
   background: var(--primary);
@@ -103,7 +105,7 @@ text-align: center;
   width: 100%;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,7 +121,7 @@ text-align: center;
   display: inline-block;
   width: 100%;
   font-family: 'CrimsonText', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   padding: 1rem 2rem;
   border: none;
   border-radius: 24px;

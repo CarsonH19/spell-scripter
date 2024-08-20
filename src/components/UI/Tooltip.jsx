@@ -11,9 +11,17 @@ export default function Tooltip({
   detailFour,
   children,
   position = "tooltip",
-  container = "container"
+  container = "container",
 }) {
   const [showTooltip, setShowTooltip] = useState(false);
+
+  let styles = {
+    title: "",
+    text: "",
+    detailOne: "",
+    detailTwo: "",
+    detailThree: "",
+  };
 
   const handleMouseEnter = () => {
     setShowTooltip(true);
@@ -22,6 +30,15 @@ export default function Tooltip({
   const handleMouseLeave = () => {
     setShowTooltip(false);
   };
+
+  if (position === "item") {
+    styles.title = "";
+    styles.text = text.toLowerCase();
+    console.log(styles.text);
+    styles.detailOne = "description";
+    styles.detailTwo = "";
+    styles.detailThree = "";
+  }
 
   return (
     <div
@@ -32,13 +49,22 @@ export default function Tooltip({
       {children}
       {showTooltip && (
         <div className={`${classes[position]}`}>
-          {title && <p className={classes.title}>{title}</p>}
-          {text && <p className={classes.text}>{text}</p>}
-          {detailOne && <p className={classes.detail}>{detailOne}</p>}
-          {detailTwo && <p>{detailTwo}</p>}
-          {detailThree && <p>{detailThree}</p>}
-          {detailFour && <p>{detailFour}</p>}
-
+          {title && <p className={`${classes.title}`}>{title}</p>}
+          {text && (
+            <p className={`${classes.text} ${classes[styles.text]}`}>{text}</p>
+          )}
+          {detailOne && (
+            <p className={`${classes[styles.detailOne]}`}>{detailOne}</p>
+          )}
+          {detailTwo && (
+            <p className={`${classes[styles.detailTwo]}`}>{detailTwo}</p>
+          )}
+          {detailThree && (
+            <p className={`${classes[styles.detailThree]}`}>{detailThree}</p>
+          )}
+          {detailFour && (
+            <p className={`${classes[styles.detailFour]}`}>{detailFour}</p>
+          )}
         </div>
       )}
     </div>

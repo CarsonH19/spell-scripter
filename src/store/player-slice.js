@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 import SPELLS from "../data/spells";
 import { openModal } from "./ui-actions";
+import { calculateAttributePoints } from "../components/Modals/Attribute/Attributes";
 
 const playerSlice = createSlice({
   name: "player",
@@ -24,7 +24,7 @@ const playerSlice = createSlice({
       death: [true, "fightGrunt"],
     },
     level: 1,
-    masteryPoints: 18,
+    masteryPoints: 0,
     totalMasteryPoints: 1,
     attributePoints: 0,
     currentHealth: 0,
@@ -55,7 +55,7 @@ const playerSlice = createSlice({
     weaknesses: [],
     resistances: [],
     immunities: [],
-    spellList: ["Fireball", "Firebolt"],
+    spellList: ["Firebolt"],
     statusEffects: [],
     inventory: {
       attunedItems: [],
@@ -77,58 +77,38 @@ const playerSlice = createSlice({
     checkForLevelUp(state, action) {
       // Increases mastery & attribute points
       const { tome } = action.payload;
-      let totalMasteryPoints = 1;
-      for (let i = 0; i < tome.length; i++) {
-        if (tome[i].mastered) {
-          totalMasteryPoints++;
-        }
-      }
+      const totalMasteryPoints = tome.reduce(
+        (total, item) => total + (item.mastered ? 1 : 0),
+        1
+      );
 
       if (totalMasteryPoints > state.totalMasteryPoints) {
         state.masteryPoints += totalMasteryPoints - state.totalMasteryPoints;
         state.totalMasteryPoints = totalMasteryPoints;
       }
 
-      // Conditionally check for which level the player should be
-      if (totalMasteryPoints >= 48) {
-        if (state.level !== 9) {
-          state.level = 9;
-          state.attributePoints++;
-        }
-      } else if (totalMasteryPoints >= 32) {
-        if (state.level !== 8) {
-          state.level = 8;
-          state.attributePoints++;
-        }
-      } else if (totalMasteryPoints >= 24) {
-        if (state.level !== 7) {
-          state.level = 7;
-          state.attributePoints++;
-        }
-      } else if (totalMasteryPoints >= 17) {
-        if (state.level !== 6) {
-          state.level = 6;
-          state.attributePoints++;
-        }
-      } else if (totalMasteryPoints >= 11) {
-        if (state.level !== 5) {
-          state.level = 5;
-          state.attributePoints++;
-        }
-      } else if (totalMasteryPoints >= 7) {
-        if (state.level !== 4) {
-          state.level = 4;
-          state.attributePoints++;
-        }
-      } else if (totalMasteryPoints >= 4) {
-        if (state.level !== 3) {
-          state.level = 3;
-          state.attributePoints++;
-        }
-      } else if (totalMasteryPoints >= 2) {
-        if (state.level !== 2) {
-          state.level = 2;
-          state.attributePoints++;
+      // Levels and required mastery points
+      const levelMapping = [
+        { level: 9, requiredPoints: 48 },
+        { level: 8, requiredPoints: 32 },
+        { level: 7, requiredPoints: 24 },
+        { level: 6, requiredPoints: 17 },
+        { level: 5, requiredPoints: 11 },
+        { level: 4, requiredPoints: 7 },
+        { level: 3, requiredPoints: 4 },
+        { level: 2, requiredPoints: 2 },
+      ];
+
+      for (const { level, requiredPoints } of levelMapping) {
+        if (totalMasteryPoints >= requiredPoints && state.level !== level) {
+          state.level = level;
+          state.attributePoints =
+            state.level +
+            2 -
+            state.stats.baseStrength -
+            state.stats.baseAgility -
+            state.stats.baseArcana;
+          break;
         }
       }
     },

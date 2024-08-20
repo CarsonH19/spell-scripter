@@ -1,6 +1,6 @@
 import classes from "./InventoryModal.module.css";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -8,12 +8,10 @@ import Item from "./Item";
 import Attributes from "../Attribute/Attributes";
 import Tooltip from "../../UI/Tooltip";
 import Icon from "../../UI/Icon";
-import updateStatTotals from "../../../store/stats-actions";
 import AttunedItem from "./attunedItem";
 
 export default function InventoryModal() {
   const [active, setActive] = useState(1);
-  const dispatch = useDispatch();
   const order = useSelector((state) => state.combat.order);
   const inDungeon = useSelector((state) => state.ui.gameWindowIsVisible);
 
@@ -109,7 +107,7 @@ export default function InventoryModal() {
                 return (
                   <Tooltip
                     key={item.id}
-                    position="right-middle"
+                    position="item"
                     title={item.name}
                     text={item.rarity}
                     detailOne={item.description}

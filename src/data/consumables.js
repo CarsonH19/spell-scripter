@@ -87,7 +87,7 @@ const CONSUMABLES = {
     type: "CONSUMABLE",
     rarity: "Rare",
     useInCombat: true,
-    effect: ["Restores 30% of your max HP.", "Can be used in combat."],
+    effect: ["Restores 30% of the target's max HP.", "Can be used in combat."],
     audio: [false, "item", "gulpingWater24"],
   },
   MANA_POTION: {
@@ -98,7 +98,7 @@ const CONSUMABLES = {
     target: "PLAYER",
     rarity: "Rare",
     useInCombat: true,
-    effect: ["Restores 30% of your max MP.", "Can be used in combat."],
+    effect: ["Restores 30% of the target's max MP.", "Can be used in combat."],
     audio: [false, "item", "gulpingWater24"],
   },
   LICHROOT: {
@@ -168,7 +168,7 @@ const CONSUMABLES = {
     rarity: "Rare",
     useInCombat: true,
     effect: [
-      "Restore all missing HP. However, your Arcana is reduced to 0.",
+      "Restore all missing HP. However, the target's Arcana is reduced to 0.",
       "Effects persist for 10 rooms.",
     ],
     audio: [false, "item", "gulpingWater24"],
@@ -274,7 +274,7 @@ const CONSUMABLES = {
   SMOKE_BOMB: {
     name: "Smoke Bomb",
     description:
-      "A small bomb that creates a thick smoke cloud obscuring your enemies vision.",
+      "A small bomb that creates a thick smoke cloud obscuring enemies vision.",
     image: "src/assets/images/items/consumables/skeleton-key.jpg",
     type: "CONSUMABLE",
     rarity: "Rare",

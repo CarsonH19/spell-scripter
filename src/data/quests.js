@@ -99,7 +99,7 @@ const quests = {
       text: `"The Candlelight Shrines hold ancient power that guides and protects. We must seek out these six shrines and rekindle their sacred flames to restore their light."`,
       description: "Find 6 Candlelight Shrines with Liheth.",
       progress: 0,
-      completion: 6,
+      completion: 3,
       finished: false,
       reward: "Liheth Level 2",
     },

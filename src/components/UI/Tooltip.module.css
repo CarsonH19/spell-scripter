@@ -372,20 +372,15 @@
   }
 
 
-/* ITEM */
-/* 
-.item-container {
-  height: 5rem;
-  width: 5rem;
-} */
 
+/* ITEM */
 .item {
   visibility: visible;
   position: absolute;
   z-index: 99;
-  bottom: 120%; /* Position above the item */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
+  top: 50%; /* Center vertically */
+  left: 120%; /* Position to the right of the item */
+  transform: translateY(-50%); /* Center vertically */
   background-color: black;
   color: var(--text);
   padding: 5px;
@@ -406,15 +401,42 @@
 .item::after {
   content: '';
   position: absolute;
-  top: 100%; /* Position the arrow at the bottom of the tooltip */
-  left: 50%; /* Center the arrow horizontally */
-  transform: translateX(-50%);
+  top: 50%; /* Center the arrow vertically */
+  right: 100%; /* Position the arrow to the left of the tooltip */
+  transform: translateY(-50%);
   border-width: 5px;
   border-style: solid;
-  border-color: black transparent transparent transparent; /* Arrow pointing down */
+  border-color: transparent black transparent transparent; /* Arrow pointing left */
+}
+
+.item .title {
+  font-weight: 600;
 }
 
 
-.item .title {
+/* TOOLTIP TEXT STYLING CLASSES */
+
+.item .description {
+  font-style: italic;
+}
+
+.item .common {
+  color: var(--text);
+  font-weight: 600;
+
+}
+
+.item .rare {
+  color: rgb(107, 127, 255);
+  font-weight: 600;
+}
+
+.item .epic {
+  color: rgb(187, 120, 255);
+  font-weight: 600;
+}
+
+.item .legendary {
+  color: rgb(248, 248, 144);
   font-weight: 600;
 }

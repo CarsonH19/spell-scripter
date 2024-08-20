@@ -100,7 +100,7 @@ export default function ConfirmationModal() {
                     text={spellObject.school}
                     detailOne={spellDescription}
                     detailTwo={`Mana Cost: ${spellObject.manaCost}`}
-                    position="item"
+                    position="right-middle"
                   >
                     <Icon
                       key={spellObject.name}

@@ -119,7 +119,6 @@ export const QUESTIONS = [
           "# This is a comment",
           "<> This is a comment <>",
         ],
-        // code: `// This is a comment\nconsole.log("This is code!");`,
       },
       {
         id: "q4",
@@ -130,7 +129,6 @@ export const QUESTIONS = [
           "# This is a multi-line comment #",
           "<> This is a multi-line comment <>",
         ],
-        // code: `/* This is a multi-line comment */\nconsole.log("This is code!");`,
       },
       {
         id: "q5",
@@ -171,7 +169,6 @@ export const QUESTIONS = [
           "console.log('3*4');",
           "console.log(34);",
         ],
-        code: `// Choose the correct snippet`,
       },
       {
         id: "q3",
@@ -204,7 +201,6 @@ export const QUESTIONS = [
           "console.log((3+4)*2);",
           "console.log(6/3-1);",
         ],
-        code: `// Choose the correct snippet`,
       },
       {
         id: "q7",
