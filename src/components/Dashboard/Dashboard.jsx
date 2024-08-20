@@ -16,7 +16,6 @@ const Dashboard = memo(() => {
   const tome = useSelector((state) => state.tome);
   const level = useSelector((state) => state.player.level);
 
-  console.log("DASHBOARD RENDERED");
   useEffect(() => {
     dispatch(playerActions.checkForLevelUp({ tome }));
   }, [dispatch, tome]);

@@ -154,15 +154,3 @@ export default function Attributes() {
     </div>
   );
 }
-
-export function calculateAttributePoints() {
-  const player = store.getState().player;
-  console.log(player);
-  return (
-    player.level +
-    2 -
-    player.stats.baseStrength -
-    player.stats.baseAgility -
-    player.stats.baseArcana
-  );
-}

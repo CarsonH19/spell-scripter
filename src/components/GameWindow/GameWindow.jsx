@@ -24,8 +24,6 @@ const GameWindow = memo(() => {
   const dispatch = useDispatch();
   const { roomCounter, image } = useSelector((state) => state.dungeon);
 
-  console.log("GAMEWINDOW RENDERED");
-
   useEffect(() => {
     handleGameFlow(dispatch, setShowBottom);
   }, [roomCounter]);

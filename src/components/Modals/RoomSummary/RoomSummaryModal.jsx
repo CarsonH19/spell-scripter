@@ -88,7 +88,6 @@ export default function RoomSummaryModal() {
         }
 
         // Decrement Status Effects
-        console.log("ID", order[i].id);
         checkStatusEffect(dispatch, order[i].id, "DECREMENT", "ROOM");
         checkStatusEffect(dispatch, order[i].id, "REMOVE");
         // Remove Round & Action durationType status effects

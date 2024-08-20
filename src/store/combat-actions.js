@@ -47,7 +47,6 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
   // NOTE: Passives will be called on each round of combat.
   let order = store.getState().combat.order;
   const dungeon = store.getState().dungeon;
-  console.log("DUNGEON", dungeon);
 
   // START OF THE ROUND
   await handleCallTiming(dispatch, "START_OF_ROUND");
@@ -127,7 +126,6 @@ export default async function combatLoop(dispatch, additionalEnemies = 0) {
                 if (selectedSpell) {
                   // Restart the while loop allowing players to change actions
                   await castSpell(dispatch, selectedSpell);
-                  console.log("SPELL WAS CAST");
                 }
               }
               break;
@@ -414,8 +412,6 @@ export async function startCombat(dispatch, enemies) {
   if (enemiesInCombat.length > 3) {
     // Calculate the number of enemies to move
     const excessCount = enemiesInCombat.length - 3;
-    console.log("EXCESS", excessCount);
-
     // Ensure excessCount is valid
     if (excessCount > 0) {
       // Move the excess enemies to the additionalEnemies array

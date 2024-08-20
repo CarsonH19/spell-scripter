@@ -34,7 +34,6 @@ export default function Tooltip({
   if (position === "item") {
     styles.title = "";
     styles.text = text.toLowerCase();
-    console.log(styles.text);
     styles.detailOne = "description";
     styles.detailTwo = "";
     styles.detailThree = "";
