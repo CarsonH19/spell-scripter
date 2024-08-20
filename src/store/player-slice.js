@@ -8,7 +8,7 @@ const playerSlice = createSlice({
     id: "Player",
     identifier: "PLAYER",
     get image() {
-      const imageList = ["public/assets/images/player/player-1"];
+      const imageList = ["/assets/images/player/player-1"];
       const index = Math.floor(Math.random() * imageList.length);
       return imageList[index];
     },

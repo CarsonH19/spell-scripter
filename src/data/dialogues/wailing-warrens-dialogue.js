@@ -4,19 +4,19 @@ export const WAILING_WARRENS_ENTRANCE_DIALOGUE = {
       {
         position: "RIGHT",
         speaker: null,
-        image: `public/assets/images/dialogue/wandering-wisp-dialogue.png`,
+        image: `/assets/images/dialogue/wandering-wisp-dialogue.png`,
         text: "The wisp comes to a stop in front of a massive, ancient door. The faint sound of ghostly whispers seeps through the cracks.",
       },
       {
         position: "LEFT",
         speaker: "Spell Scripter",
-        image: "public/assets/images/dialogue/player-1-dialogue.png",
+        image: "/assets/images/dialogue/player-1-dialogue.png",
         text: `"This... this doesn't look good. What's behind this door?"`,
       },
       {
         position: "RIGHT",
         speaker: null,
-        image: `public/assets/images/dialogue/wandering-wisp-dialogue.png`,
+        image: `/assets/images/dialogue/wandering-wisp-dialogue.png`,
         text: "The wisp floats closer to the door, its glow intensifying as the whispers grow louder.",
       },
       {
@@ -28,7 +28,7 @@ export const WAILING_WARRENS_ENTRANCE_DIALOGUE = {
       {
         position: "LEFT",
         speaker: "Spell Scripter",
-        image: "public/assets/images/dialogue/player-1-dialogue.png",
+        image: "/assets/images/dialogue/player-1-dialogue.png",
         text: `"I guess there's only one way to find out what's in there."`,
       },
     ],
@@ -42,7 +42,7 @@ export const WAILING_WARRENS_ENTRANCE_DIALOGUE = {
       {
         position: "LEFT",
         speaker: "Spell Scripter",
-        image: "public/assets/images/dialogue/player-1-dialogue.png",
+        image: "/assets/images/dialogue/player-1-dialogue.png",
         text: `"This place gives me the creeps..."`,
       },
     ]

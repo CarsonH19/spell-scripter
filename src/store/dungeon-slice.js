@@ -12,7 +12,7 @@ const dungeonSlice = createSlice({
     threat: -1,
     danger: false,
     image:
-      "public/assets/images/backgrounds/the-great-catacomb/catacomb-entrance-3.jpg",
+      "/assets/images/backgrounds/the-great-catacomb/catacomb-entrance-3.jpg",
     music: null,
     contents: {
       enemies: [],

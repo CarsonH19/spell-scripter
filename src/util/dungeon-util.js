@@ -55,7 +55,7 @@ export function setDungeon(dispatch, dungeonName) {
       dungeon.pathCounter = null;
       dungeon.threat = 0;
       dungeon.image =
-        "public/assets/images/backgrounds/the-great-catacomb/catacomb-entrance-3";
+        "/assets/images/backgrounds/the-great-catacomb/catacomb-entrance-3";
       // dungeon.music =
       dungeon.contents; // add Entrance event
       break;
@@ -453,7 +453,7 @@ function getRoomImage(dungeon) {
   switch (dungeon.name) {
     case "The Great Catacomb":
       backgroundImage = getImageFromList(
-        "public/assets/images/backgrounds/the-great-catacomb/catacomb",
+        "/assets/images/backgrounds/the-great-catacomb/catacomb",
         26
       );
       break;
@@ -464,14 +464,14 @@ function getRoomImage(dungeon) {
     switch (dungeon.path) {
       case "Wailing Warrens":
         backgroundImage = getImageFromList(
-          "public/assets/images/backgrounds/wailing-warrens/wailing-warrens",
+          "/assets/images/backgrounds/wailing-warrens/wailing-warrens",
           12
         );
         break;
 
       case "Thieves' Ruin":
         backgroundImage = getImageFromList(
-          "public/assets/images/backgrounds/thieves-ruin/thieves-ruin",
+          "/assets/images/backgrounds/thieves-ruin/thieves-ruin",
           9
         );
         break;
@@ -487,21 +487,21 @@ function getRoomImage(dungeon) {
       //THE GREAT CATACOMBS
       case "Gravestone":
         backgroundImage = getImageFromList(
-          "public/assets/images/backgrounds/events/gravestone",
+          "/assets/images/backgrounds/events/gravestone",
           5
         );
         break;
 
       case "Coffin":
         backgroundImage = getImageFromList(
-          "public/assets/images/backgrounds/events/coffin",
+          "/assets/images/backgrounds/events/coffin",
           7
         );
         break;
 
       case "Bonevault":
         backgroundImage = getImageFromList(
-          "public/assets/images/backgrounds/events/bonevault-door",
+          "/assets/images/backgrounds/events/bonevault-door",
           6
         );
         break;
@@ -509,7 +509,7 @@ function getRoomImage(dungeon) {
       case "Unlocking Liheth":
       case "Candlelight Shrine":
         backgroundImage = getImageFromList(
-          "public/assets/images/backgrounds/events/candlelight-shrine",
+          "/assets/images/backgrounds/events/candlelight-shrine",
           7
         );
         break;
@@ -518,7 +518,7 @@ function getRoomImage(dungeon) {
       case "Wailing Warrens":
       case "Wailing Warrens Exit":
         backgroundImage = getImageFromList(
-          "public/assets/images/backgrounds/wailing-warrens/wailing-warrens-door",
+          "/assets/images/backgrounds/wailing-warrens/wailing-warrens-door",
           1
         );
         break;
@@ -527,14 +527,14 @@ function getRoomImage(dungeon) {
       case "Thieves' Ruin":
       case "Thieves' Ruin Exit":
         backgroundImage = getImageFromList(
-          "public/assets/images/backgrounds/thieves-ruin/thieves-ruin-door",
+          "/assets/images/backgrounds/thieves-ruin/thieves-ruin-door",
           2
         );
         break;
 
       case "Laughing Coffin":
         backgroundImage = getImageFromList(
-          "public/assets/images/backgrounds/thieves-ruin/laughing-coffin-tavern",
+          "/assets/images/backgrounds/thieves-ruin/laughing-coffin-tavern",
           1
         );
         break;
@@ -698,7 +698,7 @@ export function playEncounterMusic() {
   }
 
   if (music) {
-    const musicURL = `public/assets/audio/music/${music}.mp3`;
+    const musicURL = `/assets/audio/music/${music}.mp3`;
     if (musicURL !== currentMusic._src) {
       playMusic(backgroundMusic[music]);
       playMusic(backgroundMusic[music]);

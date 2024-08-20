@@ -5,7 +5,7 @@ const MISC_ITEMS = {
   THIEVES_RUIN_MAP: {
     name: "Thieves' Ruin Map",
     description: "",
-    image: "src/assets/images/items/misc-items/map-1.jpg",
+    image: "/assets/images/items/misc-items/map-1.jpg",
     type: "MISC",
     rarity: "Rare",
     useInCombat: false,
@@ -19,7 +19,7 @@ const MISC_ITEMS = {
   LAUGHING_COFFIN_COIN: {
     name: "Laughing Coffin Coin",
     description: "",
-    image: "src/assets/images/items/consumables/laughing-coffin-coin.jpg",
+    image: "/assets/images/items/consumables/laughing-coffin-coin.jpg",
     type: "CONSUMABLE",
     rarity: "Rare",
     useInCombat: false,

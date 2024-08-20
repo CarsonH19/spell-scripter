@@ -15,7 +15,7 @@ const heroSlice = createSlice({
         unlocked: false,
         identifier: "HERO",
         get image() {
-          const imageList = ["public/assets/images/heroes/siggurd"];
+          const imageList = ["/assets/images/heroes/siggurd"];
           const index = Math.floor(Math.random() * imageList.length);
           return imageList[index];
         },
@@ -71,7 +71,7 @@ const heroSlice = createSlice({
         unlocked: false,
         identifier: "HERO",
         get image() {
-          const imageList = ["public/assets/images/heroes/liheth"];
+          const imageList = ["/assets/images/heroes/liheth"];
           const index = Math.floor(Math.random() * imageList.length);
           return imageList[index];
         },
@@ -127,7 +127,7 @@ const heroSlice = createSlice({
         unlocked: false,
         identifier: "HERO",
         get image() {
-          const imageList = ["public/assets/images/heroes/grave-robber"];
+          const imageList = ["/assets/images/heroes/grave-robber"];
           const index = Math.floor(Math.random() * imageList.length);
           return imageList[index];
         },

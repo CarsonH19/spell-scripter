@@ -5,7 +5,7 @@ let hound = {
   identifier: "HERO",
   summon: true,
   get image() {
-    const imageList = ["public/assets/images/heroes/hound"];
+    const imageList = ["/assets/images/heroes/hound"];
     const index = Math.floor(Math.random() * imageList.length);
     return imageList[index];  },
   get icon() {
@@ -33,7 +33,7 @@ let knight = {
   identifier: "HERO",
   summon: true,
   get image() {
-    const imageList = ["public/assets/images/heroes/knight"];
+    const imageList = ["/assets/images/heroes/knight"];
     const index = Math.floor(Math.random() * imageList.length);
     return imageList[index];  },
   get icon() {
@@ -83,7 +83,7 @@ let drake = {
   identifier: "HERO",
   summon: true,
   get image() {
-    const imageList = ["public/assets/images/heroes/drake"];
+    const imageList = ["/assets/images/heroes/drake"];
     const index = Math.floor(Math.random() * imageList.length);
     return imageList[index];  },
   get icon() {
@@ -133,7 +133,7 @@ let golem = {
   identifier: "HERO",
   summon: true,
   get image() {
-    const imageList = ["public/assets/images/heroes/golem"];
+    const imageList = ["/assets/images/heroes/golem"];
     const index = Math.floor(Math.random() * imageList.length);
     return imageList[index];  },
   get icon() {

@@ -33,7 +33,7 @@ const UNDEAD = {
     name: "Decrepit Skeleton",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/decrepit-skeleton", 5);
+      return getImageFromList("/assets/images/enemies/decrepit-skeleton", 5);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -71,7 +71,7 @@ const UNDEAD = {
     name: "Skeletal Warrior",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/skeletal-warrior", 3);
+      return getImageFromList("/assets/images/enemies/skeletal-warrior", 3);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -116,7 +116,7 @@ const UNDEAD = {
     name: "Skeletal Archer",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/skeletal-archer", 3);
+      return getImageFromList("/assets/images/enemies/skeletal-archer", 3);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -163,7 +163,7 @@ const UNDEAD = {
     name: "Skeletal Mage",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/skeletal-mage", 3);
+      return getImageFromList("/assets/images/enemies/skeletal-mage", 3);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -212,7 +212,7 @@ const UNDEAD = {
     image: "",
     type: ENEMY_TYPES.UNDEAD,
     get image() {
-      return getImageFromList("src/assets/images/enemies/bone-titan", 4);
+      return getImageFromList("/assets/images/enemies/bone-titan", 4);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -235,7 +235,7 @@ const UNDEAD = {
     name: "Reaper",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/reaper", 4);
+      return getImageFromList("/assets/images/enemies/reaper", 4);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -260,7 +260,7 @@ const UNDEAD = {
     name: "Grave Witch",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/grave-witch", 5);
+      return getImageFromList("/assets/images/enemies/grave-witch", 5);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -285,7 +285,7 @@ const UNDEAD = {
     name: "Death Knight",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/death-knight", 4);
+      return getImageFromList("/assets/images/enemies/death-knight", 4);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -310,7 +310,7 @@ const UNDEAD = {
     name: "Flood of Bones",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/flood-of-bones", 4);
+      return getImageFromList("/assets/images/enemies/flood-of-bones", 4);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -335,7 +335,7 @@ const UNDEAD = {
     name: "Corpse Oracle",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/corpse-oracle", 4);
+      return getImageFromList("/assets/images/enemies/corpse-oracle", 4);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -361,7 +361,7 @@ const UNDEAD = {
     name: "Reaper",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/reaper", 3);
+      return getImageFromList("/assets/images/enemies/reaper", 3);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -386,7 +386,7 @@ const UNDEAD = {
     name: "Ghast",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/ghast", 1);
+      return getImageFromList("/assets/images/enemies/ghast", 1);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -411,7 +411,7 @@ const UNDEAD = {
     name: "Reaver",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/reaver", 1);
+      return getImageFromList("/assets/images/enemies/reaver", 1);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -440,7 +440,7 @@ const UNDEAD = {
     name: "Wandering Wisp",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/wandering-wisp", 3);
+      return getImageFromList("/assets/images/enemies/wandering-wisp", 3);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -470,7 +470,7 @@ const UNDEAD = {
     name: "Shadow",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/shadow", 4);
+      return getImageFromList("/assets/images/enemies/shadow", 4);
     },
     get icon() {
       return `${this.image}-icon`;
@@ -508,7 +508,7 @@ const UNDEAD = {
     name: "Banshee",
     identifier: "ENEMY",
     get image() {
-      return "src/assets/images/enemies/banshee";
+      return "/assets/images/enemies/banshee";
     },
     get icon() {
       return `${this.image}-icon`;
@@ -545,7 +545,7 @@ const THIEVES = {
     name: "Thief",
     identifier: "ENEMY",
     get image() {
-      return getImageFromList("src/assets/images/enemies/thief", 4);
+      return getImageFromList("/assets/images/enemies/thief", 4);
     },
     get icon() {
       return `${this.image}-icon`;

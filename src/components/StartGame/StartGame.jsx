@@ -42,7 +42,7 @@ export default function StartGame() {
     <div
       className={classes.start}
       style={{
-        backgroundImage: `url("public/assets/start-screen-background.jpg")`,
+        backgroundImage: `url("/assets/start-screen-background.jpg")`,
       }}
     >
       <div className={classes.title}>

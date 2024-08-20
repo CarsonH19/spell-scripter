@@ -202,7 +202,7 @@ const eventFunctions = {
         .replace(/'/g, "");
 
       const newBackground = getImageFromList(
-        `public/assets/images/backgrounds/${pathURLFormat}/${pathURLFormat}`,
+        `/assets/images/backgrounds/${pathURLFormat}/${pathURLFormat}`,
         8
       );
       dispatch(dungeonActions.changeBackground(newBackground));
@@ -273,7 +273,7 @@ const eventFunctions = {
         await delay(2000);
 
         const newBackground = getImageFromList(
-          "public/assets/images/backgrounds/events/bonevault-room",
+          "/assets/images/backgrounds/events/bonevault-room",
           4
         );
         dispatch(dungeonActions.changeBackground(newBackground));
