@@ -4,6 +4,7 @@ import { constructStats } from "./dungeon-util";
 import { v4 as uuidv4 } from "uuid";
 import { combatActions } from "../store/combat-slice";
 import updateStatTotals from "../store/stats-actions";
+import { Img } from "@chakra-ui/react";
 
 // Used to randomly select an image for a character when it is added to the combat order
 export function getImageFromList(url, numberOfImages) {
@@ -84,3 +85,13 @@ export function addCharacterToOrder(
 export function getRandomCooldown(max) {
   return Math.floor(Math.random() * (max + 1));
 }
+
+// PRELOADING IMAGES
+// export function preloadImage(url) {
+//   const image = new Image();
+//   image.src = url;
+// }
+
+// export const loadImage = (url) => {
+//   return new URL(`${url}`, import.meta.url).href;
+// };

@@ -83,7 +83,7 @@ const heroSlice = createSlice({
           attack: [false, "attack", "lihethAttack"],
           death: [true, "fightGrunt"], // NOTE: add defeated sound
         },
-        level: 7,
+        level: 1,
         currentHealth: 0,
         stats: {
           baseStrength: 0,
