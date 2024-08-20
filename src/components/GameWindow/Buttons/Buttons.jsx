@@ -33,11 +33,11 @@ export default function Buttons() {
           onClick={() => handleOpenModal("inventoryModal")}
           style={isDanger ? { pointerEvents: "none", opacity: 0.6 } : {}}
         />
-        <FontAwesomeIcon
+        {/* <FontAwesomeIcon
           className={classes.icon}
           icon={faUsersLine}
           onClick={() => handleOpenModal("partyModal")}
-        />
+        /> */}
         <FontAwesomeIcon
           className={classes.icon}
           icon={faPersonCircleExclamation}

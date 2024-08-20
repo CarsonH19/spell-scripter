@@ -91,8 +91,8 @@
   position: relative;
   color: var(--text);
   aspect-ratio: 1;
-  height: 5rem;
-  width: 5rem;
+  height: 4rem;
+  width: 4rem;
   list-style: none;
   border: 1px solid var(--secondary);
   cursor: pointer;

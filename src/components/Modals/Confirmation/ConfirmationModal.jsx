@@ -46,7 +46,7 @@ export default function ConfirmationModal() {
 
   return (
     <div className={classes.confirmation}>
-      <h1>Are You Ready?</h1>
+      {/* <h1>Are You Ready?</h1> */}
       <div className={classes.content}>
         <div className={classes.heroes}>
           <h3>Party</h3>

@@ -38,6 +38,7 @@
 .inventory .container {
   display: flex;
   width: 100%;
+  height: 90%;
   flex: 1;
 }
 
@@ -170,8 +171,8 @@ button.active {
   position: relative;
   color: var(--text);
   aspect-ratio: 1;
-  height: 5rem;
-  width: 5rem;
+  height: 4rem;
+  width: 4rem;
   list-style: none;
   border: 1px solid var(--secondary);
   cursor: pointer;
@@ -250,8 +251,8 @@ right: 5%;
 .attuned ul div li {
   list-style: none;
   aspect-ratio: 1;
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   border: 2px solid var(--secondary);
   cursor: pointer;
   border-radius: 10%;
