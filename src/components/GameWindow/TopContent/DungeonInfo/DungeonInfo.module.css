@@ -10,3 +10,15 @@
 .info h4 {
   margin: 0;
 }
+
+@media only screen and (max-height: 430px) {
+  .info {
+   gap: 0rem;
+  }
+ .info h2 {
+  font-size: 4vh;
+ }
+ .info h4 {
+  font-size: 3vh;
+ }
+}

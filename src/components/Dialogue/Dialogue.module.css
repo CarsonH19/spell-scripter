@@ -96,4 +96,18 @@
   right: 0%;
 }
 
-
+@media only screen and (max-height: 430px) {
+  .dialogue .dialogue-box {
+    min-height: 0rem;
+    width: 80;
+  }
+  .dialogue .dialogue-box h3 {
+    font-size: 4vh;
+    padding: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  } 
+  .dialogue .dialogue-box p {
+    font-size: 4vh;
+  }
+}

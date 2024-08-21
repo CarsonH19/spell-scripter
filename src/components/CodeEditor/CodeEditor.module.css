@@ -136,3 +136,86 @@
 .error p {
   color: red
 }
+
+
+@media only screen and (max-height: 430px) {
+  .editor-container {
+    min-width: 0rem;
+    height: 10rem;
+    padding: 1rem;
+    border: 3px solid var(--secondary);
+    background-color: var(--dark);
+    border-radius: 10px;
+    z-index: 99;
+  }
+  
+  .editor-container h3,
+  .expanded-editor h3 {
+    font-size: 4vh;
+    display: none;
+  }
+  
+  .expanded-editor h3 {
+    font-size: 4vh;
+    display: none;
+  }
+  .editor-header p {
+  display: none;
+  }
+
+  .editor-columns div p {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .editor-header div button {
+    color: var(--accent);
+    background-color: transparent;
+    border-color: var(--accent);
+    height:2rem;
+    width: 6rem;
+    margin: 0;
+    font-size: 1rem;
+    border-radius: 5px;
+  }
+  
+  .editor-header div button:hover {
+    color: var(--dark);
+    background-color: var(--accent);
+    scale: 1;
+  }
+  
+   .editor-columns {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--primary);
+    overflow: hidden;
+  }
+  
+  .editor-columns:first-child {
+    cursor: pointer;
+  }
+  
+  .output {
+    width: 35%;
+    border-left: 2px solid var(--primary);
+    color: var(--text);
+    font-size: 0.9rem;
+    overflow: auto;
+    padding-left: 0.5rem;
+    /* margin-top: 1rem; */
+  }
+  
+  .error {
+    border-color: red;
+    border: 2px solid red;
+    color: red;
+  }
+  
+  .error p {
+    color: red
+  }
+  
+}

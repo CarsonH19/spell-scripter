@@ -24,3 +24,12 @@
   background-size: cover;
   background-color: var(--accent);
 }
+
+
+@media only screen and (max-height: 430px) {
+  .highlighted, .icon, .turn {
+    height: 8vh;
+    width: 8vh;
+    margin-top: -1rem;
+  }
+}

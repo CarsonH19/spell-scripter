@@ -50,3 +50,12 @@
   gap: 1rem;
   /* border: 1px solid red; */
 }
+
+@media only screen and (max-height: 430px) {
+  .container .following {
+    height: 6vh;
+  }
+  .container .skull {
+    height: 6vh;
+  }
+}

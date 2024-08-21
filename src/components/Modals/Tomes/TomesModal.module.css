@@ -76,19 +76,6 @@
 .content ul li {
   margin-bottom: 1rem;
 }
- 
-/* .tomesModal button {
-  position: absolute;
-  bottom: 10%;
-  height: 4rem;
-  width: 10rem;
-  font-size: 1.5rem;
-  margin: 1rem;
-  border-radius: 10px;
-  color: var(--dark);
-  background-color: var(--accent);
-  cursor: pointer;
-} */
 
 .tomesModal button:hover {
   scale: 1.1;
@@ -146,5 +133,45 @@
   width: 20rem;
   background-color: var(--dark);  
   border: 2px solid var(--primary);
+}
 
+
+@media only screen and (max-height: 430px) {
+  .tomesModal {
+    height: 100%;
+    width: 100%;
+    min-height: 0;
+    min-width: 0;
+  }
+  .tomesModal h1 {
+    font-size: 4vh;
+  }
+  .tomesModal h3 {
+    font-size: 3vh;
+    margin-bottom: -1rem;
+    padding: 0;
+  }
+  .content  {
+    padding: 0.5rem;
+    gap: 0rem;
+  }
+  .content h2 {
+    font-size: 5vh;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .content .text {
+    gap: 0.5rem;
+    font-size: 4vh;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .content ul {
+    font-size: 4vh;
+    margin-bottom: 0rem;
+    width: 0rem;
+  }
+  .content ul li {
+    margin-bottom: 0rem;
+  }
 }

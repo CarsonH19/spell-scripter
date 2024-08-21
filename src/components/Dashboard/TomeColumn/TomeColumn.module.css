@@ -6,7 +6,7 @@
   width: 33%;
   height: 100%;
   border: 3px solid var(--secondary);
-  min-width: 310px;
+  /* min-width: 310px; */
   padding: 1rem;
   background-color: var(--background);
   border-radius: 10px;
@@ -128,4 +128,13 @@
 .tomes-info-icon {
   color: var(--secondary);
   height: 1rem;
+}
+
+@media only screen and (max-height: 430px) {
+  .column {
+    padding: 0.3rem;
+  }
+  .column h1 {
+    font-size: 1rem;
+  }
 }

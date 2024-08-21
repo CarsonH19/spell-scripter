@@ -19,8 +19,6 @@
   border: 1px solid var(--text);
 }
 
-
-
 .actions div button {
   height: 4rem;
   width: 100%;
@@ -75,6 +73,7 @@ z-index: 3;
   align-items: center;
   width: 100%;
   margin-bottom: 0.2rem;
+  color: var(--text);
 }
 
 .spells .mana span {
@@ -181,5 +180,12 @@ z-index: 3;
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media only screen and (max-height: 430px) {
+  .spells, .items {
+    width: 30%;
+    height: 150%;
   }
 }

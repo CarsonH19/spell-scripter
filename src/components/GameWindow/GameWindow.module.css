@@ -36,10 +36,6 @@
   z-index: 1;
 }
 
-
-
-
-
 .window button {
   background-color: var(--primary);
   color: var(--text);
@@ -53,4 +49,10 @@
   background-color: var(--text);
   color: var(--primary);
   /* border: 3px solid var(--primary); */
+}
+
+@media only screen and (max-height: 430px) {
+  .window {
+    border: none;
+  }
 }

@@ -25,7 +25,7 @@ export default function DungeonColumn() {
         >
           {/* <p> Mastery Points Required: 0</p> */}
         </div>
-        <p>Description</p>
+        {/* <p>Description</p> */}
         <p className={classes.description}>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque nulla
           ut sequi illo quae ipsa nobis cumque dolore? Quo ipsa quas velit

@@ -587,7 +587,6 @@ const THIEVES = {
       { item: EQUIPMENT.RING_OF_AMBUSH, probability: 0.02 },
       { item: EQUIPMENT.SCOUNDRELS_EDGE, probability: 0.02 },
       { item: MISC_ITEMS.LAUGHING_COFFIN_COIN, probability: 0.15 },
-
       { item: null, probability: 0.63 },
     ],
   },

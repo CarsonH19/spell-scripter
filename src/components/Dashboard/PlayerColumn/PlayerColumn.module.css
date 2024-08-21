@@ -4,7 +4,7 @@
   height: 100%;
   padding: 1rem;
   border: 3px solid var(--secondary);
-  min-width: 310px;
+  /* min-width: 310px; */
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -98,7 +98,6 @@
 }
 
 .player h1 {
-  /* font-family: 'CrimsonText', sans-serif; */
   text-align: center;
 }
 
@@ -155,4 +154,31 @@
 
 .settings:hover {
   transform: scale(1.1);
+}
+
+
+
+@media only screen and (max-height: 430px) {
+  .column {
+    padding: 0.3rem;
+  }
+  .player-image {
+    display: none;
+  }
+  .player {
+    justify-content: space-between;
+  }
+  .player h1 {
+    font-size: 1rem;
+  }
+  .column .menu {
+    width: 100%;
+    gap: 0.5rem;
+  }
+  .column .menu div .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.5rem;
+  }
+  
 }

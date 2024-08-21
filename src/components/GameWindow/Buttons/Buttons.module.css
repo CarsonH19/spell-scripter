@@ -43,3 +43,11 @@
     opacity: 1;
   }
 }
+
+@media only screen and (max-height: 430px) {
+  .buttons .icon {
+    height: 6vh;
+    width: 6vh;
+    margin-bottom: 1rem;
+  }
+}

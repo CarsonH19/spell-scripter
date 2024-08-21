@@ -33,7 +33,6 @@
   padding: 1rem;
   gap: 0.5rem;
   overflow: visible;
-
 }
 
 .content h3 {
@@ -244,4 +243,22 @@
   height: 4rem;
   background-color: var(--accent);
   color: var(--background);
+}
+
+@media only screen and (max-height: 430px) {
+  .confirmation {
+    min-height: 0rem;
+    width: 100%;
+    min-width: none;
+    justify-content: center;
+  }
+  .confirmation .content {
+    display: none;
+  }
+  .confirmation button {
+    width: 24vw;
+    height: 12vh;
+    background-color: var(--accent);
+    color: var(--background);
+  }
 }

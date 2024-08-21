@@ -40,7 +40,7 @@
 
 .spellbook .container .schools h3 {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 3vh;
   margin-bottom: 1rem;
   border-bottom: 2px solid var(--secondary);
 }
@@ -197,13 +197,6 @@
   opacity: 0.4;
 }
 
-/* .skill-tree .expertise ul li:hover {
-  transition: 0.3s;
-  border: 1px solid var(--text);
-  opacity: 1;
-  transform: scale(1.1);
-} */
-
 .skill {
   box-shadow: inset 0.5rem 0.5rem 2rem rgba(0, 0, 0, 2);
 }
@@ -215,4 +208,66 @@
   opacity: 1;
   transform: scale(1.1);
   box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 4.8);
+}
+
+@media only screen and (max-height: 430px) {
+  .spellbook {
+    min-height: 0rem;
+    height: 100%;
+    width: 100%;
+    min-width: none;
+    justify-content: center;
+  }
+  .spellbook h1 {
+    font-size: 4vh;
+  }
+  .spellbook .container {
+    padding: 0.5rem;
+  }
+  .spellbook .container .schools h3 {
+    font-size: 3vh;
+  }
+  .spellbook .container .schools ol .inactive-school {
+    margin-bottom: 1rem;
+    font-size: 4vh;
+  }
+  .spellbook .container .schools ol .active-school {
+    margin-bottom: 1rem;
+    font-size: 4vh;
+  }  
+  .spellbook .container .schools .header {
+    gap: 0.5rem;
+  }
+  .spellbook .container .schools .header .points {
+    gap: 0.5rem;
+    font-size: 5vh;
+  }
+  .spellbook .container .header h3 {
+    margin: 0;
+    font-size: 3vh;
+  }
+  .spellbook .container button {
+    width: 20vw;
+    height: 8vh;
+    font-size: 5vh;
+    content: "Reset";
+  }  
+  .spellbook .container button {
+    width: 20vw;
+    height: 8vh;
+    font-size: 5vh;
+  }      
+  .skill-tree .expertise h3 {
+    font-size: 3vh;
+  }
+  .skill-tree .expertise h4 {
+    font-size: 3vh;
+  }
+  .skill-tree .expertise ul li {
+    margin: 0;
+    margin-top: 1rem;
+    padding: 0;
+    height: 8vh;
+    width: 8vh;
+  }
 }

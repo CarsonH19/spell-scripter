@@ -2,7 +2,7 @@
   width: 33%;
   height: 100%;
   border: 3px solid var(--secondary);
-  min-width: 310px;
+  /* min-width: 310px; */
   padding: 1rem;
   overflow: hidden;
   border-radius: 10px;
@@ -60,4 +60,27 @@
   background-color: var(--accent);
   color: var(--dark);
   border-radius: 10px;
+}
+
+@media only screen and (max-height: 430px) {
+  .column {
+    padding: 0.3rem;
+  }
+  .column h1 {
+    font-size: 1rem;
+  }
+  .dungeons h2 {
+    font-size: 0.7rem;
+  }
+  .column .dungeons .selection {
+    height: 55%;
+  }
+  .column .dungeons .description {
+    display: none;
+  }
+  .column .dungeons button {
+    position: auto;
+    width: 16vw;
+    height: 16vh;
+  }
 }

@@ -80,3 +80,24 @@
     opacity: 0;
   }
 }
+
+
+@media only screen and (max-height: 430px) {
+  .narration {
+    position: fixed;
+    z-index: 2; 
+    top: 50%;
+    left: 50%;
+  }
+  .narration ul {
+    min-height: 35rem;
+  }
+  .narration ul li {
+    font-size: 2rem;
+   }
+  .narration .announcement li {
+    font-size: 10vh;
+    margin-bottom: 0rem;
+  }
+  
+}

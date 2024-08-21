@@ -133,28 +133,8 @@
 .damage-display .restrained {} 
 
 
-/* @keyframes fadeOut {
-  0% {
-    opacity: 1;
+@media only screen and (max-height: 430px) {
+  .damage-display {
+    font-size: 5vh;
   }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-} */
-
-/* @keyframes damage-shake {
-  0% { transform: translateY(0) rotate(0.2deg); }
-  10% { transform: translateY(-5px) rotate(0.1deg); }
-  20% { transform: translateY(5px) rotate(-0.1deg); }
-  30% { transform: translateY(-5px) rotate(0.1deg); }
-  40% { transform: translateY(5px) rotate(-0.1deg); }
-  50% { transform: translateY(-2px) rotate(0.1deg); }
-  60% { transform: translateY(2px) rotate(-0.1deg); }
-  70% { transform: translateY(-1px) rotate(0.1deg); }
-  80% { transform: translateY(0) rotate(0.2deg); }
-  90% { transform: translateY(0) rotate(0.2deg); }
-  100% { transform: translateY(0) rotate(0.2deg); }
-} */
+}
