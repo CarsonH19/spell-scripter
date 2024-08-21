@@ -298,8 +298,6 @@ export function getRoomEnemies() {
       {
         enemyTypes = [{ enemy: THIEVES.THIEF, probability: 1 }];
         numberOfEnemies = Math.ceil(Math.random() * 3);
-        // TEST
-        numberOfEnemies = 6;
       }
       break;
 

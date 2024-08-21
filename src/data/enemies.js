@@ -209,13 +209,17 @@ const UNDEAD = {
   BONE_TITAN: {
     name: "Bone Titan",
     identifier: "ENEMY",
-    image: "",
     type: ENEMY_TYPES.UNDEAD,
     get image() {
       return getImageFromList("/assets/images/enemies/bone-titan", 4);
     },
     get icon() {
       return `${this.image}-icon`;
+    },
+    audio: {
+      spawn: [true, "undeadSpawn", null, 0.5],
+      attack: [true, "lightWeapon"],
+      death: [true, "boneBreak"],
     },
     level: 5,
     currentHealth: 90,
@@ -230,6 +234,16 @@ const UNDEAD = {
     immunities: ["POISONED"],
     behavior: "RANDOM",
     statusEffects: [],
+    lootTable: [
+      { item: CONSUMABLES.GRAVEBLOOM, probability: 0.05 },
+      { item: CONSUMABLES.ROTBANE_FERN, probability: 0.05 },
+      { item: CONSUMABLES.MARROWSTONE_CHEESE, probability: 0.05 },
+      { item: CONSUMABLES.CRYPTBREAD, probability: 0.05 },
+      { item: CONSUMABLES.SKELETON_KEY, probability: 0.02 },
+      { item: EQUIPMENT.SKULL_SCEPTER, probability: 0.02 },
+      { item: EQUIPMENT.GHOULBONE_ARMGUARDS, probability: 0.01 },
+      { item: null, probability: 0.75 },
+    ],
   },
   REAPER: {
     name: "Reaper",
@@ -240,8 +254,12 @@ const UNDEAD = {
     get icon() {
       return `${this.image}-icon`;
     },
+    audio: {
+      spawn: [true, "undeadSpawn", null, 0.5],
+      attack: [true, "lightWeapon"],
+      death: [true, "boneBreak"],
+    },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
     level: 5,
     currentHealth: 60,
     currentMana: 0,
@@ -255,6 +273,16 @@ const UNDEAD = {
     immunities: ["POISONED"],
     behavior: "RANDOM",
     statusEffects: [],
+    lootTable: [
+      { item: CONSUMABLES.GRAVEBLOOM, probability: 0.05 },
+      { item: CONSUMABLES.ROTBANE_FERN, probability: 0.05 },
+      { item: CONSUMABLES.MARROWSTONE_CHEESE, probability: 0.05 },
+      { item: CONSUMABLES.CRYPTBREAD, probability: 0.05 },
+      { item: CONSUMABLES.SKELETON_KEY, probability: 0.02 },
+      { item: EQUIPMENT.SKULL_SCEPTER, probability: 0.02 },
+      { item: EQUIPMENT.GHOULBONE_ARMGUARDS, probability: 0.01 },
+      { item: null, probability: 0.75 },
+    ],
   },
   GRAVE_WITCH: {
     name: "Grave Witch",
@@ -265,8 +293,12 @@ const UNDEAD = {
     get icon() {
       return `${this.image}-icon`;
     },
+    audio: {
+      spawn: [true, "undeadSpawn", null, 0.5],
+      attack: [true, "lightWeapon"],
+      death: [true, "boneBreak"],
+    },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
     level: 6,
     currentHealth: 40,
     currentMana: 0,
@@ -280,6 +312,16 @@ const UNDEAD = {
     immunities: ["POISONED"],
     behavior: "RANDOM",
     statusEffects: [],
+    lootTable: [
+      { item: CONSUMABLES.GRAVEBLOOM, probability: 0.05 },
+      { item: CONSUMABLES.ROTBANE_FERN, probability: 0.05 },
+      { item: CONSUMABLES.MARROWSTONE_CHEESE, probability: 0.05 },
+      { item: CONSUMABLES.CRYPTBREAD, probability: 0.05 },
+      { item: CONSUMABLES.SKELETON_KEY, probability: 0.02 },
+      { item: EQUIPMENT.SKULL_SCEPTER, probability: 0.02 },
+      { item: EQUIPMENT.GHOULBONE_ARMGUARDS, probability: 0.01 },
+      { item: null, probability: 0.75 },
+    ],
   },
   DEATH_KNIGHT: {
     name: "Death Knight",
@@ -291,7 +333,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      spawn: [true, "undeadSpawn", null, 0.5],
+      attack: [true, "lightWeapon"],
+      death: [true, "boneBreak"],
+    },
     level: 7,
     currentHealth: 40,
     currentMana: 0,
@@ -305,6 +351,16 @@ const UNDEAD = {
     immunities: ["POISONED"],
     behavior: "RANDOM",
     statusEffects: [],
+    lootTable: [
+      { item: CONSUMABLES.GRAVEBLOOM, probability: 0.05 },
+      { item: CONSUMABLES.ROTBANE_FERN, probability: 0.05 },
+      { item: CONSUMABLES.MARROWSTONE_CHEESE, probability: 0.05 },
+      { item: CONSUMABLES.CRYPTBREAD, probability: 0.05 },
+      { item: CONSUMABLES.SKELETON_KEY, probability: 0.02 },
+      { item: EQUIPMENT.SKULL_SCEPTER, probability: 0.02 },
+      { item: EQUIPMENT.GHOULBONE_ARMGUARDS, probability: 0.01 },
+      { item: null, probability: 0.75 },
+    ],
   },
   FLOOD_OF_BONES: {
     name: "Flood of Bones",
@@ -316,7 +372,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      spawn: [true, "undeadSpawn", null, 0.5],
+      attack: [true, "lightWeapon"],
+      death: [true, "boneBreak"],
+    },
     level: 8,
     currentHealth: 160,
     currentMana: 0,
@@ -330,6 +390,16 @@ const UNDEAD = {
     immunities: ["POISONED"],
     behavior: "ERRATIC",
     statusEffects: [],
+    lootTable: [
+      { item: CONSUMABLES.GRAVEBLOOM, probability: 0.05 },
+      { item: CONSUMABLES.ROTBANE_FERN, probability: 0.05 },
+      { item: CONSUMABLES.MARROWSTONE_CHEESE, probability: 0.05 },
+      { item: CONSUMABLES.CRYPTBREAD, probability: 0.05 },
+      { item: CONSUMABLES.SKELETON_KEY, probability: 0.02 },
+      { item: EQUIPMENT.SKULL_SCEPTER, probability: 0.02 },
+      { item: EQUIPMENT.GHOULBONE_ARMGUARDS, probability: 0.01 },
+      { item: null, probability: 0.75 },
+    ],
   },
   CORPSE_ORACLE: {
     name: "Corpse Oracle",
@@ -341,7 +411,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.HUMANOID,
-    // audio: {},
+    audio: {
+      spawn: [true, "undeadSpawn", null, 0.5],
+      attack: [true, "lightWeapon"],
+      death: [true, "boneBreak"],
+    },
     level: 3,
     currentHealth: 0,
     currentMana: 0,
@@ -355,8 +429,18 @@ const UNDEAD = {
     immunities: [],
     behavior: "ERRATIC",
     statusEffects: [CONDITIONS.INCORPOREAL],
-    lootTable: [],
+    lootTable: [
+      { item: CONSUMABLES.GRAVEBLOOM, probability: 0.05 },
+      { item: CONSUMABLES.ROTBANE_FERN, probability: 0.05 },
+      { item: CONSUMABLES.MARROWSTONE_CHEESE, probability: 0.05 },
+      { item: CONSUMABLES.CRYPTBREAD, probability: 0.05 },
+      { item: CONSUMABLES.SKELETON_KEY, probability: 0.02 },
+      { item: EQUIPMENT.SKULL_SCEPTER, probability: 0.02 },
+      { item: EQUIPMENT.GHOULBONE_ARMGUARDS, probability: 0.01 },
+      { item: null, probability: 0.75 },
+    ],
   },
+
   REAPER: {
     name: "Reaper",
     identifier: "ENEMY",
@@ -367,7 +451,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      spawn: [true, "undeadSpawn", null, 0.5],
+      attack: [true, "lightWeapon"],
+      death: [true, "boneBreak"],
+    },
     level: 5,
     currentHealth: 60,
     currentMana: 0,
@@ -381,6 +469,16 @@ const UNDEAD = {
     immunities: ["POISONED"],
     behavior: "RANDOM",
     statusEffects: [],
+    lootTable: [
+      { item: CONSUMABLES.GRAVEBLOOM, probability: 0.05 },
+      { item: CONSUMABLES.ROTBANE_FERN, probability: 0.05 },
+      { item: CONSUMABLES.MARROWSTONE_CHEESE, probability: 0.05 },
+      { item: CONSUMABLES.CRYPTBREAD, probability: 0.05 },
+      { item: CONSUMABLES.SKELETON_KEY, probability: 0.02 },
+      { item: EQUIPMENT.SKULL_SCEPTER, probability: 0.02 },
+      { item: EQUIPMENT.GHOULBONE_ARMGUARDS, probability: 0.01 },
+      { item: null, probability: 0.75 },
+    ],
   },
   GHAST: {
     name: "Ghast",
@@ -392,7 +490,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      spawn: [true, "undeadSpawn", null, 0.5],
+      attack: [true, "lightWeapon"],
+      death: [true, "boneBreak"],
+    },
     level: 5,
     currentHealth: 60,
     currentMana: 0,
@@ -406,6 +508,16 @@ const UNDEAD = {
     immunities: ["POISONED"],
     behavior: "RANDOM",
     statusEffects: [],
+    lootTable: [
+      { item: CONSUMABLES.GRAVEBLOOM, probability: 0.05 },
+      { item: CONSUMABLES.ROTBANE_FERN, probability: 0.05 },
+      { item: CONSUMABLES.MARROWSTONE_CHEESE, probability: 0.05 },
+      { item: CONSUMABLES.CRYPTBREAD, probability: 0.05 },
+      { item: CONSUMABLES.SKELETON_KEY, probability: 0.02 },
+      { item: EQUIPMENT.SKULL_SCEPTER, probability: 0.02 },
+      { item: EQUIPMENT.GHOULBONE_ARMGUARDS, probability: 0.01 },
+      { item: null, probability: 0.75 },
+    ],
   },
   REAVER: {
     name: "Reaver",
@@ -417,7 +529,11 @@ const UNDEAD = {
       return `${this.image}-icon`;
     },
     type: ENEMY_TYPES.UNDEAD,
-    // audio: {},
+    audio: {
+      spawn: [true, "undeadSpawn", null, 0.5],
+      attack: [true, "lightWeapon"],
+      death: [true, "boneBreak"],
+    },
     level: 5,
     currentHealth: 60,
     currentMana: 0,
@@ -431,6 +547,16 @@ const UNDEAD = {
     immunities: ["POISONED"],
     behavior: "RANDOM",
     statusEffects: [],
+    lootTable: [
+      { item: CONSUMABLES.GRAVEBLOOM, probability: 0.05 },
+      { item: CONSUMABLES.ROTBANE_FERN, probability: 0.05 },
+      { item: CONSUMABLES.MARROWSTONE_CHEESE, probability: 0.05 },
+      { item: CONSUMABLES.CRYPTBREAD, probability: 0.05 },
+      { item: CONSUMABLES.SKELETON_KEY, probability: 0.02 },
+      { item: EQUIPMENT.SKULL_SCEPTER, probability: 0.02 },
+      { item: EQUIPMENT.GHOULBONE_ARMGUARDS, probability: 0.01 },
+      { item: null, probability: 0.75 },
+    ],
   },
 
   // =====================================
